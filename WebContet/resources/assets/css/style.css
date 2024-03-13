@@ -564,10 +564,13 @@ a {
   border-color: #183153;
 }
 
+.btn-page {
+	font-weight: 800;
+}
 #prev,
-#next {
-  padding: 6px;
-  width: 4em;
+#next, .btn-page {
+  padding: 4px;
+  width: 3em;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   color: #333;
@@ -575,9 +578,12 @@ a {
   margin-top: 1em;
   margin-right: 5px;
 }
-
+.active-page {
+background-color: #ddd;
+}
 #prev:hover,
-#next:hover {
+#next:hover, .btn-page:hover {
+	border: 1px solid #ccc !important;
   background-color: #ddd;
 }
 

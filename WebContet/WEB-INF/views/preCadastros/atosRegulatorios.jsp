@@ -66,10 +66,6 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	<header id="menu"> </header>
-
-	<button type="button" class="btn botaoAtivaMenu ">
-		<i class="fa-solid fa-arrow-left mover-left"></i>
-	</button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
@@ -91,8 +87,8 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 				<button class="btn btn-primary btn-lg px-3 py-1 ms-auto"
-					data-bs-toggle="modal" data-bs-target="#newCadastro">Novo
-					Cadastro</button>
+					data-bs-toggle="modal" onclick="limpaCampo()"
+					data-bs-target="#newCadastro">Novo Cadastro</button>
 
 			</div>
 
@@ -106,17 +102,18 @@ String contextPath = request.getContextPath();
 					</tr>
 				</thead>
 				<tbody id="cola-atos" class="table-group-divider">
-					
+
 				</tbody>
 			</table>
-			<!-- <div id="pagination" class="mx-auto">
+			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
 				</button>
+				<div id="page-numbers" class="btn-group"></div>
 				<button id="next" class="btn btn-sm">
 					<i class="fa-solid fa-angle-right fa-xl"></i>
 				</button>
-			</div> -->
+			</div>
 		</section>
 		<div class="modal fade" id="newCadastro" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -129,17 +126,17 @@ String contextPath = request.getContextPath();
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form>
+						<form id="formCadastro">
 							<div class="mb-4">
 								<label for="nome" class="form-label">Ato regulatório:</label> <input
-									type="text" class="form-control" id="cadastro-nome"
-									required
+									type="text" class="form-control" id="cadastro-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
-								<button type="button" class="btn btn-primary" onclick="cadastrar()">Salvar</button>
+								<button type="submit" data-bs-dismiss="modal"
+									class="btn btn-primary">Salvar</button>
 							</div>
 						</form>
 					</div>
@@ -151,26 +148,23 @@ String contextPath = request.getContextPath();
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar Ato Regulatório</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Editar Ato
+							Regulatório</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form>
+						<form id="formEdit">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Ato regulatório:</label> 
-								<input
-									type="text" 
-									class="form-control" 
-									id="edit-nome"
-									required
-									aria-describedby="atoRegulatorio" 
-									autocomplete="off">
+								<label for="nome" class="form-label">Ato regulatório:</label> <input
+									type="text" class="form-control" id="edit-nome" required
+									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
-								<button type="button" class="btn btn-primary" onclick="editar()">Salvar</button>
+								<button type="submit" data-bs-dismiss="modal"
+									class="btn btn-primary">Salvar</button>
 							</div>
 						</form>
 					</div>
@@ -193,8 +187,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script
-		src="<%=contextPath%>/resources/assets/js/atosRegulatorios.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/atosRegulatorios.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
