@@ -21,11 +21,11 @@ body {
   font-size: 16px;
   text-decoration: none;
   display: block;
-  padding: 14px 25px;
+  padding: 14px 15px;
   transition: all 0.4s ease-in-out;
 }
 .abracaMenu .menu .item a:hover {
-  background-color: #04274d;
+  background-color: rgb(4, 45, 89);
 }
 
 .abracaMenu .menu .item i {
@@ -44,7 +44,7 @@ body {
 }
 
 .abracaMenu .menu .item .sub-menu a {
-  padding-left: 60px;
+  padding-left: 20px;
 }
 .rotate {
   transform: rotate(90deg);

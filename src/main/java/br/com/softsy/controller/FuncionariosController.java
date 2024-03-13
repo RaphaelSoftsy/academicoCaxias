@@ -72,19 +72,17 @@ public class FuncionariosController {
 		return "preCadastros/destinacaoLixo";
 	}
 	
-	@RequestMapping(value = { "editarFuncionario" }, method = RequestMethod.GET)
-	public String editarFuncionario(HttpSession session, Model model) throws Exception {
-//		if (session.getAttribute("loginFunc") == null) {
-			//return "login/loginFuncionario";
-	//	}
-
+	@RequestMapping(value = { "forma-ocupacao", "formaOcupacao" }, method = RequestMethod.GET)
+	public String formaOcupacao(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
 		/*
 		 * String perfil = session.getAttribute("perfil").toString();
 		 * 
 		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
 		 */
-
-		return "preCadastros/editarFuncionario";
+		return "preCadastros/formaOcupacao";
 	}
 
 	

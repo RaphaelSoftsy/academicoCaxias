@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Fornecimento de Água</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Formas de Ocupção</span>
 				</div>
 			</div>
 		</section>
@@ -92,15 +92,15 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<table
-				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Fornecimentos de Água cadastrados</caption>
+				class="table tabela-listagem table-striped table-bordered mb-0 caption-top mx-auto">
+				<caption>Ocupações cadastradas</caption>
 				<thead>
 					<tr>
-						<th scope="col">Fornecimento de Água</th>
+						<th scope="col">Forma de Ocupação</th>
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
 				</thead>
-				<tbody id="cola-atos" class="table-group-divider">
+				<tbody id="cola-tabela" class="table-group-divider">
 
 				</tbody>
 			</table>
@@ -127,7 +127,7 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Ato regulatório:</label> <input
+								<label for="nome" class="form-label">Forma de Ocupação:</label> <input
 									type="text" class="form-control" id="cadastro-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
@@ -147,15 +147,14 @@ String contextPath = request.getContextPath();
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar Ato
-							Regulatório</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Editar Forma de Ocupação</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Ato regulatório:</label> <input
+								<label for="nome" class="form-label">Forma de Ocupação:</label> <input
 									type="text" class="form-control" id="edit-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
@@ -186,7 +185,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/fornecimentoAgua.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/formaOcupacao.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

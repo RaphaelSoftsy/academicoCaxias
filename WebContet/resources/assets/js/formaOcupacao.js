@@ -100,7 +100,7 @@ $('#next').click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/formaOcupacaoPredio",
 		type: "GET",
 		async: false,
 	})
@@ -118,12 +118,12 @@ function listarDados(dados) {
 		return (
 			"<tr>" +
 			"<td>" +
-			item.atoRegulatorio +
+			item.formaOcupacaoPredio +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idAtoRegulatorio +
+			item.idFormaOcupacaoPredio +
 			'" data-nome="' +
-			item.atoRegulatorio +
+			item.formaOcupacaoPredio +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -141,12 +141,12 @@ function showModal(ref) {
 
 function editar() {
 	var objeto = {
-		idAtoRegulatorio: Number(idAto),
-		atoRegulatorio: $('#edit-nome').val()
+		idFormaOcupacaoPredio: Number(id),
+		formaOcupacaoPredio: $('#edit-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/formaOcupacaoPredio",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -158,7 +158,7 @@ function editar() {
 	})
 		.done(function(data) {
 			$('#edit-nome').val('');
-			getAtos();
+			getDados();
 			alert('Editado com Sucesso!')
 		})
 	return false;
@@ -177,11 +177,11 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		atoRegulatorio: $('#cadastro-nome').val()
+		formaOcupacaoPredio: $('#cadastro-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/formaOcupacaoPredio",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -193,7 +193,7 @@ function cadastrar() {
 	})
 		.done(function(data) {
 			$('#cadastro-nome').val('');
-			getAtos();
+			getDados();
 			showPage(currentPage);
 			alert('Cadastrado com Sucesso!')
 		})

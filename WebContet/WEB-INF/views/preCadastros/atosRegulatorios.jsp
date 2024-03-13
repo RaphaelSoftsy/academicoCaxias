@@ -14,7 +14,7 @@ String contextPath = request.getContextPath();
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
 
-<title>Centro Universitário Sumaré</title>
+<title>POC - Acadêmico Caxias do Sul</title>
 
 <!-- Bootstrap -->
 <link
@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-user-group fa-lg"></i> <span>Atos
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Atos
 						Regulatórios</span>
 				</div>
 			</div>
@@ -93,7 +93,7 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<table
-				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+				class="table tabela-listagem table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Atos Regulatórios cadastrados</caption>
 				<thead>
 					<tr>
@@ -101,7 +101,7 @@ String contextPath = request.getContextPath();
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
 				</thead>
-				<tbody id="cola-atos" class="table-group-divider">
+				<tbody id="cola-tabela" class="table-group-divider">
 
 				</tbody>
 			</table>
