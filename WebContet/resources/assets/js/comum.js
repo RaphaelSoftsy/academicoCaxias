@@ -1,4 +1,4 @@
-var url_base = "http://localhost:8080/";
+var url_base = "http://localhost:8080";
 
 const queryString = window.location.search;
 

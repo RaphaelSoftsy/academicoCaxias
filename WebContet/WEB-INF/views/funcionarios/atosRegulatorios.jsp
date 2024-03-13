@@ -97,7 +97,7 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<table
-				class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
+				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Atos Regulatórios cadastrados</caption>
 				<thead>
 					<tr>
@@ -106,41 +106,7 @@ String contextPath = request.getContextPath();
 					</tr>
 				</thead>
 				<tbody id="cola-atos" class="table-group-divider">
-					<tr>
-						<td>Ato Regulatório 1</td>
-						<td class='d-flex justify-content-center'>
-						<span
-							style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;"
-							class="btn btn-warning btn-sm"
-							data-bs-toggle="modal" 
-							data-bs-target="#editAto"
-							data-value="' + item.idDesconto +'">
-							<i class="fa-solid fa-pen fa-lg"></i>
-						</span>
-						</td>
-					</tr>
-					<tr>
-						<td>Ato Regulatório 2</td>
-						<td class='d-flex justify-content-center'><span
-							style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;"
-							class="btn btn-warning btn-sm"
-							data-value="' +
-					item.idDesconto +
-					'"
-							onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i>
-						</span></td>
-					</tr>
-					<tr>
-						<td>Ato Regulatório 3</td>
-						<td class='d-flex justify-content-center'><span
-							style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;"
-							class="btn btn-warning btn-sm"
-							data-value="' +
-					item.idDesconto +
-					'"
-							onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i>
-						</span></td>
-					</tr>
+					
 				</tbody>
 			</table>
 			<!-- <div id="pagination" class="mx-auto">
@@ -157,7 +123,7 @@ String contextPath = request.getContextPath();
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Novo
+						<h1 class="modal-title fs-5" id="title-novo-ato">Novo
 							Cadastro</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
@@ -166,14 +132,14 @@ String contextPath = request.getContextPath();
 						<form>
 							<div class="mb-4">
 								<label for="nome" class="form-label">Ato regulatório:</label> <input
-									type="text" class="form-control" id="nome"
+									type="text" class="form-control" id="cadastro-nome"
 									required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
-								<button type="button" class="btn btn-primary">Salvar</button>
+								<button type="button" class="btn btn-primary" onclick="cadastrar()">Salvar</button>
 							</div>
 						</form>
 					</div>
@@ -185,22 +151,26 @@ String contextPath = request.getContextPath();
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Editar Ato Regulatório</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Editar Ato Regulatório</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<form>
 							<div class="mb-4">
-								<label for="nome" class="form-label">Ato regulatório:</label> <input
-									type="text" class="form-control" id="nome"
+								<label for="nome" class="form-label">Ato regulatório:</label> 
+								<input
+									type="text" 
+									class="form-control" 
+									id="edit-nome"
 									required
-									aria-describedby="atoRegulatorio" autocomplete="off">
+									aria-describedby="atoRegulatorio" 
+									autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
-								<button type="button" class="btn btn-primary">Salvar</button>
+								<button type="button" class="btn btn-primary" onclick="editar()">Salvar</button>
 							</div>
 						</form>
 					</div>
@@ -224,7 +194,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources//assets/js/listarFuncionarios.js"></script>
+		src="<%=contextPath%>/resources/assets/js/atosRegulatorios.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
