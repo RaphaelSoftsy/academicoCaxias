@@ -23,13 +23,40 @@ public class FuncionariosController {
 		 * 
 		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
 		 */
-		return "funcionarios/cadastroDeFuncionario";
+		return "preCadastros/cadastroDeFuncionario";
 	}
 	
+	
+	@RequestMapping(value = { "dependencia-administrativa", "dependenciaAdministrativa" }, method = RequestMethod.GET)
+	public String dependenciaAdministrativa(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 *
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "preCadastros/dependenciaAdministrativa";
+	}
+	
+	
 	@RequestMapping(value = { "ato-regulatorio", "atoRegulatorio" }, method = RequestMethod.GET)
-	public String atoRegulatorio(HttpSession session, Model model) throws Exception {
+	public String atoRegulatorios(HttpSession session, Model model) throws Exception {
  
-		return "preCadastros/atoRegulatorio";
+		return "preCadastros/atosRegulatorios";
+	}
+	
+	@RequestMapping(value = { "fornecimentoDeAgua", "fornecimentoAgua" }, method = RequestMethod.GET)
+	public String fornecimentoAgua(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/fornecimentoAgua";
+	}
+	
+	@RequestMapping(value = { "esgotoSanitario", "esgotamentoSanitario" }, method = RequestMethod.GET)
+	public String esgotoSanitario(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/esgotoSanitario";
 	}
 	
 	@RequestMapping(value = { "destinacaoLixo" }, method = RequestMethod.GET)
@@ -60,136 +87,6 @@ public class FuncionariosController {
 		return "preCadastros/editarFuncionario";
 	}
 
-	@RequestMapping(value = { "listarFuncionarios" }, method = RequestMethod.GET)
-	public String listarFuncionarios(HttpSession session, Model model) throws Exception {
-		/*if (session.getAttribute("loginFunc") == null) {
-			return "login/loginFuncionario";
-		}
-*/
-		return "funcionarios/listarFuncionario";
-	}
-	
-	//Lojista ---------------------------------------------------------------------------------- //
-	
-	@RequestMapping(value = { "cadastroDeLojista" }, method = RequestMethod.GET)
-	public String cadastroDeLojista(HttpSession session, Model model) throws Exception {
-		
-		
-		return "lojista/cadastroDeLojista";
-	}
-	
-	@RequestMapping(value = { "listarLojista" }, method = RequestMethod.GET)
-	public String listarLojista(HttpSession session, Model model) throws Exception {
-		
-		
-		return "lojista/listarLojista";
-	}
-	
-	@RequestMapping(value = { "editarLojista" }, method = RequestMethod.GET)
-	public String editarLojista(HttpSession session, Model model) throws Exception {
-		
-		
-		return "lojista/editarLojista";
-	}
-	
-	
-	
-	
-	//categorias ------------------------------------------------------------------------------- //
-	
-	@RequestMapping(value = { "cadastroDeCategoria" }, method = RequestMethod.GET)
-	public String cadastroDeCategoria(HttpSession session, Model model) throws Exception {
-		
-		
-		return "categoria/cadastroDeCategoria";
-	}
-	
-	@RequestMapping(value = { "listarCategoria" }, method = RequestMethod.GET)
-	public String listarCategoria(HttpSession session, Model model) throws Exception {
-		
-		
-		return "categoria/listarCategoria";
-	}
-	
-	// Sub-categoria ----------------------------------------------------------------------------//
-	
-	@RequestMapping(value = { "cadastroDeSubCategoria" }, method = RequestMethod.GET)
-	public String cadastroDeSubCategoria(HttpSession session, Model model) throws Exception {
-		
-		
-		return "sub-categoria/cadastroDeSubCategoria";
-	}
-	
-	@RequestMapping(value = { "listarSubCategoria" }, method = RequestMethod.GET)
-	public String listarSubCategoria(HttpSession session, Model model) throws Exception {
-		
-		
-		return "sub-categoria/listarSubCategoria";
-	}
-	
-	
-	//cargo ------------------------------------------------------------------------------------- //
-	
-	@RequestMapping(value = { "cadastroDeCargo" }, method = RequestMethod.GET)
-	public String cadastroDeCargo(HttpSession session, Model model) throws Exception {
-		
-		
-		return "cargo/cadastroDeCargo";
-	}
-	
-	@RequestMapping(value = { " listarCargos" }, method = RequestMethod.GET)
-	public String listarCargos(HttpSession session, Model model) throws Exception {
-		
-		
-		return "cargo/listarCargos";
-	}
-	
-	@RequestMapping(value = { " editarCargo" }, method = RequestMethod.GET)
-	public String editarCargo(HttpSession session, Model model) throws Exception {
-		
-		
-		return "cargo/editarCargo";
-	}
-	
-	//produto ------------------------------------------------------------------------------------//
-	
-	@RequestMapping(value = { "cadastroDeProduto" }, method = RequestMethod.GET)
-	public String cadastroDeProduto(HttpSession session, Model model) throws Exception {
-		
-		
-		return "produto/cadastroDeProduto";
-	}
-	
-	@RequestMapping(value = { "listarProduto" }, method = RequestMethod.GET)
-	public String listarProduto(HttpSession session, Model model) throws Exception {
-		
-		
-		return "produto/listarProduto";
-	}
-	
-	//colaboradores ------------------------------------------------------------------------------------//
-	
-		@RequestMapping(value = { "cadastroDeColaboradores" }, method = RequestMethod.GET)
-		public String cadastroDeColaboradores(HttpSession session, Model model) throws Exception {
-			
-			
-			return "colaboradores/cadastroDeColaboradores";
-		}
-		
-		@RequestMapping(value = { "listarColaboradores" }, method = RequestMethod.GET)
-		public String listarColaboradores(HttpSession session, Model model) throws Exception {
-			
-			
-			return "colaboradores/listarColaboradores";
-		}
-		
-		@RequestMapping(value = { "editarColaborador" }, method = RequestMethod.GET)
-		public String editarColaborador(HttpSession session, Model model) throws Exception {
-			
-			
-			return "colaboradores/editarColaborador";
-		}
-		
 	
 
 }
