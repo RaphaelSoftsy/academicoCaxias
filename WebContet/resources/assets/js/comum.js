@@ -13,3 +13,42 @@ window.addEventListener("load", function() {
     loader.parentElement.removeChild(loader);
     $(".bg-loading").addClass("none");
 });
+
+
+function desativar(){
+	$.ajax({
+		url: url_base + "/localizacao/"+idAto+"/desativar",
+		type: "PUT",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			$('#edit-nome').val('');
+			getAtos();
+			alert('Desativado com Sucesso!')
+		})
+	return false;
+}
+
+function ativar(){
+	$.ajax({
+		url: url_base + "/localizacao/"+idAto+"/ativar",
+		type: "PUT",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			$('#edit-nome').val('');
+			getAtos();
+			alert('Ativado com Sucesso!')
+		})
+	return false;
+}

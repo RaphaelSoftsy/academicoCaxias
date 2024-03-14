@@ -26,6 +26,30 @@ public class FuncionariosController {
 		return "preCadastros/cadastroDeFuncionario";
 	}
 	
+	@RequestMapping(value = { "modalidade-escolar", "modalidadeEscolar" }, method = RequestMethod.GET)
+	public String modalidadeEscolar(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 *
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "preCadastros/modalidadeEscolar";
+	}
+	@RequestMapping(value = { "tipos-dependencias-adm", "tiposDependenciasAdm" }, method = RequestMethod.GET)
+	public String tiposDependenciasAdm(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 *
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "preCadastros/tiposDependenciasAdm";
+	}
 	
 	@RequestMapping(value = { "dependencia-administrativa", "dependenciaAdministrativa" }, method = RequestMethod.GET)
 	public String dependenciaAdministrativa(HttpSession session, Model model) throws Exception {
@@ -45,6 +69,18 @@ public class FuncionariosController {
 	public String atoRegulatorios(HttpSession session, Model model) throws Exception {
  
 		return "preCadastros/atosRegulatorios";
+	}
+	
+	@RequestMapping(value = { "localizacao", "tipoLocalizacao" }, method = RequestMethod.GET)
+	public String localizacao(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/localizacao";
+	}
+	
+	@RequestMapping(value = { "fonteEnergia", "fonteEnergiaEletrcia" }, method = RequestMethod.GET)
+	public String fonteEnergia(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/fonteEnergia";
 	}
 	
 	@RequestMapping(value = { "fornecimentoDeAgua", "fornecimentoAgua" }, method = RequestMethod.GET)
