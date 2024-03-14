@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Dependência Administrativa</span>
+					<i class="fa-solid fa-bars-staggered fa-lg"></i> <span>Escolas</span>
 				</div>
 			</div>
 		</section>
@@ -85,20 +85,21 @@ String contextPath = request.getContextPath();
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<button class="btn btn-primary btn-lg px-3 py-1 ms-auto"
-					data-bs-toggle="modal" onclick="limpaCampo()"
-					data-bs-target="#newCadastro">Novo Cadastro</button>
+				<a href="nova-escola" class="btn btn-primary btn-lg px-3 py-1 ms-auto">Novo Cadastro</a>
 
 			</div>
 
 			<table
-				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+				class="table tabela-cadastros table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Dependência Administrativa</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Município</th>
+						<th scope="col">UF</th>
+						<th scope="col">CNPJ</th>
 						<th scope="col">Ativo</th>
-						<th class='text-center' scope="col" width="10%"></th>
+						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -115,66 +116,7 @@ String contextPath = request.getContextPath();
 				</button>
 			</div>
 		</section>
-		<div class="modal fade" id="newCadastro" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-novo-ato">Novo
-							Cadastro</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form id="formCadastro">
-							<div class="mb-4">
-								<label for="nome" class="form-label">Dependência Administrativa:</label> <input
-									type="text" class="form-control" id="cadastro-nome" required
-									aria-describedby="atoRegulatorio" autocomplete="off">
-							</div>
-							<div class="d-flex justify-content-end gap-2">
-							
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Fechar</button>
-								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id="editAto" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form id="formEdit">
-							<div class="mb-4">
-								<label for="nome" class="form-label">Dependência Administrativa:</label> <input
-									type="text" class="form-control" id="edit-nome" required
-									aria-describedby="atoRegulatorio" autocomplete="off">
-							</div>
-							<div class="d-flex justify-content-end gap-2">
-							<button type="button" onclick='ativar("dependenciaAdministrativa")' class="ativar btn btn-secondary"
-									data-bs-dismiss="modal">Ativar</button>
-							<button type="button" onclick='desativar("dependenciaAdministrativa")' class="desativar btn btn-secondary"
-									data-bs-dismiss="modal">Desativar</button>
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Fechar</button>
-								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</main>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
@@ -191,7 +133,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/dependenciaAdministrativa.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/cadastros/escolas.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

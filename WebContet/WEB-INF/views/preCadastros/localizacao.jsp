@@ -101,7 +101,7 @@ String contextPath = request.getContextPath();
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
 				</thead>
-				<tbody id="cola-atos" class="table-group-divider">
+				<tbody id="cola-tabela" class="table-group-divider">
 
 				</tbody>
 			</table>

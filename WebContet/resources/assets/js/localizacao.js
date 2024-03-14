@@ -14,9 +14,9 @@ $(document).ready(function() {
 
 		if (valorBusca === '') {
 			busca()
-			$("#cola-atos tr").show();
+			$("#cola-tabela tr").show();
 		} else {
-			$("#cola-atos tr").hide().filter(function() {
+			$("#cola-tabela tr").hide().filter(function() {
 				return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
 			}).show();
 		}
@@ -31,7 +31,7 @@ $(document).ready(function() {
 		if (valorInput === '') {
 			showPage(currentPage);
 		} else {
-			$("#cola-atos tr").hide().filter(function() {
+			$("#cola-tabela tr").hide().filter(function() {
 				return $(this).text().toLowerCase().indexOf(valorInput) > -1;
 			}).show();
 		}
@@ -47,12 +47,12 @@ function showPage(page) {
 	var start = (page - 1) * rows;
 	var end = start + rows;
 
-	$('#cola-atos tr').hide();
-	$('#cola-atos tr').slice(start, end).show();
+	$('#cola-tabela tr').hide();
+	$('#cola-tabela tr').slice(start, end).show();
 }
 
 function toggleNavigation() {
-    var totalRows = $('#cola-atos tr').length;
+    var totalRows = $('#cola-tabela tr').length;
     var totalPages = Math.ceil(totalRows / rows);
 
     $('#prev').prop('disabled', currentPage === 1);
@@ -86,7 +86,7 @@ function updatePagination() {
 }
 
 function goToPage(page) {
-    if (page >= 1 && page <= Math.ceil($('#cola-atos tr').length / rows)) {
+    if (page >= 1 && page <= Math.ceil($('#cola-tabela tr').length / rows)) {
         currentPage = page;
         showPage(currentPage);
         updatePagination();
@@ -143,7 +143,7 @@ function listarAtos(atos) {
 		);
 	}).join("");
 
-	$("#cola-atos").html(html);
+	$("#cola-tabela").html(html);
 }
 
 function showModal(ato) {

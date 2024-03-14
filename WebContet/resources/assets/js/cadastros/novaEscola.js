@@ -1,7 +1,6 @@
-var atos = [];
+var dados = [];
 var id = '';
-var nome = '';
-var rows = 8;
+var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
 
@@ -60,22 +59,18 @@ function toggleNavigation() {
 
     $('#page-numbers').empty();
 
-    // Adicionar o botão da primeira página
     $('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === 1 ? 'active-page' : '') + '" data-page="1">1</button>');
 
     var startPage = Math.max(2, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 2));
     var endPage = Math.min(totalPages - 1, startPage + pagesToShow - 3);
 
-    // Adicionar os números de página
     for (var i = startPage; i <= endPage; i++) {
         var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
         $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
     }
 
-    // Adicionar o botão da última página
     $('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === totalPages ? 'active-page' : '') + '" data-page="' + totalPages + '">' + totalPages + '</button>');
 
-    // Adicionar o evento de clique para os números de páginas
     $('.btn-page').click(function() {
         goToPage(parseInt($(this).data('page')));
     });
@@ -104,107 +99,52 @@ $('#next').click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/fornecimentoAgua",
+		url: url_base + "/escolas",
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
-			listarAtos(data);
+			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 }
 
-function listarAtos(atos) {
-	var html = atos.map(function(item) {
+function listarDados(dados) {
+	var html = dados.map(function(item) {
+		var ativo;
+		
+		if (item.ativo == 'N') {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
 
 		return (
 			"<tr>" +
 			"<td>" +
-			item.fornecimentoAgua +
+			item.nomeEscola +
+			"</td>" +
+			"<td>" +
+			item.municipio +
+			"</td>" +
+			"<td>" +
+			item.uf +
+			"</td>" +
+			"<td>" +
+			item.cnpj +
+			"</td>" +
+			"<td>" +
+			ativo +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idFornecimentoAgua +
-			'" data-nome="' +
-			item.fornecimentoAgua +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			item.idEscola +
+			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
 
 	$("#cola-tabela").html(html);
-}
-
-function showModal(ato) {
-	id = ato.getAttribute("data-id");
-	nome = ato.getAttribute("data-nome");
-
-	$('#edit-nome').val(nome);
-}
-
-function editar() {
-	var objeto = {
-		idFornecimentoAgua: Number(id),
-		fornecimentoAgua: $('#edit-nome').val()
-	}
-
-	$.ajax({
-		url: url_base + "/fornecimentoAgua",
-		type: "PUT",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		error: function(e) {
-			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
-		}
-	})
-		.done(function(data) {
-			$('#edit-nome').val('');
-			getDados();
-			alert('Editado com Sucesso!')
-		})
-	return false;
-}
-$('#formEdit').on('submit', function(e) {
-	e.preventDefault();
-	editar();
-	return false;
-});
-$('#formCadastro').on('submit', function(e) {
-	e.preventDefault();
-	cadastrar();
-	return false;
-});
-
-function cadastrar() {
-
-	var objeto = {
-		fornecimentoAgua: $('#cadastro-nome').val()
-	}
-
-	$.ajax({
-		url: url_base + "/fornecimentoAgua",
-		type: "POST",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		error: function(e) {
-			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
-		}
-	})
-		.done(function(data) {
-			$('#cadastro-nome').val('');
-			getDados();
-			showPage(currentPage);
-			alert('Cadastrado com Sucesso!')
-		})
-	return false;
-}
-
-function limpaCampo() {
-	$('#cadastro-nome').val('');
-	$('#edit-nome').val('');
 }
