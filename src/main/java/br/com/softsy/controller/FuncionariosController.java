@@ -76,6 +76,16 @@ public class FuncionariosController {
  
 		return "preCadastros/localizacao";
 	}
+	@RequestMapping(value = { "periodicidade" }, method = RequestMethod.GET)
+	public String periodicidade(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/periodicidade";
+	}
+	@RequestMapping(value = { "linguas-ensino", "linguasEnsino" }, method = RequestMethod.GET)
+	public String linguasEnsino(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/linguasEnsino";
+	}
 	
 	@RequestMapping(value = { "fonteEnergia", "fonteEnergiaEletrcia" }, method = RequestMethod.GET)
 	public String fonteEnergia(HttpSession session, Model model) throws Exception {

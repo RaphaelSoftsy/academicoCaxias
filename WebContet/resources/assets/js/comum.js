@@ -27,7 +27,7 @@ function desativar(endpoint){
 	})
 		.done(function(data) {
 			$('#edit-nome').val('');
-			getAtos();
+			getDados();
 			alert('Desativado com Sucesso!')
 		})
 	return false;
@@ -46,7 +46,7 @@ function ativar(endpoint){
 	})
 		.done(function(data) {
 			$('#edit-nome').val('');
-			getAtos();
+			getDados();
 			alert('Ativado com Sucesso!')
 		})
 	return false;

@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Tipo da Localização</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Tipo de Localização</span>
 				</div>
 			</div>
 		</section>
@@ -96,7 +96,7 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Tipo da Localização</th>
+						<th scope="col">Tipo de Localização</th>
 						<th scope="col">Ativo</th>
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
@@ -128,7 +128,7 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Tipo da Localização:</label> <input
+								<label for="nome" class="form-label">Tipo de Localização:</label> <input
 									type="text" class="form-control" id="cadastro-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
@@ -149,14 +149,14 @@ String contextPath = request.getContextPath();
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar </h1>
+						<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Ato regulatório:</label> <input
+								<label for="nome" class="form-label">Tipo de Localização:</label> <input
 									type="text" class="form-control" id="edit-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>

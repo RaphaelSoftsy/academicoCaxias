@@ -1,7 +1,7 @@
-var dados = [];
+var atos = [];
 var id = '';
 var nome = '';
-var rows = 7;
+var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 
@@ -14,9 +14,9 @@ $(document).ready(function() {
 
 		if (valorBusca === '') {
 			busca()
-			$("#cola-tabela tr").show();
+			$("#cola-atos tr").show();
 		} else {
-			$("#cola-tabela tr").hide().filter(function() {
+			$("#cola-atos tr").hide().filter(function() {
 				return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
 			}).show();
 		}
@@ -31,7 +31,7 @@ $(document).ready(function() {
 		if (valorInput === '') {
 			showPage(currentPage);
 		} else {
-			$("#cola-tabela tr").hide().filter(function() {
+			$("#cola-atos tr").hide().filter(function() {
 				return $(this).text().toLowerCase().indexOf(valorInput) > -1;
 			}).show();
 		}
@@ -47,12 +47,12 @@ function showPage(page) {
 	var start = (page - 1) * rows;
 	var end = start + rows;
 
-	$('#cola-tabela tr').hide();
-	$('#cola-tabela tr').slice(start, end).show();
+	$('#cola-atos tr').hide();
+	$('#cola-atos tr').slice(start, end).show();
 }
 
 function toggleNavigation() {
-    var totalRows = $('#cola-tabela tr').length;
+    var totalRows = $('#cola-atos tr').length;
     var totalPages = Math.ceil(totalRows / rows);
 
     $('#prev').prop('disabled', currentPage === 1);
@@ -60,18 +60,22 @@ function toggleNavigation() {
 
     $('#page-numbers').empty();
 
+    // Adicionar o botão da primeira página
     $('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === 1 ? 'active-page' : '') + '" data-page="1">1</button>');
 
     var startPage = Math.max(2, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 2));
     var endPage = Math.min(totalPages - 1, startPage + pagesToShow - 3);
 
+    // Adicionar os números de página
     for (var i = startPage; i <= endPage; i++) {
         var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
         $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
     }
 
+    // Adicionar o botão da última página
     $('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === totalPages ? 'active-page' : '') + '" data-page="' + totalPages + '">' + totalPages + '</button>');
 
+    // Adicionar o evento de clique para os números de páginas
     $('.btn-page').click(function() {
         goToPage(parseInt($(this).data('page')));
     });
@@ -82,7 +86,7 @@ function updatePagination() {
 }
 
 function goToPage(page) {
-    if (page >= 1 && page <= Math.ceil($('#cola-tabela tr').length / rows)) {
+    if (page >= 1 && page <= Math.ceil($('#cola-atos tr').length / rows)) {
         currentPage = page;
         showPage(currentPage);
         updatePagination();
@@ -100,7 +104,7 @@ $('#next').click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/localizacao",
 		type: "GET",
 		async: false,
 	})
@@ -114,16 +118,26 @@ function getDados() {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-
+		if(item.ativo == 'N'){
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else{
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"	
+		}
 		return (
+			
+			
 			"<tr>" +
 			"<td>" +
-			item.atoRegulatorio +
+			item.localizacao +
+			"</td>" +
+			"<td>" +
+			 ativo+
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idRegulatorio +
+			item.idLocalizacao +
 			'" data-nome="' +
-			item.atoRegulatorio +
+			item.localizacao +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -135,18 +149,34 @@ function listarDados(dados) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
+	
+	$.ajax({
+		url: url_base + "/localizacao/"+id,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+			if(data.ativo == "S"){
+				$(".ativar").hide();
+				$(".desativar").show()
+			}
+			else{
+				$(".desativar").hide();
+				$(".ativar").show();
+			}
+	})
 
 	$('#edit-nome').val(nome);
 }
 
+
 function editar() {
 	var objeto = {
-		idAtoRegulatorio: Number(id),
-		atoRegulatorio: $('#edit-nome').val()
+		idLocalizacao: Number(id),
+		localizacao: $('#edit-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/localizacao",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -177,11 +207,11 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		atoRegulatorio: $('#cadastro-nome').val()
+		localizacao: $('#cadastro-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/localizacao",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",

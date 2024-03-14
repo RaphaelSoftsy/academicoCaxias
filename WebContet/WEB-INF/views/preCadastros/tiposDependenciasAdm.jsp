@@ -92,15 +92,16 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<table
-				class="table tabela-listagem table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Tipos de Dependências Cadastradas</caption>
+				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Tipo de Dependência Adm</th>
+						<th scope="col">Tipo de Dependência Administrativa</th>
+						<th scope="col">Ativo</th>
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
 				</thead>
-				<tbody id="cola-tabela" class="table-group-divider">
+				<tbody id="cola-atos" class="table-group-divider">
 
 				</tbody>
 			</table>
@@ -132,6 +133,7 @@ String contextPath = request.getContextPath();
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
+							
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -147,7 +149,7 @@ String contextPath = request.getContextPath();
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar Tipo de Dependência Adm</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
@@ -159,6 +161,10 @@ String contextPath = request.getContextPath();
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
+							<button type="button" onclick='ativar("tipoDependencia")' class="ativar btn btn-secondary"
+									data-bs-dismiss="modal">Ativar</button>
+							<button type="button" onclick='desativar("tipoDependencia")' class="desativar btn btn-secondary"
+									data-bs-dismiss="modal">Desativar</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"

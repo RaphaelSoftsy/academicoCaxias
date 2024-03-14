@@ -7,7 +7,7 @@ var pagesToShow = 5;
 
 $(document).ready(function() {
 
-	getAtos()
+	getDados()
 
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
@@ -102,7 +102,7 @@ $('#next').click(function() {
 });
 
 
-function getAtos() {
+function getDados() {
 	$.ajax({
 		url: url_base + "/destinacaoLixo",
 		type: "GET",
@@ -162,7 +162,7 @@ function editar() {
 	})
 		.done(function(data) {
 			$('#edit-nome').val('');
-			getAtos();
+			getDados();
 			alert('Editado com Sucesso!')
 		})
 	return false;
@@ -197,7 +197,7 @@ function cadastrar() {
 	})
 		.done(function(data) {
 			$('#cadastro-nome').val('');
-			getAtos();
+			getDados();
 			showPage(currentPage);
 			alert('Cadastrado com Sucesso!')
 		})

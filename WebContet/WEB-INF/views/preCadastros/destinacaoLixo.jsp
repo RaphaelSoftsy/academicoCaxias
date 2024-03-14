@@ -14,7 +14,7 @@ String contextPath = request.getContextPath();
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
 
-<title>Centro Universitário Sumaré</title>
+<title>POC - Acadêmico Caxias do Sul</title>
 
 <!-- Bootstrap -->
 <link
@@ -93,10 +93,11 @@ String contextPath = request.getContextPath();
 
 			<table
 				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Destinações do Lixo cadastrados</caption>
+				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
 						<th scope="col">Destinação do Lixo</th>
+						<th scope="col">Ativo</th>
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
 				</thead>
@@ -127,11 +128,12 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Ato regulatório:</label> <input
+								<label for="nome" class="form-label">Destinação do Lixo:</label> <input
 									type="text" class="form-control" id="cadastro-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
+							
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -147,19 +149,22 @@ String contextPath = request.getContextPath();
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar Ato
-							Regulatório</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Ato regulatório:</label> <input
+								<label for="nome" class="form-label">Destinação do Lixo:</label> <input
 									type="text" class="form-control" id="edit-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
+							<button type="button" onclick='ativar("destinacaoLixo")' class="ativar btn btn-secondary"
+									data-bs-dismiss="modal">Ativar</button>
+							<button type="button" onclick='desativar("destinacaoLixo")' class="desativar btn btn-secondary"
+									data-bs-dismiss="modal">Desativar</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"

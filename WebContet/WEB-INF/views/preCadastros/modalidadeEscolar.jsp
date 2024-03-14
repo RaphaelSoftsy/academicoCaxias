@@ -92,15 +92,16 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<table
-				class="table tabela-listagem table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Modalidades Cadastradas</caption>
+				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
 						<th scope="col">Modalidade Escolar</th>
+						<th scope="col">Ativo</th>
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
 				</thead>
-				<tbody id="cola-tabela" class="table-group-divider">
+				<tbody id="cola-atos" class="table-group-divider">
 
 				</tbody>
 			</table>
@@ -132,6 +133,7 @@ String contextPath = request.getContextPath();
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
+							
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -147,7 +149,7 @@ String contextPath = request.getContextPath();
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar Modalidade Escolar</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
@@ -159,6 +161,10 @@ String contextPath = request.getContextPath();
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
+							<button type="button" onclick='ativar("modalidadeEscola")' class="ativar btn btn-secondary"
+									data-bs-dismiss="modal">Ativar</button>
+							<button type="button" onclick='desativar("modalidadeEscola")' class="desativar btn btn-secondary"
+									data-bs-dismiss="modal">Desativar</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -185,7 +191,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/formaOcupacao.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/modalidadeEscolar.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
