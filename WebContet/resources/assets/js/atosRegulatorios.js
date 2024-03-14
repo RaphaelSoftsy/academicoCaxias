@@ -121,7 +121,7 @@ function listarDados(dados) {
 			item.atoRegulatorio +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idAtoRegulatorio +
+			item.idRegulatorio +
 			'" data-nome="' +
 			item.atoRegulatorio +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
@@ -141,7 +141,7 @@ function showModal(ref) {
 
 function editar() {
 	var objeto = {
-		idAtoRegulatorio: Number(idAto),
+		idAtoRegulatorio: Number(id),
 		atoRegulatorio: $('#edit-nome').val()
 	}
 

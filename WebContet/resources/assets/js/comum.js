@@ -14,10 +14,9 @@ window.addEventListener("load", function() {
     $(".bg-loading").addClass("none");
 });
 
-
-function desativar(){
+function desativar(endpoint){
 	$.ajax({
-		url: url_base + "/localizacao/"+idAto+"/desativar",
+		url: url_base + `/${endpoint}/${id}/desativar`,
 		type: "PUT",
 		contentType: "application/json; charset=utf-8",
 		async: false,
@@ -34,9 +33,9 @@ function desativar(){
 	return false;
 }
 
-function ativar(){
+function ativar(endpoint){
 	$.ajax({
-		url: url_base + "/localizacao/"+idAto+"/ativar",
+		url: url_base + `/${endpoint}/${id}/ativar`,
 		type: "PUT",
 		contentType: "application/json; charset=utf-8",
 		async: false,

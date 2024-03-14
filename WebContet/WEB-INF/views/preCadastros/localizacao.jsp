@@ -161,9 +161,9 @@ String contextPath = request.getContextPath();
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							<button type="button" onclick='ativar()' class="ativar btn btn-secondary"
+							<button type="button" onclick='ativar("localizacao")' class="ativar btn btn-secondary"
 									data-bs-dismiss="modal">Ativar</button>
-							<button type="button" onclick='desativar()' class="desativar btn btn-secondary"
+							<button type="button" onclick='desativar("localizacao")' class="desativar btn btn-secondary"
 									data-bs-dismiss="modal">Desativar</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>

@@ -1,5 +1,5 @@
 var atos = [];
-var idAto = '';
+var id = '';
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -147,11 +147,11 @@ function listarAtos(atos) {
 }
 
 function showModal(ato) {
-	idAto = ato.getAttribute("data-id");
+	id = ato.getAttribute("data-id");
 	nome = ato.getAttribute("data-nome");
 	
 	$.ajax({
-		url: url_base + "/localizacao/"+idAto,
+		url: url_base + "/localizacao/"+id,
 		type: "GET",
 		async: false,
 	}).done(function(data) {
@@ -171,7 +171,7 @@ function showModal(ato) {
 
 function editar() {
 	var objeto = {
-		idLocalizacao: Number(idAto),
+		idLocalizacao: Number(id),
 		localizacao: $('#edit-nome').val()
 	}
 
