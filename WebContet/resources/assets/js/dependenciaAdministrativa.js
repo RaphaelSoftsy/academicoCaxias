@@ -114,11 +114,21 @@ function getDados() {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
+		
+		if(item.ativo == 'N'){
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else{
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"	
+		}
 
 		return (
 			"<tr>" +
 			"<td>" +
 			item.dependenciaAdministrativa +
+			"</td>" +
+			"<td>" +
+			 ativo+
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idDependenciaAdministrativa +
@@ -135,6 +145,21 @@ function listarDados(dados) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
+	
+	$.ajax({
+		url: url_base + "/dependenciaAdministrativa/"+id,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+			if(data.ativo == "S"){
+				$(".ativar").hide();
+				$(".desativar").show()
+			}
+			else{
+				$(".desativar").hide();
+				$(".ativar").show();
+			}
+	})
 
 	$('#edit-nome').val(nome);
 }

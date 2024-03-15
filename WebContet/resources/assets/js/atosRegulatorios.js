@@ -145,6 +145,21 @@ function listarDados(dados) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
+	
+	$.ajax({
+		url: url_base + "/atoRegulatorio/"+id,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+			if(data.ativo == "S"){
+				$(".ativar").hide();
+				$(".desativar").show()
+			}
+			else{
+				$(".desativar").hide();
+				$(".ativar").show();
+			}
+	})
 
 	$('#edit-nome').val(nome);
 }
