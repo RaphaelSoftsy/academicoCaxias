@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Periodicidade</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Situação de Funcionamento</span>
 				</div>
 			</div>
 		</section>
@@ -96,7 +96,7 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Periodicidade</th>
+						<th scope="col">Situação de Funcionamento</th>
 						<th scope="col">Ativo</th>
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
@@ -128,7 +128,7 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Periodicidade:</label> <input
+								<label for="nome" class="form-label">Situação de Funcionamento:</label> <input
 									type="text" class="form-control" id="cadastro-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
@@ -156,14 +156,14 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Tipo de Localização:</label> <input
+								<label for="nome" class="form-label">Fornecimento de Água:</label> <input
 									type="text" class="form-control" id="edit-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							<button type="button" onclick='ativar("periodicidade")' class="ativar btn btn-secondary"
+							<button type="button" onclick='ativar("situacaoFuncionamento")' class="ativar btn btn-secondary"
 									data-bs-dismiss="modal">Ativar</button>
-							<button type="button" onclick='desativar("periodicidade")' class="desativar btn btn-secondary"
+							<button type="button" onclick='desativar("situacaoFuncionamento")' class="desativar btn btn-secondary"
 									data-bs-dismiss="modal">Desativar</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
@@ -191,7 +191,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/periodicidade.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/situacaoFuncionamento.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

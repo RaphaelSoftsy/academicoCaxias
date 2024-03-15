@@ -7,9 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import br.com.softsy.model.UsuarioInternoVO;
-import br.com.softsy.utils.LoginUtils;
-
 @Controller
 public class FuncionariosController {
 
@@ -88,6 +85,13 @@ public class FuncionariosController {
 		return "preCadastros/linguasEnsino";
 	}
 	
+	@RequestMapping(value = { "tratamentoDeLixo", "tratamento-de-lixo" }, method = RequestMethod.GET)
+	public String tratamentoDeLixo(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/tratamentoDeLixo";
+	}
+	
+	
 	@RequestMapping(value = { "fonteEnergia", "fonteEnergiaEletrcia" }, method = RequestMethod.GET)
 	public String fonteEnergia(HttpSession session, Model model) throws Exception {
  
@@ -98,6 +102,12 @@ public class FuncionariosController {
 	public String fornecimentoAgua(HttpSession session, Model model) throws Exception {
  
 		return "preCadastros/fornecimentoAgua";
+	}
+	
+	@RequestMapping(value = { "situacaoFuncionamento", "situacao-funcionamento" }, method = RequestMethod.GET)
+	public String situacaoFuncionamento(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/situacaoFuncionamento";
 	}
 	
 	@RequestMapping(value = { "esgotoSanitario", "esgotamentoSanitario" }, method = RequestMethod.GET)

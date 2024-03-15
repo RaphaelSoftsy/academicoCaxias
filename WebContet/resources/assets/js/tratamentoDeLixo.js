@@ -104,7 +104,7 @@ $('#next').click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/periodicidade",
+		url: url_base + "/tratamentoLixo",
 		type: "GET",
 		async: false,
 	})
@@ -129,15 +129,15 @@ function listarAtos(atos) {
 			
 			"<tr>" +
 			"<td>" +
-			item.periodicidade +
+			item.tratamentoLixo +
 			"</td>" +
 			"<td>" +
 			 ativo+
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idPeriodicidade +
+			item.idTratamentoLixo +
 			'" data-nome="' +
-			item.periodicidade +
+			item.tratamentoLixo +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -151,7 +151,7 @@ function showModal(ato) {
 	nome = ato.getAttribute("data-nome");
 	
 	$.ajax({
-		url: url_base + "/periodicidade/"+id,
+		url: url_base + "/tratamentoLixo/"+id,
 		type: "GET",
 		async: false,
 	}).done(function(data) {
@@ -171,12 +171,12 @@ function showModal(ato) {
 
 function editar() {
 	var objeto = {
-		idPeriodicidade: Number(id),
-		periodicidade: $('#edit-nome').val()
+		idTratamentoLixo: Number(id),
+		tratamentoLixo: $('#edit-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/periodicidade",
+		url: url_base + "/tratamentoLixo",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -207,11 +207,11 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		periodicidade: $('#cadastro-nome').val()
+		tratamentoLixo: $('#cadastro-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/periodicidade",
+		url: url_base + "/tratamentoLixo",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
