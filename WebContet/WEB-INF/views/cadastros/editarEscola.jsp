@@ -70,14 +70,338 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-bars-staggered fa-lg"></i> <span>Editar</span>
+					<i class="fa-solid fa-pen fa-lg"></i> <span>Editar</span>
 				</div>
 			</div>
 		</section>
-		<section class="pt-4 card px-5 py-3">
-			
+		<section class="pt-4">
+			<form class='formClass' id="formEditar"
+				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
+				<h1 id="tituloForm" class="text-center mb-5">Editar Escola</h1>
+				<input type="text" id="usuarioCadastro" hidden
+					value="${funcionario.idUsuario}" />
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="nome" class="form-label">Nome:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="text" id="nome" name="nome" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+					<div class="col-md-6">
+						<label for="pppAtualizado12Meses" class="form-label">
+							Alterar Logo:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="alteraLogo" id="alteraLogoS"
+									value="S"> <label class="form-check-label"
+									for="alteraLogoS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="alteraLogo" id="alteraLogoN"
+									value="N"> <label class="form-check-label"
+									for="alteraLogoN">Não</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mt-3" id="divLogoEscola">
+						<label for="logoEscola" class="form-label">Logo:<span
+							class="red">*</span></label> <input class="form-control inputForm"
+						 type="file" id="logoEscola" name="logoEscola"> </input>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="tipoEscola" class="form-label">Tipo:<span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="Tipo Escola" id="tipoEscola" required
+							name="tipoEscola">
+							<option selected disabled>Selecione o tipo</option>
+							<option value="PU">Pública</option>
+							<option value="PV">Privada</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="email" class="form-label">Email:<span
+							class="red">*</span></label> <input type="email" id="email" required
+							autocomplete="off" name="email" class="form-control inputForm" />
+					</div>
+
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="cnpj" class="form-label">CNPJ:<span
+							class="red">*</span></label> <input type="tel" disabled id="cnpj" required
+							autocomplete="off" name="cnpj" class="form-control inputForm"
+							data-mask="00.000.000/0000-00" />
+					</div>
+					<div class="col-md-6">
+						<label for="codigoInep" class="form-label">Código Inep:<span
+							class="red">*</span></label> <input type="tel" id="codigoInep" required
+							autocomplete="off" name="codigoInep"
+							class="form-control inputForm" />
+					</div>
+
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isAcessivel" class="form-label">Acessível:<span
+							class="red">*</span></label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isAcessivel"
+									id="isAcessivelS" value="S"> <label
+									class="form-check-label" for="isAcessivelS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isAcessivel"
+									id="isAcessivelN" value="N"> <label
+									class="form-check-label" for="isAcessivelN">Não</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="isIndigena" class="form-label">Educação
+							Indígena:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isIndigena"
+									id="isIndigenaS" value="S"> <label
+									class="form-check-label" for="isIndigenaS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isIndigena"
+									id="isIndigenaN" value="N"> <label
+									class="form-check-label" for="isIndigenaN">Não</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="exameSelecao" class="form-label">Exame
+							Seleção:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="exameSelecao"
+									id="exameSelecaoS" value="S"> <label
+									class="form-check-label" for="exameSelecaoS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="exameSelecao"
+									id="exameSelecaoN" value="N"> <label
+									class="form-check-label" for="exameSelecaoN">Não</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="compartilhaEspaco" class="form-label">Compartilha
+							Espaço:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="compartilhaEspaco" id="compartilhaEspacoS" value="S">
+								<label class="form-check-label" for="compartilhaEspacoS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="compartilhaEspaco" id="compartilhaEspacoN" value="N">
+								<label class="form-check-label" for="compartilhaEspacoN">Não</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="usaEspacoEntornoEscolar" class="form-label">Usa
+							Espaço Entorno Escolar:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="usaEspacoEntornoEscolar" id="usaEspacoEntornoEscolarS"
+									value="S"> <label class="form-check-label"
+									for="usaEspacoEntornoEscolarS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="usaEspacoEntornoEscolar" id="usaEspacoEntornoEscolarN"
+									value="N"> <label class="form-check-label"
+									for="usaEspacoEntornoEscolarN">Não</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="pppAtualizado12Meses" class="form-label">PPP
+							Atualizado (12 Meses):<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="pppAtualizado12Meses" id="pppAtualizado12MesesS"
+									value="S"> <label class="form-check-label"
+									for="pppAtualizado12MesesS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="pppAtualizado12Meses" id="pppAtualizado12MesesN"
+									value="N"> <label class="form-check-label"
+									for="pppAtualizado12MesesN">Não</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="numCME" class="form-label">Nº CME:<span
+							class="red">*</span></label>
+							<input type="number" id="numCME" required autocomplete="off" name="numCME"
+							class="form-control inputForm"/>
+					</div>
+					<div class="col-md-6">
+						<label for="numParecerCME" class="form-label">Nº Parecer CME:<span
+							class="red">*</span></label> <input type="number" id="numParecerCME" required
+							autocomplete="off" name="numParecerCME" class="form-control inputForm" />
+					</div>
+				</div>	
+				
+				
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<label for="dependenciaAdmId" class="form-label">Dependência Administrativa:<span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="Dependência Administrativa" id="dependenciaAdmId" required
+							name="dependenciaAdmId">
+							<option selected disabled>Selecione a Dependência</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="situacaoFuncionamentoId" class="form-label">Situação de Funcionamento:<span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="Situação de Funcionamento" id="situacaoFuncionamentoId" required
+							name="situacaoFuncionamentoId">
+							<option selected disabled>Selecione a Situação</option>
+						</select>
+					</div>
+
+				</div>		
+				
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="formaOcupacaoPredioId" class="form-label">Forma de Ocupação do Prédio:<span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="Forma de Ocupação do Prédio" id="formaOcupacaoPredioId" required
+							name="formaOcupacaoPredioId">
+							<option selected disabled>Selecione a Forma de Ocupação</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="localizacaoId" class="form-label">Tipo de Localização:<span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="Tipo de Localização" id="localizacaoId" required
+							name="localizacaoId">
+							<option selected disabled>Selecione o Tipo</option>
+						</select>
+					</div>
+
+				</div>
+				
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="cep" class="form-label">CEP:<span
+							class="red">*</span></label>
+							<input type='tel' class="form-control"
+							id="cep" required data-mask="00000-000" 
+							name="cep"/>
+					</div>
+					<div class="col-md-6">
+						<label for="uf" class="form-label">UF:<span
+							class="red">*</span></label>
+							<input type='text' class="form-control"
+							id="uf" required 
+							disabled
+							name="uf"/>
+					</div>
+					
+					
+
+				</div>		
+				
+				<div class="row mb-3">
+				<div class="col-md-6">
+						<label for="municipio" class="form-label">Município:<span
+							class="red">*</span></label>
+							<input type='tel' class="form-control"
+							id="municipio" required
+							disabled
+							name="municipio"/>
+					</div>
+					<div class="col-md-6">
+						<label for="bairro" class="form-label">Bairro:<span
+							class="red">*</span></label>
+							<input type='text' class="form-control"
+							id="bairro" required 
+							disabled
+							name="bairro"/>
+					</div>
+					
+				</div>		
+				
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="endereco" class="form-label">Endereço:<span
+							class="red">*</span></label>
+							<input type='text' class="form-control"
+							id="endereco" required 
+							disabled
+							name="endereco"/>
+					</div>
+					
+					<div class="col-md-6">
+						<label for="numero" class="form-label">Número:<span
+							class="red">*</span></label>
+							<input type='number' class="form-control"
+							id="numero" required 
+							name="numero"/>
+					</div>
+				</div>
+				
+				<div class="row mb-5">
+					<div class="col-md-6">
+						<label for="latitude" class="form-label">Latitude:<span
+							class="red">*</span></label>
+							<input type='number' class="form-control"
+							id="latitude" required 
+							disabled
+							name="latitude"/>
+					</div>
+					
+					<div class="col-md-6">
+						<label for="longitude" class="form-label">Longitude:<span
+							class="red">*</span></label>
+							<input type='number' disabled class="form-control"
+							id="longitude" required 
+							
+							name="longitude"/>
+					</div>
+
+				</div>	
+				<div class="col-md-12 text-center">
+                     <button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar Alterações</button>
+                </div>		
+			</form>
 		</section>
-		
+
 	</main>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
@@ -94,7 +418,8 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/cadastros/editarEscola.js"></script>
+	<script
+		src="<%=contextPath%>/resources/assets/js/cadastros/editarEscola.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

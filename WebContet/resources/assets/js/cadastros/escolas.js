@@ -148,3 +148,8 @@ function listarDados(dados) {
 
 	$("#cola-tabela").html(html);
 }
+
+function editar(ref){
+	id = ref.getAttribute("data-id");
+	 window.location.href="editar-escola?id="+id;
+}
