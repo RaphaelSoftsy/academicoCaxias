@@ -35,6 +35,7 @@ public class FuncionariosController {
 		 */
 		return "preCadastros/modalidadeEscolar";
 	}
+	
 	@RequestMapping(value = { "tipos-dependencias-adm", "tiposDependenciasAdm" }, method = RequestMethod.GET)
 	public String tiposDependenciasAdm(HttpSession session, Model model) throws Exception {
 		/*if (session.getAttribute("loginFunc") == null) {
@@ -46,6 +47,19 @@ public class FuncionariosController {
 		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
 		 */
 		return "preCadastros/tiposDependenciasAdm";
+	}
+	
+	@RequestMapping(value = { "telefones"}, method = RequestMethod.GET)
+	public String telefones(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 *
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "preCadastros/telefones";
 	}
 	
 	@RequestMapping(value = { "dependencia-administrativa", "dependenciaAdministrativa" }, method = RequestMethod.GET)

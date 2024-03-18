@@ -30,6 +30,15 @@ $(document).ready(function() {
 			$('#latitude').val(ref.latitude)
 			$('#longitude').val(ref.longitude)
 			$('#email').val(ref.email)
+			
+			if(data.ativo == "S"){
+				$(".ativar").hide();
+				$(".desativar").show()
+			}
+			else{
+				$(".desativar").hide();
+				$(".ativar").show();
+			}
 
 			if (ref.educacaoIndigena === 'S') {
 				$('input[id="isIndigenaS"]').prop('checked', true)
@@ -88,6 +97,31 @@ $('input[name="alteraLogo"]').change(function() {
 	}
 });
 
+$("#cep").blur(function() {
+	$.ajax({
+		url: 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+		$("#endereco").val(data.logradouro);
+		$("#bairro").val(data.bairro);
+		$("#municipio").val(data.localidade);
+		$("#uf").val(data.uf);
+		
+		$.ajax({
+			url: 'https://nominatim.openstreetmap.org/search?format=json&q=' + data.logradouro + ', ' + data.localidade + ', ' + data.uf,
+			type: "get",
+			async: false,
+		}).done(function(geoData) {
+			var lat = geoData[0].lat;
+			var lng = geoData[0].lon;
+		
+			$("#longitude").val(lng);
+			$("#latitude").val(lat);
+		});
+	})
+});
 
 $("#formEditar").submit(function(e) {
 	e.preventDefault();

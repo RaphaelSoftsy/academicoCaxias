@@ -437,17 +437,17 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 45px;
 }
 .logoSumare {
-  width: 75%;
+  width: 90%;
 }
 .close-btn-menu {
 	position: absolute;
 	color: #fff;
-	font-size: 20px;
+	font-size: 22px;
 	right: 0;
-	margin: 15px;
+	margin: 12px 18px;
 	cursor: pointer;
 }
 

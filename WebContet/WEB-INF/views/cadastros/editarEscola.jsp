@@ -94,23 +94,21 @@ String contextPath = request.getContextPath();
 						</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="alteraLogo" id="alteraLogoS"
-									value="S"> <label class="form-check-label"
-									for="alteraLogoS">Sim</label>
+								<input class="form-check-input" type="radio" name="alteraLogo"
+									id="alteraLogoS" value="S"> <label
+									class="form-check-label" for="alteraLogoS">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="alteraLogo" id="alteraLogoN"
-									value="N"> <label class="form-check-label"
-									for="alteraLogoN">Não</label>
+								<input class="form-check-input" type="radio" name="alteraLogo"
+									id="alteraLogoN" value="N"> <label
+									class="form-check-label" for="alteraLogoN">Não</label>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6 mt-3" id="divLogoEscola">
 						<label for="logoEscola" class="form-label">Logo:<span
 							class="red">*</span></label> <input class="form-control inputForm"
-						 type="file" id="logoEscola" name="logoEscola"> </input>
+							type="file" id="logoEscola" name="logoEscola"> </input>
 					</div>
 				</div>
 
@@ -135,9 +133,9 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="cnpj" class="form-label">CNPJ:<span
-							class="red">*</span></label> <input type="tel" disabled id="cnpj" required
-							autocomplete="off" name="cnpj" class="form-control inputForm"
-							data-mask="00.000.000/0000-00" />
+							class="red">*</span></label> <input type="tel" disabled id="cnpj"
+							required autocomplete="off" name="cnpj"
+							class="form-control inputForm" data-mask="00.000.000/0000-00" />
 					</div>
 					<div class="col-md-6">
 						<label for="codigoInep" class="form-label">Código Inep:<span
@@ -219,7 +217,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="usaEspacoEntornoEscolar" class="form-label">Usa
@@ -260,145 +258,133 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="numCME" class="form-label">Nº CME:<span
-							class="red">*</span></label>
-							<input type="number" id="numCME" required autocomplete="off" name="numCME"
-							class="form-control inputForm"/>
+							class="red">*</span></label> <input type="number" id="numCME" required
+							autocomplete="off" name="numCME" class="form-control inputForm" />
 					</div>
 					<div class="col-md-6">
-						<label for="numParecerCME" class="form-label">Nº Parecer CME:<span
-							class="red">*</span></label> <input type="number" id="numParecerCME" required
-							autocomplete="off" name="numParecerCME" class="form-control inputForm" />
+						<label for="numParecerCME" class="form-label">Nº Parecer
+							CME:<span class="red">*</span>
+						</label> <input type="number" id="numParecerCME" required
+							autocomplete="off" name="numParecerCME"
+							class="form-control inputForm" />
 					</div>
-				</div>	
-				
-				
+				</div>
+
+
 				<div class="row mb-4">
 					<div class="col-md-6">
-						<label for="dependenciaAdmId" class="form-label">Dependência Administrativa:<span
-							class="red">*</span></label> <select class="form-select"
-							aria-label="Dependência Administrativa" id="dependenciaAdmId" required
-							name="dependenciaAdmId">
+						<label for="dependenciaAdmId" class="form-label">Dependência
+							Administrativa:<span class="red">*</span>
+						</label> <select class="form-select"
+							aria-label="Dependência Administrativa" id="dependenciaAdmId"
+							required name="dependenciaAdmId">
 							<option selected disabled>Selecione a Dependência</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="situacaoFuncionamentoId" class="form-label">Situação de Funcionamento:<span
-							class="red">*</span></label> <select class="form-select"
-							aria-label="Situação de Funcionamento" id="situacaoFuncionamentoId" required
+						<label for="situacaoFuncionamentoId" class="form-label">Situação
+							de Funcionamento:<span class="red">*</span>
+						</label> <select class="form-select"
+							aria-label="Situação de Funcionamento"
+							id="situacaoFuncionamentoId" required
 							name="situacaoFuncionamentoId">
 							<option selected disabled>Selecione a Situação</option>
 						</select>
 					</div>
 
-				</div>		
-				
+				</div>
+
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="formaOcupacaoPredioId" class="form-label">Forma de Ocupação do Prédio:<span
-							class="red">*</span></label> <select class="form-select"
-							aria-label="Forma de Ocupação do Prédio" id="formaOcupacaoPredioId" required
-							name="formaOcupacaoPredioId">
+						<label for="formaOcupacaoPredioId" class="form-label">Forma
+							de Ocupação do Prédio:<span class="red">*</span>
+						</label> <select class="form-select"
+							aria-label="Forma de Ocupação do Prédio"
+							id="formaOcupacaoPredioId" required name="formaOcupacaoPredioId">
 							<option selected disabled>Selecione a Forma de Ocupação</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="localizacaoId" class="form-label">Tipo de Localização:<span
-							class="red">*</span></label> <select class="form-select"
-							aria-label="Tipo de Localização" id="localizacaoId" required
-							name="localizacaoId">
+						<label for="localizacaoId" class="form-label">Tipo de
+							Localização:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Tipo de Localização"
+							id="localizacaoId" required name="localizacaoId">
 							<option selected disabled>Selecione o Tipo</option>
 						</select>
 					</div>
 
 				</div>
-				
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:<span
-							class="red">*</span></label>
-							<input type='tel' class="form-control"
-							id="cep" required data-mask="00000-000" 
-							name="cep"/>
-					</div>
-					<div class="col-md-6">
-						<label for="uf" class="form-label">UF:<span
-							class="red">*</span></label>
-							<input type='text' class="form-control"
-							id="uf" required 
-							disabled
-							name="uf"/>
-					</div>
-					
-					
 
-				</div>		
-				
 				<div class="row mb-3">
-				<div class="col-md-6">
+					<div class="col-md-6">
+						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
+						<input type='tel' class="form-control" id="cep" required
+							data-mask="00000-000" name="cep" />
+					</div>
+					<div class="col-md-6">
+						<label for="uf" class="form-label">UF:<span class="red">*</span></label>
+						<input type='text' class="form-control" id="uf" required disabled
+							name="uf" />
+					</div>
+
+
+
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
 						<label for="municipio" class="form-label">Município:<span
-							class="red">*</span></label>
-							<input type='tel' class="form-control"
-							id="municipio" required
-							disabled
-							name="municipio"/>
+							class="red">*</span></label> <input type='tel' class="form-control"
+							id="municipio" required disabled name="municipio" />
 					</div>
 					<div class="col-md-6">
 						<label for="bairro" class="form-label">Bairro:<span
-							class="red">*</span></label>
-							<input type='text' class="form-control"
-							id="bairro" required 
-							disabled
-							name="bairro"/>
+							class="red">*</span></label> <input type='text' class="form-control"
+							id="bairro" required disabled name="bairro" />
 					</div>
-					
-				</div>		
-				
+
+				</div>
+
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:<span
-							class="red">*</span></label>
-							<input type='text' class="form-control"
-							id="endereco" required 
-							disabled
-							name="endereco"/>
+							class="red">*</span></label> <input type='text' class="form-control"
+							id="endereco" required disabled name="endereco" />
 					</div>
-					
+
 					<div class="col-md-6">
 						<label for="numero" class="form-label">Número:<span
-							class="red">*</span></label>
-							<input type='number' class="form-control"
-							id="numero" required 
-							name="numero"/>
+							class="red">*</span></label> <input type='number' class="form-control"
+							id="numero" required name="numero" />
 					</div>
 				</div>
-				
+
 				<div class="row mb-5">
 					<div class="col-md-6">
 						<label for="latitude" class="form-label">Latitude:<span
-							class="red">*</span></label>
-							<input type='number' class="form-control"
-							id="latitude" required 
-							disabled
-							name="latitude"/>
-					</div>
-					
-					<div class="col-md-6">
-						<label for="longitude" class="form-label">Longitude:<span
-							class="red">*</span></label>
-							<input type='number' disabled class="form-control"
-							id="longitude" required 
-							
-							name="longitude"/>
+							class="red">*</span></label> <input type='number' class="form-control"
+							id="latitude" required disabled name="latitude" />
 					</div>
 
-				</div>	
+					<div class="col-md-6">
+						<label for="longitude" class="form-label">Longitude:<span
+							class="red">*</span></label> <input type='number' disabled
+							class="form-control" id="longitude" required name="longitude" />
+					</div>
+
+				</div>
 				<div class="col-md-12 text-center">
-                     <button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar Alterações</button>
-                </div>		
+					<button type="button" onclick='ativar("escolas")'
+						class="ativar btn btn-secondary" data-bs-dismiss="modal">Ativar</button>
+					<button type="button" onclick='desativar("escolas")'
+						class="desativar btn btn-secondary" data-bs-dismiss="modal">Desativar</button>
+					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar
+						Alterações</button>
+				</div>
 			</form>
 		</section>
 

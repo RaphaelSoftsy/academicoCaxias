@@ -1,4 +1,4 @@
-var atos = [];
+var dados = [];
 var id = '';
 var nome = '';
 var rows = 8;
@@ -82,7 +82,6 @@ function toggleNavigation() {
 }
 
 
-
 function updatePagination() {
     toggleNavigation();
 }
@@ -106,20 +105,20 @@ $('#next').click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/tratamentoLixo",
+		url: url_base + "/tipoTelefone",
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
-			listarAtos(data);
+			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 }
 
-function listarAtos(atos) {
-	var html = atos.map(function(item) {
+function listarDados(dados) {
+	var html = dados.map(function(item) {
 		if(item.ativo == 'N'){
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
 		}
@@ -131,15 +130,12 @@ function listarAtos(atos) {
 			
 			"<tr>" +
 			"<td>" +
-			item.tratamentoLixo +
-			"</td>" +
-			"<td>" +
-			 ativo+
+			item.tipoTelefone +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idTratamentoLixo +
+			item.idTipoTelefone +
 			'" data-nome="' +
-			item.tratamentoLixo +
+			item.tipoTelefone +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -148,37 +144,21 @@ function listarAtos(atos) {
 	$("#cola-tabela").html(html);
 }
 
-function showModal(ato) {
-	id = ato.getAttribute("data-id");
-	nome = ato.getAttribute("data-nome");
-	
-	$.ajax({
-		url: url_base + "/tratamentoLixo/"+id,
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-			if(data.ativo == "S"){
-				$(".ativar").hide();
-				$(".desativar").show()
-			}
-			else{
-				$(".desativar").hide();
-				$(".ativar").show();
-			}
-	})
-
+function showModal(ref) {
+	id = ref.getAttribute("data-id");
+	nome = ref.getAttribute("data-nome");
 	$('#edit-nome').val(nome);
 }
 
 
 function editar() {
 	var objeto = {
-		idTratamentoLixo: Number(id),
-		tratamentoLixo: $('#edit-nome').val()
+		idTipoTelefone: Number(id),
+		tipoTelefone: $('#edit-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/tratamentoLixo",
+		url: url_base + "/tipoTelefone",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -209,11 +189,11 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		tratamentoLixo: $('#cadastro-nome').val()
+		tipoTelefone: $('#cadastro-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/tratamentoLixo",
+		url: url_base + "/tipoTelefone",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
