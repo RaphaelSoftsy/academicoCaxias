@@ -74,6 +74,18 @@ public class FuncionariosController {
 		 */
 		return "preCadastros/dependenciaAdministrativa";
 	}
+	@RequestMapping(value = { "tipoAtoRegulatorio"}, method = RequestMethod.GET)
+	public String tipoAtoRegulatorio(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 *
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "preCadastros/tipoAtoRegulatorio";
+	}
 	
 	
 	@RequestMapping(value = { "ato-regulatorio", "atoRegulatorio" }, method = RequestMethod.GET)
