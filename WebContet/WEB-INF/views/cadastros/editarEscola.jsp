@@ -183,6 +183,59 @@ String contextPath = request.getContextPath();
 				</div>
 				<div class="row mb-3">
 					<div class="col-md-6">
+						<label for="merendaEscolar" class="form-label">Merenda
+							Escolar:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
+									class="form-check-label" for="merendaEscolarS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
+									class="form-check-label" for="merendaEscolarN">Não</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="possuiAguaPotavel" class="form-label">Possui
+							Água Potável:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
+								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
+								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="internetBandaLarga" class="form-label">Internet
+							Banda Larga:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="internetBandaLarga" id="internetBandaLargaS" value="S">
+								<label class="form-check-label" for="internetBandaLargaS">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="internetBandaLarga" id="internetBandaLargaN" value="N">
+								<label class="form-check-label" for="internetBandaLargaN">Não</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
 						<label for="exameSelecao" class="form-label">Exame
 							Seleção:<span class="red">*</span>
 						</label>
@@ -199,6 +252,10 @@ String contextPath = request.getContextPath();
 							</div>
 						</div>
 					</div>
+
+				</div>
+
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="compartilhaEspaco" class="form-label">Compartilha
 							Espaço:<span class="red">*</span>
@@ -216,9 +273,6 @@ String contextPath = request.getContextPath();
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="usaEspacoEntornoEscolar" class="form-label">Usa
 							Espaço Entorno Escolar:<span class="red">*</span>
@@ -238,6 +292,10 @@ String contextPath = request.getContextPath();
 							</div>
 						</div>
 					</div>
+
+				</div>
+
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="pppAtualizado12Meses" class="form-label">PPP
 							Atualizado (12 Meses):<span class="red">*</span>
@@ -257,14 +315,16 @@ String contextPath = request.getContextPath();
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="numCME" class="form-label">Nº CME:<span
 							class="red">*</span></label> <input type="number" id="numCME" required
 							autocomplete="off" name="numCME" class="form-control inputForm" />
 					</div>
+
+				</div>
+
+
+				<div class="row mb-4">
 					<div class="col-md-6">
 						<label for="numParecerCME" class="form-label">Nº Parecer
 							CME:<span class="red">*</span>
@@ -272,10 +332,6 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="numParecerCME"
 							class="form-control inputForm" />
 					</div>
-				</div>
-
-
-				<div class="row mb-4">
 					<div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Dependência
 							Administrativa:<span class="red">*</span>
@@ -285,6 +341,11 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione a Dependência</option>
 						</select>
 					</div>
+
+
+				</div>
+
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="situacaoFuncionamentoId" class="form-label">Situação
 							de Funcionamento:<span class="red">*</span>
@@ -295,10 +356,6 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione a Situação</option>
 						</select>
 					</div>
-
-				</div>
-
-				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="formaOcupacaoPredioId" class="form-label">Forma
 							de Ocupação do Prédio:<span class="red">*</span>
@@ -308,6 +365,48 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione a Forma de Ocupação</option>
 						</select>
 					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="zoneamentoId" class="form-label">Zoneamento:<span
+							class="red">*</span>
+						</label> <select class="form-select" aria-label="Zoneamento"
+							id="zoneamentoId" required name="zoneamentoId">
+							<option selected disabled>Selecione o Zoneamento</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="categoriaEscolaPrivadaId" class="form-label">Categoria
+							Escola Privada:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Categoria Escola Privada"
+							id="categoriaEscolaPrivadaId" required
+							name="categoriaEscolaPrivadaId">
+							<option selected disabled>Selecione a Categoria</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="entidadeSuperiorId" class="form-label">Entidade
+							Superior:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Entidade Superior"
+							id="entidadeSuperiorId" required name="entidadeSuperiorId">
+							<option selected disabled>Selecione a Entidade</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="categoriaEscolaPrivadaId" class="form-label">Orgão
+							Público:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Orgão Público"
+							id="orgaoPublicoId" required name="orgaoPublicoId">
+							<option selected disabled>Selecione o Orgão</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="localizacaoId" class="form-label">Tipo de
 							Localização:<span class="red">*</span>
@@ -316,72 +415,69 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione o Tipo</option>
 						</select>
 					</div>
-
-				</div>
-
-				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
 						<input type='tel' class="form-control" id="cep" required
 							data-mask="00000-000" name="cep" />
 					</div>
+				</div>
+
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="uf" class="form-label">UF:<span class="red">*</span></label>
 						<input type='text' class="form-control" id="uf" required disabled
 							name="uf" />
 					</div>
-
-
-
-				</div>
-
-				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="municipio" class="form-label">Município:<span
 							class="red">*</span></label> <input type='tel' class="form-control"
 							id="municipio" required disabled name="municipio" />
 					</div>
-					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:<span
-							class="red">*</span></label> <input type='text' class="form-control"
-							id="bairro" required disabled name="bairro" />
-					</div>
+
 
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
+						<label for="bairro" class="form-label">Bairro:<span
+							class="red">*</span></label> <input type='text' class="form-control"
+							id="bairro" required disabled name="bairro" />
+					</div>
+					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:<span
 							class="red">*</span></label> <input type='text' class="form-control"
 							id="endereco" required disabled name="endereco" />
 					</div>
+				</div>
 
+				<div class="row mb-5">
 					<div class="col-md-6">
 						<label for="numero" class="form-label">Número:<span
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="numero" required name="numero" />
 					</div>
-				</div>
-
-				<div class="row mb-5">
 					<div class="col-md-6">
 						<label for="latitude" class="form-label">Latitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="latitude" required disabled name="latitude" />
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-6 mt-3">
 						<label for="longitude" class="form-label">Longitude:<span
-							class="red">*</span></label> <input type='number' disabled
-							class="form-control" id="longitude" required name="longitude" />
+							class="red">*</span></label> <input type='number' class="form-control"
+							id="longitude" required disabled name="longitude" />
+					</div>
+					<div class="col-md-6">
+						<button type="button" onclick='ativar("escolas")'
+							class="ativar btn btn-secondary mt-5" data-bs-dismiss="modal">Ativar</button>
+						<button type="button" onclick='desativar("escolas")'
+							class="desativar btn btn-secondary mt-5" data-bs-dismiss="modal">Desativar</button>
 					</div>
 
 				</div>
+				</div>
 				<div class="col-md-12 text-center">
-					<button type="button" onclick='ativar("escolas")'
-						class="ativar btn btn-secondary" data-bs-dismiss="modal">Ativar</button>
-					<button type="button" onclick='desativar("escolas")'
-						class="desativar btn btn-secondary" data-bs-dismiss="modal">Desativar</button>
+
 					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar
 						Alterações</button>
 				</div>

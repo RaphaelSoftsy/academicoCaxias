@@ -44,65 +44,6 @@ $(document).ready(function() {
 
 });
 
-function showPage(page) {
-	var start = (page - 1) * rows;
-	var end = start + rows;
-
-	$('#cola-tabela tr').hide();
-	$('#cola-tabela tr').slice(start, end).show();
-}
-
-function toggleNavigation() {
-	var totalRows = $('#cola-tabela tr').length;
-	var totalPages = Math.ceil(totalRows / rows);
-
-	$('#prev').prop('disabled', currentPage === 1);
-	$('#next').prop('disabled', currentPage === totalPages);
-
-	$('#page-numbers').empty();
-
-	// Adicionar o botão da primeira página
-	$('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === 1 ? 'active-page' : '') + '" data-page="1">1</button>');
-
-	var startPage = Math.max(2, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 2));
-	var endPage = Math.min(totalPages - 1, startPage + pagesToShow - 3);
-
-	// Adicionar os números de página
-	for (var i = startPage; i <= endPage; i++) {
-		var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
-		$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
-	}
-
-	// Adicionar o botão da última página
-	$('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === totalPages ? 'active-page' : '') + '" data-page="' + totalPages + '">' + totalPages + '</button>');
-
-	// Adicionar o evento de clique para os números de páginas
-	$('.btn-page').click(function() {
-		goToPage(parseInt($(this).data('page')));
-	});
-}
-
-function updatePagination() {
-	toggleNavigation();
-}
-
-function goToPage(page) {
-	if (page >= 1 && page <= Math.ceil($('#cola-tabela tr').length / rows)) {
-		currentPage = page;
-		showPage(currentPage);
-		updatePagination();
-	}
-}
-
-$('#prev').click(function() {
-	goToPage(currentPage - 1);
-});
-
-$('#next').click(function() {
-	goToPage(currentPage + 1);
-});
-
-
 function getDados() {
 	$.ajax({
 		url: url_base + "/linguaEnsino",
@@ -164,10 +105,10 @@ function showModal(ref) {
 	valorIndigena = ref.getAttribute("data-indigena");
 	console.log(valorIndigena)
 	if (valorIndigena === 'S') {
-			$('#editIsIndigenaS').prop('checked', true);
-		} else if (valorIndigena === 'N') {
-			$('#editIsIndigenaN').prop('checked', true);
-		}
+		$('#editIsIndigenaS').prop('checked', true);
+	} else if (valorIndigena === 'N') {
+		$('#editIsIndigenaN').prop('checked', true);
+	}
 
 	$.ajax({
 		url: url_base + "/linguaEnsino/" + id,
@@ -182,7 +123,7 @@ function showModal(ref) {
 			$(".desativar").hide();
 			$(".ativar").show();
 		}
-		
+
 
 		$('#edit-nome').val(nome);
 	})
@@ -211,6 +152,8 @@ function editar() {
 			$('#edit-nome').val('');
 			$('input[name="editIsIndigena"]').prop('checked', false);
 			getDados();
+			showPage(currentPage);
+			updatePagination();
 			alert('Editado com Sucesso!')
 		})
 	return false;
@@ -248,6 +191,8 @@ function cadastrar() {
 			$('#cadastro-nome').val('');
 			$('input[name="isIndigena"]').prop('checked', false);
 			getDados();
+			showPage(currentPage);
+			updatePagination();
 			showPage(currentPage);
 			alert('Cadastrado com Sucesso!')
 		})

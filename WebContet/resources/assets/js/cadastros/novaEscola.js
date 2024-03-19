@@ -68,10 +68,20 @@ $("#formNovoCadastro").submit(function(e) {
 				usaEspacoEntornoEscolar: $('input[name="usaEspacoEntornoEscolar"]:checked').val(),
 				pppAtualizado12Meses: $('input[name="pppAtualizado12Meses"]:checked').val(),
 				acessivel: $('input[name="isAcessivel"]:checked').val(),
+
+				"merendaEscolar": $('input[name="merendaEscolar"]:checked').val(),
+				"possuiAguaPotavel": $('input[name="possuiAguaPotavel"]:checked').val(),
+				"internetBandaLarga": $('input[name="internetBandaLarga"]:checked').val(),
+
 				localizacaoId: Number($('#localizacaoId').val()),
 				dependenciaAdmId: Number($('#dependenciaAdmId').val()),
 				situacaoFuncionamentoId: Number($('#situacaoFuncionamentoId').val()),
-				formaOcupacaoPredioId: Number($('#formaOcupacaoPredioId').val())
+				formaOcupacaoPredioId: Number($('#formaOcupacaoPredioId').val()),
+
+				"zoneamentoId": Number($('#zoneamentoId').val()),
+				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
+				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
+				"orgaoPublicoId": Number($('#orgaoPublicoId').val())
 			};
 
 			console.log(dadosFormulario);
