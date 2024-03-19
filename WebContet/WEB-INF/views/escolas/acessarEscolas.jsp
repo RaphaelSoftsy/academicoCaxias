@@ -75,31 +75,59 @@ String contextPath = request.getContextPath();
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3" style="display: flex; align-items: center;">
+			<div class="mt-3 mb-3"
+				style="display: flex; align-items: center; justify-content: end;">
 
-				<div class='col-6'>
-					<div class="input-group">
-						<input id="inputBusca" type="text" class="form-control inputForm"
-							placeholder="Buscar" /> <span
-							class="input-group-text icone-pesquisa"><i
-							class="fas fa-search"></i></span>
-					</div>
+				<div class="d-flex align-items-center gap-2">
+					<button class="btn btn-sm btn-danger">Limpar Filtros</button>
+					<button id="exportar-excel" class="btn btn-sm btn-success d-flex gap-2">
+
+						Exportar Excel</button>
 				</div>
-				<a href="nova-escola" class="btn btn-primary btn-lg px-3 py-1 ms-auto">Novo Cadastro</a>
+
 
 			</div>
 
-			<table
-				class="table tabela-cadastros table-striped table-bordered mb-0 caption-top mx-auto">
+			<table id="tabela-dados"
+				class="table tabela-cadastros table-striped mb-0 caption-top mx-auto">
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Nome</th>
-						<th scope="col">Município</th>
-						<th scope="col">UF</th>
-						<th scope="col">CNPJ</th>
-						<th scope="col">Ativo</th>
-						<th class='text-center' scope="col" width="10%">Acessar Perfil</th>
+						<th scope="col" class="sortable border-end"
+							data-column="nomeEscola">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<span>Nome</span> <span> <i class="fas fa-sort"></i>
+								</span>
+							</div>
+
+						</th>
+						<th scope="col" class="sortable  border-end"
+							data-column="municipio">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<span>Município</span> <span> <i class="fas fa-sort"></i>
+								</span>
+							</div>
+						</th>
+						<th scope="col" class="sortable  border-end" data-column="uf">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<span>UF</span> <span> <i class="fas fa-sort"></i>
+								</span>
+							</div>
+						</th>
+						<th scope="col" class="sortable  border-end" data-column="cnpj">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<span>CNPJ</span> <span> <i class="fas fa-sort"></i>
+								</span>
+							</div>
+						</th>
+						<th scope="col" class="sortable  border-end pe-2"
+							data-column="ativo">Ativo</th>
+						<th class='text-center' scope="col" width="10%">Acessar
+							Perfil</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -116,9 +144,11 @@ String contextPath = request.getContextPath();
 				</button>
 			</div>
 		</section>
-		
-	</main>
 
+	</main>
+	
+<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+	
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
@@ -133,7 +163,8 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/escolas/acessarEscolas.js"></script>
+	<script
+		src="<%=contextPath%>/resources/assets/js/escolas/acessarEscolas.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

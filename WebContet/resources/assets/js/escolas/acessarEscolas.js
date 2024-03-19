@@ -1,4 +1,6 @@
 var dados = [];
+var sortOrder = {};
+var dadosOriginais = [];
 var id = '';
 var rows = 7;
 var currentPage = 1;
@@ -7,6 +9,7 @@ var pagesToShow = 5;
 $(document).ready(function() {
 
 	getDados()
+
 
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
@@ -40,60 +43,54 @@ $(document).ready(function() {
 	showPage(currentPage);
 	updatePagination();
 
-});
+	function sortData(column, order) {
+		var dadosOrdenados = dadosOriginais.slice();
 
-function showPage(page) {
-	var start = (page - 1) * rows;
-	var end = start + rows;
+		dadosOrdenados.sort(function(a, b) {
+			var valueA = a[column].toLowerCase();
+			var valueB = b[column].toLowerCase();
+			if (order === 'asc') {
+				return valueA.localeCompare(valueB);
+			} else {
+				return valueB.localeCompare(valueA);
+			}
+		});
+		listarDados(dadosOrdenados);
+	}
 
-	$('#cola-tabela tr').hide();
-	$('#cola-tabela tr').slice(start, end).show();
-}
+	$(document).on('click', '.sortable', function() {
+		var column = $(this).data("column");
+		var currentOrder = sortOrder[column] || 'vazio';
+		var newOrder;
 
-function toggleNavigation() {
-    var totalRows = $('#cola-tabela tr').length;
-    var totalPages = Math.ceil(totalRows / rows);
+		if (currentOrder === 'vazio') {
+			newOrder = 'asc';
+		} else if (currentOrder === 'asc') {
+			newOrder = 'desc';
+		} else {
+			newOrder = 'vazio';
+		}
 
-    $('#prev').prop('disabled', currentPage === 1);
-    $('#next').prop('disabled', currentPage === totalPages);
+		$(".sortable").removeClass("asc desc");
+		$(this).addClass(newOrder);
 
-    $('#page-numbers').empty();
+		var icon = $(this).find("i");
+		icon.removeClass("fa-sort-up fa-sort-down fa-sort");
 
-    $('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === 1 ? 'active-page' : '') + '" data-page="1">1</button>');
+		if (newOrder === 'asc') {
+			icon.addClass("fa-sort-up");
+			sortData(column, newOrder);
+		} else if (newOrder === 'desc') {
+			icon.addClass("fa-sort-down");
+			sortData(column, newOrder);
+		} else {
+			icon.addClass("fa-sort");
+			listarDados(dadosOriginais);
+		}
 
-    var startPage = Math.max(2, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 2));
-    var endPage = Math.min(totalPages - 1, startPage + pagesToShow - 3);
+		sortOrder[column] = newOrder;
+	});
 
-    for (var i = startPage; i <= endPage; i++) {
-        var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
-        $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
-    }
-
-    $('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === totalPages ? 'active-page' : '') + '" data-page="' + totalPages + '">' + totalPages + '</button>');
-
-    $('.btn-page').click(function() {
-        goToPage(parseInt($(this).data('page')));
-    });
-}
-
-function updatePagination() {
-    toggleNavigation();
-}
-
-function goToPage(page) {
-    if (page >= 1 && page <= Math.ceil($('#cola-tabela tr').length / rows)) {
-        currentPage = page;
-        showPage(currentPage);
-        updatePagination();
-    }
-}
-
-$('#prev').click(function() {
-    goToPage(currentPage - 1);
-});
-
-$('#next').click(function() {
-    goToPage(currentPage + 1);
 });
 
 
@@ -104,6 +101,8 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
+			dados = data
+			dadosOriginais = data;
 			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -114,7 +113,7 @@ function getDados() {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 		var ativo;
-		
+
 		if (item.ativo == 'N') {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
 		}
@@ -149,3 +148,13 @@ function listarDados(dados) {
 	$("#cola-tabela").html(html);
 }
 
+
+$('#exportar-excel').click(function() {
+    
+    var planilha = XLSX.utils.json_to_sheet(dados);
+
+var livro = XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+
+XLSX.writeFile(livro, "dados.xlsx");
+});

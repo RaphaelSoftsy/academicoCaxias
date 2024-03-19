@@ -181,33 +181,43 @@ function showPage(page) {
 }
 
 function toggleNavigation() {
-	var totalRows = $('#cola-tabela tr').length;
-	var totalPages = Math.ceil(totalRows / rows);
+    var totalRows = $('#cola-tabela tr').length;
+    var totalPages = Math.ceil(totalRows / rows);
 
-	$('#prev').prop('disabled', currentPage === 1);
-	$('#next').prop('disabled', currentPage === totalPages);
+    $('#prev').prop('disabled', currentPage === 1);
+    $('#next').prop('disabled', currentPage === totalPages);
 
-	$('#pagination').toggle(totalRows > 0);
+    $('#pagination').toggle(totalRows > 0);
 
-	$('#page-numbers').empty();
+    $('#page-numbers').empty();
 
-	if (totalRows > 0) {
-		$('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === 1 ? 'active-page' : '') + '" data-page="1">1</button>');
+    if (totalRows > 0) {
+        var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+        var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
 
-		var startPage = Math.max(2, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 2));
-		var endPage = Math.min(totalPages - 1, startPage + pagesToShow - 3);
+        if (startPage > 1) {
+            $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+            if (startPage > 2) {
+                $('#page-numbers').append('<span>...</span>');
+            }
+        }
 
-		for (var i = startPage; i <= endPage; i++) {
-			var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
-			$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
-		}
+        for (var i = startPage; i <= endPage; i++) {
+            var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+            $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+        }
 
-		$('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === totalPages ? 'active-page' : '') + '" data-page="' + totalPages + '">' + totalPages + '</button>');
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                $('#page-numbers').append('<span>...</span>');
+            }
+            $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+        }
 
-		$('.btn-page').click(function() {
-			goToPage(parseInt($(this).data('page')));
-		});
-	}
+        $('.btn-page').click(function() {
+            goToPage(parseInt($(this).data('page')));
+        });
+    }
 }
 
 
