@@ -57,6 +57,60 @@ function getValorSelects() {
 			}));
 		});
 	})
+	
+	$.ajax({
+		url: url_base + '/orgaoPublico',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#orgaoPublicoId').append($('<option>', {
+				value: item.idOrgaoPublico,
+				text: item.orgaoPublico,
+				name: item.orgaoPublico
+			}));
+		});
+	})
+	$.ajax({
+		url: url_base + '/zoneamento',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#zoneamentoId').append($('<option>', {
+				value: item.idZoneamento,
+				text: item.zoneamento,
+				name: item.zoneamento
+			}));
+		});
+	})
+	$.ajax({
+		url: url_base + '/categoriaEscolaPrivada',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#categoriaEscolaPrivadaId').append($('<option>', {
+				value: item.idCategoriaEscolaPrivada,
+				text: item.categoriaEscolaPrivada,
+				name: item.categoriaEscolaPrivada
+			}));
+		});
+	})
+	$.ajax({
+		url: url_base + '/entidadeSuperior',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#entidadeSuperiorId').append($('<option>', {
+				value: item.idEntidadeSuperior,
+				text: item.entidadeSuperior,
+				name: item.entidadeSuperior
+			}));
+		});
+	})
+	
 	$.ajax({
 		url: url_base + '/localizacao',
 		type: "get",
@@ -116,3 +170,64 @@ function ativar(endpoint){
 		})
 	return false;
 }
+
+
+function showPage(page) {
+	var start = (page - 1) * rows;
+	var end = start + rows;
+
+	$('#cola-tabela tr').hide();
+	$('#cola-tabela tr').slice(start, end).show();
+}
+
+function toggleNavigation() {
+	var totalRows = $('#cola-tabela tr').length;
+	var totalPages = Math.ceil(totalRows / rows);
+
+	$('#prev').prop('disabled', currentPage === 1);
+	$('#next').prop('disabled', currentPage === totalPages);
+
+	$('#pagination').toggle(totalRows > 0);
+
+	$('#page-numbers').empty();
+
+	if (totalRows > 0) {
+		$('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === 1 ? 'active-page' : '') + '" data-page="1">1</button>');
+
+		var startPage = Math.max(2, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 2));
+		var endPage = Math.min(totalPages - 1, startPage + pagesToShow - 3);
+
+		for (var i = startPage; i <= endPage; i++) {
+			var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+			$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+		}
+
+		$('#page-numbers').append('<button class="btn btn-sm btn-page ' + (currentPage === totalPages ? 'active-page' : '') + '" data-page="' + totalPages + '">' + totalPages + '</button>');
+
+		$('.btn-page').click(function() {
+			goToPage(parseInt($(this).data('page')));
+		});
+	}
+}
+
+
+function updatePagination() {
+	toggleNavigation();
+}
+
+function goToPage(page) {
+	if (page >= 1 && page <= Math.ceil($('#cola-tabela tr').length / rows)) {
+		currentPage = page;
+		showPage(currentPage);
+		updatePagination();
+	}
+}
+
+$('#prev').click(function() {
+	goToPage(currentPage - 1);
+});
+
+$('#next').click(function() {
+	goToPage(currentPage + 1);
+});
+
