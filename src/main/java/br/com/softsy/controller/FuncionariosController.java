@@ -87,6 +87,19 @@ public class FuncionariosController {
 		return "preCadastros/tipoAtoRegulatorio";
 	}
 	
+	@RequestMapping(value = { "zoneamento"}, method = RequestMethod.GET)
+	public String zoneamento(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 *
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "preCadastros/zoneamento";
+	}
+	
 	
 	@RequestMapping(value = { "ato-regulatorio", "atoRegulatorio" }, method = RequestMethod.GET)
 	public String atoRegulatorios(HttpSession session, Model model) throws Exception {
@@ -94,16 +107,35 @@ public class FuncionariosController {
 		return "preCadastros/atosRegulatorios";
 	}
 	
+	@RequestMapping(value = { "categoriaEscolaPrivada" }, method = RequestMethod.GET)
+	public String categoriaEscolaPrivada(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/categoriaEscolaPrivada";
+	}
+	
 	@RequestMapping(value = { "localizacao", "tipoLocalizacao" }, method = RequestMethod.GET)
 	public String localizacao(HttpSession session, Model model) throws Exception {
  
 		return "preCadastros/localizacao";
+	}
+	@RequestMapping(value = { "entidadeSuperior" }, method = RequestMethod.GET)
+	public String entidadeSuperior(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/entidadeSuperior";
 	}
 	@RequestMapping(value = { "periodicidade" }, method = RequestMethod.GET)
 	public String periodicidade(HttpSession session, Model model) throws Exception {
  
 		return "preCadastros/periodicidade";
 	}
+	
+	@RequestMapping(value = { "orgaoPublico" }, method = RequestMethod.GET)
+	public String orgaoPublico(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/orgaoPublico";
+	}
+	
+	
 	
 	@RequestMapping(value = { "linguas-ensino", "linguasEnsino" }, method = RequestMethod.GET)
 	public String linguasEnsino(HttpSession session, Model model) throws Exception {
