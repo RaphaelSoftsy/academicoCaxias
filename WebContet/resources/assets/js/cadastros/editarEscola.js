@@ -1,5 +1,5 @@
 var id = '';
-
+var logo = '';
 $(document).ready(function() {
 	id = getSearchParams("id");
 	$("#divLogoEscola").hide();
@@ -13,6 +13,8 @@ $(document).ready(function() {
 	})
 		.done(function(data) {
 			const ref = data
+			logo = ref.logoEscola
+			console.log(ref)
 
 			$('#nome').val(ref.nomeEscola)
 			$("#tipoEscola").val(ref.tipoEscola).attr('selected', true);
@@ -148,8 +150,6 @@ $("#cep").blur(function() {
 $("#formEditar").submit(function(e) {
 	e.preventDefault();
 
-	var imgBase64 = '';
-
 	function convertToBase64(file, callback) {
 		var reader = new FileReader();
 		reader.onload = function(event) {
@@ -162,54 +162,102 @@ $("#formEditar").submit(function(e) {
 
 	if (logoEscolaFile) {
 		convertToBase64(logoEscolaFile, function(base64String) {
-			imgBase64 = base64String;
+			var dadosComImgBase64 = {
+				idEscola: id,
+				nomeEscola: $('#nome').val(),
+				logoEscola: base64String,
+				tipoEscola: $('#tipoEscola').val(),
+				cnpj: $('#cnpj').val().replace(/[^\d]+/g, ''),
+				codigoInep: $('#codigoInep').val(),
+				cep: $('#cep').val().replace(/[^\d]+/g, ''),
+				endereco: $('#endereco').val(),
+				numero: $('#numero').val(),
+				bairro: 'Bairro Fixo',
+				municipio: $('#municipio').val(),
+				uf: $('#uf').val(),
+				numCME: $('#numCME').val(),
+				numParecerCME: $('#numParecerCME').val(),
+				latitude: $('#latitude').val(),
+				longitude: $('#longitude').val(),
+				email: $('#email').val(),
+				educacaoIndigena: $('input[name="isIndigena"]:checked').val(),
+				exameSelecao: $('input[name="exameSelecao"]:checked').val(),
+				compartilhaEspaco: $('input[name="compartilhaEspaco"]:checked').val(),
+				usaEspacoEntornoEscolar: $('input[name="usaEspacoEntornoEscolar"]:checked').val(),
+				pppAtualizado12Meses: $('input[name="pppAtualizado12Meses"]:checked').val(),
+				acessivel: $('input[name="isAcessivel"]:checked').val(),
+
+				"merendaEscolar": $('input[name="merendaEscolar"]:checked').val(),
+				"possuiAguaPotavel": $('input[name="possuiAguaPotavel"]:checked').val(),
+				"internetBandaLarga": $('input[name="internetBandaLarga"]:checked').val(),
+
+				localizacaoId: $('#localizacaoId').val(),
+				dependenciaAdmId: $('#dependenciaAdmId').val(),
+				situacaoFuncionamentoId: $('#situacaoFuncionamentoId').val(),
+				formaOcupacaoPredioId: $('#formaOcupacaoPredioId').val(),
+
+				"zoneamentoId": Number($('#zoneamentoId').val()),
+				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
+				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
+				"orgaoPublicoId": Number($('#orgaoPublicoId').val())
+			};
+			
+			enviarDadosFormulario(dadosComImgBase64);
 		});
+	} else {
+		
+		var dadosFormulario = {
+				idEscola: id,
+				nomeEscola: $('#nome').val(),
+				logoEscola: base64String,
+				tipoEscola: $('#tipoEscola').val(),
+				cnpj: $('#cnpj').val().replace(/[^\d]+/g, ''),
+				codigoInep: $('#codigoInep').val(),
+				cep: $('#cep').val().replace(/[^\d]+/g, ''),
+				endereco: $('#endereco').val(),
+				numero: $('#numero').val(),
+				bairro: 'Bairro Fixo',
+				municipio: $('#municipio').val(),
+				uf: $('#uf').val(),
+				numCME: $('#numCME').val(),
+				numParecerCME: $('#numParecerCME').val(),
+				latitude: $('#latitude').val(),
+				longitude: $('#longitude').val(),
+				email: $('#email').val(),
+				educacaoIndigena: $('input[name="isIndigena"]:checked').val(),
+				exameSelecao: $('input[name="exameSelecao"]:checked').val(),
+				compartilhaEspaco: $('input[name="compartilhaEspaco"]:checked').val(),
+				usaEspacoEntornoEscolar: $('input[name="usaEspacoEntornoEscolar"]:checked').val(),
+				pppAtualizado12Meses: $('input[name="pppAtualizado12Meses"]:checked').val(),
+				acessivel: $('input[name="isAcessivel"]:checked').val(),
+
+				"merendaEscolar": $('input[name="merendaEscolar"]:checked').val(),
+				"possuiAguaPotavel": $('input[name="possuiAguaPotavel"]:checked').val(),
+				"internetBandaLarga": $('input[name="internetBandaLarga"]:checked').val(),
+
+				localizacaoId: $('#localizacaoId').val(),
+				dependenciaAdmId: $('#dependenciaAdmId').val(),
+				situacaoFuncionamentoId: $('#situacaoFuncionamentoId').val(),
+				formaOcupacaoPredioId: $('#formaOcupacaoPredioId').val(),
+
+				"zoneamentoId": Number($('#zoneamentoId').val()),
+				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
+				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
+				"orgaoPublicoId": Number($('#orgaoPublicoId').val())
+			};
+			
+		enviarDadosFormulario(dadosFormulario);
 	}
 
-	var dadosFormulario = {
-		idEscola: id,
-		nomeEscola: $('#nome').val(),
-		logoEscola: imgBase64,
-		tipoEscola: $('#tipoEscola').val(),
-		cnpj: $('#cnpj').val().replace(/[^\d]+/g, ''),
-		codigoInep: $('#codigoInep').val(),
-		cep: $('#cep').val().replace(/[^\d]+/g, ''),
-		endereco: $('#endereco').val(),
-		numero: $('#numero').val(),
-		bairro: 'Bairro Fixo',
-		municipio: $('#municipio').val(),
-		uf: $('#uf').val(),
-		numCME: $('#numCME').val(),
-		numParecerCME: $('#numParecerCME').val(),
-		latitude: $('#latitude').val(),
-		longitude: $('#longitude').val(),
-		email: $('#email').val(),
-		educacaoIndigena: $('input[name="isIndigena"]:checked').val(),
-		exameSelecao: $('input[name="exameSelecao"]:checked').val(),
-		compartilhaEspaco: $('input[name="compartilhaEspaco"]:checked').val(),
-		usaEspacoEntornoEscolar: $('input[name="usaEspacoEntornoEscolar"]:checked').val(),
-		pppAtualizado12Meses: $('input[name="pppAtualizado12Meses"]:checked').val(),
-		acessivel: $('input[name="isAcessivel"]:checked').val(),
 
-		"merendaEscolar": $('input[name="merendaEscolar"]:checked').val(),
-		"possuiAguaPotavel": $('input[name="possuiAguaPotavel"]:checked').val(),
-		"internetBandaLarga": $('input[name="internetBandaLarga"]:checked').val(),
+});
 
-		localizacaoId: $('#localizacaoId').val(),
-		dependenciaAdmId: $('#dependenciaAdmId').val(),
-		situacaoFuncionamentoId: $('#situacaoFuncionamentoId').val(),
-		formaOcupacaoPredioId: $('#formaOcupacaoPredioId').val(),
-
-		"zoneamentoId": Number($('#zoneamentoId').val()),
-		"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
-		"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
-		"orgaoPublicoId": Number($('#orgaoPublicoId').val())
-	};
-
+function enviarDadosFormulario(objeto) {
+	console.log(objeto)
 	$.ajax({
 		url: url_base + '/escolas',
 		type: "PUT",
-		data: JSON.stringify(dadosFormulario),
+		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			console.log(e)
@@ -218,5 +266,4 @@ $("#formEditar").submit(function(e) {
 		alert('Editado com sucesso!')
 		window.location.href = "escolas";
 	});
-
-});
+}

@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-plus fa-lg"></i> <span>Novo Cadastro</span>
+					<i class="fa-solid fa-plus fa-lg"></i><span>Novo Cadastro</span>
 				</div>
 			</div>
 		</section>

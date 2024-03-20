@@ -77,7 +77,7 @@ String contextPath = request.getContextPath();
 		<section class="pt-4">
 			<form class='formClass' id="formEditar"
 				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
-				<h1 id="tituloForm" class="text-center mb-5">Editar Escola</h1>
+				<h1 id="tituloForm" class="text-center mb-5">Editar dados da Escola</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 

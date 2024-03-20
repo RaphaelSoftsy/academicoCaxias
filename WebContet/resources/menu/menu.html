@@ -3,9 +3,9 @@
 
   <body>
     <section id="modalMenu" class="abracaMenu modalMenu">
-	<div class="close-btn-menu">
+<!-- 	<div class="close-btn-menu">
 				<i class="fas fa-times"></i>
-			</div>
+			</div> -->
       <div class="img-menu">
         <img
           class="logoSumare animate__animated animate__bounceIn mx-auto"
@@ -22,7 +22,7 @@
       <nav class="menu">
         <div class="item">
           <a class="sub-btn"
-            ><i class="fas fa-cogs"></i>Pré-Cadastros
+            ><i class="fas fa-cogs"></i>Configurações
             <i class="fas fa-angle-right dropdown"></i
           ></a>
           <div class="sub-menu">
@@ -51,20 +51,41 @@
         </div> 
       	<div class="item">
           <a class="sub-btn">
-          <i class="fa-solid fa-bars-staggered"></i>Cadastros
+          <i class="fa-solid fa-school"></i>Escolas
             <i class="fas fa-angle-right dropdown"></i
           ></a>
           <div class="sub-menu">
-            <a href="escolas" class="sub-item">Escolas</a>
+          	<a href="acessar-escolas" class="sub-item">Minhas Escolas</a>
+            <a href="escolas" class="sub-item">Cadastros</a>
+             <a href="telefones-escolas" class="sub-item">Telefones</a>
+             <a href="link-internet" class="sub-item">Link Internet</a>
           </div>
         </div>
         <div class="item">
           <a class="sub-btn">
-          <i class="fa-solid fa-school "></i>Escolas
+         <i class="fa-solid fa-chalkboard-user"></i>Professores
             <i class="fas fa-angle-right dropdown"></i
           ></a>
           <div class="sub-menu">
-            <a href="acessar-escolas" class="sub-item">Acessar Escolas</a>
+            
+          </div>
+        </div>
+        <div class="item">
+          <a class="sub-btn">
+          <i class="fa-solid fa-users"></i>Alunos
+            <i class="fas fa-angle-right dropdown"></i
+          ></a>
+          <div class="sub-menu">
+            
+          </div>
+        </div>
+        <div class="item">
+          <a class="sub-btn">
+          <i class="fa-solid fa-bars-staggered"></i>Turmas
+            <i class="fas fa-angle-right dropdown"></i
+          ></a>
+          <div class="sub-menu">
+            
           </div>
         </div>
       </nav>
@@ -72,6 +93,22 @@
   </body>
   <script type="text/javascript">
     $(document).ready(function () {
+    	var perfilArmazenado = JSON.parse(localStorage.getItem('perfil'));
+
+        if (perfilArmazenado && perfilArmazenado.perfil === 'escola') {
+            $('#nome-user').text(perfilArmazenado.nome);
+
+            if (perfilArmazenado.logo) {
+                $('.logoSumare').attr('src', perfilArmazenado.logo);
+            }
+            
+            $('.menu .sub-btn').each(function() {
+                if ($(this).text().trim() === 'Configurações') {
+                  $(this).parent().hide();
+                }
+              });
+            
+        }
       $(".sub-btn").click(function () {
         $(this).next(".sub-menu").slideToggle();
         $(this).find(".dropdown").toggleClass("rotate");

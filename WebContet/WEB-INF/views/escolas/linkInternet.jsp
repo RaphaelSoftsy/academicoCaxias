@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Escolas</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Link Internet</span>
 				</div>
 			</div>
 		</section>
@@ -84,9 +84,8 @@ String contextPath = request.getContextPath();
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
-
+					<a href="vincula-link-internet" class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
 				</div>
-
 
 			</div>
 
@@ -96,12 +95,12 @@ String contextPath = request.getContextPath();
 				<thead>
 					<tr>
 						<th scope="col" class="sortable border-end"
-							data-column="nomeEscola">
+							data-column="escolaId">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Nome</span> <i class="fas fa-sort me-3"
+									<span>Escola</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -112,20 +111,19 @@ String contextPath = request.getContextPath();
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent1">
 										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite o nome">
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
-											escola</button>
+											placeholder="Digite o nome da escola">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
 									</div>
 								</div>
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="municipio">
+							data-column="provedorInternet">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Município</span> <i class="fas fa-sort me-3"
+									<span>Provedor</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -136,20 +134,19 @@ String contextPath = request.getContextPath();
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent2">
 										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite o município">
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
-											escola</button>
+											placeholder="Digite o nome do provedor">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
 									</div>
 								</div>
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="uf">
+							data-column="velocidadeMb">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>UF</span> <i class="fas fa-sort me-3"
+									<span>Velocidade Mb</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -160,40 +157,21 @@ String contextPath = request.getContextPath();
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent3">
 										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite o UF">
+											placeholder="Digite a velocidade">
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
-											escola</button>
+											</button>
 									</div>
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable  border-end" data-column="cnpj">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>CNPJ</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton4">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent4">
-										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite o CNPJ">
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
-											escola</button>
-									</div>
-								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable  border-end pe-2 th-sem-filtro"
+						<th scope="col" class="border-end pe-2 th-sem-filtro"
+							data-column="Administrativo">Administrativo</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro"
+							data-column="Estudante">Estudante</th>
+						<th scope="col" class="border-end pe-2 th-sem-filtro"
 							data-column="ativo">Ativo</th>
-						<th class='text-center th-sem-filtro' scope="col" width="10%">Acessar
-							Perfil</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro"
+							data-column="ativo">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -231,7 +209,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/acessarEscolas.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/linkInternet.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

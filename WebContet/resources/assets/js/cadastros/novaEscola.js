@@ -84,7 +84,6 @@ $("#formNovoCadastro").submit(function(e) {
 				"orgaoPublicoId": Number($('#orgaoPublicoId').val())
 			};
 
-			console.log(dadosFormulario);
 
 			$.ajax({
 				url: url_base + '/escolas',

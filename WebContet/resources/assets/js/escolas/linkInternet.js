@@ -125,7 +125,7 @@ $('#limpa-filtros').click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + "/escolaLinkInternet",
 		type: "GET",
 		async: false,
 	})
@@ -142,6 +142,8 @@ function getDados() {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 		var ativo;
+		var administrativo;
+		var estudante;
 
 		if (item.ativo == 'N') {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
@@ -149,31 +151,44 @@ function listarDados(dados) {
 		else {
 			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
 		}
+		
+		if (item.administrativo == 'N') {
+			administrativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else {
+			administrativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
+		
+		if (item.estudante == 'N') {
+			estudante = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else {
+			estudante = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
 
 		return (
 			"<tr>" +
 			"<td>" +
-			item.nomeEscola +
+			item.escolaId +
 			"</td>" +
 			"<td>" +
-			item.municipio +
+			item.provedorInternet.provedorInternet +
 			"</td>" +
 			"<td>" +
-			item.uf +
+			item.velocidadeMb +
 			"</td>" +
-			"<td>" +
-			item.cnpj +
-			"</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			administrativo +
+			"</div></td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			estudante +
+			"</div></td>" +
 			"<td><div class='d-flex align-items-center gap-1'>" +
 			ativo +
 			"</div></td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idEscola +
-			'" data-nome="' +
-			item.nomeEscola +
-			'" data-logo="' +
-			item.logoEscola +
-			'" onclick="acessar(this)"><i class="fa-solid fa-right-to-bracket fa-lg"></i></span></td>' +
+			item.idEscolaLinkInternet +
+			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -197,14 +212,8 @@ $('#exportar-excel').click(function() {
 
 // Acessar perfil
 
-function acessar(element) {
+function editar(element) {
     var id = $(element).data('id');
-    var nome = $(element).data('nome');
-    var logo = $(element).data('logo');
-    
-    console.log(logo)
 
-    localStorage.setItem('perfil', JSON.stringify({perfil: 'escola', id, nome, logo}));
-
-    window.location.href = 'acessar-escolas';
+    window.location.href = 'editar-link-internet';
 }

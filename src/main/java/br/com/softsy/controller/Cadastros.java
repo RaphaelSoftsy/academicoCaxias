@@ -30,5 +30,11 @@ public class Cadastros {
  
 		return "cadastros/editarEscola";
 	}
+	
+	@RequestMapping(value = { "link-internet" }, method = RequestMethod.GET)
+	public String linkInternet(HttpSession session, Model model) throws Exception {
+ 
+		return "escolas/linkInternet";
+	}
 
 }
