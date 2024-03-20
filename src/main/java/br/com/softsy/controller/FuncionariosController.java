@@ -135,6 +135,12 @@ public class FuncionariosController {
 		return "preCadastros/orgaoPublico";
 	}
 	
+	@RequestMapping(value = { "provedorInternet" }, method = RequestMethod.GET)
+	public String provedorInternet(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/provedorInternet";
+	}
+	
 	
 	
 	@RequestMapping(value = { "linguas-ensino", "linguasEnsino" }, method = RequestMethod.GET)
