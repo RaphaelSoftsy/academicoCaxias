@@ -722,17 +722,6 @@ background-color: #ddd;
     height: 580px !important;
   }
 
-  .card-table .btn-primary {
-    align-self: flex-end;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 34px;
-    padding: 0.5em !important;
-    font-size: 1em;
-  }
-
 
   #colaTabela {
     font-size: 1.1em;

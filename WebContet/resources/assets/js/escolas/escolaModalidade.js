@@ -5,6 +5,9 @@ var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
+var id = '';
+var idEscola = '';
+var idModalidade = '';
 
 $(document).ready(function() {
 
@@ -20,9 +23,9 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'provedorInternet') {
+		if (columnToSearch === 'modalidadeEscola') {
 			filteredData = dadosOriginais.filter(function(item) {
-				return item.provedorInternet.provedorInternet.toLowerCase().includes(searchInput);
+				return item.modalidadeEscola.modalidadeEscola.toLowerCase().includes(searchInput);
 			});
 		} else if (columnToSearch === 'escolaId') {
 			filteredData = dadosOriginais.filter(function(item) {
@@ -81,9 +84,9 @@ $(document).ready(function() {
 		var dadosOrdenados = dadosOriginais.slice();
 
 		dadosOrdenados.sort(function(a, b) {
-			if (column === 'provedorInternet') {
-				var valueA = a.provedorInternet.provedorInternet.toLowerCase();
-				var valueB = b.provedorInternet.provedorInternet.toLowerCase();
+			if (column === 'modalidadeEscola') {
+				var valueA = a.modalidadeEscola.modalidadeEscola.toLowerCase();
+				var valueB = b.modalidadeEscola.modalidadeEscola.toLowerCase();
 				if (order === 'asc') {
 					return valueA.localeCompare(valueB);
 				} else {
@@ -102,14 +105,6 @@ $(document).ready(function() {
 					return nomeEscolaA.localeCompare(nomeEscolaB);
 				} else {
 					return nomeEscolaB.localeCompare(nomeEscolaA);
-				}
-			} else if (column === 'velocidadeMb') {
-				var valueA = parseFloat(a[column]);
-				var valueB = parseFloat(b[column]);
-				if (order === 'asc') {
-					return valueA - valueB;
-				} else {
-					return valueB - valueA;
 				}
 			} else {
 				var valueA = a[column].toString().toLowerCase();
@@ -146,14 +141,36 @@ function getDados() {
 	})
 		.done(function(data) {
 			escolas = data
+			$.each(data, function(index, item) {
+				$('#escolaIdEdit').append($('<option>', {
+					value: item.idEscola,
+					text: item.nomeEscola,
+					name: item.nomeEscola
+				}));
+			});
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 
 	$.ajax({
+		url: url_base + '/modalidadeEscola',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#modalidadeEscolaIdEdit').append($('<option>', {
+				value: item.idModalidadeEscola,
+				text: item.modalidadeEscola,
+				name: item.modalidadeEscola
+			}));
+		});
 
-		url: url_base + "/escolaLinkInternet",
+	})
+
+	$.ajax({
+
+		url: url_base + "/escolaModalidade",
 		type: "GET",
 		async: false,
 	})
@@ -169,9 +186,6 @@ function getDados() {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-		var ativo;
-		var administrativo;
-		var estudante;
 
 		var escola = escolas.find(function(school) {
 			return school.idEscola === item.escolaId;
@@ -181,50 +195,21 @@ function listarDados(dados) {
 			? escola.nomeEscola
 			: "Escola não encontrada";
 
-		if (item.ativo == 'N') {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
-
-		if (item.administrativo == 'N') {
-			administrativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			administrativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
-
-		if (item.estudante == 'N') {
-			estudante = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			estudante = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
-
 		return (
 			"<tr>" +
 			"<td>" +
 			nomeEscola +
 			"</td>" +
 			"<td>" +
-			item.provedorInternet.provedorInternet +
+			item.modalidadeEscola.modalidadeEscola +
 			"</td>" +
-			"<td>" +
-			item.velocidadeMb + " MEGA" +
-			"</td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			administrativo +
-			"</div></td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			estudante +
-			"</div></td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			ativo +
-			"</div></td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
 			item.escolaId +
-			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" data-id="' +
+			item.idEscolaModalidade +
+			'" data-idModalidade="' +
+			item.modalidadeEscola.idModalidadeEscola +
+			'" onclick="showModal(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -242,14 +227,83 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "dados.xlsx");
+	XLSX.writeFile(livro, "modalidades.xlsx");
 });
 
 
 // Editar
 
-function editar(element) {
-	var id = $(element).data('id');
+function showModal(ref) {
+	id = ref.getAttribute("data-id");
+	idEscola = ref.getAttribute("data-idEscola");
+	idModalidade = ref.getAttribute("data-idModalidade");
 
-	window.location.href = 'edicao-link-internet?id=' + id;
+	$("#escolaIdEdit").val(idEscola).attr('selected', true);
+	$("#modalidadeEscolaIdEdit").val(idModalidade).attr('selected', true);
 }
+
+function editar() {
+	var objeto = {
+		idModalidadeEscola: Number(id),
+		modalidadeEscola: $('#edit-nome').val()
+	}
+
+	$.ajax({
+		url: url_base + "/modalidadeEscola",
+		type: "PUT",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			$('#edit-nome').val('');
+			getDados();
+			showPage(currentPage);
+			updatePagination();
+			alert('Editado com Sucesso!')
+		})
+	return false;
+}
+$('#formEdit').on('submit', function(e) {
+	e.preventDefault();
+	editar();
+	return false;
+});
+
+function cadastrar() {
+
+	var objeto = {
+		modalidadeEscola: $('#cadastro-nome').val()
+	}
+
+	$.ajax({
+		url: url_base + "/modalidadeEscola",
+		type: "POST",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			$('#cadastro-nome').val('');
+			getDados();
+			showPage(currentPage);
+			updatePagination();
+			showPage(currentPage);
+			alert('Cadastrado com Sucesso!')
+		})
+	return false;
+}
+
+$('#formCadastro').on('submit', function(e) {
+	e.preventDefault();
+	cadastrar();
+	return false;
+});

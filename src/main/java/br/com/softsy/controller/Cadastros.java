@@ -36,5 +36,34 @@ public class Cadastros {
  
 		return "escolas/linkInternet";
 	}
-
+	
+	@RequestMapping(value = { "edicao-link-internet" }, method = RequestMethod.GET)
+	public String edicaoLinkInternet(HttpSession session, Model model) throws Exception {
+ 
+		return "escolas/edicaoLinkInternet";
+	}
+	
+	@RequestMapping(value = { "cadastro-link-internet" }, method = RequestMethod.GET)
+	public String cadastroLinkInternet(HttpSession session, Model model) throws Exception {
+ 
+		return "escolas/newLinkInternet";
+	}
+	
+	@RequestMapping(value = { "escola-modalidades", "escolaModalidades" }, method = RequestMethod.GET)
+	public String escolaModalidades(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/escolaModalidade";
+	}
+	
+	@RequestMapping(value = { "escola-tratamento-de-lixo", "escolaTratamentoDeLixo" }, method = RequestMethod.GET)
+	public String escolaTratamentoDeLixo(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/tratamentoDeLixo";
+	}
+	
+	@RequestMapping(value = { "escola-destinacao-de-lixo", "escolaDestinacaoLixo" }, method = RequestMethod.GET)
+	public String escolaDestinacaoLixo(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/destinacaoLixo";
+	}
 }

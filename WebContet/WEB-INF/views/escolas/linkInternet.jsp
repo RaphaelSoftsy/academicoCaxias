@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Link Internet</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Internet</span>
 				</div>
 			</div>
 		</section>
@@ -84,7 +84,7 @@ String contextPath = request.getContextPath();
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
-					<a href="vincula-link-internet" class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
+					<a href="cadastro-link-internet" class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
 				</div>
 
 			</div>
@@ -123,7 +123,7 @@ String contextPath = request.getContextPath();
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Provedor</span> <i class="fas fa-sort me-3"
+									<span>Provedor Internet</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -146,7 +146,7 @@ String contextPath = request.getContextPath();
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Velocidade Mb</span> <i class="fas fa-sort me-3"
+									<span>Velocidade Internet</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">

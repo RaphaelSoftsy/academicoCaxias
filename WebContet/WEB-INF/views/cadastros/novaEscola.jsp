@@ -75,8 +75,8 @@ String contextPath = request.getContextPath();
 			</div>
 		</section>
 		<section class="pt-4">
-			<form class='formClass' id="formNovoCadastro"
-				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
+			<form id="formNovoCadastro"
+				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Escola</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
@@ -85,12 +85,12 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="nome" class="form-label">Nome:<span
 							class="red">*</span></label> <input required autocomplete="off"
-							type="text" id="nome" name="nome" class="form-control inputForm"
+							type="text" id="nome" name="nome" class="form-control "
 							maxlength="255" />
 					</div>
 					<div class="col-md-6">
 						<label for="logoEscola" class="form-label">Logo:<span
-							class="red">*</span></label> <input class="form-control inputForm"
+							class="red">*</span></label> <input class="form-control "
 							required type="file" id="logoEscola" name="logoEscola"> </input>
 					</div>
 				</div>
@@ -109,7 +109,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="email" class="form-label">Email:<span
 							class="red">*</span></label> <input type="email" id="email" required
-							autocomplete="off" name="email" class="form-control inputForm" />
+							autocomplete="off" name="email" class="form-control " />
 					</div>
 
 				</div>
@@ -117,14 +117,14 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="cnpj" class="form-label">CNPJ:<span
 							class="red">*</span></label> <input type="tel" id="cnpj" required
-							autocomplete="off" name="cnpj" class="form-control inputForm"
+							autocomplete="off" name="cnpj" class="form-control "
 							data-mask="00.000.000/0000-00" />
 					</div>
 					<div class="col-md-6">
 						<label for="codigoInep" class="form-label">Código Inep:<span
 							class="red">*</span></label> <input type="tel" id="codigoInep" required
 							autocomplete="off" name="codigoInep"
-							class="form-control inputForm" />
+							class="form-control " />
 					</div>
 
 				</div>
@@ -301,7 +301,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="numCME" class="form-label">Nº CME:<span
 							class="red">*</span></label> <input type="number" id="numCME" required
-							autocomplete="off" name="numCME" class="form-control inputForm" />
+							autocomplete="off" name="numCME" class="form-control " />
 					</div>
 
 				</div>
@@ -313,7 +313,7 @@ String contextPath = request.getContextPath();
 							CME:<span class="red">*</span>
 						</label> <input type="number" id="numParecerCME" required
 							autocomplete="off" name="numParecerCME"
-							class="form-control inputForm" />
+							class="form-control " />
 					</div>
 					<div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Dependência
@@ -455,7 +455,7 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div>
-				<div class="col-md-12 text-center">
+				<div class="col-md-12 text-center mt-3">
 					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Cadastrar</button>
 				</div>
 			</form>

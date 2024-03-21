@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Destinação de Lixo</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Destinação do Lixo</span>
 				</div>
 			</div>
 		</section>
@@ -96,7 +96,7 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Destinação de Lixo</th>
+						<th scope="col">Destinação do Lixo</th>
 						<th scope="col">Ativo</th>
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
@@ -128,7 +128,7 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Destinação de Lixo:</label> <input
+								<label for="nome" class="form-label">Destinação do Lixo:</label> <input
 									type="text" class="form-control" id="cadastro-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
@@ -156,7 +156,7 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Destinação de Lixo:</label> <input
+								<label for="nome" class="form-label">Destinação do Lixo:</label> <input
 									type="text" class="form-control" id="edit-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
