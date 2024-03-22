@@ -171,6 +171,25 @@ function ativar(endpoint){
 	return false;
 }
 
+function remover(endpoint){
+	$.ajax({
+		url: url_base + `/${endpoint}/${id}`,
+		type: "DELETE",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON)
+			alert('Falha na requisição.')
+		}
+	})
+		.done(function(data) {
+			getDados();
+			showPage(currentPage);
+			updatePagination();
+			alert('Removido com Sucesso!')
+		})
+	return false;
+}
 
 function showPage(page) {
 	var start = (page - 1) * rows;

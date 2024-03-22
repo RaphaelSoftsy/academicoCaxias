@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Tratamento de Lixo</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Línguas de Ensino</span>
 				</div>
 			</div>
 		</section>
@@ -120,12 +120,12 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="tratamentoLixoId">
+							data-column="linguaEnsino">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Tratamento de Lixo</span> <i class="fas fa-sort me-3"
+									<span>Língua de Ensino</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -174,11 +174,11 @@ String contextPath = request.getContextPath();
 						<form id="formCadastro">
 
 							<div class="mb-4">
-								<label for="tratamentoLixoId" class="form-label">Tratamento de Lixo:<span
+								<label for="idLinguaEnsino" class="form-label">Língua de Ensino:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="tratamentoLixoId"
-									id="tratamentoLixoId" required name="Tratamento de Lixo">
-									<option selected value='' disabled>Selecione o Tratamento</option>
+								</label> <select class="form-select" aria-label="Língua de Ensino"
+									id="idLinguaEnsino" required name="idLinguaEnsino">
+									<option selected value='' disabled>Selecione a Língua</option>
 								</select>
 							</div>
 							<div class="mb-4">
@@ -222,15 +222,15 @@ String contextPath = request.getContextPath();
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="tratamentoLixoIdEdit" class="form-label">Tratamento de Lixo:<span
+								<label for="idLinguaEnsinoEdit" class="form-label">Língua de Ensino:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Tratamento de Lixo"
-									id="tratamentoLixoIdEdit" required name="tratamentoLixoIdEdit">
-									<option selected value='' disabled>Selecione o Tratamento</option>
+								</label> <select class="form-select" aria-label="Língua de Ensino"
+									id="idLinguaEnsinoEdit" required name="idLinguaEnsinoEdit">
+									<option selected value='' disabled>Selecione a Língua</option>
 								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='remover("escolaTratamentoLixo")'
+								<button type="button" onclick='remover("escolaLingua")'
 									class="ativar btn btn-danger" data-bs-dismiss="modal">Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
@@ -263,7 +263,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/tratamentoLixo.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/linguasEnsino.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

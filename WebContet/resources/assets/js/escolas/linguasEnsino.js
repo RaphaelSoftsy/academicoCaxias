@@ -7,7 +7,7 @@ var pagesToShow = 5;
 var escolas = [];
 var id = '';
 var idEscola = '';
-var idModalidade = '';
+var idSelect2 = '';
 
 $(document).ready(function() {
 
@@ -38,22 +38,22 @@ $(document).ready(function() {
 		});
 
 	$.ajax({
-		url: url_base + '/modalidadeEscola',
+		url: url_base + '/linguaEnsino',
 		type: "get",
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			$('#modalidadeEscolaIdEdit').append($('<option>', {
-				value: item.idModalidadeEscola,
-				text: item.modalidadeEscola,
-				name: item.modalidadeEscola
+			$('#idLinguaEnsino').append($('<option>', {
+				value: item.idLinguaEnsino,
+				text: item.linguaEnsino,
+				name: item.linguaEnsino
 			}));
 		});
 		$.each(data, function(index, item) {
-			$('#modalidadeEscolaId').append($('<option>', {
-				value: item.idModalidadeEscola,
-				text: item.modalidadeEscola,
-				name: item.modalidadeEscola
+			$('#idLinguaEnsinoEdit').append($('<option>', {
+				value: item.idLinguaEnsino,
+				text: item.linguaEnsino,
+				name: item.linguaEnsino
 			}));
 		});
 
@@ -71,14 +71,14 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'modalidadeEscola') {
+		if (columnToSearch === 'linguaEnsino') {
 			filteredData = dadosOriginais.filter(function(item) {
-				return item.modalidadeEscola.modalidadeEscola.toLowerCase().includes(searchInput);
+				return item.linguaEnsino.linguaEnsino.toLowerCase().includes(searchInput);
 			});
 		} else if (columnToSearch === 'escolaId') {
 			filteredData = dadosOriginais.filter(function(item) {
 				var escola = escolas.find(function(school) {
-					return school.idEscola === item.escolaId;
+					return school.idEscola === item.escola;
 				});
 				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
 				return nomeEscola.includes(searchInput);
@@ -132,9 +132,9 @@ $(document).ready(function() {
 		var dadosOrdenados = dadosOriginais.slice();
 
 		dadosOrdenados.sort(function(a, b) {
-			if (column === 'modalidadeEscola') {
-				var valueA = a.modalidadeEscola.modalidadeEscola.toLowerCase();
-				var valueB = b.modalidadeEscola.modalidadeEscola.toLowerCase();
+			if (column === 'linguaEnsino') {
+				var valueA = a.linguaEnsino.linguaEnsino.toLowerCase();
+				var valueB = b.linguaEnsino.linguaEnsino.toLowerCase();
 				if (order === 'asc') {
 					return valueA.localeCompare(valueB);
 				} else {
@@ -142,10 +142,10 @@ $(document).ready(function() {
 				}
 			} else if (column === 'escolaId') {
 				var escolaA = escolas.find(function(school) {
-					return school.idEscola === a.escolaId;
+					return school.idEscola === a.escola;
 				});
 				var escolaB = escolas.find(function(school) {
-					return school.idEscola === b.escolaId;
+					return school.idEscola === b.escola;
 				});
 				var nomeEscolaA = escolaA ? escolaA.nomeEscola.toLowerCase() : "";
 				var nomeEscolaB = escolaB ? escolaB.nomeEscola.toLowerCase() : "";
@@ -184,7 +184,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaModalidade",
+		url: url_base + "/escolaLingua",
 		type: "GET",
 		async: false,
 	})
@@ -202,7 +202,7 @@ function listarDados(dados) {
 	var html = dados.map(function(item) {
 
 		var escola = escolas.find(function(school) {
-			return school.idEscola === item.escolaId;
+			return school.idEscola === item.escola;
 		});
 
 		var nomeEscola = escola
@@ -215,14 +215,14 @@ function listarDados(dados) {
 			nomeEscola +
 			"</td>" +
 			"<td>" +
-			item.modalidadeEscola.modalidadeEscola +
+			item.linguaEnsino.linguaEnsino +
 			"</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
-			item.escolaId +
+			item.escola +
 			'" data-id="' +
-			item.idEscolaModalidade +
-			'" data-idModalidade="' +
-			item.modalidadeEscola.idModalidadeEscola +
+			item.idEscolaLingua +
+			'" data-idSelect2="' +
+			item.linguaEnsino.idLinguaEnsino +
 			'"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -241,7 +241,7 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "modalidades.xlsx");
+	XLSX.writeFile(livro, "linguasDeEnsino.xlsx");
 });
 
 
@@ -250,10 +250,10 @@ $('#exportar-excel').click(function() {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	idEscola = ref.getAttribute("data-idEscola");
-	idModalidade = ref.getAttribute("data-idModalidade");
+	idSelect2 = ref.getAttribute("data-idSelect2");
 
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
-	$("#modalidadeEscolaIdEdit").val(idModalidade).attr('selected', true);
+	$("#idLinguaEnsinoEdit").val(idSelect2).attr('selected', true);
 }
 
 
@@ -261,13 +261,13 @@ function showModal(ref) {
 
 function editar() {
 	var objeto = {
-		idEscolaModalidade: Number(id),
+		idEscolaLingua: Number(id),
 		escolaId: Number($('#escolaIdEdit').val()),
-		modalidadeEscolaId: Number($('#modalidadeEscolaIdEdit').val())
+		linguaEnsinoId: Number($('#idLinguaEnsinoEdit').val())
 	}
 
 	$.ajax({
-		url: url_base + "/escolaModalidade",
+		url: url_base + "/escolaLingua",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -279,7 +279,7 @@ function editar() {
 	})
 		.done(function(data) {
 			$("#escolaIdEdit").val('');
-			$("#modalidadeEscolaIdEdit").val('');
+			$("#idLinguaEnsinoEdit").val('');
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -300,11 +300,11 @@ function cadastrar() {
 
 	var objeto = {
 		escolaId: Number($('#escolaId').val()),
-		modalidadeEscolaId: Number($('#modalidadeEscolaId').val())
+		linguaEnsinoId: Number($('#idLinguaEnsino').val())
 	}
 
 	$.ajax({
-		url: url_base + "/escolaModalidade",
+		url: url_base + "/escolaLingua",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -316,7 +316,7 @@ function cadastrar() {
 	})
 		.done(function(data) {
 			$("#escolaId").val('');
-			$("#modalidadeEscolaId").val('');
+			$("#idLinguaEnsino").val('');
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -336,5 +336,5 @@ $('#formCadastro').on('submit', function(e) {
 
 function limpaCampo() {
 	$("#escolaId").val('');
-	$("#modalidadeEscolaId").val('');
+	$("#idLinguaEnsino").val('');
 }

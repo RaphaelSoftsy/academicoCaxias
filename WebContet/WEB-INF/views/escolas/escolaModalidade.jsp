@@ -178,7 +178,7 @@ String contextPath = request.getContextPath();
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Modalidade"
 									id="modalidadeEscolaId" required name="modalidadeEscolaId">
-									<option selected disabled>Selecione a Modalidade</option>
+									<option selected value='' disabled>Selecione a Modalidade</option>
 								</select>
 							</div>
 							<div class="mb-4">
@@ -186,7 +186,7 @@ String contextPath = request.getContextPath();
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola" id="escolaId"
 									required name="escolaId">
-									<option selected disabled>Selecione a Escola</option>
+									<option selected disabled value=''>Selecione a Escola</option>
 								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
@@ -201,7 +201,7 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="editAto" tabindex="-1"
+		<div class="modal fade" id="editItem" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
@@ -214,18 +214,18 @@ String contextPath = request.getContextPath();
 						<form id="formEdit">
 
 							<div class="mb-4">
-								<label for="escolaId" class="form-label">Escola:<span
+								<label for="escolaIdEdit" class="form-label">Escola:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola" id="escolaIdEdit"
-									required name="escolaId">
+									required name="escolaIdEdit">
 									<option selected disabled>Selecione a Escola</option>
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="modalidadeEscolaId" class="form-label">Modalidade:<span
+								<label for="modalidadeEscolaIdEdit" class="form-label">Modalidade:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Modalidade"
-									id="modalidadeEscolaIdEdit" required name="modalidadeEscolaId">
+									id="modalidadeEscolaIdEdit" required name="modalidadeEscolaIdEdit">
 									<option selected disabled>Selecione a Modalidade</option>
 								</select>
 							</div>

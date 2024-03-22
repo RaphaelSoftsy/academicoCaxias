@@ -70,35 +70,80 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Destinação do Lixo</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Destinação de Lixo</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3" style="display: flex; align-items: center;">
+			<div class="mt-3 mb-3"
+				style="display: flex; align-items: center; justify-content: end;">
 
-				<div class='col-6'>
-					<div class="input-group">
-						<input id="inputBusca" type="text" class="form-control inputForm"
-							placeholder="Buscar" /> <span
-							class="input-group-text icone-pesquisa"><i
-							class="fas fa-search"></i></span>
-					</div>
+				<div class="d-flex align-items-center gap-2">
+					<button id="limpa-filtros" class="btn btn-sm btn-danger">Limpar
+						Filtros</button>
+					<button id="exportar-excel"
+						class="btn btn-sm btn-success d-flex align-items-center gap-2">
+						<i class="fa-solid fa-file-export"></i> Exportar
+					</button>
+					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
+						data-bs-toggle="modal" onclick="limpaCampo()"
+						data-bs-target="#newCadastro">Novo Cadastro</button>
 				</div>
-				<button class="btn btn-primary btn-lg px-3 py-1 ms-auto"
-					data-bs-toggle="modal" onclick="limpaCampo()"
-					data-bs-target="#newCadastro">Novo Cadastro</button>
 
 			</div>
 
 			<table
-				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+				class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Destinação do Lixo</th>
-						<th scope="col">Ativo</th>
-						<th class='text-center' scope="col" width="10%"></th>
+						<th scope="col" class="sortable border-end" data-column="escolaId">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Escola</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton1">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite o nome da escola">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="destinacaoLixo">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Destinação de Lixo</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton2">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent2">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite o nome da Destinação">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="border-end pe-2 th-sem-filtro"
+							data-column="ativo" width="12%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -127,13 +172,25 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formCadastro">
+
 							<div class="mb-4">
-								<label for="nome" class="form-label">Destinação do Lixo:</label> <input
-									type="text" class="form-control" id="cadastro-nome" required
-									aria-describedby="atoRegulatorio" autocomplete="off">
+								<label for="idDestinacaoLixo" class="form-label">Destinação de Lixo:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Destinação de Lixo"
+									id="idDestinacaoLixo" required name="idDestinacaoLixo">
+									<option selected value='' disabled>Selecione a Destinaão</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="escolaId" class="form-label">Escola:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Escola" id="escolaId"
+									required name="escolaId">
+									<option selected disabled value=''>Selecione a Escola</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							
+
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -144,7 +201,7 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="editAto" tabindex="-1"
+		<div class="modal fade" id="editItem" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
@@ -155,16 +212,26 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
+
 							<div class="mb-4">
-								<label for="nome" class="form-label">Destinação do Lixo:</label> <input
-									type="text" class="form-control" id="edit-nome" required
-									aria-describedby="atoRegulatorio" autocomplete="off">
+								<label for="escolaIdEdit" class="form-label">Escola:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Escola" id="escolaIdEdit"
+									required name="escolaIdEdit">
+									<option selected disabled>Selecione a Escola</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="idDestinacaoLixoEdit" class="form-label">Destinação de Lixo:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Destinação de Lixo"
+									id="idDestinacaoLixoEdit" required name="idDestinacaoLixoEdit">
+									<option selected value='' disabled>Selecione a Destinaão</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							<button type="button" onclick='ativar("destinacaoLixo")' class="ativar btn btn-secondary"
-									data-bs-dismiss="modal">Ativar</button>
-							<button type="button" onclick='desativar("destinacaoLixo")' class="desativar btn btn-secondary"
-									data-bs-dismiss="modal">Desativar</button>
+								<button type="button" onclick='remover("escolaDestinacaoLixo")'
+									class="ativar btn btn-danger" data-bs-dismiss="modal">Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -176,6 +243,10 @@ String contextPath = request.getContextPath();
 			</div>
 		</div>
 	</main>
+
+
+	<script
+		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -191,7 +262,8 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/destinacaoLixo.js"></script>
+	<script
+		src="<%=contextPath%>/resources/assets/js/escolas/destinacaoLixo.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

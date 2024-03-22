@@ -5,8 +5,59 @@ var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
+var id = '';
+var idEscola = '';
+var idSelect2 = '';
 
 $(document).ready(function() {
+
+	$.ajax({
+		url: url_base + "/escolas",
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			escolas = data;
+			$.each(data, function(index, item) {
+				$('#escolaIdEdit').append($('<option>', {
+					value: item.idEscola,
+					text: item.nomeEscola,
+					name: item.nomeEscola
+				}));
+			});
+			$.each(data, function(index, item) {
+				$('#escolaId').append($('<option>', {
+					value: item.idEscola,
+					text: item.nomeEscola,
+					name: item.nomeEscola
+				}));
+			});
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+
+	$.ajax({
+		url: url_base + '/esgotamentoSanitario',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#idEsgotamentoSanitario').append($('<option>', {
+				value: item.idEsgotamentoSanitario,
+				text: item.esgotamentoSanitario,
+				name: item.esgotamentoSanitario
+			}));
+		});
+		$.each(data, function(index, item) {
+			$('#idEsgotamentoSanitarioEdit').append($('<option>', {
+				value: item.idEsgotamentoSanitario,
+				text: item.esgotamentoSanitario,
+				name: item.esgotamentoSanitario
+			}));
+		});
+
+	})
 
 	getDados()
 
@@ -20,9 +71,9 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'provedorInternet') {
+		if (columnToSearch === 'esgotamentoSanitario') {
 			filteredData = dadosOriginais.filter(function(item) {
-				return item.provedorInternet.provedorInternet.toLowerCase().includes(searchInput);
+				return item.esgotamentoSanitario.esgotamentoSanitario.toLowerCase().includes(searchInput);
 			});
 		} else if (columnToSearch === 'escolaId') {
 			filteredData = dadosOriginais.filter(function(item) {
@@ -81,9 +132,9 @@ $(document).ready(function() {
 		var dadosOrdenados = dadosOriginais.slice();
 
 		dadosOrdenados.sort(function(a, b) {
-			if (column === 'provedorInternet') {
-				var valueA = a.provedorInternet.provedorInternet.toLowerCase();
-				var valueB = b.provedorInternet.provedorInternet.toLowerCase();
+			if (column === 'esgotamentoSanitario') {
+				var valueA = a.esgotamentoSanitario.esgotamentoSanitario.toLowerCase();
+				var valueB = b.esgotamentoSanitario.esgotamentoSanitario.toLowerCase();
 				if (order === 'asc') {
 					return valueA.localeCompare(valueB);
 				} else {
@@ -102,14 +153,6 @@ $(document).ready(function() {
 					return nomeEscolaA.localeCompare(nomeEscolaB);
 				} else {
 					return nomeEscolaB.localeCompare(nomeEscolaA);
-				}
-			} else if (column === 'velocidadeMb') {
-				var valueA = parseFloat(a[column]);
-				var valueB = parseFloat(b[column]);
-				if (order === 'asc') {
-					return valueA - valueB;
-				} else {
-					return valueB - valueA;
 				}
 			} else {
 				var valueA = a[column].toString().toLowerCase();
@@ -140,20 +183,8 @@ $('#limpa-filtros').click(function() {
 function getDados() {
 
 	$.ajax({
-		url: url_base + "/escolas",
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			escolas = data
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
 
-	$.ajax({
-
-		url: url_base + "/escolaLinkInternet",
+		url: url_base + "/escolaEsgotamentoSanitario",
 		type: "GET",
 		async: false,
 	})
@@ -169,9 +200,6 @@ function getDados() {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-		var ativo;
-		var administrativo;
-		var estudante;
 
 		var escola = escolas.find(function(school) {
 			return school.idEscola === item.escolaId;
@@ -181,50 +209,21 @@ function listarDados(dados) {
 			? escola.nomeEscola
 			: "Escola não encontrada";
 
-		if (item.ativo == 'N') {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
-
-		if (item.administrativo == 'N') {
-			administrativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			administrativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
-
-		if (item.estudante == 'N') {
-			estudante = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			estudante = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
-
 		return (
 			"<tr>" +
 			"<td>" +
 			nomeEscola +
 			"</td>" +
 			"<td>" +
-			item.provedorInternet.provedorInternet +
+			item.esgotamentoSanitario.esgotamentoSanitario +
 			"</td>" +
-			"<td>" +
-			item.velocidadeMb + " MEGA" +
-			"</td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			administrativo +
-			"</div></td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			estudante +
-			"</div></td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			ativo +
-			"</div></td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
 			item.escolaId +
-			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" data-id="' +
+			item.idEscolaEsgotamentoSanitario +
+			'" data-idSelect2="' +
+			item.esgotamentoSanitario.idEsgotamentoSanitario +
+			'"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -242,14 +241,100 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "dadosInternet.xlsx");
+	XLSX.writeFile(livro, "esgotamentoSanitario.xlsx");
 });
+
+
+// Abrir modal
+
+function showModal(ref) {
+	id = ref.getAttribute("data-id");
+	idEscola = ref.getAttribute("data-idEscola");
+	idSelect2 = ref.getAttribute("data-idSelect2");
+
+	$("#escolaIdEdit").val(idEscola).attr('selected', true);
+	$("#idEsgotamentoSanitarioEdit").val(idSelect2).attr('selected', true);
+}
 
 
 // Editar
 
-function editar(element) {
-	var id = $(element).data('id');
+function editar() {
+	var objeto = {
+		idEscolaEsgotamentoSanitario: Number(id),
+		escolaId: Number($('#escolaIdEdit').val()),
+		esgotamentoSanitarioId: Number($('#idEsgotamentoSanitarioEdit').val())
+	}
 
-	window.location.href = 'edicao-link-internet?id=' + id;
+	$.ajax({
+		url: url_base + "/escolaEsgotamentoSanitario",
+		type: "PUT",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			$("#escolaIdEdit").val('');
+			$("#idEsgotamentoSanitarioEdit").val('');
+			getDados();
+			showPage(currentPage);
+			updatePagination();
+			alert('Editado com Sucesso!')
+		})
+	return false;
+}
+$('#formEdit').on('submit', function(e) {
+	e.preventDefault();
+	editar();
+	return false;
+});
+
+
+// Cadastrar
+
+function cadastrar() {
+
+	var objeto = {
+		escolaId: Number($('#escolaId').val()),
+		esgotamentoSanitarioId: Number($('#idEsgotamentoSanitario').val())
+	}
+
+	$.ajax({
+		url: url_base + "/escolaEsgotamentoSanitario",
+		type: "POST",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			$("#escolaId").val('');
+			$("#idEsgotamentoSanitario").val('');
+			getDados();
+			showPage(currentPage);
+			updatePagination();
+			alert('Cadastrado com Sucesso!')
+		})
+	return false;
+}
+
+$('#formCadastro').on('submit', function(e) {
+	e.preventDefault();
+	cadastrar();
+	return false;
+});
+
+
+// Limpa input
+
+function limpaCampo() {
+	$("#escolaId").val('');
+	$("#idEsgotamentoSanitario").val('');
 }

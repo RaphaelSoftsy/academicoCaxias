@@ -209,7 +209,7 @@ $("#formEditar").submit(function(e) {
 		var dadosFormulario = {
 				idEscola: id,
 				nomeEscola: $('#nome').val(),
-				logoEscola: base64String,
+				logoEscola: logo,
 				tipoEscola: $('#tipoEscola').val(),
 				cnpj: $('#cnpj').val().replace(/[^\d]+/g, ''),
 				codigoInep: $('#codigoInep').val(),

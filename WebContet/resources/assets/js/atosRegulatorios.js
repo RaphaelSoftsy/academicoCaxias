@@ -169,7 +169,6 @@ function cadastrar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			showPage(currentPage);
 			alert('Cadastrado com Sucesso!')
 		})
 	return false;

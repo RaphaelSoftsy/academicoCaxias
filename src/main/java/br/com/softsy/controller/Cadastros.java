@@ -66,4 +66,40 @@ public class Cadastros {
 		
 		return "escolas/destinacaoLixo";
 	}
+	
+	@RequestMapping(value = { "escola-linguas-de-ensino", "escolaLinguasDeEnsino" }, method = RequestMethod.GET)
+	public String escolaLinguasDeEnsino(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/linguasEnsino";
+	}
+	
+	@RequestMapping(value = { "escola-fornecimento-de-agua", "escolaFornecimentoAgua" }, method = RequestMethod.GET)
+	public String escolaFornecimentoAgua(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/fornecimentoAgua";
+	}
+	
+	@RequestMapping(value = { "escola-energia-eletrica", "escolaEnergiaEletrica" }, method = RequestMethod.GET)
+	public String escolaEnergiaEletrica(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/energiaEletrica";
+	}
+	
+	@RequestMapping(value = { "escola-esgotamento-sanitario", "escolaEsgotamentoSanitario" }, method = RequestMethod.GET)
+	public String escolaEsgotamentoSanitario(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/esgotamentoSanitario";
+	}
+	
+	@RequestMapping(value = { "escola-telefones", "escolaTelefones" }, method = RequestMethod.GET)
+	public String escolaTelefones(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/telefones";
+	}
+	
+	@RequestMapping(value = { "escola-predios-compartilhados", "escolaPrediosCompartilhados" }, method = RequestMethod.GET)
+	public String escolaPrediosCompartilhados(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/prediosCompartilhados";
+	}
 }

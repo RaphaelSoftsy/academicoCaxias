@@ -70,7 +70,8 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Tratamento de Lixo</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Línguas de
+						Ensino</span>
 				</div>
 			</div>
 		</section>
@@ -97,6 +98,52 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
+						<th scope="col" class="sortable border-end" data-column="telefone">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Telefone</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite aqui...">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+
+						<th scope="col" class="sortable border-end"
+							data-column="tipoTelefone">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Tipo de Telefone</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton2">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent2">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite aqui...">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
 						<th scope="col" class="sortable border-end" data-column="escolaId">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
@@ -114,29 +161,6 @@ String contextPath = request.getContextPath();
 										id="dropdownContent1">
 										<input type="text" class='form-control mb-3 searchInput'
 											placeholder="Digite o nome da escola">
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
-									</div>
-								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="tratamentoLixoId">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Tratamento de Lixo</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton2">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent2">
-										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite aqui...">
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
 									</div>
 								</div>
@@ -174,11 +198,17 @@ String contextPath = request.getContextPath();
 						<form id="formCadastro">
 
 							<div class="mb-4">
-								<label for="tratamentoLixoId" class="form-label">Tratamento de Lixo:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="tratamentoLixoId"
-									id="tratamentoLixoId" required name="Tratamento de Lixo">
-									<option selected value='' disabled>Selecione o Tratamento</option>
+								<label for="telefone" class="form-label">Telefone:<span
+									class="red">*</span></label> <input type="tel" id="telefone"
+									required autocomplete="off" name="telefone"
+									class="form-control " data-mask="(00) 00000-0000" />
+							</div>
+							<div class="mb-4">
+								<label for="idTipoTelefone" class="form-label">Tipo de
+									Telefone:<span class="red">*</span>
+								</label> <select class="form-select" aria-label="Tipo de Telefone"
+									id="idTipoTelefone" required name="idTipoTelefone">
+									<option selected value='' disabled>Selecione o Tipo</option>
 								</select>
 							</div>
 							<div class="mb-4">
@@ -213,24 +243,31 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formEdit">
 
+
+							<div class="mb-4">
+								<label for="telefoneEdit" class="form-label">Telefone:<span
+									class="red">*</span></label> <input type="tel" id="telefoneEdit"
+									required autocomplete="off" name="telefoneEdit"
+									class="form-control " data-mask="(00) 00000-0000" />
+							</div>
+							<div class="mb-4">
+								<label for="idTipoTelefoneEdit" class="form-label">Tipo
+									de Telefone:<span class="red">*</span>
+								</label> <select class="form-select" aria-label="Tipo de Telefone"
+									id="idTipoTelefoneEdit" required name="idTipoTelefoneEdit">
+									<option selected value='' disabled>Selecione o Tipo</option>
+								</select>
+							</div>
 							<div class="mb-4">
 								<label for="escolaIdEdit" class="form-label">Escola:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola" id="escolaIdEdit"
-									required name="escolaIdEdit">
+								</label> <select class="form-select" aria-label="Escola"
+									id="escolaIdEdit" required name="escolaIdEdit">
 									<option selected disabled>Selecione a Escola</option>
 								</select>
 							</div>
-							<div class="mb-4">
-								<label for="tratamentoLixoIdEdit" class="form-label">Tratamento de Lixo:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Tratamento de Lixo"
-									id="tratamentoLixoIdEdit" required name="tratamentoLixoIdEdit">
-									<option selected value='' disabled>Selecione o Tratamento</option>
-								</select>
-							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='remover("escolaTratamentoLixo")'
+								<button type="button" onclick='remover("escolaTelefone")'
 									class="ativar btn btn-danger" data-bs-dismiss="modal">Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
@@ -263,7 +300,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/tratamentoLixo.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/telefones.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

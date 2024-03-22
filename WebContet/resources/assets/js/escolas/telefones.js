@@ -7,7 +7,8 @@ var pagesToShow = 5;
 var escolas = [];
 var id = '';
 var idEscola = '';
-var idModalidade = '';
+var idSelect2 = '';
+var telefone = '';
 
 $(document).ready(function() {
 
@@ -38,22 +39,22 @@ $(document).ready(function() {
 		});
 
 	$.ajax({
-		url: url_base + '/modalidadeEscola',
+		url: url_base + '/tipoTelefone',
 		type: "get",
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			$('#modalidadeEscolaIdEdit').append($('<option>', {
-				value: item.idModalidadeEscola,
-				text: item.modalidadeEscola,
-				name: item.modalidadeEscola
+			$('#idTipoTelefone').append($('<option>', {
+				value: item.idTipoTelefone,
+				text: item.tipoTelefone,
+				name: item.tipoTelefone
 			}));
 		});
 		$.each(data, function(index, item) {
-			$('#modalidadeEscolaId').append($('<option>', {
-				value: item.idModalidadeEscola,
-				text: item.modalidadeEscola,
-				name: item.modalidadeEscola
+			$('#idTipoTelefoneEdit').append($('<option>', {
+				value: item.idTipoTelefone,
+				text: item.tipoTelefone,
+				name: item.tipoTelefone
 			}));
 		});
 
@@ -71,9 +72,9 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'modalidadeEscola') {
+		if (columnToSearch === 'linguaEnsino') {
 			filteredData = dadosOriginais.filter(function(item) {
-				return item.modalidadeEscola.modalidadeEscola.toLowerCase().includes(searchInput);
+				return item.linguaEnsino.linguaEnsino.toLowerCase().includes(searchInput);
 			});
 		} else if (columnToSearch === 'escolaId') {
 			filteredData = dadosOriginais.filter(function(item) {
@@ -132,9 +133,9 @@ $(document).ready(function() {
 		var dadosOrdenados = dadosOriginais.slice();
 
 		dadosOrdenados.sort(function(a, b) {
-			if (column === 'modalidadeEscola') {
-				var valueA = a.modalidadeEscola.modalidadeEscola.toLowerCase();
-				var valueB = b.modalidadeEscola.modalidadeEscola.toLowerCase();
+			if (column === 'linguaEnsino') {
+				var valueA = a.linguaEnsino.linguaEnsino.toLowerCase();
+				var valueB = b.linguaEnsino.linguaEnsino.toLowerCase();
 				if (order === 'asc') {
 					return valueA.localeCompare(valueB);
 				} else {
@@ -184,7 +185,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaModalidade",
+		url: url_base + "/escolaTelefone",
 		type: "GET",
 		async: false,
 	})
@@ -212,18 +213,23 @@ function listarDados(dados) {
 		return (
 			"<tr>" +
 			"<td>" +
-			nomeEscola +
+			item.telefone +
 			"</td>" +
 			"<td>" +
-			item.modalidadeEscola.modalidadeEscola +
+			item.tipoTelefone.tipoTelefone +
+			"</td>" +
+			"<td>" +
+			nomeEscola +
 			"</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
 			item.escolaId +
 			'" data-id="' +
-			item.idEscolaModalidade +
-			'" data-idModalidade="' +
-			item.modalidadeEscola.idModalidadeEscola +
-			'"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			item.idTelefoneEscola +
+			'" data-idSelect2="' +
+			item.tipoTelefone.idTipoTelefone +
+			'" data-tel="' +
+			item.telefone +
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -241,7 +247,7 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "modalidades.xlsx");
+	XLSX.writeFile(livro, "telefones.xlsx");
 });
 
 
@@ -250,10 +256,12 @@ $('#exportar-excel').click(function() {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	idEscola = ref.getAttribute("data-idEscola");
-	idModalidade = ref.getAttribute("data-idModalidade");
+	idSelect2 = ref.getAttribute("data-idSelect2");
+	telefone = ref.getAttribute("data-tel");
 
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
-	$("#modalidadeEscolaIdEdit").val(idModalidade).attr('selected', true);
+	$("#idTipoTelefoneEdit").val(idSelect2).attr('selected', true);
+	$("#telefoneEdit").val(telefone);
 }
 
 
@@ -261,13 +269,14 @@ function showModal(ref) {
 
 function editar() {
 	var objeto = {
-		idEscolaModalidade: Number(id),
+		idTelefoneEscola: Number(id),
+		telefone: $('#telefoneEdit').val().replace(/[^\d]+/g, ''),
 		escolaId: Number($('#escolaIdEdit').val()),
-		modalidadeEscolaId: Number($('#modalidadeEscolaIdEdit').val())
+		tipoTelefoneId: Number($('#idTipoTelefoneEdit').val())
 	}
 
 	$.ajax({
-		url: url_base + "/escolaModalidade",
+		url: url_base + "/escolaTelefone",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -279,7 +288,8 @@ function editar() {
 	})
 		.done(function(data) {
 			$("#escolaIdEdit").val('');
-			$("#modalidadeEscolaIdEdit").val('');
+			$("#telefoneEdit").val('');
+			$("#idTipoTelefoneEdit").val('');
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -300,11 +310,12 @@ function cadastrar() {
 
 	var objeto = {
 		escolaId: Number($('#escolaId').val()),
-		modalidadeEscolaId: Number($('#modalidadeEscolaId').val())
+		telefone: $('#telefone').val().replace(/[^\d]+/g, ''),
+		tipoTelefoneId: Number($('#idTipoTelefone').val())
 	}
 
 	$.ajax({
-		url: url_base + "/escolaModalidade",
+		url: url_base + "/escolaTelefone",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -316,7 +327,8 @@ function cadastrar() {
 	})
 		.done(function(data) {
 			$("#escolaId").val('');
-			$("#modalidadeEscolaId").val('');
+			$("#idTipoTelefone").val('');
+			$("#telefone").val('');
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -336,5 +348,6 @@ $('#formCadastro').on('submit', function(e) {
 
 function limpaCampo() {
 	$("#escolaId").val('');
-	$("#modalidadeEscolaId").val('');
+	$("#idTipoTelefone").val('');
+	$("#telefone").val('');
 }

@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Tratamento de Lixo</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Fontes de Energia Elétrica</span>
 				</div>
 			</div>
 		</section>
@@ -120,12 +120,12 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="tratamentoLixoId">
+							data-column="fonteEnergiaEletrica">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Tratamento de Lixo</span> <i class="fas fa-sort me-3"
+									<span>Fonte de Energia</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -174,11 +174,11 @@ String contextPath = request.getContextPath();
 						<form id="formCadastro">
 
 							<div class="mb-4">
-								<label for="tratamentoLixoId" class="form-label">Tratamento de Lixo:<span
+								<label for="idFonteEnergiaEletrica" class="form-label">Fonte de Energia:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="tratamentoLixoId"
-									id="tratamentoLixoId" required name="Tratamento de Lixo">
-									<option selected value='' disabled>Selecione o Tratamento</option>
+								</label> <select class="form-select" aria-label="Fonte de Energia"
+									id="idFonteEnergiaEletrica" required name="idFonteEnergiaEletrica">
+									<option selected value='' disabled>Selecione a Fonte de Energia</option>
 								</select>
 							</div>
 							<div class="mb-4">
@@ -222,15 +222,15 @@ String contextPath = request.getContextPath();
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="tratamentoLixoIdEdit" class="form-label">Tratamento de Lixo:<span
+								<label for="idFonteEnergiaEletricaEdit" class="form-label">Fonte de Energia:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Tratamento de Lixo"
-									id="tratamentoLixoIdEdit" required name="tratamentoLixoIdEdit">
-									<option selected value='' disabled>Selecione o Tratamento</option>
+								</label> <select class="form-select" aria-label="Fonte de Energia"
+									id="idFonteEnergiaEletricaEdit" required name="idFonteEnergiaEletricaEdit">
+									<option selected value='' disabled>Selecione a Fonte de Energia</option>
 								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='remover("escolaTratamentoLixo")'
+								<button type="button" onclick='remover("escolaFonteEnergiaEletrica")'
 									class="ativar btn btn-danger" data-bs-dismiss="modal">Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
@@ -263,7 +263,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/tratamentoLixo.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/energiaEletrica.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
