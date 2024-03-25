@@ -31,7 +31,7 @@ public class Cadastros {
 		return "cadastros/editarEscola";
 	}
 	
-	@RequestMapping(value = { "link-internet" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "escola-internet" }, method = RequestMethod.GET)
 	public String linkInternet(HttpSession session, Model model) throws Exception {
  
 		return "escolas/linkInternet";
@@ -91,6 +91,12 @@ public class Cadastros {
 		return "escolas/esgotamentoSanitario";
 	}
 	
+	@RequestMapping(value = { "escola-licenciamento-sanitario", "escolaLicenciamentoSanitario" }, method = RequestMethod.GET)
+	public String escolaLicenciamentoSanitario(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/licenciamentoSanitario";
+	}
+	
 	@RequestMapping(value = { "escola-telefones", "escolaTelefones" }, method = RequestMethod.GET)
 	public String escolaTelefones(HttpSession session, Model model) throws Exception {
 		
@@ -101,5 +107,11 @@ public class Cadastros {
 	public String escolaPrediosCompartilhados(HttpSession session, Model model) throws Exception {
 		
 		return "escolas/prediosCompartilhados";
+	}
+	
+	@RequestMapping(value = { "escola-horario-funcionamento", "escolaHorarioFuncionamento" }, method = RequestMethod.GET)
+	public String escolaHorarioFuncionamento(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/horarioFuncionamento";
 	}
 }
