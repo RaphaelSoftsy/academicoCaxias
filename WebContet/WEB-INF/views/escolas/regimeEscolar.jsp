@@ -70,8 +70,8 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Horários de
-						Funcionamento</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Regime
+						Escolar</span>
 				</div>
 			</div>
 		</section>
@@ -121,12 +121,12 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="diaSemana">
+							data-column="descricao">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Dia da Semana</span> <i class="fas fa-sort me-3"
+									<span>Descrição</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -136,10 +136,101 @@ String contextPath = request.getContextPath();
 									<div
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent2">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite aqui...">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="dataHomologacao">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Data da Homologação</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input max='2999-01-01' type="date"
+											class="form-control mb-3 searchInput" />
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="dataInicioVigencia">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Data Início da Vigência </span> <i
+										class="fas fa-sort me-3" style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton4">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent4">
+										<input max='2999-01-01' type="date"
+											class="form-control mb-3 searchInput" />
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="dataFimVigencia">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Data Fim da Vigência</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton5">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent5">
+										<input max='2999-01-01' type="date"
+											class="form-control mb-3 searchInput" />
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="anoCiclo">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Ano de Ciclo</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton6">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent6">
 										<select class="form-select mb-3 searchInput"
-											aria-label="diaSemana" id="diaSemanaSearch" required
-											name="diaSemana">
-											<option value='' selected disabled>Selecione o Dia</option>
+											aria-label="Ano Ciclo" id="anoCicloSearch" required
+											name="anoCicloSearch">
+											<option value='' selected disabled>Selecione o Ano</option>
 											<option value="2">Segunda-feira</option>
 											<option value="3">Terça-feira</option>
 											<option value="4">Quarta-feira</option>
@@ -154,31 +245,32 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="horaInicio">
+							data-column="periodicidadeId">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Hora de Início</span> <i class="fas fa-sort me-3"
+									<span>Periodicidade</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
-
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end" data-column="horaFim">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Hora de Fim</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton7">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent7">
+										<input max='2999-01-01' type="date"
+											class="form-control mb-3 searchInput" />
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
 								</div>
-
 							</div>
 						</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro"
-							data-column="ativo">Ativo</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro" width="12%">Ações</th>
+							data-column="anexo" width="12%">Anexo</th>
+						<th scope="col" class="border-end pe-2 th-sem-filtro"
+							data-column="ativo" width="12%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -208,19 +300,39 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="escolaId" class="form-label">Escola:<span
+								<label for="descricao" class="form-label">Descrição:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola" id="escolaId"
-									required name="escolaId">
-									<option selected disabled value=''>Selecione a Escola</option>
-								</select>
+								</label> <input type="text" class="form-control" id="descricao"
+									name="descricao" required aria-describedby="Descrição"
+									autocomplete="off">
 							</div>
 							<div class="mb-4">
-								<label for="diaSemana" class="form-label">Dia da Semana:<span
+								<label for="dataHomologacao" class="form-label">Data da
+									Homologação:<span class="red">*</span>
+								</label> <input max='2999-01-01' autocomplete="off" type="date"
+									id="dataHomologacao" name="dataHomologacao"
+									class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="dataInicioVigencia" class="form-label">Data
+									Início da Vigência:<span class="red">*</span>
+								</label> <input max='2999-01-01' autocomplete="off" type="date"
+									id="dataInicioVigencia" name="dataInicioVigencia"
+									class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="dataFimVigencia" class="form-label">Data Fim
+									da Vigência:<span class="red">*</span>
+								</label> <input max='2999-01-01' autocomplete="off" type="date"
+									id="dataFimVigencia" name="dataFimVigencia"
+									class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="anoCiclo" class="form-label">Ano do Ciclo:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="diaSemana"
-									id="diaSemana" required name="diaSemana">
-									<option value='' selected disabled>Selecione o Dia</option>
+								</label> <select class="form-select" aria-label="anoCiclo" id="anoCiclo"
+									required name="anoCiclo">
+									<option value='' selected disabled>Selecione o Ano</option>
 									<option value="2">Segunda-feira</option>
 									<option value="3">Terça-feira</option>
 									<option value="4">Quarta-feira</option>
@@ -231,16 +343,26 @@ String contextPath = request.getContextPath();
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="horaInicio" class="form-label">Hora de
-									Início:<span class="red">*</span>
-								</label> <input autocomplete="off" type="time" id="horaInicio"
-									name="horaInicio" class="form-control" />
+								<label for="anexo" class="form-label">Anexo:<span
+									class="red">*</span>
+								</label> <input type="file" name="anexo" id="anexo" class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="horaFim" class="form-label">Hora de Fim:<span
+								<label for="periodicidadeId" class="form-label">Periodicidade:<span
 									class="red">*</span>
-								</label> <input autocomplete="off" type="time" id="horaFim"
-									name="horaFim" class="form-control" />
+								</label> <select class="form-select" aria-label="Periodicidade"
+									id="periodicidadeId" required name="periodicidadeId">
+									<option selected disabled value=''>Selecione a
+										Periodicidade</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="escolaId" class="form-label">Escola:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Escola" id="escolaId"
+									required name="escolaId">
+									<option selected disabled value=''>Selecione a Escola</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 
@@ -265,21 +387,40 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
-
 							<div class="mb-4">
-								<label for="escolaIdEdit" class="form-label">Escola:<span
+								<label for="descricao" class="form-label">Descrição:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola"
-									id="escolaIdEdit" required name="escolaIdEdit">
-									<option selected disabled>Selecione a Escola</option>
-								</select>
+								</label> <input type="text" class="form-control" id="descricao"
+									name="descricao" required aria-describedby="Descrição"
+									autocomplete="off">
 							</div>
 							<div class="mb-4">
-								<label for="diaSemanaEdit" class="form-label">Dia da
-									Semana:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="diaSemanaEdit"
-									id="diaSemanaEdit" required name="diaSemanaEdit">
-									<option value='' selected disabled>Selecione o Dia</option>
+								<label for="dataHomologacao" class="form-label">Data da
+									Homologação:<span class="red">*</span>
+								</label> <input max='2999-01-01' autocomplete="off" type="date"
+									id="dataHomologacao" name="dataHomologacao"
+									class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="dataInicioVigencia" class="form-label">Data
+									Início da Vigência:<span class="red">*</span>
+								</label> <input max='2999-01-01' autocomplete="off" type="date"
+									id="dataInicioVigencia" name="dataInicioVigencia"
+									class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="dataFimVigencia" class="form-label">Data Fim
+									da Vigência:<span class="red">*</span>
+								</label> <input max='2999-01-01' autocomplete="off" type="date"
+									id="dataFimVigencia" name="dataFimVigencia"
+									class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="anoCiclo" class="form-label">Ano do Ciclo:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="anoCiclo" id="anoCiclo"
+									required name="anoCiclo">
+									<option value='' selected disabled>Selecione o Ano</option>
 									<option value="2">Segunda-feira</option>
 									<option value="3">Terça-feira</option>
 									<option value="4">Quarta-feira</option>
@@ -290,22 +431,30 @@ String contextPath = request.getContextPath();
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="horaInicioEdit" class="form-label">Hora de
-									Início:<span class="red">*</span>
-								</label> <input autocomplete="off" type="time" id="horaInicioEdit"
-									name="horaInicioEdit" class="form-control" />
+								<label for="anexo" class="form-label">Anexo:<span
+									class="red">*</span>
+								</label> <input type="file" name="anexo" id="anexo" class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="horaFimEdit" class="form-label">Hora de Fim:<span
+								<label for="periodicidadeId" class="form-label">Periodicidade:<span
 									class="red">*</span>
-								</label> <input autocomplete="off" type="time" id="horaFimEdit"
-									name="horaFimEdit" class="form-control" />
+								</label> <select class="form-select" aria-label="Periodicidade"
+									id="periodicidadeId" required name="periodicidadeId">
+									<option selected disabled value=''>Selecione a
+										Periodicidade</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="escolaId" class="form-label">Escola:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Escola" id="escolaId"
+									required name="escolaId">
+									<option selected disabled value=''>Selecione a Escola</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='ativar("escolaHorarioFuncionamento")'
-									class="ativar btn btn-secondary" data-bs-dismiss="modal">Ativar</button>
-								<button type="button" onclick='desativar("escolaHorarioFuncionamento")'
-									class="desativar btn btn-secondary" data-bs-dismiss="modal">Desativar</button>
+								<button type="button" onclick='remover("escolaRegimeEscolar")'
+									class="ativar btn btn-danger" data-bs-dismiss="modal">Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -336,8 +485,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/horarioFuncionamento.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/escolas/ppci.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

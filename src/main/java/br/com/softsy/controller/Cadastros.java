@@ -114,4 +114,16 @@ public class Cadastros {
 		
 		return "escolas/horarioFuncionamento";
 	}
+	
+	@RequestMapping(value = { "escola-ppci", "escolaPpci" }, method = RequestMethod.GET)
+	public String escolaPpci(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/ppci";
+	}
+	
+	@RequestMapping(value = { "escola-regime-escolar", "escolaRegimeEscolar" }, method = RequestMethod.GET)
+	public String escolaRegimeEscolar(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/regimeEscolar";
+	}
 }

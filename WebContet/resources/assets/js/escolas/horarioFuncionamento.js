@@ -7,6 +7,10 @@ var pagesToShow = 5;
 var escolas = [];
 var id = '';
 var idEscola = '';
+var horaIni = '';
+var horaFim = '';
+var diaSemana = '';
+var ativo = '';
 
 $(document).ready(function() {
 
@@ -235,6 +239,8 @@ function listarDados(dados) {
 			item.horaFim +
 			'" data-diaSemana="' +
 			item.diaSemana +
+			'" data-ativo="' +
+			item.ativo +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -265,11 +271,23 @@ function showModal(ref) {
 	horaIni = ref.getAttribute("data-horaIni");
 	horaFim = ref.getAttribute("data-horaFim");
 	diaSemana = ref.getAttribute("data-diaSemana");
+	ativo = ref.getAttribute("data-ativo");
 
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
 	$("#horaInicioEdit").val(horaIni);
 	$("#horaFimEdit").val(horaFim);
 	$("#diaSemanaEdit").val(diaSemana).attr('selected', true);
+	
+
+		if (ativo == "S") {
+			$(".ativar").hide();
+			$(".desativar").show()
+		}
+		else {
+			$(".desativar").hide();
+			$(".ativar").show();
+		}
+
 }
 
 function formatarHoraParaAPI(hora) {

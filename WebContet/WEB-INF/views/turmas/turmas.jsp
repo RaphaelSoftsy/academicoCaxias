@@ -70,8 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Horários de
-						Funcionamento</span>
+					<i class="fa-solid fa-bars-staggered fa-lg"></i> <span>Turmas</span>
 				</div>
 			</div>
 		</section>
@@ -86,9 +85,9 @@ String contextPath = request.getContextPath();
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
-					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
-						data-bs-toggle="modal" onclick="limpaCampo()"
-						data-bs-target="#newCadastro">Novo Cadastro</button>
+					<a href="escolas-turmas-nova-turma"
+						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo
+						Cadastro</a>
 				</div>
 
 			</div>
@@ -121,12 +120,12 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="diaSemana">
+							data-column="anoVigente">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Dia da Semana</span> <i class="fas fa-sort me-3"
+									<span>Ano Vigênte</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -137,48 +136,86 @@ String contextPath = request.getContextPath();
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent2">
 										<select class="form-select mb-3 searchInput"
-											aria-label="diaSemana" id="diaSemanaSearch" required
-											name="diaSemana">
-											<option value='' selected disabled>Selecione o Dia</option>
-											<option value="2">Segunda-feira</option>
-											<option value="3">Terça-feira</option>
-											<option value="4">Quarta-feira</option>
-											<option value="5">Quinta-feira</option>
-											<option value="6">Sexta-feira</option>
-											<option value="7">Sábado</option>
-											<option value="1">Domingo</option>
-										</select>
+											aria-label="anoVigenteSelect" id="anoVigenteSelect" required
+											name="anoVigenteSelect">
+											<option value='' selected disabled>Selecione o Ano</option>
+																					</select>
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
 									</div>
 								</div>
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="horaInicio">
+							data-column="anoEscolarId">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Hora de Início</span> <i class="fas fa-sort me-3"
+									<span>Ano Escolar</span> <i class="fas fa-sort"
 										style="color: #dddddd"></i>
 								</div>
 
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="horaFim">
+						<th scope="col" class="sortable border-end" data-column="numTurma">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Hora de Fim</span> <i class="fas fa-sort me-3"
+									<span>Nº Turma</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="number" class='form-control mb-3 searchInput'
+											placeholder="Digite aqui..">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+
+						<th scope="col" class="sortable border-end" data-column="turnoId">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Turno</span> <i class="fas fa-sort"
 										style="color: #dddddd"></i>
 								</div>
 
 							</div>
 						</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro"
-							data-column="ativo">Ativo</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro" width="12%">Ações</th>
+
+						<th scope="col" class="sortable border-end"
+							data-column="modalidadeEscolaId">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Modalidade</span> <i class="fas fa-sort"
+										style="color: #dddddd"></i>
+								</div>
+
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="vagas">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Vagas</span> <i class="fas fa-sort"
+										style="color: #dddddd"></i>
+								</div>
+
+							</div>
+						</th>
+						<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -195,127 +232,7 @@ String contextPath = request.getContextPath();
 				</button>
 			</div>
 		</section>
-		<div class="modal fade" id="newCadastro" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-novo-ato">Novo
-							Cadastro</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form id="formCadastro">
-							<div class="mb-4">
-								<label for="escolaId" class="form-label">Escola:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola" id="escolaId"
-									required name="escolaId">
-									<option selected disabled value=''>Selecione a Escola</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="diaSemana" class="form-label">Dia da Semana:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="diaSemana"
-									id="diaSemana" required name="diaSemana">
-									<option value='' selected disabled>Selecione o Dia</option>
-									<option value="2">Segunda-feira</option>
-									<option value="3">Terça-feira</option>
-									<option value="4">Quarta-feira</option>
-									<option value="5">Quinta-feira</option>
-									<option value="6">Sexta-feira</option>
-									<option value="7">Sábado</option>
-									<option value="1">Domingo</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="horaInicio" class="form-label">Hora de
-									Início:<span class="red">*</span>
-								</label> <input autocomplete="off" type="time" id="horaInicio"
-									name="horaInicio" class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="horaFim" class="form-label">Hora de Fim:<span
-									class="red">*</span>
-								</label> <input autocomplete="off" type="time" id="horaFim"
-									name="horaFim" class="form-control" />
-							</div>
-							<div class="d-flex justify-content-end gap-2">
 
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Fechar</button>
-								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id="editItem" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form id="formEdit">
-
-							<div class="mb-4">
-								<label for="escolaIdEdit" class="form-label">Escola:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola"
-									id="escolaIdEdit" required name="escolaIdEdit">
-									<option selected disabled>Selecione a Escola</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="diaSemanaEdit" class="form-label">Dia da
-									Semana:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="diaSemanaEdit"
-									id="diaSemanaEdit" required name="diaSemanaEdit">
-									<option value='' selected disabled>Selecione o Dia</option>
-									<option value="2">Segunda-feira</option>
-									<option value="3">Terça-feira</option>
-									<option value="4">Quarta-feira</option>
-									<option value="5">Quinta-feira</option>
-									<option value="6">Sexta-feira</option>
-									<option value="7">Sábado</option>
-									<option value="1">Domingo</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="horaInicioEdit" class="form-label">Hora de
-									Início:<span class="red">*</span>
-								</label> <input autocomplete="off" type="time" id="horaInicioEdit"
-									name="horaInicioEdit" class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="horaFimEdit" class="form-label">Hora de Fim:<span
-									class="red">*</span>
-								</label> <input autocomplete="off" type="time" id="horaFimEdit"
-									name="horaFimEdit" class="form-control" />
-							</div>
-							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='ativar("escolaHorarioFuncionamento")'
-									class="ativar btn btn-secondary" data-bs-dismiss="modal">Ativar</button>
-								<button type="button" onclick='desativar("escolaHorarioFuncionamento")'
-									class="desativar btn btn-secondary" data-bs-dismiss="modal">Desativar</button>
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Fechar</button>
-								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
 	</main>
 
 
@@ -336,8 +253,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/horarioFuncionamento.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/turmas/turmas.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

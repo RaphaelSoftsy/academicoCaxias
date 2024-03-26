@@ -658,10 +658,10 @@ background-color: #ddd;
 }
 
 
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: 1500px) {
   .container-res {
     margin-left: 17em;
-    margin-right: 3em;
+    margin-right: 2em;
   }
 
   #th-acao {
