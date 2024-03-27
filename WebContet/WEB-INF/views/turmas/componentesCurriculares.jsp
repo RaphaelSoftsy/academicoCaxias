@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>PPCIs</span>
+					<i class="fa-solid fa-bars-staggered fa-lg"></i> <span>Componentes Curriculares</span>
 				</div>
 			</div>
 		</section>
@@ -97,12 +97,12 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col" class="sortable border-end" data-column="escolaId">
+						<th scope="col" class="sortable border-end" data-column="turmaId">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Escola</span> <i class="fas fa-sort me-3"
+									<span>Turma</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -113,18 +113,19 @@ String contextPath = request.getContextPath();
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent1">
 										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite o nome da escola">
+											placeholder="Digite o Nº da Turma">
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
 									</div>
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="ppci">
+						<th scope="col" class="sortable border-end"
+							data-column="componentesCurriculares">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>PCCI</span> <i class="fas fa-sort me-3"
+									<span>Componente Curricular</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -141,54 +142,6 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="dataEmissao">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Data de Emissão</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton3">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent3">
-										<input max='2999-01-01' type="date"
-											class="form-control mb-3 searchInput" />
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
-									</div>
-								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="dataValidade">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Data de Validade</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton4">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent4">
-										<input max='2999-01-01' type="date"
-											class="form-control mb-3 searchInput" />
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
-									</div>
-								</div>
-							</div>
-						</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro"
-							data-column="anexo" width="12%">Anexo</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro"
 							data-column="ativo" width="12%">Ações</th>
 					</tr>
@@ -221,34 +174,19 @@ String contextPath = request.getContextPath();
 						<form id="formCadastro">
 
 							<div class="mb-4">
-								<label for="ppci" class="form-label">PPCI:<span
+								<label for="componentesCurricularesId" class="form-label">Componente Curricular:<span
 									class="red">*</span>
-								</label> <input type="text" class="form-control" id="ppci" name="ppci"
-									required aria-describedby="PPCI" autocomplete="off">
+								</label> <select class="form-select" aria-label="Componente Curricular"
+									id="componentesCurricularesId" required name="componentesCurricularesId">
+									<option selected value='' disabled>Selecione a Área</option>
+								</select>
 							</div>
 							<div class="mb-4">
-								<label for="dataEmissao" class="form-label">Data de
-									Emissão:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataEmissao" name="dataEmissao" class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="dataValidade" class="form-label">Data de
-									validade:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataValidade" name="dataValidade" class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="anexo" class="form-label">Anexo:<span
+								<label for="turmaId" class="form-label">Turma:<span
 									class="red">*</span>
-								</label> <input type="file" name="anexo" id="anexo" class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="escolaId" class="form-label">Escola:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola" id="escolaId"
-									required name="escolaId">
-									<option selected disabled value=''>Selecione a Escola</option>
+								</label> <select class="form-select" aria-label="Turma" id="turmaId"
+									required name="turmaId">
+									<option selected disabled value=''>Selecione a Turma</option>
 								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
@@ -276,59 +214,23 @@ String contextPath = request.getContextPath();
 						<form id="formEdit">
 
 							<div class="mb-4">
-								<label for="escolaIdEdit" class="form-label">Escola:<span
+								<label for="turmaIdEdit" class="form-label">Turma:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola"
-									id="escolaIdEdit" required name="escolaIdEdit">
-									<option selected disabled>Selecione a Escola</option>
+								</label> <select class="form-select" aria-label="Turma" id="turmaIdEdit"
+									required name="turmaIdEdit">
+									<option selected disabled>Selecione a Turma</option>
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="ppciEdit" class="form-label">PPCI:<span
+								<label for="componentesCurricularesIdEdit" class="form-label">Componente Curricular:<span
 									class="red">*</span>
-								</label> <input type="text" class="form-control" id="ppciEdit"
-									name="ppciEdit" required aria-describedby="PPCI"
-									autocomplete="off">
-							</div>
-							<div class="mb-4">
-								<label for="dataEmissaoEdit" class="form-label">Data de
-									Emissão:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataEmissaoEdit" name="dataEmissaoEdit"
-									class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="dataValidadeEdit" class="form-label">Data de
-									validade:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataValidadeEdit" name="dataValidadeEdit"
-									class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="mudaAnexo" class="form-label">Alterar Anexo:<span
-									class="red">*</span>
-								</label>
-								<div class="form-control">
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="mudaAnexo"
-											id="mudaAnexoS" value="S"> <label
-											class="form-check-label" for="mudaAnexoS">Sim</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="mudaAnexo"
-											id="mudaAnexoN" value="N"> <label
-											class="form-check-label" for="mudaAnexoN">Não</label>
-									</div>
-								</div>
-							</div>
-							<div class="mb-4" id='divAnexoEdit'>
-								<label for="anexoEdit" class="form-label">Novo Anexo:<span
-									class="red">*</span>
-								</label> <input type="file" name="anexoEdit" id="anexoEdit"
-									class="form-control" />
+								</label> <select class="form-select" aria-label="Componente Curricular"
+									id="componentesCurricularesIdEdit" required name="componentesCurricularesIdEdit">
+									<option selected disabled>Selecione a Área</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='remover("escolaPpci")'
+								<button type="button" onclick='remover("turmaComponentesCurriculares")'
 									class="ativar btn btn-danger" data-bs-dismiss="modal">Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
@@ -360,7 +262,8 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/escolas/ppci.js"></script>
+	<script
+		src="<%=contextPath%>/resources/assets/js/turmas/componentesCurriculares.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

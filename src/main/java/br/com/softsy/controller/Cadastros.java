@@ -126,4 +126,22 @@ public class Cadastros {
 		
 		return "escolas/regimeEscolar";
 	}
+	
+	@RequestMapping(value = { "escola-equipamento" }, method = RequestMethod.GET)
+	public String escolaEquipamento(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/equipamento";
+	}
+	
+	@RequestMapping(value = { "escola-profissional" }, method = RequestMethod.GET)
+	public String escolaProfissional(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/profissional";
+	}
+	
+	@RequestMapping(value = { "escola-instrutor-pedagogico" }, method = RequestMethod.GET)
+	public String escolaInstrPedagogico(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/instrPedagogico";
+	}
 }

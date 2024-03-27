@@ -12,6 +12,30 @@ $(document).ready(function() {
 
 	$("#divAnexoEdit").hide();
 
+
+	var anoCicloEdit = document.getElementById('anoCicloEdit');
+	var anoCiclo = document.getElementById('anoCiclo');
+	var anoAtual = new Date().getFullYear();
+
+	var anosRetroativos = anoAtual - 2000;
+	var anosFuturos = 10;
+
+	var anoInicial = anoAtual + anosFuturos;
+	var anoFinal = anoAtual - anosRetroativos;
+
+	for (var i = anoInicial; i >= anoFinal; i--) {
+		var option = document.createElement('option');
+		option.value = i;
+		option.text = i;
+		anoCiclo.appendChild(option);
+	}
+	for (var i = anoInicial; i >= anoFinal; i--) {
+		var option = document.createElement('option');
+		option.value = i;
+		option.text = i;
+		anoCicloEdit.appendChild(option);
+	}
+
 	$.ajax({
 		url: url_base + "/escolas",
 		type: "GET",
@@ -35,9 +59,35 @@ $(document).ready(function() {
 			});
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+			console.error("Erro na solicitação AJAX:", jqXHR);
 		});
 
+	/*$.ajax({
+		url: url_base + "/periodicidade",
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			escolas = data;
+			$.each(data, function(index, item) {
+				$('#periodicidadeIdEdit').append($('<option>', {
+					value: item.idPeriodicidade,
+					text: item.periodicidade,
+					name: item.periodicidade
+				}));
+			});
+			$.each(data, function(index, item) {
+				$('#periodicidadeId').append($('<option>', {
+					value: item.idPeriodicidade,
+					text: item.periodicidade,
+					name: item.periodicidade
+				}));
+			});
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", jqXHR);
+		});
+*/
 	getDados()
 
 	// Dropdown de Pesquisa
@@ -50,16 +100,15 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'dataEmissao' || columnToSearch === 'dataValidade') {
+		if (columnToSearch === 'dataHomologacao' || columnToSearch === 'dataInicioVigencia' || columnToSearch === 'dataFimVigencia') {
 			searchInput = searchInput.split('T')[0];
-
 			filteredData = dadosOriginais.filter(function(item) {
-				if (columnToSearch === 'dataEmissao' || columnToSearch === 'dataValidade') {
-					var itemDate = item[columnToSearch].split('T')[0];
-					return itemDate.includes(searchInput);
-				} else {
-					return item[columnToSearch].toString().toLowerCase().includes(searchInput);
-				}
+				var itemDate = item[columnToSearch].split('T')[0];
+				return itemDate.includes(searchInput);
+			});
+		} else if (columnToSearch === 'periodicidade') {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.periodicidade.periodicidade.toLowerCase().includes(searchInput);
 			});
 		} else if (columnToSearch === 'escolaId') {
 			filteredData = dadosOriginais.filter(function(item) {
@@ -118,7 +167,7 @@ $(document).ready(function() {
 		var dadosOrdenados = dadosOriginais.slice();
 
 		dadosOrdenados.sort(function(a, b) {
-			if (column === 'dataEmissao' || column === 'dataValidade') {
+			if (column === 'dataHomologacao' || column === 'dataInicioVigencia' || column === 'dataFimVigencia') {
 				var dateA = new Date(a[column]);
 				var dateB = new Date(b[column]);
 
@@ -126,6 +175,14 @@ $(document).ready(function() {
 					return dateA - dateB;
 				} else {
 					return dateB - dateA;
+				}
+			} if (column === 'periodicidade') {
+				var valueA = a.periodicidade.periodicidade.toLowerCase();
+				var valueB = b.periodicidade.periodicidade.toLowerCase();
+				if (order === 'asc') {
+					return valueA.localeCompare(valueB);
+				} else {
+					return valueB.localeCompare(valueA);
 				}
 			} else if (column === 'escolaId') {
 				var escolaA = escolas.find(function(school) {
@@ -171,7 +228,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaPpci",
+		url: url_base + "/escolaRegimeEscolar",
 		type: "GET",
 		async: false,
 	})
@@ -181,7 +238,7 @@ function getDados() {
 			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+			console.error("Erro na solicitação AJAX:", jqXHR);
 		});
 }
 
@@ -210,19 +267,28 @@ function listarDados(dados) {
 			nomeEscola +
 			"</td>" +
 			"<td>" +
-			item.ppci +
+			item.descricao +
 			"</td>" +
 			"<td>" +
-			formatarDataParaBR(item.dataEmissao) +
+			formatarDataParaBR(item.dataHomologacao) +
 			"</td>" +
 			"<td>" +
-			formatarDataParaBR(item.dataValidade) +
+			formatarDataParaBR(item.dataInicioVigencia) +
+			"</td>" +
+			"<td>" +
+			formatarDataParaBR(item.dataFimVigencia) +
+			"</td>" +
+			"<td>" +
+			item.anoCiclo +
+			"</td>" +
+			"<td>" +
+			item.periodicidade.periodicidade +
 			"</td>" +
 			'<td><span style="width: 70%; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-secondary btn-sm" onclick="processarAnexoBase64(\'' + item.anexo + '\')">Exibir</span></td>' +
 			'<td><span style="width: 70%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
 			item.escolaId +
 			'" data-id="' +
-			item.idEscolaPpci +
+			item.idEscolaRegimeEscolar +
 			'"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -241,7 +307,7 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "licenciamentoSanitario.xlsx");
+	XLSX.writeFile(livro, "regimeEscolar.xlsx");
 });
 
 
@@ -295,7 +361,7 @@ function showModal(ref) {
 
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
 	$.ajax({
-		url: url_base + "/escolaPpci/escola/" + idEscola,
+		url: url_base + "/escolaRegimeEscolar/escola/" + idEscola,
 		type: "GET",
 		async: false,
 		error: function(e) {
@@ -304,11 +370,15 @@ function showModal(ref) {
 		}
 	})
 		.done(function(data) {
-			$("#ppciEdit").val(data[0].ppci);
-			var dataEmissao = data[0].dataEmissao.split('T')[0];
-			var dataValidade = data[0].dataValidade.split('T')[0];
-			$("#dataEmissaoEdit").val(dataEmissao);
-			$("#dataValidadeEdit").val(dataValidade);
+			$("#descricaoEdit").val(data[0].descricao);
+			var dataHomo = data[0].dataHomologacao.split('T')[0];
+			var dataIni = data[0].dataInicioVigencia.split('T')[0];
+			var dataFim = data[0].dataFimVigencia.split('T')[0];
+			$("#dataHomologacaoEdit").val(dataHomo);
+			$("#dataInicioVigenciaEdit").val(dataIni);
+			$("#anoCicloEdit").val(data[0].anoCiclo);
+			$("#periodicidadeIdEdit").val(data[0].periodicidade.idPeriodicidade);
+			$("#dataFimVigenciaEdit").val(dataFim);
 			anexo = data[0].anexo
 		})
 }
@@ -318,94 +388,107 @@ function showModal(ref) {
 // Editar
 
 function editar() {
-    var inputFile = document.getElementById('anexoEdit');
-    var file = inputFile.files[0];
-    var reader = new FileReader();
+	var inputFile = document.getElementById('anexoEdit');
+	var file = inputFile.files[0];
+	var reader = new FileReader();
 
-    var dataEmissao = $('#dataEmissaoEdit').val();
-    var dataValidade = $('#dataValidadeEdit').val();
+	var dataHomo = $('#dataHomologacaoEdit').val();
+	var dataIni = $('#dataInicioVigenciaEdit').val();
+	var dataFim = $('#dataFimVigenciaEdit').val();
 
-    var dataEmissaoFormatada = new Date(dataEmissao);
-    var dataValidadeFormatada = new Date(dataValidade);
+	var dataHomoFormat = new Date(dataHomo);
+	var dataIniFormat = new Date(dataIni);
+	var dataFimFormat = new Date(dataFim);
 
-    var dataEmissaoAPI = formatarDataParaAPI(dataEmissaoFormatada);
-    var dataValidadeAPI = formatarDataParaAPI(dataValidadeFormatada);
+	var dtIni = formatarDataParaAPI(dataIniFormat);
+	var dtFim = formatarDataParaAPI(dataFimFormat);
+	var dtHomo = formatarDataParaAPI(dataHomoFormat);
 
-    if (mudarAnexo) {
-        reader.onload = function(event) {
-            var base64String = event.target.result;
+	if (mudarAnexo) {
+		reader.onload = function(event) {
+			var base64String = event.target.result;
 
-            var objeto = {
-				idEscolaPpci: id,
-                escolaId: Number($('#escolaIdEdit').val()),
-                ppci: $('#ppciEdit').val(),
-                dataEmissao: dataEmissaoAPI,
-                dataValidade: dataValidadeAPI,
-                anexo: 'null'
-            };
+			var objeto = {
+				idEscolaRegimeEscolar: id,
+				escolaId: Number($('#escolaIdEdit').val()),
+				descricao: $('#descricaoEdit').val(),
+				dataHomologacao: dtHomo,
+				dataInicioVigencia: dtIni,
+				dataFimVigencia: dtFim,
+				anoCiclo: $("#anoCicloEdit").val(),
+				periodicidadeId: 1,
+				anexo: 'null'
+			};
 
-            $.ajax({
-                url: url_base + "/escolaPpci",
-                type: "PUT",
-                data: JSON.stringify(objeto),
-                contentType: "application/json; charset=utf-8",
-                async: false,
-                error: function(e) {
-                    console.log(e.responseJSON);
-                    alert(e.responseJSON.message);
-                }
-            })
-            .done(function(data) {
-                $("#escolaIdEdit").val('');
-                $("#ppciEdit").val('');
-                $("#dataEmissaoEdit").val('');
-                $("#dataValidadeEdit").val('');
-                $("#anexoEdit").val('');
-                mudarAnexo = false;
-                getDados();
-                showPage(currentPage);
-                updatePagination();
-                alert('Editado com Sucesso!');
-            });
-        };
+			$.ajax({
+				url: url_base + "/escolaRegimeEscolar",
+				type: "PUT",
+				data: JSON.stringify(objeto),
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e.responseJSON);
+					alert(e.responseJSON.message);
+				}
+			})
+				.done(function(data) {
+					$("#descricaoEdit").val('');
+					$("#dataHomologacaoEdit").val('');
+					$("#dataInicioVigenciaEdit").val('');
+					$("#anoCicloEdit").val('');
+					$("#periodicidadeIdEdit").val('');
+					$("#dataFimVigenciaEdit").val('');
+					$("#anexoEdit").val('');
+					mudarAnexo = false;
+					getDados();
+					showPage(currentPage);
+					updatePagination();
+					alert('Editado com Sucesso!');
+				});
+		};
 
-        reader.readAsDataURL(file);
-    } else {
-        var objeto = {
-			idEscolaPpci: id,
-            escolaId: Number($('#escolaIdEdit').val()),
-            ppci: $('#ppciEdit').val(),
-            dataEmissao: dataEmissaoAPI,
-            dataValidade: dataValidadeAPI,
-            anexo: 'null'
-        };
+		reader.readAsDataURL(file);
+	} else {
+		var objeto = {
+			idEscolaRegimeEscolar: id,
+			escolaId: Number($('#escolaIdEdit').val()),
+			descricao: $('#descricaoEdit').val(),
+			dataHomologacao: dtHomo,
+			dataInicioVigencia: dtIni,
+			dataFimVigencia: dtFim,
+			anoCiclo: $("#anoCicloEdit").val(),
+			periodicidadeId: 1,
+			anexo: 'null'
+		};
 
-        $.ajax({
-            url: url_base + "/escolaPpci",
-            type: "PUT",
-            data: JSON.stringify(objeto),
-            contentType: "application/json; charset=utf-8",
-            async: false,
-            error: function(e) {
-                console.log(e.responseJSON);
-                alert(e.responseJSON.message);
-            }
-        })
-        .done(function(data) {
-            $("#escolaIdEdit").val('');
-            $("#ppciEdit").val('');
-            $("#dataEmissaoEdit").val('');
-            $("#dataValidadeEdit").val('');
-            $("#anexoEdit").val('');
-            mudarAnexo = false;
-            getDados();
-            showPage(currentPage);
-            updatePagination();
-            alert('Editado com Sucesso!');
-        });
-    }
+		$.ajax({
+			url: url_base + "/escolaRegimeEscolar",
+			type: "PUT",
+			data: JSON.stringify(objeto),
+			contentType: "application/json; charset=utf-8",
+			async: false,
+			error: function(e) {
+				console.log(e.responseJSON);
+				alert(e.responseJSON.message);
+			}
+		})
+			.done(function(data) {
+				$("#descricaoEdit").val('');
+				$("#dataHomologacaoEdit").val('');
+				$("#dataInicioVigenciaEdit").val('');
+				$("#anoCicloEdit").val('');
+				$("#periodicidadeIdEdit").val('');
+				$("#dataFimVigenciaEdit").val('');
+				$("#anexoEdit").val('');
+				mudarAnexo = false;
+				getDados();
+				showPage(currentPage);
+				updatePagination();
+				alert('Editado com Sucesso!');
+			});
+	}
 
-    return false;
+	return false;
 }
 
 $('#formEdit').on('submit', function(e) {
@@ -422,28 +505,34 @@ function cadastrar() {
 	var file = inputFile.files[0];
 	var reader = new FileReader();
 
-	var dataEmissao = $('#dataEmissao').val();
-	var dataValidade = $('#dataValidade').val();
+	var dataHomo = $('#dataHomologacao').val();
+	var dataIni = $('#dataInicioVigencia').val();
+	var dataFim = $('#dataFimVigencia').val();
 
-	var dataEmissaoFormatada = new Date(dataEmissao);
-	var dataValidadeFormatada = new Date(dataValidade);
+	var dataHomoFormat = new Date(dataHomo);
+	var dataIniFormat = new Date(dataIni);
+	var dataFimFormat = new Date(dataFim);
 
-	var dataEmissaoAPI = formatarDataParaAPI(dataEmissaoFormatada);
-	var dataValidadeAPI = formatarDataParaAPI(dataValidadeFormatada);
+	var dtIni = formatarDataParaAPI(dataIniFormat);
+	var dtFim = formatarDataParaAPI(dataFimFormat);
+	var dtHomo = formatarDataParaAPI(dataHomoFormat);
 
 	reader.onload = function(event) {
 		var base64String = event.target.result;
 
 		var objeto = {
 			escolaId: Number($('#escolaId').val()),
-			ppci: $('#ppci').val(),
-			dataEmissao: dataEmissaoAPI,
-			dataValidade: dataValidadeAPI,
+			descricao: $('#descricao').val(),
+			dataHomologacao: dtHomo,
+			dataInicioVigencia: dtIni,
+			dataFimVigencia: dtFim,
+			anoCiclo: $("#anoCiclo").val(),
+			periodicidadeId: 1,
 			anexo: 'null'
 		};
 
 		$.ajax({
-			url: url_base + "/escolaPpci",
+			url: url_base + "/escolaRegimeEscolar",
 			type: "POST",
 			data: JSON.stringify(objeto),
 			contentType: "application/json; charset=utf-8",
@@ -454,10 +543,12 @@ function cadastrar() {
 			}
 		})
 			.done(function(data) {
-				$("#escolaId").val('');
-				$("#ppci").val('');
-				$("#dataEmissao").val('');
-				$("#dataValidade").val('');
+				$("#descricao").val('');
+				$("#dataHomologacao").val('');
+				$("#dataInicioVigencia").val('');
+				$("#anoCiclo").val('');
+				$("#periodicidadeId").val('');
+				$("#dataFimVigencia").val('');
 				$("#anexo").val('');
 				getDados();
 				showPage(currentPage);
@@ -480,9 +571,11 @@ $('#formCadastro').on('submit', function(e) {
 // Limpa input
 
 function limpaCampo() {
-	$("#escolaId").val('');
-	$("#ppci").val('');
-	$("#dataEmissao").val('');
-	$("#dataValidade").val('');
+	$("#descricao").val('');
+	$("#dataHomologacao").val('');
+	$("#dataInicioVigencia").val('');
+	$("#anoCiclo").val('');
+	$("#periodicidadeId").val('');
+	$("#dataFimVigencia").val('');
 	$("#anexo").val('');
 }

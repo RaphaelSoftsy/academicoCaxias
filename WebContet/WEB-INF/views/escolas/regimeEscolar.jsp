@@ -231,13 +231,7 @@ String contextPath = request.getContextPath();
 											aria-label="Ano Ciclo" id="anoCicloSearch" required
 											name="anoCicloSearch">
 											<option value='' selected disabled>Selecione o Ano</option>
-											<option value="2">Segunda-feira</option>
-											<option value="3">Terça-feira</option>
-											<option value="4">Quarta-feira</option>
-											<option value="5">Quinta-feira</option>
-											<option value="6">Sexta-feira</option>
-											<option value="7">Sábado</option>
-											<option value="1">Domingo</option>
+											
 										</select>
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
 									</div>
@@ -245,7 +239,7 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="periodicidadeId">
+							data-column="periodicidade">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
@@ -268,9 +262,9 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro"
-							data-column="anexo" width="12%">Anexo</th>
+							data-column="anexo">Anexo</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro"
-							data-column="ativo" width="12%">Ações</th>
+							data-column="ativo">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -300,63 +294,6 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="descricao" class="form-label">Descrição:<span
-									class="red">*</span>
-								</label> <input type="text" class="form-control" id="descricao"
-									name="descricao" required aria-describedby="Descrição"
-									autocomplete="off">
-							</div>
-							<div class="mb-4">
-								<label for="dataHomologacao" class="form-label">Data da
-									Homologação:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataHomologacao" name="dataHomologacao"
-									class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="dataInicioVigencia" class="form-label">Data
-									Início da Vigência:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataInicioVigencia" name="dataInicioVigencia"
-									class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="dataFimVigencia" class="form-label">Data Fim
-									da Vigência:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataFimVigencia" name="dataFimVigencia"
-									class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="anoCiclo" class="form-label">Ano do Ciclo:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="anoCiclo" id="anoCiclo"
-									required name="anoCiclo">
-									<option value='' selected disabled>Selecione o Ano</option>
-									<option value="2">Segunda-feira</option>
-									<option value="3">Terça-feira</option>
-									<option value="4">Quarta-feira</option>
-									<option value="5">Quinta-feira</option>
-									<option value="6">Sexta-feira</option>
-									<option value="7">Sábado</option>
-									<option value="1">Domingo</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="anexo" class="form-label">Anexo:<span
-									class="red">*</span>
-								</label> <input type="file" name="anexo" id="anexo" class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="periodicidadeId" class="form-label">Periodicidade:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Periodicidade"
-									id="periodicidadeId" required name="periodicidadeId">
-									<option selected disabled value=''>Selecione a
-										Periodicidade</option>
-								</select>
-							</div>
-							<div class="mb-4">
 								<label for="escolaId" class="form-label">Escola:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola" id="escolaId"
@@ -364,12 +301,71 @@ String contextPath = request.getContextPath();
 									<option selected disabled value=''>Selecione a Escola</option>
 								</select>
 							</div>
+							<div class="mb-4">
+								<label for="descricao" class="form-label">Descrição:<span
+									class="red">*</span>
+								</label> <input type="text" class="form-control" id="descricao"
+									name="descricao" required aria-describedby="Descrição"
+									autocomplete="off">
+							</div>
+							<div class="mb-4">
+								<label for="periodicidadeId" class="form-label">Periodicidade:<span
+									class="red">*</span>
+								</label> <select class="form-select" disabled aria-label="Periodicidade"
+									id="periodicidadeId" required name="periodicidadeId">
+									<option selected disabled value=''>Selecione a
+										Periodicidade</option>
+								</select>
+							</div>
+							<div class='row mb-4'>
+								<div class="col-6">
+									<label for="dataHomologacao" class="form-label">Data da
+										Homologação:<span class="red">*</span>
+									</label> <input max='2999-01-01' autocomplete="off" type="date"
+										id="dataHomologacao" name="dataHomologacao"
+										class="form-control" />
+								</div>
+								<div class="col-6">
+									<label for="anoCiclo" class="form-label">Ano do Ciclo:<span
+										class="red">*</span>
+									</label> <select class="form-select" aria-label="anoCiclo"
+										id="anoCiclo" required name="anoCiclo">
+										<option selected disabled value=''>Selecione o Ano
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class='row mb-4'>
+								<div class="col-6">
+									<label for="dataInicioVigencia" class="form-label">Data
+										Início da Vigência:<span class="red">*</span>
+									</label> <input max='2999-01-01' autocomplete="off" type="date"
+										id="dataInicioVigencia" name="dataInicioVigencia"
+										class="form-control" />
+								</div>
+								<div class="col-6">
+									<label for="dataFimVigencia" class="form-label">Data
+										Fim da Vigência:<span class="red">*</span>
+									</label> <input max='2999-01-01' autocomplete="off" type="date"
+										id="dataFimVigencia" name="dataFimVigencia"
+										class="form-control" />
+								</div>
+							</div>
+
+
+							<div class="mb-4">
+								<label for="anexo" class="form-label">Anexo:<span
+									class="red">*</span>
+								</label> <input type="file" name="anexo" id="anexo" class="form-control" />
+							</div>
+
+
 							<div class="d-flex justify-content-end gap-2">
 
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
+									class="btn btn-primary px-4">Salvar</button>
 							</div>
 						</form>
 					</div>
@@ -388,77 +384,97 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="descricao" class="form-label">Descrição:<span
+								<label for="escolaIdEdit" class="form-label">Escola:<span
 									class="red">*</span>
-								</label> <input type="text" class="form-control" id="descricao"
-									name="descricao" required aria-describedby="Descrição"
-									autocomplete="off">
-							</div>
-							<div class="mb-4">
-								<label for="dataHomologacao" class="form-label">Data da
-									Homologação:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataHomologacao" name="dataHomologacao"
-									class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="dataInicioVigencia" class="form-label">Data
-									Início da Vigência:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataInicioVigencia" name="dataInicioVigencia"
-									class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="dataFimVigencia" class="form-label">Data Fim
-									da Vigência:<span class="red">*</span>
-								</label> <input max='2999-01-01' autocomplete="off" type="date"
-									id="dataFimVigencia" name="dataFimVigencia"
-									class="form-control" />
-							</div>
-							<div class="mb-4">
-								<label for="anoCiclo" class="form-label">Ano do Ciclo:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="anoCiclo" id="anoCiclo"
-									required name="anoCiclo">
-									<option value='' selected disabled>Selecione o Ano</option>
-									<option value="2">Segunda-feira</option>
-									<option value="3">Terça-feira</option>
-									<option value="4">Quarta-feira</option>
-									<option value="5">Quinta-feira</option>
-									<option value="6">Sexta-feira</option>
-									<option value="7">Sábado</option>
-									<option value="1">Domingo</option>
+								</label> <select class="form-select" aria-label="Escola"
+									id="escolaIdEdit" required name="escolaIdEdit">
+									<option selected disabled value=''>Selecione a Escola</option>
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="anexo" class="form-label">Anexo:<span
+								<label for="descricaoEdit" class="form-label">Descrição:<span
 									class="red">*</span>
-								</label> <input type="file" name="anexo" id="anexo" class="form-control" />
+								</label> <input type="text" class="form-control" id="descricaoEdit"
+									name="descricaoEdit" required aria-describedby="Descrição"
+									autocomplete="off">
 							</div>
 							<div class="mb-4">
-								<label for="periodicidadeId" class="form-label">Periodicidade:<span
+								<label for="periodicidadeIdEdit" class="form-label">Periodicidade:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Periodicidade"
-									id="periodicidadeId" required name="periodicidadeId">
+									id="periodicidadeIdEdit" disabled required name="periodicidadeIdEdit">
 									<option selected disabled value=''>Selecione a
 										Periodicidade</option>
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="escolaId" class="form-label">Escola:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola" id="escolaId"
-									required name="escolaId">
-									<option selected disabled value=''>Selecione a Escola</option>
-								</select>
+								<label for="dataHomologacaoEdit" class="form-label">Data
+									da Homologação:<span class="red">*</span>
+								</label> <input max='2999-01-01' autocomplete="off" type="date"
+									id="dataHomologacaoEdit" name="dataHomologacaoEdit"
+									class="form-control" />
 							</div>
+							<div class='row mb-4'>
+								<div class="col-6">
+									<label for="dataInicioVigenciaEdit" class="form-label">Data
+										Início da Vigência:<span class="red">*</span>
+									</label> <input max='2999-01-01' autocomplete="off" type="date"
+										id="dataInicioVigenciaEdit" name="dataInicioVigenciaEdit"
+										class="form-control" />
+								</div>
+								<div class="col-6">
+									<label for="dataFimVigenciaEdit" class="form-label">Data
+										Fim da Vigência:<span class="red">*</span>
+									</label> <input max='2999-01-01' autocomplete="off" type="date"
+										id="dataFimVigenciaEdit" name="dataFimVigenciaEdit"
+										class="form-control" />
+								</div>
+							</div>
+							<div class='row mb-4'>
+								<div class="col-6">
+									<label for="anoCicloEdit" class="form-label">Ano do
+										Ciclo:<span class="red">*</span>
+									</label> <select class="form-select" aria-label="anoCiclo"
+										id="anoCicloEdit" required name="anoCicloEdit">
+										<option selected disabled value=''>Selecione o Ano
+										</option>
+									</select>
+								</div>
+								<div class="col-6">
+									<label for="mudaAnexo" class="form-label">Alterar
+										Anexo:<span class="red">*</span>
+									</label>
+									<div class="form-control">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="mudaAnexo"
+												id="mudaAnexoS" value="S"> <label
+												class="form-check-label" for="mudaAnexoS">Sim</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="mudaAnexo"
+												id="mudaAnexoN" value="N"> <label
+												class="form-check-label" for="mudaAnexoN">Não</label>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+							<div class="mb-4" id='divAnexoEdit'>
+								<label for="anexoEdit" class="form-label">Novo Anexo:<span
+									class="red">*</span>
+								</label> <input type="file" name="anexoEdit" id="anexoEdit"
+									class="form-control" />
+							</div>
+
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" onclick='remover("escolaRegimeEscolar")'
 									class="ativar btn btn-danger" data-bs-dismiss="modal">Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
+									class="btn btn-primary px-4">Salvar</button>
 							</div>
 						</form>
 					</div>
@@ -485,7 +501,8 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/escolas/ppci.js"></script>
+	<script
+		src="<%=contextPath%>/resources/assets/js/escolas/regimeEscolar.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

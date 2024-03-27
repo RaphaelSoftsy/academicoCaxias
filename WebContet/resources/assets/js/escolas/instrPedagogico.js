@@ -7,26 +7,10 @@ var pagesToShow = 5;
 var escolas = [];
 var id = '';
 var idEscola = '';
+var idSelect2 = '';
+var ativo = '';
 
 $(document).ready(function() {
-
-	var selectAno = document.getElementById('anoVigenteSelect');
-	var anoAtual = new Date().getFullYear();
-
-	var anosRetroativos = anoAtual - 2000;
-	var anosFuturos = 2;
-
-	var anoInicial = anoAtual + anosFuturos;
-	var anoFinal = anoAtual - anosRetroativos;
-
-	for (var i = anoInicial; i >= anoFinal; i--) {
-		var option = document.createElement('option');
-		option.value = i;
-		option.text = i;
-		selectAno.appendChild(option);
-	}
-
-
 
 	$.ajax({
 		url: url_base + "/escolas",
@@ -35,11 +19,46 @@ $(document).ready(function() {
 	})
 		.done(function(data) {
 			escolas = data;
-
+			$.each(data, function(index, item) {
+				$('#escolaIdEdit').append($('<option>', {
+					value: item.idEscola,
+					text: item.nomeEscola,
+					name: item.nomeEscola
+				}));
+			});
+			$.each(data, function(index, item) {
+				$('#escolaId').append($('<option>', {
+					value: item.idEscola,
+					text: item.nomeEscola,
+					name: item.nomeEscola
+				}));
+			});
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
+
+	$.ajax({
+		url: url_base + '/instrPedagogico',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#instrPedagogicoIdEdit').append($('<option>', {
+				value: item.idInstrPedagogico,
+				text: item.instrPedagogico,
+				name: item.instrPedagogico
+			}));
+		});
+		$.each(data, function(index, item) {
+			$('#instrPedagogicoId').append($('<option>', {
+				value: item.idInstrPedagogico,
+				text: item.instrPedagogico,
+				name: item.instrPedagogico
+			}));
+		});
+
+	})
 
 	getDados()
 
@@ -53,17 +72,17 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'escolaId') {
+		if (columnToSearch === 'instrPedagogico') {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.instrPedagogico.instrPedagogico.toLowerCase().includes(searchInput);
+			});
+		} else if (columnToSearch === 'escolaId') {
 			filteredData = dadosOriginais.filter(function(item) {
 				var escola = escolas.find(function(school) {
 					return school.idEscola === item.escolaId;
 				});
 				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
 				return nomeEscola.includes(searchInput);
-			});
-		} else if (columnToSearch === 'anoVigente') {
-			var filteredData = dadosOriginais.filter(function(item) {
-				return item.anoVigente == searchInput;
 			});
 		} else {
 			filteredData = dadosOriginais.filter(function(item) {
@@ -114,26 +133,9 @@ $(document).ready(function() {
 		var dadosOrdenados = dadosOriginais.slice();
 
 		dadosOrdenados.sort(function(a, b) {
-
-			if (column === 'anoEscolarId') {
-				var valueA = a.anoEscolar.anoEscolar.toLowerCase();
-				var valueB = b.anoEscolar.anoEscolar.toLowerCase();
-				if (order === 'asc') {
-					return valueA.localeCompare(valueB);
-				} else {
-					return valueB.localeCompare(valueA);
-				}
-			} else if (column === 'turnoId') {
-				var valueA = a.turno.turno.toLowerCase();
-				var valueB = b.turno.turno.toLowerCase();
-				if (order === 'asc') {
-					return valueA.localeCompare(valueB);
-				} else {
-					return valueB.localeCompare(valueA);
-				}
-			} else if (column === 'modalidadeEscolaId') {
-				var valueA = a.modalidadeEscola.modalidadeEscola.toLowerCase();
-				var valueB = b.modalidadeEscola.modalidadeEscola.toLowerCase();
+			if (column === 'instrPedagogico') {
+				var valueA = a.instrPedagogico.instrPedagogico.toLowerCase();
+				var valueB = b.instrPedagogico.instrPedagogico.toLowerCase();
 				if (order === 'asc') {
 					return valueA.localeCompare(valueB);
 				} else {
@@ -164,9 +166,7 @@ $(document).ready(function() {
 			}
 
 		});
-
 		listarDados(dadosOrdenados);
-
 	}
 
 
@@ -184,7 +184,8 @@ $('#limpa-filtros').click(function() {
 function getDados() {
 
 	$.ajax({
-		url: url_base + "/turma",
+
+		url: url_base + "/escolaInstrPedagogico",
 		type: "GET",
 		async: false,
 	})
@@ -204,6 +205,13 @@ function listarDados(dados) {
 		var escola = escolas.find(function(school) {
 			return school.idEscola === item.escolaId;
 		});
+		
+		if (item.ativo == 'N') {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
 
 		var nomeEscola = escola
 			? escola.nomeEscola
@@ -215,26 +223,20 @@ function listarDados(dados) {
 			nomeEscola +
 			"</td>" +
 			"<td>" +
-			item.anoVigente +
+			item.instrPedagogico.instrPedagogico +
 			"</td>" +
 			"<td>" +
-			item.anoEscolar.anoEscolar +
+			ativo +
 			"</td>" +
-			"<td>" +
-			item.numTurma +
-			"</td>" +
-			"<td>" +
-			item.turno.turno +
-			"</td>" +
-			"<td>" +
-			item.modalidadeEscola.modalidadeEscola +
-			"</td>" +
-			"<td>" +
-			item.vagas +
-			"</td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"  data-id="' +
-			item.idTurma +
-			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
+			item.escolaId +
+			'" data-id="' +
+			item.idEscolaInstrPedagogico +
+			'" data-idSelect2="' +
+			item.instrPedagogico.idInstrPedagogico +
+			'" data-ativo="' +
+			item.ativo +
+			'"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -252,14 +254,110 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "turmas.xlsx");
+	XLSX.writeFile(livro, "instrutores.xlsx");
 });
 
+
+// Abrir modal
+
+function showModal(ref) {
+	id = ref.getAttribute("data-id");
+	idEscola = ref.getAttribute("data-idEscola");
+	idSelect2 = ref.getAttribute("data-idSelect2");
+	ativo = ref.getAttribute("data-ativo");
+
+	$("#escolaIdEdit").val(idEscola).attr('selected', true);
+	$("#instrPedagogicoIdEdit").val(idSelect2).attr('selected', true);
+	
+	if (ativo == "S") {
+			$(".ativar").hide();
+			$(".desativar").show()
+		}
+		else {
+			$(".desativar").hide();
+			$(".ativar").show();
+		}
+}
 
 
 // Editar
 
-function editar(ref) {
-	id = ref.getAttribute("data-id");
-	window.location.href = "turmas-editar-turma?id=" + id;
+function editar() {
+	var objeto = {
+		idEscolaInstrPedagogico: Number(id),
+		escolaId: Number($('#escolaIdEdit').val()),
+		instrPedagogicoId: Number($('#instrPedagogicoIdEdit').val()),
+	}
+
+	$.ajax({
+		url: url_base + "/escolaInstrPedagogico",
+		type: "PUT",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			$("#escolaIdEdit").val('');
+			$("#instrPedagogicoIdEdit").val('');
+			getDados();
+			showPage(currentPage);
+			updatePagination();
+			alert('Editado com Sucesso!')
+		})
+	return false;
+}
+$('#formEdit').on('submit', function(e) {
+	e.preventDefault();
+	editar();
+	return false;
+});
+
+
+// Cadastrar
+
+function cadastrar() {
+
+	var objeto = {
+		escolaId: Number($('#escolaId').val()),
+		instrPedagogicoId: Number($('#instrPedagogicoId').val()),
+	}
+
+	$.ajax({
+		url: url_base + "/escolaInstrPedagogico",
+		type: "POST",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			$("#escolaId").val('');
+			$("#instrPedagogicoId").val('');
+			getDados();
+			showPage(currentPage);
+			updatePagination();
+			alert('Cadastrado com Sucesso!')
+		})
+	return false;
+}
+
+$('#formCadastro').on('submit', function(e) {
+	e.preventDefault();
+	cadastrar();
+	return false;
+});
+
+
+// Limpa input
+
+function limpaCampo() {
+	$("#escolaId").val('');
+	$("#instrPedagogicoId").val('');
 }

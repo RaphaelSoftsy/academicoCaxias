@@ -13,13 +13,13 @@ import br.com.softsy.utils.LoginUtils;
 @Controller
 public class Turmas {
 	
-	@RequestMapping(value = { "escolas-turmas-editar-turma" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "turmas-editar-turma" }, method = RequestMethod.GET)
 	public String turmasEditarTurma(HttpSession session, Model model) throws Exception {
 		
 		return "turmas/editarTurma";
 	}
 	
-	@RequestMapping(value = { "escolas-turmas-nova-turma" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "turmas-nova-turma" }, method = RequestMethod.GET)
 	public String turmasNovaTurma(HttpSession session, Model model) throws Exception {
 		
 		return "turmas/novaTurma";
@@ -30,4 +30,23 @@ public class Turmas {
 		
 		return "turmas/turmas";
 	}
+	
+	@RequestMapping(value = { "turmas-areas-conhecimento" }, method = RequestMethod.GET)
+	public String turmasAreaConhecimento(HttpSession session, Model model) throws Exception {
+		
+		return "turmas/areaConhecimento";
+	}
+	
+	@RequestMapping(value = { "turmas-componentes-curriculares" }, method = RequestMethod.GET)
+	public String turmasComponentesCurriculares(HttpSession session, Model model) throws Exception {
+		
+		return "turmas/componentesCurriculares";
+	}
+	
+	@RequestMapping(value = { "turmas-dias-semana" }, method = RequestMethod.GET)
+	public String turmasDiasSemana(HttpSession session, Model model) throws Exception {
+		
+		return "turmas/diasSemana";
+	}
+	
 }
