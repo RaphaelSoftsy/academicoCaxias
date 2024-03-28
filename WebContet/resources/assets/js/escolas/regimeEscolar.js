@@ -62,13 +62,12 @@ $(document).ready(function() {
 			console.error("Erro na solicitação AJAX:", jqXHR);
 		});
 
-	/*$.ajax({
+	$.ajax({
 		url: url_base + "/periodicidade",
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
-			escolas = data;
 			$.each(data, function(index, item) {
 				$('#periodicidadeIdEdit').append($('<option>', {
 					value: item.idPeriodicidade,
@@ -87,7 +86,7 @@ $(document).ready(function() {
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", jqXHR);
 		});
-*/
+		
 	getDados()
 
 	// Dropdown de Pesquisa
@@ -284,8 +283,8 @@ function listarDados(dados) {
 			"<td>" +
 			item.periodicidade.periodicidade +
 			"</td>" +
-			'<td><span style="width: 70%; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-secondary btn-sm" onclick="processarAnexoBase64(\'' + item.anexo + '\')">Exibir</span></td>' +
-			'<td><span style="width: 70%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
+			'<td><span style=" height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-secondary btn-sm" onclick="processarAnexoBase64(\'' + item.anexo + '\')">Exibir</span></td>' +
+			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
 			item.escolaId +
 			'" data-id="' +
 			item.idEscolaRegimeEscolar +
@@ -416,7 +415,7 @@ function editar() {
 				dataInicioVigencia: dtIni,
 				dataFimVigencia: dtFim,
 				anoCiclo: $("#anoCicloEdit").val(),
-				periodicidadeId: 1,
+				periodicidadeId: $("#periodicidadeIdEdit").val(),
 				anexo: 'null'
 			};
 
@@ -457,7 +456,7 @@ function editar() {
 			dataInicioVigencia: dtIni,
 			dataFimVigencia: dtFim,
 			anoCiclo: $("#anoCicloEdit").val(),
-			periodicidadeId: 1,
+			periodicidadeId: $("#periodicidadeIdEdit").val(),
 			anexo: 'null'
 		};
 
@@ -527,7 +526,7 @@ function cadastrar() {
 			dataInicioVigencia: dtIni,
 			dataFimVigencia: dtFim,
 			anoCiclo: $("#anoCiclo").val(),
-			periodicidadeId: 1,
+			periodicidadeId: $("#periodicidadeId").val(),
 			anexo: 'null'
 		};
 

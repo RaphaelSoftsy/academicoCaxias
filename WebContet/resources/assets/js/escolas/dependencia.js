@@ -7,14 +7,8 @@ var pagesToShow = 5;
 var escolas = [];
 var id = '';
 var idEscola = '';
-var horaIni = '';
-var horaFim = '';
-var diaSemana = '';
-var ativo = '';
 
 $(document).ready(function() {
-
-	$("#divAnexoEdit").hide();
 
 	$.ajax({
 		url: url_base + "/escolas",
@@ -42,6 +36,31 @@ $(document).ready(function() {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 
+	$.ajax({
+		url: url_base + "/tipoDependencia",
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			$.each(data, function(index, item) {
+				$('#tipoDependenciaIdEdit').append($('<option>', {
+					value: item.idTipoDependencia,
+					text: item.tipoDependencia,
+					name: item.tipoDependencia
+				}));
+			});
+			$.each(data, function(index, item) {
+				$('#tipoDependenciaId').append($('<option>', {
+					value: item.idTipoDependencia,
+					text: item.tipoDependencia,
+					name: item.tipoDependencia
+				}));
+			});
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+
 	getDados()
 
 	// Dropdown de Pesquisa
@@ -54,17 +73,17 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'escolaId') {
+		if (columnToSearch === 'tipoDependencia') {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.tipoDependencia.tipoDependencia.toLowerCase().includes(searchInput);
+			});
+		} else if (columnToSearch === 'escolaId') {
 			filteredData = dadosOriginais.filter(function(item) {
 				var escola = escolas.find(function(school) {
 					return school.idEscola === item.escolaId;
 				});
 				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
 				return nomeEscola.includes(searchInput);
-			});
-		} else if (columnToSearch === 'diaSemana') {
-			var filteredData = dadosOriginais.filter(function(item) {
-				return item.diaSemana == searchInput;
 			});
 		} else {
 			filteredData = dadosOriginais.filter(function(item) {
@@ -115,7 +134,15 @@ $(document).ready(function() {
 		var dadosOrdenados = dadosOriginais.slice();
 
 		dadosOrdenados.sort(function(a, b) {
-			if (column === 'escolaId') {
+			if (column === 'tipoDependencia') {
+				var valueA = a.tipoDependencia.tipoDependencia.toLowerCase();
+				var valueB = b.tipoDependencia.tipoDependencia.toLowerCase();
+				if (order === 'asc') {
+					return valueA.localeCompare(valueB);
+				} else {
+					return valueB.localeCompare(valueA);
+				}
+			} else if (column === 'escolaId') {
 				var escolaA = escolas.find(function(school) {
 					return school.idEscola === a.escolaId;
 				});
@@ -129,13 +156,21 @@ $(document).ready(function() {
 				} else {
 					return nomeEscolaB.localeCompare(nomeEscolaA);
 				}
-			} else if (column === 'horaInicio' || column === 'horaFim') {
-				var timeA = a[column].split(':').reduce((acc, val, i) => acc + val * Math.pow(60, -i), 0);
-				var timeB = b[column].split(':').reduce((acc, val, i) => acc + val * Math.pow(60, -i), 0);
+			} else if (column === 'quantidade') {
+				var valueA = parseFloat(a[column]);
+				var valueB = parseFloat(b[column]);
 				if (order === 'asc') {
-					return timeA - timeB;
+					return valueA - valueB;
 				} else {
-					return timeB - timeA;
+					return valueB - valueA;
+				}
+			} else if (column === 'velocidadeMb') {
+				var valueA = parseFloat(a[column]);
+				var valueB = parseFloat(b[column]);
+				if (order === 'asc') {
+					return valueA - valueB;
+				} else {
+					return valueB - valueA;
 				}
 			} else {
 				var valueA = a[column].toString().toLowerCase();
@@ -167,7 +202,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaHorarioFuncionamento",
+		url: url_base + "/escolaDependencia",
 		type: "GET",
 		async: false,
 	})
@@ -181,32 +216,42 @@ function getDados() {
 		});
 }
 
-function obterNomeDiaSemana(numeroDia) {
-	const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-	return diasSemana[numeroDia - 1];
-}
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 
+		var acessivel;
+		var internaExterna;
+		var climatizada;
+
 		var escola = escolas.find(function(school) {
 			return school.idEscola === item.escolaId;
 		});
-		if (item.ativo == 'N') {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
-
-		var horaInicioFormatada = item.horaInicio.substring(0, 5);
-		var horaFimFormatada = item.horaFim.substring(0, 5);
-
-		var nomeDiaSemana = obterNomeDiaSemana(item.diaSemana);
 
 		var nomeEscola = escola
 			? escola.nomeEscola
 			: "Escola não encontrada";
+
+		if (item.acessivel == 'N') {
+			acessivel = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else {
+			acessivel = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
+
+		if (item.internaExterna == 'N') {
+			internaExterna = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else {
+			internaExterna = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
+
+		if (item.climatizada == 'N') {
+			climatizada = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else {
+			climatizada = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
 
 		return (
 			"<tr>" +
@@ -214,34 +259,28 @@ function listarDados(dados) {
 			nomeEscola +
 			"</td>" +
 			"<td>" +
-			nomeDiaSemana +
+			item.dependencia +
 			"</td>" +
 			"<td>" +
-			'Às ' +
-			horaInicioFormatada
-			+
+			item.tipoDependencia.tipoDependencia +
 			"</td>" +
 			"<td>" +
-			'Às ' +
-			horaFimFormatada
-			+
+			item.quantidade +
 			"</td>" +
 			"<td>" +
-			ativo +
+			acessivel +
+			"</td>" +
+			"<td>" +
+			internaExterna +
+			"</td>" +
+			"<td>" +
+			climatizada +
 			"</td>" +
 			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
 			item.escolaId +
 			'" data-id="' +
-			item.idEscolaHorarioFuncionamento +
-			'" data-horaIni="' +
-			item.horaInicio +
-			'" data-horaFim="' +
-			item.horaFim +
-			'" data-diaSemana="' +
-			item.diaSemana +
-			'" data-ativo="' +
-			item.ativo +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			item.idEscolaDependencia +
+			'"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -259,7 +298,7 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "licenciamentoSanitario.xlsx");
+	XLSX.writeFile(livro, "dependencia.xlsx");
 });
 
 
@@ -268,33 +307,43 @@ $('#exportar-excel').click(function() {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	idEscola = ref.getAttribute("data-idEscola");
-	horaIni = ref.getAttribute("data-horaIni");
-	horaFim = ref.getAttribute("data-horaFim");
-	diaSemana = ref.getAttribute("data-diaSemana");
-	ativo = ref.getAttribute("data-ativo");
 
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
-	$("#horaInicioEdit").val(horaIni);
-	$("#horaFimEdit").val(horaFim);
-	$("#diaSemanaEdit").val(diaSemana).attr('selected', true);
-	
-
-		if (ativo == "S") {
-			$(".ativar").hide();
-			$(".desativar").show()
+	$.ajax({
+		url: url_base + "/escolaDependencia/escola/" + idEscola,
+		type: "GET",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
 		}
-		else {
-			$(".desativar").hide();
-			$(".ativar").show();
-		}
-
-}
-
-function formatarHoraParaAPI(hora) {
-	if (/^\d{2}:\d{2}$/.test(hora)) {
-		return hora + ":00";
-	}
-	return hora;
+	})
+		.done(function(ref) {
+			
+			var data = ref.find((item) => item.idEscolaDependencia == id)
+			$("#dependenciaEdit").val(data.dependencia);
+			$("#tipoDependenciaIdEdit").val(data.tipoDependencia.idTipoDependencia).attr('selected', true);
+			
+			if (data.acessivel === 'S') {
+				$('input[id="acessivelSEdit"]').prop('checked', true)
+			} else {
+				$('input[id="acessivelNEdit"]').prop('checked', true)
+			}
+			
+			if (data.internaExterna === 'S') {
+				$('input[id="internaExternaSEdit"]').prop('checked', true)
+			} else {
+				$('input[id="internaExternaNEdit"]').prop('checked', true)
+			}
+			
+			if (data.climatizada === 'S') {
+				$('input[id="climatizadaSEdit"]').prop('checked', true)
+			} else {
+				$('input[id="climatizadaNEdit"]').prop('checked', true)
+			}
+			
+			$("#quantidadeEdit").val(data.quantidade);
+		})
 }
 
 // Editar
@@ -302,17 +351,18 @@ function formatarHoraParaAPI(hora) {
 function editar() {
 
 	var objeto = {
-		idEscolaHorarioFuncionamento: id,
-		escolaId: Number($('#escolaIdEdit').val()),
-		horaInicio: formatarHoraParaAPI($("#horaInicioEdit").val()),
-		horaFim: formatarHoraParaAPI($("#horaFimEdit").val()),
-		diaSemana: $("#diaSemanaEdit").val(),
-	};
-
-	console.log(objeto)
+		idEscolaDependencia: id,
+		escolaId: $("#escolaIdEdit").val(),
+		dependencia: $("#dependenciaEdit").val(),
+		tipoDependenciaId: $("#tipoDependenciaIdEdit").val(),
+		acessivel: $('input[name="acessivelEdit"]:checked').val(),
+		internaExterna: $('input[name="internaExternaEdit"]:checked').val(),
+		climatizada: $('input[name="climatizadaEdit"]:checked').val(),
+		quantidade: $("#quantidadeEdit").val()
+	}
 
 	$.ajax({
-		url: url_base + "/escolaHorarioFuncionamento",
+		url: url_base + "/escolaDependencia",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -323,17 +373,18 @@ function editar() {
 		}
 	})
 		.done(function(data) {
-			$("#escolaIdEdit").val('');
-			$("#horaInicioEdit").val('');
-			$("#horaFimEdit").val('');
-			$("#diaSemanaEdit").val('');
-			mudarAnexo = false;
+			$("#escolaId").val('');
+			$("#dependenciaEdit").val('');
+			$("#tipoDependenciaIdEdit").val('');
+			$('input[name="acessivelEdit"]:checked').val('');
+			$('input[name="internaExternaEdit"]:checked').val('');
+			$('input[name="climatizadaEdit"]:checked').val('');
+			$("#quantidadeEdit").val('');
 			getDados();
 			showPage(currentPage);
 			updatePagination();
 			alert('Editado com Sucesso!');
 		});
-
 	return false;
 }
 
@@ -346,38 +397,34 @@ $('#formEdit').on('submit', function(e) {
 
 // Cadastrar
 
-
 function cadastrar() {
-
 	var objeto = {
-		escolaId: Number($('#escolaId').val()),
-		horaInicio: formatarHoraParaAPI($("#horaInicio").val()),
-		horaFim: formatarHoraParaAPI($("#horaFim").val()),
-		diaSemana: $("#diaSemana").val(),
-	};
-	console.log(objeto)
+		escolaId: $("#escolaId").val(),
+		dependencia: $("#dependencia").val(),
+		tipoDependenciaId: $("#tipoDependenciaId").val(),
+		acessivel: $('input[name="acessivel"]:checked').val(),
+		internaExterna: $('input[name="internaExterna"]:checked').val(),
+		climatizada: $('input[name="climatizada"]:checked').val(),
+		quantidade: $("#quantidade").val()
+	}
 
 	$.ajax({
-		url: url_base + "/escolaHorarioFuncionamento",
+		url: url_base + "/escolaDependencia",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		error: function(e) {
-			console.log(e.responseJSON);
-			alert(e.responseJSON.message);
+			console.log(e.responseJSON.message)
+			alert(e.responseJSON.message)
 		}
 	})
-		.done(function() {
-			$("#escolaId").val('');
-			$("#horaInicio").val('');
-			$("#horaFim").val('');
-			$("#diaSemana").val('');
+		.done(function(data) {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			alert('Cadastrado com Sucesso!');
-		});
+			alert('Cadastrado com Sucesso!')
+		})
 	return false;
 }
 
@@ -392,7 +439,10 @@ $('#formCadastro').on('submit', function(e) {
 
 function limpaCampo() {
 	$("#escolaId").val('');
-	$("#horaInicio").val('');
-	$("#horaFim").val('');
-	$("#diaSemana").val('');
+	$("#dependencia").val('');
+	$("#tipoDependenciaId").val('');
+	$('input[name="acessivel"]:checked').val('');
+	$('input[name="internaExterna"]:checked').val('');
+	$('input[name="climatizada"]:checked').val('');
+	$("#quantidade").val('');
 }

@@ -144,4 +144,16 @@ public class Cadastros {
 		
 		return "escolas/instrPedagogico";
 	}
+	
+	@RequestMapping(value = { "escola-dependencias" }, method = RequestMethod.GET)
+	public String escolaDependencia(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/dependencia";
+	}
+	
+	@RequestMapping(value = { "escola-termo-colaboracao" }, method = RequestMethod.GET)
+	public String escolaTermoColaboracao(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/termoColaboracao";
+	}
 }

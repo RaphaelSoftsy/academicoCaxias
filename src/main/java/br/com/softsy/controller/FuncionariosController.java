@@ -224,5 +224,34 @@ public class FuncionariosController {
  
 		return "preCadastros/marcaEquipamento";
 	}
+	
+	@RequestMapping(value = { "cargo-professor" }, method = RequestMethod.GET)
+	public String cargoProfessor(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/cargoProfessor";
+	}
+	
+	@RequestMapping(value = { "area-conhecimento" }, method = RequestMethod.GET)
+	public String areaConhecimento(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/areaConhecimento";
+	}
 
+	@RequestMapping(value = { "componentes-curriculares" }, method = RequestMethod.GET)
+	public String componentesCurriculares(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/componentesCurriculares";
+	}
+	
+	@RequestMapping(value = { "forma-organ-ensino" }, method = RequestMethod.GET)
+	public String organEnsino(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/organEnsino";
+	}
+	
+	@RequestMapping(value = { "instrutor-pedagogico" }, method = RequestMethod.GET)
+	public String instrPedagogico(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/instrPedagogico";
+	}
 }

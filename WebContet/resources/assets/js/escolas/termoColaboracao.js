@@ -11,6 +11,7 @@ var idEscola = '';
 $(document).ready(function() {
 
 	$("#divAnexoEdit").hide();
+	$("#divTermoEdit").hide();
 
 	$.ajax({
 		url: url_base + "/escolas",
@@ -50,11 +51,11 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'dataEmissao' || columnToSearch === 'dataValidade') {
+		if (columnToSearch === 'dataValidade') {
 			searchInput = searchInput.split('T')[0];
 
 			filteredData = dadosOriginais.filter(function(item) {
-				if (columnToSearch === 'dataEmissao' || columnToSearch === 'dataValidade') {
+				if (columnToSearch === 'dataValidade') {
 					var itemDate = item[columnToSearch].split('T')[0];
 					return itemDate.includes(searchInput);
 				} else {
@@ -118,7 +119,7 @@ $(document).ready(function() {
 		var dadosOrdenados = dadosOriginais.slice();
 
 		dadosOrdenados.sort(function(a, b) {
-			if (column === 'dataEmissao' || column === 'dataValidade') {
+			if (column === 'dataValidade') {
 				var dateA = new Date(a[column]);
 				var dateB = new Date(b[column]);
 
@@ -171,7 +172,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaLicSanitario",
+		url: url_base + "/escolaTColaboracao",
 		type: "GET",
 		async: false,
 	})
@@ -210,19 +211,17 @@ function listarDados(dados) {
 			nomeEscola +
 			"</td>" +
 			"<td>" +
-			item.licSanitario +
-			"</td>" +
-			"<td>" +
-			formatarDataParaBR(item.dataEmissao) +
+			item.coordenador +
 			"</td>" +
 			"<td>" +
 			formatarDataParaBR(item.dataValidade) +
 			"</td>" +
+			'<td><span style=" height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-secondary btn-sm" onclick="exibirTermo(\'' + item.termoColaboracao + '\')">Exibir</span></td>' +
 			'<td><span style=" height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-secondary btn-sm" onclick="processarAnexoBase64(\'' + item.anexo + '\')">Exibir</span></td>' +
 			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
 			item.escolaId +
 			'" data-id="' +
-			item.idEscolaLicSanitario +
+			item.idEscolaTermoColaboracao +
 			'"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -241,7 +240,7 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "licenciamentoSanitario.xlsx");
+	XLSX.writeFile(livro, "termoColaboracao.xlsx");
 });
 
 
@@ -262,9 +261,29 @@ function processarAnexoBase64(anexoBase64, fileName = 'arquivo.bin') {
 	var blobUrl = URL.createObjectURL(blob);
 	window.open(blobUrl);
 }
+function exibirTermo(anexoBase64, fileName = 'arquivo.bin') {
+	var base64Content = anexoBase64.split(';base64,').pop();
+
+	var binaryData = atob(base64Content);
+
+	var byteArray = new Uint8Array(binaryData.length);
+	for (var i = 0; i < binaryData.length; i++) {
+		byteArray[i] = binaryData.charCodeAt(i);
+	}
+
+	var blob = new Blob([byteArray], { type: 'application/octet-stream' });
+
+	var blobUrl = URL.createObjectURL(blob);
+	window.open(blobUrl);
+}
+
 var anexo = '';
 var mudarAnexo = false;
 var novoAnexo = '';
+
+var termo = '';
+var mudarTermo = false;
+var novoTermo = '';
 
 $('input[name="mudaAnexo"]').change(function() {
 	if ($(this).val() === "S") {
@@ -273,6 +292,15 @@ $('input[name="mudaAnexo"]').change(function() {
 	} else {
 		$('#anexoEdit').parent().hide();
 		mudarAnexo = false;
+	}
+});
+$('input[name="mudaTermo"]').change(function() {
+	if ($(this).val() === "S") {
+		$('#termoEdit').parent().show();
+		mudarTermo = true;
+	} else {
+		$('#termoEdit').parent().hide();
+		mudarTermo = false;
 	}
 });
 
@@ -294,8 +322,10 @@ function showModal(ref) {
 	idEscola = ref.getAttribute("data-idEscola");
 
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
+	$('input[name="mudaTermo"]:checked').val('');
+	$('input[name="acessivelEdit"]:checked').val('');
 	$.ajax({
-		url: url_base + "/escolaLicSanitario/escola/" + idEscola,
+		url: url_base + "/escolaTColaboracao/escola/" + idEscola,
 		type: "GET",
 		async: false,
 		error: function(e) {
@@ -303,13 +333,13 @@ function showModal(ref) {
 			alert(e.responseJSON.message)
 		}
 	})
-		.done(function(data) {
-			$("#licSanitarioEdit").val(data[0].licSanitario);
-			var dataEmissao = data[0].dataEmissao.split('T')[0];
-			var dataValidade = data[0].dataValidade.split('T')[0];
-			$("#dataEmissaoEdit").val(dataEmissao);
+		.done(function(ref) {
+			var data = ref.find((item) => item.idEscolaTermoColaboracao == id)
+			$("#coordenadorEdit").val(data.coordenador);
+			var dataValidade = data.dataValidade.split('T')[0];
 			$("#dataValidadeEdit").val(dataValidade);
-			anexo = data[0].anexo
+			anexo = data.anexo
+			termo = data.termoColaboracao
 		})
 }
 
@@ -318,94 +348,100 @@ function showModal(ref) {
 // Editar
 
 function editar() {
-    var inputFile = document.getElementById('anexoEdit');
-    var file = inputFile.files[0];
-    var reader = new FileReader();
+	var inputFileAnexo = document.getElementById('anexoEdit');
+	var inputFileTermo = document.getElementById('termoColaboracaoEdit');
 
-    var dataEmissao = $('#dataEmissaoEdit').val();
-    var dataValidade = $('#dataValidadeEdit').val();
+	var fileAnexo = inputFileAnexo.files[0];
+	var fileTermo = inputFileTermo.files[0];
 
-    var dataEmissaoFormatada = new Date(dataEmissao);
-    var dataValidadeFormatada = new Date(dataValidade);
+	var readerAnexo = new FileReader();
+	var readerTermo = new FileReader();
 
-    var dataEmissaoAPI = formatarDataParaAPI(dataEmissaoFormatada);
-    var dataValidadeAPI = formatarDataParaAPI(dataValidadeFormatada);
+	var dataValidade = $('#dataValidadeEdit').val();
+	var dataValidadeFormatada = new Date(dataValidade);
+	var dataValidadeAPI = formatarDataParaAPI(dataValidadeFormatada);
 
-    if (mudarAnexo) {
-        reader.onload = function(event) {
-            var base64String = event.target.result;
+	if (mudarAnexo && mudarTermo) {
+		readerAnexo.onload = function(eventAnexo) {
+			readerTermo.onload = function(eventTermo) {
+				var base64StringAnexo = eventAnexo.target.result;
+				var base64StringTermo = eventTermo.target.result;
 
-            var objeto = {
-				idEscolaLicSanitario: id,
-                escolaId: Number($('#escolaIdEdit').val()),
-                licSanitario: $('#licSanitarioEdit').val(),
-                dataEmissao: dataEmissaoAPI,
-                dataValidade: dataValidadeAPI,
-                anexo: 'null'
-            };
+				var objeto = {
+					idEscolaTermoColaboracao: id,
+					escolaId: Number($('#escolaIdEdit').val()),
+					coordenador: $('#coordenadorEdit').val(),
+					dataValidade: dataValidadeAPI,
+					anexo: 'null',
+					termoColaboracao: 'null'
+				};
 
-            $.ajax({
-                url: url_base + "/escolaLicSanitario",
-                type: "PUT",
-                data: JSON.stringify(objeto),
-                contentType: "application/json; charset=utf-8",
-                async: false,
-                error: function(e) {
-                    console.log(e.responseJSON);
-                    alert(e.responseJSON.message);
-                }
-            })
-            .done(function(data) {
-                $("#escolaIdEdit").val('');
-                $("#licSanitarioEdit").val('');
-                $("#dataEmissaoEdit").val('');
-                $("#dataValidadeEdit").val('');
-                $("#anexoEdit").val('');
-                mudarAnexo = false;
-                getDados();
-                showPage(currentPage);
-                updatePagination();
-                alert('Editado com Sucesso!');
-            });
-        };
+				$.ajax({
+					url: url_base + "/escolaTColaboracao",
+					type: "PUT",
+					data: JSON.stringify(objeto),
+					contentType: "application/json; charset=utf-8",
+					async: false,
+					error: function(e) {
+						console.log(e.responseJSON);
+						alert(e.responseJSON.message);
+					}
+				})
+					.done(function(data) {
+						$("#escolaIdEdit").val('');
+						$("#coordenadorEdit").val('');
+						$("#dataValidadeEdit").val('');
+						$("#anexoEdit").val('');
+						$("#termoColaboracaoEdit").val('');
+						mudarAnexo = false;
+						mudarTermo = false;
+						getDados();
+						showPage(currentPage);
+						updatePagination();
+						alert('Editado com Sucesso!');
+					});
+			};
 
-        reader.readAsDataURL(file);
-    } else {
-        var objeto = {
-			idEscolaLicSanitario: id,
-            escolaId: Number($('#escolaIdEdit').val()),
-            licSanitario: $('#licSanitarioEdit').val(),
-            dataEmissao: dataEmissaoAPI,
-            dataValidade: dataValidadeAPI,
-            anexo: 'null'
-        };
+		};
 
-        $.ajax({
-            url: url_base + "/escolaLicSanitario",
-            type: "PUT",
-            data: JSON.stringify(objeto),
-            contentType: "application/json; charset=utf-8",
-            async: false,
-            error: function(e) {
-                console.log(e.responseJSON);
-                alert(e.responseJSON.message);
-            }
-        })
-        .done(function(data) {
-            $("#escolaIdEdit").val('');
-            $("#licSanitarioEdit").val('');
-            $("#dataEmissaoEdit").val('');
-            $("#dataValidadeEdit").val('');
-            $("#anexoEdit").val('');
-            mudarAnexo = false;
-            getDados();
-            showPage(currentPage);
-            updatePagination();
-            alert('Editado com Sucesso!');
-        });
-    }
+		readerAnexo.readAsDataURL(fileAnexo);
+		readerTermo.readAsDataURL(fileTermo);
+	} else {
+		var objeto = {
+			idEscolaTermoColaboracao: id,
+			escolaId: Number($('#escolaIdEdit').val()),
+			coordenador: $('#coordenadorEdit').val(),
+			dataValidade: dataValidadeAPI,
+			anexo: 'null',
+			termoColaboracao: "null"
+		};
 
-    return false;
+		$.ajax({
+			url: url_base + "/escolaTColaboracao",
+			type: "PUT",
+			data: JSON.stringify(objeto),
+			contentType: "application/json; charset=utf-8",
+			async: false,
+			error: function(e) {
+				console.log(e.responseJSON);
+				alert(e.responseJSON.message);
+			}
+		})
+			.done(function(data) {
+				$("#escolaIdEdit").val('');
+				$("#coordenadorEdit").val('');
+				$("#dataValidadeEdit").val('');
+				$("#anexoEdit").val('');
+				$("#termoColaboracaoEdit").val('');
+				mudarAnexo = false;
+				getDados();
+				showPage(currentPage);
+				updatePagination();
+				alert('Editado com Sucesso!');
+			});
+	}
+
+	return false;
 }
 
 $('#formEdit').on('submit', function(e) {
@@ -418,55 +454,61 @@ $('#formEdit').on('submit', function(e) {
 // Cadastrar
 
 function cadastrar() {
-	var inputFile = document.getElementById('anexo');
-	var file = inputFile.files[0];
-	var reader = new FileReader();
+	var inputFileAnexo = document.getElementById('anexo');
+	var inputFileTermo = document.getElementById('termoColaboracao');
 
-	var dataEmissao = $('#dataEmissao').val();
+	var fileAnexo = inputFileAnexo.files[0];
+	var fileTermo = inputFileTermo.files[0];
+
+	var readerAnexo = new FileReader();
+	var readerTermo = new FileReader();
+
 	var dataValidade = $('#dataValidade').val();
-
-	var dataEmissaoFormatada = new Date(dataEmissao);
 	var dataValidadeFormatada = new Date(dataValidade);
-
-	var dataEmissaoAPI = formatarDataParaAPI(dataEmissaoFormatada);
 	var dataValidadeAPI = formatarDataParaAPI(dataValidadeFormatada);
 
-	reader.onload = function(event) {
-		var base64String = event.target.result;
+	readerAnexo.onload = function(eventAnexo) {
+		readerTermo.onload = function(eventTermo) {
+			var base64StringAnexo = eventAnexo.target.result;
+			var base64StringTermo = eventTermo.target.result;
 
-		var objeto = {
-			escolaId: Number($('#escolaId').val()),
-			licSanitario: $('#licSanitario').val(),
-			dataEmissao: dataEmissaoAPI,
-			dataValidade: dataValidadeAPI,
-			anexo: 'null'
+			var objeto = {
+				escolaId: Number($('#escolaId').val()),
+				coordenador: $('#coordenador').val(),
+				dataValidade: dataValidadeAPI,
+				anexo: 'null',
+				termoColaboracao: 'null'
+			};
+
+			$.ajax({
+				url: url_base + "/escolaTColaboracao",
+				type: "POST",
+				data: JSON.stringify(objeto),
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e.responseJSON);
+					alert(e.responseJSON.message);
+				}
+			})
+				.done(function(data) {
+					$("#escolaId").val('');
+					$("#coordenador").val('');
+					$("#dataValidade").val('');
+					$("#anexo").val('');
+					$("#termoColaboracao").val('');
+					getDados();
+					showPage(currentPage);
+					updatePagination();
+					alert('Cadastrado com Sucesso!');
+				});
 		};
 
-		$.ajax({
-			url: url_base + "/escolaLicSanitario",
-			type: "POST",
-			data: JSON.stringify(objeto),
-			contentType: "application/json; charset=utf-8",
-			async: false,
-			error: function(e) {
-				console.log(e.responseJSON);
-				alert(e.responseJSON.message);
-			}
-		})
-			.done(function(data) {
-				$("#escolaId").val('');
-				$("#licSanitario").val('');
-				$("#dataEmissao").val('');
-				$("#dataValidade").val('');
-				$("#anexo").val('');
-				getDados();
-				showPage(currentPage);
-				updatePagination();
-				alert('Cadastrado com Sucesso!');
-			});
 	};
 
-	reader.readAsDataURL(file);
+	readerAnexo.readAsDataURL(fileAnexo);
+	readerTermo.readAsDataURL(fileTermo);
+
 	return false;
 }
 
@@ -481,8 +523,8 @@ $('#formCadastro').on('submit', function(e) {
 
 function limpaCampo() {
 	$("#escolaId").val('');
-	$("#licSanitario").val('');
-	$("#dataEmissao").val('');
+	$("#coordenador").val('');
 	$("#dataValidade").val('');
 	$("#anexo").val('');
+	$("#termoColaboracao").val('');
 }

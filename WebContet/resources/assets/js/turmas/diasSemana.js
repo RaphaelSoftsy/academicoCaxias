@@ -219,7 +219,7 @@ function listarDados(dados) {
 			horaFimFormatada
 			+
 			"</td>" +
-			'<td><span style="width: 70%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idTurma="' +
+			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idTurma="' +
 			item.turmaId +
 			'" data-id="' +
 			item.idTurmaDiaSemana +

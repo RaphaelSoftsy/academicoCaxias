@@ -311,7 +311,7 @@ String contextPath = request.getContextPath();
 							<div class="mb-4">
 								<label for="periodicidadeId" class="form-label">Periodicidade:<span
 									class="red">*</span>
-								</label> <select class="form-select" disabled aria-label="Periodicidade"
+								</label> <select class="form-select" aria-label="Periodicidade"
 									id="periodicidadeId" required name="periodicidadeId">
 									<option selected disabled value=''>Selecione a
 										Periodicidade</option>
@@ -340,14 +340,14 @@ String contextPath = request.getContextPath();
 									<label for="dataInicioVigencia" class="form-label">Data
 										Início da Vigência:<span class="red">*</span>
 									</label> <input max='2999-01-01' autocomplete="off" type="date"
-										id="dataInicioVigencia" name="dataInicioVigencia"
+										id="dataInicioVigencia" required name="dataInicioVigencia"
 										class="form-control" />
 								</div>
 								<div class="col-6">
 									<label for="dataFimVigencia" class="form-label">Data
 										Fim da Vigência:<span class="red">*</span>
 									</label> <input max='2999-01-01' autocomplete="off" type="date"
-										id="dataFimVigencia" name="dataFimVigencia"
+										id="dataFimVigencia" required name="dataFimVigencia"
 										class="form-control" />
 								</div>
 							</div>
@@ -402,7 +402,7 @@ String contextPath = request.getContextPath();
 								<label for="periodicidadeIdEdit" class="form-label">Periodicidade:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Periodicidade"
-									id="periodicidadeIdEdit" disabled required name="periodicidadeIdEdit">
+									id="periodicidadeIdEdit" required name="periodicidadeIdEdit">
 									<option selected disabled value=''>Selecione a
 										Periodicidade</option>
 								</select>
@@ -446,12 +446,12 @@ String contextPath = request.getContextPath();
 									</label>
 									<div class="form-control">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="mudaAnexo"
+											<input class="form-check-input" type="radio" required name="mudaAnexo"
 												id="mudaAnexoS" value="S"> <label
 												class="form-check-label" for="mudaAnexoS">Sim</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="mudaAnexo"
+											<input class="form-check-input" type="radio" required name="mudaAnexo"
 												id="mudaAnexoN" value="N"> <label
 												class="form-check-label" for="mudaAnexoN">Não</label>
 										</div>

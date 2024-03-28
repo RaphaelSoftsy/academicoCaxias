@@ -35,7 +35,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
-	rel="stylesheet">
+	rel="stylesheet" />
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
@@ -53,7 +53,6 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
-
 </head>
 
 <body>
@@ -65,31 +64,31 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	<header id="menu"> </header>
+	<header id="menu"></header>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Destinação de Lixo</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Termos de
+						Colaboração</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-3"
-				style="display: flex; align-items: center; justify-content: end;">
-
+				style="display: flex; align-items: center; justify-content: end">
 				<div class="d-flex align-items-center gap-2">
-					<button id="limpa-filtros" class="btn btn-sm btn-danger">Limpar
-						Filtros</button>
+					<button id="limpa-filtros" class="btn btn-sm btn-danger">
+						Limpar Filtros</button>
 					<button id="exportar-excel"
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
 					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
 						data-bs-toggle="modal" onclick="limpaCampo()"
-						data-bs-target="#newCadastro">Novo Cadastro</button>
+						data-bs-target="#newCadastro">Novo Cadastro
+					</button>
 				</div>
-
 			</div>
 
 			<table
@@ -99,7 +98,7 @@ String contextPath = request.getContextPath();
 					<tr>
 						<th scope="col" class="sortable border-end" data-column="escolaId">
 							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
+								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
 									<span>Escola</span> <i class="fas fa-sort me-3"
@@ -112,20 +111,21 @@ String contextPath = request.getContextPath();
 									<div
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent1">
-										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite o nome da escola">
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite o nome da escola" />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
 									</div>
 								</div>
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="destinacaoLixo">
+							data-column="coordenador">
 							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
+								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Destinação de Lixo</span> <i class="fas fa-sort me-3"
+									<span>Coordenador</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -135,20 +135,59 @@ String contextPath = request.getContextPath();
 									<div
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent2">
-										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite o nome da Destinação">
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite aqui..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
 									</div>
 								</div>
 							</div>
 						</th>
+						<th
+                scope="col"
+                class="sortable border-end"
+                data-column="dataValidade"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Data de Validade</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                  <div class="dropdown-form">
+                    <div class="dropdown-toggle-form" id="dropdownButton4">
+                      <i class="fas fa-search" style="color: #dddddd"></i>
+                    </div>
+                    <div
+                      class="dropdown-content-form rounded-3 dropdown-content-left"
+                      id="dropdownContent4"
+                    >
+                      <input
+                        max="2999-01-01"
+                        type="date"
+                        class="form-control mb-3 searchInput"
+                      />
+                      <button
+                        class="btn btn-sm col-12 btn-success searchButton"
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro"
-							>Ações</th>
+							data-column="termoColaboracao">Termo</th>
+						<th scope="col" class="border-end pe-2 th-sem-filtro"
+							data-column="anexo">Anexo</th>
+						<th scope="col" class="border-end pe-2 th-sem-filtro"
+							data-column="ativo">Ações</th>
 					</tr>
 				</thead>
-				<tbody id="cola-tabela" class="table-group-divider">
-
-				</tbody>
+				<tbody id="cola-tabela" class="table-group-divider"></tbody>
 			</table>
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
@@ -172,25 +211,40 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formCadastro">
-
-							<div class="mb-4">
-								<label for="idDestinacaoLixo" class="form-label">Destinação de Lixo:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Destinação de Lixo"
-									id="idDestinacaoLixo" required name="idDestinacaoLixo">
-									<option selected value='' disabled>Selecione a Destinaão</option>
-								</select>
-							</div>
 							<div class="mb-4">
 								<label for="escolaId" class="form-label">Escola:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola" id="escolaId"
 									required name="escolaId">
-									<option selected disabled value=''>Selecione a Escola</option>
+									<option selected disabled value="">Selecione a Escola
+									</option>
 								</select>
 							</div>
+							<div class="mb-4">
+								<label for="coordenador" class="form-label">Coordenador:<span
+									class="red">*</span>
+								</label> <input type="text" class="form-control" id="coordenador"
+									name="coordenador" required aria-describedby="Coordenador"
+									autocomplete="off" />
+							</div>
+							<div class="mb-4">
+								<label for="termoColaboracao" class="form-label">Termo
+									de Colaboração:<span class="red">*</span>
+								</label> <input type="file" name="termoColaboracao"
+									id="termoColaboracao" class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="anexo" class="form-label">Anexo:<span
+									class="red">*</span>
+								</label> <input type="file" name="anexo" id="anexo" class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="dataValidade" class="form-label">Data
+									de validade:<span class="red">*</span>
+								</label> <input max="2999-01-01" autocomplete="off" type="date"
+									id="dataValidade" name="dataValidade" class="form-control" />
+							</div>
 							<div class="d-flex justify-content-end gap-2">
-
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -212,26 +266,80 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
-
 							<div class="mb-4">
 								<label for="escolaIdEdit" class="form-label">Escola:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola" id="escolaIdEdit"
-									required name="escolaIdEdit">
+								</label> <select class="form-select" aria-label="Escola"
+									id="escolaIdEdit" required name="escolaIdEdit">
 									<option selected disabled>Selecione a Escola</option>
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="idDestinacaoLixoEdit" class="form-label">Destinação de Lixo:<span
+								<label for="coordenadorEdit" class="form-label">Coordenador:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Destinação de Lixo"
-									id="idDestinacaoLixoEdit" required name="idDestinacaoLixoEdit">
-									<option selected value='' disabled>Selecione a Destinaão</option>
-								</select>
+								</label> <input type="text" class="form-control" id="coordenadorEdit"
+									name="coordenadorEdit" required aria-describedby="Coordenador"
+									autocomplete="off" />
+							</div>
+
+							<div class="mb-4">
+								<label for="mudaTermo" class="form-label">Alterar
+									Termo:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="mudaTermo"
+											id="mudaTermoS" value="S" /> <label
+											class="form-check-label" for="mudaTermoS">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="mudaTermo"
+											id="mudaTermoN" value="N" /> <label
+											class="form-check-label" for="mudaTermoN">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="mb-4" id="divTermoEdit">
+								<label for="termoColaboracaoEdit" class="form-label">Novo
+									Termo de Colaboração:<span class="red">*</span>
+								</label> <input type="file" name="termoColaboracaoEdit"
+									id="termoColaboracaoEdit" class="form-control" />
+							</div>
+
+							<div class="mb-4">
+								<label for="mudaAnexo" class="form-label">Alterar
+									Anexo:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="mudaAnexo"
+											id="mudaAnexoS" value="S" /> <label
+											class="form-check-label" for="mudaAnexoS">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="mudaAnexo"
+											id="mudaAnexoN" value="N" /> <label
+											class="form-check-label" for="mudaAnexoN">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="mb-4" id="divAnexoEdit">
+								<label for="anexoEdit" class="form-label">Novo
+									Anexo:<span class="red">*</span>
+								</label> <input type="file" name="anexoEdit" id="anexoEdit"
+									class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="dataValidadeEdit" class="form-label">Data
+									de validade:<span class="red">*</span>
+								</label> <input max="2999-01-01" autocomplete="off" type="date"
+									id="dataValidadeEdit" name="dataValidadeEdit"
+									class="form-control" />
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='remover("escolaDestinacaoLixo")'
-									class="ativar btn btn-danger" data-bs-dismiss="modal">Remover</button>
+								<button type="button" onclick='remover("escolaTColaboracao")'
+									class="ativar btn btn-danger" data-bs-dismiss="modal">
+									Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -243,7 +351,6 @@ String contextPath = request.getContextPath();
 			</div>
 		</div>
 	</main>
-
 
 	<script
 		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
@@ -263,7 +370,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/destinacaoLixo.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/termoColaboracao.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
