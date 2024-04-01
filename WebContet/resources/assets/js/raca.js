@@ -4,7 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-
+var isAtivo = '';
 $(document).ready(function() {
 
 	getDados()
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/areaConhecimento",
+		url: url_base + "/raca",
 		type: "GET",
 		async: false,
 	})
@@ -61,15 +61,27 @@ function getDados() {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 
+		if (item.ativo == 'N') {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		}
+		else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
+
 		return (
 			"<tr>" +
 			"<td>" +
-			item.areaConhecimento +
+			item.raca +
+			"</td>" +
+			"<td>" +
+			ativo +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idAreaConhecimento +
+			item.idRaca +
 			'" data-nome="' +
-			item.areaConhecimento +
+			item.raca +
+			'" data-ativo="' +
+			item.ativo +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -81,18 +93,28 @@ function listarDados(dados) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
+	isAtivo = ref.getAttribute("data-ativo");
+
+		if (isAtivo == "S") {
+			$(".ativar").hide();
+			$(".desativar").show()
+		}
+		else {
+			$(".desativar").hide();
+			$(".ativar").show();
+		}
 
 	$('#edit-nome').val(nome);
 }
 
 function editar() {
 	var objeto = {
-		idAreaConhecimento: Number(id),
-		areaConhecimento: $('#edit-nome').val()
+		idRaca: Number(id),
+		raca: $('#edit-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/areaConhecimento",
+		url: url_base + "/raca",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -125,11 +147,11 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		areaConhecimento: $('#cadastro-nome').val()
+		raca: $('#cadastro-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/areaConhecimento",
+		url: url_base + "/raca",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",

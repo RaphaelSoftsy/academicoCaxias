@@ -1,10 +1,10 @@
-var atos = [];
+var dados = [];
 var id = '';
 var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-
+var isAtivo = '';
 $(document).ready(function() {
 
 	getDados()
@@ -46,20 +46,20 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/esgotamentoSanitario",
+		url: url_base + "/cargoProfessor",
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
-			listarAtos(data);
+			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 }
 
-function listarAtos(atos) {
-	var html = atos.map(function(item) {
+function listarDados(dados) {
+	var html = dados.map(function(item) {
 
 		if (item.ativo == 'N') {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
@@ -71,15 +71,17 @@ function listarAtos(atos) {
 		return (
 			"<tr>" +
 			"<td>" +
-			item.esgotamentoSanitario +
+			item.cargoProfessor +
 			"</td>" +
 			"<td>" +
 			ativo +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idEsgotamentoSanitario +
+			item.idCargoProfessor +
 			'" data-nome="' +
-			item.esgotamentoSanitario +
+			item.cargoProfessor +
+			'" data-ativo="' +
+			item.ativo +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -88,16 +90,12 @@ function listarAtos(atos) {
 	$("#cola-tabela").html(html);
 }
 
-function showModal(ato) {
-	id = ato.getAttribute("data-id");
-	nome = ato.getAttribute("data-nome");
+function showModal(ref) {
+	id = ref.getAttribute("data-id");
+	nome = ref.getAttribute("data-nome");
+	isAtivo = ref.getAttribute("data-ativo");
 
-	$.ajax({
-		url: url_base + "/esgotamentoSanitario/" + id,
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		if (data.ativo == "S") {
+		if (isAtivo == "S") {
 			$(".ativar").hide();
 			$(".desativar").show()
 		}
@@ -105,19 +103,18 @@ function showModal(ato) {
 			$(".desativar").hide();
 			$(".ativar").show();
 		}
-	})
 
 	$('#edit-nome').val(nome);
 }
 
 function editar() {
 	var objeto = {
-		idEsgotamentoSanitario: Number(id),
-		esgotamentoSanitario: $('#edit-nome').val()
+		idCargoProfessor: Number(id),
+		cargoProfessor: $('#edit-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/esgotamentoSanitario",
+		url: url_base + "/cargoProfessor",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -150,11 +147,11 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		esgotamentoSanitario: $('#cadastro-nome').val()
+		cargoProfessor: $('#cadastro-nome').val()
 	}
 
 	$.ajax({
-		url: url_base + "/esgotamentoSanitario",
+		url: url_base + "/cargoProfessor",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",

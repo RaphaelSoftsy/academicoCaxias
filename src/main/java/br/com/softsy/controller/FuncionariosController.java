@@ -254,4 +254,26 @@ public class FuncionariosController {
  
 		return "preCadastros/instrPedagogico";
 	}
+	
+	@RequestMapping(value = { "raca" }, method = RequestMethod.GET)
+	public String raca(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/raca";
+	}
+	@RequestMapping(value = { "nacionalidade" }, method = RequestMethod.GET)
+	public String nacionalidade(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/nacionalidade";
+	}
+	@RequestMapping(value = { "nivel-escolaridade" }, method = RequestMethod.GET)
+	public String nivelEscolaridade(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/nivelEscolaridade";
+	}
+	
+	@RequestMapping(value = { "situacao-professor" }, method = RequestMethod.GET)
+	public String situacaoProfessor(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/situacaoProfessor";
+	}
 }
