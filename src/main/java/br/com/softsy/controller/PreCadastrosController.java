@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class FuncionariosController {
+public class PreCadastrosController {
 
 	@RequestMapping(value = { "cadastroFuncionario" }, method = RequestMethod.GET)
 	public String cadastroFuncionario(HttpSession session, Model model) throws Exception {
@@ -271,9 +271,81 @@ public class FuncionariosController {
 		return "preCadastros/nivelEscolaridade";
 	}
 	
+	@RequestMapping(value = { "tipo-profissional" }, method = RequestMethod.GET)
+	public String tipoProfissional(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/tipoProfissional";
+	}
+	
+	@RequestMapping(value = { "tipo-dependencia" }, method = RequestMethod.GET)
+	public String tipoDependencia(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/tipoDependencia";
+	}
+	
+	@RequestMapping(value = { "tipo-ensino-medio" }, method = RequestMethod.GET)
+	public String tipoEnsinoMedio(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/tipoEnsinoMedio";
+	}
+	
+	@RequestMapping(value = { "turno-professor" }, method = RequestMethod.GET)
+	public String turnoProfessor(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/turnoProfessor";
+	}
+	
+	@RequestMapping(value = { "tipo-atendimento" }, method = RequestMethod.GET)
+	public String tipoAtendimento(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/tipoAtendimento";
+	}
+	
+	@RequestMapping(value = { "tipo-medicao" }, method = RequestMethod.GET)
+	public String tipoMedicao(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/tipoMedicao";
+	}
+	
 	@RequestMapping(value = { "situacao-professor" }, method = RequestMethod.GET)
 	public String situacaoProfessor(HttpSession session, Model model) throws Exception {
  
 		return "preCadastros/situacaoProfessor";
+	}
+	
+	@RequestMapping(value = { "deficiencias" }, method = RequestMethod.GET)
+	public String deficiencia(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/deficiencia";
+	}
+	
+	@RequestMapping(value = { "equipamentos" }, method = RequestMethod.GET)
+	public String equipamento(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/equipamento";
+	}
+	
+	@RequestMapping(value = { "ufs" }, method = RequestMethod.GET)
+	public String uf(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/uf";
+	}
+	
+	@RequestMapping(value = { "municipios" }, method = RequestMethod.GET)
+	public String municipio(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/municipio";
+	}
+	
+	@RequestMapping(value = { "pais" }, method = RequestMethod.GET)
+	public String pais(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/pais";
+	}
+	
+	@RequestMapping(value = { "turnos" }, method = RequestMethod.GET)
+	public String turno(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/turno";
 	}
 }
