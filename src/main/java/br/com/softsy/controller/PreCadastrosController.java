@@ -337,7 +337,7 @@ public class PreCadastrosController {
 		return "preCadastros/municipio";
 	}
 	
-	@RequestMapping(value = { "pais" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "paises" }, method = RequestMethod.GET)
 	public String pais(HttpSession session, Model model) throws Exception {
  
 		return "preCadastros/pais";
