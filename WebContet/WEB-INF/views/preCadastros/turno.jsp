@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Municípios</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Turnos</span>
 				</div>
 			</div>
 		</section>
@@ -96,9 +96,10 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Município</th>
-						<th scope="col">UF</th>
-						<th scope="col">Código IBGE</th>
+						<th scope="col">Turno</th>
+						<th scope="col">Mnemonico</th>
+						<th scope="col">Horário de Início</th>
+						<th scope="col">Horário de Fim</th>
 						<th class='text-center' scope="col" width="10%"></th>
 					</tr>
 				</thead>
@@ -129,23 +130,27 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Município:</label> <input
-									type="text" class="form-control" 
-									id="cadastro-nome" required aria-describedby="Descricao"
-									autocomplete="off">
+								<label for="cadastro-nome" class="form-label">Turno:</label> <input
+									type="text" class="form-control" id="cadastro-nome" required
+									aria-describedby="Descricao" autocomplete="off">
+							</div>
+
+							<div class="mb-4">
+								<label for="cadastro-nome2" class="form-label">Mnemonico:</label>
+								<input type="text" class="form-control" id="cadastro-nome2"
+									required aria-describedby="Descricao 2" autocomplete="off">
 							</div>
 							<div class="mb-4">
-								<label for="selectCadastro" class="form-label">UF:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="selectCadastro"
-									id="selectCadastro" required name="selectCadastro">
-									<option selected disabled>Selecione a UF</option>
-								</select>
+								<label for="horaInicio" class="form-label">Horário
+									de Início:<span class="red">*</span>
+								</label> <input autocomplete="off" type="time" id="horaInicio"
+									name="horaInicio" class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="cadastro-nome2" class="form-label">Código IBGE:</label> <input type="text" class="form-control"
-									id="cadastro-nome2" required aria-describedby="Descricao 2"
-									autocomplete="off">
+								<label for="horaFim" class="form-label">Horário
+									de Fim:<span class="red">*</span>
+								</label> <input autocomplete="off" type="time" id="horaFim"
+									name="horaFim" class="form-control" />
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 
@@ -171,25 +176,30 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="edit-nome" class="form-label">Município:</label> <input
-									type="text" class="form-control" id="edit-nome"
-									required aria-describedby="Descricao" autocomplete="off">
+								<label for="edit-nome" class="form-label">Turno:</label> <input
+									type="text" class="form-control" id="edit-nome" required
+									aria-describedby="Descricao" autocomplete="off">
+							</div>
+
+							<div class="mb-4">
+								<label for="edit-nome2" class="form-label">Mnemonico:</label> <input
+									type="text" class="form-control" id="edit-nome2" required
+									aria-describedby="Descricao 2" autocomplete="off">
 							</div>
 							<div class="mb-4">
-								<label for="selectEdit" class="form-label">UF:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="selectEdit"
-									id="selectEdit" required name="selectEdit">
-									<option selected disabled>Selecione a UF</option>
-								</select>
+								<label for="horaInicioEdit" class="form-label">Horário
+									de Início:<span class="red">*</span>
+								</label> <input autocomplete="off" type="time" id="horaInicioEdit"
+									name="horaInicioEdit" class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="edit-nome2" class="form-label">Código IBGE:</label> <input type="text" class="form-control"
-									id="edit-nome2" required aria-describedby="Descricao 2"
-									autocomplete="off">
+								<label for="horaFimEdit" class="form-label">Horário de
+									Fim:<span class="red">*</span>
+								</label> <input autocomplete="off" type="time" id="horaFimEdit"
+									name="horaFimEdit" class="form-control" />
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='remover("municipio")'
+								<button type="button" onclick='remover("turno")'
 									class="btn btn-danger" data-bs-dismiss="modal">
 									Remover</button>
 								<button type="button" class="btn btn-secondary"
@@ -218,7 +228,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources/assets/js/municipio.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/turno.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
