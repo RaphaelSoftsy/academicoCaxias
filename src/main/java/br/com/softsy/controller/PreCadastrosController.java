@@ -38,8 +38,8 @@ public class PreCadastrosController {
 	
 	
 	
-	@RequestMapping(value = { "tipos-dependencias-adm", "tiposDependenciasAdm" }, method = RequestMethod.GET)
-	public String tiposDependenciasAdm(HttpSession session, Model model) throws Exception {
+	@RequestMapping(value = {"novaDependenciasAdm" }, method = RequestMethod.GET)
+	public String novaDependenciasAdm(HttpSession session, Model model) throws Exception {
 		/*if (session.getAttribute("loginFunc") == null) {
 			return "login/loginFuncionario";
 		}
@@ -51,6 +51,30 @@ public class PreCadastrosController {
 		return "preCadastros/dependenciaAdministrativa2";
 	}
 	
+	@RequestMapping(value = {"dependenciasAdm" }, method = RequestMethod.GET)
+	public String dependenciasAdm(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 *
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "preCadastros/dependenciasAdm";
+	}
+	@RequestMapping(value = {"editarDependenciaAdm" }, method = RequestMethod.GET)
+	public String editarDependenciaAdm(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 *
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "preCadastros/editarDependenciaAdministrativa2";
+	}
 	/*@RequestMapping(value = { "tipos-dependencias-adm", "tiposDependenciasAdm" }, method = RequestMethod.GET)
 	public String tiposDependenciasAdm(HttpSession session, Model model) throws Exception {
 		if (session.getAttribute("loginFunc") == null) {

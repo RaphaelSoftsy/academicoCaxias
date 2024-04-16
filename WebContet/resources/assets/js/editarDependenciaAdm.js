@@ -1,3 +1,44 @@
+var id = '';
+
+$(document).ready(function() {
+	id = getSearchParams("id");
+
+	getDados2()
+});
+
+function getDados2() {
+	$.ajax({
+		url: url_base + "/dependenciaAdministrativa/" + id,
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			const ref = data
+
+			$('#dependenciaAdministrativa').val(ref.dependenciaAdministrativa)
+			$('#cnpj').val(ref.cnpj)
+			$('#cep').val(ref.cep)
+			$('#endereco').val(ref.endereco)
+			$('#numero').val(ref.numero)
+			$('#bairro').val(ref.bairro)
+			$('#municipio').val(ref.municipio)
+			$('#uf').val(ref.uf)
+
+			if (data.ativo == "S") {
+				$(".ativar").hide();
+				$(".desativar").show()
+			}
+			else {
+				$(".desativar").hide();
+				$(".ativar").show();
+			}
+
+			$("#tipoDependencia").val(ref.tipoDependencia).attr('selected', true);
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+}
 function CnpjValido(cnpj) {
     cnpj = cnpj.replace(/[^\d]+/g, '');
 
@@ -63,15 +104,51 @@ $("#cep").blur(function() {
 	
 });
 
-
 $("#cnpj").blur(function() {
 	ValidarCnpj()
 });
+
+function desativar2(){
+	$.ajax({
+		url: url_base + `/dependenciaAdministrativa/${id}/desativar`,
+		type: "PUT",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			getDados2()
+			alert('Desativado com Sucesso!')
+		})
+	return false;
+}
+
+function ativar2(){
+	$.ajax({
+		url: url_base + `/dependenciaAdministrativa/${id}/ativar`,
+		type: "PUT",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e)
+			alert(e.responseJSON.message)
+		}
+	})
+		.done(function(data) {
+			getDados2()
+			alert('Ativado com Sucesso!')
+		})
+	return false;
+}
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
 
 	var dadosFormulario = {
+		idDependenciaAdministrativa: id,
 		dependenciaAdministrativa:$('#dependenciaAdministrativa').val(),
 		tipoDependencia: $('#tipoDependencia').val(),
 		cnpj:  $('#cnpj').val().replace(/[^\d]+/g, ''),
@@ -85,7 +162,7 @@ $("#formNovoCadastro").submit(function(e) {
 
 	$.ajax({
 		url: url_base + '/dependenciaAdministrativa',
-		type: "POST",
+		type: "PUT",
 		data: JSON.stringify(dadosFormulario),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
@@ -93,7 +170,7 @@ $("#formNovoCadastro").submit(function(e) {
 			alert(e.responseJSON.message)
 		}
 	}).done(function(data) {
-		alert('Cadastrado com sucesso!')
+		alert('Editado com sucesso!')
 		window.location.href = "dependenciasAdm";
 	});
 

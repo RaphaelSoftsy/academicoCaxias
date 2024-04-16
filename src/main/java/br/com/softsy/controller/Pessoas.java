@@ -19,11 +19,15 @@ public class Pessoas {
 		return "pessoas/novaPessoa";
 	}
 	
-	@RequestMapping(value = { "listaPessoa" }, method = RequestMethod.GET)
-	public String listaPessoa(HttpSession session, Model model) throws Exception {
+	@RequestMapping(value = { "listarPessoas" }, method = RequestMethod.GET)
+	public String listarPessoas(HttpSession session, Model model) throws Exception {
 		
-		return "pessoas/pessoa";
+		return "pessoas/pessoas";
 	}
 	
-	
+	@RequestMapping(value = { "editarPessoa" }, method = RequestMethod.GET)
+	public String editarPessoa(HttpSession session, Model model) throws Exception {
+		
+		return "pessoas/editarPessoa";
+	}
 }
