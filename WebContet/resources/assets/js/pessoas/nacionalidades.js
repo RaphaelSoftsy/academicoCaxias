@@ -4,27 +4,51 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-var isAtivo = '';
-var idSelect = '';
+var valor1 = '';
+var valor2 = '';
+var pessoas = '';
+
 $(document).ready(function() {
 
 	$.ajax({
-		url: url_base + '/dependenciaAdministrativa',
+		url: url_base + '/pessoas',
 		type: "get",
 		async: false,
 	}).done(function(data) {
+		pessoas = data
 		$.each(data, function(index, item) {
 			$('#selectCadastro').append($('<option>', {
-				value: item.idDependenciaAdministrativa,
-				text: item.dependenciaAdministrativa,
-				name: item.dependenciaAdministrativa
+				value: item.idPessoa,
+				text: item.nome,
+				name: item.nome
 			}));
 		});
 		$.each(data, function(index, item) {
 			$('#selectEdit').append($('<option>', {
-				value: item.idDependenciaAdministrativa,
-				text: item.dependenciaAdministrativa,
-				name: item.dependenciaAdministrativa
+				value: item.idPessoa,
+				text: item.nome,
+				name: item.nome
+			}));
+		});
+	})
+
+	$.ajax({
+		url: url_base + '/nacionalidade',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#selectCadastro2').append($('<option>', {
+				value: item.idNacionalidade,
+				text: item.nacionalidade,
+				name: item.nacionalidade
+			}));
+		});
+		$.each(data, function(index, item) {
+			$('#selectEdit2').append($('<option>', {
+				value: item.idNacionalidade,
+				text: item.nacionalidade,
+				name: item.nacionalidade
 			}));
 		});
 	})
@@ -68,7 +92,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/tipoProfissional",
+		url: url_base + "/pessoasNacionalidade",
 		type: "GET",
 		async: false,
 	})
@@ -83,32 +107,28 @@ function getDados() {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 
-		if (item.ativo == 'N') {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
+		var pessoa = pessoas.find(function(school) {
+			return school.idPessoa === item.pessoaId;
+		});
+
+		var nomePessoa = pessoa
+			? pessoa.nome
+			: "Pessoa não encontrada";
 
 		return (
 			"<tr>" +
 			"<td>" +
-			item.tipoProfissional +
+			nomePessoa +
 			"</td>" +
 			"<td>" +
-			item.dependenciaAdm.dependenciaAdministrativa +
-			"</td>" +
-			"<td>" +
-			ativo +
+			item.nacionalidade.nacionalidade +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idTipoProfissional +
+			item.idPessoaNacionalidade +
 			'" data-nome="' +
-			item.tipoProfissional +
-			'" data-idSelect="' +
-			item.dependenciaAdm.idDependenciaAdministrativa +
-			'" data-ativo="' +
-			item.ativo +
+			item.pessoaId +
+			'" data-nome2="' +
+			item.nacionalidade.idNacionalidade +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -119,32 +139,22 @@ function listarDados(dados) {
 
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
-	nome = ref.getAttribute("data-nome");
-	isAtivo = ref.getAttribute("data-ativo");
-	idSelect = ref.getAttribute("data-idSelect");
+	valor1 = ref.getAttribute("data-nome");
+	valor2 = ref.getAttribute("data-nome2");
 
-		if (isAtivo == "S") {
-			$(".ativar").hide();
-			$(".desativar").show()
-		}
-		else {
-			$(".desativar").hide();
-			$(".ativar").show();
-		}
-
-	$('#edit-nome').val(nome);
-	$("#selectEdit").val(idSelect).attr('selected', true);
+	$('#selectEdit').val(valor1);
+	$('#selectEdit2').val(valor2);
 }
 
 function editar() {
 	var objeto = {
-		idTipoProfissional: Number(id),
-		tipoProfissional: $('#edit-nome').val(),
-		dependenciaAdmId: $('#selectEdit').val(),
+		idPessoaNacionalidade: id,
+		pessoaId: $('#selectEdit').val(),
+		nacionalidadeId: $('#selectEdit2').val()
 	}
 
 	$.ajax({
-		url: url_base + "/tipoProfissional",
+		url: url_base + "/pessoasNacionalidade",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -155,7 +165,7 @@ function editar() {
 		}
 	})
 		.done(function(data) {
-			$('#edit-nome').val('');
+			$('#selectEdit2').val('');
 			$('#selectEdit').val('');
 			getDados();
 			showPage(currentPage);
@@ -178,12 +188,12 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		tipoProfissional: $('#cadastro-nome').val(),
-		dependenciaAdmId: $('#selectCadastro').val()
+		pessoaId: $('#selectCadastro').val(),
+		nacionalidadeId: $('#selectCadastro2').val()
 	}
 
 	$.ajax({
-		url: url_base + "/tipoProfissional",
+		url: url_base + "/pessoasNacionalidade",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -194,8 +204,8 @@ function cadastrar() {
 		}
 	})
 		.done(function(data) {
-			$('#cadastro-nome').val('');
-			$('#selectCadastro').val('');
+			$('#selectCadastro').val('')
+			$('#selectCadastro2').val('')
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -206,7 +216,6 @@ function cadastrar() {
 }
 
 function limpaCampo() {
-	$('#cadastro-nome').val('');
-	$('#selectCadastro').val('');
-	$('#edit-nome').val('');
+	$('#selectCadastro').val('')
+			$('#selectCadastro2').val('')
 }

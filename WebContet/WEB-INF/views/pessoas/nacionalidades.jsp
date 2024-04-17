@@ -76,7 +76,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         <div class="card">
           <div class="card-body title">
             <i class="fa-solid fa-cogs fa-lg"></i>
-            <span>Tipo Profissional</span>
+            <span>Pessoas Nacionalidades</span>
           </div>
         </div>
       </section>
@@ -113,9 +113,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th scope="col">Tipo Profissional</th>
-              <th scope="col">Dependência Administrativa</th>
-              <th scope="col">Ativo</th>
+              <th scope="col">Pessoa</th>
+              <th scope="col">Nacionalidade</th>
               <th class="text-center" scope="col" width="10%"></th>
             </tr>
           </thead>
@@ -154,21 +153,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formCadastro">
                 <div class="mb-4">
-                  <label for="nome" class="form-label"
-                    >Tipo Profissional:</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cadastro-nome"
-                    required
-                    aria-describedby="Descricao"
-                    autocomplete="off"
-                  />
-                </div>
-                <div class="mb-4">
                   <label for="selectCadastro" class="form-label"
-                    >Dependência Administrativa:<span class="red">*</span>
+                    >Pessoa:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
@@ -176,6 +162,22 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     id="selectCadastro"
                     required
                     name="selectCadastro"
+                  >
+                    <option selected disabled value="">
+                      Selecione uma opção
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label for="selectCadastro2" class="form-label"
+                    >Nacionalidade:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="selectCadastro2"
+                    id="selectCadastro2"
+                    required
+                    name="selectCadastro2"
                   >
                     <option selected disabled value="">
                       Selecione uma opção
@@ -224,50 +226,41 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="nome" class="form-label"
-                    >Tipo Profissional:</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="edit-nome"
-                    required
-                    aria-describedby="atoRegulatorio"
-                    autocomplete="off"
-                  />
-                </div>
-                <div class="mb-4">
-                  <label for="selectEdit" class="form-label"
-                    >Dependência Administrativa:<span class="red">*</span>
+                  <label for="selectCadastro" class="form-label"
+                    >Pessoa:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="selectEdit"
+                    aria-label="selectCadastro"
                     id="selectEdit"
                     required
                     name="selectEdit"
                   >
-                    <option selected disabled value="">
-                      Selecione uma opção
-                    </option>
+                    <option selected disabled>Selecione uma opção</option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label for="selectEdit2" class="form-label"
+                    >Nacionalidade:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="selectEdit2"
+                    id="selectEdit2"
+                    required
+                    name="selectEdit2"
+                  >
+                    <option selected disabled>Selecione uma opção</option>
                   </select>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='ativar("tipoProfissional")'
-                    class="ativar btn btn-secondary"
+                    onclick='remover("pessoasNacionalidade")'
+                    class="btn btn-danger"
                     data-bs-dismiss="modal"
                   >
-                    Ativar
-                  </button>
-                  <button
-                    type="button"
-                    onclick='desativar("tipoProfissional")'
-                    class="desativar btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Desativar
+                    Remover
                   </button>
                   <button
                     type="button"
@@ -308,7 +301,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="<%=contextPath%>/resources/assets/js/tipoProfissional.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/pessoas/nacionalidades.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>

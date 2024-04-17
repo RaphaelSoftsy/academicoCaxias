@@ -30,4 +30,10 @@ public class Pessoas {
 		
 		return "pessoas/editarPessoa";
 	}
+
+		@RequestMapping(value = { "pessoas-nacionalidades" }, method = RequestMethod.GET)
+	public String pessoasNacionalidades(HttpSession session, Model model) throws Exception {
+		
+		return "pessoas/nacionalidades";
+	}
 }
