@@ -48,5 +48,11 @@ public class Turmas {
 		
 		return "turmas/diasSemana";
 	}
+
+	@RequestMapping(value = { "turmas-professores" }, method = RequestMethod.GET)
+	public String turmasProfessores(HttpSession session, Model model) throws Exception {
+		
+		return "turmas/professores";
+	}
 	
 }
