@@ -75,8 +75,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-bars-staggered fa-lg"></i>
-            <span>Professores</span>
+            <i class="fa-solid fa-chalkboard-user fa-lg"></i>
+            <span>Professor Escola</span>
           </div>
         </div>
       </section>
@@ -117,7 +117,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <th
                 scope="col"
                 class="sortable border-end"
-                data-column="turmaDisciplina"
+                data-column="professorId"
               >
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
@@ -125,7 +125,44 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Disciplina</span>
+                    <span>Professor</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                  <div class="dropdown-form">
+                    <div class="dropdown-toggle-form" id="dropdownButton0">
+                      <i class="fas fa-search" style="color: #dddddd"></i>
+                    </div>
+                    <div
+                      class="dropdown-content-form rounded-3 dropdown-content-left"
+                      id="dropdownContent0"
+                    >
+                      <input
+                        type="text"
+                        class="form-control mb-3 searchInput"
+                        placeholder="Digite o nome aqui..."
+                      />
+                      <button
+                        class="btn btn-sm col-12 btn-success searchButton"
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </th>
+
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="escolaId"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Escola</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
@@ -139,7 +176,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                       <input
                         type="text"
                         class="form-control mb-3 searchInput"
-                        placeholder="Digite aqui..."
+                        placeholder="Digite o nome da escola"
                       />
                       <button
                         class="btn btn-sm col-12 btn-success searchButton"
@@ -150,10 +187,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </div>
                 </div>
               </th>
+
               <th
                 scope="col"
                 class="sortable border-end"
-                data-column="professorId"
+                data-column="turnoProfessor"
               >
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
@@ -161,21 +199,55 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Professor</span>
+                    <span>Turno</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                </div>
+              </th>
+
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="cargoProfessor"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Cargo</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                </div>
+              </th>
+
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="dtNomenclatura"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Data de Nomenclatura</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
-                    <div class="dropdown-toggle-form" id="dropdownButton2">
+                    <div class="dropdown-toggle-form" id="dropdownButton3">
                       <i class="fas fa-search" style="color: #dddddd"></i>
                     </div>
                     <div
                       class="dropdown-content-form rounded-3 dropdown-content-left"
-                      id="dropdownContent2"
+                      id="dropdownContent3"
                     >
                       <input
-                        type="text"
+                        max="2999-01-01"
+                        type="date"
                         class="form-control mb-3 searchInput"
-                        placeholder="Digite aqui..."
                       />
                       <button
                         class="btn btn-sm col-12 btn-success searchButton"
@@ -186,37 +258,13 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </div>
                 </div>
               </th>
+
               <th
                 scope="col"
-                class="sortable border-end"
-                data-column="tipoProfessor"
+                class="border-end pe-2 th-sem-filtro"
+                data-column="anexo"
               >
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Tipo professor</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                </div>
-              </th>
-              <th
-                scope="col"
-                class="sortable border-end"
-                data-column="tipoVaga"
-              >
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Tipo vaga</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                </div>
+                Ativo
               </th>
               <th
                 scope="col"
@@ -262,69 +310,86 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formCadastro">
                 <div class="mb-4">
-                  <label for="turmaDisciplinaId" class="form-label"
-                    >Disciplina:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Disciplina"
-                    id="turmaDisciplinaId"
-                    required
-                    name="turmaDisciplinaId"
-                  >
-                    <option selected disabled value="">
-                      Selecione a disciplina
-                    </option>
-                  </select>
-                </div>
-                <div class="mb-4">
                   <label for="professorId" class="form-label"
                     >Professor:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Professor"
+                    aria-label="Escola"
                     id="professorId"
                     required
                     name="professorId"
                   >
-                    <option selected value="" disabled>
+                    <option selected disabled value="">
                       Selecione o professor
                     </option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="tipoProfessor" class="form-label"
-                    >Tipo professor:<span class="red">*</span>
+                  <label for="escolaId" class="form-label"
+                    >Escola:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Tipo professor"
-                    id="tipoProfessor"
+                    aria-label="Escola"
+                    id="escolaId"
                     required
-                    name="tipoProfessor"
+                    name="escolaId"
                   >
-                    <option selected value="" disabled>Selecione o tipo</option>
-                    <option  value="A" >Assistente</option>
-                    <option  value="T" >Titular</option>
+                    <option selected disabled value="">
+                      Selecione a escola
+                    </option>
                   </select>
                 </div>
+
                 <div class="mb-4">
-                  <label for="tipoVaga" class="form-label"
-                    >Tipo vaga:<span class="red">*</span>
+                  <label for="turnoProfessorId" class="form-label"
+                    >Turno:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Tipo vaga"
-                    id="tipoVaga"
+                    aria-label="Escola"
+                    id="turnoProfessorId"
                     required
-                    name="tipoVaga"
+                    name="turnoProfessorId"
                   >
-                    <option selected value="" disabled>Selecione o tipo</option>
-                    <option  value="F" >Fixo</option>
-                    <option  value="T" >Temporário</option>
+                    <option selected disabled value="">
+                      Selecione uma opção
+                    </option>
                   </select>
                 </div>
+
+                <div class="mb-4">
+                  <label for="cargoProfessorId" class="form-label"
+                    >Cargo:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Escola"
+                    id="cargoProfessorId"
+                    required
+                    name="cargoProfessorId"
+                  >
+                    <option selected disabled value="">
+                      Selecione uma opção
+                    </option>
+                  </select>
+                </div>
+
+                <div class="mb-4">
+                  <label for="dtNomenclatura" class="form-label"
+                    >Data de Nomenclatura:<span class="red">*</span>
+                  </label>
+                  <input
+                    max="2999-01-01"
+                    autocomplete="off"
+                    type="date"
+                    id="dtNomenclatura"
+                    name="dtNomenclatura"
+                    class="form-control"
+                  />
+                </div>
+
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
@@ -336,7 +401,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <button
                     type="submit"
                     data-bs-dismiss="modal"
-                    class="btn btn-primary"
+                    class="btn btn-primary px-4"
                   >
                     Salvar
                   </button>
@@ -346,6 +411,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </div>
         </div>
       </div>
+
+      <!-- modal edit -->
       <div
         class="modal fade"
         id="editItem"
@@ -367,77 +434,103 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="turmaDisciplinaIdEdit" class="form-label"
-                    >Disciplina:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Disciplina"
-                    id="turmaDisciplinaIdEdit"
-                    required
-                    name="turmaDisciplinaIdEdit"
-                  >
-                    <option selected disabled value="">
-                      Selecione a disciplina
-                    </option>
-                  </select>
-                </div>
-                <div class="mb-4">
                   <label for="professorIdEdit" class="form-label"
                     >Professor:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Professor"
+                    aria-label="Escola"
                     id="professorIdEdit"
                     required
                     name="professorIdEdit"
                   >
-                    <option selected value="" disabled>
+                    <option selected disabled value="">
                       Selecione o professor
                     </option>
                   </select>
                 </div>
+
                 <div class="mb-4">
-                  <label for="tipoProfessorEdit" class="form-label"
-                    >Tipo professor:<span class="red">*</span>
+                  <label for="escolaIdEdit" class="form-label"
+                    >Escola:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Tipo professor"
-                    id="tipoProfessorEdit"
+                    aria-label="Escola"
+                    id="escolaIdEdit"
                     required
-                    name="tipoProfessorEdit"
+                    name="escolaIdEdit"
                   >
-                    <option selected value="" disabled>Selecione o tipo</option>
-                    <option  value="A" >Assistente</option>
-                    <option  value="T" >Titular</option>
+                    <option selected disabled value="">
+                      Selecione a escola
+                    </option>
                   </select>
                 </div>
+
                 <div class="mb-4">
-                  <label for="tipoVagaEdit" class="form-label"
-                    >Tipo vaga:<span class="red">*</span>
+                  <label for="turnoProfessorIdEdit" class="form-label"
+                    >Turno:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Tipo vaga"
-                    id="tipoVagaEdit"
+                    aria-label="Escola"
+                    id="turnoProfessorIdEdit"
                     required
-                    name="tipoVagaEdit"
+                    name="turnoProfessorIdEdit"
                   >
-                    <option selected value="" disabled>Selecione o tipo</option>
-                    <option  value="A">Opção A</option>
-                    <option  value="B">Opção B</option>
+                    <option selected disabled value="">
+                      Selecione uma opção
+                    </option>
                   </select>
                 </div>
+
+                <div class="mb-4">
+                  <label for="cargoProfessorIdEdit" class="form-label"
+                    >Cargo:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Escola"
+                    id="cargoProfessorIdEdit"
+                    required
+                    name="cargoProfessorIdEdit"
+                  >
+                    <option selected disabled value="">
+                      Selecione uma opção
+                    </option>
+                  </select>
+                </div>
+
+                <div class="mb-4">
+                  <label for="dtNomenclaturaEdit" class="form-label"
+                    >Data de Nomenclatura:<span class="red">*</span>
+                  </label>
+                  <input
+                    max="2999-01-01"
+                    autocomplete="off"
+                    type="date"
+                    id="dtNomenclaturaEdit"
+                    name="dtNomenclaturaEdit"
+                    class="form-control"
+                  />
+                </div>
+
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='remover("turmaProfessor")'
-                    class="ativar btn btn-danger"
+                    onclick='ativar("professorEscola")'
+                    class="ativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
-                    Remover
+                    Ativar
+                  </button>
+                  <button
+                    type="button"
+                    onclick='desativar("professorEscola")'
+                    class="desativar btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Desativar
                   </button>
                   <button
                     type="button"
@@ -480,7 +573,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="<%=contextPath%>/resources/assets/js/turmas/professores.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/professores/escola.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>

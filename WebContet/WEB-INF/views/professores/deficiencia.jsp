@@ -75,8 +75,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-people-group fa-lg"></i>
-            <span>Pessoas Nacionalidades</span>
+            <i class="fa-solid fa-chalkboard-user fa-lg"></i>
+            <span>Professor Deficiência</span>
           </div>
         </div>
       </section>
@@ -113,8 +113,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th scope="col">Pessoa</th>
-              <th scope="col">Nacionalidade</th>
+              <th scope="col">Professor</th>
+              <th scope="col">Deficiência</th>
               <th class="text-center" scope="col" width="10%"></th>
             </tr>
           </thead>
@@ -154,7 +154,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <form id="formCadastro">
                 <div class="mb-4">
                   <label for="selectCadastro" class="form-label"
-                    >Pessoa:<span class="red">*</span>
+                    >Professor:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
@@ -170,7 +170,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 </div>
                 <div class="mb-4">
                   <label for="selectCadastro2" class="form-label"
-                    >Nacionalidade:<span class="red">*</span>
+                    >Deficiência:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
@@ -226,12 +226,12 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="selectCadastro" class="form-label"
-                    >Pessoa:<span class="red">*</span>
+                  <label for="selectEdit" class="form-label"
+                    >Professor:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="selectCadastro"
+                    aria-label="selectEdit"
                     id="selectEdit"
                     required
                     name="selectEdit"
@@ -241,7 +241,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 </div>
                 <div class="mb-4">
                   <label for="selectEdit2" class="form-label"
-                    >Nacionalidade:<span class="red">*</span>
+                    >Deficiência:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
@@ -256,7 +256,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='remover("pessoasNacionalidade")'
+                    onclick='remover("professoresDeficiencia")'
                     class="btn btn-danger"
                     data-bs-dismiss="modal"
                   >
@@ -301,7 +301,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="<%=contextPath%>/resources/assets/js/pessoas/nacionalidades.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/professores/deficiencia.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>
