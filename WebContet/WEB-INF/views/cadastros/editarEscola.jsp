@@ -469,9 +469,9 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="col-md-6">
 						<button type="button" onclick='ativar("escolas")'
-							class="ativar btn btn-secondary mt-5" data-bs-dismiss="modal">Ativar</button>
+							class="ativar btn btn-secondary mt-5">Ativar</button>
 						<button type="button" onclick='desativar("escolas")'
-							class="desativar btn btn-secondary mt-5" data-bs-dismiss="modal">Desativar</button>
+							class="desativar btn btn-secondary mt-5">Desativar</button>
 					</div>
 
 				</div>

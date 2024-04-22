@@ -13,6 +13,10 @@ body {
 	font-size: 18px;
 	
 }
+
+.mt2 {
+  margin-top: 2rem;
+}
 .abracaMenu .menu {
   width: 100%;
 }

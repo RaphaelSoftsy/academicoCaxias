@@ -288,6 +288,14 @@ $("#limpa-filtros").click(function () {
   listarDados(dadosOriginais);
   $(".searchInput").val("");
 });
+function intParaData(intData) {
+  const dataString = intData.toString();
+  const ano = dataString.slice(0, 4);
+  const mes = dataString.slice(4, 6);
+  const dia = dataString.slice(6, 8);
+
+  return ano + "-" + mes + "-" + dia;
+}
 
 function getDados() {
   $.ajax({
@@ -305,12 +313,27 @@ function getDados() {
     });
 }
 
+// Formatar data
 function formatarDataParaBR(data) {
-  var dataObj = new Date(data);
-  var dia = String(dataObj.getDate()).padStart(2, "0");
-  var mes = String(dataObj.getMonth() + 1).padStart(2, "0");
-  var ano = dataObj.getFullYear();
+  var partesData = data.split("-");
+  
+  var dataObj = new Date(Date.UTC(
+    parseInt(partesData[0]),
+    parseInt(partesData[1]) - 1,
+    parseInt(partesData[2])
+  ));
+
+  var dia = String(dataObj.getUTCDate()).padStart(2, "0");
+  var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
+  var ano = dataObj.getUTCFullYear();
+  
   return dia + "/" + mes + "/" + ano;
+}
+
+
+function dataParaInt(data) {
+  const [ano, mes, dia] = data.split("-");
+  return parseInt(ano + mes + dia);
 }
 
 function listarDados(dados) {
@@ -338,6 +361,9 @@ function listarDados(dados) {
           "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
       }
 
+      var dataApi = intParaData(item.dtNomenclatura);
+      var dataBR = formatarDataParaBR(dataApi);
+
       return (
         "<tr>" +
         "<td>" +
@@ -353,7 +379,7 @@ function listarDados(dados) {
         item.cargoProfessor.cargoProfessor +
         "</td>" +
         "<td>" +
-        formatarDataParaBR(item.dtNomenclatura) +
+        dataBR +
         "</td>" +
         "<td>" +
         ativo +
@@ -381,18 +407,6 @@ $("#exportar-excel").click(function () {
 
   XLSX.writeFile(livro, "professoresEscola.xlsx");
 });
-
-// Formatar data
-
-function formatarDataParaAPI(data) {
-  var year = data.getFullYear();
-  var month = ("0" + (data.getMonth() + 1)).slice(-2);
-  var day = ("0" + data.getDate()).slice(-2);
-
-  var hora = "23:59:59";
-
-  return year + "-" + month + "-" + day + "T" + hora;
-}
 
 // Abrir modal
 
@@ -434,11 +448,8 @@ function showModal(ref) {
 // Editar
 
 function editar() {
-  // var dataInputEdit = $("#dtNomenclaturaEdit").val();
-
-  // var dtFormatEdit = new Date(dataInputEdit);
-
-  // var dtFormatadaEdit = formatarDataParaAPI(dtFormatEdit);
+  var dataInputEdit = $("#dtNomenclaturaEdit").val();
+  var dataIntEdit = dataParaInt(dataInputEdit);
 
   var objeto = {
     idProfessorEscola: id,
@@ -446,7 +457,7 @@ function editar() {
     escolaId: $("#escolaIdEdit").val(),
     turnoProfessorId: Number($("#turnoProfessorIdEdit").val()),
     cargoProfessorId: Number($("#cargoProfessorIdEdit").val()),
-    dtNomenclatura: $("#dtNomenclaturaEdit").val(),
+    dtNomenclatura: dataIntEdit,
   };
 
   $.ajax({
@@ -483,17 +494,15 @@ $("#formEdit").on("submit", function (e) {
 // Cadastrar
 
 function cadastrar() {
-  // var dataInput = $("#dtNomenclatura").val();
-  // var dataIniFormat = new Date(dataInput);
-
-  // var dtFormatada = formatarDataParaAPI(dataIniFormat);
+  var dataInput = $("#dtNomenclatura").val();
+  var dataInt = dataParaInt(dataInput);
 
   var objeto = {
     professorId: Number($("#professorId").val()),
     escolaId: $("#escolaId").val(),
     turnoProfessorId: Number($("#turnoProfessorId").val()),
     cargoProfessorId: Number($("#cargoProfessorId").val()),
-    dtNomenclatura: $("#dtNomenclatura").val(),
+    dtNomenclatura: dataInt,
   };
 
   $.ajax({
