@@ -162,7 +162,7 @@ String contextPath = request.getContextPath();
 							Atendimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="tipoAtendimentoId"
 							id="tipoAtendimentoId" required name="tipoAtendimentoId">
-							<option value='' selected disabled>Selecione o Tipo</option>
+							<option value='' 	elected disabled>Selecione o Tipo</option>
 						</select>
 					</div>
 					<div class="col-md-6">

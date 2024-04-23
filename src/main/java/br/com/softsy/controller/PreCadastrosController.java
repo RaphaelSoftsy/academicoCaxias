@@ -387,4 +387,10 @@ public class PreCadastrosController {
  
 		return "preCadastros/turno";
 	}
+
+	@RequestMapping(value = { "periodo-letivo" }, method = RequestMethod.GET)
+	public String periodoLetivo(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/periodoLetivo";
+	}
 }

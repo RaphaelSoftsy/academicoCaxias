@@ -54,5 +54,23 @@ public class Turmas {
 		
 		return "turmas/professores";
 	}
+
+	@RequestMapping(value = { "turmas-disciplina" }, method = RequestMethod.GET)
+	public String turmasDisciplina(HttpSession session, Model model) throws Exception {
+		
+		return "turmas/disciplina";
+	}
+
+	@RequestMapping(value = { "turmas-nova-disciplina" }, method = RequestMethod.GET)
+	public String turmasNovaDisciplina(HttpSession session, Model model) throws Exception {
+		
+		return "turmas/novaDisciplina";
+	}
+
+	@RequestMapping(value = { "turmas-editar-disciplina" }, method = RequestMethod.GET)
+	public String turmasEditarDisciplina(HttpSession session, Model model) throws Exception {
+		
+		return "turmas/editarDisciplina";
+	}
 	
 }

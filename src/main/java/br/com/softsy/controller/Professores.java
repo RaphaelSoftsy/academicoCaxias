@@ -18,6 +18,12 @@ public class Professores {
 		
 		return "professores/deficiencia";
 	}
+
+	@RequestMapping(value = { "professores-disciplina" }, method = RequestMethod.GET)
+	public String professoresDisciplina(HttpSession session, Model model) throws Exception {
+		
+		return "professores/disciplina";
+	}
 	
 	@RequestMapping(value = { "professores-escola" }, method = RequestMethod.GET)
 	public String professoresEscola(HttpSession session, Model model) throws Exception {

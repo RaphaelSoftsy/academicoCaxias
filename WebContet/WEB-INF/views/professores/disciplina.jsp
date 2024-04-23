@@ -75,8 +75,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-cogs fa-lg"></i>
-            <span>Modalidade Escolar</span>
+            <i class="fa-solid fa-chalkboard-user fa-lg"></i>
+            <span>Professor Disciplina</span>
           </div>
         </div>
       </section>
@@ -113,10 +113,10 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th scope="col">Modalidade Escolar</th>
-              <th scope="col">Dependência Administrativa</th>
+              <th scope="col">Professor</th>
+              <th scope="col">Disciplina</th>
               <th scope="col">Ativo</th>
-              <th class="text-center" scope="col" width="10%"></th>
+              <th class="text-center" scope="col" width="10%">Ações</th>
             </tr>
           </thead>
           <tbody id="cola-tabela" class="table-group-divider"></tbody>
@@ -154,30 +154,33 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formCadastro">
                 <div class="mb-4">
-                  <label for="nome" class="form-label"
-                    >Modalidade Escolar:</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cadastro-nome"
-                    required
-                    aria-describedby="atoRegulatorio"
-                    autocomplete="off"
-                  />
-                </div>
-                <div class="mb-4">
-                  <label for="dependenciaAdmId" class="form-label"
-                    >Dependência administrativa:<span class="red">*</span>
+                  <label for="selectCadastro" class="form-label"
+                    >Professor:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Dependência Administrativa"
-                    id="dependenciaAdmId"
+                    aria-label="selectCadastro"
+                    id="selectCadastro"
                     required
-                    name="dependenciaAdmId"
+                    name="selectCadastro"
                   >
-                    <option value="" selected disabled>
+                    <option selected disabled value="">
+                      Selecione uma opção
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label for="selectCadastro2" class="form-label"
+                    >Disciplina:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="selectCadastro2"
+                    id="selectCadastro2"
+                    required
+                    name="selectCadastro2"
+                  >
+                    <option selected disabled value="">
                       Selecione uma opção
                     </option>
                   </select>
@@ -224,38 +227,37 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="nome" class="form-label"
-                    >Modalidade Escolar:</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="edit-nome"
-                    required
-                    aria-describedby="atoRegulatorio"
-                    autocomplete="off"
-                  />
-                </div>
-                <div class="mb-4">
-                  <label for="dependenciaAdmIdEdit" class="form-label"
-                    >Dependência administrativa:<span class="red">*</span>
+                  <label for="selectEdit" class="form-label"
+                    >Professor:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Dependência Administrativa"
-                    id="dependenciaAdmIdEdit"
+                    aria-label="selectEdit"
+                    id="selectEdit"
                     required
-                    name="dependenciaAdmIdEdit"
+                    name="selectEdit"
                   >
-                    <option value="" selected disabled>
-                      Selecione uma opção
-                    </option>
+                    <option selected disabled>Selecione uma opção</option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label for="selectEdit2" class="form-label"
+                    >Disciplina:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="selectEdit2"
+                    id="selectEdit2"
+                    required
+                    name="selectEdit2"
+                  >
+                    <option selected disabled>Selecione uma opção</option>
                   </select>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='ativar("modalidadeEscola")'
+                    onclick='ativar("professorDisciplina")'
                     class="ativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
@@ -263,7 +265,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </button>
                   <button
                     type="button"
-                    onclick='desativar("modalidadeEscola")'
+                    onclick='desativar("professorDisciplina")'
                     class="desativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
@@ -307,8 +309,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-    <script src="<%=contextPath%>/resources/assets/js/modalidadeEscolar.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/professores/disciplina.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>

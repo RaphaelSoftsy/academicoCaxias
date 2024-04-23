@@ -220,22 +220,7 @@ String contextPath = request.getContextPath();
 									<span>Ano de Ciclo</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton6">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent6">
-										<select class="form-select mb-3 searchInput"
-											aria-label="Ano Ciclo" id="anoCicloSearch" required
-											name="anoCicloSearch">
-											<option value='' selected disabled>Selecione o Ano</option>
-											
-										</select>
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
-									</div>
-								</div>
+								
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"

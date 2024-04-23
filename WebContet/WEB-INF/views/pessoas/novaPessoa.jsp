@@ -75,7 +75,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-people-group fa-lg"></i
+            <i class="fa-solid fa-plus fa-lg"></i
             ><span>Novo Cadastro</span>
           </div>
         </div>

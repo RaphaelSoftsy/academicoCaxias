@@ -1,33 +1,63 @@
-var atos = [];
+var dados = [];
 var id = "";
 var nome = "";
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-var idSelect = "";
-var isAtivo = "";
+var valor1 = "";
+var valor2 = "";
+var professores = [];
+var disciplinas = [];
+var isAtivo = ''
 
 $(document).ready(function () {
   $.ajax({
-    url: url_base + "/dependenciaAdministrativa",
+    url: url_base + "/professores",
     type: "get",
     async: false,
   }).done(function (data) {
+    professores = data;
     $.each(data, function (index, item) {
-      $("#dependenciaAdmId").append(
+      $("#selectCadastro").append(
         $("<option>", {
-          value: item.idDependenciaAdministrativa,
-          text: item.dependenciaAdministrativa,
-          name: item.dependenciaAdministrativa,
+          value: item.idProfessor,
+          text: item.pessoa.nome,
+          name: item.pessoa.nome,
         })
       );
     });
     $.each(data, function (index, item) {
-      $("#dependenciaAdmIdEdit").append(
+      $("#selectEdit").append(
         $("<option>", {
-          value: item.idDependenciaAdministrativa,
-          text: item.dependenciaAdministrativa,
-          name: item.dependenciaAdministrativa,
+          value: item.idProfessor,
+          text: item.pessoa.nome,
+          name: item.pessoa.nome,
+        })
+      );
+    });
+  });
+
+  $.ajax({
+    url: url_base + "/disciplina",
+    type: "get",
+    async: false,
+  }).done(function (data) {
+    disciplinas = data;
+    $.each(data, function (index, item) {
+      $("#selectCadastro2").append(
+        $("<option>", {
+          value: item.idDisciplina,
+          text: item.nome,
+          name: item.nome,
+        })
+      );
+    });
+    $.each(data, function (index, item) {
+      $("#selectEdit2").append(
+        $("<option>", {
+          value: item.idDisciplina,
+          text: item.nome,
+          name: item.nome,
         })
       );
     });
@@ -75,21 +105,33 @@ $(document).ready(function () {
 
 function getDados() {
   $.ajax({
-    url: url_base + "/marcaEquipamento",
+    url: url_base + "/professorDisciplina",
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      listarAtos(data);
+      listarDados(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 }
 
-function listarAtos(atos) {
-  var html = atos
+function listarDados(dados) {
+  var html = dados
     .map(function (item) {
+      var professor = professores.find(function (school) {
+        return school.idProfessor === item.professorId;
+      });
+
+      var nome = professor ? professor.pessoa.nome : "professor não encontrado";
+
+      var disciplina = disciplinas.find(function (school) {
+        return school.idDisciplina === item.disciplinaId;
+      });
+
+      var nome2 = disciplina ? disciplina.nome : "Disciplina não encontrada";
+
       if (item.ativo == "N") {
         ativo =
           '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
@@ -97,25 +139,26 @@ function listarAtos(atos) {
         ativo =
           "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
       }
+
       return (
         "<tr>" +
         "<td>" +
-        item.marcaEquipamento +
+        nome +
         "</td>" +
         "<td>" +
-        item.dependenciaAdm.dependenciaAdministrativa +
+        nome2 +
         "</td>" +
         "<td>" +
         ativo +
         "</td>" +
         '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-        item.idMarcaEquipamento +
+        item.idProfessorDisciplina +
         '" data-nome="' +
-        item.marcaEquipamento +
+        item.professorId +
+        '" data-nome2="' +
+        item.disciplinaId +
         '" data-ativo="' +
         item.ativo +
-        '" data-idSelect="' +
-        item.dependenciaAdm.idDependenciaAdministrativa +
         '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
         "</tr>"
       );
@@ -127,8 +170,9 @@ function listarAtos(atos) {
 
 function showModal(ref) {
   id = ref.getAttribute("data-id");
-  nome = ref.getAttribute("data-nome");
-  idSelect = ref.getAttribute("data-idSelect");
+  valor1 = ref.getAttribute("data-nome");
+  valor2 = ref.getAttribute("data-nome2");
+
   isAtivo = ref.getAttribute("data-ativo");
 
   if (isAtivo == "S") {
@@ -139,19 +183,19 @@ function showModal(ref) {
     $(".ativar").show();
   }
 
-  $("#dependenciaAdmIdEdit").val(idSelect).attr("selected", true);
-  $("#edit-nome").val(nome);
+  $("#selectEdit").val(valor1).attr("selected", true);
+  $("#selectEdit2").val(valor2).attr("selected", true);
 }
 
 function editar() {
   var objeto = {
-    idMarcaEquipamento: Number(id),
-    marcaEquipamento: $("#edit-nome").val(),
-    dependenciaAdmId: $("#dependenciaAdmIdEdit").val(),
+    idProfessorDisciplina: id,
+    professorId: $("#selectEdit").val(),
+    disciplinaId: $("#selectEdit2").val(),
   };
 
   $.ajax({
-    url: url_base + "/marcaEquipamento",
+    url: url_base + "/professorDisciplina",
     type: "PUT",
     data: JSON.stringify(objeto),
     contentType: "application/json; charset=utf-8",
@@ -161,9 +205,11 @@ function editar() {
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    $("#edit-nome").val("");
-    $("#dependenciaAdmIdEdit").val("");
+    $("#selectEdit2").val("");
+    $("#selectEdit").val("");
     getDados();
+    showPage(currentPage);
+    updatePagination();
     alert("Editado com Sucesso!");
   });
   return false;
@@ -181,12 +227,12 @@ $("#formCadastro").on("submit", function (e) {
 
 function cadastrar() {
   var objeto = {
-    marcaEquipamento: $("#cadastro-nome").val(),
-    dependenciaAdmId: $("#dependenciaAdmId").val(),
+    professorId: $("#selectCadastro").val(),
+    disciplinaId: $("#selectCadastro2").val(),
   };
 
   $.ajax({
-    url: url_base + "/marcaEquipamento",
+    url: url_base + "/professorDisciplina",
     type: "POST",
     data: JSON.stringify(objeto),
     contentType: "application/json; charset=utf-8",
@@ -196,9 +242,11 @@ function cadastrar() {
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    $("#cadastro-nome").val("");
-    $("#dependenciaAdmId").val("");
+    $("#selectCadastro").val("");
+    $("#selectCadastro2").val("");
     getDados();
+    showPage(currentPage);
+    updatePagination();
     showPage(currentPage);
     alert("Cadastrado com Sucesso!");
   });
@@ -206,6 +254,6 @@ function cadastrar() {
 }
 
 function limpaCampo() {
-  $("#cadastro-nome").val("");
-  $("#dependenciaAdmId").val("");
+  $("#selectCadastro").val("");
+  $("#selectCadastro2").val("");
 }
