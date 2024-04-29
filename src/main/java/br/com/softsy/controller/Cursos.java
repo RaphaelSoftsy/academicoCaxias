@@ -30,5 +30,11 @@ public class Cursos {
 		
 		return "cursos/gradeCurricular";
 	}
+
+			@RequestMapping(value = { "curriculos" }, method = RequestMethod.GET)
+	public String curriculos(HttpSession session, Model model) throws Exception {
+		
+		return "cursos/curriculos";
+	}
 	
 }

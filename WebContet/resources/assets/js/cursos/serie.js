@@ -186,7 +186,7 @@ function listarDados(dados) {
           "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
       }
 
-      var nome = curso ? curso.nome : "Escola não encontrada";
+      var nome = curso ? curso.nome : "Curso não encontrado";
 
       return (
         "<tr>" +

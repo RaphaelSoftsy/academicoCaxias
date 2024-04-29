@@ -18,6 +18,7 @@ $(document).ready(function () {
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
+
   getDados();
 
   // Dropdown de Pesquisa
@@ -30,13 +31,7 @@ $(document).ready(function () {
     var columnToSearch = $(this).closest(".sortable").data("column");
     var filteredData;
 
-    if (columnToSearch === "provedorInternet") {
-      filteredData = dadosOriginais.filter(function (item) {
-        return item.provedorInternet.provedorInternet
-          .toLowerCase()
-          .includes(searchInput);
-      });
-    } else if (columnToSearch === "escolaId") {
+    if (columnToSearch === "escolaId") {
       filteredData = dadosOriginais.filter(function (item) {
         var escola = escolas.find(function (school) {
           return school.idEscola === item.escolaId;
@@ -96,15 +91,7 @@ $(document).ready(function () {
     var dadosOrdenados = dadosOriginais.slice();
 
     dadosOrdenados.sort(function (a, b) {
-      if (column === "provedorInternet") {
-        var valueA = a.provedorInternet.provedorInternet.toLowerCase();
-        var valueB = b.provedorInternet.provedorInternet.toLowerCase();
-        if (order === "asc") {
-          return valueA.localeCompare(valueB);
-        } else {
-          return valueB.localeCompare(valueA);
-        }
-      } else if (column === "escolaId") {
+      if (column === "escolaId") {
         var escolaA = escolas.find(function (school) {
           return school.idEscola === a.escolaId;
         });
@@ -118,7 +105,12 @@ $(document).ready(function () {
         } else {
           return nomeEscolaB.localeCompare(nomeEscolaA);
         }
-      } else if (column === "velocidadeMb") {
+      } else if (
+        column === "horasAula" ||
+        column === "horasEstagio" ||
+        column === "horasAtiv" ||
+        column === "horasLab"
+      ) {
         var valueA = parseFloat(a[column]);
         var valueB = parseFloat(b[column]);
         if (order === "asc") {
@@ -150,7 +142,7 @@ $("#limpa-filtros").click(function () {
 
 function getDados() {
   $.ajax({
-    url: url_base + "/escolaLinkInternet",
+    url: url_base + "/disciplina",
     type: "GET",
     async: false,
   })
@@ -168,8 +160,6 @@ function listarDados(dados) {
   var html = dados
     .map(function (item) {
       var ativo;
-      var administrativo;
-      var estudante;
 
       var escola = escolas.find(function (school) {
         return school.idEscola === item.escolaId;
@@ -185,44 +175,36 @@ function listarDados(dados) {
           "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
       }
 
-      if (item.administrativo == "N") {
-        administrativo =
-          '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-      } else {
-        administrativo =
-          "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-      }
-
-      if (item.estudante == "N") {
-        estudante =
-          '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-      } else {
-        estudante =
-          "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-      }
-
       return (
         "<tr>" +
         "<td>" +
         nomeEscola +
         "</td>" +
         "<td>" +
-        item.provedorInternet.provedorInternet +
+        item.disciplina +
         "</td>" +
         "<td>" +
-        item.velocidadeMb +
-        " MEGA" +
+        item.horasAula +
+        "h" +
         "</td>" +
-        "<td><div class='d-flex align-items-center gap-1'>" +
-        administrativo +
-        "</div></td>" +
-        "<td><div class='d-flex align-items-center gap-1'>" +
-        estudante +
-        "</div></td>" +
-        "<td><div class='d-flex align-items-center gap-1'>" +
+        "<td>" +
+        item.horasLab +
+        "h" +
+        "</td>" +
+        "<td>" +
+        item.horasEstagio +
+        "h" +
+        "</td>" +
+        "<td>" +
+        item.horasAtiv +
+        "h" +
+        "</td>" +
+        "<td>" +
         ativo +
-        "</div></td>" +
+        "</td>" +
         '<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+        item.idDisciplina +
+        '" data-escola="' +
         item.escolaId +
         '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
         "</tr>"
@@ -234,20 +216,19 @@ function listarDados(dados) {
 }
 
 // Exportar Dados
-
 $("#exportar-excel").click(function () {
   var planilha = XLSX.utils.json_to_sheet(dados);
 
   var livro = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-  XLSX.writeFile(livro, "dadosInternet.xlsx");
+  XLSX.writeFile(livro, "disciplinas.xlsx");
 });
 
 // Editar
-
 function editar(element) {
   var id = $(element).data("id");
+  var idEscola = $(element).data("escola");
 
-  window.location.href = "edicao-link-internet?id=" + id;
+  window.location.href = "editar-disciplina?id=" + id + "&escola=" + idEscola;
 }

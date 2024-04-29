@@ -47,7 +47,7 @@ $(document).ready(function () {
   })
     .done(function (data) {
       $.each(data, function (index, item) {
-        $("#turnoIdIdEdit").append(
+        $("#turnoIdEdit").append(
           $("<option>", {
             value: item.idTurno,
             text: item.turno,
@@ -56,7 +56,7 @@ $(document).ready(function () {
         );
       });
       $.each(data, function (index, item) {
-        $("#turnoIdId").append(
+        $("#turnoId").append(
           $("<option>", {
             value: item.idTurno,
             text: item.turno,
@@ -255,7 +255,7 @@ $("#limpa-filtros").click(function () {
 
 function getDados() {
   $.ajax({
-    url: url_base + "/cursoSerie",
+    url: url_base + "/gradeCurricular",
     type: "GET",
     async: false,
   })
@@ -345,7 +345,6 @@ $("#exportar-excel").click(function () {
 });
 
 // Abrir modal
-
 function showModal(ref) {
   id = ref.getAttribute("data-id");
   ativo = ref.getAttribute("data-ativo");
@@ -367,9 +366,28 @@ function showModal(ref) {
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    $("#cursoIdEdit").val(data.cursoId).attr("selected", true);
-    $("#serieEdit").val(data.serie).attr("selected", true);
-    $("#descricaoEdit").val(data.descricao);
+    $("#cursoSerieIdEdit")
+      .val(data.cursoSerie.idCursoSerie)
+      .attr("selected", true);
+    $("#turnoIdEdit").val(data.turno.idTurno).attr("selected", true);
+    $("#disciplinaIdEdit")
+      .val(data.disciplina.idDisciplina)
+      .attr("selected", true);
+    $("#curriculoIdEdit")
+      .val(data.curriculo.idCurriculo)
+      .attr("selected", true);
+
+    if (data.obrigatoria === "S") {
+      $('input[id="obrigatoriaSEdit"]').prop("checked", true);
+    } else {
+      $('input[id="obrigatoriaNEdit"]').prop("checked", true);
+    }
+
+    if (data.retemSerie === "S") {
+      $('input[id="retemSerieSEdit"]').prop("checked", true);
+    } else {
+      $('input[id="retemSerieNEdit"]').prop("checked", true);
+    }
   });
 }
 
@@ -377,14 +395,17 @@ function showModal(ref) {
 
 function editar() {
   var objeto = {
-    idCursoSerie: Number(id),
-    cursoId: Number($("#cursoIdEdit").val()),
-    serie: $("#serieEdit").val(),
-    descricao: $("#descricaoEdit").val(),
+    idGradeCurricular: id,
+    cursoSerieId: $("#cursoSerieIdEdit").val(),
+    turnoId: $("#turnoIdEdit").val(),
+    disciplinaId: $("#disciplinaIdEdit").val(),
+    curriculoId: $("#curriculoIdEdit").val(),
+    obrigatoria: $('input[name="obrigatoriaEdit"]:checked').val(),
+    retemSerie: $('input[name="retemSerieEdit"]:checked').val(),
   };
 
   $.ajax({
-    url: url_base + "/cursoSerie",
+    url: url_base + "/gradeCurricular",
     type: "PUT",
     data: JSON.stringify(objeto),
     contentType: "application/json; charset=utf-8",
@@ -394,9 +415,12 @@ function editar() {
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    $("#cursoIdEdit").val("");
-    $("#serieEdit").val();
-    $("#descricaoEdit").val();
+    $("#cursoSerieIdEdit").val("");
+    $("#turnoIdEdit").val("");
+    $("#disciplinaIdEdit").val("");
+    $("#curriculoIdEdit").val("");
+    $('input[name="obrigatoriaEdit"]:checked').prop("checked", false);
+    $('input[name="retemSerieEdit"]:checked').prop("checked", false);
 
     getDados();
     showPage(currentPage);
@@ -415,13 +439,16 @@ $("#formEdit").on("submit", function (e) {
 
 function cadastrar() {
   var objeto = {
-    cursoId: Number($("#cursoId").val()),
-    serie: $("#serie").val(),
-    descricao: $("#descricao").val(),
+    cursoSerieId: $("#cursoSerieId").val(),
+    turnoId: $("#turnoId").val(),
+    disciplinaId: $("#disciplinaId").val(),
+    curriculoId: $("#curriculoId").val(),
+    obrigatoria: $('input[name="obrigatoria"]:checked').val(),
+    retemSerie: $('input[name="retemSerie"]:checked').val(),
   };
 
   $.ajax({
-    url: url_base + "/cursoSerie",
+    url: url_base + "/gradeCurricular",
     type: "POST",
     data: JSON.stringify(objeto),
     contentType: "application/json; charset=utf-8",
@@ -431,9 +458,12 @@ function cadastrar() {
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    $("#cursoId").val("");
-    $("#serie").val();
-    $("#descricao").val();
+    $("#cursoSerieId").val("");
+    $("#turnoId").val("");
+    $("#disciplinaId").val("");
+    $("#curriculoId").val("");
+    $('input[name="obrigatoria"]').prop("checked", false);
+    $('input[name="retemSerie"]').prop("checked", false);
     getDados();
     showPage(currentPage);
     updatePagination();
@@ -451,7 +481,10 @@ $("#formCadastro").on("submit", function (e) {
 // Limpa input
 
 function limpaCampo() {
-  $("#cursoId").val("");
-  $("#serie").val();
-  $("#descricao").val();
+  $("#cursoSerieId").val("");
+  $("#turnoId").val("");
+  $("#disciplinaId").val("");
+  $("#curriculoId").val("");
+  $('input[name="obrigatoria"]').prop("checked", false);
+  $('input[name="retemSerie"]').prop("checked", false);
 }

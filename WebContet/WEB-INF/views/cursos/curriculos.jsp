@@ -76,7 +76,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         <div class="card">
           <div class="card-body title">
             <i class="fa-solid fa-graduation-cap fa-lg"></i>
-            <span>Grade currícular</span>
+            <span>Currículos</span>
           </div>
         </div>
       </section>
@@ -93,7 +93,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               id="exportar-excel"
               class="btn btn-sm btn-success d-flex align-items-center gap-2"
             >
-              <i class="fa-solid fa-file-export"></i> Exportar
+              <i class="fa-solid fa-file-export"></i>Exportar
             </button>
             <button
               class="btn btn-primary btn-sm px-3 py-1 ms-auto"
@@ -114,46 +114,14 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th
-                scope="col"
-                class="sortable border-end"
-                data-column="cursoSerie"
-              >
+              <th scope="col" class="sortable border-end" data-column="cursoId">
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
                 >
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Série</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                </div>
-              </th>
-              <th scope="col" class="sortable border-end" data-column="turno">
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Turno</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                </div>
-              </th>
-              <th
-                scope="col"
-                class="sortable border-end"
-                data-column="disciplina"
-              >
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Disciplina</span>
+                    <span>Curso</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
@@ -178,6 +146,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </div>
                 </div>
               </th>
+
               <th
                 scope="col"
                 class="sortable border-end"
@@ -193,17 +162,17 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
-                    <div class="dropdown-toggle-form" id="dropdownButton3">
+                    <div class="dropdown-toggle-form" id="dropdownButton7">
                       <i class="fas fa-search" style="color: #dddddd"></i>
                     </div>
                     <div
                       class="dropdown-content-form rounded-3 dropdown-content-left"
-                      id="dropdownContent3"
+                      id="dropdownContent7"
                     >
                       <input
                         type="text"
                         class="form-control mb-3 searchInput"
-                        placeholder="Digite..."
+                        placeholder="Digite aqui..."
                       />
                       <button
                         class="btn btn-sm col-12 btn-success searchButton"
@@ -214,12 +183,98 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </div>
                 </div>
               </th>
-              <th scope="col" class="border-end pe-2 th-sem-filtro">
-                Obrigatória
+
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="dtHomologacao"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Data de homologação</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                  <div class="dropdown-form">
+                    <div class="dropdown-toggle-form" id="dropdownButton4">
+                      <i class="fas fa-search" style="color: #dddddd"></i>
+                    </div>
+                    <div
+                      class="dropdown-content-form rounded-3 dropdown-content-left"
+                      id="dropdownContent4"
+                    >
+                      <input
+                        max="2999-01-01"
+                        type="date"
+                        class="form-control mb-3 searchInput"
+                      />
+                      <button
+                        class="btn btn-sm col-12 btn-success searchButton"
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </th>
-              <th scope="col" class="border-end pe-2 th-sem-filtro">
-                Retém série
+
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="dtExtincao"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Data de extinção</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                  <div class="dropdown-form">
+                    <div class="dropdown-toggle-form" id="dropdownButton5">
+                      <i class="fas fa-search" style="color: #dddddd"></i>
+                    </div>
+                    <div
+                      class="dropdown-content-form rounded-3 dropdown-content-left"
+                      id="dropdownContent5"
+                    >
+                      <input
+                        max="2999-01-01"
+                        type="date"
+                        class="form-control mb-3 searchInput"
+                      />
+                      <button
+                        class="btn btn-sm col-12 btn-success searchButton"
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </th>
+
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="aulasPrevistas"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Aulas previstas</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                </div>
+              </th>
+
               <th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
               <th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
             </tr>
@@ -259,131 +314,126 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formCadastro">
                 <div class="mb-4">
-                  <label for="cursoSerieId" class="form-label"
-                    >Série:<span class="red">*</span>
+                  <label for="cursoId" class="form-label"
+                    >Curso:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Escola"
-                    id="cursoSerieId"
+                    aria-label="Curso"
+                    id="cursoId"
                     required
-                    name="cursoSerieId"
+                    name="cursoId"
                   >
                     <option selected disabled value="">
                       Selecione uma opção
                     </option>
                   </select>
                 </div>
+
                 <div class="mb-4">
-                  <label for="turnoId" class="form-label"
-                    >Turno:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Turno"
-                    id="turnoId"
-                    required
-                    name="turnoId"
-                  >
-                    <option selected disabled value="">
-                      Selecione o turno
-                    </option>
-                  </select>
-                </div>
-                <div class="mb-4">
-                  <label for="disciplinaId" class="form-label"
-                    >Disciplina:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Disciplina"
-                    id="disciplinaId"
-                    required
-                    name="disciplinaId"
-                  >
-                    <option selected disabled value="">
-                      Selecione a disciplina
-                    </option>
-                  </select>
-                </div>
-                <div class="mb-4">
-                  <label for="curriculoId" class="form-label"
+                  <label for="curriculo" class="form-label"
                     >Currículo:<span class="red">*</span>
                   </label>
-                  <select
-                    class="form-select"
-                    aria-label="Dependência"
-                    id="curriculoId"
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="curriculo"
+                    name="curriculo"
                     required
-                    name="curriculoId"
-                  >
-                    <option selected value="" disabled>
-                      Selecione uma opção
-                    </option>
-                  </select>
+                    aria-describedby="Currículo"
+                    autocomplete="off"
+                  />
                 </div>
-                <div class="mb-4">
-                  <label for="obrigatoria" class="form-label"
-                    >Obrigatória:<span class="red">*</span>
-                  </label>
-                  <div class="form-control">
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="obrigatoria"
-                        id="obrigatoriaS"
-                        value="S"
-                      />
-                      <label class="form-check-label" for="obrigatoriaS"
-                        >Sim</label
-                      >
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="obrigatoria"
-                        id="obrigatoriaN"
-                        value="N"
-                      />
-                      <label class="form-check-label" for="obrigatoriaN"
-                        >Não</label
-                      >
-                    </div>
+
+                <div class="row mb-4">
+                  <div class="col-6">
+                    <label for="dtHomologacao" class="form-label"
+                      >Data de homologação:<span class="red">*</span>
+                    </label>
+                    <input
+                      max="2999-01-01"
+                      autocomplete="off"
+                      type="date"
+                      id="dtHomologacao"
+                      required
+                      name="dtHomologacao"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="dtExtincao" class="form-label"
+                      >Data de extinção:<span class="red">*</span>
+                    </label>
+                    <input
+                      max="2999-01-01"
+                      autocomplete="off"
+                      type="date"
+                      id="dtExtincao"
+                      required
+                      name="dtExtincao"
+                      class="form-control"
+                    />
                   </div>
                 </div>
-                <div class="mb-4">
-                  <label for="retemSerie" class="form-label"
-                    >Retém série:<span class="red">*</span>
-                  </label>
-                  <div class="form-control">
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="retemSerie"
-                        id="retemSerieS"
-                        value="S"
-                      />
-                      <label class="form-check-label" for="retemSerieS"
-                        >Sim</label
-                      >
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="retemSerie"
-                        id="retemSerieN"
-                        value="N"
-                      />
-                      <label class="form-check-label" for="retemSerieN"
-                        >Não</label
-                      >
-                    </div>
+
+                <div class="row mb-4">
+                  <div class="col-6">
+                    <label for="prazoIdeal" class="form-label"
+                      >Prazo ideal:<span class="red">*</span>
+                    </label>
+                    <input
+                      autocomplete="off"
+                      type="number"
+                      id="prazoIdeal"
+                      required
+                      name="prazoIdeal"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="prazoMax" class="form-label"
+                      >Prazo máximo:<span class="red">*</span>
+                    </label>
+                    <input
+                      autocomplete="off"
+                      type="number"
+                      id="prazoMax"
+                      required
+                      name="prazoMax"
+                      class="form-control"
+                    />
                   </div>
                 </div>
+
+                <div class="row mb-4">
+                  <div class="col-6">
+                    <label for="creditos" class="form-label"
+                      >Créditos:<span class="red">*</span>
+                    </label>
+                    <input
+                      autocomplete="off"
+                      type="number"
+                      id="creditos"
+                      required
+                      name="creditos"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="aulasPrevistas" class="form-label"
+                      >Aulas previstas:<span class="red">*</span>
+                    </label>
+                    <input
+                      autocomplete="off"
+                      type="number"
+                      id="aulasPrevistas"
+                      required
+                      name="aulasPrevistas"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
@@ -395,7 +445,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <button
                     type="submit"
                     data-bs-dismiss="modal"
-                    class="btn btn-primary"
+                    class="btn btn-primary px-4"
                   >
                     Salvar
                   </button>
@@ -426,134 +476,130 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="cursoSerieIdEdit" class="form-label"
-                    >Série:<span class="red">*</span>
+                  <label for="cursoIdEdit" class="form-label"
+                    >Curso:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Escola"
-                    id="cursoSerieIdEdit"
+                    aria-label="Curso"
+                    id="cursoIdEdit"
                     required
-                    name="cursoSerieIdEdit"
+                    name="cursoIdEdit"
                   >
                     <option selected disabled value="">
                       Selecione uma opção
                     </option>
                   </select>
                 </div>
+
                 <div class="mb-4">
-                  <label for="turnoIdEdit" class="form-label"
-                    >Turno:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Escola"
-                    id="turnoIdEdit"
-                    required
-                    name="turnoIdEdit"
-                  >
-                    <option selected disabled value="">
-                      Selecione o turno
-                    </option>
-                  </select>
-                </div>
-                <div class="mb-4">
-                  <label for="disciplinaIdEdit" class="form-label"
-                    >Disciplina:<span class="red">*</span> </label
-                  ><select
-                    class="form-select"
-                    aria-label="Disciplina"
-                    id="disciplinaIdEdit"
-                    required
-                    name="disciplinaIdEdit"
-                  >
-                    <option selected disabled value="">
-                      Selecione a disciplina
-                    </option>
-                  </select>
-                </div>
-                <div class="mb-4">
-                  <label for="curriculoIdEdit" class="form-label"
+                  <label for="curriculoEdit" class="form-label"
                     >Currículo:<span class="red">*</span>
                   </label>
-                  <select
-                    class="form-select"
-                    aria-label="Dependência"
-                    id="curriculoIdEdit"
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="curriculoEdit"
+                    name="curriculoEdit"
                     required
-                    name="curriculoIdEdit"
-                  >
-                    <option selected value="" disabled>
-                      Selecione uma opção
-                    </option>
-                  </select>
+                    aria-describedby="Currículo"
+                    autocomplete="off"
+                  />
                 </div>
-                <div class="mb-4">
-                  <label for="obrigatoriaEdit" class="form-label"
-                    >Obrigatória:<span class="red">*</span>
-                  </label>
-                  <div class="form-control">
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="obrigatoriaEdit"
-                        id="obrigatoriaSEdit"
-                        value="S"
-                      />
-                      <label class="form-check-label" for="obrigatoriaSEdit"
-                        >Sim</label
-                      >
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="obrigatoriaEdit"
-                        id="obrigatoriaNEdit"
-                        value="N"
-                      />
-                      <label class="form-check-label" for="obrigatoriaNEdit"
-                        >Não</label
-                      >
-                    </div>
+
+                <div class="row mb-4">
+                  <div class="col-6">
+                    <label for="dtHomologacaoEdit" class="form-label"
+                      >Data de homologação:<span class="red">*</span>
+                    </label>
+                    <input
+                      max="2999-01-01"
+                      autocomplete="off"
+                      type="date"
+                      id="dtHomologacaoEdit"
+                      required
+                      name="dtHomologacaoEdit"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="dtExtincaoEdit" class="form-label"
+                      >Data de extinção:<span class="red">*</span>
+                    </label>
+                    <input
+                      max="2999-01-01"
+                      autocomplete="off"
+                      type="date"
+                      id="dtExtincaoEdit"
+                      required
+                      name="dtExtincaoEdit"
+                      class="form-control"
+                    />
                   </div>
                 </div>
-                <div class="mb-4">
-                  <label for="retemSerieEdit" class="form-label"
-                    >Retém série:<span class="red">*</span>
-                  </label>
-                  <div class="form-control">
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="retemSerieEdit"
-                        id="retemSerieSEdit"
-                        value="S"
-                      />
-                      <label class="form-check-label" for="retemSerieSEdit"
-                        >Sim</label
-                      >
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="retemSerieEdit"
-                        id="retemSerieNEdit"
-                        value="N"
-                      />
-                      <label class="form-check-label" for="retemSerieNEdit"
-                        >Não</label
-                      >
-                    </div>
+
+                <div class="row mb-4">
+                  <div class="col-6">
+                    <label for="prazoIdealEdit" class="form-label"
+                      >Prazo ideal:<span class="red">*</span>
+                    </label>
+                    <input
+                      autocomplete="off"
+                      type="number"
+                      id="prazoIdealEdit"
+                      required
+                      name="prazoIdealEdit"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="prazoMaxEdit" class="form-label"
+                      >Prazo máximo:<span class="red">*</span>
+                    </label>
+                    <input
+                      autocomplete="off"
+                      type="number"
+                      id="prazoMaxEdit"
+                      required
+                      name="prazoMaxEdit"
+                      class="form-control"
+                    />
                   </div>
                 </div>
+
+                <div class="row mb-4">
+                  <div class="col-6">
+                    <label for="creditosEdit" class="form-label"
+                      >Créditos:<span class="red">*</span>
+                    </label>
+                    <input
+                      autocomplete="off"
+                      type="number"
+                      id="creditosEdit"
+                      required
+                      name="creditosEdit"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="aulasPrevistasEdit" class="form-label"
+                      >Aulas previstas:<span class="red">*</span>
+                    </label>
+                    <input
+                      autocomplete="off"
+                      type="number"
+                      id="aulasPrevistasEdit"
+                      required
+                      name="aulasPrevistasEdit"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='ativar("gradeCurricular")'
+                    onclick='ativar("curriculo")'
                     class="ativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
@@ -561,7 +607,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </button>
                   <button
                     type="button"
-                    onclick='desativar("gradeCurricular")'
+                    onclick='desativar("curriculo")'
                     class="desativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
@@ -577,7 +623,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <button
                     type="submit"
                     data-bs-dismiss="modal"
-                    class="btn btn-primary"
+                    class="btn btn-primary px-4"
                   >
                     Salvar
                   </button>
@@ -608,7 +654,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="<%=contextPath%>/resources/assets/js/cursos/gradeCurricular.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/cursos/curriculo.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>

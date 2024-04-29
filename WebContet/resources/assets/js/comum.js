@@ -127,10 +127,12 @@ function getValorSelects() {
 }
 
 
-function getSearchParams(k){
-		var p={};
-		location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){p[k]=v})
-		return k?p[k]:p;
+function getSearchParams(k) {
+    var p = {};
+    location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(s, key, value) {
+        p[key] = value;
+    });
+    return k ? p[k] : p;
 }
 
 function desativar(endpoint){
