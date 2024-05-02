@@ -1,4 +1,4 @@
-var url_base = "http://localhost:8080";
+var url_base = "http://10.40.110.2:8080/api-educacional";
 
 const queryString = window.location.search;
 
@@ -255,6 +255,21 @@ function goToPage(page) {
 		updatePagination();
 	}
 }
+
+function containerResponsivo(){
+	let container = $('<div>')
+	container.addClass('container-table')
+	container.append($('.table'))
+	$('#pagination').before(container)
+}
+
+containerResponsivo()
+
+
+
+
+
+
 
 $('#prev').click(function() {
 	goToPage(currentPage - 1);

@@ -13,7 +13,7 @@
 			<i class="fa-solid fa-bars" id="barsIcon"></i> 			
 		</div>
   	</section>
-    <section id="modalMenu" class="abracaMenu modalMenu">
+    <section id="modalMenu" class="abracaMenu modalMenu ">
       <div class="close-btn-menu botao-desativa-menu" id="closeBtn">
 			<i class="fas fa-times"></i>
 	  </div> 
@@ -227,7 +227,7 @@
             $(this).parent().hide();
           }
         });
-      };
+      }
       
       $(".sub-btn").click(function () {
         $(this).next(".sub-menu").slideToggle();
@@ -235,15 +235,14 @@
       });
     });
     
-    $('#barsIcon').click(function () {	
-  	 	$('#modalMenu').show()
-  	 	$('#closeBtn').show()
+    $('#barsIcon').click(function () {
+    	$('#modalMenu').show();
+    	$('#closeBtn').show();
 	});
     
     $('#closeBtn').click(function () {
-    	$('#modalMenu').toggleClass('none')
-		
-	})
+    	$('#modalMenu').hide();
+	});
     
     
   </script>

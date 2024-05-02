@@ -699,6 +699,11 @@ background-color: #ddd;
 	overflow-y: hidden; 
 }
 
+.margem-negativa{
+	margin-right: -900px;
+	transition: 0.2s;
+}
+
 @media screen and (max-width: 1500px) {
 	
 
@@ -858,7 +863,8 @@ background-color: #ddd;
 	.menu-mobile{
 		display: flex;
 		flex-direction: row;
-		height: 20%
+		height: 20%;
+		width: 100%;
 	}
 	.logo-sumare-mobile{
 		display: flex;
@@ -915,10 +921,15 @@ background-color: #ddd;
 }
 
 @media screen and (max-width: 500px) {
-	
+  #pagination {
+	 height: 30px;
+	 display: flex;
+  }
+  
+
   .img-mobile-menu img{
-		width: 20%
-	}	
+	width: 20%
+  }	
 	
   .container-res{
   	width: 80%
@@ -1034,4 +1045,5 @@ background-color: #ddd;
     border: none;
     font-size: 22px;
   }
+  
 }
