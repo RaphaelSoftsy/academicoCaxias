@@ -89,111 +89,113 @@ String contextPath = request.getContextPath();
 
 			</div>
 
-			<table id="tabela-dados"
-				class="table tabela-acessar-escolas table-striped mb-0 caption-top mx-auto">
-				<caption>Itens Cadastrados</caption>
-				<thead>
-					<tr>						
-						<th scope="col" class="sortable border-end"
-							data-column="escolaId">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
+			<div class="container-table">
+				<table id="tabela-dados"
+					class="table tabela-acessar-escolas table-striped mb-0 caption-top mx-auto">
+					<caption>Itens Cadastrados</caption>
+					<thead>
+						<tr>						
+							<th scope="col" class="sortable border-end"
+								data-column="escolaId">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Escola</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton1">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
+									class='d-flex align-items-center justify-content-between pe-2'>
 									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite o nome da escola">
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+										class="col d-flex align-items-center justify-content-between">
+										<span>Escola</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButton1">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent1">
+											<input type="text" class='form-control mb-3 searchInput'
+												placeholder="Digite o nome da escola">
+											<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="disciplina">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="disciplina">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Disciplina</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton2">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
+									class='d-flex align-items-center justify-content-between pe-2'>
 									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent2">
-										<input type="text" class='form-control mb-3 searchInput'
-											placeholder="Digite aqui...">
-										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+										class="col d-flex align-items-center justify-content-between">
+										<span>Disciplina</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButton2">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent2">
+											<input type="text" class='form-control mb-3 searchInput'
+												placeholder="Digite aqui...">
+											<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="horasAula">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="horasAula">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Horas de aula</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
+									class='d-flex align-items-center justify-content-between pe-2'>
+									<div
+										class="col d-flex align-items-center justify-content-between">
+										<span>Horas de aula</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="horasLab">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="horasLab">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Horas de laboratório</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
+									class='d-flex align-items-center justify-content-between pe-2'>
+									<div
+										class="col d-flex align-items-center justify-content-between">
+										<span>Horas de laboratório</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="horasEstagio">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="horasEstagio">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Horas de estágio</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
+									class='d-flex align-items-center justify-content-between pe-2'>
+									<div
+										class="col d-flex align-items-center justify-content-between">
+										<span>Horas de estágio</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="horasAtiv">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="horasAtiv">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Horas de atividade</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
+									class='d-flex align-items-center justify-content-between pe-2'>
+									<div
+										class="col d-flex align-items-center justify-content-between">
+										<span>Horas de atividade</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro"
-							data-column="ativo">Ativo</th>
+							</th>
 							<th scope="col" class="border-end pe-2 th-sem-filtro"
-							data-column="ativo">Ações</th>
-					</tr>
-				</thead>
-				<tbody id="cola-tabela" class="table-group-divider">
-
-				</tbody>
-			</table>
+								data-column="ativo">Ativo</th>
+								<th scope="col" class="border-end pe-2 th-sem-filtro"
+								data-column="ativo">Ações</th>
+						</tr>
+					</thead>
+					<tbody id="cola-tabela" class="table-group-divider">
+	
+					</tbody>
+				</table>
+			</div>
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>

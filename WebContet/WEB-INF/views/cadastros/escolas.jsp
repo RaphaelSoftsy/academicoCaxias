@@ -40,6 +40,8 @@ String contextPath = request.getContextPath();
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- CSS -->
+<link rel="stylesheet"
+	href="<%=contextPath%>/resources/assets/css/escola.css">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,8 +53,7 @@ String contextPath = request.getContextPath();
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+<link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
 
 </head>
 
@@ -65,17 +66,18 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	<header id="menu"> </header>
+	<header id="menu"></header>
 	<main class="py-4 container-res">
 		<section class="mb-5">
-			<div class="card">
+			<div class="card card-title">
 				<div class="card-body title">
 					<i class="fa-solid fa-school fa-lg"></i> <span>Escolas</span>
 				</div>
+				
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3" style="display: flex; align-items: center;">
+			<div class="mt-3 mb-3 card-pesquisa" style="display: flex; align-items: center;">
 
 				<div class='col-6'>
 					<div class="input-group">
@@ -85,27 +87,29 @@ String contextPath = request.getContextPath();
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<a href="nova-escola" class="btn btn-primary btn-lg px-3 py-1 ms-auto">Novo Cadastro</a>
+				<a href="nova-escola"
+					class="btn btn-primary btn-lg px-3 py-1 ms-auto">Novo Cadastro</a>
 
 			</div>
 
-			<table
-				class="table tabela-cadastros table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Itens Cadastrados</caption>
-				<thead>
-					<tr>
-						<th scope="col">Nome</th>
-						<th scope="col">Município</th>
-						<th scope="col">UF</th>
-						<th scope="col">CNPJ</th>
-						<th scope="col">Ativo</th>
-						<th class='text-center' scope="col" width="10%">Ações</th>
-					</tr>
-				</thead>
-				<tbody id="cola-tabela" class="table-group-divider">
-
-				</tbody>
-			</table>
+			<div class="container-table">
+				<table class="table tabela-cadastros table-striped table-bordered mb-0 caption-top mx-auto">
+					<caption>Itens Cadastrados</caption>
+					<thead>
+						<tr>
+							<th scope="col">Nome</th>
+							<th scope="col">Município</th>
+							<th scope="col">UF</th>
+							<th scope="col">CNPJ</th>
+							<th scope="col">Ativo</th>
+							<th class='text-center' scope="col" width="10%">Ações</th>
+						</tr>
+					</thead>
+					<tbody id="cola-tabela" class="table-group-divider">
+	
+					</tbody>
+				</table>
+			</div>
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
@@ -116,7 +120,7 @@ String contextPath = request.getContextPath();
 				</button>
 			</div>
 		</section>
-		
+
 	</main>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
@@ -135,7 +139,8 @@ String contextPath = request.getContextPath();
 
 	<script src="<%=contextPath%>/resources/assets/js/cadastros/escolas.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		
+
 </body>
 </html>

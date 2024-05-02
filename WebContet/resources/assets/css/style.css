@@ -3,14 +3,45 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.logo-sumare-mobile{
+	display: none;
+}
 body {
   min-height: 100vh;
   width: 100%;
   background-color: #f8f8f8;
   font-family: "Montserrat", sans-serif;
 }
+
+.container-header{
+	width: 100%;
+	background-color: #183153;	
+}
+.menu-mobile{
+	display: none;
+}
+
+.botao-desativa-menu{
+	display: none;
+}
+
 .iconeTabela{
 	font-size: 18px;
+}
+
+.card-title{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 5%;
+}
+
+
+.fa-bars{
+	font-size: 1.2rem;
+	cursor: pointer;
+	display:none;
 	
 }
 
@@ -84,6 +115,7 @@ body {
 .rotate {
   transform: rotate(90deg);
 }
+
 .tab-wrap {
   transition: 0.3s box-shadow ease;
   border-radius: 6px;
@@ -458,7 +490,7 @@ a {
 	color: #fff;
 	font-size: 22px;
 	right: 0;
-	margin: 12px 18px;
+	margin: 10px 10px;
 	cursor: pointer;
 }
 
@@ -662,7 +694,15 @@ background-color: #ddd;
 }
 
 
+.container-table{
+	overflow-x: scroll;
+	overflow-y: hidden; 
+}
+
 @media screen and (max-width: 1500px) {
+	
+
+	
   .container-res {
     margin-left: 17em;
     margin-right: 2em;
@@ -732,24 +772,173 @@ background-color: #ddd;
   }
 }
 
+/* Animation Bar*/
+
+.bar {
+  cursor: pointer;
+}
+
+.bar input {
+  display: none;
+}
+
+.bar svg {
+  /* The size of the SVG defines the overall size */
+  height: 3em;
+  /* Define the transition for transforming the SVG */
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+  fill: none;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  /* Define the transition for transforming the Stroke */
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line-top-bottom {
+  stroke-dasharray: 12 63;
+}
+
+.bar input:checked + svg {
+  transform: rotate(-45deg);
+}
+
+.bar input:checked + svg .line-top-bottom {
+  stroke-dasharray: 20 300;
+  stroke-dashoffset: -32.42;
+}
+
+
 @media screen and (min-width: 1279px) {
   #form-login {
     width: 45%;
   }
+  
+  .container-res{
+  	margin-top: 3%;
+  }
+  
 }
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1279px) {
+	
+ 
+  .logoSumare{
+	width: 70%
+  }
+  
   .container-res {
     margin-right: 2em;
   }
+  .container-res{
+  	margin-left: 25%;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+	justify-content: center; 
+  }
+  .mb-5{
+  	margin: 2%;
+  }
+  .card-body{
+  	width: 70vw;
+  }
+  .card-table{
+  	width: 100%;
+  }
 }
 
-@media screen and (max-width: 425px) {
-  .container-res {
-    margin-left: 0;
-    margin-right: 0;
-  }
+@media screen and (max-width: 1110px){
+	
+	.menu-mobile{
+		display: flex;
+		flex-direction: row;
+		height: 20%
+	}
+	.logo-sumare-mobile{
+		display: flex;
+	}
+	.img-mobile-menu img{
+		width: 15%
+	}
+	.container-header{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding-left: 1%;
+		padding-right: 1%;
+	}
+	
+	.container-header i{
+		color: #fff;
+	}
+	.modalMenu{
+		display: none;
+	}
+	body{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 
+	.container-res{
+		margin: 0;
+		height: 80%
+	}
+	.fa-bars{
+		display: inline;
+		color: #183153;
+	}
+	
+	.modalMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+  }
+  .sub-btn{
+  	font-size: 1.2rem
+  }
+  
+  .card-table{
+  	width: 90%
+  }
+  
+}
+
+@media screen and (max-width: 500px) {
+	
+  .img-mobile-menu img{
+		width: 20%
+	}	
+	
+  .container-res{
+  	width: 80%
+  }
+  
+  .card-pesquisa{
+  	gap: 10px;
+  }
+  
+  .btn{
+  	height: 100%;
+  	font-size: .7rem;
+  	display: flex;
+  	align-items: center;
+  }
+  .card-table{
+  	margin-left: 3%;
+  	margin-right: 3%;
+  }
+  
   .icone-pesquisa {
     display: none;
   }
@@ -838,7 +1027,6 @@ background-color: #ddd;
       transform: translateX(0px);
     }
   }
-
   .botaoDesativaMenu {
     display: inline;
     position: relative;

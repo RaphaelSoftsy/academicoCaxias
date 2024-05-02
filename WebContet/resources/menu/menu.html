@@ -1,19 +1,32 @@
 <html>
-  <head> </head>
-
+  <head></head>
   <body>
+  
+  	<section id="menu-mobile">
+  		<div class="container-header">
+  			<div class="img-mobile-menu">
+       		<img class="logo-sumare-mobile"
+          	src="http://localhost:8080/front-educacional-caxias/resources/assets/img/logoBranco.png"
+          	alt="Logo Prefeitura Caxias do Sul"/>
+        
+      		</div>
+			<i class="fa-solid fa-bars" id="barsIcon"></i> 			
+		</div>
+  	</section>
     <section id="modalMenu" class="abracaMenu modalMenu">
-      <!-- 	<div class="close-btn-menu">
-				<i class="fas fa-times"></i>
-			</div> -->
+      <div class="close-btn-menu botao-desativa-menu" id="closeBtn">
+			<i class="fas fa-times"></i>
+	  </div> 
       <div class="img-menu">
         <img
           class="logoSumare animate__animated animate__bounceIn mx-auto"
-          src="http://localhost:8090/front-educacional-caxias/resources/assets/img/logoBranco.png"
+          src="http://localhost:8080/front-educacional-caxias/resources/assets/img/logoBranco.png"
           alt="Logo Prefeitura Caxias do Sul"
         />
+        
       </div>
-      <hr />
+      
+      <hr/>
       <p>
         <i class="fa-solid fa-user me-2" style="width: 28px"></i>
         <span id="nome-user"></span>
@@ -26,60 +39,38 @@
             <i class="fas fa-angle-right dropdown"></i
           ></a>
           <div class="sub-menu">
-            <a href="area-conhecimento" class="sub-item"
-              >Áreas de Conhecimento</a
-            >
+            <a href="area-conhecimento" class="sub-item">Áreas de Conhecimento</a>
             <a href="ato-regulatorio" class="sub-item">Atos Regulatórios</a>
             <a href="cargo-professor" class="sub-item">Cargo Professor</a>
-            <a href="componentes-curriculares" class="sub-item"
-              >Componentes Curriculares</a
-            >
-            <a href="categoriaEscolaPrivada" class="sub-item"
-              >Categoria Escola Privada</a
-            >
+            <a href="componentes-curriculares" class="sub-item">Componentes Curriculares</a>
+            <a href="categoriaEscolaPrivada" class="sub-item">Categoria Escola Privada</a>
             <a href="deficiencias" class="sub-item">Deficiências</a>
-            <a href="dependencia-administrativa" class="sub-item"
-              >Dependências Administrativas</a
-            >
+            <a href="dependencia-administrativa" class="sub-item">Dependências Administrativas</a>
             <a href="destinacaoLixo" class="sub-item">Destinação de Lixo</a>
             <a href="equipamentos" class="sub-item">Equipamentos</a>
             <a href="entidadeSuperior" class="sub-item">Entidade Superior</a>
             <a href="esgotoSanitario" class="sub-item">Esgotamento Sanitário</a>
             <a href="fonteEnergia" class="sub-item">Fonte de Energia</a>
             <a href="forma-ocupacao" class="sub-item">Formas de Ocupação</a>
-            <a href="fornecimentoDeAgua" class="sub-item"
-              >Fornecimento de Água</a
-            >
-            <a href="instrutor-pedagogico" class="sub-item"
-              >Instrutores Pedagógicos</a
-            >
+            <a href="fornecimentoDeAgua" class="sub-item">Fornecimento de Água</a>
+            <a href="instrutor-pedagogico" class="sub-item">Instrutores Pedagógicos</a>
             <a href="linguas-ensino" class="sub-item">Línguas de Ensino</a>
             <a href="tipoLocalizacao" class="sub-item">Localização</a>
-            <a href="marca-equipamento" class="sub-item"
-              >Marcas de Equipamentos</a
-            >
-            <a href="modalidade-escolar" class="sub-item"
-              >Modalidades Escolares</a
-            >
+            <a href="marca-equipamento" class="sub-item">Marcas de Equipamentos</a>
+            <a href="modalidade-escolar" class="sub-item">Modalidades Escolares</a>
             <a href="municipios" class="sub-item">Município</a>
             <a href="nacionalidade" class="sub-item">Nacionalidade</a>
             <a href="nivel-escolaridade" class="sub-item">Nível Escolaridade</a>
             <a href="orgaoPublico" class="sub-item">Orgão Público</a>
-            <a href="forma-organ-ensino" class="sub-item"
-              >Organizações de Ensino</a
-            >
+            <a href="forma-organ-ensino" class="sub-item">Organizações de Ensino</a>
             <a href="paises" class="sub-item">Países</a>
             <a href="periodicidade" class="sub-item">Periodicidade</a>
             <a href="periodo-letivo" class="sub-item">Período Letivo</a>
             <a href="provedorInternet" class="sub-item">Provedor Internet</a>
             <a href="raca" class="sub-item">Raças</a>
-            <a href="situacaoFuncionamento" class="sub-item"
-              >Situação de Funcionamento</a
-            >
+            <a href="situacaoFuncionamento" class="sub-item">Situação de Funcionamento</a>
             <a href="situacao-professor" class="sub-item">Situação Professor</a>
-            <a href="tipoAtoRegulatorio" class="sub-item"
-              >Tipo Ato Regulatório</a
-            >
+            <a href="tipoAtoRegulatorio" class="sub-item">Tipo Ato Regulatório</a>
             <a href="tipo-atendimento" class="sub-item">Tipo Atendimento</a>
             <a href="tipo-dependencia" class="sub-item">Tipo Dependência</a>
             <a href="tipo-ensino-medio" class="sub-item">Tipo Ensino Médio</a>
@@ -88,9 +79,7 @@
             <a href="turnos" class="sub-item">Turnos</a>
             <a href="turno-professor" class="sub-item">Turno Professor</a>
             <a href="telefones" class="sub-item">Tipo Telefone</a>
-            <a href="dependenciasAdm" class="sub-item"
-              >Tipos de Dependências Adm</a
-            >
+            <a href="dependenciasAdm" class="sub-item">Tipos de Dependências Adm</a>
             <a href="tratamentoDeLixo" class="sub-item">Tratamento de Lixo</a>
             <a href="ufs" class="sub-item">UFs</a>
             <a href="zoneamento" class="sub-item">Zoneamento</a>
@@ -107,9 +96,7 @@
             <a href="escola-modalidades" class="sub-item">Modalidades</a>
             <a href="escola-dependencias" class="sub-item">Dependências</a>
             <a href="disciplinas" class="sub-item">Disciplinas</a>
-            <a href="escola-linguas-de-ensino" class="sub-item"
-              >Línguas de Ensino</a
-            >
+            <a href="escola-linguas-de-ensino" class="sub-item">Línguas de Ensino</a>
             <a href="marca-equipamento" class="sub-item">Marca Equipamento</a>
             <a href="escola-predios-compartilhados" class="sub-item"
               >Prédios Compartilhados</a
@@ -213,7 +200,19 @@
     </section>
   </body>
   <script type="text/javascript">
+
     $(document).ready(function () {
+    	
+    	var tam = $(window).width();
+    	 
+    	   if (tam >=1024){
+    		 $('#modalMenu').show()
+    	   }else{
+    		 $('#modalMenu').toggleClass('none')  
+    		 
+    	  	 
+    	   } 
+    	
       var perfilArmazenado = JSON.parse(localStorage.getItem("perfil"));
 
       if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
@@ -228,11 +227,24 @@
             $(this).parent().hide();
           }
         });
-      }
+      };
+      
       $(".sub-btn").click(function () {
         $(this).next(".sub-menu").slideToggle();
         $(this).find(".dropdown").toggleClass("rotate");
       });
     });
+    
+    $('#barsIcon').click(function () {	
+  	 	$('#modalMenu').show()
+  	 	$('#closeBtn').show()
+	});
+    
+    $('#closeBtn').click(function () {
+    	$('#modalMenu').toggleClass('none')
+		
+	})
+    
+    
   </script>
 </html>

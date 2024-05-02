@@ -4,7 +4,9 @@ const queryString = window.location.search;
 
 const params = new URLSearchParams(queryString);
 
-const path_base="http://localhost:8090/front-educacional-caxias/resources/menu";
+const path_base="http://localhost:8080/front-educacional-caxias/resources/menu";
+
+
 
 
 window.addEventListener("load", function() {
@@ -261,4 +263,5 @@ $('#prev').click(function() {
 $('#next').click(function() {
 	goToPage(currentPage + 1);
 });
+
 
