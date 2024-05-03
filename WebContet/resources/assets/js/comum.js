@@ -239,6 +239,7 @@ function toggleNavigation() {
 
         $('.btn-page').click(function() {
             goToPage(parseInt($(this).data('page')));
+            
         });
     }
 }
@@ -253,6 +254,7 @@ function goToPage(page) {
 		currentPage = page;
 		showPage(currentPage);
 		updatePagination();
+		
 	}
 }
 
@@ -264,12 +266,6 @@ function containerResponsivo(){
 }
 
 containerResponsivo()
-
-
-
-
-
-
 
 $('#prev').click(function() {
 	goToPage(currentPage - 1);

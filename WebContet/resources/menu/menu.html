@@ -233,17 +233,18 @@
         $(this).next(".sub-menu").slideToggle();
         $(this).find(".dropdown").toggleClass("rotate");
       });
+      
+      $('#barsIcon').click(function () {
+      	$('#modalMenu').show();
+      	$('#modalMenu').removeClass('none');
+      	$('#closeBtn').show();
+      	$('.container-res').css('overflow', "hidden")
+  	   });
+      
+      $('#closeBtn').click(function () {
+      	$('#modalMenu').hide();
+  	   });
     });
-    
-    $('#barsIcon').click(function () {
-    	$('#modalMenu').show();
-    	$('#closeBtn').show();
-	});
-    
-    $('#closeBtn').click(function () {
-    	$('#modalMenu').hide();
-	});
-    
     
   </script>
 </html>

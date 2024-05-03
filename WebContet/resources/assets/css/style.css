@@ -699,10 +699,7 @@ background-color: #ddd;
 	overflow-y: hidden; 
 }
 
-.margem-negativa{
-	margin-right: -900px;
-	transition: 0.2s;
-}
+
 
 @media screen and (max-width: 1500px) {
 	
@@ -861,7 +858,7 @@ background-color: #ddd;
 @media screen and (max-width: 1110px){
 	
 	.menu-mobile{
-		display: flex;
+		display: block;
 		flex-direction: row;
 		height: 20%;
 		width: 100%;
@@ -884,7 +881,8 @@ background-color: #ddd;
 		color: #fff;
 	}
 	.modalMenu{
-		display: none;
+		display: none ;
+		overflow: scroll;
 	}
 	body{
 		display: flex;
@@ -911,7 +909,7 @@ background-color: #ddd;
     z-index: 100;
   }
   .sub-btn{
-  	font-size: 1.2rem
+  	font-size: 1.2rem;
   }
   
   .card-table{
@@ -926,9 +924,26 @@ background-color: #ddd;
 	 display: flex;
   }
   
+  .gap-2{
+  	display: flex;
+  	flex-direction: row;
+  	justify-content:center;
+  	width: 100%;
+  	margin: 0;
+  	
+  }
+  
+  .gap-2 button{
+  	font-size: .4rem;
+  	
+  }
+  
+  table{
+  	font-size: .8rem;
+  }
 
   .img-mobile-menu img{
-	width: 20%
+	width: 30%
   }	
 	
   .container-res{
@@ -937,6 +952,20 @@ background-color: #ddd;
   
   .card-pesquisa{
   	gap: 10px;
+  }
+  
+  .container-btns{
+  	display: flex;
+  	flex-direction: row;
+  	width: 100%;
+  	justify-content: center;
+  	margin-left: 0;
+  	
+  }
+  
+  .container-btns button{
+  	font-size: .5rem;
+  	
   }
   
   .btn{
@@ -1045,5 +1074,7 @@ background-color: #ddd;
     border: none;
     font-size: 22px;
   }
+  
+  
   
 }
