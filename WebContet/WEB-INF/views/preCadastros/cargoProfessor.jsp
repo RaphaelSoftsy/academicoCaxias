@@ -132,6 +132,15 @@ String contextPath = request.getContextPath();
 									type="text" class="form-control" id="cadastro-nome" required
 									aria-describedby="Descricao" autocomplete="off">
 							</div>
+							<div class="mb-4">
+								<label for="dependenciaAdmId" class="form-label">Dependência
+									Administrativa:<span class="red">*</span>
+								</label> <select class="form-select"
+									aria-label="Dependência Administrativa" id="dependenciaAdmId"
+									required name="dependenciaAdmId">
+								<option value="0" selected disabled>Selecione a Dependência</option>
+								</select>
+							</div>
 							<div class="d-flex justify-content-end gap-2">
 							
 								<button type="button" class="btn btn-secondary"
@@ -159,6 +168,15 @@ String contextPath = request.getContextPath();
 								<label for="nome" class="form-label">Cargo Professor:</label> <input
 									type="text" class="form-control" id="edit-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
+							</div>
+							<div class="mb-4">
+								<label for="dependenciaAdmId" class="form-label">Dependência
+									Administrativa:<span class="red">*</span>
+								</label> <select class="form-select"
+									aria-label="Dependência Administrativa" id="dependenciaAdmIdEdit"
+									required name="dependenciaAdmId">
+								<option value="0" selected disabled>Selecione a Dependência</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 							<button type="button" onclick='ativar("cargoProfessor")' class="ativar btn btn-secondary"

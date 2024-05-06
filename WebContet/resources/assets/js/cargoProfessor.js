@@ -56,6 +56,21 @@ function getDados() {
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
+	
+	$.ajax({
+		url: url_base + '/dependenciaAdministrativa',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+		$.each(data, function(index, item) {
+			$('#dependenciaAdmId').append($('<option>', {
+				value: item.idDependenciaAdministrativa,
+				text: item.dependenciaAdministrativa,
+				name: item.dependenciaAdministrativa
+			}));
+		});
+	})
 }
 
 function listarDados(dados) {
@@ -82,6 +97,8 @@ function listarDados(dados) {
 			item.cargoProfessor +
 			'" data-ativo="' +
 			item.ativo +
+			'"data-dependencia-id="' +
+			item.dependenciaAdm.idDependenciaAdministrativa +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -94,6 +111,7 @@ function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
 	isAtivo = ref.getAttribute("data-ativo");
+	dependencia = ref.getAttribute("data-dependencia-id");
 
 		if (isAtivo == "S") {
 			$(".ativar").hide();
@@ -103,15 +121,35 @@ function showModal(ref) {
 			$(".desativar").hide();
 			$(".ativar").show();
 		}
+		
+	$('#dependenciaAdmIdEdit').find('option:not(:first)').remove();
+	$.ajax({
+		url: url_base + '/dependenciaAdministrativa',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+		$.each(data, function(index, item) {
+			$('#dependenciaAdmIdEdit').append($('<option>', {
+				value: item.idDependenciaAdministrativa,
+				text: item.dependenciaAdministrativa,
+				name: item.dependenciaAdministrativa
+			}));
+		});
+	})
+	$('#dependenciaAdmIdEdit').val(dependencia);
 
 	$('#edit-nome').val(nome);
 }
 
-function editar() {
+function editar() {	
 	var objeto = {
 		idCargoProfessor: Number(id),
-		cargoProfessor: $('#edit-nome').val()
+		cargoProfessor: $('#edit-nome').val(),
+		dependenciaAdmId:  $('#dependenciaAdmIdEdit').val()
 	}
+
+	console.log(objeto)
 
 	$.ajax({
 		url: url_base + "/cargoProfessor",
@@ -147,7 +185,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		cargoProfessor: $('#cadastro-nome').val()
+		cargoProfessor: $('#cadastro-nome').val(),
+		dependenciaAdmId:  $('#dependenciaAdmId').val()
 	}
 
 	$.ajax({
@@ -175,4 +214,6 @@ function cadastrar() {
 function limpaCampo() {
 	$('#cadastro-nome').val('');
 	$('#edit-nome').val('');
+	$('#dependenciaAdmId').find('option:not(:first)').remove();
+	$('#dependenciaAdmId').val(0);
 }
