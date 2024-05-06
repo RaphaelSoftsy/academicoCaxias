@@ -14,8 +14,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex" />
 
-<title>Centro Universitário Sumaré</title>
+<title>POC - Acadêmico Caxias do Sul</title>
 <!-- Bootstrap -->
+    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -50,48 +51,35 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
+    <link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/login.css">
     
     </head>
  
 <body>
-<div class="bg-loading">
-		<div class="spinner">
-			<div class="rect1"></div>
-			<div class="rect2"></div>
-			<div class="rect3"></div>
-			<div class="rect4"></div>
+	<header id="menu">
+	
+	</header>
+
+	<main>
+		<div class="container-form">
+			<form>
+		  <div class="mb-3">
+		    <label for="exampleInputEmail1" class="form-label">Email</label>
+		    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+		 
+		  </div>
+		  <div class="mb-3">
+		    <label for="exampleInputPassword1" class="form-label">Senha</label>
+		    <input type="password" class="form-control" id="exampleInputPassword1">
+		  </div>
+		  <div class="mb-3 form-check">
+		    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+		    <label class="form-check-label" for="exampleCheck1">Lembra de mim</label>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Logar</button>
+		</form>
 		</div>
-	</div>
-	<body style="background-color: #183153">
-    <div class="container">
-      <div class="d-flex align-items-center" style="min-height: 100vh">
-        <form
-          id="form-login"
-          class="card p-5 col-6 mx-auto shadow"
-        >
-          <h4 class='text-center mb-3'>Escolha o perfil de acesso</h4>
-          
-          <div class='d-flex justify-content-center gap-3 '>
-          <a
-            href="loginFuncionario"
-            class="btn btn-primary col-5 mt-4"
-            style="font-size: 18px"
-          >
-            Funcionário
-          </a>
-          <a
-            href="loginParceiro"
-            class="btn btn-primary col-5 mt-4"
-            style="font-size: 18px"
-          >
-            Parceiro
-          </a>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
+	</main>
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -109,10 +97,8 @@
     ></script>
     <script src="<%=contextPath%>/assets/js/comum.js"></script>
     <script src="<%=contextPath%>/assets/js/index.js"></script>
-  
-  
-   
- 	
     
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+  
 </body>
 </html>

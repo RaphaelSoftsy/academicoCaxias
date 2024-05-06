@@ -84,7 +84,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           class="mt-3 mb-3"
           style="display: flex; align-items: center; justify-content: end"
         >
-          <div class="d-flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2 ">
             <button id="limpa-filtros" class="btn btn-sm btn-danger">
               Limpar Filtros
             </button>
@@ -553,7 +553,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      src="https://cdn.jsdelivr.inet/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
       crossorigin="anonymous"
     ></script>

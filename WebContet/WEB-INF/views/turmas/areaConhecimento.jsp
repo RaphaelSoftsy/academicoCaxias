@@ -59,6 +59,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
       href="<%=contextPath%>/resources/assets/css/style.css"
     />
+    
   </head>
 
   <body>

@@ -4,7 +4,9 @@ const queryString = window.location.search;
 
 const params = new URLSearchParams(queryString);
 
-const path_base="http://localhost:8090/front-educacional-caxias/resources/menu";
+const path_base="http://localhost:8080/front-educacional-caxias/resources/menu";
+
+
 
 
 window.addEventListener("load", function() {
@@ -237,6 +239,7 @@ function toggleNavigation() {
 
         $('.btn-page').click(function() {
             goToPage(parseInt($(this).data('page')));
+            
         });
     }
 }
@@ -251,8 +254,18 @@ function goToPage(page) {
 		currentPage = page;
 		showPage(currentPage);
 		updatePagination();
+		
 	}
 }
+
+function containerResponsivo(){
+	let container = $('<div>')
+	container.addClass('container-table')
+	container.append($('.table'))
+	$('#pagination').before(container)
+}
+
+containerResponsivo()
 
 $('#prev').click(function() {
 	goToPage(currentPage - 1);
@@ -261,4 +274,5 @@ $('#prev').click(function() {
 $('#next').click(function() {
 	goToPage(currentPage + 1);
 });
+
 
