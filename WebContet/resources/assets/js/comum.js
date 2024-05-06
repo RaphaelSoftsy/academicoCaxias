@@ -4,7 +4,7 @@ const queryString = window.location.search;
 
 const params = new URLSearchParams(queryString);
 
-const path_base="http://localhost:8080/front-educacional-caxias/resources/menu";
+const path_base="http://localhost:8090/front-educacional-caxias/resources/menu";
 
 
 
