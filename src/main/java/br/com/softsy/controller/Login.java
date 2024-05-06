@@ -19,5 +19,16 @@ public class Login {
 		return "login/login";
 	}
 	
+	@RequestMapping(value = { "login/senha" }, method = RequestMethod.GET)
+	public String recuperarSenha(HttpSession session, Model model) throws Exception {
+ 
+		return "login/recuperarSenha";
+	}
+	
+	
+	
+	
+	
+	
 	
 }
