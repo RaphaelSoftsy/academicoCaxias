@@ -102,102 +102,103 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </div>
         </div>
 
-        <table
-          class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto"
-        >
-          <caption>
-            Itens Cadastrados
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col" class="sortable border-end" data-column="pessoa">
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Nome</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                  <div class="dropdown-form">
-                    <div class="dropdown-toggle-form" id="dropdownButton1">
-                      <i class="fas fa-search" style="color: #dddddd"></i>
-                    </div>
-                    <div
-                      class="dropdown-content-form rounded-3 dropdown-content-left"
-                      id="dropdownContent1"
-                    >
-                      <input
-                        type="text"
-                        class="form-control mb-3 searchInput"
-                        placeholder="Digite aqui..."
-                      />
-                      <button
-                        class="btn btn-sm col-12 btn-success searchButton"
-                      >
-                        Buscar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </th>
-              <th scope="col" class="sortable border-end" data-column="codigoInep">
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Código Inep</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                  <div class="dropdown-form">
-                    <div class="dropdown-toggle-form" id="dropdownButton3">
-                      <i class="fas fa-search" style="color: #dddddd"></i>
-                    </div>
-                    <div
-                      class="dropdown-content-form rounded-3 dropdown-content-left"
-                      id="dropdownContent3"
-                    >
-                      <input
-                        type="text"
-                        class="form-control mb-3 searchInput"
-                        placeholder="Digite aqui..."
-                      />
-                      <button
-                        class="btn btn-sm col-12 btn-success searchButton"
-                      >
-                        Buscar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </th>
-              <th
-                scope="col"
-                class="sortable border-end"
-                data-column="situacaoProfessor"
-              >
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Situação</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                </div>
-              </th>
-              <th scope="col" class="border-end pe-2 th-sem-filtro">PcD</th>
-              <th scope="col" class="border-end pe-2 th-sem-filtro">TEA</th>
-              <th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
-              <th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
-            </tr>
-          </thead>
-          <tbody id="cola-tabela" class="table-group-divider"></tbody>
-        </table>
+        
+        
+        	<table class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
+	          <caption>
+	            Itens Cadastrados
+	          </caption>
+	          <thead>
+	            <tr>
+	              <th scope="col" class="sortable border-end" data-column="pessoa">
+	                <div
+	                  class="d-flex align-items-center justify-content-between pe-2"
+	                >
+	                  <div
+	                    class="col d-flex align-items-center justify-content-between"
+	                  >
+	                    <span>Nome</span>
+	                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+	                  </div>
+	                  <div class="dropdown-form">
+	                    <div class="dropdown-toggle-form" id="dropdownButton1">
+	                      <i class="fas fa-search" style="color: #dddddd"></i>
+	                    </div>
+	                    <div
+	                      class="dropdown-content-form rounded-3 dropdown-content-left"
+	                      id="dropdownContent1"
+	                    >
+	                      <input
+	                        type="text"
+	                        class="form-control mb-3 searchInput"
+	                        placeholder="Digite aqui..."
+	                      />
+	                      <button
+	                        class="btn btn-sm col-12 btn-success searchButton"
+	                      >
+	                        Buscar
+	                      </button>
+	                    </div>
+	                  </div>
+	                </div>
+	              </th>
+	              <th scope="col" class="sortable border-end" data-column="codigoInep">
+	                <div
+	                  class="d-flex align-items-center justify-content-between pe-2"
+	                >
+	                  <div
+	                    class="col d-flex align-items-center justify-content-between"
+	                  >
+	                    <span>Código Inep</span>
+	                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+	                  </div>
+	                  <div class="dropdown-form">
+	                    <div class="dropdown-toggle-form" id="dropdownButton3">
+	                      <i class="fas fa-search" style="color: #dddddd"></i>
+	                    </div>
+	                    <div
+	                      class="dropdown-content-form rounded-3 dropdown-content-left"
+	                      id="dropdownContent3"
+	                    >
+	                      <input
+	                        type="text"
+	                        class="form-control mb-3 searchInput"
+	                        placeholder="Digite aqui..."
+	                      />
+	                      <button
+	                        class="btn btn-sm col-12 btn-success searchButton"
+	                      >
+	                        Buscar
+	                      </button>
+	                    </div>
+	                  </div>
+	                </div>
+	              </th>
+	              <th
+	                scope="col"
+	                class="sortable border-end"
+	                data-column="situacaoProfessor"
+	              >
+	                <div
+	                  class="d-flex align-items-center justify-content-between pe-2"
+	                >
+	                  <div
+	                    class="col d-flex align-items-center justify-content-between"
+	                  >
+	                    <span>Situação</span>
+	                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+	                  </div>
+	                </div>
+	              </th>
+	              <th scope="col" class="border-end pe-2 th-sem-filtro">PcD</th>
+	              <th scope="col" class="border-end pe-2 th-sem-filtro">TEA</th>
+	              <th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
+	              <th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
+	            </tr>
+	          </thead>
+	          <tbody id="cola-tabela" class="table-group-divider"></tbody>
+	        </table>
+        
         <div id="pagination" class="mx-auto mt-auto">
           <button id="prev" class="btn btn-sm">
             <i class="fa-solid fa-angle-left fa-xl"></i>

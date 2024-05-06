@@ -59,7 +59,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
       href="<%=contextPath%>/resources/assets/css/style.css"
     />
-    
   </head>
 
   <body>
@@ -76,8 +75,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-bars-staggered fa-lg"></i>
-            <span>Áreas de Conhecimento</span>
+            <i class="fa-solid fa-graduation-cap fa-lg"></i> <span>Cursos</span>
           </div>
         </div>
       </section>
@@ -86,7 +84,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           class="mt-3 mb-3"
           style="display: flex; align-items: center; justify-content: end"
         >
-          <div class="d-flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2 ">
             <button id="limpa-filtros" class="btn btn-sm btn-danger">
               Limpar Filtros
             </button>
@@ -115,14 +113,18 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th scope="col" class="sortable border-end" data-column="turmaId">
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="escolaId"
+              >
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
                 >
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Turma</span>
+                    <span>Escola</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
@@ -136,7 +138,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                       <input
                         type="text"
                         class="form-control mb-3 searchInput"
-                        placeholder="Digite o Nº da Turma"
+                        placeholder="Digite o nome da escola"
                       />
                       <button
                         class="btn btn-sm col-12 btn-success searchButton"
@@ -150,7 +152,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <th
                 scope="col"
                 class="sortable border-end"
-                data-column="areaConhecimento"
+                data-column="codCurso"
               >
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
@@ -158,7 +160,115 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Área de Conhecimento</span>
+                    <span>Código curso</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                  <div class="dropdown-form">
+                    <div class="dropdown-toggle-form" id="dropdownButton3">
+                      <i class="fas fa-search" style="color: #dddddd"></i>
+                    </div>
+                    <div
+                      class="dropdown-content-form rounded-3 dropdown-content-left"
+                      id="dropdownContent3"
+                    >
+                      <input
+                        type="text"
+                        class="form-control mb-3 searchInput"
+                        placeholder="Digite..."
+                      />
+                      <button
+                        class="btn btn-sm col-12 btn-success searchButton"
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="nome"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Nome</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                  <div class="dropdown-form">
+                    <div class="dropdown-toggle-form" id="dropdownButton4">
+                      <i class="fas fa-search" style="color: #dddddd"></i>
+                    </div>
+                    <div
+                      class="dropdown-content-form rounded-3 dropdown-content-left"
+                      id="dropdownContent4"
+                    >
+                      <input
+                        type="text"
+                        class="form-control mb-3 searchInput"
+                        placeholder="Digite..."
+                      />
+                      <button
+                        class="btn btn-sm col-12 btn-success searchButton"
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="codCursoInpe"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Código Inpe</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                  <div class="dropdown-form">
+                    <div class="dropdown-toggle-form" id="dropdownButton5">
+                      <i class="fas fa-search" style="color: #dddddd"></i>
+                    </div>
+                    <div
+                      class="dropdown-content-form rounded-3 dropdown-content-left"
+                      id="dropdownContent5"
+                    >
+                      <input
+                        type="text"
+                        class="form-control mb-3 searchInput"
+                        placeholder="Digite..."
+                      />
+                      <button
+                        class="btn btn-sm col-12 btn-success searchButton"
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="dependenciaAdm"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Dependência Administrativa</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
@@ -172,7 +282,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                       <input
                         type="text"
                         class="form-control mb-3 searchInput"
-                        placeholder="Digite aqui..."
+                        placeholder="Digite..."
                       />
                       <button
                         class="btn btn-sm col-12 btn-success searchButton"
@@ -183,13 +293,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </div>
                 </div>
               </th>
-              <th
-                scope="col"
-                class="border-end pe-2 th-sem-filtro"
-                data-column="ativo"
-              >
-                Ações
-              </th>
+              <th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
+              <th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
             </tr>
           </thead>
           <tbody id="cola-tabela" class="table-group-divider"></tbody>
@@ -227,34 +332,71 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formCadastro">
                 <div class="mb-4">
-                  <label for="areaConhecimentoId" class="form-label"
-                    >Área de Conhecimento:<span class="red">*</span>
+                  <label for="escolaId" class="form-label"
+                    >Escola:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Área de Conhecimento"
-                    id="areaConhecimentoId"
+                    aria-label="Escola"
+                    id="escolaId"
                     required
-                    name="areaConhecimentoId"
+                    name="escolaId"
                   >
-                    <option selected value="" disabled>Selecione a Área</option>
+                    <option value="" selected disabled>Selecione a Escola</option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="turmaId" class="form-label"
-                    >Turma:<span class="red">*</span>
+                  <label for="dependenciaAdmId" class="form-label"
+                    >Dependência Administrativa:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Turma"
-                    id="turmaId"
+                    aria-label="Dependência"
+                    id="dependenciaAdmId"
                     required
-                    name="turmaId"
+                    name="dependenciaAdmId"
                   >
-                    <option selected disabled value="">
-                      Selecione a Turma
-                    </option>
+                    <option value="" selected disabled>Selecione uma opção</option>
                   </select>
+                </div>
+                <div class="mb-4">
+                  <label for="codCurso" class="form-label"
+                    >Código do curso:<span class="red">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="codCurso"
+                    required
+                    autocomplete="off"
+                    name="codCurso"
+                    class="form-control"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="nome" class="form-label"
+                    >Nome:<span class="red">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="nome"
+                    required
+                    autocomplete="off"
+                    name="nome"
+                    class="form-control"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="codCursoInpe" class="form-label"
+                    >Código Inpe:<span class="red">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="codCursoInpe"
+                    required
+                    autocomplete="off"
+                    name="codCursoInpe"
+                    class="form-control"
+                  />
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
@@ -298,41 +440,88 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="turmaIdEdit" class="form-label"
-                    >Turma:<span class="red">*</span>
+                  <label for="escolaIdEdit" class="form-label"
+                    >Escola:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Turma"
-                    id="turmaIdEdit"
+                    aria-label="Escola"
+                    id="escolaIdEdit"
                     required
-                    name="turmaIdEdit"
+                    name="escolaIdEdit"
                   >
-                    <option selected disabled>Selecione a Turma</option>
+                    <option value="" selected disabled>Selecione a Escola</option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="areaConhecimentoIdEdit" class="form-label"
-                    >Área de Conhecimento:<span class="red">*</span>
+                  <label for="dependenciaAdmIdEdit" class="form-label"
+                    >Dependência Administrativa:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Área de Conhecimento"
-                    id="areaConhecimentoIdEdit"
+                    aria-label="Dependência"
+                    id="dependenciaAdmIdEdit"
                     required
-                    name="areaConhecimentoIdEdit"
+                    name="dependenciaAdmIdEdit"
                   >
-                    <option selected disabled>Selecione a Área</option>
+                    <option value="" disabled>Selecione uma opção</option>
                   </select>
+                </div>
+                <div class="mb-4">
+                  <label for="codCursoEdit" class="form-label"
+                    >Código do curso:<span class="red">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="codCursoEdit"
+                    required
+                    autocomplete="off"
+                    name="codCursoEdit"
+                    class="form-control"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="nomeEdit" class="form-label"
+                    >Nome:<span class="red">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="nomeEdit"
+                    required
+                    autocomplete="off"
+                    name="nomeEdit"
+                    class="form-control"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="codCursoInpeEdit" class="form-label"
+                    >Código Inpe:<span class="red">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="codCursoInpeEdit"
+                    required
+                    autocomplete="off"
+                    name="codCursoInpeEdit"
+                    class="form-control"
+                  />
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='remover("turmaAreaConhecimento")'
-                    class="ativar btn btn-danger"
+                    onclick='ativar("cursos")'
+                    class="ativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
-                    Remover
+                    Ativar
+                  </button>
+                  <button
+                    type="button"
+                    onclick='desativar("cursos")'
+                    class="desativar btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Desativar
                   </button>
                   <button
                     type="button"
@@ -364,7 +553,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      src="https://cdn.jsdelivr.inet/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
       crossorigin="anonymous"
     ></script>
@@ -375,7 +564,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="<%=contextPath%>/resources/assets/js/turmas/areaConhecimento.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/cursos/cursos.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>

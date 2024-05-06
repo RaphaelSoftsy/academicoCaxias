@@ -59,7 +59,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
       href="<%=contextPath%>/resources/assets/css/style.css"
     />
-    
   </head>
 
   <body>
@@ -76,8 +75,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-bars-staggered fa-lg"></i>
-            <span>Áreas de Conhecimento</span>
+            <i class="fa-solid fa-graduation-cap fa-lg"></i> <span>Séries</span>
           </div>
         </div>
       </section>
@@ -115,14 +113,14 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th scope="col" class="sortable border-end" data-column="turmaId">
+              <th scope="col" class="sortable border-end" data-column="cursoId">
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
                 >
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Turma</span>
+                    <span>Curso</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
@@ -136,7 +134,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                       <input
                         type="text"
                         class="form-control mb-3 searchInput"
-                        placeholder="Digite o Nº da Turma"
+                        placeholder="Digite o nome do curso"
                       />
                       <button
                         class="btn btn-sm col-12 btn-success searchButton"
@@ -147,10 +145,12 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </div>
                 </div>
               </th>
+          
+            
               <th
                 scope="col"
                 class="sortable border-end"
-                data-column="areaConhecimento"
+                data-column="serie"
               >
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
@@ -158,7 +158,24 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Área de Conhecimento</span>
+                    <span>Série</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                 
+                </div>
+              </th>
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="descricao"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Descrição</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
@@ -172,7 +189,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                       <input
                         type="text"
                         class="form-control mb-3 searchInput"
-                        placeholder="Digite aqui..."
+                        placeholder="Digite..."
                       />
                       <button
                         class="btn btn-sm col-12 btn-success searchButton"
@@ -183,13 +200,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </div>
                 </div>
               </th>
-              <th
-                scope="col"
-                class="border-end pe-2 th-sem-filtro"
-                data-column="ativo"
-              >
-                Ações
-              </th>
+              <th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
+              <th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
             </tr>
           </thead>
           <tbody id="cola-tabela" class="table-group-divider"></tbody>
@@ -227,34 +239,58 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formCadastro">
                 <div class="mb-4">
-                  <label for="areaConhecimentoId" class="form-label"
-                    >Área de Conhecimento:<span class="red">*</span>
+                  <label for="cursoId" class="form-label"
+                    >Curso:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Área de Conhecimento"
-                    id="areaConhecimentoId"
+                    aria-label="Escola"
+                    id="cursoId"
                     required
-                    name="areaConhecimentoId"
+                    name="cursoId"
                   >
-                    <option selected value="" disabled>Selecione a Área</option>
+                    <option value="" selected disabled>
+                      Selecione uma opção
+                    </option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="turmaId" class="form-label"
-                    >Turma:<span class="red">*</span>
+                  <label for="serie" class="form-label"
+                    >Série:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Turma"
-                    id="turmaId"
+                    aria-label="Série"
+                    id="serie"
                     required
-                    name="turmaId"
+                    name="serie"
                   >
-                    <option selected disabled value="">
-                      Selecione a Turma
+                    <option value="" selected disabled>
+                      Selecione uma opção
                     </option>
+                    <option value="1">1º Série</option>
+                    <option value="2">2º Série</option>
+                    <option value="3">3º Série</option>
+                    <option value="4">4º Série</option>
+                    <option value="5">5º Série</option>
+                    <option value="6">6º Série</option>
+                    <option value="7">7º Série</option>
+                    <option value="8">8º Série</option>
+                    <option value="9">9º Série</option>
                   </select>
+                </div>
+                <div class="mb-4">
+                  <label for="descricao" class="form-label"
+                    >Descrição:<span class="red">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="descricao"
+                    required
+                    autocomplete="off"
+                    name="descricao"
+                    class="form-control"
+                  />
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
@@ -298,41 +334,76 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="turmaIdEdit" class="form-label"
-                    >Turma:<span class="red">*</span>
+                  <label for="cursoIdEdit" class="form-label"
+                    >Curso:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Turma"
-                    id="turmaIdEdit"
+                    aria-label="Curso"
+                    id="cursoIdEdit"
                     required
-                    name="turmaIdEdit"
+                    name="cursoIdEdit"
                   >
-                    <option selected disabled>Selecione a Turma</option>
+                    <option value="" selected disabled>
+                      Selecione uma opção
+                    </option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="areaConhecimentoIdEdit" class="form-label"
-                    >Área de Conhecimento:<span class="red">*</span>
+                  <label for="serieEdit" class="form-label"
+                    >Série:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Área de Conhecimento"
-                    id="areaConhecimentoIdEdit"
+                    aria-label="Série"
+                    id="serieEdit"
                     required
-                    name="areaConhecimentoIdEdit"
+                    name="serieEdit"
                   >
-                    <option selected disabled>Selecione a Área</option>
+                    <option value="" selected disabled>
+                      Selecione uma opção
+                    </option>
+                    <option value="1">1º Série</option>
+                    <option value="2">2º Série</option>
+                    <option value="3">3º Série</option>
+                    <option value="4">4º Série</option>
+                    <option value="5">5º Série</option>
+                    <option value="6">6º Série</option>
+                    <option value="7">7º Série</option>
+                    <option value="8">8º Série</option>
+                    <option value="9">9º Série</option>
                   </select>
                 </div>
+                <div class="mb-4">
+                  <label for="descricaoEdit" class="form-label"
+                    >Descrição:<span class="red">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="descricaoEdit"
+                    required
+                    autocomplete="off"
+                    name="descricaoEdit"
+                    class="form-control"
+                  />
+                </div>
+
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='remover("turmaAreaConhecimento")'
-                    class="ativar btn btn-danger"
+                    onclick='ativar("cursoSerie")'
+                    class="ativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
-                    Remover
+                    Ativar
+                  </button>
+                  <button
+                    type="button"
+                    onclick='desativar("cursoSerie")'
+                    class="desativar btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Desativar
                   </button>
                   <button
                     type="button"
@@ -375,7 +446,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="<%=contextPath%>/resources/assets/js/turmas/areaConhecimento.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/cursos/serie.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>

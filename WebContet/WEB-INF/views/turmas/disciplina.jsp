@@ -83,8 +83,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="pt-4 card card-table px-5 py-3">
         <div
           class="mt-3 mb-3"
-          style="display: flex; align-items: center; justify-content: end"
-        >
+          style="display: flex; align-items: center; justify-content: end; gap:2%;">
           <div class="d-flex align-items-center gap-2">
             <button id="limpa-filtros" class="btn btn-sm btn-danger">
               Limpar Filtros

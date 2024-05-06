@@ -4,60 +4,39 @@ var dadosOriginais = [];
 var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
+var cursos = [];
 var id = "";
+var ativo = "";
 
 $(document).ready(function () {
-  var anoEdit = document.getElementById("anoEdit");
-  var ano = document.getElementById("ano");
-  var anoAtual = new Date().getFullYear();
-
-  var anosRetroativos = anoAtual - 2000;
-  var anosFuturos = 10;
-
-  var anoInicial = anoAtual + anosFuturos;
-  var anoFinal = anoAtual - anosRetroativos;
-
-  for (var i = anoInicial; i >= anoFinal; i--) {
-    var option = document.createElement("option");
-    option.value = i;
-    option.text = i;
-    ano.appendChild(option);
-  }
-  for (var i = anoInicial; i >= anoFinal; i--) {
-    var option = document.createElement("option");
-    option.value = i;
-    option.text = i;
-    anoEdit.appendChild(option);
-  }
-
   $.ajax({
-    url: url_base + "/dependenciaAdministrativa",
+    url: url_base + "/cursos",
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      dependencias = data;
+      cursos = data;
       $.each(data, function (index, item) {
-        $("#dependenciaAdmIdEdit").append(
+        $("#cursoIdEdit").append(
           $("<option>", {
-            value: item.idDependenciaAdministrativa,
-            text: item.dependenciaAdministrativa,
-            name: item.dependenciaAdministrativa,
+            value: item.idCurso,
+            text: item.nome,
+            name: item.nome,
           })
         );
       });
       $.each(data, function (index, item) {
-        $("#dependenciaAdmId").append(
+        $("#cursoId").append(
           $("<option>", {
-            value: item.idDependenciaAdministrativa,
-            text: item.dependenciaAdministrativa,
-            name: item.dependenciaAdministrativa,
+            value: item.idCurso,
+            text: item.nome,
+            name: item.nome,
           })
         );
       });
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", jqXHR);
+      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
   getDados();
@@ -72,17 +51,13 @@ $(document).ready(function () {
     var columnToSearch = $(this).closest(".sortable").data("column");
     var filteredData;
 
-    if (columnToSearch === "dtInicio" || columnToSearch === "dtFim") {
-      searchInput = searchInput.split("T")[0];
+    if (columnToSearch === "cursoId") {
       filteredData = dadosOriginais.filter(function (item) {
-        var itemDate = item[columnToSearch].split("T")[0];
-        return itemDate.includes(searchInput);
-      });
-    } else if (columnToSearch === "dependenciaAdm") {
-      filteredData = dadosOriginais.filter(function (item) {
-        return item.dependenciaAdm.dependenciaAdministrativa
-          .toLowerCase()
-          .includes(searchInput);
+        var escola = cursos.find(function (school) {
+          return school.idCurso === item.cursoId;
+        });
+        var nome = escola ? escola.nome.toLowerCase() : "";
+        return nome.includes(searchInput);
       });
     } else {
       filteredData = dadosOriginais.filter(function (item) {
@@ -136,24 +111,21 @@ $(document).ready(function () {
     var dadosOrdenados = dadosOriginais.slice();
 
     dadosOrdenados.sort(function (a, b) {
-      if (column === "dtInicio" || column === "dtFim") {
-        var dateA = new Date(a[column]);
-        var dateB = new Date(b[column]);
-
+      if (column === "cursoId") {
+        var escolaA = cursos.find(function (school) {
+          return school.idCurso === a.cursoId;
+        });
+        var escolaB = cursos.find(function (school) {
+          return school.idCurso === b.cursoId;
+        });
+        var nomeA = escolaA ? escolaA.nome.toLowerCase() : "";
+        var nomeB = escolaB ? escolaB.nome.toLowerCase() : "";
         if (order === "asc") {
-          return dateA - dateB;
+          return nomeA.localeCompare(nomeB);
         } else {
-          return dateB - dateA;
+          return nomeB.localeCompare(nomeA);
         }
-      } else if (column === "dependenciaAdm") {
-        var valueA = a.dependenciaAdm.dependenciaAdministrativa.toLowerCase();
-        var valueB = b.dependenciaAdm.dependenciaAdministrativa.toLowerCase();
-        if (order === "asc") {
-          return valueA.localeCompare(valueB);
-        } else {
-          return valueB.localeCompare(valueA);
-        }
-      } else if (column === "ano" || column === "periodo") {
+      } else if (column === "serie") {
         var valueA = parseFloat(a[column]);
         var valueB = parseFloat(b[column]);
         if (order === "asc") {
@@ -185,7 +157,7 @@ $("#limpa-filtros").click(function () {
 
 function getDados() {
   $.ajax({
-    url: url_base + "/periodoletivo",
+    url: url_base + "/cursoSerie",
     type: "GET",
     async: false,
   })
@@ -195,22 +167,17 @@ function getDados() {
       listarDados(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", jqXHR);
+      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
-}
-
-function formatarDataParaBR(data) {
-  var dataISO = data + "T00:00:00";
-  var dataObj = new Date(dataISO);
-  var dia = String(dataObj.getUTCDate()).padStart(2, "0");
-  var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
-  var ano = dataObj.getUTCFullYear();
-  return dia + "/" + mes + "/" + ano;
 }
 
 function listarDados(dados) {
   var html = dados
     .map(function (item) {
+      var curso = cursos.find(function (school) {
+        return school.idCurso === item.cursoId;
+      });
+
       if (item.ativo == "N") {
         ativo =
           '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
@@ -218,28 +185,28 @@ function listarDados(dados) {
         ativo =
           "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
       }
+
+      var nome = curso ? curso.nome : "Curso não encontrado";
+
       return (
         "<tr>" +
         "<td>" +
-        item.dependenciaAdm.dependenciaAdministrativa +
+        nome +
         "</td>" +
         "<td>" +
-        item.ano +
+        item.serie +
+        "º série" +
         "</td>" +
         "<td>" +
-        item.periodo +
-        "</td>" +
-        "<td>" +
-        formatarDataParaBR(item.dtInicio) +
-        "</td>" +
-        "<td>" +
-        formatarDataParaBR(item.dtFim) +
+        item.descricao +
         "</td>" +
         "<td>" +
         ativo +
         "</td>" +
-        '<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-        item.idPeriodoLetivo +
+        '<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+        item.idCursoSerie +
+        '" data-ativo="' +
+        item.ativo +
         '"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
         "</tr>"
       );
@@ -257,26 +224,25 @@ $("#exportar-excel").click(function () {
   var livro = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-  XLSX.writeFile(livro, "periodoLetivo.xlsx");
+  XLSX.writeFile(livro, "cursosSerie.xlsx");
 });
-
-function formatarDataParaAPI(data) {
-  var year = data.getFullYear();
-  var month = ("0" + (data.getMonth() + 1)).slice(-2);
-  var day = ("0" + data.getDate()).slice(-2);
-
-  var hora = "23:59:59";
-
-  return year + "-" + month + "-" + day + "T" + hora;
-}
 
 // Abrir modal
 
 function showModal(ref) {
   id = ref.getAttribute("data-id");
+  ativo = ref.getAttribute("data-ativo");
+
+  if (ativo == "S") {
+    $(".ativar").hide();
+    $(".desativar").show();
+  } else {
+    $(".desativar").hide();
+    $(".ativar").show();
+  }
 
   $.ajax({
-    url: url_base + "/periodoletivo/" + id,
+    url: url_base + "/cursoSerie/" + id,
     type: "GET",
     async: false,
     error: function (e) {
@@ -284,24 +250,9 @@ function showModal(ref) {
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    if (data.ativo == "S") {
-      $(".ativar").hide();
-      $(".desativar").show();
-    } else {
-      $(".desativar").hide();
-      $(".ativar").show();
-    }
-    $("#dependenciaAdmIdEdit")
-      .val(data.dependenciaAdm.idDependenciaAdministrativa)
-      .attr("selected", true);
-    $("#anoEdit").val(data.ano);
-    $("#periodoEdit").val(data.periodo);
-    $("#dtInicioEdit").val(data.dtInicio);
-    $("#dtFimEdit").val(data.dtFim);
+    $("#cursoIdEdit").val(data.cursoId).attr("selected", true);
+    $("#serieEdit").val(data.serie).attr("selected", true);
     $("#descricaoEdit").val(data.descricao);
-    $("#tipoPeriodicidadeEdit")
-      .val(data.tipoPeriodicidade)
-      .attr("selected", true);
   });
 }
 
@@ -309,43 +260,34 @@ function showModal(ref) {
 
 function editar() {
   var objeto = {
-    idPeriodoLetivo: id,
-    dependenciaAdmId: Number($("#dependenciaAdmIdEdit").val()),
-    ano: $("#anoEdit").val(),
-    periodo: $("#periodoEdit").val(),
-    dtInicio: $("#dtInicioEdit").val(),
-    dtFim: $("#dtFimEdit").val(),
+    idCursoSerie: Number(id),
+    cursoId: Number($("#cursoIdEdit").val()),
+    serie: $("#serieEdit").val(),
     descricao: $("#descricaoEdit").val(),
-    tipoPeriodicidade: $("#tipoPeriodicidadeEdit").val(),
   };
 
   $.ajax({
-    url: url_base + "/periodoletivo",
+    url: url_base + "/cursoSerie",
     type: "PUT",
     data: JSON.stringify(objeto),
     contentType: "application/json; charset=utf-8",
     async: false,
     error: function (e) {
-      console.log(e.responseJSON);
+      console.log(e.responseJSON.message);
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    $("#dependenciaAdmIdEdit").val("");
-    $("#descricaoEdit").val("");
-    $("#anoEdit").val("");
-    $("#periodoEdit").val("");
-    $("#dtInicioEdit").val("");
-    $("#dtFimEdit").val("");
-    $("#tipoPeriodicidadeEdit").val("");
+    $("#cursoIdEdit").val("");
+    $("#serieEdit").val();
+    $("#descricaoEdit").val();
+
     getDados();
     showPage(currentPage);
     updatePagination();
     alert("Editado com Sucesso!");
   });
-
   return false;
 }
-
 $("#formEdit").on("submit", function (e) {
   e.preventDefault();
   editar();
@@ -356,39 +298,30 @@ $("#formEdit").on("submit", function (e) {
 
 function cadastrar() {
   var objeto = {
-    dependenciaAdmId: Number($("#dependenciaAdmId").val()),
-    ano: $("#ano").val(),
-    periodo: $("#periodo").val(),
-    dtInicio: $("#dtInicio").val(),
-    dtFim: $("#dtFim").val(),
+    cursoId: Number($("#cursoId").val()),
+    serie: $("#serie").val(),
     descricao: $("#descricao").val(),
-    tipoPeriodicidade: $("#tipoPeriodicidade").val(),
   };
 
   $.ajax({
-    url: url_base + "/periodoletivo",
+    url: url_base + "/cursoSerie",
     type: "POST",
     data: JSON.stringify(objeto),
     contentType: "application/json; charset=utf-8",
     async: false,
     error: function (e) {
-      console.log(e.responseJSON);
+      console.log(e.responseJSON.message);
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    $("#dependenciaAdmId").val("");
-    $("#descricao").val("");
-    $("#ano").val("");
-    $("#periodo").val("");
-    $("#dtInicio").val("");
-    $("#dtFim").val("");
-    $("#tipoPeriodicidade").val("");
+    $("#cursoId").val("");
+    $("#serie").val();
+    $("#descricao").val();
     getDados();
     showPage(currentPage);
     updatePagination();
     alert("Cadastrado com Sucesso!");
   });
-
   return false;
 }
 
@@ -401,11 +334,7 @@ $("#formCadastro").on("submit", function (e) {
 // Limpa input
 
 function limpaCampo() {
-  $("#dependenciaAdmId").val("");
-  $("#descricao").val("");
-  $("#ano").val("");
-  $("#periodo").val("");
-  $("#dtInicio").val("");
-  $("#dtFim").val("");
-  $("#tipoPeriodicidade").val("");
+  $("#cursoId").val("");
+  $("#serie").val();
+  $("#descricao").val();
 }

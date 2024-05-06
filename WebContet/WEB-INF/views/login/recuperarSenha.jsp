@@ -46,8 +46,7 @@
     />
     
     <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- FontAwesome -->
     <script
@@ -72,12 +71,14 @@
 		<div class="container-form">
 			<form>
 			  <div class="mb-3">
-			    <label for="inputPassword" class="form-label">Email</label>
-			    <input class="form-control form-control-lg email" type="email" aria-label=".form-control-lg example" id="emailInput" required>
-			 
+			  	<label for="inputPassword" class="form-label">Nova Senha</label>
+			    <div class="input-group ">
+	          		<input class="form-control form-control-lg pwd senha type="password" aria-label=".form-control-lg example" id="passwordInput" required >
+	            	<button class="btn btn-default reveal" type="button"><i class="fa-regular fa-eye"></i></button>
+	          	</div>
 			  </div>
 			  <div class="mb-3">
-	    		<label for="inputPassword" class="form-label">Senha</label>
+	    		<label for="inputPassword" class="form-label">Confirmar Senha</label>
 	          	<div class="input-group ">
 	          		<input class="form-control form-control-lg pwd senha type="password" aria-label=".form-control-lg example" id="passwordInput" required >
 	            	<button class="btn btn-default reveal" type="button"><i class="fa-regular fa-eye"></i></button>
@@ -88,15 +89,9 @@
 			    <label class="form-check-label" for="exampleCheck">Lembrar meu acesso</label>
 			  </div>
 			</form>
-			
-			<div class="container-btns">
 			<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="btnLogin">
-			   Entrar
+			   Salvar senha
 			</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="btnRecuperarSenha">
-			   Esqueci a senha
-			</button>
-			</div>
 		</div>
 	</main>
     

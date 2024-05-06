@@ -1,10 +1,12 @@
-var url_base = "http://localhost:8080";
+var url_base = "http://10.40.110.2:8080/api-educacional";
 
 const queryString = window.location.search;
 
 const params = new URLSearchParams(queryString);
 
 const path_base="http://localhost:8090/front-educacional-caxias/resources/menu";
+
+
 
 
 window.addEventListener("load", function() {
@@ -127,10 +129,12 @@ function getValorSelects() {
 }
 
 
-function getSearchParams(k){
-		var p={};
-		location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){p[k]=v})
-		return k?p[k]:p;
+function getSearchParams(k) {
+    var p = {};
+    location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(s, key, value) {
+        p[key] = value;
+    });
+    return k ? p[k] : p;
 }
 
 function desativar(endpoint){
@@ -235,6 +239,7 @@ function toggleNavigation() {
 
         $('.btn-page').click(function() {
             goToPage(parseInt($(this).data('page')));
+            
         });
     }
 }
@@ -249,8 +254,18 @@ function goToPage(page) {
 		currentPage = page;
 		showPage(currentPage);
 		updatePagination();
+		
 	}
 }
+
+function containerResponsivo(){
+	let container = $('<div>')
+	container.addClass('container-table')
+	container.append($('.table'))
+	$('#pagination').before(container)
+}
+
+containerResponsivo()
 
 $('#prev').click(function() {
 	goToPage(currentPage - 1);
@@ -259,4 +274,5 @@ $('#prev').click(function() {
 $('#next').click(function() {
 	goToPage(currentPage + 1);
 });
+
 

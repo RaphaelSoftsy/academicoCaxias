@@ -59,7 +59,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
       href="<%=contextPath%>/resources/assets/css/style.css"
     />
-    
   </head>
 
   <body>
@@ -76,8 +75,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-bars-staggered fa-lg"></i>
-            <span>Áreas de Conhecimento</span>
+            <i class="fa-solid fa-graduation-cap fa-lg"></i>
+            <span>Grade currícular</span>
           </div>
         </div>
       </section>
@@ -115,42 +114,10 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th scope="col" class="sortable border-end" data-column="turmaId">
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Turma</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                  <div class="dropdown-form">
-                    <div class="dropdown-toggle-form" id="dropdownButton1">
-                      <i class="fas fa-search" style="color: #dddddd"></i>
-                    </div>
-                    <div
-                      class="dropdown-content-form rounded-3 dropdown-content-left"
-                      id="dropdownContent1"
-                    >
-                      <input
-                        type="text"
-                        class="form-control mb-3 searchInput"
-                        placeholder="Digite o Nº da Turma"
-                      />
-                      <button
-                        class="btn btn-sm col-12 btn-success searchButton"
-                      >
-                        Buscar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </th>
               <th
                 scope="col"
                 class="sortable border-end"
-                data-column="areaConhecimento"
+                data-column="cursoSerie"
               >
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
@@ -158,7 +125,35 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Área de Conhecimento</span>
+                    <span>Série</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                </div>
+              </th>
+              <th scope="col" class="sortable border-end" data-column="turno">
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Turno</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                </div>
+              </th>
+              <th
+                scope="col"
+                class="sortable border-end"
+                data-column="disciplina"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Disciplina</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
@@ -185,11 +180,48 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               </th>
               <th
                 scope="col"
-                class="border-end pe-2 th-sem-filtro"
-                data-column="ativo"
+                class="sortable border-end"
+                data-column="curriculo"
               >
-                Ações
+                <div
+                  class="d-flex align-items-center justify-content-between pe-2"
+                >
+                  <div
+                    class="col d-flex align-items-center justify-content-between"
+                  >
+                    <span>Currículo</span>
+                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
+                  </div>
+                  <div class="dropdown-form">
+                    <div class="dropdown-toggle-form" id="dropdownButton3">
+                      <i class="fas fa-search" style="color: #dddddd"></i>
+                    </div>
+                    <div
+                      class="dropdown-content-form rounded-3 dropdown-content-left"
+                      id="dropdownContent3"
+                    >
+                      <input
+                        type="text"
+                        class="form-control mb-3 searchInput"
+                        placeholder="Digite..."
+                      />
+                      <button
+                        class="btn btn-sm col-12 btn-success searchButton"
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </th>
+              <th scope="col" class="border-end pe-2 th-sem-filtro">
+                Obrigatória
+              </th>
+              <th scope="col" class="border-end pe-2 th-sem-filtro">
+                Retém série
+              </th>
+              <th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
+              <th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
             </tr>
           </thead>
           <tbody id="cola-tabela" class="table-group-divider"></tbody>
@@ -227,34 +259,130 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formCadastro">
                 <div class="mb-4">
-                  <label for="areaConhecimentoId" class="form-label"
-                    >Área de Conhecimento:<span class="red">*</span>
+                  <label for="cursoSerieId" class="form-label"
+                    >Série:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Área de Conhecimento"
-                    id="areaConhecimentoId"
+                    aria-label="Escola"
+                    id="cursoSerieId"
                     required
-                    name="areaConhecimentoId"
+                    name="cursoSerieId"
                   >
-                    <option selected value="" disabled>Selecione a Área</option>
+                    <option selected disabled value="">
+                      Selecione uma opção
+                    </option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="turmaId" class="form-label"
-                    >Turma:<span class="red">*</span>
+                  <label for="turnoId" class="form-label"
+                    >Turno:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Turma"
-                    id="turmaId"
+                    aria-label="Turno"
+                    id="turnoId"
                     required
-                    name="turmaId"
+                    name="turnoId"
                   >
                     <option selected disabled value="">
-                      Selecione a Turma
+                      Selecione o turno
                     </option>
                   </select>
+                </div>
+                <div class="mb-4">
+                  <label for="disciplinaId" class="form-label"
+                    >Disciplina:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Disciplina"
+                    id="disciplinaId"
+                    required
+                    name="disciplinaId"
+                  >
+                    <option selected disabled value="">
+                      Selecione a disciplina
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label for="curriculoId" class="form-label"
+                    >Currículo:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Dependência"
+                    id="curriculoId"
+                    required
+                    name="curriculoId"
+                  >
+                    <option selected value="" disabled>
+                      Selecione uma opção
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label for="obrigatoria" class="form-label"
+                    >Obrigatória:<span class="red">*</span>
+                  </label>
+                  <div class="form-control">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="obrigatoria"
+                        id="obrigatoriaS"
+                        value="S"
+                      />
+                      <label class="form-check-label" for="obrigatoriaS"
+                        >Sim</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="obrigatoria"
+                        id="obrigatoriaN"
+                        value="N"
+                      />
+                      <label class="form-check-label" for="obrigatoriaN"
+                        >Não</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label for="retemSerie" class="form-label"
+                    >Retém série:<span class="red">*</span>
+                  </label>
+                  <div class="form-control">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="retemSerie"
+                        id="retemSerieS"
+                        value="S"
+                      />
+                      <label class="form-check-label" for="retemSerieS"
+                        >Sim</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="retemSerie"
+                        id="retemSerieN"
+                        value="N"
+                      />
+                      <label class="form-check-label" for="retemSerieN"
+                        >Não</label
+                      >
+                    </div>
+                  </div>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
@@ -298,41 +426,146 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="turmaIdEdit" class="form-label"
-                    >Turma:<span class="red">*</span>
+                  <label for="cursoSerieIdEdit" class="form-label"
+                    >Série:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Turma"
-                    id="turmaIdEdit"
+                    aria-label="Escola"
+                    id="cursoSerieIdEdit"
                     required
-                    name="turmaIdEdit"
+                    name="cursoSerieIdEdit"
                   >
-                    <option selected disabled>Selecione a Turma</option>
+                    <option selected disabled value="">
+                      Selecione uma opção
+                    </option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="areaConhecimentoIdEdit" class="form-label"
-                    >Área de Conhecimento:<span class="red">*</span>
+                  <label for="turnoIdEdit" class="form-label"
+                    >Turno:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Área de Conhecimento"
-                    id="areaConhecimentoIdEdit"
+                    aria-label="Escola"
+                    id="turnoIdEdit"
                     required
-                    name="areaConhecimentoIdEdit"
+                    name="turnoIdEdit"
                   >
-                    <option selected disabled>Selecione a Área</option>
+                    <option selected disabled value="">
+                      Selecione o turno
+                    </option>
                   </select>
+                </div>
+                <div class="mb-4">
+                  <label for="disciplinaIdEdit" class="form-label"
+                    >Disciplina:<span class="red">*</span> </label
+                  ><select
+                    class="form-select"
+                    aria-label="Disciplina"
+                    id="disciplinaIdEdit"
+                    required
+                    name="disciplinaIdEdit"
+                  >
+                    <option selected disabled value="">
+                      Selecione a disciplina
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label for="curriculoIdEdit" class="form-label"
+                    >Currículo:<span class="red">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Dependência"
+                    id="curriculoIdEdit"
+                    required
+                    name="curriculoIdEdit"
+                  >
+                    <option selected value="" disabled>
+                      Selecione uma opção
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label for="obrigatoriaEdit" class="form-label"
+                    >Obrigatória:<span class="red">*</span>
+                  </label>
+                  <div class="form-control">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="obrigatoriaEdit"
+                        id="obrigatoriaSEdit"
+                        value="S"
+                      />
+                      <label class="form-check-label" for="obrigatoriaSEdit"
+                        >Sim</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="obrigatoriaEdit"
+                        id="obrigatoriaNEdit"
+                        value="N"
+                      />
+                      <label class="form-check-label" for="obrigatoriaNEdit"
+                        >Não</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label for="retemSerieEdit" class="form-label"
+                    >Retém série:<span class="red">*</span>
+                  </label>
+                  <div class="form-control">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="retemSerieEdit"
+                        id="retemSerieSEdit"
+                        value="S"
+                      />
+                      <label class="form-check-label" for="retemSerieSEdit"
+                        >Sim</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="retemSerieEdit"
+                        id="retemSerieNEdit"
+                        value="N"
+                      />
+                      <label class="form-check-label" for="retemSerieNEdit"
+                        >Não</label
+                      >
+                    </div>
+                  </div>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='remover("turmaAreaConhecimento")'
-                    class="ativar btn btn-danger"
+                    onclick='ativar("gradeCurricular")'
+                    class="ativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
-                    Remover
+                    Ativar
+                  </button>
+                  <button
+                    type="button"
+                    onclick='desativar("gradeCurricular")'
+                    class="desativar btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Desativar
                   </button>
                   <button
                     type="button"
@@ -375,7 +608,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="<%=contextPath%>/resources/assets/js/turmas/areaConhecimento.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/cursos/gradeCurricular.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>
