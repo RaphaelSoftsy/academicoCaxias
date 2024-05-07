@@ -124,7 +124,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </div>
 
           <div class="row mb-3">
-            <div class="col-md-6">
+            <div class="col-md-6"  id="cardCpf">
               <label for="cpf" class="form-label"
                 >CPF:<span class="red">*</span>
               </label>

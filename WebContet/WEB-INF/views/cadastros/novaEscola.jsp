@@ -114,11 +114,11 @@ String contextPath = request.getContextPath();
 
 				</div>
 				<div class="row mb-3">
-					<div class="col-md-6">
+					<div class="col-md-6" id="cardCNPJ">
 						<label for="cnpj" class="form-label">CNPJ:<span
 							class="red">*</span></label> <input type="tel" id="cnpj" required
 							autocomplete="off" name="cnpj" class="form-control "
-							data-mask="00.000.000/0000-00" />
+							data-mask="00.000.000/0000-00"/>
 					</div>
 					<div class="col-md-6">
 						<label for="codigoInep" class="form-label">Código Inep:<span

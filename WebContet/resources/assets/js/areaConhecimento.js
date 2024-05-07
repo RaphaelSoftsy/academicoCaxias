@@ -71,8 +71,6 @@ function listarDados(dados) {
 			item.idAreaConhecimento +
 			'" data-nome="' +
 			item.areaConhecimento +
-			'"data-dependencia-id="' +
-			item.dependenciaAdmId +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -84,30 +82,7 @@ function listarDados(dados) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
-	dependencia = ref.getAttribute("data-dependencia-id");
-	
-	console.log(nome);
-	console.log($('#dependenciaAdmIdEdit').val(6));
-	
-	$('#dependenciaAdmIdEdit').find('option:not(:first)').remove();
-	$.ajax({
-		url: url_base + '/dependenciaAdministrativa',
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		console.log(data)
-		$.each(data, function(index, item) {
-			$('#dependenciaAdmIdEdit').append($('<option>', {
-				value: item.idDependenciaAdministrativa,
-				text: item.dependenciaAdministrativa,
-				name: item.dependenciaAdministrativa
-			}));
-		});
-	})
-	$('#dependenciaAdmIdEdit').val(dependencia);
-
 	$('#edit-nome').val(nome);
-
 }
 
 function editar() {
@@ -115,7 +90,7 @@ function editar() {
 	var objeto = {
 		idAreaConhecimento: Number(id),
 		areaConhecimento: $('#edit-nome').val(),
-		dependenciaAdmId:  $('#dependenciaAdmIdEdit').val()
+		//dependenciaAdmId:  $('#dependenciaAdmIdEdit').val()
 	}
 
 	$.ajax({
@@ -184,20 +159,4 @@ function cadastrar() {
 function limpaCampo() {
 	$('#cadastro-nome').val('');
 	$('#edit-nome').val('');
-	$('#dependenciaAdmId').find('option:not(:first)').remove();
-	$('#dependenciaAdmId').val(0);
-	$.ajax({
-		url: url_base + '/dependenciaAdministrativa',
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		console.log(data)
-		$.each(data, function(index, item) {
-			$('#dependenciaAdmId').append($('<option>', {
-				value: item.idDependenciaAdministrativa,
-				text: item.dependenciaAdministrativa,
-				name: item.dependenciaAdministrativa
-			}));
-		});
-	})
 }

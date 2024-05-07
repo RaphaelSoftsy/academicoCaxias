@@ -116,13 +116,19 @@ function cpfValido(cpf) {
 }
 
 function ValidarCpf() {
-    var cpf = document.getElementById("cpf").value;
-    if (CpfValido(cpf)) {
-        $("#btn-submit").show()
-    } else {
-        
-        $("#btn-submit").hide()
-    }
+    const cpf = $('#cpf');
+    const message =  $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');    
+    if (cpfValido(cpf.val())) {
+		$("#btn-submit").removeAttr('disabled');
+		cpf.removeClass('err-message')
+		$('#errMessage').css('display', 'none')
+    }else{
+		$("#btn-submit").attr("disabled", "disabled");
+		cpf.addClass('err-message')
+		$("#cardCpf").append(message)	
+		message.show()
+	}
+    
 }
 $("#cpf").blur(function() {
 	ValidarCpf()
