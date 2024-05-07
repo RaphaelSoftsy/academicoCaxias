@@ -48,6 +48,10 @@ String contextPath = request.getContextPath();
 	href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 	rel="stylesheet" />
 
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
@@ -130,9 +134,8 @@ String contextPath = request.getContextPath();
 						<form id="formCadastro">
 							<div class="mb-4">
 								<label for="nome" class="form-label">Município:</label> <input
-									type="text" class="form-control" 
-									id="cadastro-nome" required aria-describedby="Descricao"
-									autocomplete="off">
+									type="text" class="form-control" id="cadastro-nome" required
+									aria-describedby="Descricao" autocomplete="off">
 							</div>
 							<div class="mb-4">
 								<label for="selectCadastro" class="form-label">UF:<span
@@ -143,7 +146,8 @@ String contextPath = request.getContextPath();
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="cadastro-nome2" class="form-label">Código IBGE:</label> <input type="text" class="form-control"
+								<label for="cadastro-nome2" class="form-label">Código
+									IBGE:</label> <input type="text" class="form-control"
 									id="cadastro-nome2" required aria-describedby="Descricao 2"
 									autocomplete="off">
 							</div>
@@ -172,8 +176,8 @@ String contextPath = request.getContextPath();
 						<form id="formEdit">
 							<div class="mb-4">
 								<label for="edit-nome" class="form-label">Município:</label> <input
-									type="text" class="form-control" id="edit-nome"
-									required aria-describedby="Descricao" autocomplete="off">
+									type="text" class="form-control" id="edit-nome" required
+									aria-describedby="Descricao" autocomplete="off">
 							</div>
 							<div class="mb-4">
 								<label for="selectEdit" class="form-label">UF:<span
@@ -184,9 +188,9 @@ String contextPath = request.getContextPath();
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="edit-nome2" class="form-label">Código IBGE:</label> <input type="text" class="form-control"
-									id="edit-nome2" required aria-describedby="Descricao 2"
-									autocomplete="off">
+								<label for="edit-nome2" class="form-label">Código IBGE:</label>
+								<input type="text" class="form-control" id="edit-nome2" required
+									aria-describedby="Descricao 2" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" onclick='remover("municipio")'

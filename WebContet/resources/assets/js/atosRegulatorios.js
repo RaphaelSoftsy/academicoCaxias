@@ -8,6 +8,17 @@ const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
 
+	if (isNaN(idConta)) {
+		Swal.fire({
+			title: "Nenhum usuário localizado, logue novamente",
+			icon: "info",
+		}).then(result => {
+			if (result) {
+				window.location.href = "login"
+			}
+		})
+	}
+
 	getDados()
 	console.log(idConta)
 

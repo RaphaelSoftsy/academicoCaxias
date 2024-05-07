@@ -10,7 +10,19 @@ var pagesToShow = 5;
 const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
-	
+
+	if (isNaN(idConta)) {
+		Swal.fire({
+			title: "Nenhum usuário localizado, logue novamente",
+			icon: "info",
+		}).then(result => {
+			if (result) {
+				window.location.href = "login"
+			}
+		})
+	}
+
+
 	$.ajax({
 		url: url_base + "/uf",
 		type: "GET",
@@ -90,7 +102,7 @@ function getDados() {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-		
+
 		var uf = ufs.find(function(ufId) {
 			return ufId.idUf === item.ufId;
 		});

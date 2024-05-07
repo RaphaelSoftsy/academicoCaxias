@@ -4,14 +4,31 @@ const queryString = window.location.search;
 
 const params = new URLSearchParams(queryString);
 
-const path_base="http://localhost:8090/front-educacional-caxias/resources/menu";
+const path_base = "http://localhost:8090/front-educacional-caxias/resources/menu";
+
+$(document).ready(function() {
+	const url = window.location.pathname
+	if (url.includes('login') == false) {
+		const idConta = sessionStorage.getItem('idConta')
+		if (isNaN(idConta) || idConta == 0 || idConta == "" || idConta == undefined) {
+			Swal.fire({
+				title: "Nenhum usuário localizado, logue novamente",
+				icon: "info",
+			}).then(result => {
+				if (result) {
+					window.location.href = "login"
+				}
+			})
+		}
+	}
+})
 
 
 window.addEventListener("load", function() {
-	$("#menu").load(path_base+"/menu.html" );
-    const loader = document.querySelector(".bg-loading");
-    loader.parentElement.removeChild(loader);
-    $(".bg-loading").addClass("none");
+	$("#menu").load(path_base + "/menu.html");
+	const loader = document.querySelector(".bg-loading");
+	loader.parentElement.removeChild(loader);
+	$(".bg-loading").addClass("none");
 });
 
 
@@ -57,7 +74,7 @@ function getValorSelects() {
 			}));
 		});
 	})
-	
+
 	$.ajax({
 		url: url_base + '/orgaoPublico',
 		type: "get",
@@ -110,7 +127,7 @@ function getValorSelects() {
 			}));
 		});
 	})
-	
+
 	$.ajax({
 		url: url_base + '/localizacao',
 		type: "get",
@@ -128,14 +145,14 @@ function getValorSelects() {
 
 
 function getSearchParams(k) {
-    var p = {};
-    location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(s, key, value) {
-        p[key] = value;
-    });
-    return k ? p[k] : p;
+	var p = {};
+	location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(s, key, value) {
+		p[key] = value;
+	});
+	return k ? p[k] : p;
 }
 
-function desativar(endpoint){
+function desativar(endpoint) {
 	$.ajax({
 		url: url_base + `/${endpoint}/${id}/desativar`,
 		type: "PUT",
@@ -154,7 +171,7 @@ function desativar(endpoint){
 	return false;
 }
 
-function ativar(endpoint){
+function ativar(endpoint) {
 	$.ajax({
 		url: url_base + `/${endpoint}/${id}/ativar`,
 		type: "PUT",
@@ -173,7 +190,7 @@ function ativar(endpoint){
 	return false;
 }
 
-function remover(endpoint){
+function remover(endpoint) {
 	$.ajax({
 		url: url_base + `/${endpoint}/${id}`,
 		type: "DELETE",
@@ -202,44 +219,44 @@ function showPage(page) {
 }
 
 function toggleNavigation() {
-    var totalRows = $('#cola-tabela tr').length;
-    var totalPages = Math.ceil(totalRows / rows);
+	var totalRows = $('#cola-tabela tr').length;
+	var totalPages = Math.ceil(totalRows / rows);
 
-    $('#prev').prop('disabled', currentPage === 1);
-    $('#next').prop('disabled', currentPage === totalPages);
+	$('#prev').prop('disabled', currentPage === 1);
+	$('#next').prop('disabled', currentPage === totalPages);
 
-    $('#pagination').toggle(totalRows > 0);
+	$('#pagination').toggle(totalRows > 0);
 
-    $('#page-numbers').empty();
+	$('#page-numbers').empty();
 
-    if (totalRows > 0) {
-        var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
-        var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+	if (totalRows > 0) {
+		var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+		var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
 
-        if (startPage > 1) {
-            $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
-            if (startPage > 2) {
-                $('#page-numbers').append('<span>...</span>');
-            }
-        }
+		if (startPage > 1) {
+			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+			if (startPage > 2) {
+				$('#page-numbers').append('<span>...</span>');
+			}
+		}
 
-        for (var i = startPage; i <= endPage; i++) {
-            var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
-            $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
-        }
+		for (var i = startPage; i <= endPage; i++) {
+			var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+			$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+		}
 
-        if (endPage < totalPages) {
-            if (endPage < totalPages - 1) {
-                $('#page-numbers').append('<span>...</span>');
-            }
-            $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
-        }
+		if (endPage < totalPages) {
+			if (endPage < totalPages - 1) {
+				$('#page-numbers').append('<span>...</span>');
+			}
+			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+		}
 
-        $('.btn-page').click(function() {
-            goToPage(parseInt($(this).data('page')));
-            
-        });
-    }
+		$('.btn-page').click(function() {
+			goToPage(parseInt($(this).data('page')));
+
+		});
+	}
 }
 
 
@@ -252,11 +269,11 @@ function goToPage(page) {
 		currentPage = page;
 		showPage(currentPage);
 		updatePagination();
-		
+
 	}
 }
 
-function containerResponsivo(){
+function containerResponsivo() {
 	let container = $('<div>')
 	container.addClass('container-table')
 	container.append($('.table'))
