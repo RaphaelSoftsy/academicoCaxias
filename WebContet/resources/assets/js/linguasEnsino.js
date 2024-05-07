@@ -5,6 +5,7 @@ var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 var valorIndigena = '';
+const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
 
@@ -134,7 +135,8 @@ function editar() {
 	var objeto = {
 		idLinguaEnsino: Number(id),
 		linguaEnsino: $('#edit-nome').val(),
-		linguaIndigena: $('input[name="editIsIndigena"]:checked').val()
+		linguaIndigena: $('input[name="editIsIndigena"]:checked').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
@@ -173,7 +175,7 @@ function cadastrar() {
 
 	var objeto = {
 		linguaEnsino: $('#cadastro-nome').val(),
-		linguaIndigena: $('input[name="isIndigena"]:checked').val()
+		linguaIndigena: $('input[name="isIndigena"]:checked').val(),
 	}
 
 	$.ajax({

@@ -4,6 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
 
@@ -114,7 +115,8 @@ function showModal(ato) {
 function editar() {
 	var objeto = {
 		idCategoriaEscolaPrivada: Number(id),
-		categoriaEscolaPrivada: $('#edit-nome').val()
+		categoriaEscolaPrivada: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
@@ -149,7 +151,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		categoriaEscolaPrivada: $('#cadastro-nome').val()
+		categoriaEscolaPrivada: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

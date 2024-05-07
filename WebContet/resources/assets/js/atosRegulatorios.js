@@ -4,10 +4,12 @@ var nome = '';
 var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
+const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
 
 	getDados()
+	console.log(idConta)
 
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
@@ -113,7 +115,8 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idAtoRegulatorio: Number(id),
-		atoRegulatorio: $('#edit-nome').val()
+		atoRegulatorio: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
@@ -150,7 +153,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		atoRegulatorio: $('#cadastro-nome').val()
+		atoRegulatorio: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

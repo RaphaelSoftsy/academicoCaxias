@@ -4,6 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
 
@@ -113,7 +114,8 @@ function showModal(ato) {
 function editar() {
 	var objeto = {
 		idDestinacaoLixo: Number(id),
-		destinacaoLixo: $('#edit-nome').val()
+		destinacaoLixo: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
@@ -150,7 +152,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		destinacaoLixo: $('#cadastro-nome').val()
+		destinacaoLixo: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

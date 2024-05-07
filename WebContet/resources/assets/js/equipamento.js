@@ -6,6 +6,7 @@ var currentPage = 1;
 var pagesToShow = 5;
 var isAtivo = '';
 var idSelect = '';
+const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
 	$.ajax({
@@ -146,7 +147,8 @@ function editar() {
 	var objeto = {
 		idEquipamento: Number(id),
 		equipamento: $('#edit-nome').val(),
-		marcaEquipamentoId: $('#selectEdit').val()
+		marcaEquipamentoId: $('#selectEdit').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
@@ -185,7 +187,8 @@ function cadastrar() {
 
 	var objeto = {
 		equipamento: $('#cadastro-nome').val(),
-		marcaEquipamentoId: $('#selectCadastro').val()
+		marcaEquipamentoId: $('#selectCadastro').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

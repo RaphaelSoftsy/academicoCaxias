@@ -4,6 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
 
@@ -112,7 +113,8 @@ function showModal(ato) {
 function editar() {
 	var objeto = {
 		idFornecimentoAgua: Number(id),
-		fornecimentoAgua: $('#edit-nome').val()
+		fornecimentoAgua: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
@@ -149,7 +151,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		fornecimentoAgua: $('#cadastro-nome').val()
+		fornecimentoAgua: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

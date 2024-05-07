@@ -4,6 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+const idConta = sessionStorage.getItem('idConta')
 
 $(document).ready(function() {
 
@@ -115,7 +116,8 @@ function showModal(ato) {
 function editar() {
 	var objeto = {
 		idFonteEnergiaEletrica: Number(id),
-		fonteEnergiaEletrica: $('#edit-nome').val()
+		fonteEnergiaEletrica: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
@@ -152,7 +154,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		fonteEnergiaEletrica: $('#cadastro-nome').val()
+		fonteEnergiaEletrica: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
