@@ -25,6 +25,12 @@ public class Login {
 		return "login/recuperarSenha";
 	}
 	
+	@RequestMapping(value = { "login/escola" }, method = RequestMethod.GET)
+	public String escolherEscola(HttpSession session, Model model) throws Exception {
+ 
+		return "login/escolherEscola";
+	}
+	
 	
 	
 	

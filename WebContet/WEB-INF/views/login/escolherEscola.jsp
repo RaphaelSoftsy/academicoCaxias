@@ -68,36 +68,31 @@
           	alt="Logo Prefeitura Caxias do Sul"/>
 	</header>
 
-	<main>
-		<div class="container-form">
-			<form>
-			  <div class="mb-3">
-			    <label for="inputPassword" class="form-label">Email</label>
-			    <input class="form-control form-control-lg email" type="email" aria-label=".form-control-lg example" id="emailInput" required>
-			 
-			  </div>
-			  <div class="mb-3">
-	    		<label for="inputPassword" class="form-label">Senha</label>
-	          	<div class="input-group ">
-	          		<input class="form-control form-control-lg pwd senha type="password" aria-label=".form-control-lg example" id="passwordInput" required >
-	            	<button class="btn btn-default reveal" type="button"><i class="fa-regular fa-eye"></i></button>
-	          	</div>        
-	          </div>
-			  <div class="mb-3 form-check">
-			    <input type="checkbox" class="form-check-input" id="remeberMeCheck">
-			    <label class="form-check-label" for="exampleCheck">Lembrar meu acesso</label>
-			  </div>
-			</form>
-			
-			<div class="container-btns">
-			<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="btnLogin">
-			   Entrar
-			</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="btnRecuperarSenha">
-			   Esqueci a senha
-			</button>
+	<main class="container-section">
+		<section class="mb-5">
+			<div class="card">
+				<div class="card-body title">
+					<i class="fa-solid fa-school fa-lg"></i> <span>Qual escola deseja administrar?</span>
+				</div>
 			</div>
-		</div>
+		</section>
+		<section class="pt-4 card card-table px-5 py-3">
+			<table id="tabela-dados"
+			class="table table-striped mb-0 caption-top mx-auto">
+				<thead>
+					<caption>Escolas Vinculadas</caption>
+					<tr>
+							<th scope="col">Nome</th>
+							<th scope="col">CNPJ</th>
+							<th scope="col">Ativo</th>
+							<th scope="col">Ações</th>	
+					</tr>
+				</thead>
+				<tbody id="cola-tabela" class="table-group-divider">
+	
+				</tbody>
+			</table>
+		</section>
 	</main>
     
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
@@ -116,6 +111,17 @@
 
 
     <script src="<%=contextPath%>/resources/assets/js/login/login.js"></script>
+ 	<script type="text/javascript">
+ 	function containerResponsivo(){
+ 		let container = $('<div>')
+ 		container.addClass('container-table')
+ 		container.append($('.table'))
+ 		$('.card-table').append(container)
+ 		}
+
+ 		containerResponsivo()
+ 	</script>
+    
     
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
