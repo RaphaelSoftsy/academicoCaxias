@@ -1,5 +1,5 @@
 var atos = [];
-var id = '';
+const idConta = sessionStorage.getItem('idConta');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -114,7 +114,8 @@ function showModal(ato) {
 function editar() {
 	var objeto = {
 		idAtoRegulatorio: Number(id),
-		atoRegulatorio: $('#edit-nome').val()
+		atoRegulatorio: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

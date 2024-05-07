@@ -1,5 +1,5 @@
 var dados = [];
-var id = '';
+const idConta = sessionStorage.getItem('idConta');
 var nome = '';
 var nome2 = '';
 var nome3 = '';
@@ -106,7 +106,8 @@ function editar() {
 		idPais: Number(id),
 		codPais: $('#edit-nome').val(),
 		nomePais: $('#edit-nome2').val(),
-		codigoIso: $('#edit-input3').val()
+		codigoIso: $('#edit-input3').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

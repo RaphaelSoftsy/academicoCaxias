@@ -1,5 +1,5 @@
 var atos = [];
-var id = '';
+const id = sessionStorage.getItem('idConta');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -114,7 +114,8 @@ function showModal(ato) {
 function editar() {
 	var objeto = {
 		idZoneamento: Number(id),
-		zoneamento: $('#edit-nome').val()
+		zoneamento: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

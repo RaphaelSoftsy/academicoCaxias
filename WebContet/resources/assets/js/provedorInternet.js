@@ -1,5 +1,5 @@
 var atos = [];
-var id = '';
+const idConta = sessionStorage.getItem('idConta');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -120,7 +120,8 @@ function editar() {
 	var objeto = {
 		idProvedorInternet: Number(id),
 		provedorInternet: $('#edit-nome').val(),
-		telefoneProvedor: $('#edit-tel').val()
+		telefoneProvedor: $('#edit-tel').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

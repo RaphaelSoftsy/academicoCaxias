@@ -1,5 +1,5 @@
 var dados = [];
-var id = '';
+const idConta = sessionStorage.getItem('idConta');
 var nome = '';
 var nome2 = '';
 var rows = 8;
@@ -97,7 +97,8 @@ function editar() {
 	var objeto = {
 		idUf: Number(id),
 		codUf: $('#edit-nome').val(),
-		nomeUf: $('#edit-nome2').val()
+		nomeUf: $('#edit-nome2').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

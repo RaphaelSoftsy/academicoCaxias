@@ -4,7 +4,7 @@ var dadosOriginais = [];
 var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
-var id = "";
+const idConta = sessionStorage.getItem('idConta');
 
 $(document).ready(function () {
   var anoEdit = document.getElementById("anoEdit");
@@ -310,7 +310,7 @@ function showModal(ref) {
 function editar() {
   var objeto = {
     idPeriodoLetivo: id,
-    dependenciaAdmId: Number($("#dependenciaAdmIdEdit").val()),
+    idConta: idConta,
     ano: $("#anoEdit").val(),
     periodo: $("#periodoEdit").val(),
     dtInicio: $("#dtInicioEdit").val(),

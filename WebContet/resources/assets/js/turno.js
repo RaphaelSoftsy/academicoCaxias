@@ -1,6 +1,6 @@
 var dados = [];
 var ufs = [];
-var id = '';
+const idConta = sessionStorage.getItem('idConta');
 var nome = '';
 var nome2 = '';
 var horaIni = '';
@@ -127,6 +127,7 @@ function editar() {
 		mnemonico: $('#edit-nome2').val(),
 		horaInicio: formatarHoraParaAPI($("#horaInicioEdit").val()),
 		horaFim: formatarHoraParaAPI($("#horaFimEdit").val()),
+		idConta: idConta
 	}
 
 	$.ajax({

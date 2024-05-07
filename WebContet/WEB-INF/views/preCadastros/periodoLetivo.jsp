@@ -114,42 +114,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th
-                scope="col"
-                class="sortable border-end"
-                data-column="dependenciaAdm"
-              >
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Dependência Adm</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                  <div class="dropdown-form">
-                    <div class="dropdown-toggle-form" id="dropdownButton2">
-                      <i class="fas fa-search" style="color: #dddddd"></i>
-                    </div>
-                    <div
-                      class="dropdown-content-form rounded-3 dropdown-content-left"
-                      id="dropdownContent2"
-                    >
-                      <input
-                        type="text"
-                        class="form-control mb-3 searchInput"
-                        placeholder="Digite aqui..."
-                      />
-                      <button
-                        class="btn btn-sm col-12 btn-success searchButton"
-                      >
-                        Buscar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </th>
+
               <th scope="col" class="sortable border-end" data-column="ano">
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
@@ -280,22 +245,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
             <div class="modal-body">
               <form id="formCadastro">
-                <div class="mb-4">
-                  <label for="dependenciaAdmId" class="form-label"
-                    >Dependência Administrativa:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Dependência Administrativa"
-                    id="dependenciaAdmId"
-                    required
-                    name="dependenciaAdmId"
-                  >
-                    <option selected disabled value="">
-                      Selecione uma opção
-                    </option>
-                  </select>
-                </div>
+              
                 <div class="row mb-4">
                   <div class="col-6">
                     <label for="ano" class="form-label"

@@ -114,7 +114,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <thead>
             <tr>
               <th scope="col">Tipo Profissional</th>
-              <th scope="col">Dependência Administrativa</th>
               <th scope="col">Ativo</th>
               <th class="text-center" scope="col" width="10%"></th>
             </tr>
@@ -165,22 +164,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     aria-describedby="Descricao"
                     autocomplete="off"
                   />
-                </div>
-                <div class="mb-4">
-                  <label for="selectCadastro" class="form-label"
-                    >Dependência Administrativa:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="selectCadastro"
-                    id="selectCadastro"
-                    required
-                    name="selectCadastro"
-                  >
-                    <option selected disabled value="">
-                      Selecione uma opção
-                    </option>
-                  </select>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button

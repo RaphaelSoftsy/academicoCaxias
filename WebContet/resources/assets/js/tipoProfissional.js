@@ -1,5 +1,5 @@
 var dados = [];
-var id = '';
+const idConta = sessionStorage.getItem('idConta');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -140,7 +140,7 @@ function editar() {
 	var objeto = {
 		idTipoProfissional: Number(id),
 		tipoProfissional: $('#edit-nome').val(),
-		dependenciaAdmId: $('#selectEdit').val(),
+		idConta: idConta,
 	}
 
 	$.ajax({

@@ -1,5 +1,5 @@
 var atos = [];
-var id = '';
+const idConta = sessionStorage.getItem('idConta');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -117,6 +117,7 @@ function editar() {
 		idOrgaoPublico: Number(id),
 		sigla: $('#edit-sigla').val(),
 		orgaoPublico: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

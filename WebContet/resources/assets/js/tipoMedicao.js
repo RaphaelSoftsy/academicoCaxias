@@ -1,5 +1,5 @@
 var dados = [];
-var id = '';
+const idConta = sessionStorage.getItem('idConta');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -88,7 +88,8 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idTipoMedicao: Number(id),
-		tipoMedicao: $('#edit-nome').val()
+		tipoMedicao: $('#edit-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
