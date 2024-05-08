@@ -79,7 +79,7 @@
 			  <div class="mb-3">
 	    		<label for="inputPassword" class="form-label">Senha</label>
 	          	<div class="input-group ">
-	          		<input class="form-control form-control-lg pwd senha type="password" aria-label=".form-control-lg example" id="passwordInput" required >
+	          		<input class="form-control form-control-lg pwd senha" type="password" aria-label=".form-control-lg example" id="passwordInput" required >
 	            	<button class="btn btn-default reveal" type="button"><i class="fa-regular fa-eye"></i></button>
 	          	</div>        
 	          </div>
@@ -116,6 +116,7 @@
 
 
     <script src="<%=contextPath%>/resources/assets/js/login/login.js"></script>
+    
     
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 

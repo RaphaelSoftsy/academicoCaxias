@@ -133,7 +133,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		tipoTelefone: $('#cadastro-nome').val()
+		tipoTelefone: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

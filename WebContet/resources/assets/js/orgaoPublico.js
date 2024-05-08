@@ -153,7 +153,8 @@ function cadastrar() {
 
 	var objeto = {
 		orgaoPublico: $('#cadastro-nome').val(),
-		sigla: $('#cadastro-sigla').val()
+		sigla: $('#cadastro-sigla').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

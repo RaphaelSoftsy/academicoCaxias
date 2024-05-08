@@ -148,7 +148,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		nivelEscolaridade: $('#cadastro-nome').val()
+		nivelEscolaridade: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

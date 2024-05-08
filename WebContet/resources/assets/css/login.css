@@ -48,6 +48,13 @@ header {
 	width: 80%
 }
 
+#cardContainer{
+	display: flex;
+	flex-direction: row;
+	gap: 1%; 
+}
+
+
 @media screen and (max-width: 1279px) {
 	header {
 		justify-content: center;

@@ -150,7 +150,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		zoneamento: $('#cadastro-nome').val()
+		zoneamento: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

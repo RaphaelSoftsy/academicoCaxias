@@ -151,7 +151,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		tratamentoLixo: $('#cadastro-nome').val()
+		tratamentoLixo: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

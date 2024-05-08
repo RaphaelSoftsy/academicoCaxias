@@ -137,7 +137,8 @@ function cadastrar() {
 
 	var objeto = {
 		codUf: $('#cadastro-nome').val(),
-		nomeUf: $('#cadastro-nome2').val()
+		nomeUf: $('#cadastro-nome2').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

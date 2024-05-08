@@ -149,7 +149,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		situacaoFuncionamento: $('#cadastro-nome').val()
+		situacaoFuncionamento: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

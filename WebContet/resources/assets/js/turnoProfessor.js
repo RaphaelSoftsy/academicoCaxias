@@ -148,7 +148,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		turnoProfessor: $('#cadastro-nome').val()
+		turnoProfessor: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

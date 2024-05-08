@@ -158,7 +158,8 @@ function cadastrar() {
 
 	var objeto = {
 		provedorInternet: $('#cadastro-nome').val(),
-		telefoneProvedor: $('#cadastro-tel').val()
+		telefoneProvedor: $('#cadastro-tel').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

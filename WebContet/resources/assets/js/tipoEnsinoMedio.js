@@ -148,7 +148,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		tipoEnsinoMedio: $('#cadastro-nome').val()
+		tipoEnsinoMedio: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

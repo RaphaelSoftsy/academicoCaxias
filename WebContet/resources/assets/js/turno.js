@@ -171,7 +171,9 @@ function cadastrar() {
 		mnemonico: $('#cadastro-nome2').val(),
 		horaInicio: formatarHoraParaAPI($("#horaInicio").val()),
 		horaFim: formatarHoraParaAPI($("#horaFim").val()),
+		idConta: idConta
 	}
+	
 
 	$.ajax({
 		url: url_base + "/turno",

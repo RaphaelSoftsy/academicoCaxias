@@ -148,7 +148,8 @@ function cadastrar() {
 	var objeto = {
 		codPais: $('#cadastro-nome').val(),
 		nomePais: $('#cadastro-nome2').val(),
-		codigoIso: $('#cadastro-input3').val()
+		codigoIso: $('#cadastro-input3').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

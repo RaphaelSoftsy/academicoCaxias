@@ -148,7 +148,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		nacionalidade: $('#cadastro-nome').val()
+		nacionalidade: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

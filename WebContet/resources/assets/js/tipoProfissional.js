@@ -179,7 +179,8 @@ function cadastrar() {
 
 	var objeto = {
 		tipoProfissional: $('#cadastro-nome').val(),
-		dependenciaAdmId: $('#selectCadastro').val()
+		dependenciaAdmId: $('#selectCadastro').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

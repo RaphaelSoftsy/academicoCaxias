@@ -357,6 +357,7 @@ $("#formEdit").on("submit", function (e) {
 function cadastrar() {
   var objeto = {
     dependenciaAdmId: Number($("#dependenciaAdmId").val()),
+    idConta: idConta,
     ano: $("#ano").val(),
     periodo: $("#periodo").val(),
     dtInicio: $("#dtInicio").val(),

@@ -148,7 +148,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		raca: $('#cadastro-nome').val()
+		raca: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

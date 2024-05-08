@@ -126,7 +126,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		tipoAtendimento: $('#cadastro-nome').val()
+		tipoAtendimento: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

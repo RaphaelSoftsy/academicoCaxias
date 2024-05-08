@@ -151,7 +151,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		periodicidade: $('#cadastro-nome').val()
+		periodicidade: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({

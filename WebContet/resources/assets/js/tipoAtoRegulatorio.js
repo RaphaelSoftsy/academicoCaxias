@@ -152,7 +152,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		atoRegulatorio: $('#cadastro-nome').val()
+		atoRegulatorio: $('#cadastro-nome').val(),
+		idConta: idConta
 	}
 
 	$.ajax({
