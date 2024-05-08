@@ -1,5 +1,5 @@
 var dados = [];
-var id = '';
+const contaId = sessionStorage.getItem('contaId');;
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/tipoDependencia",
+		url: url_base + "/tipoDependencia/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
@@ -110,7 +110,8 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idTipoDependencia: Number(id),
-		tipoDependencia: $('#edit-nome').val()
+		tipoDependencia: $('#edit-nome').val(),
+		contaId : contaId
 	}
 
 	$.ajax({
@@ -147,7 +148,8 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		tipoDependencia: $('#cadastro-nome').val()
+		tipoDependencia: $('#cadastro-nome').val(),
+		contaId : contaId
 	}
 
 	$.ajax({

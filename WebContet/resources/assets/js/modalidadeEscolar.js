@@ -6,7 +6,7 @@ var currentPage = 1;
 var pagesToShow = 5;
 var idSelect = ''
 var isAtivo = '';
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId');
 
 $(document).ready(function() {
 
@@ -69,7 +69,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/modalidadeEscola",
+		url: url_base + "/modalidadeEscola/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
@@ -97,9 +97,6 @@ function listarDados(dados) {
 			item.modalidadeEscola +
 			"</td>" +
 			"<td>" +
-			item.dependenciaAdm.dependenciaAdministrativa +
-			"</td>" +
-			"<td>" +
 			ativo +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
@@ -109,7 +106,7 @@ function listarDados(dados) {
 			'" data-ativo="' +
 			item.ativo +
 			'" data-idSelect="' +
-			item.dependenciaAdm.idDependenciaAdministrativa +
+			item.contaId +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -142,7 +139,7 @@ function editar() {
 		idModalidadeEscola: Number(id),
 		modalidadeEscola: $('#edit-nome').val(),
 		dependenciaAdmId: $('#dependenciaAdmIdEdit').val(),
-		idConta: idConta
+		contaId : contaId
 	}
 
 	$.ajax({
@@ -182,7 +179,7 @@ function cadastrar() {
 	var objeto = {
 		modalidadeEscola: $('#cadastro-nome').val(),
 		dependenciaAdmId: $('#dependenciaAdmId').val(),
-		idConta: idConta
+		contaId : contaId
 	}
 
 	$.ajax({

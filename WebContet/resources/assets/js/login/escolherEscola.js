@@ -83,13 +83,15 @@ $(document).ready(function() {
 			cardBody.append(cardText)
 			cardBody.append(cardButton)
 			$('#cardContainer').append(card)
-
-
+			
+			cardButton.click(function(){
+				   
+			})
 
 		})
-
-
 });
+
+
 
 
 

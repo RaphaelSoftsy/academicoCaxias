@@ -114,9 +114,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <thead>
             <tr>
               <th scope="col">Marca Equipamento</th>
-              <th scope="col">Dependência Administrativa</th>
               <th scope="col">Ativo</th>
-              <th class="text-center" scope="col" width="10%"></th>
+              <th class="text-center" scope="col" width="10%">Ações</th>
             </tr>
           </thead>
           <tbody id="cola-tabela" class="table-group-divider"></tbody>
@@ -165,22 +164,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     aria-describedby="atoRegulatorio"
                     autocomplete="off"
                   />
-                </div>
-                <div class="mb-4">
-                  <label for="dependenciaAdmId" class="form-label"
-                    >Dependência administrativa:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Dependência Administrativa"
-                    id="dependenciaAdmId"
-                    required
-                    name="dependenciaAdmId"
-                  >
-                    <option value="" selected disabled>
-                      Selecione uma opção
-                    </option>
-                  </select>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
@@ -235,22 +218,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     aria-describedby="atoRegulatorio"
                     autocomplete="off"
                   />
-                </div>
-                <div class="mb-4">
-                  <label for="dependenciaAdmIdEdit" class="form-label"
-                    >Dependência administrativa:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Dependência Administrativa"
-                    id="dependenciaAdmIdEdit"
-                    required
-                    name="dependenciaAdmIdEdit"
-                  >
-                    <option value="" selected disabled>
-                      Selecione uma opção
-                    </option>
-                  </select>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button

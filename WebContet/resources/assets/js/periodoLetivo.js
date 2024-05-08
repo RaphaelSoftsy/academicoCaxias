@@ -4,7 +4,7 @@ var dadosOriginais = [];
 var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
-const idConta = sessionStorage.getItem('idConta');
+const contaId = sessionStorage.getItem('contaId');
 
 $(document).ready(function () {
   var anoEdit = document.getElementById("anoEdit");
@@ -310,7 +310,7 @@ function showModal(ref) {
 function editar() {
   var objeto = {
     idPeriodoLetivo: id,
-    idConta: idConta,
+    contaId : contaId,
     ano: $("#anoEdit").val(),
     periodo: $("#periodoEdit").val(),
     dtInicio: $("#dtInicioEdit").val(),
@@ -357,7 +357,7 @@ $("#formEdit").on("submit", function (e) {
 function cadastrar() {
   var objeto = {
     dependenciaAdmId: Number($("#dependenciaAdmId").val()),
-    idConta: idConta,
+    contaId : contaId,
     ano: $("#ano").val(),
     periodo: $("#periodo").val(),
     dtInicio: $("#dtInicio").val(),

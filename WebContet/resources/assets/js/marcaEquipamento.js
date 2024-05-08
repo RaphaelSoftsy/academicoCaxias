@@ -1,5 +1,5 @@
 var atos = [];
-var id = "";
+const contaId = sessionStorage.getItem('contaId');;
 var nome = "";
 var rows = 8;
 var currentPage = 1;
@@ -8,30 +8,7 @@ var idSelect = "";
 var isAtivo = "";
 
 $(document).ready(function () {
-  $.ajax({
-    url: url_base + "/dependenciaAdministrativa",
-    type: "get",
-    async: false,
-  }).done(function (data) {
-    $.each(data, function (index, item) {
-      $("#dependenciaAdmId").append(
-        $("<option>", {
-          value: item.idDependenciaAdministrativa,
-          text: item.dependenciaAdministrativa,
-          name: item.dependenciaAdministrativa,
-        })
-      );
-    });
-    $.each(data, function (index, item) {
-      $("#dependenciaAdmIdEdit").append(
-        $("<option>", {
-          value: item.idDependenciaAdministrativa,
-          text: item.dependenciaAdministrativa,
-          name: item.dependenciaAdministrativa,
-        })
-      );
-    });
-  });
+  
 
   getDados();
 
@@ -75,7 +52,7 @@ $(document).ready(function () {
 
 function getDados() {
   $.ajax({
-    url: url_base + "/marcaEquipamento",
+    url: url_base + "/marcaEquipamento/conta/" + contaId,
     type: "GET",
     async: false,
   })
@@ -103,9 +80,6 @@ function listarAtos(atos) {
         item.marcaEquipamento +
         "</td>" +
         "<td>" +
-        item.dependenciaAdm.dependenciaAdministrativa +
-        "</td>" +
-        "<td>" +
         ativo +
         "</td>" +
         '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
@@ -115,7 +89,7 @@ function listarAtos(atos) {
         '" data-ativo="' +
         item.ativo +
         '" data-idSelect="' +
-        item.dependenciaAdm.idDependenciaAdministrativa +
+    
         '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
         "</tr>"
       );
@@ -139,7 +113,6 @@ function showModal(ref) {
     $(".ativar").show();
   }
 
-  $("#dependenciaAdmIdEdit").val(idSelect).attr("selected", true);
   $("#edit-nome").val(nome);
 }
 
@@ -147,8 +120,7 @@ function editar() {
   var objeto = {
     idMarcaEquipamento: Number(id),
     marcaEquipamento: $("#edit-nome").val(),
-    dependenciaAdmId: $("#dependenciaAdmIdEdit").val(),
-	idConta: idConta
+	contaId : contaId
   };
 
   $.ajax({
@@ -183,8 +155,7 @@ $("#formCadastro").on("submit", function (e) {
 function cadastrar() {
   var objeto = {
     marcaEquipamento: $("#cadastro-nome").val(),
-    dependenciaAdmId: $("#dependenciaAdmId").val(),
-	idConta: idConta
+	contaId : contaId
   };
 
   $.ajax({
@@ -198,8 +169,6 @@ function cadastrar() {
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    $("#cadastro-nome").val("");
-    $("#dependenciaAdmId").val("");
     getDados();
     showPage(currentPage);
     alert("Cadastrado com Sucesso!");

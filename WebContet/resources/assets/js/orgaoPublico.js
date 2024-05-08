@@ -1,5 +1,5 @@
 var atos = [];
-const idConta = sessionStorage.getItem('idConta');
+const contaId = sessionStorage.getItem('contaId');;
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -44,7 +44,7 @@ $(document).ready(function() {
 });
 function getDados() {
 	$.ajax({
-		url: url_base + "/orgaoPublico",
+		url: url_base + "/orgaoPublico/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
@@ -117,7 +117,7 @@ function editar() {
 		idOrgaoPublico: Number(id),
 		sigla: $('#edit-sigla').val(),
 		orgaoPublico: $('#edit-nome').val(),
-		idConta: idConta
+		contaId : contaId
 	}
 
 	$.ajax({
@@ -154,7 +154,7 @@ function cadastrar() {
 	var objeto = {
 		orgaoPublico: $('#cadastro-nome').val(),
 		sigla: $('#cadastro-sigla').val(),
-		idConta: idConta
+		contaId : contaId
 	}
 
 	$.ajax({

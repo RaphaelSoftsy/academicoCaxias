@@ -1,5 +1,5 @@
 var dados = [];
-var id = '';
+const contaId = sessionStorage.getItem('contaId');;
 var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
@@ -99,7 +99,7 @@ $('#next').click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + "/escolas/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})

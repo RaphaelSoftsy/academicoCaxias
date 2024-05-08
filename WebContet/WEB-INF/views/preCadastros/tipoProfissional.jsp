@@ -219,22 +219,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     autocomplete="off"
                   />
                 </div>
-                <div class="mb-4">
-                  <label for="selectEdit" class="form-label"
-                    >Dependência Administrativa:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="selectEdit"
-                    id="selectEdit"
-                    required
-                    name="selectEdit"
-                  >
-                    <option selected disabled value="">
-                      Selecione uma opção
-                    </option>
-                  </select>
-                </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"

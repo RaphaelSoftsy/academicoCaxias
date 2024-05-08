@@ -1,5 +1,5 @@
 var atos = [];
-const id = sessionStorage.getItem('idConta');
+const contaId = sessionStorage.getItem('idConta');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + `/zoneamento/conta/${id}`,
+		url: url_base + "/zoneamento/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
@@ -151,11 +151,7 @@ function cadastrar() {
 
 	var objeto = {
 		zoneamento: $('#cadastro-nome').val(),
-<<<<<<< Updated upstream
-		idConta: idConta
-=======
 		contaId: Number(id)
->>>>>>> Stashed changes
 	}
 
 	$.ajax({

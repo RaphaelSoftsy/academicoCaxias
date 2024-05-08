@@ -1,5 +1,5 @@
 var dados = [];
-const idConta = sessionStorage.getItem('idConta');
+const contaId = sessionStorage.getItem('contaId');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -68,7 +68,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/tipoProfissional",
+		url: url_base + "/tipoProfissional/conta/1",
 		type: "GET",
 		async: false,
 	})
@@ -96,17 +96,13 @@ function listarDados(dados) {
 			item.tipoProfissional +
 			"</td>" +
 			"<td>" +
-			item.dependenciaAdm.dependenciaAdministrativa +
-			"</td>" +
-			"<td>" +
 			ativo +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idTipoProfissional +
 			'" data-nome="' +
 			item.tipoProfissional +
-			'" data-idSelect="' +
-			item.dependenciaAdm.idDependenciaAdministrativa +
+			'" data-idSelect="' + 
 			'" data-ativo="' +
 			item.ativo +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
@@ -140,7 +136,7 @@ function editar() {
 	var objeto = {
 		idTipoProfissional: Number(id),
 		tipoProfissional: $('#edit-nome').val(),
-		idConta: idConta,
+		contaId : contaId
 	}
 
 	$.ajax({
@@ -180,7 +176,7 @@ function cadastrar() {
 	var objeto = {
 		tipoProfissional: $('#cadastro-nome').val(),
 		dependenciaAdmId: $('#selectCadastro').val(),
-		idConta: idConta
+		contaId : contaId
 	}
 
 	$.ajax({

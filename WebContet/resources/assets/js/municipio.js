@@ -7,7 +7,7 @@ var idSelect = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId');
 
 $(document).ready(function() {
 
@@ -155,7 +155,7 @@ function editar() {
 		nomeMunicipio: $('#edit-nome').val(),
 		codIbge: $('#edit-nome2').val(),
 		ufId: $('#selectEdit').val(),
-		idConta: idConta
+		contaId : contaId
 	}
 
 	$.ajax({
@@ -197,7 +197,7 @@ function cadastrar() {
 		nomeMunicipio: $('#cadastro-nome').val(),
 		codIbge: $('#cadastro-nome2').val(),
 		ufId: $('#selectCadastro').val(),
-		idConta: idConta
+		contaId : contaId
 	}
 
 	$.ajax({
