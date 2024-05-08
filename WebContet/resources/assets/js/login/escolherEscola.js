@@ -1,6 +1,6 @@
 let contas = [
 	{
-		"idConta": 1,
+		"contaId": 1,
 		"email": "teste@gmail.com",
 		"senha": "1234",
 		"conta": "ESC EST TEC CAXIAS DO SUL",
@@ -19,7 +19,7 @@ let contas = [
 		"logo": "https://www.eetcs.com.br/images/logo-transparente-eetcs.png"
 	},
 	{
-		"idConta": 2,
+		"contaId": 2,
 		"email": "teste2@gmail.com",
 		"senha": "1234",
 		"conta": "NORTE DO IANDERTAL ",

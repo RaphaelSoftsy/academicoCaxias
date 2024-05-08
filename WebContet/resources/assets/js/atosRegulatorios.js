@@ -4,11 +4,11 @@ var nome = '';
 var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
-	if (isNaN(idConta)) {
+	if (isNaN(contaId)) {
 		Swal.fire({
 			title: "Nenhum usuário localizado, logue novamente",
 			icon: "info",
@@ -20,7 +20,7 @@ $(document).ready(function() {
 	}
 
 	getDados()
-	console.log(idConta)
+	console.log(contaId)
 
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
@@ -59,7 +59,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + `/atoRegulatorio/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -127,7 +127,7 @@ function editar() {
 	var objeto = {
 		idAtoRegulatorio: Number(id),
 		atoRegulatorio: $('#edit-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({
@@ -165,7 +165,7 @@ function cadastrar() {
 
 	var objeto = {
 		atoRegulatorio: $('#cadastro-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({

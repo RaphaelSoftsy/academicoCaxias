@@ -4,7 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
@@ -117,7 +117,7 @@ function editar() {
 	var objeto = {
 		idFonteEnergiaEletrica: Number(id),
 		fonteEnergiaEletrica: $('#edit-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({
@@ -155,7 +155,7 @@ function cadastrar() {
 
 	var objeto = {
 		fonteEnergiaEletrica: $('#cadastro-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({

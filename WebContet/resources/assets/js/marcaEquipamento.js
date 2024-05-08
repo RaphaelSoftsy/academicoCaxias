@@ -148,7 +148,7 @@ function editar() {
     idMarcaEquipamento: Number(id),
     marcaEquipamento: $("#edit-nome").val(),
     dependenciaAdmId: $("#dependenciaAdmIdEdit").val(),
-	idConta: idConta
+	contaId: contaId
   };
 
   $.ajax({
@@ -184,7 +184,7 @@ function cadastrar() {
   var objeto = {
     marcaEquipamento: $("#cadastro-nome").val(),
     dependenciaAdmId: $("#dependenciaAdmId").val(),
-	idConta: idConta
+	contaId: contaId
   };
 
   $.ajax({

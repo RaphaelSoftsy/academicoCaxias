@@ -5,7 +5,7 @@ var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 var valorIndigena = '';
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
@@ -136,7 +136,7 @@ function editar() {
 		idLinguaEnsino: Number(id),
 		linguaEnsino: $('#edit-nome').val(),
 		linguaIndigena: $('input[name="editIsIndigena"]:checked').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({

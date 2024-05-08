@@ -1,5 +1,5 @@
 var dados = [];
-const idConta = sessionStorage.getItem('idConta');
+const contaId = sessionStorage.getItem('contaId');
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -111,7 +111,7 @@ function editar() {
 	var objeto = {
 		idNacionalidade: Number(id),
 		nacionalidade: $('#edit-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({
@@ -149,7 +149,7 @@ function cadastrar() {
 
 	var objeto = {
 		nacionalidade: $('#cadastro-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({

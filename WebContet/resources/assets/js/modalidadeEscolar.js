@@ -6,7 +6,7 @@ var currentPage = 1;
 var pagesToShow = 5;
 var idSelect = ''
 var isAtivo = '';
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
@@ -142,7 +142,7 @@ function editar() {
 		idModalidadeEscola: Number(id),
 		modalidadeEscola: $('#edit-nome').val(),
 		dependenciaAdmId: $('#dependenciaAdmIdEdit').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({
@@ -182,7 +182,7 @@ function cadastrar() {
 	var objeto = {
 		modalidadeEscola: $('#cadastro-nome').val(),
 		dependenciaAdmId: $('#dependenciaAdmId').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({

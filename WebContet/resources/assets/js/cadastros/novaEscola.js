@@ -1,4 +1,4 @@
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 	getValorSelects()
@@ -85,7 +85,7 @@ $("#formNovoCadastro").submit(function(e) {
 				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
 				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
 				"orgaoPublicoId": Number($('#orgaoPublicoId').val()),
-				idConta: idConta
+				contaId: contaId
 			};
 
 
