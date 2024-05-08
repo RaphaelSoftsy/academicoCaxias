@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/fornecimentoAgua",
+		url: url_base + `/fornecimentoAgua/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})

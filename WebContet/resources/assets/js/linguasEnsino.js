@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/linguaEnsino",
+		url: url_base + `/linguaEnsino/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -176,7 +176,9 @@ function cadastrar() {
 	var objeto = {
 		linguaEnsino: $('#cadastro-nome').val(),
 		linguaIndigena: $('input[name="isIndigena"]:checked').val(),
+		contaId: contaId
 	}
+		
 
 	$.ajax({
 		url: url_base + "/linguaEnsino",

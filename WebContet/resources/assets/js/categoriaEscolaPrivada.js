@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/categoriaEscolaPrivada",
+		url: url_base + `/categoriaEscolaPrivada/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -120,7 +120,7 @@ function editar() {
 	}
 
 	$.ajax({
-		url: url_base + "/categoriaEscolaPrivada",
+		url: url_base + `/categoriaEscolaPrivada`,
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",

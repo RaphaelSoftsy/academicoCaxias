@@ -99,7 +99,11 @@ $('#next').click(function() {
 
 function getDados() {
 	$.ajax({
+<<<<<<< Updated upstream
 		url: url_base + "/escolas/conta/" + contaId,
+=======
+		url: url_base + `/escolas/conta/${contaId}`,
+>>>>>>> Stashed changes
 		type: "GET",
 		async: false,
 	})

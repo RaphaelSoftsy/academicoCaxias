@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/destinacaoLixo",
+		url: url_base + `/destinacaoLixo/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})

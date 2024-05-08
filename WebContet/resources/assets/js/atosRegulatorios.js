@@ -90,9 +90,11 @@ function listarDados(dados) {
 			ativo +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idRegulatorio +
+			item.idAtoRegulatorio +
 			'" data-nome="' +
 			item.atoRegulatorio +
+			'" data-ativo="' +
+			item.ativo +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -104,21 +106,18 @@ function listarDados(dados) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
+	isAtivo = ref.getAttribute("data-ativo");
+	
+	console.log(id)
 
-	$.ajax({
-		url: url_base + "/atoRegulatorio/" + id,
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		if (data.ativo == "S") {
-			$(".ativar").hide();
-			$(".desativar").show()
-		}
-		else {
-			$(".desativar").hide();
-			$(".ativar").show();
-		}
-	})
+	if (isAtivo == "S") {
+		$(".ativar").hide();
+		$(".desativar").show()
+	}
+	else {
+		$(".desativar").hide();
+		$(".ativar").show();
+	}
 
 	$('#edit-nome').val(nome);
 }
@@ -129,6 +128,8 @@ function editar() {
 		atoRegulatorio: $('#edit-nome').val(),
 		contaId: contaId
 	}
+	
+	console.log(id)
 
 	$.ajax({
 		url: url_base + "/atoRegulatorio",
