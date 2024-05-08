@@ -6,7 +6,11 @@ var currentPage = 1;
 var pagesToShow = 5;
 var idSelect = ''
 var isAtivo = '';
+<<<<<<< HEAD
 const contaId = sessionStorage.getItem('contaId');
+=======
+const contaId = sessionStorage.getItem('contaId')
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 
 $(document).ready(function() {
 
@@ -139,7 +143,11 @@ function editar() {
 		idModalidadeEscola: Number(id),
 		modalidadeEscola: $('#edit-nome').val(),
 		dependenciaAdmId: $('#dependenciaAdmIdEdit').val(),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({
@@ -179,7 +187,11 @@ function cadastrar() {
 	var objeto = {
 		modalidadeEscola: $('#cadastro-nome').val(),
 		dependenciaAdmId: $('#dependenciaAdmId').val(),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({

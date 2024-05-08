@@ -138,7 +138,11 @@ function cadastrar() {
 	var objeto = {
 		codUf: $('#cadastro-nome').val(),
 		nomeUf: $('#cadastro-nome2').val(),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({

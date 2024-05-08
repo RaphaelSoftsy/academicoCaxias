@@ -310,7 +310,11 @@ function showModal(ref) {
 function editar() {
   var objeto = {
     idPeriodoLetivo: id,
+<<<<<<< HEAD
     contaId : contaId,
+=======
+    contaId: contaId,
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
     ano: $("#anoEdit").val(),
     periodo: $("#periodoEdit").val(),
     dtInicio: $("#dtInicioEdit").val(),
@@ -357,7 +361,11 @@ $("#formEdit").on("submit", function (e) {
 function cadastrar() {
   var objeto = {
     dependenciaAdmId: Number($("#dependenciaAdmId").val()),
+<<<<<<< HEAD
     contaId : contaId,
+=======
+    contaId: contaId,
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
     ano: $("#ano").val(),
     periodo: $("#periodo").val(),
     dtInicio: $("#dtInicio").val(),

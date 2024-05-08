@@ -112,7 +112,11 @@ function editar() {
 	var objeto = {
 		idSituacaoFuncionamento: Number(id),
 		situacaoFuncionamento: $('#edit-nome').val(),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({
@@ -150,7 +154,11 @@ function cadastrar() {
 
 	var objeto = {
 		situacaoFuncionamento: $('#cadastro-nome').val(),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({

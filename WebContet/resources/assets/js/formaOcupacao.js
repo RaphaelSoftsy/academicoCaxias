@@ -4,7 +4,7 @@ var nome = '';
 var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
@@ -115,7 +115,7 @@ function editar() {
 	var objeto = {
 		idFormaOcupacaoPredio: Number(id),
 		formaOcupacaoPredio: $('#edit-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({
@@ -153,7 +153,7 @@ function cadastrar() {
 
 	var objeto = {
 		formaOcupacaoPredio: $('#cadastro-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({

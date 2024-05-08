@@ -9,8 +9,8 @@ const path_base = "http://localhost:8090/front-educacional-caxias/resources/menu
 $(document).ready(function() {
 	const url = window.location.pathname
 	if (url.includes('login') == false) {
-		const idConta = sessionStorage.getItem('idConta')
-		if (isNaN(idConta) || idConta == 0 || idConta == "" || idConta == undefined) {
+		const contaId = sessionStorage.getItem('contaId')
+		if (isNaN(contaId) || contaId == 0 || contaId == "" || contaId == undefined) {
 			Swal.fire({
 				title: "Nenhum usuário localizado, logue novamente",
 				icon: "info",

@@ -127,7 +127,11 @@ function editar() {
 		mnemonico: $('#edit-nome2').val(),
 		horaInicio: formatarHoraParaAPI($("#horaInicioEdit").val()),
 		horaFim: formatarHoraParaAPI($("#horaFimEdit").val()),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({
@@ -171,7 +175,11 @@ function cadastrar() {
 		mnemonico: $('#cadastro-nome2').val(),
 		horaInicio: formatarHoraParaAPI($("#horaInicio").val()),
 		horaFim: formatarHoraParaAPI($("#horaFim").val()),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 	
 

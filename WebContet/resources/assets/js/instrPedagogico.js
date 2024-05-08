@@ -5,7 +5,7 @@ var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 var isAtivo = '';
-const idConta = sessionStorage.getItem('idConta')
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
@@ -113,7 +113,7 @@ function editar() {
 	var objeto = {
 		idInstrPedagogico: Number(id),
 		instrPedagogico: $('#edit-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({
@@ -151,7 +151,7 @@ function cadastrar() {
 
 	var objeto = {
 		instrPedagogico: $('#cadastro-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({

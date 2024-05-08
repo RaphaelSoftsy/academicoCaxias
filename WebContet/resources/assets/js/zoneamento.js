@@ -1,5 +1,9 @@
 var atos = [];
+<<<<<<< HEAD
 const contaId = sessionStorage.getItem('idConta');
+=======
+const id = sessionStorage.getItem('contaId');
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -115,7 +119,7 @@ function editar() {
 	var objeto = {
 		idZoneamento: Number(id),
 		zoneamento: $('#edit-nome').val(),
-		idConta: idConta
+		contaId: contaId
 	}
 
 	$.ajax({

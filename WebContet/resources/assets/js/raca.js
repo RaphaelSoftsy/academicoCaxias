@@ -1,5 +1,9 @@
 var dados = [];
+<<<<<<< HEAD
 const contaId = sessionStorage.getItem('contaId');;
+=======
+const contaId = sessionStorage.getItem('contaId');
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 var nome = '';
 var rows = 8;
 var currentPage = 1;
@@ -111,7 +115,11 @@ function editar() {
 	var objeto = {
 		idRaca: Number(id),
 		raca: $('#edit-nome').val(),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({
@@ -149,7 +157,11 @@ function cadastrar() {
 
 	var objeto = {
 		raca: $('#cadastro-nome').val(),
+<<<<<<< HEAD
 		contaId : contaId
+=======
+		contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({

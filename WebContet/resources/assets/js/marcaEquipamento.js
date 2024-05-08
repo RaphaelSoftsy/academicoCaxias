@@ -120,7 +120,12 @@ function editar() {
   var objeto = {
     idMarcaEquipamento: Number(id),
     marcaEquipamento: $("#edit-nome").val(),
+<<<<<<< HEAD
 	contaId : contaId
+=======
+    dependenciaAdmId: $("#dependenciaAdmIdEdit").val(),
+	contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
   };
 
   $.ajax({
@@ -155,7 +160,12 @@ $("#formCadastro").on("submit", function (e) {
 function cadastrar() {
   var objeto = {
     marcaEquipamento: $("#cadastro-nome").val(),
+<<<<<<< HEAD
 	contaId : contaId
+=======
+    dependenciaAdmId: $("#dependenciaAdmId").val(),
+	contaId: contaId
+>>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
   };
 
   $.ajax({
