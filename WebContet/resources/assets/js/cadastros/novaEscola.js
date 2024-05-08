@@ -96,10 +96,17 @@ $("#formNovoCadastro").submit(function(e) {
 				contentType: "application/json; charset=utf-8",
 				error: function(e) {
 					console.log(e)
-					alert(e.responseJSON.message)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!",
+					});
 				}
 			}).done(function(data) {
-				alert('Cadastrado com sucesso!')
+				Swal.fire({
+					title: "Cadastrado com sucesso",
+					icon: "success",
+				})
 				window.location.href = "escolas";
 			});
 		});
@@ -108,54 +115,54 @@ $("#formNovoCadastro").submit(function(e) {
 });
 
 function cnpjValido(cnpj) {
-    cnpj = cnpj.replace(/[^\d]+/g, '');
+	cnpj = cnpj.replace(/[^\d]+/g, '');
 
-    if (cnpj.length != 14)
-        return false;
+	if (cnpj.length != 14)
+		return false;
 
-    var tamanhoTotal = cnpj.length - 2
-    var cnpjSemDigitos = cnpj.substring(0, tamanhoTotal);
-    var digitosVerificadores = cnpj.substring(tamanhoTotal);
-    var soma = 0;
-    var pos = tamanhoTotal - 7;
-    for (i = tamanhoTotal; i >= 1; i--) {
-        soma += cnpjSemDigitos.charAt(tamanhoTotal - i) * pos--;
-        if (pos < 2)
-            pos = 9;
-    }
-    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitosVerificadores.charAt(0))
-        return false;
+	var tamanhoTotal = cnpj.length - 2
+	var cnpjSemDigitos = cnpj.substring(0, tamanhoTotal);
+	var digitosVerificadores = cnpj.substring(tamanhoTotal);
+	var soma = 0;
+	var pos = tamanhoTotal - 7;
+	for (i = tamanhoTotal; i >= 1; i--) {
+		soma += cnpjSemDigitos.charAt(tamanhoTotal - i) * pos--;
+		if (pos < 2)
+			pos = 9;
+	}
+	resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+	if (resultado != digitosVerificadores.charAt(0))
+		return false;
 
-    tamanhoTotal = tamanhoTotal + 1;
-    cnpjSemDigitos = cnpj.substring(0, tamanhoTotal);
-    soma = 0;
-    pos = tamanhoTotal - 7;
-    for (i = tamanhoTotal; i >= 1; i--) {
-        soma += cnpjSemDigitos.charAt(tamanhoTotal - i) * pos--;
-        if (pos < 2)
-            pos = 9;
-    }
+	tamanhoTotal = tamanhoTotal + 1;
+	cnpjSemDigitos = cnpj.substring(0, tamanhoTotal);
+	soma = 0;
+	pos = tamanhoTotal - 7;
+	for (i = tamanhoTotal; i >= 1; i--) {
+		soma += cnpjSemDigitos.charAt(tamanhoTotal - i) * pos--;
+		if (pos < 2)
+			pos = 9;
+	}
 
-    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitosVerificadores.charAt(1))
-        return false;
+	resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+	if (resultado != digitosVerificadores.charAt(1))
+		return false;
 
-    return true;
+	return true;
 }
 
 $("#cnpj").blur(function() {
 	let cnpj = $('#cnpj')
-	const message =  $("<p id='errMessageCnpj'></p>").text("CNPJ Inválido").css('color', '#FF0000');    
+	const message = $("<p id='errMessageCnpj'></p>").text("CNPJ Inválido").css('color', '#FF0000');
 
-	if(cnpjValido(cnpj.val())){
+	if (cnpjValido(cnpj.val())) {
 		$("#btn-submit").removeAttr('disabled');
 		cnpj.removeClass('err-message')
 		$('#errMessageCnpj').css('display', 'none')
-    }else{
+	} else {
 		$("#btn-submit").attr("disabled", "disabled");
 		cnpj.addClass('err-message')
-		$("#cardCNPJ").append(message)	
+		$("#cardCNPJ").append(message)
 		message.show()
 	}
 });

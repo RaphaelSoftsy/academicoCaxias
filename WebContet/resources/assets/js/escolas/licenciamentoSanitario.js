@@ -300,7 +300,11 @@ function showModal(ref) {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
 		}
 	})
 		.done(function(data) {
@@ -318,94 +322,108 @@ function showModal(ref) {
 // Editar
 
 function editar() {
-    var inputFile = document.getElementById('anexoEdit');
-    var file = inputFile.files[0];
-    var reader = new FileReader();
+	var inputFile = document.getElementById('anexoEdit');
+	var file = inputFile.files[0];
+	var reader = new FileReader();
 
-    var dataEmissao = $('#dataEmissaoEdit').val();
-    var dataValidade = $('#dataValidadeEdit').val();
+	var dataEmissao = $('#dataEmissaoEdit').val();
+	var dataValidade = $('#dataValidadeEdit').val();
 
-    var dataEmissaoFormatada = new Date(dataEmissao);
-    var dataValidadeFormatada = new Date(dataValidade);
+	var dataEmissaoFormatada = new Date(dataEmissao);
+	var dataValidadeFormatada = new Date(dataValidade);
 
-    var dataEmissaoAPI = formatarDataParaAPI(dataEmissaoFormatada);
-    var dataValidadeAPI = formatarDataParaAPI(dataValidadeFormatada);
+	var dataEmissaoAPI = formatarDataParaAPI(dataEmissaoFormatada);
+	var dataValidadeAPI = formatarDataParaAPI(dataValidadeFormatada);
 
-    if (mudarAnexo) {
-        reader.onload = function(event) {
-            var base64String = event.target.result;
+	if (mudarAnexo) {
+		reader.onload = function(event) {
+			var base64String = event.target.result;
 
-            var objeto = {
+			var objeto = {
 				idEscolaLicSanitario: id,
-                escolaId: Number($('#escolaIdEdit').val()),
-                licSanitario: $('#licSanitarioEdit').val(),
-                dataEmissao: dataEmissaoAPI,
-                dataValidade: dataValidadeAPI,
-                anexo: 'null'
-            };
+				escolaId: Number($('#escolaIdEdit').val()),
+				licSanitario: $('#licSanitarioEdit').val(),
+				dataEmissao: dataEmissaoAPI,
+				dataValidade: dataValidadeAPI,
+				anexo: 'null'
+			};
 
-            $.ajax({
-                url: url_base + "/escolaLicSanitario",
-                type: "PUT",
-                data: JSON.stringify(objeto),
-                contentType: "application/json; charset=utf-8",
-                async: false,
-                error: function(e) {
-                    console.log(e.responseJSON);
-                    alert(e.responseJSON.message);
-                }
-            })
-            .done(function(data) {
-                $("#escolaIdEdit").val('');
-                $("#licSanitarioEdit").val('');
-                $("#dataEmissaoEdit").val('');
-                $("#dataValidadeEdit").val('');
-                $("#anexoEdit").val('');
-                mudarAnexo = false;
-                getDados();
-                showPage(currentPage);
-                updatePagination();
-                alert('Editado com Sucesso!');
-            });
-        };
+			$.ajax({
+				url: url_base + "/escolaLicSanitario",
+				type: "PUT",
+				data: JSON.stringify(objeto),
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e.responseJSON);
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!",
+					});
+				}
+			})
+				.done(function(data) {
+					$("#escolaIdEdit").val('');
+					$("#licSanitarioEdit").val('');
+					$("#dataEmissaoEdit").val('');
+					$("#dataValidadeEdit").val('');
+					$("#anexoEdit").val('');
+					mudarAnexo = false;
+					getDados();
+					showPage(currentPage);
+					updatePagination();
+					Swal.fire({
+						title: "Editado com sucesso",
+						icon: "success",
+					})
+				});
+		};
 
-        reader.readAsDataURL(file);
-    } else {
-        var objeto = {
+		reader.readAsDataURL(file);
+	} else {
+		var objeto = {
 			idEscolaLicSanitario: id,
-            escolaId: Number($('#escolaIdEdit').val()),
-            licSanitario: $('#licSanitarioEdit').val(),
-            dataEmissao: dataEmissaoAPI,
-            dataValidade: dataValidadeAPI,
-            anexo: 'null'
-        };
+			escolaId: Number($('#escolaIdEdit').val()),
+			licSanitario: $('#licSanitarioEdit').val(),
+			dataEmissao: dataEmissaoAPI,
+			dataValidade: dataValidadeAPI,
+			anexo: 'null'
+		};
 
-        $.ajax({
-            url: url_base + "/escolaLicSanitario",
-            type: "PUT",
-            data: JSON.stringify(objeto),
-            contentType: "application/json; charset=utf-8",
-            async: false,
-            error: function(e) {
-                console.log(e.responseJSON);
-                alert(e.responseJSON.message);
-            }
-        })
-        .done(function(data) {
-            $("#escolaIdEdit").val('');
-            $("#licSanitarioEdit").val('');
-            $("#dataEmissaoEdit").val('');
-            $("#dataValidadeEdit").val('');
-            $("#anexoEdit").val('');
-            mudarAnexo = false;
-            getDados();
-            showPage(currentPage);
-            updatePagination();
-            alert('Editado com Sucesso!');
-        });
-    }
+		$.ajax({
+			url: url_base + "/escolaLicSanitario",
+			type: "PUT",
+			data: JSON.stringify(objeto),
+			contentType: "application/json; charset=utf-8",
+			async: false,
+			error: function(e) {
+				console.log(e.responseJSON);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+				});
+			}
+		})
+			.done(function(data) {
+				$("#escolaIdEdit").val('');
+				$("#licSanitarioEdit").val('');
+				$("#dataEmissaoEdit").val('');
+				$("#dataValidadeEdit").val('');
+				$("#anexoEdit").val('');
+				mudarAnexo = false;
+				getDados();
+				showPage(currentPage);
+				updatePagination();
+				Swal.fire({
+					title: "Editado com sucesso",
+					icon: "success",
+				})
+			});
+	}
 
-    return false;
+	return false;
 }
 
 $('#formEdit').on('submit', function(e) {
@@ -450,7 +468,11 @@ function cadastrar() {
 			async: false,
 			error: function(e) {
 				console.log(e.responseJSON);
-				alert(e.responseJSON.message);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+				});
 			}
 		})
 			.done(function(data) {
@@ -462,7 +484,10 @@ function cadastrar() {
 				getDados();
 				showPage(currentPage);
 				updatePagination();
-				alert('Cadastrado com Sucesso!');
+				Swal.fire({
+					title: "Cadastrado com sucesso",
+					icon: "success",
+				})
 			});
 	};
 

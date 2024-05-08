@@ -263,7 +263,12 @@ function enviarDadosFormulario(objeto) {
 			console.log(e)
 		}
 	}).done(function(data) {
-		alert('Editado com sucesso!')
+		Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			})
 		window.location.href = "escolas";
 	});
+	
+	
 }

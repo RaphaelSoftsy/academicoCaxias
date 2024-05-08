@@ -12,7 +12,7 @@ $(document).ready(function() {
 			}));
 		});
 	})
-	
+
 	$.ajax({
 		url: url_base + '/provedorInternet',
 		type: "get",
@@ -47,10 +47,17 @@ $("#formNovoCadastro").submit(function(e) {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			console.log(e)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
 		}
 	}).done(function(data) {
-		alert('Cadastrado com sucesso!')
+		Swal.fire({
+			title: "Cadastrado com sucesso",
+			icon: "success",
+		})
 		window.location.href = "link-internet";
 	});
 

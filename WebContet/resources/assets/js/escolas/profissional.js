@@ -213,7 +213,7 @@ function listarDados(dados) {
 		var escola = escolas.find(function(school) {
 			return school.idEscola === item.escolaId;
 		});
-		
+
 
 		var nomeEscola = escola
 			? escola.nomeEscola
@@ -271,7 +271,7 @@ function showModal(ref) {
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
 	$("#tipoProfissionalIdEdit").val(idSelect2).attr('selected', true);
 	$("#quantidadeEdit").val(quantidade);
-	
+
 }
 
 
@@ -293,7 +293,11 @@ function editar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
 		}
 	})
 		.done(function(data) {
@@ -303,7 +307,10 @@ function editar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			alert('Editado com Sucesso!')
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -332,7 +339,11 @@ function cadastrar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
 		}
 	})
 		.done(function(data) {
@@ -342,7 +353,10 @@ function cadastrar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			alert('Cadastrado com Sucesso!')
+			Swal.fire({
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
