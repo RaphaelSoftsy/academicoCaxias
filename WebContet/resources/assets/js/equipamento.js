@@ -10,7 +10,7 @@ const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 	$.ajax({
-		url: url_base + "/marcaEquipamento",
+		url: url_base + `/marcaEquipamento/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -75,7 +75,7 @@ function getDados() {
 
 
 	$.ajax({
-		url: url_base + "/equipamento",
+		url: url_base + `/equipamento/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})

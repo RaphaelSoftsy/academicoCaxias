@@ -62,7 +62,7 @@ function getValorSelects() {
 	})
 
 	$.ajax({
-		url: url_base + '/formaOcupacaoPredio',
+		url: url_base + `/formaOcupacaoPredio/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -76,7 +76,7 @@ function getValorSelects() {
 	})
 
 	$.ajax({
-		url: url_base + '/orgaoPublico',
+		url: url_base + `/orgaoPublico/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -89,7 +89,7 @@ function getValorSelects() {
 		});
 	})
 	$.ajax({
-		url: url_base + '/zoneamento',
+		url: url_base + `/zoneamento/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -102,7 +102,7 @@ function getValorSelects() {
 		});
 	})
 	$.ajax({
-		url: url_base + '/categoriaEscolaPrivada',
+		url: url_base + `/categoriaEscolaPrivada/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -115,7 +115,7 @@ function getValorSelects() {
 		});
 	})
 	$.ajax({
-		url: url_base + '/entidadeSuperior',
+		url: url_base + `/entidadeSuperior/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -129,7 +129,7 @@ function getValorSelects() {
 	})
 
 	$.ajax({
-		url: url_base + '/localizacao',
+		url: url_base + `/localizacao/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {

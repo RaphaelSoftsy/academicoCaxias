@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/instrPedagogico",
+		url: url_base + `/instrPedagogico/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})

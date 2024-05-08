@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/formaOcupacaoPredio",
+		url: url_base + `/formaOcupacaoPredio/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})

@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/fonteEnergia",
+		url: url_base + `/fonteEnergia/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})

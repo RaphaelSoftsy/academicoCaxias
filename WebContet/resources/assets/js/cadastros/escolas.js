@@ -99,7 +99,7 @@ $('#next').click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/escolas/conta/" + contaId,
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})

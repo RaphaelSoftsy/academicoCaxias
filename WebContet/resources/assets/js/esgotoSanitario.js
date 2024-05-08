@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/esgotamentoSanitario",
+		url: url_base + `/esgotamentoSanitario/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
