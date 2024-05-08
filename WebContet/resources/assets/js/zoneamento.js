@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/zoneamento",
+		url: url_base + `/zoneamento/conta/${id}`,
 		type: "GET",
 		async: false,
 	})
@@ -151,18 +151,22 @@ function cadastrar() {
 
 	var objeto = {
 		zoneamento: $('#cadastro-nome').val(),
+<<<<<<< Updated upstream
 		idConta: idConta
+=======
+		contaId: Number(id)
+>>>>>>> Stashed changes
 	}
 
 	$.ajax({
-		url: url_base + "/zoneamento",
+		url: url_base + `/zoneamento`,
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		error: function(e) {
-			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			console.log(e)
+			alert(e)
 		}
 	})
 		.done(function(data) {
