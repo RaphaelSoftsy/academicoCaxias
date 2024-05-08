@@ -7,11 +7,8 @@ var idSelect = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-<<<<<<< HEAD
 const contaId = sessionStorage.getItem('contaId');
-=======
-const contaId = sessionStorage.getItem('contaId')
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
 
 $(document).ready(function() {
 
@@ -159,11 +156,9 @@ function editar() {
 		nomeMunicipio: $('#edit-nome').val(),
 		codIbge: $('#edit-nome2').val(),
 		ufId: $('#selectEdit').val(),
-<<<<<<< HEAD
 		contaId : contaId
-=======
-		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
+
 	}
 
 	$.ajax({
@@ -205,11 +200,9 @@ function cadastrar() {
 		nomeMunicipio: $('#cadastro-nome').val(),
 		codIbge: $('#cadastro-nome2').val(),
 		ufId: $('#selectCadastro').val(),
-<<<<<<< HEAD
 		contaId : contaId
-=======
-		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
+
 	}
 
 	$.ajax({

@@ -89,11 +89,7 @@ function editar() {
 	var objeto = {
 		idFormaOrganEnsino: Number(id),
 		formaOrganEnsino: $('#edit-nome').val(),
-<<<<<<< HEAD
 		contaId : contaId
-=======
-		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
 	}
 
 	$.ajax({
@@ -131,11 +127,8 @@ function cadastrar() {
 
 	var objeto = {
 		formaOrganEnsino: $('#cadastro-nome').val(),
-<<<<<<< HEAD
 		contaId : contaId
-=======
-		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
 	}
 
 	$.ajax({

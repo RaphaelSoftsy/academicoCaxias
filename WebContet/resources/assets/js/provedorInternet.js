@@ -121,11 +121,8 @@ function editar() {
 		idProvedorInternet: Number(id),
 		provedorInternet: $('#edit-nome').val(),
 		telefoneProvedor: $('#edit-tel').val(),
-<<<<<<< HEAD
 		contaId : contaId
-=======
-		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
 	}
 
 	$.ajax({
@@ -163,11 +160,8 @@ function cadastrar() {
 	var objeto = {
 		provedorInternet: $('#cadastro-nome').val(),
 		telefoneProvedor: $('#cadastro-tel').val(),
-<<<<<<< HEAD
 		contaId : contaId
-=======
-		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
 	}
 
 	$.ajax({

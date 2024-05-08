@@ -114,11 +114,8 @@ function editar() {
 	var objeto = {
 		idTratamentoLixo: Number(id),
 		tratamentoLixo: $('#edit-nome').val(),
-<<<<<<< HEAD
 		contaId : contaId
-=======
-		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
 	}
 
 	$.ajax({
@@ -156,11 +153,8 @@ function cadastrar() {
 
 	var objeto = {
 		tratamentoLixo: $('#cadastro-nome').val(),
-<<<<<<< HEAD
-		contaId : contaId
-=======
 		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
 	}
 
 	$.ajax({

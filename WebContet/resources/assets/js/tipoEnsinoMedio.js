@@ -111,12 +111,8 @@ function editar() {
 	var objeto = {
 		idTipoEnsinoMedio: Number(id),
 		tipoEnsinoMedio: $('#edit-nome').val(),
-<<<<<<< HEAD
-		contaId : contaId
-=======
 		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
-	}
+}
 
 	$.ajax({
 		url: url_base + "/tipoEnsinoMedio",
@@ -153,11 +149,8 @@ function cadastrar() {
 
 	var objeto = {
 		tipoEnsinoMedio: $('#cadastro-nome').val(),
-<<<<<<< HEAD
 		contaId : contaId
-=======
-		contaId: contaId
->>>>>>> 2184c0d12d73391f9200335672dc100b400f80eb
+
 	}
 
 	$.ajax({
