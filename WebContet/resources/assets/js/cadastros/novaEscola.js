@@ -85,7 +85,7 @@ $("#formNovoCadastro").submit(function(e) {
 				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
 				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
 				"orgaoPublicoId": Number($('#orgaoPublicoId').val()),
-				contaId: contaId
+				contaId: Number(contaId)
 			};
 
 
