@@ -85,11 +85,16 @@ $(document).ready(function() {
 			$('#cardContainer').append(card)
 			
 			cardButton.click(function(){
-				   
+					
+				   window.location.href = $("#caminhoRelativo").val()+"/escolas"
 			})
 
 		})
+		
+		
 });
+
+
 
 
 

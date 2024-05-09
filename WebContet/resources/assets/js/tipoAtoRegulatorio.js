@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/atoRegulatorio/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
