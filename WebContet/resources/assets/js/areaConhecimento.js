@@ -86,7 +86,7 @@ function showModal(ref) {
 }
 
 function editar() {
-	
+
 	var objeto = {
 		idAreaConhecimento: Number(id),
 		areaConhecimento: $('#edit-nome').val(),
@@ -102,7 +102,11 @@ function editar() {
 		error: function(e) {
 			console.log(objeto)
 			console.log(e.responseJSON[0].mensagem)
-			alert(e.responseJSON[0].mensagem)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
 		}
 	})
 		.done(function(data) {
@@ -110,7 +114,10 @@ function editar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			alert('Editado com Sucesso!')
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -129,7 +136,7 @@ function cadastrar() {
 
 	var objeto = {
 		areaConhecimento: $('#cadastro-nome').val(),
-		dependenciaAdmId:  $('#dependenciaAdmId').val()
+		dependenciaAdmId: $('#dependenciaAdmId').val()
 	}
 
 	$.ajax({
@@ -142,7 +149,12 @@ function cadastrar() {
 			console.log(objeto)
 			console.log(e)
 			console.log(e.responseJSON[0].mensagem)
-			alert(e.responseJSON[0].mensagem)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Something went wrong!",
+				footer: 'console.log(e.responseJSON[0].mensagem)'
+			});
 		}
 	})
 		.done(function(data) {
@@ -151,7 +163,10 @@ function cadastrar() {
 			showPage(currentPage);
 			updatePagination();
 			showPage(currentPage);
-			alert('Cadastrado com Sucesso!')
+			Swal.fire({
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }

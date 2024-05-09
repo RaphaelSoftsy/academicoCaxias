@@ -159,7 +159,12 @@ function editar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				footer: e.responseJSON.message
+			});
 		}
 	})
 		.done(function(data) {
@@ -168,7 +173,10 @@ function editar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			alert('Editado com Sucesso!')
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -199,7 +207,12 @@ function cadastrar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				footer: e.responseJSON.message
+			});
 		}
 	})
 		.done(function(data) {
@@ -209,7 +222,10 @@ function cadastrar() {
 			showPage(currentPage);
 			updatePagination();
 			showPage(currentPage);
-			alert('Cadastrado com Sucesso!')
+			Swal.fire({
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }

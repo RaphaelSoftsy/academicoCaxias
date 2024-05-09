@@ -60,15 +60,15 @@ function getDados() {
 
 function listarAtos(atos) {
 	var html = atos.map(function(item) {
-		if(item.ativo == 'N'){
+		if (item.ativo == 'N') {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
 		}
-		else{
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"	
+		else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
 		}
 		return (
-			
-			
+
+
 			"<tr>" +
 			"<td>" +
 			item.provedorInternet +
@@ -77,7 +77,7 @@ function listarAtos(atos) {
 			item.telefoneProvedor +
 			"</td>" +
 			"<td>" +
-			 ativo+
+			ativo +
 			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idProvedorInternet +
@@ -94,25 +94,25 @@ function listarAtos(atos) {
 function showModal(ato) {
 	id = ato.getAttribute("data-id");
 	nome = ato.getAttribute("data-nome");
-	
+
 	$.ajax({
-		url: url_base + "/provedorInternet/"+id,
+		url: url_base + "/provedorInternet/" + id,
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-			if(data.ativo == "S"){
-				$(".ativar").hide();
-				$(".desativar").show()
-			}
-			else{
-				$(".desativar").hide();
-				$(".ativar").show();
-			}
-			$('#edit-tel').val(data.telefoneProvedor);
+		if (data.ativo == "S") {
+			$(".ativar").hide();
+			$(".desativar").show()
+		}
+		else {
+			$(".desativar").hide();
+			$(".ativar").show();
+		}
+		$('#edit-tel').val(data.telefoneProvedor);
 	})
 
 	$('#edit-nome').val(nome);
-	
+
 }
 
 
@@ -121,7 +121,7 @@ function editar() {
 		idProvedorInternet: Number(id),
 		provedorInternet: $('#edit-nome').val(),
 		telefoneProvedor: $('#edit-tel').val(),
-		contaId : contaId
+		contaId: contaId
 
 	}
 
@@ -133,14 +133,22 @@ function editar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				footer: e.responseJSON.message
+			});
 		}
 	})
 		.done(function(data) {
 			$('#edit-nome').val('');
 			$('#edit-tel').val('');
 			getDados();
-			alert('Editado com Sucesso!')
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -160,7 +168,7 @@ function cadastrar() {
 	var objeto = {
 		provedorInternet: $('#cadastro-nome').val(),
 		telefoneProvedor: $('#cadastro-tel').val(),
-		contaId : contaId
+		contaId: contaId
 
 	}
 
@@ -172,14 +180,22 @@ function cadastrar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				footer: e.responseJSON.message
+			});
 		}
 	})
 		.done(function(data) {
 			$('#cadastro-nome').val('');
 			getDados();
 			showPage(currentPage);
-			alert('Cadastrado com Sucesso!')
+			Swal.fire({
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }

@@ -77,7 +77,8 @@ $('#btnLogin').click(function() {
 		contas.forEach(
 			(element) => {
 				if (inputEmail.val() == element.email && inputPassword.val() == element.senha) {
-					window.location.href = "escola"
+					sessionStorage.setItem('contaId', element.contaId)
+					window.location.href = "login/escola"
 					status = true
 				}
 			})

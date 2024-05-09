@@ -160,13 +160,21 @@ function desativar(endpoint) {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			aSwal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				footer: e.responseJSON.message
+			});
 		}
 	})
 		.done(function(data) {
 			$('#edit-nome').val('');
 			getDados();
-			alert('Desativado com Sucesso!')
+			Swal.fire({
+				title: "Desativado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -179,13 +187,21 @@ function ativar(endpoint) {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				footer: e.responseJSON.message
+			});
 		}
 	})
 		.done(function(data) {
 			$('#edit-nome').val('');
 			getDados();
-			alert('Ativado com Sucesso!')
+			Swal.fire({
+				title: "Ativado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -198,14 +214,21 @@ function remover(endpoint) {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON)
-			alert('Falha na requisição.')
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Falha na requisição"
+			});
 		}
 	})
 		.done(function(data) {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			alert('Removido com Sucesso!')
+			Swal.fire({
+				title: "Removido com sucesso!",
+				icon: "success",
+			})
 		})
 	return false;
 }

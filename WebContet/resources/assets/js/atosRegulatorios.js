@@ -139,7 +139,12 @@ function editar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				footer: e.responseJSON.message
+			});
 		}
 	})
 		.done(function(data) {
@@ -180,7 +185,12 @@ function cadastrar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				footer: e.responseJSON.message
+			});
 		}
 	})
 		.done(function(data) {
