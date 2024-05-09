@@ -1,15 +1,14 @@
 var url_base = "http://10.40.110.2:8080/api-educacional";
 
 const queryString = window.location.search;
-
 const params = new URLSearchParams(queryString);
-
 const path_base = "http://localhost:8090/front-educacional-caxias/resources/menu";
 
 $(document).ready(function() {
 	const url = window.location.pathname
+	const contaId = sessionStorage.getItem('contaId')
 	if (url.includes('login') == false) {
-		const contaId = sessionStorage.getItem('contaId')
+		$("#tipoEscola").val('Pública').attr('selected', true);
 		if (isNaN(contaId) || contaId == 0 || contaId == "" || contaId == undefined) {
 			Swal.fire({
 				title: "Nenhum usuário localizado, logue novamente",
@@ -33,6 +32,7 @@ window.addEventListener("load", function() {
 
 
 function getValorSelects() {
+	const contaId = sessionStorage.getItem('contaId')
 	$.ajax({
 		url: url_base + '/dependenciaAdministrativa',
 		type: "get",

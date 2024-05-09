@@ -9,7 +9,7 @@ $(document).ready(function() {
 	$.ajax({
 		url: url_base + "/escolas/" + id,
 		type: "GET",
-		async: false,
+		async: true,
 	})
 		.done(function(data) {
 			const ref = data
@@ -35,12 +35,18 @@ $(document).ready(function() {
 			if (data.ativo == "S") {
 				$(".ativar").hide();
 				$(".desativar").show()
-			}
-			else {
+			}else {
 				$(".desativar").hide();
 				$(".ativar").show();
 			}
 
+			
+			if(data.tipoEscola == "Pu"){
+				$("#tipoEscola").val('PU').attr('selected', true);
+			}else{
+				$("#tipoEscola").val('PV').attr('selected', true);
+			}
+			
 			if (ref.educacaoIndigena === 'S') {
 				$('input[id="isIndigenaS"]').prop('checked', true)
 			} else {

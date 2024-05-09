@@ -40,9 +40,9 @@ String contextPath = request.getContextPath();
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -81,7 +81,8 @@ String contextPath = request.getContextPath();
 		<section class="pt-4">
 			<form id="formEditar"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h1 id="tituloForm" class="text-center mb-5">Editar dados da Escola</h1>
+				<h1 id="tituloForm" class="text-center mb-5">Editar dados da
+					Escola</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
