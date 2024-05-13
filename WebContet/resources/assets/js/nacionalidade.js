@@ -95,14 +95,14 @@ function showModal(ref) {
 	nome = ref.getAttribute("data-nome");
 	isAtivo = ref.getAttribute("data-ativo");
 
-		if (isAtivo == "S") {
-			$(".ativar").hide();
-			$(".desativar").show()
-		}
-		else {
-			$(".desativar").hide();
-			$(".ativar").show();
-		}
+	if (isAtivo == "S") {
+		$(".ativar").hide();
+		$(".desativar").show()
+	}
+	else {
+		$(".desativar").hide();
+		$(".ativar").show();
+	}
 
 	$('#edit-nome').val(nome);
 }
@@ -127,7 +127,6 @@ function editar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
 			});
 		}
 	})
@@ -158,7 +157,7 @@ function cadastrar() {
 
 	var objeto = {
 		nacionalidade: $('#cadastro-nome').val(),
-		contaId : contaId
+		contaId: contaId
 
 	}
 
@@ -174,7 +173,7 @@ function cadastrar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		}
 	})

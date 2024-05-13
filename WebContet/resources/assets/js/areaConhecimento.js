@@ -153,7 +153,7 @@ function cadastrar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Something went wrong!",
-				footer: 'console.log(e.responseJSON[0].mensagem)'
+			
 			});
 		}
 	})

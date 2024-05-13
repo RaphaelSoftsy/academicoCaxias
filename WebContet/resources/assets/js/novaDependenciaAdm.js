@@ -56,7 +56,7 @@ $("#cep").blur(function() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		}
 	}).done(function(data) {
@@ -99,7 +99,7 @@ $("#formNovoCadastro").submit(function(e) {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		}
 	}).done(function(data) {

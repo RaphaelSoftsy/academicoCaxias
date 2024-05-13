@@ -206,6 +206,7 @@ function acessar(element) {
     console.log(logo)
 
     localStorage.setItem('perfil', JSON.stringify({perfil: 'escola', id, nome, logo}));
+    localStorage.setItem('escolaId', id)
 
     window.location.href = 'acessar-escolas';
 }

@@ -285,7 +285,7 @@ function showModal(ref) {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		},
 	}).done(function(data) {
@@ -338,7 +338,7 @@ function editar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		},
 	}).done(function(data) {
@@ -395,7 +395,7 @@ function cadastrar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		},
 	}).done(function(data) {

@@ -129,8 +129,8 @@ function editar() {
 		Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				text: "Não foi possível realizar esse comando!"
+			
 			});
 		}
 	})

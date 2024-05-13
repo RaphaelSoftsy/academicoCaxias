@@ -6,7 +6,14 @@ var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
 var id = '';
-var idEscola = '';
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
+
+
+
+
 
 $(document).ready(function() {
 
@@ -171,7 +178,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaLicSanitario",
+		url: url_base + "/escolaLicSanitario/escola/" + idEscola ,
 		type: "GET",
 		async: false,
 	})
@@ -200,7 +207,7 @@ function listarDados(dados) {
 			return school.idEscola === item.escolaId;
 		});
 
-		var nomeEscola = escola
+		 	escola
 			? escola.nomeEscola
 			: "Escola não encontrada";
 
@@ -308,6 +315,7 @@ function showModal(ref) {
 		}
 	})
 		.done(function(data) {
+			
 			$("#licSanitarioEdit").val(data[0].licSanitario);
 			var dataEmissao = data[0].dataEmissao.split('T')[0];
 			var dataValidade = data[0].dataValidade.split('T')[0];

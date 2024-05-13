@@ -164,7 +164,7 @@ function desativar(endpoint) {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		}
 	})
@@ -191,7 +191,7 @@ function ativar(endpoint) {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		}
 	})

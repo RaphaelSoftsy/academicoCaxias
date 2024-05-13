@@ -104,7 +104,7 @@ function editar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		}
 	})
@@ -151,7 +151,7 @@ function cadastrar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				footer: e.responseJSON.message
+				
 			});
 		}
 	})
