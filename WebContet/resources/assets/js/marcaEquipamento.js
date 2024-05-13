@@ -1,5 +1,5 @@
 var atos = [];
-const contaId = sessionStorage.getItem('contaId');;
+const contaId = sessionStorage.getItem('contaId');
 var nome = "";
 var rows = 8;
 var currentPage = 1;

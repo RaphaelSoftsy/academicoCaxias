@@ -215,7 +215,7 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formCadastro">
-							<div class="mb-4">
+							<div class="mb-4" id="escolaIdStyle">
 								<label for="escolaId" class="form-label">Escola:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola" id="escolaId"

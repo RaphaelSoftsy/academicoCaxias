@@ -79,8 +79,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-school fa-lg"></i>
-            <span>Horários de Funcionamento</span>
+            <i class="fa-solid fa-school fa-lg"></i> <span>Predios Compartilhados</span>
           </div>
         </div>
       </section>
@@ -157,7 +156,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <th
                 scope="col"
                 class="sortable border-end"
-                data-column="diaSemana"
+                data-column="equipamento"
               >
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
@@ -165,7 +164,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Dia da Semana</span>
+                    <span>Equipamento</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                   <div class="dropdown-form">
@@ -176,24 +175,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                       class="dropdown-content-form rounded-3 dropdown-content-left"
                       id="dropdownContent2"
                     >
-                      <select
-                        class="form-select mb-3 searchInput"
-                        aria-label="diaSemana"
-                        id="diaSemanaSearch"
-                        required
-                        name="diaSemana"
-                      >
-                        <option value="" selected disabled>
-                          Selecione o Dia
-                        </option>
-                        <option value="2">Segunda-feira</option>
-                        <option value="3">Terça-feira</option>
-                        <option value="4">Quarta-feira</option>
-                        <option value="5">Quinta-feira</option>
-                        <option value="6">Sexta-feira</option>
-                        <option value="7">Sábado</option>
-                        <option value="1">Domingo</option>
-                      </select>
+                      <input
+                        type="text"
+                        class="form-control mb-3 searchInput"
+                        placeholder="Digite..."
+                      />
                       <button
                         class="btn btn-sm col-12 btn-success searchButton"
                       >
@@ -206,7 +192,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <th
                 scope="col"
                 class="sortable border-end"
-                data-column="horaInicio"
+                data-column="quantidade"
               >
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
@@ -214,19 +200,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   <div
                     class="col d-flex align-items-center justify-content-between"
                   >
-                    <span>Hora de Início</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                </div>
-              </th>
-              <th scope="col" class="sortable border-end" data-column="horaFim">
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Hora de Fim</span>
+                    <span>Quantidade</span>
                     <i class="fas fa-sort me-3" style="color: #dddddd"></i>
                   </div>
                 </div>
@@ -275,66 +249,21 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
             <div class="modal-body">
               <form id="formCadastro">
-                <div class="mb-4" id="escolaIdStyle">
-                  <label for="escolaId" class="form-label"
-                    >Escola:<span class="red">*</span>
+                <div class="mb-4">
+                  <label for="escolaCompId" class="form-label"
+                    >Escola Compartilhada:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="Escola"
-                    id="escolaId"
+                    aria-label="Escola Compartilhada"
+                    id="escolaCompId"
                     required
-                    name="escolaId"
+                    name="escolaCompId"
                   >
-                    <option selected disabled value="">
-                      Selecione a Escola
+                    <option selected value="" disabled>
+                      Selecione a escola compartilhada
                     </option>
                   </select>
-                </div>
-                <div class="mb-4">
-                  <label for="diaSemana" class="form-label"
-                    >Dia da Semana:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="diaSemana"
-                    id="diaSemana"
-                    required
-                    name="diaSemana"
-                  >
-                    <option value="" selected disabled>Selecione o Dia</option>
-                    <option value="2">Segunda-feira</option>
-                    <option value="3">Terça-feira</option>
-                    <option value="4">Quarta-feira</option>
-                    <option value="5">Quinta-feira</option>
-                    <option value="6">Sexta-feira</option>
-                    <option value="7">Sábado</option>
-                    <option value="1">Domingo</option>
-                  </select>
-                </div>
-                <div class="mb-4">
-                  <label for="horaInicio" class="form-label"
-                    >Hora de Início:<span class="red">*</span>
-                  </label>
-                  <input
-                    autocomplete="off"
-                    type="time"
-                    id="horaInicio"
-                    name="horaInicio"
-                    class="form-control"
-                  />
-                </div>
-                <div class="mb-4">
-                  <label for="horaFim" class="form-label"
-                    >Hora de Fim:<span class="red">*</span>
-                  </label>
-                  <input
-                    autocomplete="off"
-                    type="time"
-                    id="horaFim"
-                    name="horaFim"
-                    class="form-control"
-                  />
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
@@ -392,54 +321,36 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="diaSemanaEdit" class="form-label"
-                    >Dia da Semana:<span class="red">*</span>
+                  <label for="equipamentoIdEdit" class="form-label"
+                    >Equipamento:<span class="red">*</span>
                   </label>
                   <select
                     class="form-select"
-                    aria-label="diaSemanaEdit"
-                    id="diaSemanaEdit"
+                    aria-label="Equipamento"
+                    id="equipamentoIdEdit"
                     required
-                    name="diaSemanaEdit"
+                    name="equipamentoIdEdit"
                   >
-                    <option value="" selected disabled>Selecione o Dia</option>
-                    <option value="2">Segunda-feira</option>
-                    <option value="3">Terça-feira</option>
-                    <option value="4">Quarta-feira</option>
-                    <option value="5">Quinta-feira</option>
-                    <option value="6">Sexta-feira</option>
-                    <option value="7">Sábado</option>
-                    <option value="1">Domingo</option>
+                    <option selected disabled>Selecione o Equipamento</option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="horaInicioEdit" class="form-label"
-                    >Hora de Início:<span class="red">*</span>
+                  <label for="quantidadeEdit" class="form-label"
+                    >Quantidade:<span class="red">*</span>
                   </label>
                   <input
+                    type="number"
+                    id="quantidadeEdit"
+                    required
                     autocomplete="off"
-                    type="time"
-                    id="horaInicioEdit"
-                    name="horaInicioEdit"
-                    class="form-control"
-                  />
-                </div>
-                <div class="mb-4">
-                  <label for="horaFimEdit" class="form-label"
-                    >Hora de Fim:<span class="red">*</span>
-                  </label>
-                  <input
-                    autocomplete="off"
-                    type="time"
-                    id="horaFimEdit"
-                    name="horaFimEdit"
+                    name="quantidadeEdit"
                     class="form-control"
                   />
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                   <button
                     type="button"
-                    onclick='ativar("escolaHorarioFuncionamento")'
+                    onclick='ativar("escolaEquipamento")'
                     class="ativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
@@ -447,7 +358,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   </button>
                   <button
                     type="button"
-                    onclick='desativar("escolaHorarioFuncionamento")'
+                    onclick='desativar("escolaEquipamento")'
                     class="desativar btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
@@ -494,7 +405,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="<%=contextPath%>/resources/assets/js/escolas/horarioFuncionamento.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/escolas/prediosCompartilhados.js"></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </body>

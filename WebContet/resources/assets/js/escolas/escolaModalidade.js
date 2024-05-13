@@ -8,6 +8,11 @@ var escolas = [];
 var id = '';
 var idEscola = '';
 var idModalidade = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
@@ -25,20 +30,13 @@ $(document).ready(function() {
 					name: item.nomeEscola
 				}));
 			});
-			$.each(data, function(index, item) {
-				$('#escolaId').append($('<option>', {
-					value: item.idEscola,
-					text: item.nomeEscola,
-					name: item.nomeEscola
-				}));
-			});
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 
 	$.ajax({
-		url: url_base + '/modalidadeEscola',
+		url: url_base + '/modalidadeEscola/conta/' + contaId,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -306,7 +304,7 @@ $('#formEdit').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		escolaId: Number($('#escolaId').val()),
+		escolaId: Number(idEscola),
 		modalidadeEscolaId: Number($('#modalidadeEscolaId').val())
 	}
 
@@ -349,6 +347,5 @@ $('#formCadastro').on('submit', function(e) {
 // Limpa input
 
 function limpaCampo() {
-	$("#escolaId").val('');
 	$("#modalidadeEscolaId").val('');
 }

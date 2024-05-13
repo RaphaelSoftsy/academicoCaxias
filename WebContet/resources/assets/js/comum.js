@@ -4,6 +4,8 @@ const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
 const path_base = "http://localhost:8090/front-educacional-caxias/resources/menu";
 
+$('#escolaIdStyle').css('display', 'none')
+
 $(document).ready(function() {
 	const url = window.location.pathname
 	const contaId = sessionStorage.getItem('contaId')

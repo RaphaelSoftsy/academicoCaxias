@@ -1,3 +1,8 @@
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
+
 $(document).ready(function() {
 	$.ajax({
 		url: url_base + "/escolas",
@@ -36,7 +41,7 @@ $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
 
 	var dadosFormulario = {
-		escolaId: Number($("#escolaId").val()),
+		escolaId: Number(idEscola),
 		dependenciaAdmId: Number($("#dependenciaAdmId").val()),
 		creditos: Number($("#creditos").val()),
 		horasAula: Number($("#horasAula").val()),

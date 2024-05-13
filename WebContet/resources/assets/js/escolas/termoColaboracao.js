@@ -7,6 +7,11 @@ var pagesToShow = 5;
 var escolas = [];
 var id = '';
 var idEscola = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
@@ -14,7 +19,7 @@ $(document).ready(function() {
 	$("#divTermoEdit").hide();
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -172,7 +177,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaTColaboracao",
+		url: url_base + `/escolaTColaboracao/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -373,7 +378,7 @@ function editar() {
 
 				var objeto = {
 					idEscolaTermoColaboracao: id,
-					escolaId: Number($('#escolaIdEdit').val()),
+					escolaId: Number(idEscola),
 					coordenador: $('#coordenadorEdit').val(),
 					dataValidade: dataValidadeAPI,
 					anexo: 'null',
@@ -420,7 +425,7 @@ function editar() {
 	} else {
 		var objeto = {
 			idEscolaTermoColaboracao: id,
-			escolaId: Number($('#escolaIdEdit').val()),
+			escolaId: Number(idEscola),
 			coordenador: $('#coordenadorEdit').val(),
 			dataValidade: dataValidadeAPI,
 			anexo: 'null',
@@ -491,7 +496,7 @@ function cadastrar() {
 			var base64StringTermo = eventTermo.target.result;
 
 			var objeto = {
-				escolaId: Number($('#escolaId').val()),
+				escolaId: Number(idEscola),
 				coordenador: $('#coordenador').val(),
 				dataValidade: dataValidadeAPI,
 				anexo: 'null',

@@ -1,5 +1,7 @@
 var id = '';
 var logo = '';
+const contaId = sessionStorage.getItem('contaId')
+
 $(document).ready(function() {
 	id = getSearchParams("id");
 	$("#divLogoEscola").hide();
@@ -205,7 +207,8 @@ $("#formEditar").submit(function(e) {
 				"zoneamentoId": Number($('#zoneamentoId').val()),
 				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
 				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
-				"orgaoPublicoId": Number($('#orgaoPublicoId').val())
+				"orgaoPublicoId": Number($('#orgaoPublicoId').val()),
+				contaId: Number(contaId)
 			};
 			
 			enviarDadosFormulario(dadosComImgBase64);

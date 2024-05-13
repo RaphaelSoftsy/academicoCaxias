@@ -90,7 +90,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         >
           <h1 id="tituloForm" class="text-center mb-5">Cadastrar Disciplina</h1>
 
-          <div class="row mb-5 justify-content-center">
+          <div class="row mb-5 justify-content-center" id="escolaIdStyle">
             <div class="col-md-8">
               <label for="escolaId" class="form-label"
                 >Escola:<span class="red">*</span>

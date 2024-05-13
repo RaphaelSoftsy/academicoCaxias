@@ -48,9 +48,11 @@ $("#formNovoCadastro").submit(function(e) {
 
 	if (logoEscolaFile) {
 		convertToBase64(logoEscolaFile, function(base64String) {
+			let imgSplit = base64String.split(',')
+
 			var dadosFormulario = {
 				nomeEscola: $('#nome').val(),
-				logoEscola: base64String,
+				logoEscola: imgSplit[1],
 				tipoEscola: $('#tipoEscola').val(),
 				cnpj: $('#cnpj').val().replace(/[^\d]+/g, ''),
 				codigoInep: $('#codigoInep').val(),
@@ -160,6 +162,8 @@ $("#cnpj").blur(function() {
 		cnpj.removeClass('err-message')
 		$('#errMessageCnpj').css('display', 'none')
 	} else {
+		$("#cardCNPJ").find('#errMessageCnpj' + this.value).remove()
+
 		$("#btn-submit").attr("disabled", "disabled");
 		cnpj.addClass('err-message')
 		$("#cardCNPJ").append(message)

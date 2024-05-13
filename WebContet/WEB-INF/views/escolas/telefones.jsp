@@ -80,7 +80,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         <div class="card">
           <div class="card-body title">
             <i class="fa-solid fa-school fa-lg"></i>
-            <span>Línguas de Ensino</span>
+            <span>Telefones</span>
           </div>
         </div>
       </section>
