@@ -6,7 +6,10 @@ var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
 var id = '';
-var idEscola = '';
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 var idSelect2 = '';
 
 $(document).ready(function() {
@@ -184,7 +187,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaEsgotamentoSanitario",
+		url: url_base + "/escolaEsgotamentoSanitario/escola/" + idEscola,
 		type: "GET",
 		async: false,
 	})

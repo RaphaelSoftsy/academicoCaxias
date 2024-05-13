@@ -249,7 +249,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     </option>
                   </select>
                 </div>
-                <div class="mb-4">
+                <div class="mb-4" style="display: none">
                   <label for="escolaId" class="form-label"
                     >Escola:<span class="red">*</span>
                   </label>

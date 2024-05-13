@@ -461,10 +461,8 @@ function cadastrar() {
 	reader.onload = function(event) {
 		var base64String = event.target.result;
 		
-		
-
 		var objeto = {
-			escolaId: Number($('#escolaId').val()),
+			escolaId: idEscola,
 			licSanitario: $('#licSanitario').val(),
 			dataEmissao: dataEmissaoAPI,
 			dataValidade: dataValidadeAPI,
