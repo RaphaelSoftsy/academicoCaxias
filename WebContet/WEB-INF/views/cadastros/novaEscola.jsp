@@ -72,6 +72,8 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	<header id="menu"> </header>
+	
+	
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
@@ -80,6 +82,8 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</section>
+		
+		
 		<section class="pt-4">
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
@@ -305,7 +309,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="numCME" class="form-label">Nº CME:<span
+						<label for="numCME" class="form-label">Nº do adastro:<span
 							class="red">*</span></label> <input type="number" id="numCME" required
 							autocomplete="off" name="numCME" class="form-control " />
 					</div>
@@ -315,8 +319,7 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-4">
 					<div class="col-md-6">
-						<label for="numParecerCME" class="form-label">Nº Parecer
-							CME:<span class="red">*</span>
+						<label for="numParecerCME" class="form-label">Nº do Parecer:<span class="red">*</span>
 						</label> <input type="number" id="numParecerCME" required
 							autocomplete="off" name="numParecerCME"
 							class="form-control " />
@@ -407,7 +410,7 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
-						<input type='tel' class="form-control" id="cep" required
+						<input type='tel' class="form-control" id="cep" 
 							data-mask="00000-000" name="cep" />
 					</div>
 				</div>
@@ -415,13 +418,13 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="uf" class="form-label">UF:<span class="red">*</span></label>
-						<input type='text' class="form-control" id="uf" required disabled
+						<input type='text' class="form-control" id="uf"  disabled
 							name="uf" />
 					</div>
 					<div class="col-md-6">
 						<label for="municipio" class="form-label">Município:<span
 							class="red">*</span></label> <input type='tel' class="form-control"
-							id="municipio" required disabled name="municipio" />
+							id="municipio"  disabled name="municipio" />
 					</div>
 
 
@@ -431,12 +434,12 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="bairro" class="form-label">Bairro:<span
 							class="red">*</span></label> <input type='text' class="form-control"
-							id="bairro" required disabled name="bairro" />
+							id="bairro"  disabled name="bairro" />
 					</div>
 					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:<span
 							class="red">*</span></label> <input type='text' class="form-control"
-							id="endereco" required disabled name="endereco" />
+							id="endereco" disabled name="endereco" />
 					</div>
 
 
@@ -445,19 +448,19 @@ String contextPath = request.getContextPath();
 				<div class="row mb-5">
 					<div class="col-md-6">
 						<label for="numero" class="form-label">Número:<span
-							class="red">*</span></label> <input type='number' class="form-control"
-							id="numero" required name="numero" />
+							class="red">*</span></label> <input type='text' class="form-control"
+							id="numero"  name="numero" />
 					</div>
 					<div class="col-md-6">
 						<label for="latitude" class="form-label">Latitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
-							id="latitude" required disabled name="latitude" />
+							id="latitude"  disabled name="latitude" />
 					</div>
 
 					<div class="col-md-6 mt-3">
 						<label for="longitude" class="form-label">Longitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
-							id="longitude" required disabled name="longitude" />
+							id="longitude"  disabled name="longitude" />
 					</div>
 
 				</div>

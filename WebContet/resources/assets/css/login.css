@@ -1,25 +1,51 @@
 main {
-	height: 90vh;
+	height: 100vh;
 	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+	
 }
 
-header {
+.container-login{
+	height: 100%;
 	width: 100%;
-	height: 10vh;
-	background-color: #183153;
 	display: flex;
-	align-items: center;
-	padding-left: 1%;
-	justify-content: center;
-}
-
-.container-form {
-	height: 50%;
+	flex-direction: row;
+ } 
+.container-image{
 	width: 50%;
+	height: 100%;
+	background-color: #031E3B;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.logo-sumare-login{
+	width: 70%;
+}
+.img-login{
+	width: 120%;
+}
+ 
+.container-form{
+	gap: 5%;
+	width: 50%;
+	height: 100%;
+	display: flex;
+	flex-direction:column;
+	align-items: center;
+	justify-content: center
+}
+
+form{
+	width: 90%
+}
+
+.reveal{
+	width: 10%;
+}
+
+.form-control{
+	width: 100%;
 }
 
 .logo-sumare {
@@ -32,12 +58,20 @@ header {
 }
 
 .container-btns {
-	width: 100%;
+	width: 90%;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
+header{
+	width: 100%;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #031E3B;
+}
 .container-section {
 	padding: 2%;
 	width: 100%;
@@ -45,7 +79,7 @@ header {
 }
 
 .card-table {
-	width: 80%
+	width: 100%
 }
 
 #cardContainer{
@@ -56,11 +90,24 @@ header {
 
 
 @media screen and (max-width: 1279px) {
-	header {
-		justify-content: center;
-	}
 	.logo-sumare {
-		width: 25%;
+		width: 20%;
+	}
+	.school-card{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.logo-sumare {
+		width: 50%;
+	}
+	.reveal{
+	 	width: 25%;
+	}
+	
+	.form-check-label{
+		font-size: .8rem;
 	}
 	.school-card{
 		width: 100%;

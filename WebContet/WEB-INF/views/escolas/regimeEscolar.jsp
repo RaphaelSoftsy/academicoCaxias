@@ -344,7 +344,7 @@ String contextPath = request.getContextPath();
 							<div class="mb-4">
 								<label for="anexo" class="form-label">Anexo:<span
 									class="red">*</span>
-								</label> <input type="file" name="anexo" id="anexo" class="form-control" />
+								</label> <input type="file" name="anexo" id="anexo" class="form-control" required />
 							</div>
 
 
