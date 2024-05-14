@@ -83,13 +83,13 @@ String contextPath = request.getContextPath();
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h1 id="tituloForm" class="text-center mb-5">Dados da Internet</h1>
 
-				<div class="row mb-5 justify-content-center">
+				<div class="row mb-5 justify-content-center"  id="escolaIdStyleEdit">
 
 					<div class="col-md-8">
 						<label for="escolaId" class="form-label">Escola:<span
 							class="red">*</span>
 						</label> <select class="form-select" aria-label="Escola" id="escolaId"
-							required name="escolaId">
+							 name="escolaId">
 							<option selected disabled>Selecione a Escola</option>
 						</select>
 					</div>

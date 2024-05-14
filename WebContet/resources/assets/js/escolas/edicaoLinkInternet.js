@@ -1,11 +1,17 @@
 var id = '';
-
 var idItem = ''
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
+
+
 $(document).ready(function() {
 	idItem = getSearchParams("id");
 
 	$.ajax({
-		url: url_base + '/escolas',
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -19,7 +25,7 @@ $(document).ready(function() {
 	})
 
 	$.ajax({
-		url: url_base + '/provedorInternet',
+		url: url_base + `/provedorInternet/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -106,7 +112,7 @@ $("#formEditar").submit(function(e) {
 				title: "Editado com sucesso",
 				icon: "success",
 			})
-		window.location.href = "link-internet";
+		window.location.href = "escola-internet";
 	});
 
 });
