@@ -17,7 +17,7 @@ var nomeEscola = escola.nome
 $(document).ready(function() {
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -182,7 +182,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaModalidade",
+		url: url_base + `/escolaModalidade/escola/${idEscola}`,
 		type: "GET",
 		async: false,
 	})
@@ -200,8 +200,10 @@ function listarDados(dados) {
 	var html = dados.map(function(item) {
 
 		var escola = escolas.find(function(school) {
-			return school.idEscola === item.escolaId;
+			return school.idEscola === item.escolaId
 		});
+		
+		console.log(`Escola1: ${escola.nomeEscola}`)
 
 		var nomeEscola = escola
 			? escola.nomeEscola
@@ -260,7 +262,7 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idEscolaModalidade: Number(id),
-		escolaId: Number($('#escolaIdEdit').val()),
+		escolaId: Number(idEscola),
 		modalidadeEscolaId: Number($('#modalidadeEscolaIdEdit').val())
 	}
 

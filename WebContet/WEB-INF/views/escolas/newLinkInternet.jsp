@@ -83,7 +83,7 @@ String contextPath = request.getContextPath();
 				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Internet</h1>
 
 				<div class="row mb-5 justify-content-center">
-					<div class="col-md-8">
+					<div class="col-md-8"  id="escolaIdStyle">
 						<label for="escolaId" class="form-label">Escola:<span
 							class="red">*</span>
 						</label> <select class="form-select" aria-label="Escola" id="escolaId"

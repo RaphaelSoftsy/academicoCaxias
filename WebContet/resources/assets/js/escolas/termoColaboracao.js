@@ -177,7 +177,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + `/escolaTColaboracao/conta/${contaId}`,
+		url: url_base + `/escolaTColaboracao/escola/${idEscola}`,
 		type: "GET",
 		async: false,
 	})

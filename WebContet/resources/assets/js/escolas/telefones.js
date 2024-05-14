@@ -9,11 +9,16 @@ var id = '';
 var idEscola = '';
 var idSelect2 = '';
 var telefone = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -271,7 +276,7 @@ function editar() {
 	var objeto = {
 		idTelefoneEscola: Number(id),
 		telefone: $('#telefoneEdit').val().replace(/[^\d]+/g, ''),
-		escolaId: Number($('#escolaIdEdit').val()),
+		escolaId: Number(idEscola),
 		tipoTelefoneId: Number($('#idTipoTelefoneEdit').val())
 	}
 
@@ -316,7 +321,7 @@ $('#formEdit').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		escolaId: Number($('#escolaId').val()),
+		escolaId: Number(idEscola),
 		telefone: $('#telefone').val().replace(/[^\d]+/g, ''),
 		tipoTelefoneId: Number($('#idTipoTelefone').val())
 	}

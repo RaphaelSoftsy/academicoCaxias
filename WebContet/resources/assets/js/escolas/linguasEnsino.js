@@ -8,11 +8,17 @@ var escolas = [];
 var id = '';
 var idEscola = '';
 var idSelect2 = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
+	$('#escolaIdStyleEdit').css('display', 'none')
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -38,7 +44,7 @@ $(document).ready(function() {
 		});
 
 	$.ajax({
-		url: url_base + '/linguaEnsino',
+		url: url_base + `/linguaEnsino/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -184,7 +190,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaLingua",
+		url: url_base + `/escolaLingua/escola/${idEscola}`,
 		type: "GET",
 		async: false,
 	})
@@ -262,7 +268,7 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idEscolaLingua: Number(id),
-		escolaId: Number($('#escolaIdEdit').val()),
+		escolaId: Number(idEscola),
 		linguaEnsinoId: Number($('#idLinguaEnsinoEdit').val())
 	}
 
@@ -306,7 +312,7 @@ $('#formEdit').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		escolaId: Number($('#escolaId').val()),
+		escolaId: Number(idEscola),
 		linguaEnsinoId: Number($('#idLinguaEnsino').val())
 	}
 

@@ -1,6 +1,12 @@
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
+const contaId = Number(sessionStorage.getItem('contaId'))
+
 $(document).ready(function() {
 	$.ajax({
-		url: url_base + '/escolas',
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -14,7 +20,7 @@ $(document).ready(function() {
 	})
 
 	$.ajax({
-		url: url_base + '/provedorInternet',
+		url: url_base + `/provedorInternet/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -32,7 +38,7 @@ $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
 
 	var dadosFormulario = {
-		escolaId: Number($('#escolaId').val()),
+		escolaId: Number(idEscola),
 		provedorInternetId: Number($('#provedorInternetId').val()),
 		velocidadeMb: Number($('#velocidadeMb').val()),
 		administrativo: $('input[name="administrativo"]:checked').val(),
@@ -58,7 +64,7 @@ $("#formNovoCadastro").submit(function(e) {
 			title: "Cadastrado com sucesso",
 			icon: "success",
 		})
-		window.location.href = "link-internet";
+		window.location.href = "escola-internet";
 	});
 
 });

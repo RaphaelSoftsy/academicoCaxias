@@ -5,10 +5,15 @@ var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function () {
   $.ajax({
-    url: url_base + "/escolas",
+    url: url_base + `/escolas/conta/${contaId}`,
     type: "GET",
     async: false,
   })

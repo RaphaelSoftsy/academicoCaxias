@@ -219,7 +219,7 @@ String contextPath = request.getContextPath();
 								<label for="escolaId" class="form-label">Escola:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola" id="escolaId"
-									required name="escolaId">
+									 name="escolaId">
 									<option selected disabled value="">Selecione a Escola
 									</option>
 								</select>
@@ -270,11 +270,11 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
-							<div class="mb-4">
+							<div class="mb-4" id="escolaIdStyleEdit">
 								<label for="escolaIdEdit" class="form-label">Escola:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola"
-									id="escolaIdEdit" required name="escolaIdEdit">
+									id="escolaIdEdit" name="escolaIdEdit">
 									<option selected disabled>Selecione a Escola</option>
 								</select>
 							</div>
