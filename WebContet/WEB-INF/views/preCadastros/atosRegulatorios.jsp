@@ -40,9 +40,9 @@ String contextPath = request.getContextPath();
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -51,7 +51,7 @@ String contextPath = request.getContextPath();
 <link
 	href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 	rel="stylesheet" />
-	
+
 <!-- Sweetalert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.all.min.js"></script>
@@ -82,6 +82,11 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</section>
+		<div class="container-info">
+			<div class="card-info">
+				<i class="fa-solid fa-info"></i>
+			</div>
+		</div>
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-3" style="display: flex; align-items: center;">
 
@@ -141,7 +146,7 @@ String contextPath = request.getContextPath();
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							
+
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -169,10 +174,10 @@ String contextPath = request.getContextPath();
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							<button type="button" onclick='ativar("atoRegulatorio")' class="ativar btn btn-secondary"
-									data-bs-dismiss="modal">Ativar</button>
-							<button type="button" onclick='desativar("atoRegulatorio")' class="desativar btn btn-secondary"
-									data-bs-dismiss="modal">Desativar</button>
+								<button type="button" onclick='ativar("atoRegulatorio")'
+									class="ativar btn btn-secondary" data-bs-dismiss="modal">Ativar</button>
+								<button type="button" onclick='desativar("atoRegulatorio")'
+									class="desativar btn btn-secondary" data-bs-dismiss="modal">Desativar</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"

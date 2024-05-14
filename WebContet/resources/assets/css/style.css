@@ -375,6 +375,26 @@ body {
   }
 }
 
+.container-info{
+	height: 10vh;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.card-info{
+	height: 50%;
+	width: 3%;
+	border-radius: 10em;
+	border: solid 1px #000;
+	display: flex;
+	align-items: center;
+	justify-content: center
+}
+
+
+
 /* CLASSES DE USO GERAL */
 
 .none {
