@@ -40,9 +40,9 @@ String contextPath = request.getContextPath();
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -74,13 +74,14 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card card-title">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Organizações de Ensino</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Organizações de
+						Ensino</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">As organizações de ensino podem
+						variar de acordo com o nível educacional e o país em questão, mas
+						algumas das principais categorias incluem (escolas primárias e
+						secundárias, universidades e faculdades, escolas de Idiomas)</div>
 					<i class="fa-solid fa-info"></i>
 
 				</div>
@@ -139,12 +140,13 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Forma de Organização:</label> <input
-									type="text" class="form-control" id="cadastro-nome" required
-									aria-describedby="Descricao" autocomplete="off">
+								<label for="nome" class="form-label">Forma de
+									Organização:</label> <input type="text" class="form-control"
+									id="cadastro-nome" required aria-describedby="Descricao"
+									autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							
+
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -167,12 +169,13 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="nome" class="form-label">Forma de Organização:</label> <input
-									type="text" class="form-control" id="edit-nome" required
-									aria-describedby="atoRegulatorio" autocomplete="off">
+								<label for="nome" class="form-label">Forma de
+									Organização:</label> <input type="text" class="form-control"
+									id="edit-nome" required aria-describedby="atoRegulatorio"
+									autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							<button type="button" onclick='remover("formaOrganEnsino")'
+								<button type="button" onclick='remover("formaOrganEnsino")'
 									class="btn btn-danger" data-bs-dismiss="modal">
 									Remover</button>
 								<button type="button" class="btn btn-secondary"

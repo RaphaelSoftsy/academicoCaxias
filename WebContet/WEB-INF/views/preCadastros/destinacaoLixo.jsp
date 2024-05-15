@@ -73,15 +73,12 @@ String contextPath = request.getContextPath();
 	<header id="menu"> </header>
 	<main class="py-4 container-res">
 		<section class="mb-5">
-			<div class="card">
+			<div class="card card-title">
 				<div class="card-body title">
 					<i class="fa-solid fa-cogs fa-lg"></i> <span>Destinação de Lixo</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">A destinação adequada do lixo é fundamental para proteger o meio ambiente e a saúde pública, incluindo reciclagem, compostagem e disposição em aterros sanitários.</div>
 					<i class="fa-solid fa-info"></i>
 				</div>
 			</div>

@@ -76,10 +76,10 @@ String contextPath = request.getContextPath();
 					<i class="fa-solid fa-cogs fa-lg"></i> <span>Período Letivo</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">Usado na área da educação para se
+						referir ao período o qual as aulas são ministradas e os alunos
+						estão matriculados em instituições de ensino, como escolas,
+						faculdades ou universidades</div>
 					<i class="fa-solid fa-info"></i>
 				</div>
 			</div>
@@ -96,8 +96,7 @@ String contextPath = request.getContextPath();
 					</button>
 					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
 						data-bs-toggle="modal" onclick="limpaCampo()"
-						data-bs-target="#newCadastro">Novo Cadastro
-					</button>
+						data-bs-target="#newCadastro">Novo Cadastro</button>
 				</div>
 			</div>
 
@@ -233,14 +232,14 @@ String contextPath = request.getContextPath();
 							</div>
 							<div class="row mb-4">
 								<div class="col-6">
-									<label for="dtInicio" class="form-label">Data
-										início:<span class="red">*</span>
+									<label for="dtInicio" class="form-label">Data início:<span
+										class="red">*</span>
 									</label> <input max="2999-01-01" autocomplete="off" type="date"
 										id="dtInicio" required name="dtInicio" class="form-control" />
 								</div>
 								<div class="col-6">
-									<label for="dtFim" class="form-label">Data
-										fim:<span class="red">*</span>
+									<label for="dtFim" class="form-label">Data fim:<span
+										class="red">*</span>
 									</label> <input max="2999-01-01" autocomplete="off" type="date"
 										id="dtFim" required name="dtFim" class="form-control" />
 								</div>
@@ -267,8 +266,7 @@ String contextPath = request.getContextPath();
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary px-4">
-									Salvar</button>
+									class="btn btn-primary px-4">Salvar</button>
 							</div>
 						</form>
 					</div>
@@ -334,8 +332,8 @@ String contextPath = request.getContextPath();
 										class="form-control" />
 								</div>
 								<div class="col-6">
-									<label for="dtFimEdit" class="form-label">Data
-										fim:<span class="red">*</span>
+									<label for="dtFimEdit" class="form-label">Data fim:<span
+										class="red">*</span>
 									</label> <input max="2999-01-01" autocomplete="off" type="date"
 										id="dtFimEdit" required name="dtFimEdit" class="form-control" />
 								</div>
@@ -370,8 +368,7 @@ String contextPath = request.getContextPath();
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary px-4">
-									Salvar</button>
+									class="btn btn-primary px-4">Salvar</button>
 							</div>
 						</form>
 					</div>

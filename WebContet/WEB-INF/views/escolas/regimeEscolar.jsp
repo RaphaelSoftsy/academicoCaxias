@@ -71,16 +71,16 @@ String contextPath = request.getContextPath();
 	<header id="menu"> </header>
 	<main class="py-4 container-res">
 		<section class="mb-5">
-			<div class="card">
+			<div class="card card-title">
 				<div class="card-body title">
 					<i class="fa-solid fa-school fa-lg"></i> <span>Regime
 						Escolar</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">Os regimes escolares variam de
+						acordo com o país, o tipo de escola (pública, privada, religiosa,
+						etc.) e até mesmo entre escolas individuais dentro de uma mesma
+						região.</div>
 					<i class="fa-solid fa-info"></i>
 				</div>
 			</div>

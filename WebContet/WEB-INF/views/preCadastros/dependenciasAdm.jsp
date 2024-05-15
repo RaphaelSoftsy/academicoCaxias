@@ -40,9 +40,9 @@ String contextPath = request.getContextPath();
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -74,13 +74,14 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card card-title">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Dependências Administrativas</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Dependências
+						Administrativas</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">Dependência Administrativa é a
+						relação de subordinação de uma entidade a uma autoridade superior,
+						responsável por fornecer diretrizes e regulamentar suas
+						atividades.</div>
 					<i class="fa-solid fa-info"></i>
 
 				</div>
@@ -97,7 +98,8 @@ String contextPath = request.getContextPath();
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<a href="novaDependenciasAdm" class="btn btn-primary btn-lg px-3 py-1 ms-auto">Novo Cadastro</a>
+				<a href="novaDependenciasAdm"
+					class="btn btn-primary btn-lg px-3 py-1 ms-auto">Novo Cadastro</a>
 
 			</div>
 
@@ -129,7 +131,7 @@ String contextPath = request.getContextPath();
 				</button>
 			</div>
 		</section>
-		
+
 	</main>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.js"

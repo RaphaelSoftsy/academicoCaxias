@@ -159,6 +159,10 @@
 						href="pessoas-nacionalidades" class="sub-item">Nacionalidades</a>
 				</div>
 			</div>
+			
+			<input value="<%=contextPath%>" id="caminhoRelativo" hidden>
+			
+			<div id="sair">Sair</div>
 		</nav>
 	</section>
 </body>
@@ -207,6 +211,11 @@
 		$('#closeBtn').click(function() {
 			$('#modalMenu').hide();
 		});
+		
+		$("#sair").click(() => {
+			localStorage.removeItem('perfil')
+			window.location.href = 'http://localhost:8090/front-educacional-caxias/escolas'
+		})
 	});
 </script>
 </html>

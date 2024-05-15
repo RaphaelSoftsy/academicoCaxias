@@ -71,15 +71,15 @@ String contextPath = request.getContextPath();
 	<header id="menu"></header>
 	<main class="py-4 container-res">
 		<section class="mb-5">
-			<div class="card">
+			<div class="card card-title">
 				<div class="card-body title">
 					<i class="fa-solid fa-school fa-lg"></i> <span>PPCIs</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">PPCI (Plano de Prevenção e Proteção
+						contra Incêndios) é um conjunto de medidas para prevenir e
+						proteger contra incêndios em edifícios, priorizando a segurança
+						das pessoas e do patrimônio.</div>
 					<i class="fa-solid fa-info"></i>
 				</div>
 			</div>
@@ -96,8 +96,7 @@ String contextPath = request.getContextPath();
 					</button>
 					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
 						data-bs-toggle="modal" onclick="limpaCampo()"
-						data-bs-target="#newCadastro">Novo Cadastro
-					</button>
+						data-bs-target="#newCadastro">Novo Cadastro</button>
 				</div>
 			</div>
 
@@ -237,14 +236,14 @@ String contextPath = request.getContextPath();
 									required aria-describedby="PPCI" autocomplete="off" />
 							</div>
 							<div class="mb-4">
-								<label for="dataEmissao" class="form-label">Data
-									de Emissão:<span class="red">*</span>
+								<label for="dataEmissao" class="form-label">Data de
+									Emissão:<span class="red">*</span>
 								</label> <input max="2999-01-01" autocomplete="off" type="date"
 									id="dataEmissao" name="dataEmissao" class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="dataValidade" class="form-label">Data
-									de validade:<span class="red">*</span>
+								<label for="dataValidade" class="form-label">Data de
+									validade:<span class="red">*</span>
 								</label> <input max="2999-01-01" autocomplete="off" type="date"
 									id="dataValidade" name="dataValidade" class="form-control" />
 							</div>
@@ -300,39 +299,39 @@ String contextPath = request.getContextPath();
 									autocomplete="off" />
 							</div>
 							<div class="mb-4">
-								<label for="dataEmissaoEdit" class="form-label">Data
-									de Emissão:<span class="red">*</span>
+								<label for="dataEmissaoEdit" class="form-label">Data de
+									Emissão:<span class="red">*</span>
 								</label> <input max="2999-01-01" autocomplete="off" type="date"
 									id="dataEmissaoEdit" name="dataEmissaoEdit"
 									class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="dataValidadeEdit" class="form-label">Data
-									de validade:<span class="red">*</span>
+								<label for="dataValidadeEdit" class="form-label">Data de
+									validade:<span class="red">*</span>
 								</label> <input max="2999-01-01" autocomplete="off" type="date"
 									id="dataValidadeEdit" name="dataValidadeEdit"
 									class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="mudaAnexo" class="form-label">Alterar
-									Anexo:<span class="red">*</span>
+								<label for="mudaAnexo" class="form-label">Alterar Anexo:<span
+									class="red">*</span>
 								</label>
 								<div class="form-control">
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="mudaAnexo"
-											id="mudaAnexoS" value="S" /> <label
-											class="form-check-label" for="mudaAnexoS">Sim</label>
+											id="mudaAnexoS" value="S" /> <label class="form-check-label"
+											for="mudaAnexoS">Sim</label>
 									</div>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="mudaAnexo"
-											id="mudaAnexoN" value="N" /> <label
-											class="form-check-label" for="mudaAnexoN">Não</label>
+											id="mudaAnexoN" value="N" /> <label class="form-check-label"
+											for="mudaAnexoN">Não</label>
 									</div>
 								</div>
 							</div>
 							<div class="mb-4" id="divAnexoEdit">
-								<label for="anexoEdit" class="form-label">Novo
-									Anexo:<span class="red">*</span>
+								<label for="anexoEdit" class="form-label">Novo Anexo:<span
+									class="red">*</span>
 								</label> <input type="file" name="anexoEdit" id="anexoEdit"
 									class="form-control" />
 							</div>

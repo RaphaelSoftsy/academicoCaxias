@@ -77,10 +77,7 @@ String contextPath = request.getContextPath();
 					<i class="fa-solid fa-cogs fa-lg"></i> <span>Provedor Internet</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">Um Provedor de Internet é uma empresa que oferece acesso à internet para usuários, conectando-os à rede global para navegação e uso de serviços online.</div>
 					<i class="fa-solid fa-info"></i>
 				</div>
 			</div>

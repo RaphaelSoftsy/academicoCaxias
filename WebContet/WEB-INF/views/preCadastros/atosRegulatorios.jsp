@@ -76,7 +76,7 @@ String contextPath = request.getContextPath();
 	<header id="menu"> </header>
 	<main class="py-4 container-res">
 		<section class="mb-5">
-			<div class="card">
+			<div class="card card-title">
 				<div class="card-body title">
 					<i class="fa-solid fa-cogs fa-lg"></i> <span>Ato Regulatório</span>
 				</div>

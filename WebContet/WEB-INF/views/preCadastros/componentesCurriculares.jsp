@@ -78,10 +78,10 @@ String contextPath = request.getContextPath();
 						Curriculares</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">Componentes Curriculas são os
+						elementos que compõem um currículo educacional ou programa de
+						estudos, eles podem incluir disciplinas específicas, projetos,
+						estágios, atividades extracurriculares, entre outros.</div>
 					<i class="fa-solid fa-info"></i>
 
 				</div>

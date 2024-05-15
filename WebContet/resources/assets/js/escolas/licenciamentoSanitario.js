@@ -6,7 +6,7 @@ var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
 var id = '';
-var idEscola = localStorage.getItem("escolaId");
+const escolaId = localStorage.getItem("escolaId");
 var pefilEscola = localStorage.getItem("perfil")
 var escola = JSON.parse(pefilEscola)
 var nomeEscola = escola.nome
@@ -21,7 +21,7 @@ $(document).ready(function() {
 	$("#divAnexoEdit").hide();
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + "/escolas" ,
 		type: "GET",
 		async: false,
 	})
@@ -179,7 +179,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaLicSanitario/escola/" + idEscola ,
+		url: url_base + "/escolaLicSanitario/escola/" + escolaId ,
 		type: "GET",
 		async: false,
 	})
@@ -301,7 +301,7 @@ function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	idEscola = ref.getAttribute("data-idEscola");
 
-	$("#escolaIdEdit").val(idEscola).attr('selected', true);
+	$("#escolaIdEdit").val(escolaId).attr('selected', true);
 	$.ajax({
 		url: url_base + "/escolaLicSanitario/escola/" + idEscola,
 		type: "GET",
@@ -350,7 +350,7 @@ function editar() {
 
 			var objeto = {
 				idEscolaLicSanitario: id,
-				escolaId: Number($('#escolaIdEdit').val()),
+				escolaId: escolaId,
 				licSanitario: $('#licSanitarioEdit').val(),
 				dataEmissao: dataEmissaoAPI,
 				dataValidade: dataValidadeAPI,
@@ -373,7 +373,7 @@ function editar() {
 				}
 			})
 				.done(function(data) {
-					$("#escolaIdEdit").val('');
+					$("#escolaIdEdit").val(escolaId);
 					$("#licSanitarioEdit").val('');
 					$("#dataEmissaoEdit").val('');
 					$("#dataValidadeEdit").val('');
@@ -393,7 +393,7 @@ function editar() {
 	} else {
 		var objeto = {
 			idEscolaLicSanitario: id,
-			escolaId: Number($('#escolaIdEdit').val()),
+			escolaId: escolaId,
 			licSanitario: $('#licSanitarioEdit').val(),
 			dataEmissao: dataEmissaoAPI,
 			dataValidade: dataValidadeAPI,
@@ -416,7 +416,6 @@ function editar() {
 			}
 		})
 			.done(function(data) {
-				$("#escolaIdEdit").val('');
 				$("#licSanitarioEdit").val('');
 				$("#dataEmissaoEdit").val('');
 				$("#dataValidadeEdit").val('');
@@ -462,11 +461,11 @@ function cadastrar() {
 		var base64String = event.target.result;
 		
 		var objeto = {
-			escolaId: idEscola,
+			escolaId: escolaId,
 			licSanitario: $('#licSanitario').val(),
 			dataEmissao: dataEmissaoAPI,
 			dataValidade: dataValidadeAPI,
-			anexo: 'null'
+			anexo: 'anexo'
 		};
 
 		$.ajax({

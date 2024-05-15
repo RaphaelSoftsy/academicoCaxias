@@ -40,9 +40,9 @@ String contextPath = request.getContextPath();
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -77,10 +77,10 @@ String contextPath = request.getContextPath();
 					<i class="fa-solid fa-cogs fa-lg"></i> <span>Tipo de Medição</span>
 				</div>
 				<div class="info">
-					<div class="tooltiptext">Um ato regulatório é uma medida do
-						governo ou de uma agência que define regras para controlar e
-						orientar atividades em setores específicos, assegurando
-						conformidade, ordem e eficiência.</div>
+					<div class="tooltiptext">Tipo de Medição pode ocorrer de
+						diversas formas, dependendo do contexto educacional e dos
+						objetivos de aprendizagem (Avaliações Formativas, Avaliações
+						Somativa,Avaliações Diagnósticas)</div>
 					<i class="fa-solid fa-info"></i>
 
 				</div>
@@ -144,7 +144,7 @@ String contextPath = request.getContextPath();
 									aria-describedby="Descricao" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							
+
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -172,7 +172,7 @@ String contextPath = request.getContextPath();
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-							<button type="button" onclick='remover("tipoMedicao")'
+								<button type="button" onclick='remover("tipoMedicao")'
 									class="btn btn-danger" data-bs-dismiss="modal">
 									Remover</button>
 								<button type="button" class="btn btn-secondary"
