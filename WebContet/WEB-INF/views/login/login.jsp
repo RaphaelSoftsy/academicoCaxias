@@ -63,10 +63,7 @@ String contextPath = request.getContextPath();
 
 	<main>
 		<div class="container-login">
-			<div class="container-image">
-				<img alt="Estudante"
-					class="img-login"
-					src="<%=contextPath%>/resources/assets/img/estudante.png">
+			<div style="background-image: url(<%=contextPath%>/resources/assets/img/bgLogin.jpg); background-size: cover;" class="container-image">
 			</div>
 			<div class="container-form">
 			

@@ -7,6 +7,7 @@ const path_base = "http://localhost:8090/front-educacional-caxias/resources/menu
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
+	containerResponsivo();
 	const url = window.location.pathname
 	const contaId = sessionStorage.getItem('contaId')
 	if (url.includes('login') == false) {
@@ -30,8 +31,8 @@ window.addEventListener("load", function() {
 	/*const loader = document.querySelector(".bg-loading");
 	loader.parentElement.removeChild(loader);
 	$(".bg-loading").addClass("none");*/
-	
 	$(".bg-loading").fadeOut() 
+
 });
 
 
@@ -307,7 +308,7 @@ function containerResponsivo() {
 	$('#pagination').before(container)
 }
 
-containerResponsivo()
+
 
 $('#prev').click(function() {
 	goToPage(currentPage - 1);

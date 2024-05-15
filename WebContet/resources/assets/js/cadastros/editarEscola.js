@@ -14,6 +14,9 @@ $(document).ready(function() {
 		async: true,
 	})
 		.done(function(data) {
+			
+			
+		
 			const ref = data
 			logo = ref.logoEscola
 			console.log(ref)
@@ -130,11 +133,41 @@ $('input[name="alteraLogo"]').change(function() {
 });
 
 $("#cep").blur(function() {
+	
+	$('.bg-loading').fadeIn()
+	
 	$.ajax({
 		url: 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/',
 		type: "get",
 		async: false,
 	}).done(function(data) {
+		
+		if (data.erro == true) {
+
+			$("#uf").prop('disabled', false)
+			$("#municipio").prop('disabled', false)
+			$("#bairro").prop('disabled', false)
+			$("#endereco").prop('disabled', false)
+			$("#longitude").prop('disabled', false)
+			$("#latitude").prop('disabled', false)
+			
+			$("#endereco").val('');
+			$("#bairro").val('');
+			$("#municipio").val('');
+			$("#uf").val('');
+			$("#longitude").val('');
+			$("#latitude").val('');
+			
+			$('.bg-loading').fadeOut()
+		}else{
+			$("#uf").prop('disabled', true)
+			$("#municipio").prop('disabled', true)
+			$("#bairro").prop('disabled', true)
+			$("#endereco").prop('disabled', true)
+			$("#longitude").prop('disabled', true)
+			$("#latitude").prop('disabled', true)
+		}
+		
 		console.log(data)
 		$("#endereco").val(data.logradouro);
 		$("#bairro").val(data.bairro);
@@ -153,6 +186,8 @@ $("#cep").blur(function() {
 			$("#latitude").val(lat);
 		});
 	})
+	$('.bg-loading').fadeOut()
+	
 });
 
 $("#formEditar").submit(function(e) {
