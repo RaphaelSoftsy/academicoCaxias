@@ -77,6 +77,13 @@ String contextPath = request.getContextPath();
 				<div class="card-body title">
 					<i class="fa-solid fa-cogs fa-lg"></i> <span>Destinação de Lixo</span>
 				</div>
+				<div class="info">
+					<div class="tooltiptext">Um ato regulatório é uma medida do
+						governo ou de uma agência que define regras para controlar e
+						orientar atividades em setores específicos, assegurando
+						conformidade, ordem e eficiência.</div>
+					<i class="fa-solid fa-info"></i>
+				</div>
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">

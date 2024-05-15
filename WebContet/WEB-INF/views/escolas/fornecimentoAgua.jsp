@@ -249,7 +249,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     </option>
                   </select>
                 </div>
-                <div class="mb-4">
+                <div class="mb-4" id="escolaIdStyle">
                   <label for="escolaId" class="form-label"
                     >Escola:<span class="red">*</span>
                   </label>
@@ -257,7 +257,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     class="form-select"
                     aria-label="Escola"
                     id="escolaId"
-                    required
                     name="escolaId"
                   >
                     <option selected disabled value="">
@@ -306,7 +305,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
             <div class="modal-body">
               <form id="formEdit">
-                <div class="mb-4">
+                <div class="mb-4"  id="escolaIdStyleEdit">
                   <label for="escolaIdEdit" class="form-label"
                     >Escola:<span class="red">*</span>
                   </label>
@@ -314,7 +313,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     class="form-select"
                     aria-label="Escola"
                     id="escolaIdEdit"
-                    required
                     name="escolaIdEdit"
                   >
                     <option selected disabled>Selecione a Escola</option>

@@ -7,13 +7,18 @@ var pagesToShow = 5;
 var escolas = [];
 var id = '';
 var idEscola = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
 	$("#divAnexoEdit").hide();
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -171,7 +176,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaPpci",
+		url: url_base + `/escolaPpci/escola/${idEscola}`,
 		type: "GET",
 		async: false,
 	})
@@ -341,7 +346,7 @@ function editar() {
 
 			var objeto = {
 				idEscolaPpci: id,
-				escolaId: Number($('#escolaIdEdit').val()),
+				escolaId: Number(idEscola),
 				ppci: $('#ppciEdit').val(),
 				dataEmissao: dataEmissaoAPI,
 				dataValidade: dataValidadeAPI,
@@ -384,7 +389,7 @@ function editar() {
 	} else {
 		var objeto = {
 			idEscolaPpci: id,
-			escolaId: Number($('#escolaIdEdit').val()),
+			escolaId: Number(idEscola),
 			ppci: $('#ppciEdit').val(),
 			dataEmissao: dataEmissaoAPI,
 			dataValidade: dataValidadeAPI,
@@ -453,7 +458,7 @@ function cadastrar() {
 		var base64String = event.target.result;
 
 		var objeto = {
-			escolaId: Number($('#escolaId').val()),
+			escolaId: Number(idEscola),
 			ppci: $('#ppci').val(),
 			dataEmissao: dataEmissaoAPI,
 			dataValidade: dataValidadeAPI,

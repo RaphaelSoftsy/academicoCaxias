@@ -8,6 +8,11 @@ var escolas = [];
 var id = '';
 var idEscola = '';
 var idSelect2 = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
@@ -184,7 +189,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaFonteEnergiaEletrica",
+		url: url_base + `/escolaFonteEnergiaEletrica/escola/${idEscola}`,
 		type: "GET",
 		async: false,
 	})
@@ -262,7 +267,7 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idEscolaFonteEnergiaEletrica: Number(id),
-		escolaId: Number($('#escolaIdEdit').val()),
+		escolaId: Number(idEscola),
 		fonteEnergiaEletricaId: Number($('#idFonteEnergiaEletricaEdit').val())
 	}
 
@@ -306,7 +311,7 @@ $('#formEdit').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		escolaId: Number($('#escolaId').val()),
+		escolaId: Number(idEscola),
 		fonteEnergiaEletricaId: Number($('#idFonteEnergiaEletrica').val())
 	}
 

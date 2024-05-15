@@ -10,11 +10,16 @@ var idEscola = '';
 var idSelect2 = '';
 var quantidade = '';
 var ativo = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -40,7 +45,7 @@ $(document).ready(function() {
 		});
 
 	$.ajax({
-		url: url_base + '/equipamento',
+		url: url_base + `/equipamento/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -301,7 +306,7 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idEscolaEquipamento: Number(id),
-		escolaId: Number($('#escolaIdEdit').val()),
+		escolaId: Number(idEscola),
 		equipamentoId: Number($('#equipamentoIdEdit').val()),
 		quantidade: $('#quantidadeEdit').val()
 	}
@@ -347,7 +352,7 @@ $('#formEdit').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		escolaId: Number($('#escolaId').val()),
+		escolaId: Number(idEscola),
 		equipamentoId: Number($('#equipamentoId').val()),
 		quantidade: $('#quantidade').val()
 	}

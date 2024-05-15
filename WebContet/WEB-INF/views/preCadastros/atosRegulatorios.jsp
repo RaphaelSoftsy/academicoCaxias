@@ -80,13 +80,15 @@ String contextPath = request.getContextPath();
 				<div class="card-body title">
 					<i class="fa-solid fa-cogs fa-lg"></i> <span>Ato Regulatório</span>
 				</div>
+				<div class="info">
+					<div class="tooltiptext">Um ato regulatório é uma medida do
+						governo ou de uma agência que define regras para controlar e
+						orientar atividades em setores específicos, assegurando
+						conformidade, ordem e eficiência.</div>
+					<i class="fa-solid fa-info"></i>
+				</div>
 			</div>
 		</section>
-		<div class="container-info">
-			<div class="card-info">
-				<i class="fa-solid fa-info"></i>
-			</div>
-		</div>
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-3" style="display: flex; align-items: center;">
 

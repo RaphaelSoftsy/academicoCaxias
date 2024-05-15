@@ -9,6 +9,11 @@ var id = '';
 var idEscola = '';
 var idSelect2 = '';
 var quantidade = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
@@ -39,7 +44,7 @@ $(document).ready(function() {
 		});
 
 	$.ajax({
-		url: url_base + '/tipoProfissional',
+		url: url_base + `/tipoProfissional/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -280,7 +285,7 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idEscolaProfissional: Number(id),
-		escolaId: Number($('#escolaIdEdit').val()),
+		escolaId: Number(idEscola),
 		tipoProfissionalId: Number($('#tipoProfissionalIdEdit').val()),
 		quantidade: $('#quantidadeEdit').val()
 	}
@@ -326,7 +331,7 @@ $('#formEdit').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		escolaId: Number($('#escolaId').val()),
+		escolaId: Number(idEscola),
 		tipoProfissionalId: Number($('#tipoProfissionalId').val()),
 		quantidade: $('#quantidade').val()
 	}

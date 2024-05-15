@@ -40,8 +40,8 @@ String contextPath = request.getContextPath();
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -75,6 +75,13 @@ String contextPath = request.getContextPath();
 				<div class="card-body title">
 					<i class="fa-solid fa-school fa-lg"></i> <span>Regime
 						Escolar</span>
+				</div>
+				<div class="info">
+					<div class="tooltiptext">Um ato regulatório é uma medida do
+						governo ou de uma agência que define regras para controlar e
+						orientar atividades em setores específicos, assegurando
+						conformidade, ordem e eficiência.</div>
+					<i class="fa-solid fa-info"></i>
 				</div>
 			</div>
 		</section>
@@ -223,7 +230,7 @@ String contextPath = request.getContextPath();
 									<span>Ano de Ciclo</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
-								
+
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
@@ -281,11 +288,11 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formCadastro">
-							<div class="mb-4">
+							<div class="mb-4" id="escolaIdStyle">
 								<label for="escolaId" class="form-label">Escola:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola" id="escolaId"
-									required name="escolaId">
+									name="escolaId">
 									<option selected disabled value=''>Selecione a Escola</option>
 								</select>
 							</div>
@@ -318,8 +325,7 @@ String contextPath = request.getContextPath();
 										class="red">*</span>
 									</label> <select class="form-select" aria-label="anoCiclo"
 										id="anoCiclo" required name="anoCiclo">
-										<option selected disabled value=''>Selecione o Ano
-										</option>
+										<option selected disabled value=''>Selecione o Ano</option>
 									</select>
 								</div>
 							</div>
@@ -344,7 +350,8 @@ String contextPath = request.getContextPath();
 							<div class="mb-4">
 								<label for="anexo" class="form-label">Anexo:<span
 									class="red">*</span>
-								</label> <input type="file" name="anexo" id="anexo" class="form-control" required />
+								</label> <input type="file" name="anexo" id="anexo" class="form-control"
+									required />
 							</div>
 
 
@@ -371,11 +378,11 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
-							<div class="mb-4">
+							<div class="mb-4" id="escolaIdStyleEdit">
 								<label for="escolaIdEdit" class="form-label">Escola:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Escola"
-									id="escolaIdEdit" required name="escolaIdEdit">
+									id="escolaIdEdit" name="escolaIdEdit">
 									<option selected disabled value=''>Selecione a Escola</option>
 								</select>
 							</div>
@@ -424,8 +431,7 @@ String contextPath = request.getContextPath();
 										Ciclo:<span class="red">*</span>
 									</label> <select class="form-select" aria-label="anoCiclo"
 										id="anoCicloEdit" required name="anoCicloEdit">
-										<option selected disabled value=''>Selecione o Ano
-										</option>
+										<option selected disabled value=''>Selecione o Ano</option>
 									</select>
 								</div>
 								<div class="col-6">
@@ -434,13 +440,13 @@ String contextPath = request.getContextPath();
 									</label>
 									<div class="form-control">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" required name="mudaAnexo"
-												id="mudaAnexoS" value="S"> <label
+											<input class="form-check-input" type="radio" required
+												name="mudaAnexo" id="mudaAnexoS" value="S"> <label
 												class="form-check-label" for="mudaAnexoS">Sim</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" required name="mudaAnexo"
-												id="mudaAnexoN" value="N"> <label
+											<input class="form-check-input" type="radio" required
+												name="mudaAnexo" id="mudaAnexoN" value="N"> <label
 												class="form-check-label" for="mudaAnexoN">Não</label>
 										</div>
 									</div>
