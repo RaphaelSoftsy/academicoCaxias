@@ -11,11 +11,16 @@ var pefilEscola = localStorage.getItem("perfil")
 var escola = JSON.parse(pefilEscola)
 var nomeEscola = escola.nome
 var idSelect2 = '';
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -41,7 +46,7 @@ $(document).ready(function() {
 		});
 
 	$.ajax({
-		url: url_base + '/esgotamentoSanitario',
+		url: url_base + `/esgotamentoSanitario/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -265,7 +270,7 @@ function showModal(ref) {
 function editar() {
 	var objeto = {
 		idEscolaEsgotamentoSanitario: Number(id),
-		escolaId: Number($('#escolaIdEdit').val()),
+		escolaId: Number(idEscola),
 		esgotamentoSanitarioId: Number($('#idEsgotamentoSanitarioEdit').val())
 	}
 
@@ -309,7 +314,7 @@ $('#formEdit').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		escolaId: Number($('#escolaId').val()),
+		escolaId: Number(idEscola),
 		esgotamentoSanitarioId: Number($('#idEsgotamentoSanitario').val())
 	}
 
