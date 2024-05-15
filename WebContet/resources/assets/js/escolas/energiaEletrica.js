@@ -17,7 +17,7 @@ var nomeEscola = escola.nome
 $(document).ready(function() {
 
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + `/escolas/conta/${contaId}`,
 		type: "GET",
 		async: false,
 	})
@@ -43,7 +43,7 @@ $(document).ready(function() {
 		});
 
 	$.ajax({
-		url: url_base + '/fonteEnergia',
+		url: url_base + `/fonteEnergia/conta/${contaId}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {

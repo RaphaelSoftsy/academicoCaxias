@@ -4,7 +4,11 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-const contaId = sessionStorage.getItem('contaId')
+const contaId = Number(sessionStorage.getItem('contaId'))
+var idEscola = localStorage.getItem("escolaId");
+var pefilEscola = localStorage.getItem("perfil")
+var escola = JSON.parse(pefilEscola)
+var nomeEscola = escola.nome
 
 $(document).ready(function() {
 
