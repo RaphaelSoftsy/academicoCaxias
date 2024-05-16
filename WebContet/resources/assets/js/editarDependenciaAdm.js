@@ -116,12 +116,19 @@ function desativar2(){
 		async: false,
 		error: function(e) {
 			console.log(e)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
 		}
 	})
 		.done(function(data) {
 			getDados2()
-			alert('Desativado com Sucesso!')
+			Swal.fire({
+				title: "Desativado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -134,12 +141,19 @@ function ativar2(){
 		async: false,
 		error: function(e) {
 			console.log(e)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
 		}
 	})
 		.done(function(data) {
 			getDados2()
-			alert('Ativado com Sucesso!')
+			Swal.fire({
+				title: "Ativado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -167,10 +181,17 @@ $("#formNovoCadastro").submit(function(e) {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			console.log(e)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
 		}
 	}).done(function(data) {
-		alert('Editado com sucesso!')
+		Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			})
 		window.location.href = "dependenciasAdm";
 	});
 

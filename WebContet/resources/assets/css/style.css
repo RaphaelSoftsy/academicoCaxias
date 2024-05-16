@@ -41,7 +41,9 @@ body {
 	padding-right: 5%;
 }
 
-
+.modalMenu{
+	overflow-y: scroll;
+}
 .fa-bars{
 	font-size: 1.2rem;
 	cursor: pointer;
@@ -244,6 +246,14 @@ body {
   width: 100%;
 }
 
+.card-header{
+	background-color: #031E3B;
+	color: #fff;
+}
+
+.card{
+	width: 94%;
+}
 /* modal imagens */
 
 .carrossel {
@@ -675,6 +685,10 @@ a {
 
 #card-table {
   height: 480px !important;
+}
+
+.small-inputs{
+	width: 40vh;
 }
 
 .form-check-input:checked {

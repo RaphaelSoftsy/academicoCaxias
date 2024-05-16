@@ -159,7 +159,6 @@ function getDados() {
 				}));
 			});
 			$.each(data, function(index, item) {
-				alert('foi')
 				$('#escolaCompId').append($('<option>', {
 					value: item.idEscola,
 					text: item.nomeEscola,

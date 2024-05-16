@@ -19,6 +19,12 @@ public class Cadastros {
 		return "cadastros/escolas";
 	}
 	
+	@RequestMapping(value = { "padrao-acesso" }, method = RequestMethod.GET)
+	public String padraoDeAcesso(HttpSession session, Model model) throws Exception {
+ 
+		return "cadastros/padraoDeAcesso";
+	}
+	
 	@RequestMapping(value = { "nova-escola" }, method = RequestMethod.GET)
 	public String novaEscola(HttpSession session, Model model) throws Exception {
  

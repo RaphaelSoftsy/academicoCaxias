@@ -106,35 +106,38 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="tipoEscola" class="form-label">Tipo:<span
-							class="red">*</span></label> <select class="form-select"
-							aria-label="Tipo Escola" id="tipoEscola" required
-							name="tipoEscola">
-							<option selected disabled>Selecione o tipo</option>
-							<option value="PU">Pública</option>
-							<option value="PV">Privada</option>
-						</select>
-					</div>
+					
 					<div class="col-md-6">
 						<label for="email" class="form-label">Email:<span
 							class="red">*</span></label> <input type="email" id="email" required
 							autocomplete="off" name="email" class="form-control " />
 					</div>
-
-				</div>
-				<div class="row mb-3">
+					
 					<div class="col-md-6" id="cardCNPJ">
 						<label for="cnpj" class="form-label">CNPJ:<span
 							class="red">*</span></label> <input type="tel" id="cnpj" required
 							autocomplete="off" name="cnpj" class="form-control "
 							data-mask="00.000.000/0000-00"/>
 					</div>
+
+				</div>
+				<div class="row mb-3">
+					
 					<div class="col-md-6">
 						<label for="codigoInep" class="form-label">Código Inep:<span
 							class="red">*</span></label> <input type="tel" id="codigoInep" required
 							autocomplete="off" name="codigoInep"
 							class="form-control " />
+					</div>
+					
+					<div class="col-md-6">
+						<label for="zoneamentoId" class="form-label">Zoneamento:<span class="red">*</span>
+						</label> <select class="form-select"
+							aria-label="Zoneamento"
+							id="zoneamentoId" required
+							name="zoneamentoId">
+							<option selected disabled>Selecione o Zoneamento</option>
+						</select>
 					</div>
 
 				</div>
@@ -360,15 +363,20 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
+					
+					
 					<div class="col-md-6">
-						<label for="zoneamentoId" class="form-label">Zoneamento:<span class="red">*</span>
-						</label> <select class="form-select"
-							aria-label="Zoneamento"
-							id="zoneamentoId" required
-							name="zoneamentoId">
-							<option selected disabled>Selecione o Zoneamento</option>
+						<label for="tipoEscola" class="form-label">Tipo:<span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="Tipo Escola" id="tipoEscola" required
+							name="tipoEscola">
+							<option selected disabled>Selecione o tipo</option>
+							<option value="PU">Pública</option>
+							<option value="PV">Privada</option>
 						</select>
 					</div>
+					
+					
 					<div class="col-md-6">
 						<label for="categoriaEscolaPrivadaId" class="form-label">Categoria Escola Privada:<span class="red">*</span>
 						</label> <select class="form-select"

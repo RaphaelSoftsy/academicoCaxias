@@ -93,7 +93,7 @@ String contextPath = request.getContextPath();
 
 			</div>
 
-			<div class="container-table">
+			
 				<table id="tabela-dados"
 					class="table tabela-acessar-escolas table-striped mb-0 caption-top mx-auto">
 					<caption>Itens Cadastrados</caption>
@@ -199,7 +199,7 @@ String contextPath = request.getContextPath();
 	
 					</tbody>
 				</table>
-			</div>
+		
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>

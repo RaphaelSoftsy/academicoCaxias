@@ -158,11 +158,11 @@ function cadastrar() {
 
 	var objeto = {
 		zoneamento: $('#cadastro-nome').val(),
-		contaId: Number(id)
+		contaId:contaId
 	}
 
 	$.ajax({
-		url: url_base + `/zoneamento`,
+		url: url_base + `/zoneamento/` ,
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",

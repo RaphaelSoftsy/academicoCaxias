@@ -23,6 +23,21 @@ $(document).ready(function() {
 			})
 		}
 	}
+	console.log(url)
+/*	const perfilEscola = localStorage.getItem("perfil")
+	if (url != "/front-educacional-caxias/acessar-escolas" && url != "/front-educacional-caxias/escolas") {
+		if (perfilEscola == undefined || perfilEscola == "") {
+			Swal.fire({
+				title: "Nenhuma escola selecionada, redirecionando você para a sessão de escolas",
+				icon: "info"
+			}).then(result => {
+				if (result) {
+					window.location.href = "acessar-escolas"
+				}
+			})
+
+		}
+	}*/
 })
 
 
@@ -31,7 +46,7 @@ window.addEventListener("load", function() {
 	/*const loader = document.querySelector(".bg-loading");
 	loader.parentElement.removeChild(loader);
 	$(".bg-loading").addClass("none");*/
-	$(".bg-loading").fadeOut() 
+	$(".bg-loading").fadeOut()
 
 });
 
@@ -169,7 +184,7 @@ function desativar(endpoint) {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				
+
 			});
 		}
 	})
@@ -196,7 +211,7 @@ function ativar(endpoint) {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				
+
 			});
 		}
 	})
