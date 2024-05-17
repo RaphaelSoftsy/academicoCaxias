@@ -264,24 +264,17 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     </option>
                   </select>
                 </div>
-                <div class="mb-4">
-                  <label for="equipamentoId" class="form-label"
-                    >Equipamento:<span class="red">*</span>
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Equipamento"
-                    id="equipamentoId"
-                    required
-                    name="equipamentoId"
-                  >
-                    <option selected value="" disabled>
-                      Selecione o Equipamento
-                    </option>
-                  </select>
-                </div>
+							<div class="mb-4">
+								<label for="equipamentoId" class="form-label">Equipamento:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Equipamento"
+									id="equipamentoId" required name="equipamentoId">
+									<option selected value="" disabled>Selecione o
+										Equipamento</option>
+								</select>
+							</div>
 
-                <div class="mb-4">
+							<div class="mb-4">
                   <label for="quantidade" class="form-label"
                     >Quantidade:<span class="red">*</span>
                   </label>

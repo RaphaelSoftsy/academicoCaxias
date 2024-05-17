@@ -25,7 +25,7 @@ String contextPath = request.getContextPath();
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous"></script>	
+	crossorigin="anonymous"></script>
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,15 +38,17 @@ String contextPath = request.getContextPath();
 	rel="stylesheet">
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bs58/4.0.1/bs58.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bs58/4.0.1/bs58.min.js"></script>
 <!-- CSS -->
 
 <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,8 +74,8 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	<header id="menu"> </header>
-	
-	
+
+
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
@@ -82,8 +84,8 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</section>
-		
-		
+
+
 		<section class="pt-4">
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
@@ -100,42 +102,40 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="col-md-6">
 						<label for="logoEscola" class="form-label">Logo:<span
-							class="red">*</span></label> <input class="form-control "
-							required type="file" id="logoEscola" name="logoEscola"> </input>
+							class="red">*</span></label> <input class="form-control " required
+							type="file" id="logoEscola" name="logoEscola"> </input>
 					</div>
 				</div>
 
 				<div class="row mb-3">
-					
+
 					<div class="col-md-6">
 						<label for="email" class="form-label">Email:<span
 							class="red">*</span></label> <input type="email" id="email" required
 							autocomplete="off" name="email" class="form-control " />
 					</div>
-					
+
 					<div class="col-md-6" id="cardCNPJ">
 						<label for="cnpj" class="form-label">CNPJ:<span
 							class="red">*</span></label> <input type="tel" id="cnpj" required
 							autocomplete="off" name="cnpj" class="form-control "
-							data-mask="00.000.000/0000-00"/>
+							data-mask="00.000.000/0000-00" />
 					</div>
 
 				</div>
 				<div class="row mb-3">
-					
+
 					<div class="col-md-6">
 						<label for="codigoInep" class="form-label">Código Inep:<span
 							class="red">*</span></label> <input type="tel" id="codigoInep" required
-							autocomplete="off" name="codigoInep"
-							class="form-control " />
+							autocomplete="off" name="codigoInep" class="form-control " />
 					</div>
-					
+
 					<div class="col-md-6">
-						<label for="zoneamentoId" class="form-label">Zoneamento:<span class="red">*</span>
-						</label> <select class="form-select"
-							aria-label="Zoneamento"
-							id="zoneamentoId" required
-							name="zoneamentoId">
+						<label for="zoneamentoId" class="form-label">Zoneamento:<span
+							class="red">*</span>
+						</label> <select class="form-select" aria-label="Zoneamento"
+							id="zoneamentoId" required name="zoneamentoId">
 							<option selected disabled>Selecione o Zoneamento</option>
 						</select>
 					</div>
@@ -322,10 +322,10 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-4">
 					<div class="col-md-6">
-						<label for="numParecerCME" class="form-label">Nº do Parecer:<span class="red">*</span>
+						<label for="numParecerCME" class="form-label">Nº do
+							Parecer:<span class="red">*</span>
 						</label> <input type="number" id="numParecerCME" required
-							autocomplete="off" name="numParecerCME"
-							class="form-control " />
+							autocomplete="off" name="numParecerCME" class="form-control " />
 					</div>
 					<div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Dependência
@@ -363,8 +363,8 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
-					
-					
+
+
 					<div class="col-md-6">
 						<label for="tipoEscola" class="form-label">Tipo:<span
 							class="red">*</span></label> <select class="form-select"
@@ -375,32 +375,32 @@ String contextPath = request.getContextPath();
 							<option value="PV">Privada</option>
 						</select>
 					</div>
-					
-					
+
+
 					<div class="col-md-6">
-						<label for="categoriaEscolaPrivadaId" class="form-label">Categoria Escola Privada:<span class="red">*</span>
-						</label> <select class="form-select"
-							aria-label="Categoria Escola Privada"
-							id="categoriaEscolaPrivadaId" required name="categoriaEscolaPrivadaId">
+						<label for="categoriaEscolaPrivadaId" class="form-label">Categoria
+							Escola Privada:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Categoria Escola Privada"
+							id="categoriaEscolaPrivadaId" required
+							name="categoriaEscolaPrivadaId">
 							<option selected disabled>Selecione a Categoria</option>
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="entidadeSuperiorId" class="form-label">Entidade Superior:<span class="red">*</span>
-						</label> <select class="form-select"
-							aria-label="Entidade Superior"
-							id="entidadeSuperiorId" required
-							name="entidadeSuperiorId">
+						<label for="entidadeSuperiorId" class="form-label">Entidade
+							Superior:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Entidade Superior"
+							id="entidadeSuperiorId" required name="entidadeSuperiorId">
 							<option selected disabled>Selecione a Entidade</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="categoriaEscolaPrivadaId" class="form-label">Orgão Público:<span class="red">*</span>
-						</label> <select class="form-select"
-							aria-label="Orgão Público"
+						<label for="categoriaEscolaPrivadaId" class="form-label">Orgão
+							Público:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Orgão Público"
 							id="orgaoPublicoId" required name="orgaoPublicoId">
 							<option selected disabled>Selecione o Orgão</option>
 						</select>
@@ -418,7 +418,7 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
-						<input type='tel' class="form-control" id="cep" 
+						<input type='tel' class="form-control" id="cep"
 							data-mask="00000-000" name="cep" />
 					</div>
 				</div>
@@ -426,13 +426,12 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="uf" class="form-label">UF:<span class="red">*</span></label>
-						<input type='text' class="form-control" id="uf"  disabled
-							name="uf" />
+						<input type='text' class="form-control" id="uf" disabled name="uf" />
 					</div>
 					<div class="col-md-6">
 						<label for="municipio" class="form-label">Município:<span
 							class="red">*</span></label> <input type='tel' class="form-control"
-							id="municipio"  disabled name="municipio" />
+							id="municipio" disabled name="municipio" />
 					</div>
 
 
@@ -442,7 +441,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="bairro" class="form-label">Bairro:<span
 							class="red">*</span></label> <input type='text' class="form-control"
-							id="bairro"  disabled name="bairro" />
+							id="bairro" disabled name="bairro" />
 					</div>
 					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:<span
@@ -457,18 +456,18 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="numero" class="form-label">Número:<span
 							class="red">*</span></label> <input type='text' class="form-control"
-							id="numero"  name="numero" />
+							id="numero" name="numero" />
 					</div>
 					<div class="col-md-6">
 						<label for="latitude" class="form-label">Latitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
-							id="latitude"  disabled name="latitude" />
+							id="latitude" disabled name="latitude" />
 					</div>
 
 					<div class="col-md-6 mt-3">
 						<label for="longitude" class="form-label">Longitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
-							id="longitude"  disabled name="longitude" />
+							id="longitude" disabled name="longitude" />
 					</div>
 
 				</div>

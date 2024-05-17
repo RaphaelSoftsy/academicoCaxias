@@ -105,7 +105,7 @@ String contextPath = request.getContextPath();
 
 				</div>
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Categoria Escola Privada</div>
 
 					<div class="card-body">
@@ -173,7 +173,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Destinação de lixo</div>
 
 					<div class="card-body">
@@ -238,7 +238,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Entidade Superior</div>
 
 					<div class="card-body">
@@ -303,7 +303,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Equipamentos</div>
 
 					<div class="card-body">
@@ -368,7 +368,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Unidade Física</div>
 
 					<div class="card-body">
@@ -434,7 +434,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Escola</div>
 
 					<div class="card-body">
@@ -497,7 +497,7 @@ String contextPath = request.getContextPath();
 
 
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Esgotamento Sanitário</div>
 					<div class="card-body">
 						<div class="row mb-3">
@@ -564,7 +564,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Fonte de Energia</div>
 
 					<div class="card-body">
@@ -630,7 +630,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Forma de Ocupação</div>
 
 					<div class="card-body">
@@ -696,7 +696,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Fornecimento de Água</div>
 
 					<div class="card-body">
@@ -761,7 +761,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Lingua de ensino</div>
 
 					<div class="card-body">
@@ -827,7 +827,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Tipo de Localização</div>
 
 					<div class="card-body">
@@ -889,13 +889,14 @@ String contextPath = request.getContextPath();
 				</div>
 
 
-				<div class="card">
+				<div class="card card-check">
 					<div class="card-header">Marca Equipamento</div>
 
 					<div class="card-body">
 						<div class="row mb-3">
 							<div class="col-md-6 small-inputs">
-								<label for="merendaEscolar" class="form-label">Aparecer no menu:<span class="red">*</span>
+								<label for="merendaEscolar" class="form-label">Aparecer
+									no menu:<span class="red">*</span>
 								</label>
 								<div class="form-control">
 									<div class="form-check form-check-inline">
@@ -917,13 +918,15 @@ String contextPath = request.getContextPath();
 								<div class="form-control">
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio"
-											name="isLeituraMarcaEquipamento" id="isLeituraMarcaEquipamentoS" value="S">
-										<label class="form-check-label" for="isLeituraMarcaEquipamento">Sim</label>
+											name="isLeituraMarcaEquipamento"
+											id="isLeituraMarcaEquipamentoS" value="S"> <label
+											class="form-check-label" for="isLeituraMarcaEquipamento">Sim</label>
 									</div>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio"
-											name="isLeituraMarcaEquipamento" id="isLeituraMarcaEquipamentoN" value="N">
-										<label class="form-check-label" for="isLeituraMarcaEquipamento">Não</label>
+											name="isLeituraMarcaEquipamento"
+											id="isLeituraMarcaEquipamentoN" value="N"> <label
+											class="form-check-label" for="isLeituraMarcaEquipamento">Não</label>
 									</div>
 								</div>
 							</div>
@@ -935,13 +938,83 @@ String contextPath = request.getContextPath();
 								<div class="form-control">
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio"
-											name="isEscritaMarcaEquipamento" id="isEscritaMarcaEquipamentoS" value="S">
-										<label class="form-check-label" for="isEscritaMarcaEquipamento">Sim</label>
+											name="isEscritaMarcaEquipamento"
+											id="isEscritaMarcaEquipamentoS" value="S"> <label
+											class="form-check-label" for="isEscritaMarcaEquipamento">Sim</label>
 									</div>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio"
-											name="isEscritaMarcaEquipamento" id="isEscritaMarcaEquipamentoN" value="N">
-										<label class="form-check-label" for="isEscritaMarcaEquipamento">Não</label>
+											name="isEscritaMarcaEquipamento"
+											id="isEscritaMarcaEquipamentoN" value="N"> <label
+											class="form-check-label" for="isEscritaMarcaEquipamento">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="card card-check">
+					<div class="card-header">Modalidade Escolar</div>
+
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-md-6 small-inputs">
+								<label for="merendaEscolar" class="form-label">Aparecer
+									no menu:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isModalidadeEscolar" id="isModalidadeEscolarS"
+											value="S"> <label class="form-check-label"
+											for="isModalidadeEscolar">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isModalidadeEscolar" id="isModalidadeEscolarN"
+											value="N"> <label class="form-check-label"
+											for="isModalidadeEscolar">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Leitura<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraModalidadeEscolar"
+											id="isLeituraModalidadeEscolarS" value="S"> <label
+											class="form-check-label" for="isLeituraModalidadeEscolar">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraModalidadeEscolar"
+											id="isLeituraModalidadeEscolarN" value="N"> <label
+											class="form-check-label" for="isLeituraModalidadeEscolar">Não</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Escrita<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaModalidadeEscolar"
+											id="isEscritaModalidadeEscolarS" value="S"> <label
+											class="form-check-label" for="isEscritaModalidadeEscolar">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaModalidadeEscolar"
+											id="isEscritaModalidadeEscolarN" value="N"> <label
+											class="form-check-label" for="isEscritaModalidadeEscolar">Não</label>
 									</div>
 								</div>
 							</div>
@@ -952,22 +1025,419 @@ String contextPath = request.getContextPath();
 
 
 
+				<div class="card card-check">
+					<div class="card-header">Orgão Público</div>
 
-				<div class="row mb-3">
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-md-6 small-inputs">
+								<label for="merendaEscolar" class="form-label">Aperecer
+									no menu:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isOrgaoPublico" id="isOrgaoPublicoS" value="S">
+										<label class="form-check-label" for="isOrgaoPublico">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isOrgaoPublico" id="isOrgaoPublicoN" value="N">
+										<label class="form-check-label" for="isOrgaoPublico">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Leitura<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraOrgaoPublico" id="isLeituraOrgaoPublicoS"
+											value="S"> <label class="form-check-label"
+											for="isLeituraOrgaoPublico">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraOrgaoPublico" id="isLeituraOrgaoPublicoN"
+											value="N"> <label class="form-check-label"
+											for="isLeituraOrgaoPublico">Não</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Escrita<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaOrgaoPublico" id="isEscritaOrgaoPublicoS"
+											value="S"> <label class="form-check-label"
+											for="isEscritaOrgaoPublico">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaOrgaoPublico" id="isEscritaOrgaoPublicoN"
+											value="N"> <label class="form-check-label"
+											for="isEscritaOrgaoPublico">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card card-check">
+					<div class="card-header">Periodicidade:</div>
+
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-md-6 small-inputs">
+								<label for="merendaEscolar" class="form-label">Aparecer
+									no menu: <span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isPeriodicidade" id="isPeriodicidadeS" value="S">
+										<label class="form-check-label" for="isPeriodicidade">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isPeriodicidade" id="isPeriodicidadeN" value="N">
+										<label class="form-check-label" for="isPeriodicidade">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Leitura<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraPeriodicidade" id="isLeituraPeriodicidadeS"
+											value="S"> <label class="form-check-label"
+											for="isLeituraPeriodicidade">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraPeriodicidade" id="isLeituraPeriodicidadeN"
+											value="N"> <label class="form-check-label"
+											for="isLeituraPeriodicidade">Não</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Escrita<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaPeriodicidade" id="isEscritaPeriodicidadeS"
+											value="S"> <label class="form-check-label"
+											for="isEscritaPeriodicidade">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaPeriodicidade" id="isEscritaPeriodicidadeN"
+											value="N"> <label class="form-check-label"
+											for="isEscritaPeriodicidade">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card card-check">
+					<div class="card-header">Provedor Internet</div>
+
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-md-6 small-inputs">
+								<label for="merendaEscolar" class="form-label">Aparecer
+									no menu:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isProvedorInternet" id="isProvedorInternetS" value="S">
+										<label class="form-check-label" for="isProvedorInternet">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isProvedorInternet" id="isProvedorInternetN" value="N">
+										<label class="form-check-label" for="isProvedorInternet">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Leitura<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraProvedorInternet"
+											id="isLeituraProvedorInternetS" value="S"> <label
+											class="form-check-label" for="isLeituraProvedorInternet">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraProvedorInternet"
+											id="isLeituraProvedorInternetN" value="N"> <label
+											class="form-check-label" for="isLeituraProvedorInternet">Não</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Escrita<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaProvedorInternet"
+											id="isEscritaProvedorInternetS" value="S"> <label
+											class="form-check-label" for="isEscritaProvedorInternet">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaProvedorInternet"
+											id="isEscritaProvedorInternetN" value="N"> <label
+											class="form-check-label" for="isEscritaProvedorInternet">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="card card-check">
+					<div class="card-header">Tipo Dependênca</div>
+
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-md-6 small-inputs">
+								<label for="merendaEscolar" class="form-label">Aparecer
+									no menu:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isTipoDependencia" id="isTipoDependenciaS" value="S">
+										<label class="form-check-label" for="isTipoDependencia">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isTipoDependencia" id="isTipoDependenciaN" value="N">
+										<label class="form-check-label" for="isTipoDependencia">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Leitura<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraTipoDependencia"
+											id="isLeituraTipoDependenciaS" value="S"> <label
+											class="form-check-label" for="isLeituraTipoDependencia">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraTipoDependencia"
+											id="isLeituraTipoDependenciaN" value="N"> <label
+											class="form-check-label" for="isLeituraTipoDependencia">Não</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Escrita<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaTipoDependencia"
+											id="isEscritaTipoDependenciaS" value="S"> <label
+											class="form-check-label" for="isEscritaTipoDependencia">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaTipoDependencia"
+											id="isEscritaTipoDependenciaN" value="N"> <label
+											class="form-check-label" for="isEscritaTipoDependencia">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card card-check">
+					<div class="card-header">Tipo Profissional</div>
+
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-md-6 small-inputs">
+								<label for="merendaEscolar" class="form-label">Aparecer
+									no menu<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isTipoProfissional" id="isTipoProfissionalS" value="S">
+										<label class="form-check-label" for="isTipoProfissional">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isTipoProfissional" id="isTipoProfissionalN" value="N">
+										<label class="form-check-label" for="isTipoProfissional">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Leitura<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraTipoProfissional"
+											id="isLeituraTipoProfissionalS" value="S"> <label
+											class="form-check-label" for="isLeituraTipoProfissional">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraTipoProfissional"
+											id="isLeituraTipoProfissionalN" value="N"> <label
+											class="form-check-label" for="isLeituraTipoProfissional">Não</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Escrita<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaTipoProfissional"
+											id="isEscritaTipoProfissionalS" value="S"> <label
+											class="form-check-label" for="isEscritaTipoProfissional">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaTipoProfissional"
+											id="isEscritaTipoProfissionalN" value="N"> <label
+											class="form-check-label" for="isEscritaTipoProfissional">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="card card-check">
+					<div class="card-header">Tratamento de Lixo</div>
+
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-md-6 small-inputs">
+								<label for="merendaEscolar" class="form-label"> Aparecer
+									no menu:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isTratamentoLixo" id="isTratamentoLixoS" value="S">
+										<label class="form-check-label" for="isTratamentoLixo">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isTratamentoLixo" id="isTratamentoLixoN" value="N">
+										<label class="form-check-label" for="isTratamentoLixo">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Leitura<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraTratamentoLixo" id="isLeituraTratamentoLixoS"
+											value="S"> <label class="form-check-label"
+											for="isLeituraTratamentoLixo">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isLeituraTratamentoLixo" id="isLeituraTratamentoLixoN"
+											value="N"> <label class="form-check-label"
+											for="isLeituraTratamentoLixo">Não</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 small-inputs">
+								<label for="possuiAguaPotavel" class="form-label">Escrita<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaTratamentoLixo" id="isEscritaTratamentoLixoS"
+											value="S"> <label class="form-check-label"
+											for="isEscritaTratamentoLixo">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="isEscritaTratamentoLixo" id="isEscritaTratamentoLixoN"
+											value="N"> <label class="form-check-label"
+											for="isEscritaTratamentoLixo">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card card-check">
+					<div class="card-header">Zoneamento</div>
+
+					<div class="card-body">
+						<div class="row mb-3">
 					<div class="col-md-6 small-inputs">
-						<label for="merendaEscolar" class="form-label">Modalidade
-							Escolar<span class="red">*</span>
+						<label for="merendaEscolar" class="form-label">Aparecer no menu:<span
+							class="red">*</span>
 						</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
+									name="isZoneamento" id="isZoneamentoS" value="S"> <label
+									class="form-check-label" for="isZoneamento">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
+									name="merendaEscolar" id="isZoneamentoN" value="N"> <label
+									class="form-check-label" for="isZoneamento">Não</label>
 							</div>
 						</div>
 					</div>
@@ -978,13 +1448,13 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
+									name="isLeituraZoneamento" id="isLeituraZoneamentoS" value="S">
+								<label class="form-check-label" for="isLeituraZoneamento">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
+									name="isLeituraZoneamento" id="isLeituraZoneamentoN" value="N">
+								<label class="form-check-label" for="isLeituraZoneamento">Não</label>
 							</div>
 						</div>
 					</div>
@@ -996,395 +1466,21 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
+									name="isEscritaZoneamento" id="isEscritaZoneamentoS" value="S">
+								<label class="form-check-label" for="isEscritaZoneamento">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
+									name="isEscritaZoneamento" id="isEscritaZoneamentoN" value="N">
+								<label class="form-check-label" for="isEscritaZoneamento">Não</label>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row mb-3">
-					<div class="col-md-6 small-inputs">
-						<label for="merendaEscolar" class="form-label">Orgão
-							Público<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
 					</div>
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Leitura<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
+				</div>
 
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Escrita<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6 small-inputs">
-						<label for="merendaEscolar" class="form-label">Periodicidade:
-							<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Leitura<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Escrita<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6 small-inputs">
-						<label for="merendaEscolar" class="form-label">Provedor
-							Internet<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Leitura<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Escrita<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6 small-inputs">
-						<label for="merendaEscolar" class="form-label">Tipo
-							Dependencia<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Leitura<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Escrita<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6 small-inputs">
-						<label for="merendaEscolar" class="form-label">Tipo
-							Profissional<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Leitura<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Escrita<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6 small-inputs">
-						<label for="merendaEscolar" class="form-label">Tratamento
-							de Lixo<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Leitura<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Escrita<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6 small-inputs">
-						<label for="merendaEscolar" class="form-label">Zoneamento<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Leitura<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 small-inputs">
-						<label for="possuiAguaPotavel" class="form-label">Escrita<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 
 				<div class="col-md-12 text-center mt-3">
 					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Cadastrar

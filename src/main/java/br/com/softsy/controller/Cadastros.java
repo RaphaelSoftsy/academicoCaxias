@@ -180,4 +180,23 @@ public class Cadastros {
 		
 		return "escolas/editarDisciplina";
 	}
+	
+	@RequestMapping(value = { "escola-agua" }, method = RequestMethod.GET)
+	public String escolaAgua(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/agua";
+	}
+	
+	
+	@RequestMapping(value = { "escola-dispostivo" }, method = RequestMethod.GET)
+	public String escolaDispositivo(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/dispositivo";
+	}
+	
+	@RequestMapping(value = { "escola-lixo" }, method = RequestMethod.GET)
+	public String escolaLixo(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/lixo";
+	}
 }
