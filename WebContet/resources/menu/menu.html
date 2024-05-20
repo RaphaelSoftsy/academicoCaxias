@@ -93,19 +93,21 @@
 						<a href="acessar-escolas" class="sub-item">Minhas Escolas</a> 
 						<a href="escola-agua" class="sub-item">Água</a> 
 						<a href="escola-destinacao-de-lixo" class="sub-item">Destinações de Lixo</a>
-						<a href="disciplinas" class="sub-item">Disciplinas</a>
+						<a href="escola-disciplinas" class="sub-item">Disciplinas</a>
 						<a href="escola-dispostivo" class="sub-item">Dispositivos</a>
 						<a href="escola-equipamento" class="sub-item">Equipamentos</a>
 						<a href="escola-energia-eletrica" class="sub-item">Energia Elétrica</a>
 						<a href="escola-esgotamento-sanitario" class="sub-item">Esgotamentos Sanitários</a>
+						<a href="escola-esgoto" class="sub-item">Esgoto</a>
 						<a href="escola-fornecimento-de-agua" class="sub-item">Fornecimentos de Água</a>
 						<a href="escola-horario-funcionamento" class="sub-item">Horários de Funcionamento</a>
 						<a href="escola-instrutor-pedagogico" class="sub-item">Instrutor Pedagógico</a>
+						<a href="escola-infraestrutura" class="sub-item">Infraestrutura</a>
 						<a href="escola-internet" class="sub-item">Internet</a>
 						<a href="escola-licenciamento-sanitario" class="sub-item">Licenciamentos Sanitários</a>
 						<a href="escola-linguas-de-ensino" class="sub-item">Línguas de Ensino</a>
 						<a href="escola-lixo" class="sub-item">Lixo</a>
-						<a href="marca-equipamento" class="sub-item">Marca Equipamento</a>
+						<a href="escola-marca-equipamento" class="sub-item">Marca Equipamento</a>
 						<a href="escola-modalidades" class="sub-item">Modalidades</a>
 						<a href="escola-ppci" class="sub-item">PPCIs</a>
 						<a href="escola-predios-compartilhados" class="sub-item">Prédios Compartilhados</a>
@@ -165,12 +167,10 @@
 			</div>
 
 			<div class="item">
-				<a class="sub-btn"><i class="fa-solid fa-right-from-bracket"></i>Sair
-					<i class="fas fa-angle-right dropdown"></i></a>
+				<a class="sub-btn"><i class="fa-solid fa-right-from-bracket"></i>Sair<i class="fas fa-angle-right dropdown"></i></a>
 				<div class="sub-menu">
-					<a class="sub-btn"> <i class="fa-solid fa-circle-user"></i>Login
-					</a> <a class="sub-btn"> <i class="fa-solid fa-school"></i>Escolas
-					</a>
+					<a class="sub-btn" id="sair"> <i class="fa-solid fa-circle-user"></i>Login</a> 
+					<a class="sub-btn" id="sairEscola"> <i class="fa-solid fa-school"></i>Escolas</a>
 				</div>
 			</div>
 
@@ -224,8 +224,14 @@
 		});
 		
 		$("#sair").click(() => {
+			sessionStorage.removeItem('contaId')
+			window.location.href = 'http://localhost:8090/front-educacional-caxias/login'
+		})
+		
+		$("#sairEscola").click(()=>{
+			localStorage.removeItem('escolaId')
 			localStorage.removeItem('perfil')
-			window.location.href = 'http://localhost:8090/front-educacional-caxias/escolas'
+			window.location.href = 'http://localhost:8090/front-educacional-caxias/acessar-escolas'
 		})
 	});
 </script>

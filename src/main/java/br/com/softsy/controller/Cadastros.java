@@ -163,7 +163,7 @@ public class Cadastros {
 		return "escolas/termoColaboracao";
 	}
 
-	@RequestMapping(value = { "disciplinas" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "escola-disciplinas" }, method = RequestMethod.GET)
 	public String disciplinas(HttpSession session, Model model) throws Exception {
 		
 		return "escolas/disciplinas";
@@ -198,5 +198,23 @@ public class Cadastros {
 	public String escolaLixo(HttpSession session, Model model) throws Exception {
 		
 		return "escolas/lixo";
+	}
+	
+	@RequestMapping(value = { "escola-esgoto" }, method = RequestMethod.GET)
+	public String escolaEsgoto(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/esgoto";
+	}
+	
+	@RequestMapping(value = { "escola-energia-eletrica" }, method = RequestMethod.GET)
+	public String escolaEnergia(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/energiaEletrica";
+	}
+	
+	@RequestMapping(value = { "escola-infraestrutura" }, method = RequestMethod.GET)
+	public String escolaInfraestutura(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/infraestrutura";
 	}
 }

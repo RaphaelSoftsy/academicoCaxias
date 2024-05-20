@@ -648,11 +648,6 @@ a {
   font-size: 1.4em;
 }
 
-#sair {
-  position: absolute;
-  width: 251.75px;
-  bottom: 15px;
-}
 
 .form div .inputForm {
   border-color: #25487a !important;
@@ -827,11 +822,6 @@ background-color: #ddd;
     margin-left: 0.5em;
   }
 
-  #sair {
-    position: absolute;
-    width: 223.25px;
-    bottom: 15px;
-  }
 
   .card-table {
     height: 580px !important;

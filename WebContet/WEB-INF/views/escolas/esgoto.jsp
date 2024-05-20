@@ -74,138 +74,72 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Lixo</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Esgoto</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4" style="width: 70vw">
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h1 id="tituloForm" class="text-center mb-5">Nome Escola
-</h1>
+				<h1 id="tituloForm" class="text-center mb-5">Nome Escola</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="isColetaPeriodica" class="form-label">Coleta
-							Periodica<span class="red">*</span>
+						<label for="isRedePublica" class="form-label">Rede Pública<span class="red">*</span>
 						</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isColetaPeriodica" id="isColetaPeriodicaS" value="S">
-								<label class="form-check-label" for="isColetaPeriodica">Sim</label>
+									name="isRedePublica" id="isRedePublicaS" value="S">
+								<label class="form-check-label" for="isRedePublica">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isColetaPeriodica" id="isColetaPeriodicaN" value="N">
-								<label class="form-check-label" for="isColetaPeriodica">Não</label>
+									name="isRedePublica" id="isRedePublicaN" value="N">
+								<label class="form-check-label" for="isRedePublica">Não</label>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="isQueimaLixo" class="form-label">Queima Lixo<span
+						<label for="isFossa" class="form-label">Fossa<span
 							class="red">*</span>
 						</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isQueimaLixo"
-									id="isQueimaLixoS" value="S"> <label
-									class="form-check-label" for="isQueimaLixo">Sim</label>
+								<input class="form-check-input" type="radio" name="isFossa"
+									id="isFossaS" value="S"> <label
+									class="form-check-label" for="isFossaS">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isQueimaLixo"
-									id="isQueimaLixoN" value="N"> <label
-									class="form-check-label" for="isQueimaLixo">Não</label>
+								<input class="form-check-input" type="radio" name="isFossa"
+									id="isFossaN" value="N"> <label
+									class="form-check-label" for="isFossaN">Não</label>
 							</div>
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="isJogaOutraArea" class="form-label">Joga Outra
-							Área<span class="red">*</span>
+						<label for="isInexistente" class="form-label">Inexistente<span class="red">*</span>
 						</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isJogaOutraArea" id="isJogaOutraAreaS" value="S">
-								<label class="form-check-label" for="isJogaOutraArea">Sim</label>
+									name="isInexistente" id="isInexistenteS" value="S">
+								<label class="form-check-label" for="isInexistente">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isJogaOutraArea" id="isJogaOutraAreaN" value="N">
-								<label class="form-check-label" for="isJogaOutraArea">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="isReciclagem" class="form-label">Reciclagem<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isReciclagem"
-									id="isReciclagemS" value="S"> <label
-									class="form-check-label" for="isFonteRio">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isReciclagem"
-									id="isReciclagemN" value="N"> <label
-									class="form-check-label" for="isReciclagem">Não</label>
+									name="isInexistente" id="isInexistenteN" value="N">
+								<label class="form-check-label" for="isInexistente">Não</label>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isEnterra" class="form-label">Enterra<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isEnterra"
-									id="isEnterraS" value="S"> <label
-									class="form-check-label" for="isEnterra">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isEnterra"
-									id="isEnterraN" value="N"> <label
-									class="form-check-label" for="isEnterra">Não</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<label for="isOutros" class="form-label">Outros<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isOutros"
-									id="isOutrosS" value="S"> <label
-									class="form-check-label" for="isOutros">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isOutros"
-									id="isOutrosN" value="N"> <label
-									class="form-check-label" for="isOutros">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-3" id="cardDesc" style="display: none;">
-					<div class="col-md-6">
-						<label for="descricao" class="form-label">Descrição:<span
-							class="red">*</span></label> <input autocomplete="off" type="text"
-							id="descricao" name="descricao" class="form-control"
-							maxlength="255" />
-					</div>
-				</div>
 				<div class="col-md-12 text-center mt-3">
 					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
 				</div>
@@ -234,13 +168,21 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/lixo.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/esgoto.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 	<script type="text/javascript">
-		
+		let checkS = $("#isOutrosS")
+		let checkN = $("#isOutrosN")
+		checkS.on('click', function() {
+			$("#cardDesc").show()
+		})
+
+		checkN.on('click', function() {
+			$("#cardDesc").hide()
+		})
 	</script>
 </body>
 </html>

@@ -24,20 +24,20 @@ $(document).ready(function() {
 		}
 	}
 	console.log(url)
-/*	const perfilEscola = localStorage.getItem("perfil")
-	if (url != "/front-educacional-caxias/acessar-escolas" && url != "/front-educacional-caxias/escolas") {
-		if (perfilEscola == undefined || perfilEscola == "") {
+	const perfilEscola = localStorage.getItem("perfil")
+	if(window.location.href.indexOf("escola") > -1 && !(window.location.toString().includes("acessar"))){
+		
+		if(perfilEscola == undefined || perfilEscola == null){
 			Swal.fire({
-				title: "Nenhuma escola selecionada, redirecionando você para a sessão de escolas",
-				icon: "info"
+				title: "Nenhum escola localizada, selecione uma escola",
+				icon: "info",
 			}).then(result => {
 				if (result) {
 					window.location.href = "acessar-escolas"
 				}
 			})
-
 		}
-	}*/
+	}
 })
 
 

@@ -91,7 +91,7 @@ String contextPath = request.getContextPath();
 							Aluno<span class="red">*</span>
 						</label> <input type="number" id="quantidade" required autocomplete="off"
 							name="quantidade" class="form-control" min='0'
-							oninput="this.value = Math.abs(this.value)">
+							oninput="this.value = Math.abs(this.value)" >
 					</div>
 
 					<div class="col-md-6">
@@ -149,7 +149,6 @@ String contextPath = request.getContextPath();
 						name="quantidade" class="form-control" min='0'
 						oninput="this.value = Math.abs(this.value)" />
 				</div>
-
 
 
 				<div class="col-md-12 text-center mt-3">

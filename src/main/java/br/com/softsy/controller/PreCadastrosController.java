@@ -258,7 +258,7 @@ public class PreCadastrosController {
 		return "escolas/acessarEscolas";
 	}
 	
-	@RequestMapping(value = { "marca-equipamento" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "escola-marca-equipamento" }, method = RequestMethod.GET)
 	public String marcaEquipamento(HttpSession session, Model model) throws Exception {
  
 		return "preCadastros/marcaEquipamento";
