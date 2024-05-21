@@ -84,7 +84,26 @@ String contextPath = request.getContextPath();
 				<h1 id="tituloForm" class="text-center mb-5">Nome Escola</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
-
+				
+				
+				<div class="col-md-6">
+						<label for="isSemAgua" class="form-label">Possui Água<span
+							class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isSemAgua"
+									id="isSemAguaS" value="S"> <label
+									class="form-check-label" for="isSemAgua">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isSemAgua"
+									id="isSemAguaN" value="N"> <label
+									class="form-check-label" for="isSemAgua">Não</label>
+							</div>
+						</div>
+					</div>
+					
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="isAcessivel" class="form-label">Agua Tratada<span
@@ -103,7 +122,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="isIndigena" class="form-label">Poço Artesiano<span
+						<label for="isPocoArtesiano" class="form-label">Poço Artesiano<span
 							class="red">*</span>
 						</label>
 						<div class="form-control">
@@ -139,7 +158,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="isIndigena" class="form-label">Fonte Rio<span
+						<label for="isFonteRio" class="form-label">Fonte Rio<span
 							class="red">*</span>
 						</label>
 						<div class="form-control">
@@ -156,23 +175,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-						<label for="isIndigena" class="form-label">Sem Água<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isSemAgua"
-									id="isSemAguaS" value="S"> <label
-									class="form-check-label" for="isSemAgua">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isSemAgua"
-									id="isSemAguaN" value="N"> <label
-									class="form-check-label" for="isSemAgua">Não</label>
-							</div>
-						</div>
-					</div>
+				
 				
 
 

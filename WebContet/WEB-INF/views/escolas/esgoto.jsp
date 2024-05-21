@@ -84,6 +84,25 @@ String contextPath = request.getContextPath();
 				<h1 id="tituloForm" class="text-center mb-5">Nome Escola</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
+					
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isInexistente" class="form-label">Inexistente<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="isInexistente" id="isInexistenteS" value="S">
+								<label class="form-check-label" for="isInexistente">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="isInexistente" id="isInexistenteN" value="N">
+								<label class="form-check-label" for="isInexistente">Não</label>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -121,24 +140,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 				
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isInexistente" class="form-label">Inexistente<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isInexistente" id="isInexistenteS" value="S">
-								<label class="form-check-label" for="isInexistente">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isInexistente" id="isInexistenteN" value="N">
-								<label class="form-check-label" for="isInexistente">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 
 				<div class="col-md-12 text-center mt-3">
 					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
@@ -173,16 +175,6 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
-	<script type="text/javascript">
-		let checkS = $("#isOutrosS")
-		let checkN = $("#isOutrosN")
-		checkS.on('click', function() {
-			$("#cardDesc").show()
-		})
 
-		checkN.on('click', function() {
-			$("#cardDesc").hide()
-		})
-	</script>
 </body>
 </html>

@@ -90,17 +90,13 @@ String contextPath = request.getContextPath();
 						<label for="isAcessivel" class="form-label">Escola
 							Acessível<span class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isAcessivel"
-									id="isAcessivel" value="S"> <label
-									class="form-check-label" for="isAcessivel">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isAcessivel"
-									id="isAcessivel" value="N"> <label
-									class="form-check-label" for="isAcessivel">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isAcessivel">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isAcessivel" name="isAcessivel"> <span
+								class="slider"></span>
+							</label>
+							<label for="isAcessivel">Não</label>
+						
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -110,13 +106,13 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isDependenciaAcessivel" id="isDependenciaAcessivel"
+									name="isDependenciaAcessivel" id="isDependenciaAcessivelS"
 									value="S"> <label class="form-check-label"
 									for="isDependenciaAcessivel">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isDependenciaAcessivel" id="isDependenciaAcessivel"
+									name="isDependenciaAcessivel" id="isDependenciaAcessivelN"
 									value="N"> <label class="form-check-label"
 									for="isDependenciaAcessivel">Não</label>
 							</div>
@@ -132,13 +128,13 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSanitariosAcessivel" id="isSanitariosAcessivel"
+									name="isSanitariosAcessivel" id="isSanitariosAcessivelS"
 									value="S"> <label class="form-check-label"
 									for="isSanitariosAcessivel">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSanitariosAcessivel" id="isSanitariosAcessivel"
+									name="isSanitariosAcessivel" id="isSanitariosAcessivelN"
 									value="N"> <label class="form-check-label"
 									for="isSanitariosAcessivel">Não</label>
 							</div>
@@ -151,13 +147,13 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isAlimentacaoFornecida" id="isAlimentacaoFornecida"
+									name="isAlimentacaoFornecida" id="isAlimentacaoFornecidaS"
 									value="S"> <label class="form-check-label"
 									for="isAlimentacaoFornecida">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isAlimentacaoFornecida" id="isAlimentacaoFornecida"
+									name="isAlimentacaoFornecida" id="isAlimentacaoFornecidaN"
 									value="N"> <label class="form-check-label"
 									for="isAlimentacaoFornecida">Não</label>
 							</div>
@@ -173,12 +169,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isAguaFiltrada" id="isAguaFiltrada" value="S"> <label
+									name="isAguaFiltrada" id="isAguaFiltradaS" value="S"> <label
 									class="form-check-label" for="isAguaFiltrada">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isAguaFiltrada" id="isAguaFiltrada" value="N"> <label
+									name="isAguaFiltrada" id="isAguaFiltradaN" value="N"> <label
 									class="form-check-label" for="isAguaFiltrada">Não</label>
 							</div>
 						</div>
@@ -190,12 +186,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSanitarioEscola" id="isSanitarioEscola" value="S">
+									name="isSanitarioEscola" id="isSanitarioEscolaS" value="S">
 								<label class="form-check-label" for="isSanitarioEscola">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSanitarioEscola" id="isSanitarioEscola" value="N">
+									name="isSanitarioEscola" id="isSanitarioEscolaN" value="N">
 								<label class="form-check-label" for="isSanitarioEscola">Não</label>
 							</div>
 						</div>
@@ -209,12 +205,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isBiblioteca"
-									id="isBiblioteca" value="S"> <label
+									id="isBibliotecaS" value="S"> <label
 									class="form-check-label" for="isBiblioteca">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isBiblioteca"
-									id="isBiblioteca" value="N"> <label
+									id="isBibliotecaN" value="N"> <label
 									class="form-check-label" for="isBiblioteca">Não</label>
 							</div>
 						</div>
@@ -226,12 +222,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isCozinha"
-									id="isCozinha" value="S"> <label
+									id="isCozinhaS" value="S"> <label
 									class="form-check-label" for="isCozinha">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isCozinha"
-									id="isCozinha" value="N"> <label
+									id="isCozinhaN" value="N"> <label
 									class="form-check-label" for="isCozinha">Não</label>
 							</div>
 						</div>
@@ -246,12 +242,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isLabInformatica" id="isLabInformatica" value="S">
+									name="isLabInformatica" id="isLabInformaticaS" value="S">
 								<label class="form-check-label" for="isLabInformatica">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isLabInformatica" id="isLabInformatica" value="N">
+									name="isLabInformatica" id="isLabInformaticaN" value="N">
 								<label class="form-check-label" for="isLabInformatica">Não</label>
 							</div>
 						</div>
@@ -263,12 +259,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isLabCiencia"
-									id="isLabCiencia" value="S"> <label
+									id="isLabCienciaS" value="S"> <label
 									class="form-check-label" for="isLabCiencia">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isLabCiencia"
-									id="isLabCiencia" value="N"> <label
+									id="isLabCienciaN" value="N"> <label
 									class="form-check-label" for="isLabCiencia">Não</label>
 							</div>
 						</div>
@@ -283,12 +279,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSalaLeitura" id="isSalaLeitura" value="S"> <label
+									name="isSalaLeitura" id="isSalaLeituraS" value="S"> <label
 									class="form-check-label" for="isSalaLeitura">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSalaLeitura" id="isSalaLeitura" value="N"> <label
+									name="isSalaLeitura" id="isSalaLeituraN" value="N"> <label
 									class="form-check-label" for="isSalaLeitura">Não</label>
 							</div>
 						</div>
@@ -300,12 +296,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isQuadraEsportes" id="isQuadraEsportes" value="S">
+									name="isQuadraEsportes" id="isQuadraEsportesS" value="S">
 								<label class="form-check-label" for="isQuadraEsportes">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isQuadraEsportes" id="isQuadraEsportes" value="N">
+									name="isQuadraEsportes" id="isQuadraEsportesN" value="N">
 								<label class="form-check-label" for="isQuadraEsportes">Não</label>
 							</div>
 						</div>
@@ -320,12 +316,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSalaDiretoria" id="isSalaDiretoria" value="S">
+									name="isSalaDiretoria" id="isSalaDiretoriaS" value="S">
 								<label class="form-check-label" for="isSalaDiretoria">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSalaDiretoria" id="isSalaDiretoria" value="N">
+									name="isSalaDiretoria" id="isSalaDiretoriaN" value="N">
 								<label class="form-check-label" for="isSalaDiretoria">Não</label>
 							</div>
 						</div>
@@ -337,12 +333,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSalaProfessores" id="isSalaProfessores" value="S">
+									name="isSalaProfessores" id="isSalaProfessoresS" value="S">
 								<label class="form-check-label" for="isSalaProfessores">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSalaProfessores" id="isSalaProfessores" value="N">
+									name="isSalaProfessores" id="isSalaProfessoresN" value="N">
 								<label class="form-check-label" for="isSalaProfessores">Não</label>
 							</div>
 						</div>
@@ -357,15 +353,15 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSalaAtendimentoEspecial" id="isSalaAtendimentoEspecial"
-									value="S"> <label class="form-check-label"
-									for="isSalaAtendimentoEspecial">Sim</label>
+									name="isSalaAtendimentoEspecial"
+									id="isSalaAtendimentoEspecialS" value="S"> <label
+									class="form-check-label" for="isSalaAtendimentoEspecial">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="isSalaAtendimentoEspecial" id="isSalaAtendimentoEspecial"
-									value="N"> <label class="form-check-label"
-									for="isSalaAtendimentoEspecial">Não</label>
+									name="isSalaAtendimentoEspecial"
+									id="isSalaAtendimentoEspecialN" value="N"> <label
+									class="form-check-label" for="isSalaAtendimentoEspecial">Não</label>
 							</div>
 						</div>
 					</div>
@@ -376,12 +372,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isInternet"
-									id="isInternet" value="S"> <label
+									id="isInternetS" value="S"> <label
 									class="form-check-label" for="isInternet">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isInternet"
-									id="isInternet" value="N"> <label
+									id="isInternetN" value="N"> <label
 									class="form-check-label" for="isInternet">Não</label>
 							</div>
 						</div>
@@ -395,12 +391,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isBandaLarga"
-									id="isBandaLarga" value="S"> <label
+									id="isBandaLargaS" value="S"> <label
 									class="form-check-label" for="isBandaLarga">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="isBandaLarga"
-									id="isBandaLarga" value="N"> <label
+									id="isBandaLargaN" value="N"> <label
 									class="form-check-label" for="isBandaLarga">Não</label>
 							</div>
 						</div>
@@ -434,7 +430,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/disciplinas.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/insfraestrutura.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
