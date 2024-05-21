@@ -10,7 +10,7 @@ $(document).ready(function() {
 	containerResponsivo();
 	const url = window.location.pathname
 	const contaId = sessionStorage.getItem('contaId')
-	if (url.includes('login') == false) {
+	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
 		$("#tipoEscola").val('Pública').attr('selected', true);
 		if (isNaN(contaId) || contaId == 0 || contaId == "" || contaId == undefined) {
 			Swal.fire({

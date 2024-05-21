@@ -71,7 +71,7 @@ String contextPath = request.getContextPath();
 			<div class="card">
 				<div class="card-body title">
 					<i class="fa-solid fa-school fa-lg"></i> <span>
-					Qual escola deseja administrar?</span>
+					Qual conta deseja administrar?</span>
 				</div>
 			</div>
 		</section>
@@ -97,7 +97,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 
-	<script src="<%=contextPath%>/resources/assets/js/login/escolherEscola.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/login/escolherConta.js"></script>
 
 
 	<script

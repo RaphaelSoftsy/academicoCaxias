@@ -3,7 +3,7 @@ let contas = [
 		"contaId": 1,
 		"email": "teste@gmail.com",
 		"senha": "1234",
-		"conta": "ESC EST TEC CAXIAS DO SUL",
+		"conta": "Conta - CAXIAS DO SUL",
 		"tipoConta": "PU",
 		"cnpj": "08770189000103",
 		"cep": "95070561",
@@ -15,13 +15,14 @@ let contas = [
 		"distrito": "",
 		"uf": "RS",
 		"dataCadastro": "2024-05-07T15:04:45",
-		"ativo": "S"
+		"ativo": "S",
+		"logo": "https://www.eetcs.com.br/images/logo-transparente-eetcs.png"
 	},
 	{
 		"contaId": 2,
 		"email": "teste2@gmail.com",
 		"senha": "1234",
-		"conta": "NORTE DO IANDERTAL KKKKKKKKKKK",
+		"conta": "Conta - IANDERTAL ",
 		"tipoConta": "PV",
 		"cnpj": "08770189000103",
 		"cep": "95070561",
@@ -33,10 +34,10 @@ let contas = [
 		"distrito": "",
 		"uf": "RS",
 		"dataCadastro": "2024-05-07T15:04:45",
-		"ativo": "S"
+		"ativo": "S",
+		"logo": "https://wikiwandv2-19431.kxcdn.com/_next/image?url=https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Logo_UCS_Vertical_PNG.png/640px-Logo_UCS_Vertical_PNG.png&w=640&q=50"
 	}
 ]
-
 
 
 
@@ -82,7 +83,7 @@ $('#btnLogin').click(function() {
 					}else{
 						sessionStorage.setItem('contaId', element.contaId)
 					}
-					window.location.href = "login/escola"
+					window.location.href = "login/conta"
 					status = true
 				}
 			})

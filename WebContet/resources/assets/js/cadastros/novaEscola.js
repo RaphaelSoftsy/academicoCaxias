@@ -199,8 +199,9 @@ $("#cnpj").blur(function() {
 		cnpj.removeClass('err-message')
 		$('#errMessageCnpj').css('display', 'none')
 	} else {
-		$("#cardCNPJ").find('#errMessageCnpj' + this.value).remove()
-
+		if($("#cardCNPJ").find('#errMessageCnpj').length == 1){
+			$("#cardCNPJ").find('#errMessageCnpj' + this.value).remove()	
+		}
 		$("#btn-submit").attr("disabled", "disabled");
 		cnpj.addClass('err-message')
 		$("#cardCNPJ").append(message)
