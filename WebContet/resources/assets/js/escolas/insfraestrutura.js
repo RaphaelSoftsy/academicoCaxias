@@ -14,7 +14,7 @@ let checkN = $("#isOutrosN")
 $(document).ready(function() {
 
 	$('#tituloForm').text(nomeEscola);
-	
+
 	console.log($('#switch').is(':checked'))
 	getDados()
 
@@ -23,24 +23,24 @@ $(document).ready(function() {
 $("#formNovoCadastro").submit(function(e) {
 
 	e.preventDefault();
-	
-	if(dados.length > 0){
+
+	if (dados.length > 0) {
 		atualizar()
-	}else{
+	} else {
 		cadastrar()
 	}
-	
+
 
 })
 
-function getDados (){
+function getDados() {
 	$.ajax({
 		url: url_base + `/escolaInfraestrutura/escola/${escolaId}`,
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
-			
+
 			console.log(data)
 			dados = data
 			idEscolaInfraestrutura = data[0].idEscolaInfraestrutura
@@ -52,99 +52,100 @@ function getDados (){
 			}
 
 			if (data[0].dependenciasAcessiveis == "S") {
-				$('input[id="isDependenciaAcessivelS"]').prop('checked', true)
+
+				$('#isDependenciaAcessivel').attr('checked', true)
 			} else {
-				$('input[id="isDependenciaAcessivelN"]').prop('checked', true)
+				$('#isDependenciaAcessivel').attr('checked', false)
 			}
 
 			if (data[0].sanitariosAcessiveis == "S") {
-				$('input[id="isSanitariosAcessivelS"]').prop('checked', true)
+				$('#isSanitariosAcessivel').attr('checked', true)
 			} else {
-				$('input[id="isSanitariosAcessivelS"]').prop('checked', true)
+				$('#isSanitariosAcessivel').attr('checked', false)
 			}
-			
+
 			if (data[0].alimentacaoFornecida == "S") {
-				$('input[id="isAlimentacaoFornecidaS"]').prop('checked', true)
+				$('#isAlimentacaoFornecida').attr('checked', true)
 			} else {
-				$('input[id="isAlimentacaoFornecidaN"]').prop('checked', true)
+				$('#isAlimentacaoFornecida').attr('checked', false)
 			}
-			
+
 			if (data[0].aguaFiltrada == "S") {
-				$('input[id="isAguaFiltradaS"]').prop('checked', true)
+				$('#isAguaFiltrada').attr('checked', true)
 			} else {
-				$('input[id="isAguaFiltradaN"]').prop('checked', true)
+				$('#isAguaFiltrada').attr('checked', false)
 			}
-			
+
 			if (data[0].sanitarioDentroEscola == "S") {
-				$('input[id="isSanitarioEscolaS"]').prop('checked', true)
+				$('#isSanitarioEscola').attr('checked', true)
 			} else {
-				$('input[id="isSanitarioEscolaN"]').prop('checked', true)
+				$('#isSanitarioEscola').attr('checked', false)
 			}
-			
+
 			if (data[0].biblioteca == "S") {
-				$('input[id="isBibliotecaS"]').prop('checked', true)
+				$('#isBiblioteca').attr('checked', true)
 			} else {
-				$('input[id="isBibliotecaN"]').prop('checked', true)
+				$('#isBiblioteca').attr('checked', false)
 			}
-			
+
 			if (data[0].cozinha == "S") {
-				$('input[id="isCozinhaS"]').prop('checked', true)
+				$('#isCozinha').attr('checked', true)
 			} else {
-				$('input[id="isCozinhaN"]').prop('checked', true)
+				$('#isCozinha').attr('checked', false)
 			}
-			
+
 			if (data[0].labInformatica == "S") {
-				$('input[id="isLabInformaticaS"]').prop('checked', true)
+				$('#isLabInformatica').attr('checked', true)
 			} else {
-				$('input[id="isLabInformaticaN"]').prop('checked', true)
+				$('#isLabInformatica').attr('checked', false)
 			}
-			
+
 			if (data[0].labCiencias == "S") {
-				$('input[id="isLabCienciaS"]').prop('checked', true)
+				$('#isLabCiencia').attr('checked', true)
 			} else {
-				$('input[id="isLabCienciaN"]').prop('checked', true)
+				$('#isLabCiencia').attr('checked', false)
 			}
-			
+
 			if (data[0].salaLeitura == "S") {
-				$('input[id="isSalaLeituraS"]').prop('checked', true)
+				$('#isSalaLeitura').attr('checked', true)
 			} else {
-				$('input[id="isSalaLeituraN"]').prop('checked', true)
+				$('#isSalaLeitura').attr('checked', false)
 			}
 
 			if (data[0].quadraEsportes == "S") {
-				$('input[id="isQuadraEsportesS"]').prop('checked', true)
+				$('#isQuadraEsportes').attr('checked', true)
 			} else {
-				$('input[id="isQuadraEsportesN"]').prop('checked', true)
+				$('#isQuadraEsportes').attr('checked', false)
 			}
-			
+
 			if (data[0].salaDiretoria == "S") {
-				$('input[id="isSalaDiretoriaS"]').prop('checked', true)
+				$('#isSalaDiretoria').attr('checked', true)
 			} else {
-				$('input[id="isSalaDiretoriaN"]').prop('checked', true)
+				$('#isSalaDiretoria').attr('checked', false)
 			}
-			
+
 			if (data[0].salaProfessores == "S") {
-				$('input[id="isSalaProfessoresS"]').prop('checked', true)
+				$('#isSalaProfessores').attr('checked', true)
 			} else {
-				$('input[id="isSalaProfessoresN"]').prop('checked', true)
+				$('#isSalaProfessores').attr('checked', false)
 			}
-			
+
 			if (data[0].salaAtendimentoEspecial == "S") {
-				$('input[id="isSalaAtendimentoEspecialS"]').prop('checked', true)
+				$('#isSalaAtendimentoEspecial').attr('checked', true)
 			} else {
-				$('input[id="isSalaAtendimentoEspecialN"]').prop('checked', true)
+				$('#isSalaAtendimentoEspecial').attr('checked', false)
 			}
-			
+
 			if (data[0].internet == "S") {
-				$('input[id="isInternetS"]').prop('checked', true)
+				$('#isInternet').attr('checked', true)
 			} else {
-				$('input[id="isInternetN"]').prop('checked', true)
+				$('#isInternet').attr('checked', false)
 			}
-			
+
 			if (data[0].bandaLarga == "S") {
-				$('input[id="isBandaLargaS"]').prop('checked', true)
+				$('#isBandaLarga').attr('checked', true)
 			} else {
-				$('input[id="isBandaLargan"]').prop('checked', true)
+				$('#isBandaLarga').attr('checked', false)
 			}
 		})
 
@@ -154,17 +155,42 @@ function getDados (){
 
 }
 
-function atualizar (){
-	var objeto = {
-		"idEscolaEsgoto": idEscolaEsgoto,
-		"escolaId": Number(escolaId),
-		"redePublica": $('input[name="isRedePublica"]:checked').val(),
-		"fossa": $('input[name="isFossa"]:checked').val(),
-		"inexistente": $('input[name="isInexistente"]:checked').val()
+function getAswer(input) {
+
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
 	}
-	
+
+}
+
+
+function atualizar() {
+	var objeto = {
+		"idEscolaInfraestrutura": idEscolaInfraestrutura,
+		"escolaId": escolaId,
+		"escolaAcessivel": getAswer('#isAcessivel'),
+		"dependenciasAcessiveis": getAswer('#isDependenciaAcessivel'),
+		"sanitariosAcessiveis": getAswer('#isSanitariosAcessivel'),
+		"alimentacaoFornecida": getAswer('#isAlimentacaoFornecida'),
+		"aguaFiltrada": getAswer('#isAguaFiltrada'),
+		"sanitarioDentroEscola": getAswer('#isSanitarioEscola'),
+		"biblioteca": getAswer('#isBiblioteca'),
+		"cozinha": getAswer('#isCozinha'),
+		"labInformatica": getAswer('#isLabInformatica'),
+		"labCiencias": getAswer('#isLabCiencia'),
+		"salaLeitura": getAswer('#isSalaLeitura'),
+		"quadraEsportes": getAswer('#isQuadraEsportes'),
+		"salaDiretoria": getAswer('#isSalaDiretoria'),
+		"salaProfessores": getAswer('#isSalaProfessores'),
+		"salaAtendimentoEspecial": getAswer('#isSalaAtendimentoEspecial'),
+		"internet": getAswer('#isInternet'),
+		"bandaLarga": getAswer('#isBandaLarga')
+	}
+
 	$.ajax({
-		url: url_base + "/escolaEsgoto",
+		url: url_base + "/escolaInfraestrutura",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -192,7 +218,7 @@ function atualizar (){
 	return false;
 }
 
-function cadastrar (){
+function cadastrar() {
 	var objeto = {
 		"escolaId": Number(escolaId),
 		"redePublica": $('input[name="isRedePublica"]:checked').val(),
@@ -218,9 +244,9 @@ function cadastrar (){
 		}
 	})
 		.done(function(data) {
-			
+
 			dados = data
-			
+
 			showPage(currentPage);
 			updatePagination();
 			Swal.fire({

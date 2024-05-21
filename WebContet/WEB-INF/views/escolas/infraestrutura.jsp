@@ -91,31 +91,25 @@ String contextPath = request.getContextPath();
 							Acessível<span class="red">*</span>
 						</label>
 						<div class="form-control card-form">
-							<label for="isAcessivel">Sim</label>
-							<label class="switch"> <input type="checkbox" id="isAcessivel" name="isAcessivel"> <span
-								class="slider"></span>
-							</label>
-							<label for="isAcessivel">Não</label>
-						
+							<label for="isAcessivel">Sim</label> <label class="switch">
+								<input type="checkbox" id="isAcessivel" name="isAcessivel">
+								<span class="slider"></span>
+							</label> <label for="isAcessivel">Não</label>
+
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="isDependenciaAcessivel" class="form-label">Dependencias
 							Acessível<span class="red">*</span>
 						</label>
+
 						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isDependenciaAcessivel" id="isDependenciaAcessivelS"
-									value="S"> <label class="form-check-label"
-									for="isDependenciaAcessivel">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isDependenciaAcessivel" id="isDependenciaAcessivelN"
-									value="N"> <label class="form-check-label"
-									for="isDependenciaAcessivel">Não</label>
-							</div>
+							<label for="isDependenciaAcessivel">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="isDependenciaAcessivel" name="isDependenciaAcessivel">
+								<span class="slider"></span>
+							</label> <label for="isDependenciaAcessivel">Não</label>
+
 						</div>
 					</div>
 				</div>
@@ -126,18 +120,12 @@ String contextPath = request.getContextPath();
 							Acessível<span class="red">*</span>
 						</label>
 						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSanitariosAcessivel" id="isSanitariosAcessivelS"
-									value="S"> <label class="form-check-label"
-									for="isSanitariosAcessivel">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSanitariosAcessivel" id="isSanitariosAcessivelN"
-									value="N"> <label class="form-check-label"
-									for="isSanitariosAcessivel">Não</label>
-							</div>
+							<label for="isSanitariosAcessivel">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="isSanitariosAcessivel" name="isSanitariosAcessivel">
+								<span class="slider"></span>
+							</label> <label for="isSanitariosAcessivel">Não</label>
+
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -145,18 +133,12 @@ String contextPath = request.getContextPath();
 							Fornecida<span class="red">*</span>
 						</label>
 						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isAlimentacaoFornecida" id="isAlimentacaoFornecidaS"
-									value="S"> <label class="form-check-label"
-									for="isAlimentacaoFornecida">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isAlimentacaoFornecida" id="isAlimentacaoFornecidaN"
-									value="N"> <label class="form-check-label"
-									for="isAlimentacaoFornecida">Não</label>
-							</div>
+							<label for="isAlimentacaoFornecida">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="isAlimentacaoFornecida" name="isAlimentacaoFornecida">
+								<span class="slider"></span>
+							</label> <label for="isAlimentacaoFornecida">Não</label>
+
 						</div>
 					</div>
 				</div>
@@ -167,16 +149,10 @@ String contextPath = request.getContextPath();
 							Filtrada<span class="red">*</span>
 						</label>
 						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isAguaFiltrada" id="isAguaFiltradaS" value="S"> <label
-									class="form-check-label" for="isAguaFiltrada">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isAguaFiltrada" id="isAguaFiltradaN" value="N"> <label
-									class="form-check-label" for="isAguaFiltrada">Não</label>
-							</div>
+							<label for="isAguaFiltrada">Sim</label> <label class="switch">
+								<input type="checkbox" id="isAguaFiltrada" name="isAguaFiltrada">
+								<span class="slider"></span>
+							</label> <label for="isAlimisAguaFiltradaentacaoFornecida">Não</label>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -184,229 +160,165 @@ String contextPath = request.getContextPath();
 							dentro da Escola<span class="red">*</span>
 						</label>
 						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSanitarioEscola" id="isSanitarioEscolaS" value="S">
-								<label class="form-check-label" for="isSanitarioEscola">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSanitarioEscola" id="isSanitarioEscolaN" value="N">
-								<label class="form-check-label" for="isSanitarioEscola">Não</label>
-							</div>
+							<label for="isSanitarioEscola">Sim</label> <label class="switch">
+								<input type="checkbox" id="isSanitarioEscola"
+								name="isSanitarioEscola"> <span class="slider"></span>
+							</label> <label for="isSanitarioEscola">Não</label>
+
 						</div>
 					</div>
 				</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="isBiblioteca" class="form-label">Biblioteca<span
+								class="red">*</span></label>
+							<div class="form-control card-form">
+								<label for="isBiblioteca">Sim</label> <label class="switch">
+									<input type="checkbox" id="isBiblioteca" name="isBiblioteca">
+									<span class="slider"></span>
+								</label> <label for="isBiblioteca">Não</label>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isBiblioteca" class="form-label">Biblioteca<span
-							class="red">*</span></label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isBiblioteca"
-									id="isBibliotecaS" value="S"> <label
-									class="form-check-label" for="isBiblioteca">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isBiblioteca"
-									id="isBibliotecaN" value="N"> <label
-									class="form-check-label" for="isBiblioteca">Não</label>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="isCozinha" class="form-label">Cozinha<span
-							class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isCozinha"
-									id="isCozinhaS" value="S"> <label
-									class="form-check-label" for="isCozinha">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isCozinha"
-									id="isCozinhaN" value="N"> <label
-									class="form-check-label" for="isCozinha">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
+						<div class="col-md-6">
+							<label for="isCozinha" class="form-label">Cozinha<span
+								class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isCozinha">Sim</label> <label class="switch">
+									<input type="checkbox" id="isCozinha" name="isCozinha">
+									<span class="slider"></span>
+								</label> <label for="isCozinha">Não</label>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isLabInformatica" class="form-label">Laboratório
-							de Informática<span class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isLabInformatica" id="isLabInformaticaS" value="S">
-								<label class="form-check-label" for="isLabInformatica">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isLabInformatica" id="isLabInformaticaN" value="N">
-								<label class="form-check-label" for="isLabInformatica">Não</label>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="isLabCiencia" class="form-label">Laboratório
-							de Ciência<span class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isLabCiencia"
-									id="isLabCienciaS" value="S"> <label
-									class="form-check-label" for="isLabCiencia">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isLabCiencia"
-									id="isLabCienciaN" value="N"> <label
-									class="form-check-label" for="isLabCiencia">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isSalaLeitura" class="form-label">Sala de
-							Leitura<span class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSalaLeitura" id="isSalaLeituraS" value="S"> <label
-									class="form-check-label" for="isSalaLeitura">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSalaLeitura" id="isSalaLeituraN" value="N"> <label
-									class="form-check-label" for="isSalaLeitura">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="isQuadraEsportes" class="form-label">Quadra
-							Esportes<span class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isQuadraEsportes" id="isQuadraEsportesS" value="S">
-								<label class="form-check-label" for="isQuadraEsportes">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isQuadraEsportes" id="isQuadraEsportesN" value="N">
-								<label class="form-check-label" for="isQuadraEsportes">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="isLabInformatica" class="form-label">Laboratório
+								de Informática<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isLabInformatica">Sim</label> <label class="switch">
+									<input type="checkbox" id="isLabInformatica"
+									name="isLabInformatica"> <span class="slider"></span>
+								</label> <label for="isLabInformatica">Não</label>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isSalaDiretoria" class="form-label">Sala
-							Diretoria<span class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSalaDiretoria" id="isSalaDiretoriaS" value="S">
-								<label class="form-check-label" for="isSalaDiretoria">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSalaDiretoria" id="isSalaDiretoriaN" value="N">
-								<label class="form-check-label" for="isSalaDiretoria">Não</label>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="isSalaProfessores" class="form-label">Sala
-							Professores<span class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSalaProfessores" id="isSalaProfessoresS" value="S">
-								<label class="form-check-label" for="isSalaProfessores">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSalaProfessores" id="isSalaProfessoresN" value="N">
-								<label class="form-check-label" for="isSalaProfessores">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
+						<div class="col-md-6">
+							<label for="isLabCiencia" class="form-label">Laboratório
+								de Ciência<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isLabCiencia">Sim</label> <label class="switch">
+									<input type="checkbox" id="isLabCiencia" name="isLabCiencia">
+									<span class="slider"></span>
+								</label> <label for="isLabCiencia">Não</label>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isSalaAtendimentoEspecial" class="form-label">Sala
-							Atendimento Especial<span class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSalaAtendimentoEspecial"
-									id="isSalaAtendimentoEspecialS" value="S"> <label
-									class="form-check-label" for="isSalaAtendimentoEspecial">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isSalaAtendimentoEspecial"
-									id="isSalaAtendimentoEspecialN" value="N"> <label
-									class="form-check-label" for="isSalaAtendimentoEspecial">Não</label>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="isInternet" class="form-label">Internet<span
-							class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isInternet"
-									id="isInternetS" value="S"> <label
-									class="form-check-label" for="isInternet">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isInternet"
-									id="isInternetN" value="N"> <label
-									class="form-check-label" for="isInternet">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isBandaLarga" class="form-label">Banda Larga<span
-							class="red">*</span></label>
-						<div class="form-control card-form">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isBandaLarga"
-									id="isBandaLargaS" value="S"> <label
-									class="form-check-label" for="isBandaLarga">Sim</label>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="isSalaLeitura" class="form-label">Sala de
+								Leitura<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isSalaLeitura">Sim</label> <label class="switch">
+									<input type="checkbox" id="isSalaLeitura" name="isSalaLeitura">
+									<span class="slider"></span>
+								</label> <label for="isSalaLeitura">Não</label>
+
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isBandaLarga"
-									id="isBandaLargaN" value="N"> <label
-									class="form-check-label" for="isBandaLarga">Não</label>
+						</div>
+						<div class="col-md-6">
+							<label for="isQuadraEsportes" class="form-label">Quadra
+								Esportes<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isQuadraEsportes">Sim</label> <label class="switch">
+									<input type="checkbox" id="isQuadraEsportes"
+									name="isQuadraEsportes"> <span class="slider"></span>
+								</label> <label for="isQuadraEsportes">Não</label>
 							</div>
 						</div>
 					</div>
-				</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="isSalaDiretoria" class="form-label">Sala
+								Diretoria<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isSalaDiretoria">Sim</label> <label class="switch">
+									<input type="checkbox" id="isSalaDiretoria"
+									name="isSalaDiretoria"> <span class="slider"></span>
+								</label> <label for="isSalaDiretoria">Não</label>
+
+							</div>
+						</div>
+						<div class="col-md-6">
+							<label for="isSalaProfessores" class="form-label">Sala
+								Professores<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isSalaProfessores">Sim</label> <label class="switch">
+									<input type="checkbox" id="isSalaProfessores"
+									name="isSalaProfessores"> <span class="slider"></span>
+								</label> <label for="isSalaProfessores">Não</label>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="isSalaAtendimentoEspecial" class="form-label">Sala
+								Atendimento Especial<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isSalaAtendimentoEspecial">Sim</label> <label
+									class="switch"> <input type="checkbox"
+									id="isSalaAtendimentoEspecial" name="isSalaAtendimentoEspecial">
+									<span class="slider"></span>
+								</label> <label for="isSalaAtendimentoEspecial">Não</label>
+
+							</div>
+						</div>
+						<div class="col-md-6">
+							<label for="isInternet" class="form-label">Internet<span
+								class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isInternet">Sim</label> <label class="switch">
+									<input type="checkbox" id="isInternet" name="isInternet">
+									<span class="slider"></span>
+								</label> <label for="isInternet">Não</label>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="isBandaLarga" class="form-label">Banda Larga<span
+								class="red">*</span></label>
+							<div class="form-control card-form">
+								<label for="isBandaLarga">Sim</label> <label class="switch">
+									<input type="checkbox" id="isBandaLarga" name="isBandaLarga">
+									<span class="slider"></span>
+								</label> <label for="isBandaLarga">Não</label>
+							</div>
+						</div>
+					</div>
 
 
-				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
-				</div>
+					<div class="col-md-12 text-center mt-3">
+						<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
+					</div>
 			</form>
 		</section>
 
