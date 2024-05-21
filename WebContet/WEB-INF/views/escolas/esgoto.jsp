@@ -89,17 +89,13 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="isInexistente" class="form-label">Inexistente<span class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isInexistente" id="isInexistenteS" value="S">
-								<label class="form-check-label" for="isInexistente">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isInexistente" id="isInexistenteN" value="N">
-								<label class="form-check-label" for="isInexistente">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isInexistente">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isInexistente" name="isInexistente"> <span
+								class="slider"></span>
+							</label>
+							<label for="isInexistente">Não</label>
+						
 						</div>
 					</div>
 				</div>
@@ -108,34 +104,24 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="isRedePublica" class="form-label">Rede Pública<span class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isRedePublica" id="isRedePublicaS" value="S">
-								<label class="form-check-label" for="isRedePublica">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isRedePublica" id="isRedePublicaN" value="N">
-								<label class="form-check-label" for="isRedePublica">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isRedePublica">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isRedePublica" name="isRedePublica"> <span
+								class="slider"></span>
+							</label>
+							<label for="isRedePublica">Não</label>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="isFossa" class="form-label">Fossa<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isFossa"
-									id="isFossaS" value="S"> <label
-									class="form-check-label" for="isFossaS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isFossa"
-									id="isFossaN" value="N"> <label
-									class="form-check-label" for="isFossaN">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isFossa">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isFossa" name="isFossa"> <span
+								class="slider"></span>
+							</label>
+							<label for="isFossa">Não</label>
 						</div>
 					</div>
 				</div>

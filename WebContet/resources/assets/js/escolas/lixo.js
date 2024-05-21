@@ -108,39 +108,39 @@ function getDados (){
 			dados = data
 			
 			if (data[0].coletaPeriodica == "S") {
-				$('input[id="isColetaPeriodicaS"]').prop('checked', true)
+				$('input[id="isColetaPeriodica"]').attr('checked', true);
 			} else {
-				$('input[id="isColetaPeriodicaN"]').prop('checked', true)
+				$('input[id="isColetaPeriodica"]').attr('checked', false);
 			}
-
+			
 			if (data[0].queimaLixo == "S") {
-				$('input[id="isQueimaLixoS"]').prop('checked', true)
+				$('input[id="isQueimaLixo"]').attr('checked', true);
 			} else {
-				$('input[id="isQueimaLixoN"]').prop('checked', true)
+				$('input[id="isQueimaLixo"]').attr('checked', false);
 			}
-
+			
 			if (data[0].jogaOutraArea == "S") {
-				$('input[id="isJogaOutraAreaS"]').prop('checked', true)
+				$('input[id="isJogaOutraArea"]').attr('checked', true);
 			} else {
-				$('input[id="isJogaOutraAreaN"]').prop('checked', true)
+				$('input[id="isJogaOutraArea"]').attr('checked', false);
 			}
 
 			if (data[0].reciclagem == "S") {
-				$('input[id="isReciclagemS"]').prop('checked', true)
+				$('input[id="isReciclagem"]').attr('checked', true)
 			} else {
-				$('input[id="isReciclagemN"]').prop('checked', true)
+				$('input[id="isReciclagem"]').attr('checked', true)
 			}
 
 			if (data[0].enterra == "S") {
-				$('input[id="isEnterraS"]').prop('checked', true)
+				$('input[id="isEnterra"]').attr('checked', true)
 			} else {
-				$('input[id="isEnterraN"]').prop('checked', true)
+				$('input[id="isEnterra"]').attr('checked', true)
 			}
 
 			if (data[0].outros == "S") {
-				$('input[id="isOutrosS"]').prop('checked', true)
+				$('input[id="isOutros"]').attr('checked', true)
 			} else {
-				$('input[id="isOutrosN"]').prop('checked', true)
+				$('input[id="isOutros"]').attr('checked', true)
 			}
 
 			if (data[0].descricaoOutros == null) {

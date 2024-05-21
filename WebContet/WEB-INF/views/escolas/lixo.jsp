@@ -91,34 +91,25 @@ String contextPath = request.getContextPath();
 						<label for="isColetaPeriodica" class="form-label">Coleta
 							Periodica<span class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isColetaPeriodica" id="isColetaPeriodicaS" value="S">
-								<label class="form-check-label" for="isColetaPeriodica">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isColetaPeriodica" id="isColetaPeriodicaN" value="N">
-								<label class="form-check-label" for="isColetaPeriodica">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isAcessivel">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isAcessivel" name="isAcessivel"> <span
+								class="slider"></span>
+							</label>
+							<label for="isAcessivel">Não</label>
+						
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="isQueimaLixo" class="form-label">Queima Lixo<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isQueimaLixo"
-									id="isQueimaLixoS" value="S"> <label
-									class="form-check-label" for="isQueimaLixo">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isQueimaLixo"
-									id="isQueimaLixoN" value="N"> <label
-									class="form-check-label" for="isQueimaLixo">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isQueimaLixo">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isQueimaLixo" name="isQueimaLixo"> <span
+								class="slider"></span>
+							</label>
+							<label for="isQueimaLixo">Não</label>
 						</div>
 					</div>
 				</div>
@@ -128,34 +119,26 @@ String contextPath = request.getContextPath();
 						<label for="isJogaOutraArea" class="form-label">Joga Outra
 							Área<span class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isJogaOutraArea" id="isJogaOutraAreaS" value="S">
-								<label class="form-check-label" for="isJogaOutraArea">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isJogaOutraArea" id="isJogaOutraAreaN" value="N">
-								<label class="form-check-label" for="isJogaOutraArea">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isJogaOutraArea">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isJogaOutraArea" name="isJogaOutraArea"> <span
+								class="slider"></span>
+							</label>
+							<label for="isJogaOutraArea">Não</label>
+						
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="isReciclagem" class="form-label">Reciclagem<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isReciclagem"
-									id="isReciclagemS" value="S"> <label
-									class="form-check-label" for="isFonteRio">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isReciclagem"
-									id="isReciclagemN" value="N"> <label
-									class="form-check-label" for="isReciclagem">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isReciclagem">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isReciclagem" name="isReciclagem"> <span
+								class="slider"></span>
+							</label>
+							<label for="isReciclagem">Não</label>
+						
 						</div>
 					</div>
 				</div>
@@ -165,17 +148,13 @@ String contextPath = request.getContextPath();
 						<label for="isEnterra" class="form-label">Enterra<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isEnterra"
-									id="isEnterraS" value="S"> <label
-									class="form-check-label" for="isEnterra">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isEnterra"
-									id="isEnterraN" value="N"> <label
-									class="form-check-label" for="isEnterra">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isEnterra">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isEnterra" name="isEnterra"> <span
+								class="slider"></span>
+							</label>
+							<label for="isEnterra">Não</label>
+						
 						</div>
 					</div>
 
@@ -183,17 +162,13 @@ String contextPath = request.getContextPath();
 						<label for="isOutros" class="form-label">Outros<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isOutros"
-									id="isOutrosS" value="S"> <label
-									class="form-check-label" for="isOutros">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isOutros"
-									id="isOutrosN" value="N"> <label
-									class="form-check-label" for="isOutros">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isOutros">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isOutros" name="isOutros"> <span
+								class="slider"></span>
+							</label>
+							<label for="isOutros">Não</label>
+						
 						</div>
 					</div>
 				</div>
