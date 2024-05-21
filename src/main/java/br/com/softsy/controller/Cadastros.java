@@ -13,6 +13,13 @@ import br.com.softsy.utils.LoginUtils;
 @Controller
 public class Cadastros {
 	
+	@RequestMapping(value = { "cadastroConta" }, method = RequestMethod.GET)
+	public String cadastroConta(HttpSession session, Model model) throws Exception {
+ 
+		return "cadastros/novaConta";
+	}
+	
+	
 	@RequestMapping(value = { "escolas" }, method = RequestMethod.GET)
 	public String escolas(HttpSession session, Model model) throws Exception {
  

@@ -3,7 +3,7 @@ let contas = [
 		"contaId": 1,
 		"email": "teste@gmail.com",
 		"senha": "1234",
-		"conta": "ESC EST TEC CAXIAS DO SUL",
+		"conta": "Conta - CAXIAS DO SUL",
 		"tipoConta": "PU",
 		"cnpj": "08770189000103",
 		"cep": "95070561",
@@ -22,7 +22,7 @@ let contas = [
 		"contaId": 2,
 		"email": "teste2@gmail.com",
 		"senha": "1234",
-		"conta": "NORTE DO IANDERTAL ",
+		"conta": "Conta - Sonic ",
 		"tipoConta": "PV",
 		"cnpj": "08770189000103",
 		"cep": "95070561",
@@ -35,7 +35,7 @@ let contas = [
 		"uf": "RS",
 		"dataCadastro": "2024-05-07T15:04:45",
 		"ativo": "S",
-		"logo": "https://wikiwandv2-19431.kxcdn.com/_next/image?url=https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Logo_UCS_Vertical_PNG.png/640px-Logo_UCS_Vertical_PNG.png&w=640&q=50"
+		"logo": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000045649/bf9665c0d3f4f99954d8faa8f426e63a1e3cd1eec297b4f10d5954d9d188b199"
 	}
 ]
 
@@ -70,6 +70,9 @@ $(document).ready(function() {
 			imgCard.attr('src', escola.logo)
 			imgCard.css('width','100%')
 			let cardBody = $('<div  class="card-body school-card"></div>')
+			cardBody.css({
+				"width": "270px"
+			})
 			let cardTitle = $('<h5 class="card-title"></h5>')
 			cardTitle.css('padding-right', '0')
 			cardTitle.append(escola.conta)
@@ -83,10 +86,14 @@ $(document).ready(function() {
 			cardBody.append(cardText)
 			cardBody.append(cardButton)
 			$('#cardContainer').append(card)
+			$('#cardContainer').css({
+				"display": "flex",
+				"flex-wrap": "wrap"
+			})
 			
 			cardButton.click(function(){
 					
-				   window.location.href = $("#caminhoRelativo").val()+"/escolas"
+				   window.location.href = $("#caminhoRelativo").val()+"/acessar-escolas"
 			})
 
 		})
