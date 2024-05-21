@@ -46,9 +46,9 @@ function getDados (){
 			idEscolaInfraestrutura = data[0].idEscolaInfraestrutura
 
 			if (data[0].escolaAcessivel == "S") {
-				$('#isAcessivel').attr('checked', false);
-			} else {
 				$('#isAcessivel').attr('checked', true);
+			} else {
+				$('#isAcessivel').attr('checked', false);
 			}
 
 			if (data[0].dependenciasAcessiveis == "S") {
