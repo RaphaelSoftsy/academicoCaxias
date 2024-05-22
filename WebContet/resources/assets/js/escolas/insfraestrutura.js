@@ -20,6 +20,9 @@ $(document).ready(function() {
 
 })
 
+$("#formNovoCadastro :input").change(function() {
+   $("#btn-submit").removeAttr('disabled')
+});
 $("#formNovoCadastro").submit(function(e) {
 
 	e.preventDefault();

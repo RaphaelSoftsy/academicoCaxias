@@ -44,8 +44,7 @@ String contextPath = request.getContextPath();
     <script src="sweetalert2.all.min.js"></script>
     
 <!-- CSS -->
-<link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/escola.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -57,7 +56,7 @@ String contextPath = request.getContextPath();
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
+
 
 </head>
 

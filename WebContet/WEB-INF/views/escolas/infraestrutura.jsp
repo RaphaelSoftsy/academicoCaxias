@@ -115,6 +115,19 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
+
+					<div class="col-md-6">
+						<label for="isSanitarioEscola" class="form-label">Sanitários
+							dentro da Escola<span class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isSanitarioEscola">Sim</label> <label class="switch">
+								<input type="checkbox" id="isSanitarioEscola"
+								name="isSanitarioEscola"> <span class="slider"></span>
+							</label> <label for="isSanitarioEscola">Não</label>
+
+						</div>
+					</div>
 					<div class="col-md-6">
 						<label for="isSanitariosAcessivel" class="form-label">Sanitários
 							Acessível<span class="red">*</span>
@@ -128,19 +141,7 @@ String contextPath = request.getContextPath();
 
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="isAlimentacaoFornecida" class="form-label">Alimentação
-							Fornecida<span class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<label for="isAlimentacaoFornecida">Sim</label> <label
-								class="switch"> <input type="checkbox"
-								id="isAlimentacaoFornecida" name="isAlimentacaoFornecida">
-								<span class="slider"></span>
-							</label> <label for="isAlimentacaoFornecida">Não</label>
 
-						</div>
-					</div>
 				</div>
 
 				<div class="row mb-3">
@@ -155,170 +156,174 @@ String contextPath = request.getContextPath();
 							</label> <label for="isAlimisAguaFiltradaentacaoFornecida">Não</label>
 						</div>
 					</div>
+
 					<div class="col-md-6">
-						<label for="isSanitarioEscola" class="form-label">Sanitários
-							dentro da Escola<span class="red">*</span>
+						<label for="isAlimentacaoFornecida" class="form-label">Alimentação
+							Fornecida<span class="red">*</span>
 						</label>
 						<div class="form-control card-form">
-							<label for="isSanitarioEscola">Sim</label> <label class="switch">
-								<input type="checkbox" id="isSanitarioEscola"
-								name="isSanitarioEscola"> <span class="slider"></span>
-							</label> <label for="isSanitarioEscola">Não</label>
+							<label for="isAlimentacaoFornecida">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="isAlimentacaoFornecida" name="isAlimentacaoFornecida">
+								<span class="slider"></span>
+							</label> <label for="isAlimentacaoFornecida">Não</label>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isBiblioteca" class="form-label">Biblioteca<span
+							class="red">*</span></label>
+						<div class="form-control card-form">
+							<label for="isBiblioteca">Sim</label> <label class="switch">
+								<input type="checkbox" id="isBiblioteca" name="isBiblioteca">
+								<span class="slider"></span>
+							</label> <label for="isBiblioteca">Não</label>
+
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="isCozinha" class="form-label">Cozinha<span
+							class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isCozinha">Sim</label> <label class="switch">
+								<input type="checkbox" id="isCozinha" name="isCozinha">
+								<span class="slider"></span>
+							</label> <label for="isCozinha">Não</label>
 
 						</div>
 					</div>
 				</div>
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label for="isBiblioteca" class="form-label">Biblioteca<span
-								class="red">*</span></label>
-							<div class="form-control card-form">
-								<label for="isBiblioteca">Sim</label> <label class="switch">
-									<input type="checkbox" id="isBiblioteca" name="isBiblioteca">
-									<span class="slider"></span>
-								</label> <label for="isBiblioteca">Não</label>
 
-							</div>
-						</div>
-						<div class="col-md-6">
-							<label for="isCozinha" class="form-label">Cozinha<span
-								class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isCozinha">Sim</label> <label class="switch">
-									<input type="checkbox" id="isCozinha" name="isCozinha">
-									<span class="slider"></span>
-								</label> <label for="isCozinha">Não</label>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isLabInformatica" class="form-label">Laboratório
+							de Informática<span class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isLabInformatica">Sim</label> <label class="switch">
+								<input type="checkbox" id="isLabInformatica"
+								name="isLabInformatica"> <span class="slider"></span>
+							</label> <label for="isLabInformatica">Não</label>
 
-							</div>
 						</div>
 					</div>
+					<div class="col-md-6">
+						<label for="isLabCiencia" class="form-label">Laboratório
+							de Ciência<span class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isLabCiencia">Sim</label> <label class="switch">
+								<input type="checkbox" id="isLabCiencia" name="isLabCiencia">
+								<span class="slider"></span>
+							</label> <label for="isLabCiencia">Não</label>
 
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label for="isLabInformatica" class="form-label">Laboratório
-								de Informática<span class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isLabInformatica">Sim</label> <label class="switch">
-									<input type="checkbox" id="isLabInformatica"
-									name="isLabInformatica"> <span class="slider"></span>
-								</label> <label for="isLabInformatica">Não</label>
-
-							</div>
-						</div>
-						<div class="col-md-6">
-							<label for="isLabCiencia" class="form-label">Laboratório
-								de Ciência<span class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isLabCiencia">Sim</label> <label class="switch">
-									<input type="checkbox" id="isLabCiencia" name="isLabCiencia">
-									<span class="slider"></span>
-								</label> <label for="isLabCiencia">Não</label>
-
-							</div>
 						</div>
 					</div>
+				</div>
 
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label for="isSalaLeitura" class="form-label">Sala de
-								Leitura<span class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isSalaLeitura">Sim</label> <label class="switch">
-									<input type="checkbox" id="isSalaLeitura" name="isSalaLeitura">
-									<span class="slider"></span>
-								</label> <label for="isSalaLeitura">Não</label>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isSalaLeitura" class="form-label">Sala de
+							Leitura<span class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isSalaLeitura">Sim</label> <label class="switch">
+								<input type="checkbox" id="isSalaLeitura" name="isSalaLeitura">
+								<span class="slider"></span>
+							</label> <label for="isSalaLeitura">Não</label>
 
-							</div>
-						</div>
-						<div class="col-md-6">
-							<label for="isQuadraEsportes" class="form-label">Quadra
-								Esportes<span class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isQuadraEsportes">Sim</label> <label class="switch">
-									<input type="checkbox" id="isQuadraEsportes"
-									name="isQuadraEsportes"> <span class="slider"></span>
-								</label> <label for="isQuadraEsportes">Não</label>
-							</div>
 						</div>
 					</div>
-
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label for="isSalaDiretoria" class="form-label">Sala
-								Diretoria<span class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isSalaDiretoria">Sim</label> <label class="switch">
-									<input type="checkbox" id="isSalaDiretoria"
-									name="isSalaDiretoria"> <span class="slider"></span>
-								</label> <label for="isSalaDiretoria">Não</label>
-
-							</div>
-						</div>
-						<div class="col-md-6">
-							<label for="isSalaProfessores" class="form-label">Sala
-								Professores<span class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isSalaProfessores">Sim</label> <label class="switch">
-									<input type="checkbox" id="isSalaProfessores"
-									name="isSalaProfessores"> <span class="slider"></span>
-								</label> <label for="isSalaProfessores">Não</label>
-
-							</div>
+					<div class="col-md-6">
+						<label for="isQuadraEsportes" class="form-label">Quadra
+							Esportes<span class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isQuadraEsportes">Sim</label> <label class="switch">
+								<input type="checkbox" id="isQuadraEsportes"
+								name="isQuadraEsportes"> <span class="slider"></span>
+							</label> <label for="isQuadraEsportes">Não</label>
 						</div>
 					</div>
+				</div>
 
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label for="isSalaAtendimentoEspecial" class="form-label">Sala
-								Atendimento Especial<span class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isSalaAtendimentoEspecial">Sim</label> <label
-									class="switch"> <input type="checkbox"
-									id="isSalaAtendimentoEspecial" name="isSalaAtendimentoEspecial">
-									<span class="slider"></span>
-								</label> <label for="isSalaAtendimentoEspecial">Não</label>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isSalaDiretoria" class="form-label">Sala
+							Diretoria<span class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isSalaDiretoria">Sim</label> <label class="switch">
+								<input type="checkbox" id="isSalaDiretoria"
+								name="isSalaDiretoria"> <span class="slider"></span>
+							</label> <label for="isSalaDiretoria">Não</label>
 
-							</div>
-						</div>
-						<div class="col-md-6">
-							<label for="isInternet" class="form-label">Internet<span
-								class="red">*</span>
-							</label>
-							<div class="form-control card-form">
-								<label for="isInternet">Sim</label> <label class="switch">
-									<input type="checkbox" id="isInternet" name="isInternet">
-									<span class="slider"></span>
-								</label> <label for="isInternet">Não</label>
-
-							</div>
 						</div>
 					</div>
+					<div class="col-md-6">
+						<label for="isSalaProfessores" class="form-label">Sala
+							Professores<span class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isSalaProfessores">Sim</label> <label class="switch">
+								<input type="checkbox" id="isSalaProfessores"
+								name="isSalaProfessores"> <span class="slider"></span>
+							</label> <label for="isSalaProfessores">Não</label>
 
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label for="isBandaLarga" class="form-label">Banda Larga<span
-								class="red">*</span></label>
-							<div class="form-control card-form">
-								<label for="isBandaLarga">Sim</label> <label class="switch">
-									<input type="checkbox" id="isBandaLarga" name="isBandaLarga">
-									<span class="slider"></span>
-								</label> <label for="isBandaLarga">Não</label>
-							</div>
 						</div>
 					</div>
+				</div>
 
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isSalaAtendimentoEspecial" class="form-label">Sala
+							Atendimento Especial<span class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isSalaAtendimentoEspecial">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="isSalaAtendimentoEspecial" name="isSalaAtendimentoEspecial">
+								<span class="slider"></span>
+							</label> <label for="isSalaAtendimentoEspecial">Não</label>
 
-					<div class="col-md-12 text-center mt-3">
-						<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
+						</div>
 					</div>
+					<div class="col-md-6">
+						<label for="isInternet" class="form-label">Internet<span
+							class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isInternet">Sim</label> <label class="switch">
+								<input type="checkbox" id="isInternet" name="isInternet">
+								<span class="slider"></span>
+							</label> <label for="isInternet">Não</label>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isBandaLarga" class="form-label">Banda Larga<span
+							class="red">*</span></label>
+						<div class="form-control card-form">
+							<label for="v">Sim</label> <label class="switch"> <input
+								type="checkbox" id="isBandaLarga" name="isBandaLarga"> <span
+								class="slider"></span>
+							</label> <label for="isBandaLarga">Não</label>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-12 text-center mt-3">
+					<button type="submit" class='btn btn-primary px-5' id='btn-submit'
+						disabled>Salvar</button>
+				</div>
 			</form>
 		</section>
 

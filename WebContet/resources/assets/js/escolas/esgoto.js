@@ -29,6 +29,9 @@ $('input[id="isInexistente"]').click(() => {
 	}
 })
 
+$("#formNovoCadastro :input").change(function() {
+   $("#btn-submit").removeAttr('disabled')
+});
 
 $("#formNovoCadastro").submit(function(e) {
 
@@ -42,6 +45,17 @@ $("#formNovoCadastro").submit(function(e) {
 
 
 })
+
+function getAswer(input) {
+
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
+	}
+
+}
+
 
 function getDados() {
 	$.ajax({
@@ -89,9 +103,9 @@ function atualizar() {
 	var objeto = {
 		"idEscolaEsgoto": idEscolaEsgoto,
 		"escolaId": Number(escolaId),
-		"redePublica": $('input[name="isRedePublica"]:checked').val(),
-		"fossa": $('input[name="isFossa"]:checked').val(),
-		"inexistente": $('input[name="isInexistente"]:checked').val()
+		"redePublica": getAswer("#isRedePublica"),
+		"fossa": getAswer("#isFossa"),
+		"inexistente": getAswer("#isInexistente")
 	}
 
 	$.ajax({
@@ -126,9 +140,9 @@ function atualizar() {
 function cadastrar() {
 	var objeto = {
 		"escolaId": Number(escolaId),
-		"redePublica": $('input[name="isRedePublica"]:checked').val(),
-		"fossa": $('input[name="isFossa"]:checked').val(),
-		"inexistente": $('input[name="isInexistente"]:checked').val()
+		"redePublica": getAswer("#isRedePublica"),
+		"fossa": getAswer("#isFossa"),
+		"inexistente": getAswer("#isInexistente")
 	}
 	$.ajax({
 		url: url_base + "/escolaEsgoto",

@@ -21,6 +21,10 @@ $(document).ready(function() {
 })
 
 
+$("#formNovoCadastro :input").change(function() {
+   $("#btn-submit").removeAttr('disabled')
+});
+
 
 function getDados() {
 	$.ajax({
@@ -37,8 +41,15 @@ function getDados() {
 			console.log(data)
 
 			if (data[0].semAgua == "N") {
-				$('input[id="isAguaTratadaN"]').prop('checked', true)
-				$('input[id="isAguaTratadaN"]').prop('disabled', true)
+				$('#isAguaTratada').attr('checked', false);
+				$('#isFonteRio').attr('checked', false);
+				$('#isPocoArtesiano').attr('checked', false);
+				$('#isCacimba').attr('checked', false);
+				$('#isFonteRio').prop('disabled', true)
+				$('#isPocoArtesiano').prop('disabled', true)
+				$('#isAguaTratada').prop('disabled', true)
+				$('#isCacimba').prop('disabled', true)
+
 				$('input[id="isAguaTratadaS"]').prop('disabled', true)
 				$('input[id="isPocoArtesianoN"]').prop('checked', true)
 				$('input[id="isFonteRioN"]').prop('disabled', true)
@@ -54,34 +65,34 @@ function getDados() {
 
 			} else {
 				if (data[0].aguaTratada == "S") {
-					$('input[id="isAguaTratadaS"]').prop('checked', true)
+					$('#isAguaTratada').attr('checked', true);
 				} else {
-					$('input[id="isAguaTratadaN"]').prop('checked', true)
+					$('#isAguaTratada').attr('checked', false);
 				}
 
 				if (data[0].aguaPocoArtesiano == "S") {
-					$('input[id="isPocoArtesianoS"]').prop('checked', true)
+					$('#isPocoArtesiano').attr('checked', true);
 				} else {
-					$('input[id="isPocoArtesianoN"]').prop('checked', true)
+					$('#isPocoArtesiano').attr('checked', false)
 				}
 
 				if (data[0].aguaCacimba == "S") {
-					$('input[id="isCacimbaS"]').prop('checked', true)
+					$('#isCacimba').attr('checked', true);
 				} else {
-					$('input[id="isCacimbaN"]').prop('checked', true)
+					$('#isCacimba').attr('checked', false);
 				}
 
 				if (data[0].fonteRio == "S") {
-					$('input[id="isFonteRioS"]').prop('checked', true)
+					$('#isFonteRio').attr('checked', true);
 				} else {
-					$('input[id="isFonteRioN"]').prop('checked', true)
+					$('#isFonteRio').attr('checked', false);
 				}
 			}
 
 			if (data[0].semAgua == "S") {
-				$('input[id="isSemAguaS"]').prop('checked', true)
+				$('#isSemAgua').attr('checked', true);
 			} else {
-				$('input[id="isSemAguaN"]').prop('checked', true)
+				$('#isSemAgua').attr('checked', false);
 			}
 
 
@@ -93,37 +104,40 @@ function getDados() {
 
 	return false
 }
-$('input[id="isSemAguaN"]').click(() => {
-	$('input[id="isAguaTratadaN"]').prop('checked', true)
-	$('input[id="isAguaTratadaN"]').prop('disabled', true)
-	$('input[id="isAguaTratadaS"]').prop('disabled', true)
-	$('input[id="isPocoArtesianoN"]').prop('checked', true)
-	$('input[id="isFonteRioN"]').prop('disabled', true)
-	$('input[id="isPocoArtesianoS"]').prop('disabled', true)
-	$('input[id="isPocoArtesianoN"]').prop('disabled', true)
-	$('input[id="isPocoArtesianoN"]').prop('checked', true)
-	$('input[id="isCacimbaN"]').prop('disabled', true)
-	$('input[id="isCacimbaN"]').prop('checked', true)
-	$('input[id="isCacimbaS"]').prop('disabled', true)
-	$('input[id="isFonteRioN"]').prop('checked', true)
-	$('input[id="isFonteRioN"]').prop('disabled', true)
-	$('input[id="isFonteRioS"]').prop('disabled', true)
+
+$('input[id="isSemAgua"]').click(() => {
+	if ($('input[id="isSemAgua"]').is(':checked') == false) {
+		
+		$('input[id="isFonteRio"]').prop('checked', false)
+		$('input[id="isFonteRio"]').prop('disabled', true)
+		$('input[id="isAguaTratada"]').prop('checked', false)
+		$('input[id="isAguaTratada"]').prop('disabled', true)
+		$('input[id="isCacimba"]').prop('checked', false)
+		$('input[id="isCacimba"]').prop('disabled', true)
+		$('input[id="isPocoArtesiano"]').prop('checked', false)
+		$('input[id="isPocoArtesiano"]').prop('disabled', true)
+	} else {
+		$('input[id="isFonteRio"]').prop('checked', true)
+		$('input[id="isFonteRio"]').prop('disabled', false)
+		$('input[id="isAguaTratada"]').prop('checked', true)
+		$('input[id="isAguaTratada"]').prop('disabled', false)
+		$('input[id="isCacimba"]').prop('checked', true)
+		$('input[id="isCacimba"]').prop('disabled', false)
+		$('input[id="isPocoArtesiano"]').prop('checked', true)
+		$('input[id="isPocoArtesiano"]').prop('disabled', false)
+		
+	}
 })
 
-$('input[id="isSemAguaS"]').click(() => {
-	$('input[id="isAguaTratadaN"]').prop('checked', false)
-	$('input[id="isAguaTratadaN"]').prop('disabled', false)
-	$('input[id="isAguaTratadaS"]').prop('disabled', false)
-	$('input[id="isPocoArtesianoN"]').prop('checked', false)
-	$('input[id="isPocoArtesianoS"]').prop('disabled', false)
-	$('input[id="isPocoArtesianoN"]').prop('disabled', false)
-	$('input[id="isCacimbaN"]').prop('checked', false)
-	$('input[id="isCacimbaN"]').prop('disabled', false)
-	$('input[id="isCacimbaS"]').prop('disabled', false)
-	$('input[id="isFonteRioN"]').prop('checked', false)
-	$('input[id="isFonteRioN"]').prop('disabled', false)
-	$('input[id="isFonteRioS"]').prop('disabled', false)
-})
+function getAswer(input) {
+
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
+	}
+
+}
 
 
 
@@ -146,11 +160,11 @@ function atualizar() {
 	var objeto = {
 		"idEscolaAgua": idEscolaAgua,
 		"escolaId": escolaId,
-		"aguaTratada": $('input[name="isAguaTratada"]:checked').val(),
-		"aguaPocoArtesiano": $('input[name="isPocoArtesiano"]:checked').val(),
-		"aguaCacimba": $('input[name="isCacimba"]:checked').val(),
-		"aguaFonteRio": $('input[name="isFonteRio"]:checked').val(),
-		"semAgua": $('input[name="isSemAgua"]:checked').val()
+		"aguaTratada": getAswer($('#isAguatratada')),
+		"aguaPocoArtesiano": getAswer($("#isPocoArtesiano")),
+		"aguaCacimba": getAswer($("#isCacimba")),
+		"aguaFonteRio": getAswer($("#isFonteRio")),
+		"semAgua": getAswer($("#isSemAgua"))
 	}
 
 	$.ajax({
@@ -189,11 +203,11 @@ function cadastrar() {
 
 	var objeto = {
 		"escolaId": Number(escolaId),
-		"aguaTratada": $('input[name="isAguaTratada"]:checked').val(),
-		"aguaPocoArtesiano": $('input[name="isPocoArtesiano"]:checked').val(),
-		"aguaCacimba": $('input[name="isCacimba"]:checked').val(),
-		"aguaFonteRio": $('input[name="isFonteRio"]:checked').val(),
-		"semAgua": $('input[name="isSemAgua"]:checked').val()
+		"aguaTratada": getAswer($('#isAguatratada')),
+		"aguaPocoArtesiano": getAswer($("#isPocoArtesiano")),
+		"aguaCacimba": getAswer($("#isCacimba")),
+		"aguaFonteRio": getAswer($("#isFonteRio")),
+		"semAgua": getAswer($("#isSemAgua"))
 	}
 
 
@@ -225,3 +239,5 @@ function cadastrar() {
 		})
 	return false;
 }
+
+

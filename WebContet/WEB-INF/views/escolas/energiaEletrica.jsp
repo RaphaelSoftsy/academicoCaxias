@@ -85,40 +85,48 @@ String contextPath = request.getContextPath();
 				<h1 id="tituloForm" class="text-center mb-5">Nome Escola</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
+					
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="isSemEnergiaEletrica" class="form-label">Sem Energia Elétrica<span
+							class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isSemEnergiaEletrica">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isSemEnergiaEletrica" name="isSemEnergiaEletrica"> <span
+								class="slider"></span>
+							</label>
+							<label for="isSemEnergiaEletrica">Não</label>
+						
+						</div>
+					</div>
+				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="isRedePublica" class="form-label">Rede Pública<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isRedePublica" id="isRedePublica" value="S"> <label
-									class="form-check-label" for="isRedePublica">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="isRedePublica" id="isRedePublica" value="N"> <label
-									class="form-check-label" for="isRedePublica">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isRedePublica">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isRedePublica" name="isRedePublica"> <span
+								class="slider"></span>
+							</label>
+							<label for="isRedePublica">Não</label>
+						
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="isGerador" class="form-label">Gerador<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isGerador"
-									id="isGerador" value="S"> <label
-									class="form-check-label" for="isGerador">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isGerador"
-									id="isGerador" value="N"> <label
-									class="form-check-label" for="isGerador">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isGerador">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isGerador" name="isGerador"> <span
+								class="slider"></span>
+							</label>
+							<label for="isGerador">Não</label>
+						
 						</div>
 					</div>
 				</div>
@@ -128,17 +136,13 @@ String contextPath = request.getContextPath();
 						<label for="isOutros" class="form-label">Outros<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isOutros"
-									id="isOutrosS" value="S"> <label
-									class="form-check-label" for="isOutros">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isOutros"
-									id="isOutrosN" value="N"> <label
-									class="form-check-label" for="isOutros">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isOutros">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isOutros" name="isOutros"> <span
+								class="slider"></span>
+							</label>
+							<label for="isOutros">Não</label>
+						
 						</div>
 					</div>
 
@@ -152,28 +156,10 @@ String contextPath = request.getContextPath();
 					
 				</div>
 				
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isSemEnergiaEletrica" class="form-label">Sem Energia Elétrica<span
-							class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isSemEnergiaEletrica"
-									id="isSemEnergiaEletrica" value="S"> <label
-									class="form-check-label" for="isSemEnergiaEletrica">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isSemEnergiaEletrica"
-									id="isSemEnergiaEletrica" value="N"> <label
-									class="form-check-label" for="isSemEnergiaEletrica">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 
 				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
+					<button type="submit" class='btn btn-primary px-5' id='btn-submit' disabled>Salvar</button>
 				</div>
 			</form>
 		</section>
@@ -200,23 +186,10 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/disciplinas.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/energiaEletrica.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
-	<script type="text/javascript">
-	
-		
-		let checkS = $("#isOutrosS")
-		let checkN = $("#isOutrosN")
-		checkS.on('click', function() {
-			$("#cardDesc").show()
-		})
-
-		checkN.on('click', function() {
-			$("#cardDesc").hide()
-		})
-	</script>
 </body>
 </html>

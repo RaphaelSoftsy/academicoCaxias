@@ -87,17 +87,17 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="isAcessivel" class="form-label">Computadores
+						<label for="computadoresAluno" class="form-label">Computadores
 							Aluno<span class="red">*</span>
-						</label> <input type="number" id="quantidade" required autocomplete="off"
+						</label> <input type="number" id="qtdComputadoresAlunos" required autocomplete="off"
 							name="quantidade" class="form-control" min='0'
 							oninput="this.value = Math.abs(this.value)" >
 					</div>
 
 					<div class="col-md-6">
-						<label for="isAcessivel" class="form-label">Aparelhos DvD<span
+						<label for="aparelhosDvD" class="form-label">Aparelhos DvD<span
 							class="red">*</span>
-						</label> <input type="number" id="quantidade" required autocomplete="off"
+						</label> <input type="number" id="qtdAparelhosDvd" required autocomplete="off"
 							name="quantidade" class="form-control" min='0'
 							oninput="this.value = Math.abs(this.value)" />
 					</div>
@@ -110,7 +110,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="isAcessivel" class="form-label">Impressora<span
 							class="red">*</span>
-						</label> <input type="number" id="quantidade" required autocomplete="off"
+						</label> <input type="number" id="qtdImpressora" required autocomplete="off"
 							name="quantidade" class="form-control" min='0'
 							oninput="this.value = Math.abs(this.value)" />
 					</div>
@@ -118,7 +118,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="isAcessivel" class="form-label">Parabolicas<span
 							class="red">*</span>
-						</label> <input type="number" id="quantidade" required autocomplete="off"
+						</label> <input type="number" id="qtdParabolicas" required autocomplete="off"
 							name="quantidade" class="form-control" min='0'
 							oninput="this.value = Math.abs(this.value)" />
 					</div>
@@ -128,7 +128,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="isAcessivel" class="form-label">Copiadoras<span
 							class="red">*</span>
-						</label> <input type="number" id="quantidade" required autocomplete="off"
+						</label> <input type="number" id="qtdCopiadoras" required autocomplete="off"
 							name="quantidade" class="form-control" min='0'
 							oninput="this.value = Math.abs(this.value)" />
 					</div>
@@ -136,7 +136,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="isAcessivel" class="form-label">Projetores<span
 							class="red">*</span>
-						</label> <input type="number" id="quantidade" required autocomplete="off"
+						</label> <input type="number" id="qtdProjetores" required autocomplete="off"
 							name="quantidade" class="form-control" min='0'
 							oninput="this.value = Math.abs(this.value)" />
 					</div>
@@ -145,14 +145,14 @@ String contextPath = request.getContextPath();
 				<div class="col-md-6">
 					<label for="isAcessivel" class="form-label">Televisões<span
 						class="red">*</span>
-					</label> <input type="number" id="quantidade" required autocomplete="off"
+					</label> <input type="number" id="qtdTvs" required autocomplete="off"
 						name="quantidade" class="form-control" min='0'
 						oninput="this.value = Math.abs(this.value)" />
 				</div>
 
 
 				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
+					<button type="submit" class='btn btn-primary px-5' id='btn-submit' disabled>Salvar</button>
 				</div>
 			</form>
 		</section>
@@ -177,7 +177,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources/assets/js/escolas/equipamento.js"></script>
+		src="<%=contextPath%>/resources/assets/js/escolas/dispositivo.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

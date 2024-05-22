@@ -8,8 +8,7 @@ var idEscolaLixo = 0
 var currentPage = 1;
 var pagesToShow = 5;
 var escolaId = localStorage.getItem('escolaId');
-let checkS = $("#isOutrosS")
-let checkN = $("#isOutrosN")
+
 
 $(document).ready(function() {
 
@@ -18,51 +17,58 @@ $(document).ready(function() {
 	getDados()
 })
 
+$("#formNovoCadastro :input").change(function() {
+   $("#btn-submit").removeAttr('disabled')
+});
 
-checkS.on('click', function() {
-	$("#cardDesc").show()
-})
+function getAswer(input) {
 
-checkN.on('click', function() {
-	$("#cardDesc").hide()
-})
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
+	}
 
+}
 
 $("#formNovoCadastro").submit(function(e) {
 
 
 	e.preventDefault();
-	
-	if(dados.length > 0){
+
+	if (dados.length > 0) {
 		atualizar()
-	}else{
+	} else {
 		cadastrar()
 	}
-	
+
 })
 
+
+
+
 function atualizar() {
-	if (checkS.is(':checked')) {
+	if ($('input[id="isOutros"]').is(':checked')) {
 		var objeto = {
-			"idEscolaLixo": idEscolaLixo,
+			"idEscolaLixo": Number(idEscolaLixo),
 			"escolaId": Number(escolaId),
-			"coletaPeriodica": $('input[name="isColetaPeriodica"]:checked').val(),
-			"queimaLixo": $('input[name="isQueimaLixo"]:checked').val(),
-			"jogaOutraArea": $('input[name="isJogaOutraArea"]:checked').val(),
-			"reciclagem": $('input[name="isReciclagem"]:checked').val(),
-			"enterra": $('input[name="isEnterra"]:checked').val(),
+			"coletaPeriodica": getAswer('input[name="isColetaPeriodica"]'),
+			"queimaLixo": getAswer('input[name="isQueimaLixo"]'),
+			"jogaOutraArea":  getAswer('input[name="isJogaOutraArea"]'),
+			"reciclagem": getAswer('input[name="isReciclagem"]'),
+			"enterra":  getAswer('input[name="isEnterra"]'),
 			"outros": "S",
-			"descricaoOutros": $('#descricao').val()
-		}
+			"descricaoOutros": $('input[name="descricao"]').val()
+			}
 	} else {
 		var objeto = {
-			"idEscolaLixo": idEscolaLixo,
+			"idEscolaLixo": Number(idEscolaLixo),
 			"escolaId": Number(escolaId),
-			"coletaPeriodica": $('input[name="isColetaPeriodica"]:checked').val(),
-			"queimaLixo": $('input[name="isQueimaLixo"]:checked').val(),
-			"jogaOutraArea": $('input[name="isJogaOutraArea"]:checked').val(),
-			"reciclagem": $('input[name="isReciclagem"]:checked').val(),
-			"enterra": $('input[name="isEnterra"]:checked').val(),
+			"coletaPeriodica": getAswer('input[name="isColetaPeriodica"]'),
+			"queimaLixo": getAswer('input[name="isQueimaLixo"]'),
+			"jogaOutraArea":  getAswer('input[name="isJogaOutraArea"]'),
+			"reciclagem": getAswer('input[name="isReciclagem"]'),
+			"enterra":  getAswer('input[name="isEnterra"]'),
 			"outros": "N"
 		}
 	}
@@ -96,29 +102,29 @@ function atualizar() {
 	return false;
 }
 
-function getDados (){
+function getDados() {
 	$.ajax({
 		url: url_base + `/escolaLixo/escola/${escolaId}`,
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
-			
+
 			idEscolaLixo = data[0].idEscolaLixo
 			dados = data
-			
+
 			if (data[0].coletaPeriodica == "S") {
 				$('input[id="isColetaPeriodica"]').attr('checked', true);
 			} else {
 				$('input[id="isColetaPeriodica"]').attr('checked', false);
 			}
-			
+
 			if (data[0].queimaLixo == "S") {
 				$('input[id="isQueimaLixo"]').attr('checked', true);
 			} else {
 				$('input[id="isQueimaLixo"]').attr('checked', false);
 			}
-			
+
 			if (data[0].jogaOutraArea == "S") {
 				$('input[id="isJogaOutraArea"]').attr('checked', true);
 			} else {
@@ -128,19 +134,19 @@ function getDados (){
 			if (data[0].reciclagem == "S") {
 				$('input[id="isReciclagem"]').attr('checked', true)
 			} else {
-				$('input[id="isReciclagem"]').attr('checked', true)
+				$('input[id="isReciclagem"]').attr('checked', false)
 			}
 
 			if (data[0].enterra == "S") {
 				$('input[id="isEnterra"]').attr('checked', true)
 			} else {
-				$('input[id="isEnterra"]').attr('checked', true)
+				$('input[id="isEnterra"]').attr('checked', false)
 			}
 
 			if (data[0].outros == "S") {
 				$('input[id="isOutros"]').attr('checked', true)
 			} else {
-				$('input[id="isOutros"]').attr('checked', true)
+				$('input[id="isOutros"]').attr('checked', false)
 			}
 
 			if (data[0].descricaoOutros == null) {
@@ -152,26 +158,35 @@ function getDados (){
 		})
 }
 
-function cadastrar (){
-	if (checkS.is(':checked')) {
+$('input[id="isOutros"]').click(() => {
+	if ($('input[id="isOutros"]').is(':checked') == true) {
+		$("#cardDesc").show()
+	} else {
+		$("#cardDesc").hide()
+
+	}
+})
+
+function cadastrar() {
+	if ($('input[id="isOutros"]').is(':checked')) {
 		var objeto = {
 			"escolaId": Number(escolaId),
-			"coletaPeriodica": $('input[name="isColetaPeriodica"]:checked').val(),
-			"queimaLixo": $('input[name="isQueimaLixo"]:checked').val(),
-			"jogaOutraArea": $('input[name="isJogaOutraArea"]:checked').val(),
-			"reciclagem": $('input[name="isReciclagem"]:checked').val(),
-			"enterra": $('input[name="isEnterra"]:checked').val(),
+			"coletaPeriodica": getAswer('input[name="isColetaPeriodica"]'),
+			"queimaLixo": getAswer('input[name="isQueimaLixo"]'),
+			"jogaOutraArea":  getAswer('input[name="isJogaOutraArea"]'),
+			"reciclagem": getAswer('input[name="isReciclagem"]'),
+			"enterra":  getAswer('input[name="isEnterra"]'),
 			"outros": "S",
-			"descricaoOutros": $('#descricao').val()
+			"descricaoOutros": $('input[name="descricao"]').val()
 		}
 	} else {
 		var objeto = {
 			"escolaId": Number(escolaId),
-			"coletaPeriodica": $('input[name="isColetaPeriodica"]:checked').val(),
-			"queimaLixo": $('input[name="isQueimaLixo"]:checked').val(),
-			"jogaOutraArea": $('input[name="isJogaOutraArea"]:checked').val(),
-			"reciclagem": $('input[name="isReciclagem"]:checked').val(),
-			"enterra": $('input[name="isEnterra"]:checked').val(),
+			"coletaPeriodica": getAswer('input[name="isColetaPeriodica"]'),
+			"queimaLixo": getAswer('input[name="isQueimaLixo"]'),
+			"jogaOutraArea":  getAswer('input[name="isJogaOutraArea"]'),
+			"reciclagem": getAswer('input[name="isReciclagem"]'),
+			"enterra":  getAswer('input[name="isEnterra"]'),
 			"outros": "N"
 		}
 	}

@@ -182,7 +182,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
+					<button type="submit" class='btn btn-primary px-5' id='btn-submit' disabled>Salvar</button>
 				</div>
 			</form>
 		</section>

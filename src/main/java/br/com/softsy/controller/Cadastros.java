@@ -92,12 +92,6 @@ public class Cadastros {
 		return "escolas/fornecimentoAgua";
 	}
 	
-	@RequestMapping(value = { "escola-energia-eletrica", "escolaEnergiaEletrica" }, method = RequestMethod.GET)
-	public String escolaEnergiaEletrica(HttpSession session, Model model) throws Exception {
-		
-		return "escolas/energiaEletrica";
-	}
-	
 	@RequestMapping(value = { "escola-esgotamento-sanitario", "escolaEsgotamentoSanitario" }, method = RequestMethod.GET)
 	public String escolaEsgotamentoSanitario(HttpSession session, Model model) throws Exception {
 		

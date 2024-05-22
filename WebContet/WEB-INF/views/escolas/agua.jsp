@@ -90,98 +90,70 @@ String contextPath = request.getContextPath();
 						<label for="isSemAgua" class="form-label">Possui Água<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isSemAgua"
-									id="isSemAguaS" value="S"> <label
-									class="form-check-label" for="isSemAgua">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isSemAgua"
-									id="isSemAguaN" value="N"> <label
-									class="form-check-label" for="isSemAgua">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isSemAgua">Sim</label> <label class="switch">
+								<input type="checkbox" id="isSemAgua" name="isSemAgua">
+								<span class="slider"></span>
+							</label> <label for="isSemAgua">Não</label>
+
 						</div>
 					</div>
 					
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="isAcessivel" class="form-label">Agua Tratada<span
+						<label for="isAguaTratada" class="form-label">Agua Tratada<span
 							class="red">*</span></label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isAguaTratada"
-									id="isAguaTratadaS" value="S"> <label class="form-check-label"
-									for="isAguaTratada">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isAguaTratada"
-									id="isAguaTratadaN" value="N"> <label
-									class="form-check-label" for="isAguaTratada">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isAguaTratada">Sim</label> <label class="switch">
+								<input type="checkbox" id="isAguaTratada" name="isAguaTratada">
+								<span class="slider"></span>
+							</label> <label for="isAguaTratada">Não</label>
+
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="isPocoArtesiano" class="form-label">Poço Artesiano<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isPocoArtesiano"
-									id="isPocoArtesianoS" value="S"> <label
-									class="form-check-label" for="isPocoArtesiano">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isPocoArtesiano"
-									id="isPocoArtesianoN" value="N"> <label
-									class="form-check-label" for="isPocoArtesiano">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isPocoArtesiano">Sim</label> <label class="switch">
+								<input type="checkbox" id="isPocoArtesiano" name="isPocoArtesiano">
+								<span class="slider"></span>
+							</label> <label for="isPocoArtesiano">Não</label>
+
 						</div>
 					</div>
 				</div>
 				
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="isAcessivel" class="form-label">Cacimba<span
+						<label for="isCacimba" class="form-label">Cacimba<span
 							class="red">*</span></label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isCacimba"
-									id="isCacimbaS" value="S"> <label class="form-check-label"
-									for="isCacimba">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isCacimba"
-									id="isCacimbaN" value="N"> <label
-									class="form-check-label" for="isCacimba">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isCacimba">Sim</label> <label class="switch">
+								<input type="checkbox" id="isCacimba" name="isCacimba">
+								<span class="slider"></span>
+							</label> <label for="isCacimba">Não</label>
+
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="isFonteRio" class="form-label">Fonte Rio<span
 							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isFonteRio"
-									id="isFonteRioS" value="S"> <label
-									class="form-check-label" for="isFonteRio">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isFonteRio"
-									id="isFonteRioN" value="N"> <label
-									class="form-check-label" for="isFonteRio">Não</label>
-							</div>
+						<div class="form-control card-form">
+							<label for="isFonteRio">Sim</label> <label class="switch">
+								<input type="checkbox" id="isFonteRio" name="isFonteRio">
+								<span class="slider"></span>
+							</label> <label for="isFonteRio">Não</label>
+
 						</div>
 					</div>
 				</div>
 				
-				
-
-
 
 				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Salvar</button>
+					<button type="submit" class='btn btn-primary px-5' id='btn-submit' disabled>Salvar</button>
 				</div>
 			</form>
 		</section>
