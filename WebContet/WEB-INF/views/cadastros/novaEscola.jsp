@@ -128,7 +128,8 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="codigoInep" class="form-label">Código Inep:<span
 							class="red">*</span></label> <input type="tel" id="codigoInep" required
-							autocomplete="off" name="codigoInep" class="form-control " />
+							autocomplete="off" name="codigoInep" class="form-control" min='0'
+							oninput="this.value = Math.abs(this.value)"/>
 					</div>
 
 					<div class="col-md-6">
@@ -314,7 +315,8 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="numCME" class="form-label">Nº do cadastro:<span
 							class="red">*</span></label> <input type="number" id="numCME" required
-							autocomplete="off" name="numCME" class="form-control " />
+							autocomplete="off" name="numCME" class="form-control " min='0'
+							oninput="this.value = Math.abs(this.value)"/>
 					</div>
 
 				</div>
@@ -325,7 +327,8 @@ String contextPath = request.getContextPath();
 						<label for="numParecerCME" class="form-label">Nº do
 							Parecer:<span class="red">*</span>
 						</label> <input type="number" id="numParecerCME" required
-							autocomplete="off" name="numParecerCME" class="form-control " />
+							autocomplete="off" name="numParecerCME" class="form-control" min='0'
+							oninput="this.value = Math.abs(this.value)" />
 					</div>
 					<div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Dependência
@@ -456,7 +459,8 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="numero" class="form-label">Número:<span
 							class="red">*</span></label> <input type='text' class="form-control"
-							id="numero" name="numero" />
+							id="numero" name="numero" min='0'
+							oninput="this.value = Math.abs(this.value)"  />
 					</div>
 					<div class="col-md-6">
 						<label for="latitude" class="form-label">Latitude:<span
