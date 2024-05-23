@@ -8,7 +8,7 @@ $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
 	containerResponsivo();
-	
+
 	const url = window.location.pathname
 	const contaId = sessionStorage.getItem('contaId')
 	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
@@ -26,9 +26,9 @@ $(document).ready(function() {
 	}
 	console.log(url)
 	const perfilEscola = localStorage.getItem("perfil")
-	if(window.location.href.indexOf("escola") > -1 && !(window.location.toString().includes("acessar"))){
-		
-		if(perfilEscola == undefined || perfilEscola == null){
+	if (window.location.href.indexOf("escola") > -1 && !(window.location.toString().includes("acessar"))) {
+
+		if (perfilEscola == undefined || perfilEscola == null) {
 			Swal.fire({
 				title: "Nenhum escola localizada, selecione uma escola",
 				icon: "info",
@@ -39,20 +39,25 @@ $(document).ready(function() {
 			})
 		}
 	}
-})
 
-
-window.addEventListener("load", function() {
 	$("#menu").load(path_base + "/menu.html");
-	const urlImage = "http://localhost:8090/front-educacional-caxias/resources/assets/img/logoBranco.png"
-	$("#imgLogo").removeAttr("src")
-	$("#imgLogo").attr("src", urlImage)
 	/*const loader = document.querySelector(".bg-loading");
 	loader.parentElement.removeChild(loader);
 	$(".bg-loading").addClass("none");*/
 	$(".bg-loading").fadeOut()
+})
 
-});
+
+/*window.addEventListener("load", function() {
+	$("#menu").load(path_base + "/menu.html");
+	const urlImage = "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000069430/20a06bf1886558538728f46bf4b3bae2875e7d371d3b0d2b3bbf6ea2302f7668"
+	$("#imgLogoMenu").prop("src", urlImage)
+	const loader = document.querySelector(".bg-loading");
+	loader.parentElement.removeChild(loader);
+	$(".bg-loading").addClass("none");
+	$(".bg-loading").fadeOut()
+
+});*/
 
 
 function getValorSelects() {
