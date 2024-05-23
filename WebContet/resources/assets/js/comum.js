@@ -46,7 +46,7 @@ window.addEventListener("load", function() {
 	$("#menu").load(path_base + "/menu.html");
 	const urlImage = "http://localhost:8090/front-educacional-caxias/resources/assets/img/logoBranco.png"
 	$("#imgLogo").removeAttr("src")
-	$("#imgLogo").attr("src", "aaaaaaaaaaaaa")
+	$("#imgLogo").attr("src", urlImage)
 	/*const loader = document.querySelector(".bg-loading");
 	loader.parentElement.removeChild(loader);
 	$(".bg-loading").addClass("none");*/
