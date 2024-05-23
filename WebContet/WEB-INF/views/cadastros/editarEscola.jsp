@@ -455,7 +455,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-5">
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="numero" class="form-label">Número:<span
 							class="red">*</span></label> <input type='number' class="form-control"
@@ -467,19 +467,24 @@ String contextPath = request.getContextPath();
 							id="latitude" required disabled name="latitude" />
 					</div>
 
+
+
+
+				</div>
+
+				<div class="row mb-3">
 					<div class="col-md-6 mt-3">
 						<label for="longitude" class="form-label">Longitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="longitude" required disabled name="longitude" />
 					</div>
+
 					<div class="col-md-6">
 						<button type="button" onclick='ativar("escolas")'
 							class="ativar btn btn-secondary mt-5">Ativar</button>
 						<button type="button" onclick='desativar("escolas")'
 							class="desativar btn btn-secondary mt-5">Desativar</button>
 					</div>
-
-				</div>
 				</div>
 				<div class="col-md-12 text-center">
 

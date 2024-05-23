@@ -312,7 +312,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="numCME" class="form-label">Nº do adastro:<span
+						<label for="numCME" class="form-label">Nº do cadastro:<span
 							class="red">*</span></label> <input type="number" id="numCME" required
 							autocomplete="off" name="numCME" class="form-control " />
 					</div>
@@ -452,7 +452,7 @@ String contextPath = request.getContextPath();
 
 				</div>
 
-				<div class="row mb-5">
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="numero" class="form-label">Número:<span
 							class="red">*</span></label> <input type='text' class="form-control"
@@ -464,15 +464,18 @@ String contextPath = request.getContextPath();
 							id="latitude" disabled name="latitude" />
 					</div>
 
+				</div>
+				<div class="row mb-3">
+
 					<div class="col-md-6 mt-3">
 						<label for="longitude" class="form-label">Longitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="longitude" disabled name="longitude" />
 					</div>
-
 				</div>
+
 				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Cadastrar</button>
+					<button type="submit" class='btn btn-primary px-5' id='btn-submit' disabled>Cadastrar</button>
 				</div>
 			</form>
 		</section>

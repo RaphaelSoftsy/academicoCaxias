@@ -88,7 +88,7 @@ String contextPath = request.getContextPath();
 					
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="isSemEnergiaEletrica" class="form-label">Sem Energia Elétrica<span
+						<label for="isSemEnergiaEletrica" class="form-label">Possui Energia Elétrica<span
 							class="red">*</span>
 						</label>
 						<div class="form-control card-form">

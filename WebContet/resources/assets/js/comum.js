@@ -8,6 +8,7 @@ $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
 	containerResponsivo();
+	
 	const url = window.location.pathname
 	const contaId = sessionStorage.getItem('contaId')
 	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
@@ -43,6 +44,9 @@ $(document).ready(function() {
 
 window.addEventListener("load", function() {
 	$("#menu").load(path_base + "/menu.html");
+	const urlImage = "http://localhost:8090/front-educacional-caxias/resources/assets/img/logoBranco.png"
+	$("#imgLogo").removeAttr("src")
+	$("#imgLogo").attr("src", "aaaaaaaaaaaaa")
 	/*const loader = document.querySelector(".bg-loading");
 	loader.parentElement.removeChild(loader);
 	$(".bg-loading").addClass("none");*/

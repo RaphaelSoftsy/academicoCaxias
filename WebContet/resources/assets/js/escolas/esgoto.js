@@ -1,4 +1,4 @@
-
+ 
 var pefilEscola = localStorage.getItem("perfil");
 var escola = JSON.parse(pefilEscola);
 var nomeEscola = escola.nome;
@@ -29,8 +29,8 @@ $('input[id="isInexistente"]').click(() => {
 	}
 })
 
-$("#formNovoCadastro :input").change(function() {
-   $("#btn-submit").removeAttr('disabled')
+$('#formNovoCadastro :input').on('change', function() {
+	$("#btn-submit").removeAttr('disabled')
 });
 
 $("#formNovoCadastro").submit(function(e) {

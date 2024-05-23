@@ -24,9 +24,6 @@ $('#formNovoCadastro :input').on('change', function() {
 	$("#btn-submit").removeAttr('disabled')
 });
 
-$("#formNovoCadastro :input").change(function() {
-	$("#btn-submit").removeAttr('disabled')
-});
 
 
 

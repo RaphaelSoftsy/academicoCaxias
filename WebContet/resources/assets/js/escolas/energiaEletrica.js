@@ -68,12 +68,13 @@ function getDados() {
 				$("#cardDesc").val(data[0].descricaoOutros)
 			}
 
-			if (data[0].semEnergiaEletrica == 'S') {
-				$('input[id="isSemEnergiaEletrica"]').attr('checked', true)
+			if (data[0].semEnergiaEletrica == 'N') {
+				$('input[id="isSemEnergiaEletrica"]').attr('checked', false)
 				$('input[id="isGerador"]').attr('checked', false)
 				$('input[id="isGerador"]').prop('disabled', true)
 				$('input[id="isOutros"]').attr('checked', false)
 				$('input[id="isOutros"]').prop('disabled', true)
+				$("#cardDesc").hide()
 			}
 
 		})
@@ -85,17 +86,32 @@ function getDados() {
 	return false
 }
 
+
+/*$('input[id="isInexistente"]').click(() => {
+	if ($('input[id="isInexistente"]').is(':checked') == true) {
+		$('input[id="isFossa"]').prop('checked', false)
+		$('input[id="isFossa"]').prop('disabled', true)
+	} else {
+		$('input[id="isFossa"]').attr('checked', false)
+		$('input[id="isFossa"]').prop('disabled', false)
+	}
+})*/
+
+
 $('input[id="isSemEnergiaEletrica"]').click(() => {
 	if ($('input[id="isSemEnergiaEletrica"]').is(':checked') == true) {
-		$('input[id="isGerador"]').attr('checked', false)
-		$('input[id="isGerador"]').prop('disabled', true)
-		$('input[id="isOutros"]').attr('checked', false)
-		$('input[id="isOutros"]').prop('disabled', true)
-	} else {
-		$('input[id="isGerador"]').attr('checked', true)
+		$('input[id="isGerador"]').prop('checked', true)
 		$('input[id="isGerador"]').prop('disabled', false)
-		$('input[id="isOutros"]').attr('checked', false)
+		$('input[id="isOutros"]').prop('checked', true)
 		$('input[id="isOutros"]').prop('disabled', false)
+		$("#cardDesc").show()
+		
+	} else {
+		$('input[id="isGerador"]').prop('checked', false)
+		$('input[id="isGerador"]').prop('disabled', true)
+		$('input[id="isOutros"]').prop('checked', false)
+		$('input[id="isOutros"]').prop('disabled', true)
+		$("#cardDesc").hide()
 	}
 })
 

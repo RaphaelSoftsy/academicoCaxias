@@ -1,5 +1,16 @@
 const contaId = sessionStorage.getItem('contaId')
+var $fields = $('#nome', '#logoEscola', '#email', '#cnpj',
+	'#codigoInep', '#zoneamentoId', 'input[ name="isAcessivel"]',
+	'input[name="isIndigena"', 'input[name="merendaEscolar"]',
+	'input[name="possuiAguaPotavel"]', 'input[name="internetBandaLarga"]',
+	'input[name="exameSelecao"', 'input[name="compartilhaEspaco"',
+	'input[name="usaEspacoEntornoEscolar"', 'input[name="pppAtualizado12Meses"]',
+	'#numCME', '#numParecerCME', '#dependenciaAdmId', '#situacaoFuncionamentoId',
+	'#formaOcupacaoPredioId', '#tipoEscola', '#categoriaEscolaPrivadaId',
+	'#entidadeSuperiorId', '#orgaoPublicoId', '#localizacaoId', '#cep',
+	'#uf', '#municipio', '#bairro', '#numero', '#latitude', '#longitude'
 
+);
 $(document).ready(function() {
 	getValorSelects()
 });
@@ -22,16 +33,16 @@ $("#cep").blur(function() {
 			$("#endereco").prop('disabled', false)
 			$("#longitude").prop('disabled', false)
 			$("#latitude").prop('disabled', false)
-			
+
 			$("#endereco").val('');
 			$("#bairro").val('');
 			$("#municipio").val('');
 			$("#uf").val('');
 			$("#longitude").val('');
 			$("#latitude").val('');
-			
+
 			$('.bg-loading').fadeOut()
-		}else{
+		} else {
 			$("#uf").prop('disabled', true)
 			$("#municipio").prop('disabled', true)
 			$("#bairro").prop('disabled', true)
@@ -46,7 +57,7 @@ $("#cep").blur(function() {
 		$("#bairro").val(data.bairro);
 		$("#municipio").val(data.localidade);
 		$("#uf").val(data.uf);
-		
+
 
 		$.ajax({
 			url: 'https://nominatim.openstreetmap.org/search?format=json&q=' + data.logradouro + ', ' + data.localidade + ', ' + data.uf,
@@ -138,7 +149,7 @@ $("#formNovoCadastro").submit(function(e) {
 					Swal.fire({
 						icon: "error",
 						title: "Oops...",
-						text: "Não foi possível realizar esse comando!",
+						text: "Não foi possível cadastrar a escolaweb!",
 					});
 				}
 			}).done(function(data) {
@@ -152,6 +163,19 @@ $("#formNovoCadastro").submit(function(e) {
 	}
 
 });
+
+function allFilled($fields) {
+	return $fields.filter(function() {
+		return this.value === '';
+	}).length == 0;
+}
+
+$fields.on('keyup change', function() {
+	if (allFilled($fields)) {
+		$('#btn-submit').removeAttr('disabled');
+	}
+});
+
 
 function cnpjValido(cnpj) {
 	cnpj = cnpj.replace(/[^\d]+/g, '');
@@ -195,14 +219,12 @@ $("#cnpj").blur(function() {
 	const message = $("<p id='errMessageCnpj'></p>").text("CNPJ Inválido").css('color', '#FF0000');
 
 	if (cnpjValido(cnpj.val())) {
-		$("#btn-submit").removeAttr('disabled');
 		cnpj.removeClass('err-message')
 		$('#errMessageCnpj').css('display', 'none')
 	} else {
-		if($("#cardCNPJ").find('#errMessageCnpj').length == 1){
-			$("#cardCNPJ").find('#errMessageCnpj' + this.value).remove()	
+		if ($("#cardCNPJ").find('#errMessageCnpj').length == 1) {
+			$("#cardCNPJ").find('#errMessageCnpj' + this.value).remove()
 		}
-		$("#btn-submit").attr("disabled", "disabled");
 		cnpj.addClass('err-message')
 		$("#cardCNPJ").append(message)
 		message.show()
