@@ -85,7 +85,6 @@ String contextPath = request.getContextPath();
 			</div>
 		</section>
 
-
 		<section class="pt-4">
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
@@ -127,9 +126,10 @@ String contextPath = request.getContextPath();
 
 					<div class="col-md-6">
 						<label for="codigoInep" class="form-label">Código Inep:<span
-							class="red">*</span></label> <input type="tel" id="codigoInep" required
-							autocomplete="off" name="codigoInep" class="form-control" min='0'
-							oninput="this.value = Math.abs(this.value)"/>
+							class="red">*</span></label> <input type="number" id="codigoInep"
+							required autocomplete="off" name="codigoInep"
+							class="form-control" min='0'
+							oninput="this.value = Math.abs(this.value)" />
 					</div>
 
 					<div class="col-md-6">
@@ -137,206 +137,113 @@ String contextPath = request.getContextPath();
 							class="red">*</span>
 						</label> <select class="form-select" aria-label="Zoneamento"
 							id="zoneamentoId" required name="zoneamentoId">
-							<option selected disabled>Selecione o Zoneamento</option>
+							<option value='' selected disabled>Selecione o
+								Zoneamento</option>
 						</select>
 					</div>
 
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="isAcessivel" class="form-label">Acessível:<span
-							class="red">*</span></label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isAcessivel"
-									id="isAcessivelS" value="S"> <label
-									class="form-check-label" for="isAcessivelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isAcessivel"
-									id="isAcessivelN" value="N"> <label
-									class="form-check-label" for="isAcessivelN">Não</label>
-							</div>
-						</div>
-					</div>
+				
+
 					<div class="col-md-6">
 						<label for="isIndigena" class="form-label">Educação
 							Indígena:<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isIndigena"
-									id="isIndigenaS" value="S"> <label
-									class="form-check-label" for="isIndigenaS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isIndigena"
-									id="isIndigenaN" value="N"> <label
-									class="form-check-label" for="isIndigenaN">Não</label>
-							</div>
+							<label for="isIndigena">Sim</label> <label class="switch">
+								<input type="checkbox" id="isIndigena" name="isIndigena">
+								<span class="slider"></span>
+							</label> <label for="isIndigena">Não</label>
 						</div>
 					</div>
 				</div>
+
 				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="merendaEscolar" class="form-label">Merenda
-							Escolar:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="possuiAguaPotavel" class="form-label">Possui
-							Água Potável:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="internetBandaLarga" class="form-label">Internet
-							Banda Larga:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="internetBandaLarga" id="internetBandaLargaS" value="S">
-								<label class="form-check-label" for="internetBandaLargaS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="internetBandaLarga" id="internetBandaLargaN" value="N">
-								<label class="form-check-label" for="internetBandaLargaN">Não</label>
-							</div>
-						</div>
-					</div>
+
 					<div class="col-md-6">
 						<label for="exameSelecao" class="form-label">Exame
 							Seleção:<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="exameSelecao"
-									id="exameSelecaoS" value="S"> <label
-									class="form-check-label" for="exameSelecaoS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="exameSelecao"
-									id="exameSelecaoN" value="N"> <label
-									class="form-check-label" for="exameSelecaoN">Não</label>
-							</div>
+							<label for="exameSelecao">Sim</label> <label class="switch">
+								<input type="checkbox" id="exameSelecao" name="exameSelecao">
+								<span class="slider"></span>
+							</label> <label for="exameSelecao">Não</label>
 						</div>
 					</div>
-
-				</div>
-
-				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="compartilhaEspaco" class="form-label">Compartilha
 							Espaço:<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="compartilhaEspaco" id="compartilhaEspacoS" value="S">
-								<label class="form-check-label" for="compartilhaEspacoS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="compartilhaEspaco" id="compartilhaEspacoN" value="N">
-								<label class="form-check-label" for="compartilhaEspacoN">Não</label>
-							</div>
+							<label for="compartilhaEspaco">Sim</label> <label class="switch">
+								<input type="checkbox" id="compartilhaEspaco"
+								name="compartilhaEspaco"> <span class="slider"></span>
+							</label> <label for="compartilhaEspaco">Não</label>
 						</div>
 					</div>
+				</div>
+
+				<div class="row mb-3">
+
 					<div class="col-md-6">
 						<label for="usaEspacoEntornoEscolar" class="form-label">Usa
 							Espaço Entorno Escolar:<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="usaEspacoEntornoEscolar" id="usaEspacoEntornoEscolarS"
-									value="S"> <label class="form-check-label"
-									for="usaEspacoEntornoEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="usaEspacoEntornoEscolar" id="usaEspacoEntornoEscolarN"
-									value="N"> <label class="form-check-label"
-									for="usaEspacoEntornoEscolarN">Não</label>
-							</div>
+							<label for="usaEspacoEntornoEscolar">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="usaEspacoEntornoEscolar" name="usaEspacoEntornoEscolar">
+								<span class="slider"></span>
+							</label> <label for="usaEspacoEntornoEscolar">Não</label>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<label for="pppAtualizado12Meses" class="form-label">PPP
+							Atualizado (12 Meses):<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<label for="pppAtualizado12Meses">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="pppAtualizado12Meses" name="pppAtualizado12Meses"> <span
+								class="slider"></span>
+							</label> <label for="pppAtualizado12Meses">Não</label>
 						</div>
 					</div>
 
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="pppAtualizado12Meses" class="form-label">PPP
-							Atualizado (12 Meses):<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="pppAtualizado12Meses" id="pppAtualizado12MesesS"
-									value="S"> <label class="form-check-label"
-									for="pppAtualizado12MesesS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="pppAtualizado12Meses" id="pppAtualizado12MesesN"
-									value="N"> <label class="form-check-label"
-									for="pppAtualizado12MesesN">Não</label>
-							</div>
-						</div>
-					</div>
+
 					<div class="col-md-6">
 						<label for="numCME" class="form-label">Nº do cadastro:<span
 							class="red">*</span></label> <input type="number" id="numCME" required
 							autocomplete="off" name="numCME" class="form-control " min='0'
-							oninput="this.value = Math.abs(this.value)"/>
+							oninput="this.value = Math.abs(this.value)" />
 					</div>
-
-				</div>
-
-
-				<div class="row mb-4">
 					<div class="col-md-6">
 						<label for="numParecerCME" class="form-label">Nº do
 							Parecer:<span class="red">*</span>
 						</label> <input type="number" id="numParecerCME" required
-							autocomplete="off" name="numParecerCME" class="form-control" min='0'
-							oninput="this.value = Math.abs(this.value)" />
+							autocomplete="off" name="numParecerCME" class="form-control"
+							min='0' oninput="this.value = Math.abs(this.value)" />
 					</div>
+				</div>
+
+
+				<div class="row mb-4">
+					
 					<div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Dependência
 							Administrativa:<span class="red">*</span>
 						</label> <select class="form-select"
 							aria-label="Dependência Administrativa" id="dependenciaAdmId"
 							required name="dependenciaAdmId">
-							<option selected disabled>Selecione a Dependência</option>
+							<option selected value='' disabled>Selecione a
+								Dependência</option>
 						</select>
 					</div>
 
@@ -349,8 +256,7 @@ String contextPath = request.getContextPath();
 							de Funcionamento:<span class="red">*</span>
 						</label> <select class="form-select"
 							aria-label="Situação de Funcionamento"
-							id="situacaoFuncionamentoId" required
-							name="situacaoFuncionamentoId">
+							id="situacaoFuncionamentoId" name="situacaoFuncionamentoId">
 							<option selected disabled>Selecione a Situação</option>
 						</select>
 					</div>
@@ -360,7 +266,8 @@ String contextPath = request.getContextPath();
 						</label> <select class="form-select"
 							aria-label="Forma de Ocupação do Prédio"
 							id="formaOcupacaoPredioId" required name="formaOcupacaoPredioId">
-							<option selected disabled>Selecione a Forma de Ocupação</option>
+							<option selected value='' disabled>Selecione a Forma de
+								Ocupação</option>
 						</select>
 					</div>
 				</div>
@@ -369,11 +276,11 @@ String contextPath = request.getContextPath();
 
 
 					<div class="col-md-6">
-						<label for="tipoEscola" class="form-label">Tipo:<span
+						<label for="tipoEscola" class="form-label">Tipo Escola:<span
 							class="red">*</span></label> <select class="form-select"
 							aria-label="Tipo Escola" id="tipoEscola" required
 							name="tipoEscola">
-							<option selected disabled>Selecione o tipo</option>
+							<option selected>Selecione o tipo</option>
 							<option value="PU">Pública</option>
 							<option value="PV">Privada</option>
 						</select>
@@ -386,7 +293,7 @@ String contextPath = request.getContextPath();
 						</label> <select class="form-select" aria-label="Categoria Escola Privada"
 							id="categoriaEscolaPrivadaId" required
 							name="categoriaEscolaPrivadaId">
-							<option selected disabled>Selecione a Categoria</option>
+							<option selected value='' disabled>Selecione a Categoria</option>
 						</select>
 					</div>
 				</div>
@@ -397,15 +304,15 @@ String contextPath = request.getContextPath();
 							Superior:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Entidade Superior"
 							id="entidadeSuperiorId" required name="entidadeSuperiorId">
-							<option selected disabled>Selecione a Entidade</option>
+							<option selected value='' disabled>Selecione a Entidade</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="categoriaEscolaPrivadaId" class="form-label">Orgão
+						<label for="orgaoPublicoId" class="form-label">Orgão
 							Público:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Orgão Público"
 							id="orgaoPublicoId" required name="orgaoPublicoId">
-							<option selected disabled>Selecione o Orgão</option>
+							<option selected value='' disabled>Selecione o Orgão</option>
 						</select>
 					</div>
 				</div>
@@ -419,22 +326,24 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione o Tipo</option>
 						</select>
 					</div>
+					
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
 						<input type='tel' class="form-control" id="cep"
-							data-mask="00000-000" name="cep" />
+							data-mask="00000-000" name="cep" required />
 					</div>
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="uf" class="form-label">UF:<span class="red">*</span></label>
-						<input type='text' class="form-control" id="uf" disabled name="uf" />
+						<input type='text' class="form-control" maxlength="10" id="uf"
+							disabled name="uf" required />
 					</div>
 					<div class="col-md-6">
 						<label for="municipio" class="form-label">Município:<span
 							class="red">*</span></label> <input type='tel' class="form-control"
-							id="municipio" disabled name="municipio" />
+							id="municipio" disabled name="municipio" required />
 					</div>
 
 
@@ -449,7 +358,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:<span
 							class="red">*</span></label> <input type='text' class="form-control"
-							id="endereco" disabled name="endereco" />
+							id="endereco" disabled name="endereco" required />
 					</div>
 
 
@@ -459,8 +368,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="numero" class="form-label">Número:<span
 							class="red">*</span></label> <input type='text' class="form-control"
-							id="numero" name="numero" min='0'
-							oninput="this.value = Math.abs(this.value)"  />
+							id="numero" name="numero" />
 					</div>
 					<div class="col-md-6">
 						<label for="latitude" class="form-label">Latitude:<span
@@ -478,8 +386,10 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
+
+
 				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class='btn btn-primary px-5' id='btn-submit' disabled>Cadastrar</button>
+					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Cadastrar</button>
 				</div>
 			</form>
 		</section>
@@ -505,5 +415,7 @@ String contextPath = request.getContextPath();
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+
 </body>
 </html>

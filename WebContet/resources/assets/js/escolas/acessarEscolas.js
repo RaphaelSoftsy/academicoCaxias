@@ -122,7 +122,7 @@ $(document).ready(function() {
 $('#limpa-filtros').click(function() {
         listarDados(dadosOriginais);
         $('.searchInput').val('');
-    });
+        });
 
 function getDados() {
 	$.ajax({
@@ -153,6 +153,13 @@ function listarDados(dados) {
 
 		return (
 			"<tr>" +
+			'<td class="d-flex justify-content-center"><span style="width: 50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			item.idEscola +
+			'" data-nome="' +
+			item.nomeEscola +
+			'" data-logo="' +
+			item.logoEscola +
+			'" onclick="acessar(this)"><i class="fa-solid fa-right-to-bracket fa-lg"></i></span></td>'+
 			"<td>" +
 			item.nomeEscola +
 			"</td>" +
@@ -163,18 +170,11 @@ function listarDados(dados) {
 			item.uf +
 			"</td>" +
 			"<td>" +
-			item.cnpj +
+			item.codigoInep +
 			"</td>" +
 			"<td><div class='d-flex align-items-center gap-1'>" +
 			ativo +
 			"</div></td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idEscola +
-			'" data-nome="' +
-			item.nomeEscola +
-			'" data-logo="' +
-			item.logoEscola +
-			'" onclick="acessar(this)"><i class="fa-solid fa-right-to-bracket fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");

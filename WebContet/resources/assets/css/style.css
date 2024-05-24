@@ -54,7 +54,10 @@ body {
 	display:none;
 	
 }
-
+.switch-card{
+	width: 100%;
+	
+}
 .mt2 {
   margin-top: 2rem;
 }
@@ -99,13 +102,15 @@ body {
 
 /*Switch Toogle*/
 
+
+
 /* The switch - the box around the slider */
 .switch {
   transform: rotate(180deg);
   font-size: 17px;
   position: relative;
   display: inline-block;
-  width: 2.7em;
+  width: 4em;
   height: 1.5em;
 }
 
@@ -121,7 +126,8 @@ body {
   position: absolute;
   cursor: pointer;
   inset: 0;
-    background: #9cc9fa;
+
+  background: #8B0000 	;
   border-radius: 50px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -137,7 +143,7 @@ body {
   inset: 0;
   background-color: white;
   border-radius: 50px;
-
+   border:1px solid #000;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -147,11 +153,11 @@ body {
 }
 
 .switch input:focus + .slider {
-  box-shadow: 0 0 1px #9cc9fa;
+  box-shadow: 0 0 1px #9cc9fa;;
 }
 
 .switch input:checked + .slider:before {
-  transform: translateX(1.3em);
+  transform: translateX(2.6em);
 }
 
 .card-form{
@@ -162,6 +168,13 @@ body {
 	gap: 5%;
 	
 }
+
+.form-label{
+	font-size: .9rem;
+}
+
+
+
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1; 
@@ -495,10 +508,6 @@ body {
   visibility: visible;
   opacity: 1;
 }
-
-
-
-
 
 
 /* CLASSES DE USO GERAL */
@@ -977,6 +986,10 @@ background-color: #ddd;
   }
   .card-table{
   	width: 100%;
+  }
+  
+  .pt-4{
+  width: 100%
   }
 }
 

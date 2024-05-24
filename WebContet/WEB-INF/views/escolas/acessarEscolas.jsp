@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -38,11 +39,11 @@ String contextPath = request.getContextPath();
 	rel="stylesheet">
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-	
+
 <!-- Sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -83,7 +84,8 @@ String contextPath = request.getContextPath();
 				style="display: flex; align-items: center; justify-content: end;">
 
 				<div class="d-flex align-items-center gap-2">
-					<button id="limpa-filtros" class="btn btn-sm btn-danger">Limpar Filtros</button>
+					<button id="limpa-filtros" class="btn btn-sm btn-danger">Limpar
+						Filtros</button>
 					<button id="exportar-excel"
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
@@ -99,6 +101,8 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
+						<th class='text-center th-sem-filtro' scope="col" width="10%">Acessar
+							Perfil</th>
 						<th scope="col" class="sortable border-end"
 							data-column="nomeEscola">
 							<div
@@ -147,8 +151,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="uf">
+						<th scope="col" class="sortable border-end" data-column="uf">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
@@ -176,7 +179,7 @@ String contextPath = request.getContextPath();
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>CNPJ</span> <i class="fas fa-sort me-3"
+									<span>Código Inep</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -196,8 +199,6 @@ String contextPath = request.getContextPath();
 						</th>
 						<th scope="col" class="sortable  border-end pe-2 th-sem-filtro"
 							data-column="ativo">Ativo</th>
-						<th class='text-center th-sem-filtro' scope="col" width="10%">Acessar
-							Perfil</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">

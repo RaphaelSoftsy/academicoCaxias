@@ -1,16 +1,5 @@
 const contaId = sessionStorage.getItem('contaId')
-var $fields = $('#nome', '#logoEscola', '#email', '#cnpj',
-	'#codigoInep', '#zoneamentoId', 'input[ name="isAcessivel"]',
-	'input[name="isIndigena"', 'input[name="merendaEscolar"]',
-	'input[name="possuiAguaPotavel"]', 'input[name="internetBandaLarga"]',
-	'input[name="exameSelecao"', 'input[name="compartilhaEspaco"',
-	'input[name="usaEspacoEntornoEscolar"', 'input[name="pppAtualizado12Meses"]',
-	'#numCME', '#numParecerCME', '#dependenciaAdmId', '#situacaoFuncionamentoId',
-	'#formaOcupacaoPredioId', '#tipoEscola', '#categoriaEscolaPrivadaId',
-	'#entidadeSuperiorId', '#orgaoPublicoId', '#localizacaoId', '#cep',
-	'#uf', '#municipio', '#bairro', '#numero', '#latitude', '#longitude'
 
-);
 $(document).ready(function() {
 	getValorSelects()
 });
@@ -79,6 +68,20 @@ $("#cep").blur(function() {
 });
 
 
+function getAswer(input) {
+
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
+	}
+
+}
+
+
+
+
+
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
@@ -115,22 +118,15 @@ $("#formNovoCadastro").submit(function(e) {
 				latitude: $('#latitude').val(),
 				longitude: $('#longitude').val(),
 				email: $('#email').val(),
-				educacaoIndigena: $('input[name="isIndigena"]:checked').val(),
-				exameSelecao: $('input[name="exameSelecao"]:checked').val(),
-				compartilhaEspaco: $('input[name="compartilhaEspaco"]:checked').val(),
-				usaEspacoEntornoEscolar: $('input[name="usaEspacoEntornoEscolar"]:checked').val(),
-				pppAtualizado12Meses: $('input[name="pppAtualizado12Meses"]:checked').val(),
-				acessivel: $('input[name="isAcessivel"]:checked').val(),
-
-				"merendaEscolar": $('input[name="merendaEscolar"]:checked').val(),
-				"possuiAguaPotavel": $('input[name="possuiAguaPotavel"]:checked').val(),
-				"internetBandaLarga": $('input[name="internetBandaLarga"]:checked').val(),
-
+				educacaoIndigena: getAswer('#isIndigena'),
+				exameSelecao: getAswer('#exameSelecao'),
+				compartilhaEspaco: getAswer('#compartilhaEspaco'),
+				usaEspacoEntornoEscolar: getAswer('#usaEspacoEntornoEscolar'),
+				pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 				localizacaoId: Number($('#localizacaoId').val()),
 				dependenciaAdmId: Number($('#dependenciaAdmId').val()),
 				situacaoFuncionamentoId: Number($('#situacaoFuncionamentoId').val()),
 				formaOcupacaoPredioId: Number($('#formaOcupacaoPredioId').val()),
-
 				"zoneamentoId": Number($('#zoneamentoId').val()),
 				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
 				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
@@ -138,6 +134,8 @@ $("#formNovoCadastro").submit(function(e) {
 				contaId: Number(contaId)
 			};
 
+
+			console.log(dadosFormulario)
 
 			$.ajax({
 				url: url_base + '/escolas',
@@ -149,7 +147,7 @@ $("#formNovoCadastro").submit(function(e) {
 					Swal.fire({
 						icon: "error",
 						title: "Oops...",
-						text: "Não foi possível cadastrar a escolaweb!",
+						text: "Não foi possível cadastrar a escola!",
 					});
 				}
 			}).done(function(data) {
@@ -164,17 +162,6 @@ $("#formNovoCadastro").submit(function(e) {
 
 });
 
-function allFilled($fields) {
-	return $fields.filter(function() {
-		return this.value === '';
-	}).length == 0;
-}
-
-$fields.on('keyup change', function() {
-	if (allFilled($fields)) {
-		$('#btn-submit').removeAttr('disabled');
-	}
-});
 
 
 function cnpjValido(cnpj) {

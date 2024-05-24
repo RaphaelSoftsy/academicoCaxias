@@ -94,23 +94,21 @@ String contextPath = request.getContextPath();
 							maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="pppAtualizado12Meses" class="form-label">
-							Alterar Logo:<span class="red">*</span>
+						<label for="alteraLogo" class="form-label"> Alterar Logo:<span
+							class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="alteraLogo"
-									id="alteraLogoS" value="S"> <label
-									class="form-check-label" for="alteraLogoS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="alteraLogo"
-									id="alteraLogoN" value="N"> <label
-									class="form-check-label" for="alteraLogoN">Não</label>
-							</div>
+							<label for="alteraLogo">Sim</label> <label class="switch">
+								<input type="checkbox" id="alteraLogo" name="alteraLogo">
+								<span class="slider"></span>
+							</label> <label for="alteraLogo">Não</label>
 						</div>
 					</div>
-					<div class="col-md-6 mt-3" id="divLogoEscola">
+				
+				</div>
+				
+				<div class="row mb-3">
+						<div class="col-md-6 mt-3" id="divLogoEscola">
 						<label for="logoEscola" class="form-label">Logo:<span
 							class="red">*</span></label> <input class="form-control inputForm"
 							type="file" id="logoEscola" name="logoEscola"> </input>
@@ -153,91 +151,14 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="isAcessivel" class="form-label">Acessível:<span
-							class="red">*</span></label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isAcessivel"
-									id="isAcessivelS" value="S"> <label
-									class="form-check-label" for="isAcessivelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isAcessivel"
-									id="isAcessivelN" value="N"> <label
-									class="form-check-label" for="isAcessivelN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
 						<label for="isIndigena" class="form-label">Educação
 							Indígena:<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isIndigena"
-									id="isIndigenaS" value="S"> <label
-									class="form-check-label" for="isIndigenaS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="isIndigena"
-									id="isIndigenaN" value="N"> <label
-									class="form-check-label" for="isIndigenaN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="merendaEscolar" class="form-label">Merenda
-							Escolar:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarS" value="S"> <label
-									class="form-check-label" for="merendaEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="merendaEscolar" id="merendaEscolarN" value="N"> <label
-									class="form-check-label" for="merendaEscolarN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="possuiAguaPotavel" class="form-label">Possui
-							Água Potável:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelS" value="S">
-								<label class="form-check-label" for="possuiAguaPotavelS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiAguaPotavel" id="possuiAguaPotavelN" value="N">
-								<label class="form-check-label" for="possuiAguaPotavelN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="internetBandaLarga" class="form-label">Internet
-							Banda Larga:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="internetBandaLarga" id="internetBandaLargaS" value="S">
-								<label class="form-check-label" for="internetBandaLargaS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="internetBandaLarga" id="internetBandaLargaN" value="N">
-								<label class="form-check-label" for="internetBandaLargaN">Não</label>
-							</div>
+							<label for="isIndigena">Sim</label> <label class="switch">
+								<input type="checkbox" id="isIndigena" name="isIndigena">
+								<span class="slider"></span>
+							</label> <label for="isIndigena">Não</label>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -245,20 +166,16 @@ String contextPath = request.getContextPath();
 							Seleção:<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="exameSelecao"
-									id="exameSelecaoS" value="S"> <label
-									class="form-check-label" for="exameSelecaoS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="exameSelecao"
-									id="exameSelecaoN" value="N"> <label
-									class="form-check-label" for="exameSelecaoN">Não</label>
-							</div>
+							<label for="exameSelecao">Sim</label> <label class="switch">
+								<input type="checkbox" id="exameSelecao" name="exameSelecao">
+								<span class="slider"></span>
+							</label> <label for="exameSelecao">Não</label>
 						</div>
 					</div>
 
+
 				</div>
+
 
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -266,16 +183,10 @@ String contextPath = request.getContextPath();
 							Espaço:<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="compartilhaEspaco" id="compartilhaEspacoS" value="S">
-								<label class="form-check-label" for="compartilhaEspacoS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="compartilhaEspaco" id="compartilhaEspacoN" value="N">
-								<label class="form-check-label" for="compartilhaEspacoN">Não</label>
-							</div>
+							<label for="compartilhaEspaco">Sim</label> <label class="switch">
+								<input type="checkbox" id="compartilhaEspaco"
+								name="compartilhaEspaco"> <span class="slider"></span>
+							</label> <label for="compartilhaEspaco">Não</label>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -283,18 +194,11 @@ String contextPath = request.getContextPath();
 							Espaço Entorno Escolar:<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="usaEspacoEntornoEscolar" id="usaEspacoEntornoEscolarS"
-									value="S"> <label class="form-check-label"
-									for="usaEspacoEntornoEscolarS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="usaEspacoEntornoEscolar" id="usaEspacoEntornoEscolarN"
-									value="N"> <label class="form-check-label"
-									for="usaEspacoEntornoEscolarN">Não</label>
-							</div>
+							<label for="usaEspacoEntornoEscolar">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="usaEspacoEntornoEscolar" name="usaEspacoEntornoEscolar">
+								<span class="slider"></span>
+							</label> <label for="usaEspacoEntornoEscolar">Não</label>
 						</div>
 					</div>
 
@@ -306,18 +210,11 @@ String contextPath = request.getContextPath();
 							Atualizado (12 Meses):<span class="red">*</span>
 						</label>
 						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="pppAtualizado12Meses" id="pppAtualizado12MesesS"
-									value="S"> <label class="form-check-label"
-									for="pppAtualizado12MesesS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="pppAtualizado12Meses" id="pppAtualizado12MesesN"
-									value="N"> <label class="form-check-label"
-									for="pppAtualizado12MesesN">Não</label>
-							</div>
+							<label for="pppAtualizado12Meses">Sim</label> <label
+								class="switch"> <input type="checkbox"
+								id="pppAtualizado12Meses" name="pppAtualizado12Meses"> <span
+								class="slider"></span>
+							</label> <label for="pppAtualizado12Meses">Não</label>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -329,7 +226,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 
-				<div class="row mb-4">
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="numParecerCME" class="form-label">Nº Parecer
 							CME:<span class="red">*</span>
@@ -394,24 +291,14 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="entidadeSuperiorId" class="form-label">Entidade
-							Superior:<span class="red">*</span>
-						</label> <select class="form-select" aria-label="Entidade Superior"
-							id="entidadeSuperiorId" required name="entidadeSuperiorId">
-							<option selected disabled>Selecione a Entidade</option>
-						</select>
-					</div>
-					<div class="col-md-6">
-						<label for="categoriaEscolaPrivadaId" class="form-label">Orgão
+						<label for="orgaoPublicoId" class="form-label">Orgão
 							Público:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Orgão Público"
 							id="orgaoPublicoId" required name="orgaoPublicoId">
 							<option selected disabled>Selecione o Orgão</option>
 						</select>
 					</div>
-				</div>
 
-				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="localizacaoId" class="form-label">Tipo de
 							Localização:<span class="red">*</span>
@@ -420,6 +307,19 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione o Tipo</option>
 						</select>
 					</div>
+				</div>
+
+				<div class="row mb-3">
+
+					<div class="col-md-6">
+						<label for="entidadeSuperiorId" class="form-label">Entidade
+							Superior:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Entidade Superior"
+							id="entidadeSuperiorId" required name="entidadeSuperiorId">
+							<option selected value='' disabled>Selecione a Entidade</option>
+						</select>
+					</div>
+
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
 						<input type='tel' class="form-control" id="cep" required
