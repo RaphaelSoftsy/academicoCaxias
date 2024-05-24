@@ -74,7 +74,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Energia
+					<i class="fa-solid fa-school fa-lg"></i> <span id="tituloForm">Energia
 						Elétirca</span>
 				</div>
 			</div>
@@ -82,7 +82,7 @@ String contextPath = request.getContextPath();
 		<section class="pt-4" style="width: 70vw">
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h1 id="tituloForm" class="text-center mb-5">Nome Escola</h1>
+			
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 					

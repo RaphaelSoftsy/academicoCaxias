@@ -82,16 +82,7 @@ String contextPath = request.getContextPath();
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-3 card-pesquisa" style="display: flex; align-items: center;">
 
-				<div class='col-6'>
-					<div class="input-group">
-						<input id="inputBusca" type="text" class="form-control inputForm"
-							placeholder="Buscar" /> <span
-							class="input-group-text icone-pesquisa"><i
-							class="fas fa-search"></i></span>
-					</div>
-				</div>
-				<a href="nova-escola"
-					class="btn btn-primary btn-lg px-3 py-1 ms-auto">Novo Cadastro</a>
+				
 
 			</div>
 

@@ -12,7 +12,7 @@ var escolaId = localStorage.getItem('escolaId');
 
 $(document).ready(function() {
 
-	$('#tituloForm').text(nomeEscola);
+	$('#tituloForm').text(nomeEscola + " - Gerenciamento de Lixo");
 
 	getDados()
 })
@@ -161,8 +161,10 @@ function getDados() {
 $('input[id="isOutros"]').click(() => {
 	if ($('input[id="isOutros"]').is(':checked') == true) {
 		$("#cardDesc").show()
+		$('input[name="descricao"]').attr('required', true)
 	} else {
 		$("#cardDesc").hide()
+		$('input[name="descricao"]').attr('required', false)
 
 	}
 })

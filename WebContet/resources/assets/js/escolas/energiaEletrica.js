@@ -14,15 +14,14 @@ var dados = []
 
 $(document).ready(function() {
 
-	$('#tituloForm').text(nomeEscola);
-
+	$('#tituloForm').text(nomeEscola + " - Energia Elétrica");
 	getDados()
 
 })
 
 
 $("#formNovoCadastro :input").change(function() {
-   $("#btn-submit").removeAttr('disabled')
+	$("#btn-submit").removeAttr('disabled')
 });
 
 function getDados() {
@@ -100,18 +99,15 @@ function getDados() {
 
 $('input[id="isSemEnergiaEletrica"]').click(() => {
 	if ($('input[id="isSemEnergiaEletrica"]').is(':checked') == true) {
-		$('input[id="isGerador"]').prop('checked', true)
 		$('input[id="isGerador"]').prop('disabled', false)
-		$('input[id="isOutros"]').prop('checked', true)
 		$('input[id="isOutros"]').prop('disabled', false)
-		$("#cardDesc").show()
-		
+		$('input[id="isRedePublica"]').prop('checked', true)
 	} else {
 		$('input[id="isGerador"]').prop('checked', false)
 		$('input[id="isGerador"]').prop('disabled', true)
-		$('input[id="isOutros"]').prop('checked', false)
 		$('input[id="isOutros"]').prop('disabled', true)
-		$("#cardDesc").hide()
+		$('input[id="isRedePublica"]').prop('checked', false)
+		$('input[id="isRedePublica"]').prop('disabled', false)
 	}
 })
 
@@ -119,8 +115,10 @@ $('input[id="isSemEnergiaEletrica"]').click(() => {
 $('input[id="isOutros"]').click(() => {
 	if ($('input[id="isOutros"]').is(':checked') == true) {
 		$("#cardDesc").show()
+			$('input[name="descricao"]').attr('required', true)
 	} else {
 		$("#cardDesc").hide()
+		$('input[name="descricao"]').attr('required', false)
 	}
 })
 

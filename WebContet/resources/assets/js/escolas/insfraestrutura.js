@@ -13,7 +13,7 @@ let checkN = $("#isOutrosN")
 
 $(document).ready(function() {
 
-	$('#tituloForm').text(nomeEscola);
+	$('#tituloForm').text(nomeEscola + " - Infraestrurtura");
 
 	console.log($('#switch').is(':checked'))
 	getDados()

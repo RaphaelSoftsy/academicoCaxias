@@ -13,7 +13,7 @@ var dados = []
 
 $(document).ready(function() {
 
-	$('#tituloForm').text(nomeEscola);
+	$('#tituloForm').text(nomeEscola + ' - Água');
 
 	getDados()
 
@@ -117,13 +117,10 @@ $('input[id="isSemAgua"]').click(() => {
 		$('input[id="isPocoArtesiano"]').prop('checked', false)
 		$('input[id="isPocoArtesiano"]').prop('disabled', true)
 	} else {
-		$('input[id="isFonteRio"]').prop('checked', true)
+		
 		$('input[id="isFonteRio"]').prop('disabled', false)
-		$('input[id="isAguaTratada"]').prop('checked', true)
 		$('input[id="isAguaTratada"]').prop('disabled', false)
-		$('input[id="isCacimba"]').prop('checked', true)
 		$('input[id="isCacimba"]').prop('disabled', false)
-		$('input[id="isPocoArtesiano"]').prop('checked', true)
 		$('input[id="isPocoArtesiano"]').prop('disabled', false)
 		
 	}

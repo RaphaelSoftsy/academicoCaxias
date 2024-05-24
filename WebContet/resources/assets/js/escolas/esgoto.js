@@ -1,4 +1,4 @@
- 
+
 var pefilEscola = localStorage.getItem("perfil");
 var escola = JSON.parse(pefilEscola);
 var nomeEscola = escola.nome;
@@ -13,7 +13,7 @@ let checkN = $("#isOutrosN")
 
 $(document).ready(function() {
 
-	$('#tituloForm').text(nomeEscola);
+	$('#tituloForm').text(nomeEscola + " - Esgoto");
 
 	getDados()
 
@@ -23,7 +23,11 @@ $('input[id="isInexistente"]').click(() => {
 	if ($('input[id="isInexistente"]').is(':checked') == true) {
 		$('input[id="isFossa"]').prop('checked', false)
 		$('input[id="isFossa"]').prop('disabled', true)
+		$('input[id="isRedePublica"]').attr('checked', false)
+		$('input[id="isRedePublica"]').prop('disabled', true)
 	} else {
+		$('input[id="isRedePublica"]').attr('checked', false)
+		$('input[id="isRedePublica"]').prop('disabled', false)
 		$('input[id="isFossa"]').attr('checked', false)
 		$('input[id="isFossa"]').prop('disabled', false)
 	}
@@ -68,7 +72,7 @@ function getDados() {
 			console.log(data)
 			dados = data
 			idEscolaEsgoto = data[0].idEscolaEsgoto
-			
+
 			console.log(data[0])
 
 			if (data[0].redePublica == "S") {

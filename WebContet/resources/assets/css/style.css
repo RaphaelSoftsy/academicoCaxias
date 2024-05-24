@@ -18,6 +18,14 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+.mb-5{
+	width: 100%;
+	margin-bottom: 2rem !important;
+}
+
+.card{
+	width: 100%;
+}
 .card-check{
 	margin-bottom: 1em;
 }
@@ -333,9 +341,7 @@ body {
 	color: #fff;
 }
 
-.card{
-	width: 94%;
-}
+
 /* modal imagens */
 
 .carrossel {

@@ -13,7 +13,7 @@ var dados = []
 
 $(document).ready(function() {
 
-	$('#tituloForm').text(nomeEscola);
+	$('#tituloForm').text(nomeEscola + " - Controle de Dispositivos");
 
 	getDados()
 
