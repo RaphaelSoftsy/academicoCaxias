@@ -23,7 +23,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script
+<script charset="UTF-8" 
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
@@ -37,12 +37,12 @@ String contextPath = request.getContextPath();
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
-<script
+<script charset="UTF-8" 
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.all.min.js"></script>
+<script charset="UTF-8"  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script charset="UTF-8"  src="sweetalert2.all.min.js"></script>
 
 <!-- CSS -->
 
@@ -54,7 +54,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script src="https://kit.fontawesome.com/2476720ce5.js"
+<script charset="UTF-8"  src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
@@ -80,9 +80,10 @@ String contextPath = request.getContextPath();
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3" style="display: flex; align-items: center; justify-content: space-around;">
-				
-				
+			<div class="mt-3 mb-3"
+				style="display: flex; align-items: center; justify-content: space-around;">
+
+
 				<div class='col-6'>
 					<div class="input-group">
 						<input id="inputBusca" type="text" class="form-control inputForm"
@@ -91,12 +92,13 @@ String contextPath = request.getContextPath();
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				
-					
+
+
 				<div class="d-flex align-items-center gap-2">
-				
-					<a href="nova-escola" class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
-					
+
+					<a href="nova-escola"
+						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
+
 					<button id="limpa-filtros" class="btn btn-sm btn-danger">Limpar
 						Filtros</button>
 					<button id="exportar-excel"
@@ -114,7 +116,7 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th class='text-center th-sem-filtro' scope="col" width="10%">Acessar
+						<th class='text-center th-sem-filtro border-end' scope="col" width="10%">Acessar
 							Perfil</th>
 						<th scope="col" class="sortable border-end"
 							data-column="nomeEscola">
@@ -212,6 +214,7 @@ String contextPath = request.getContextPath();
 						</th>
 						<th scope="col" class="sortable  border-end pe-2 th-sem-filtro"
 							data-column="ativo">Ativo</th>
+						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -231,27 +234,27 @@ String contextPath = request.getContextPath();
 
 	</main>
 
-	<script
+	<script charset="UTF-8" 
 		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.js"
+	<script charset="UTF-8"  src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script
+	<script charset="UTF-8" 
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script
+	<script charset="UTF-8" 
 		src="<%=contextPath%>/resources/assets/js/escolas/acessarEscolas.js"></script>
-	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script
+	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
 </html>

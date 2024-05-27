@@ -52,7 +52,7 @@ $(document).ready(function() {
 				$("#tipoEscola").val('PV').attr('selected', true);
 			}
 
-			if (ref.educacaoIndigena === 'S') {
+/*			if (ref.educacaoIndigena === 'S') {
 				$('input[id="isIndigena"]').attr('checked', true)
 			} else {
 				$('input[id="isIndigena"]').attr('checked', false)
@@ -74,7 +74,7 @@ $(document).ready(function() {
 				$('input[id="usaEspacoEntornoEscolar"]').attr('checked', true)
 			} else {
 				$('input[id="usaEspacoEntornoEscolar"]').attr('checked', false)
-			}
+			}*/
 
 			if (ref.pppAtualizado12Meses === 'S') {
 				$('input[id="pppAtualizado12Meses"]').attr('checked', true)
@@ -82,29 +82,6 @@ $(document).ready(function() {
 				$('input[id="pppAtualizado12Meses"]').attr('checked', false)
 			}
 
-			if (ref.acessivel === 'S') {
-				$('input[id="isAcessivel"]').attr('checked', true)
-			} else {
-				$('input[id="isAcessivel"]').attr('checked', false)
-			}
-
-			if (ref.merendaEscolar === 'S') {
-				$('input[id="merendaEscolar"]').attr('checked', true)
-			} else {
-				$('input[id="merendaEscolar"]').attr('checked', false)
-			}
-
-			if (ref.possuiAguaPotavel === 'S') {
-				$('input[id="possuiAguaPotavel"]').attr('checked', true)
-			} else {
-				$('input[id="possuiAguaPotavel"]').attr('checked', false)
-			}
-
-			if (ref.internetBandaLarga === 'S') {
-				$('input[id="internetBandaLarga"]').attr('checked', true)
-			} else {
-				$('input[id="internetBandaLarga"]').attr('checked', false)
-			}
 
 			$("#localizacaoId").val(ref.localizacao.idLocalizacao).attr('selected', true);
 			$("#dependenciaAdmId").val(ref.dependenciaAdm.idDependenciaAdministrativa).attr('selected', true);
@@ -234,10 +211,10 @@ $("#formEditar").submit(function(e) {
 				latitude: $('#latitude').val(),
 				longitude: $('#longitude').val(),
 				email: $('#email').val(),
-				educacaoIndigena: getAswer('#isIndigena'),
-				exameSelecao: getAswer('#exameSelecao'),
-				compartilhaEspaco: getAswer('#compartilhaEspaco'),
-				usaEspacoEntornoEscolar: getAswer('#usaEspacoEntornoEscolar'),
+				educacaoIndigena: "N",
+				exameSelecao: "N",
+				compartilhaEspaco: "N",
+				usaEspacoEntornoEscolar: "N",
 				pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 				localizacaoId: Number($('#localizacaoId').val()),
 				dependenciaAdmId: Number($('#dependenciaAdmId').val()),
@@ -272,10 +249,10 @@ $("#formEditar").submit(function(e) {
 			latitude: $('#latitude').val(),
 			longitude: $('#longitude').val(),
 			email: $('#email').val(),
-			educacaoIndigena: getAswer('#isIndigena'),
-			exameSelecao: getAswer('#exameSelecao'),
-			compartilhaEspaco: getAswer('#compartilhaEspaco'),
-			usaEspacoEntornoEscolar: getAswer('#usaEspacoEntornoEscolar'),
+			educacaoIndigena: "N",
+			exameSelecao: "N",
+			compartilhaEspaco: "N",
+			usaEspacoEntornoEscolar: "N",
 			pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 			localizacaoId: Number($('#localizacaoId').val()),
 			dependenciaAdmId: Number($('#dependenciaAdmId').val()),

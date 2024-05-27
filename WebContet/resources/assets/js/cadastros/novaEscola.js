@@ -6,13 +6,18 @@ $(document).ready(function() {
 
 $("#cep").blur(function() {
 
-	$('.bg-loading').fadeIn()
+
 
 	$.ajax({
 		url: 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/',
 		type: "get",
 		async: false,
+		beforeSend: function() {
+				// Mostrar indicador de carregamento
+				Swal.showLoading()
+		}
 	}).done(function(data) {
+		Swal.close();
 
 		if (data.erro == true) {
 
@@ -59,12 +64,12 @@ $("#cep").blur(function() {
 			$("#longitude").val(lng);
 			$("#latitude").val(lat);
 		}).fail(() => {
-
+			
 
 		})
 	})
 
-	$('.bg-loading').fadeOut()
+	
 });
 
 
@@ -118,10 +123,10 @@ $("#formNovoCadastro").submit(function(e) {
 				latitude: $('#latitude').val(),
 				longitude: $('#longitude').val(),
 				email: $('#email').val(),
-				educacaoIndigena: getAswer('#isIndigena'),
-				exameSelecao: getAswer('#exameSelecao'),
-				compartilhaEspaco: getAswer('#compartilhaEspaco'),
-				usaEspacoEntornoEscolar: getAswer('#usaEspacoEntornoEscolar'),
+				educacaoIndigena: "N",
+				exameSelecao: "N",
+				compartilhaEspaco: "N",
+				usaEspacoEntornoEscolar:"N",
 				pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 				localizacaoId: Number($('#localizacaoId').val()),
 				dependenciaAdmId: Number($('#dependenciaAdmId').val()),

@@ -12,7 +12,7 @@ $(document).ready(function() {
 	const url = window.location.pathname
 	const contaId = sessionStorage.getItem('contaId')
 	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
-		$("#tipoEscola").val('Pública').attr('selected', true);
+/*		$("#tipoEscola").val('Pública').attr('selected', true);*/
 		if (isNaN(contaId) || contaId == 0 || contaId == "" || contaId == undefined) {
 			Swal.fire({
 				title: "Nenhum usuário localizado, logue novamente",
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	}
 	console.log(url)
 	const perfilEscola = localStorage.getItem("perfil")
-	if (window.location.href.indexOf("escola") > -1 && !(window.location.toString().includes("acessar"))) {
+	if (window.location.href.indexOf("escola") > -1 && !(window.location.toString().includes("acessar")) && !(window.location.toString().includes("nova-escola")) && !(window.location.toString().includes("editar-escola"))) {
 
 		if (perfilEscola == undefined || perfilEscola == null) {
 			Swal.fire({
@@ -48,7 +48,7 @@ window.addEventListener("load", function() {
 	const loader = document.querySelector(".bg-loading");
 	loader.parentElement.removeChild(loader);
 	$(".bg-loading").addClass("none");
-	$(".bg-loading").fadeOut()
+	$(".bg-loading").fadeOut();
 
 });
 

@@ -22,7 +22,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script
+<script charset="UTF-8" 
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
@@ -42,11 +42,11 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- Sweetalert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.all.min.js"></script>
+<script charset="UTF-8"  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script charset="UTF-8"  src="sweetalert2.all.min.js"></script>
 
 <!-- FontAwesome -->
-<script src="https://kit.fontawesome.com/2476720ce5.js"
+<script charset="UTF-8"  src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous">
 	
 </script>
@@ -67,8 +67,8 @@ String contextPath = request.getContextPath();
 			</div>
 			<div class="container-form">
 			
-				<img class="logo-sumare-login"
-			src="http://localhost:8090/front-educacional-caxias/resources/assets/img/logo.png"
+				<img class="logo-login"
+			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
 			alt="Logo Prefeitura Caxias do Sul" />
 			
 				<form>
@@ -107,25 +107,25 @@ String contextPath = request.getContextPath();
 		</div>
 	</main>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.js"
+	<script charset="UTF-8"  src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script
+	<script charset="UTF-8" 
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 
-	<script src="<%=contextPath%>/resources/assets/js/login/login.js"></script>
+	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/login/login.js"></script>
 
 
-	<script
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 </body>

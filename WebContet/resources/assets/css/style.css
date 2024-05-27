@@ -34,6 +34,8 @@ body {
 	width: 100%;
 	background-color: #183153;	
 }
+
+
 .menu-mobile{
 	display: none;
 }
@@ -108,8 +110,66 @@ body {
   width: 5px;
 }
 
-/*Switch Toogle*/
+.logo-login{
+	width: 50%;
+}
 
+
+.buttons__burger {
+  --size: 2rem;
+  --clr: #fff ;
+  width: var(--size);
+  height: calc(0.7 * var(--size));
+  cursor: pointer;
+  position: relative;
+  display: block;
+}
+
+.buttons__burger #burger {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.buttons__burger span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 3px solid var(--clr);
+  background-color: var(--clr);
+  transition: 0.15s ease-in-out;
+}
+
+.buttons__burger span:nth-of-type(1) {
+  top: 0;
+  right: 0;
+  transform-origin: right center;
+}
+
+.buttons__burger span:nth-of-type(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.buttons__burger span:nth-of-type(3) {
+  top: 100%;
+  right: 0;
+  transform-origin: right center;
+  transform: translateY(-100%);
+}
+
+.buttons__burger #burger:checked ~ span:nth-of-type(1) {
+  transform: translateY(-30%) rotate(40deg);
+  width: 50%;
+  top: 50%;
+}
+
+.buttons__burger #burger:checked ~ span:nth-of-type(3) {
+  transform: translateY(-70%) rotate(-40deg);
+  width: 50%;
+  top: 50%;
+}
 
 
 /* The switch - the box around the slider */
@@ -201,7 +261,7 @@ body {
 .abracaMenu .menu .item .sub-menu {
   background-color: #04274d;
   display: none;
-      overflow: auto;
+  overflow: auto;
     height: 32vh;
 }
 
@@ -625,10 +685,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
+  padding: 10px;
 }
 .logoSumare {
-  width: 90%;
+  width: 60%;
 }
 .close-btn-menu {
 	position: absolute;
@@ -820,16 +880,19 @@ background-color: #ddd;
 
 .dropdown-content-form {
   display: none;
-  position: absolute;
   background-color: #f9f9f9;
+  position: absolute;
+  top: 0;
   min-width: 250px;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 999;
 }
 
 .dropdown-content-left {
-    right: 0;
+	position: fixed;
+    top: 40%;
+    right: 30%;
     left: auto;
 }
 
@@ -840,10 +903,14 @@ background-color: #ddd;
 
 .container-table{
 	overflow-x: scroll;
-	overflow-y: hidden; 
+	overflow-y: hidden;
 }
 
 
+.left{
+	width: 60px;
+	transition: 1s;
+}
 
 @media screen and (max-width: 1500px) {
 	
@@ -865,7 +932,7 @@ background-color: #ddd;
   th,
   tr {
     max-width: 200px;
-    overflow: hidden;
+/*     overflow: hidden; */
     white-space: nowrap;
     text-overflow: ellipsis;
   }
@@ -956,6 +1023,8 @@ background-color: #ddd;
 
 
 
+
+
 @media screen and (min-width: 1279px) {
   #form-login {
     width: 45%;
@@ -1005,18 +1074,19 @@ background-color: #ddd;
 		display: block;
 		flex-direction: row;
 		height: 20%;
-		width: 100%;
+		width: 100vw;
 	}
 	.logo-sumare-mobile{
 		display: flex;
 	}
 	.img-mobile-menu img{
-		width: 15%
+		width: 20%
 	}
 	.container-header{
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		justify-content: space-between;
 		padding-left: 1%;
 		padding-right: 1%;
 	}

@@ -22,7 +22,7 @@ let contas = [
 		"contaId": 2,
 		"email": "teste2@gmail.com",
 		"senha": "1234",
-		"conta": "Conta - Sonic ",
+		"conta": "Conta - Tathilandia ",
 		"tipoConta": "PV",
 		"cnpj": "08770189000103",
 		"cep": "95070561",
@@ -35,7 +35,7 @@ let contas = [
 		"uf": "RS",
 		"dataCadastro": "2024-05-07T15:04:45",
 		"ativo": "S",
-		"logo": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000045649/bf9665c0d3f4f99954d8faa8f426e63a1e3cd1eec297b4f10d5954d9d188b199"
+		"logo": "https://tathilandia.com.br/wp-content/uploads/logo-abertura.png"
 	}
 ]
 
@@ -92,7 +92,7 @@ $(document).ready(function() {
 			})
 			
 			cardButton.click(function(){
-					
+					sessionStorage.setItem('nomeConta', escola.conta)
 				   window.location.href = $("#caminhoRelativo").val()+"/acessar-escolas"
 			})
 

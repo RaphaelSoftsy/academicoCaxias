@@ -13,6 +13,7 @@ $(document).ready(function() {
 
 	// Dropdown de Pesquisa
     $('.dropdown-toggle-form').click(function() {
+		console.log('TESTE')
         $(this).siblings('.dropdown-content-form').toggleClass('show');
     });
 
@@ -175,11 +176,19 @@ function listarDados(dados) {
 			"<td><div class='d-flex align-items-center gap-1'>" +
 			ativo +
 			"</div></td>" +
+			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			item.idEscola +
+			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
 
 	$("#cola-tabela").html(html);
+}
+
+function editar(ref){
+	id = ref.getAttribute("data-id");
+	 window.location.href="editar-escola?id="+id;
 }
 
 
