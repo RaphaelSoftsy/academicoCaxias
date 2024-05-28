@@ -74,7 +74,15 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span id="tituloForm">Água</span>
+					<i class="fa-solid fa-school fa-lg"></i> <label id="tituloForm">A escola possui água?</label><div class="col-md-6">
+						<div class="form-control tittle-switch">
+							<label for="isSemAgua">Sim</label> <label class="ball-switch">
+								<input type="checkbox" id="isSemAgua" name="isSemAgua">
+								<span class="title-slider"></span>
+							</label> <label for="isSemAgua">Não</label>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -85,22 +93,11 @@ String contextPath = request.getContextPath();
 					value="${funcionario.idUsuario}" />
 				
 				
-				<div class="col-md-6">
-						<label for="isSemAgua" class="form-label">Possui Água<span
-							class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<label for="isSemAgua">Sim</label> <label class="switch">
-								<input type="checkbox" id="isSemAgua" name="isSemAgua">
-								<span class="slider"></span>
-							</label> <label for="isSemAgua">Não</label>
-
-						</div>
-					</div>
+			
 					
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="isAguaTratada" class="form-label">Agua Tratada<span
+						<label for="isAguaTratada" class="form-label">Água Tratada<span
 							class="red">*</span></label>
 						<div class="form-control card-form">
 							<label for="isAguaTratada">Sim</label> <label class="switch">

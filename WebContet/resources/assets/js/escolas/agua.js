@@ -12,12 +12,7 @@ var idEscolaAgua = 0
 var dados = []
 
 $(document).ready(function() {
-
-	$('#tituloForm').text(nomeEscola + ' - Água');
-
 	getDados()
-
-
 })
 
 
