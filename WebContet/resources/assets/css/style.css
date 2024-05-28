@@ -64,6 +64,11 @@ body {
 	display:none;
 	
 }
+
+.fa-chevron-left{
+	cursor: pointer;
+	
+}
 .switch-card{
 	width: 100%;
 	
@@ -904,12 +909,6 @@ background-color: #ddd;
 .container-table{
 	overflow-x: scroll;
 	overflow-y: hidden;
-}
-
-
-.left{
-	width: 60px;
-	transition: 1s;
 }
 
 @media screen and (max-width: 1500px) {

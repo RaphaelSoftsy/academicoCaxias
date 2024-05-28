@@ -62,7 +62,7 @@ String contextPath = request.getContextPath();
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/login.css" />
-<title>POC - Acadêmico Caxias do Sul</title>
+<title></title>
 </head>
 <body>
 	<header>

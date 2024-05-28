@@ -1,13 +1,17 @@
+
 var url_base = "http://10.40.110.2:8080/api-educacional";
 
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
 const path_base = "http://localhost:8090/front-educacional-caxias/resources/menu";
+const nomeConta = sessionStorage.getItem("nomeConta")
 
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
 	containerResponsivo();
+	
+	$(document).attr('title', "POC - "+ nomeConta);
 
 	const url = window.location.pathname
 	const contaId = sessionStorage.getItem('contaId')

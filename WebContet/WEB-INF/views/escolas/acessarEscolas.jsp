@@ -15,7 +15,7 @@ String contextPath = request.getContextPath();
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
 
-<title>POC - Acadêmico Caxias do Sul</title>
+<title></title>
 
 <!-- Bootstrap -->
 <link
