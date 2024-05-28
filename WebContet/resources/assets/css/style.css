@@ -175,8 +175,15 @@ body {
   width: 50%;
   top: 50%;
 }
-
-
+.container-icon{
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding-right: 10%;
+	height: 2em;
+	
+}
 /* The switch - the box around the slider */
 .switch {
   transform: rotate(180deg);

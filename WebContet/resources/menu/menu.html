@@ -17,20 +17,21 @@
 		<div class="close-btn-menu botao-desativa-menu" id="closeBtn">
 			<i class="fas fa-times"></i>
 		</div>
-
+		<div class="container-icon">
+			<i class="fa-solid fa-chevron-left"></i>
+		</div>
 		<div class="img-menu">
 			<img class="logoSumare animate__animated animate__bounceIn mx-auto"
 				alt="Logo Prefeitura de Uruçui" id="imgLogoMenu"
 				src="http://localhost:8090/front-educacional-caxias/resources/assets/img/logoPrefeitura.png" />
-			<i class="fa-solid fa-chevron-left"></i>
 		</div>
 
-		<hr />
+		<hr/>
 		<p>
 			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span
 				id="nome-user"></span>
 		</p>
-		<hr />
+		<hr/>
 		<nav class="menu">
 			<div class="item">
 				<a class="sub-btn" id="sairEscola"> <i
@@ -208,35 +209,61 @@ var perfilArmazenado = JSON.parse(localStorage.getItem("perfil"));
 	$(document).ready(function() {
 		$(".fa-chevron-left").click(()=>{
 			if($(".abracaMenu").width() == 250){
-				$(".fa-chevron-left").css("transform","rotate(180deg)")
+				$(".fa-chevron-left").css("transform","rotate(180deg)");
+				$(".fa-chevron-left").css("transition", "1000ms");
 				$(".abracaMenu").css("width", "60px");
-				$(".abracaMenu").css("transition", "1000ms")
-				$(".container-res").css("margin-left", "10%")
-				$(".container-res").css("transition", "1000ms")
-				$(".logoSumare").hide()
-				$("#nome-user").hide()
-				$(".sub-menu").hide()
-				$(".fa-angle-right").hide()
-				$("#itemName1").text('')
-				$("#itemName0").text('')
-				$("#itemName2").text('')
-				$("#itemName3").text('')
+				$(".abracaMenu").css("transition", "1000ms");
+				$(".container-res").css("margin-left", "10%");
+				$(".container-res").css("transition", "1000ms");
+				$(".logoSumare").hide();
+				$("#nome-user").hide();
+				$(".img-menu").hide();
+				$(".sub-menu").hide();
+				$(".fa-angle-right").hide();
+				$("#itemName1").text('');
+				$("#itemName0").text('');
+				$("#itemName2").text('');
+				$("#itemName3").text('');
+				
+				$(".container-icon").css({
+					"width": "100%",
+					"display": "flex",
+					"align-items": "center",
+					"justify-content": "center",
+					"height": "8%",
+					"padding-top": "20%",
+					"padding-right": "0"
+					
+				
+			})
 			}else{
 				$(".abracaMenu").css("width", "250px");
-				$(".container-res").css("margin-left", "25%")
-				$(".fa-chevron-left").css("transform","rotate(0deg)")
-				$(".logoSumare").show()
-				$("#nome-user").show()
-				$(".sub-menu").show()
-				$(".fa-angle-right").show()		
+				$(".container-res").css("margin-left", "25%");
+				$(".fa-chevron-left").css("transform","rotate(0deg)");
+				$(".logoSumare").show();
+				$("#nome-user").show();
+				$(".fa-angle-right").show();
+				$(".img-menu").show();
+				$(".dropdown").toggleClass("rotate")
+				$(".container-icon").css({
+					"width": "100%",
+					"display": "flex",
+					"align-items": "flex-end",
+					"justify-content": "flex-end",
+					"height": "2em",
+					"padding-right": "10%",
+					"padding-top": "0"
+					
+				
+			})
 				if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
-					$("#itemName1").text('Trocar Escola')
+					$("#itemName1").text('Trocar Escola');
 				}else{
-					$("#itemName0").text('Configurações')
+					$("#itemName0").text('Configurações');
 				}
 				
-				$("#itemName2").text('Escolas')
-				$("#itemName3").text('Sair')
+				$("#itemName2").text('Escolas');
+				$("#itemName3").text('Sair');
 			}
 			
 		})
@@ -280,6 +307,7 @@ var perfilArmazenado = JSON.parse(localStorage.getItem("perfil"));
 				$("#itemName2").text('Escolas')
 				$("#itemName3").text('Sair')
 			}
+			
 			$(this).next(".sub-menu").slideToggle();
 			$(this).find(".dropdown").toggleClass("rotate");
 		});
