@@ -270,11 +270,7 @@ public class PreCadastrosController {
 		return "preCadastros/cargoProfessor";
 	}
 	
-	@RequestMapping(value = { "area-conhecimento" }, method = RequestMethod.GET)
-	public String areaConhecimento(HttpSession session, Model model) throws Exception {
- 
-		return "preCadastros/areaConhecimento";
-	}
+
 
 	@RequestMapping(value = { "componentes-curriculares" }, method = RequestMethod.GET)
 	public String componentesCurriculares(HttpSession session, Model model) throws Exception {

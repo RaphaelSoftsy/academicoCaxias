@@ -171,23 +171,6 @@ public class Cadastros {
 		return "escolas/termoColaboracao";
 	}
 
-	@RequestMapping(value = { "escola-disciplinas" }, method = RequestMethod.GET)
-	public String disciplinas(HttpSession session, Model model) throws Exception {
-		
-		return "escolas/disciplinas";
-	}
-
-	@RequestMapping(value = { "nova-disciplina" }, method = RequestMethod.GET)
-	public String novaDisciplina(HttpSession session, Model model) throws Exception {
-		
-		return "escolas/novaDisciplina";
-	}
-
-	@RequestMapping(value = { "editar-disciplina" }, method = RequestMethod.GET)
-	public String editarDisciplina(HttpSession session, Model model) throws Exception {
-		
-		return "escolas/editarDisciplina";
-	}
 	
 	@RequestMapping(value = { "escola-agua" }, method = RequestMethod.GET)
 	public String escolaAgua(HttpSession session, Model model) throws Exception {

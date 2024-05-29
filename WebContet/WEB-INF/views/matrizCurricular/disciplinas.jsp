@@ -95,7 +95,7 @@ String contextPath = request.getContextPath();
 
 			
 				<table id="tabela-dados"
-					class="table tabela-acessar-escolas table-striped mb-0 caption-top mx-auto">
+					class="table tabela-acessar-escolas table-striped mb-0 caption-top mx-auto table-responsive ">
 					<caption>Itens Cadastrados</caption>
 					<thead>
 						<tr>						
@@ -117,6 +117,29 @@ String contextPath = request.getContextPath();
 											id="dropdownContent1">
 											<input type="text" class='form-control mb-3 searchInput'
 												placeholder="Digite o nome da escola">
+											<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
+										</div>
+									</div>
+								</div>
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="areaConhecimentoId">
+								<div
+									class='d-flex align-items-center justify-content-between pe-2'>
+									<div
+										class="col d-flex align-items-center justify-content-between">
+										<span>Área de conhecimento</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButton1">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent1">
+											<input type="text" class='form-control mb-3 searchInput'
+												placeholder="Digite o nome da Área de conhecimento">
 											<button class='btn btn-sm col-12 btn-success searchButton'>Buscar</button>
 										</div>
 									</div>
@@ -151,44 +174,24 @@ String contextPath = request.getContextPath();
 									class='d-flex align-items-center justify-content-between pe-2'>
 									<div
 										class="col d-flex align-items-center justify-content-between">
-										<span>Horas de aula</span> <i class="fas fa-sort me-3"
+										<span>Carga Horária Semanal</span> <i class="fas fa-sort me-3"
 											style="color: #dddddd"></i>
 									</div>
 								</div>
 							</th>
+							
 							<th scope="col" class="sortable border-end"
-								data-column="horasLab">
+								data-column="horasAula">
 								<div
 									class='d-flex align-items-center justify-content-between pe-2'>
 									<div
 										class="col d-flex align-items-center justify-content-between">
-										<span>Horas de laboratório</span> <i class="fas fa-sort me-3"
+										<span>Carga Horária Anual</span> <i class="fas fa-sort me-3"
 											style="color: #dddddd"></i>
 									</div>
 								</div>
 							</th>
-							<th scope="col" class="sortable border-end"
-								data-column="horasEstagio">
-								<div
-									class='d-flex align-items-center justify-content-between pe-2'>
-									<div
-										class="col d-flex align-items-center justify-content-between">
-										<span>Horas de estágio</span> <i class="fas fa-sort me-3"
-											style="color: #dddddd"></i>
-									</div>
-								</div>
-							</th>
-							<th scope="col" class="sortable border-end"
-								data-column="horasAtiv">
-								<div
-									class='d-flex align-items-center justify-content-between pe-2'>
-									<div
-										class="col d-flex align-items-center justify-content-between">
-										<span>Horas de atividade</span> <i class="fas fa-sort me-3"
-											style="color: #dddddd"></i>
-									</div>
-								</div>
-							</th>
+							
 							<th scope="col" class="border-end pe-2 th-sem-filtro"
 								data-column="ativo">Ativo</th>
 								<th scope="col" class="border-end pe-2 th-sem-filtro"

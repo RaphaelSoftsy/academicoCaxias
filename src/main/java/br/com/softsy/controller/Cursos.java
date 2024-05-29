@@ -13,11 +13,12 @@ import br.com.softsy.utils.LoginUtils;
 @Controller
 public class Cursos {
 	
-	@RequestMapping(value = { "cursos" }, method = RequestMethod.GET)
-	public String cursos(HttpSession session, Model model) throws Exception {
-		
-		return "cursos/cursos";
-	}
+	/*
+	 * @RequestMapping(value = { "cursos" }, method = RequestMethod.GET) public
+	 * String cursos(HttpSession session, Model model) throws Exception {
+	 * 
+	 * return "cursos/cursos"; }
+	 */
 
 	@RequestMapping(value = { "cursos-serie" }, method = RequestMethod.GET)
 	public String cursosSerie(HttpSession session, Model model) throws Exception {

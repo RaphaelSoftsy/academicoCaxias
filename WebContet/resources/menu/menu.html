@@ -26,12 +26,12 @@
 				src="http://localhost:8090/front-educacional-caxias/resources/assets/img/logoPrefeitura.png" />
 		</div>
 
-		<hr/>
+		<hr />
 		<p>
 			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span
 				id="nome-user"></span>
 		</p>
-		<hr/>
+		<hr />
 		<nav class="menu">
 			<div class="item">
 				<a class="sub-btn" id="sairEscola"> <i
@@ -84,7 +84,8 @@
 						Professor</a> <a href="tipoAtoRegulatorio" id="tipoAtoRegulatorio"
 						class="sub-item">Tipo Ato Regulatório</a>
 					<!-- <a href="tipo-atendimento" id="tipo-atendimento" class="sub-item">Tipo Atendimento</a> -->
-					<a href="tipo-dependencia" class="sub-item" id="tipoDependencia">Tipo Dependência</a>
+					<a href="tipo-dependencia" class="sub-item" id="tipoDependencia">Tipo
+						Dependência</a>
 					<!-- <a href="tipo-ensino-medio" id="tipo-ensino-medio" class="sub-item">Tipo Ensino Médio</a>
 					<a href="tipo-profissional" class="sub-item" id="tipoProfissional">Tipo Profissional</a>
 					<a href="tipo-medicao" id="tipo-medicao" class="sub-item">Tipo Medição</a> -->
@@ -173,24 +174,34 @@
 						href="professores-escola" class="sub-item">Escolas</a> <a
 						href="professores-formacao" class="sub-item">Formação</a>
 				</div>
-			</div>
-			<div class="item">
+			</div>-->
+			<!-- <div class="item">
 				<a class="sub-btn"> <i class="fa-solid fa-users"></i>Alunos <i
 					class="fas fa-angle-right dropdown"></i></a>
 				<div class="sub-menu"></div>
-			</div>
-			<div class="item">
+			</div> -->
+			<!-- 	<div class="item">
 				<a class="sub-btn"> <i class="fa-solid fa-people-group"></i>Pessoas
 					<i class="fas fa-angle-right dropdown"></i></a>
 				<div class="sub-menu">
 					<a href="listarPessoas" class="sub-item">Cadastros</a> <a
 						href="pessoas-nacionalidades" class="sub-item">Nacionalidades</a>
 				</div>
-			</div> -->
+			</div>  -->
+
+			<div class="item">
+				<a class="sub-btn"> <i class="fa-solid fa-users"></i> <span id="itemName3">Matriz Curricular</span> <i
+					class="fas fa-angle-right dropdown"></i></a>
+				<div class="sub-menu">
+					<a href="area-conhecimento" id="areaConhecimento" class="sub-item">Áreas de conhecimento</a>
+					<a href="disciplinas" id="disciplinas" class="sub-item">Disciplinas</a>
+					<a href="curso" id="curso" class="sub-item">Curso</a>
+				</div>
+			</div>
 
 			<div class="item">
 				<a class="sub-btn"><i class="fa-solid fa-right-from-bracket"></i><span
-					id="itemName3">Sair</span><i class="fas fa-angle-right dropdown"></i></a>
+					id="itemName4">Sair</span><i class="fas fa-angle-right dropdown"></i></a>
 				<div class="sub-menu">
 					<a class="sub-btn" id="sair"> <i
 						class="fa-solid fa-circle-user"></i>Login
@@ -223,6 +234,7 @@ var perfilArmazenado = JSON.parse(localStorage.getItem("perfil"));
 				$("#itemName0").text('');
 				$("#itemName2").text('');
 				$("#itemName3").text('');
+				$("#itemName4").text('');
 				
 				$(".container-icon").css({
 					"width": "100%",
@@ -262,7 +274,8 @@ var perfilArmazenado = JSON.parse(localStorage.getItem("perfil"));
 				}
 				
 				$("#itemName2").text('Escolas');
-				$("#itemName3").text('Sair');
+				$("#itemName4").text('Sair');
+				$("#itemName3").text('Matriz Curricular');
 			}
 			
 		})
