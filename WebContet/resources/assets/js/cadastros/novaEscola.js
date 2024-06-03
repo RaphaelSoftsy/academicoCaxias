@@ -5,9 +5,7 @@ $(document).ready(function() {
 });
 
 $("#cep").blur(function() {
-
-
-
+	$('.bg-loading').fadeIn()
 	$.ajax({
 		url: 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/',
 		type: "get",
@@ -34,8 +32,7 @@ $("#cep").blur(function() {
 			$("#uf").val('');
 			$("#longitude").val('');
 			$("#latitude").val('');
-
-			$('.bg-loading').fadeOut()
+		
 		} else {
 			$("#uf").prop('disabled', true)
 			$("#municipio").prop('disabled', true)
@@ -43,6 +40,7 @@ $("#cep").blur(function() {
 			$("#endereco").prop('disabled', true)
 			$("#longitude").prop('disabled', true)
 			$("#latitude").prop('disabled', true)
+		
 		}
 
 
@@ -63,13 +61,14 @@ $("#cep").blur(function() {
 
 			$("#longitude").val(lng);
 			$("#latitude").val(lat);
+			
 		}).fail(() => {
 			
 
 		})
 	})
 
-	
+	$('.bg-loading').fadeOut()
 });
 
 
@@ -160,7 +159,7 @@ $("#formNovoCadastro").submit(function(e) {
 					title: "Cadastrado com sucesso",
 					icon: "success",
 				})
-				window.location.href = "escolas";
+				window.location.href = "acessar-escolas";
 			});
 		});
 	}

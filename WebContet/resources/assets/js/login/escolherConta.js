@@ -70,9 +70,6 @@ $(document).ready(function() {
 			imgCard.attr('src', escola.logo)
 			imgCard.css('width','100%')
 			let cardBody = $('<div  class="card-body school-card"></div>')
-			cardBody.css({
-				"width": "270px"
-			})
 			let cardTitle = $('<h5 class="card-title"></h5>')
 			cardTitle.css('padding-right', '0')
 			cardTitle.append(escola.conta)

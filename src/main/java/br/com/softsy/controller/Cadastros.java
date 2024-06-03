@@ -208,4 +208,10 @@ public class Cadastros {
 		
 		return "escolas/infraestrutura";
 	}
+	
+	@RequestMapping(value = { "tipo-telefone" }, method = RequestMethod.GET)
+	public String tipoTelefone(HttpSession session, Model model) throws Exception {
+		
+		return "preCadastros/tipoTelefone";
+	}
 }

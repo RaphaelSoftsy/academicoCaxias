@@ -286,7 +286,7 @@ function enviarDadosFormulario(objeto) {
 			title: "Editado com sucesso",
 			icon: "success",
 		})
-		window.location.href = "escolas";
+		window.location.href = "acessar-escolas";
 	});
 
 
