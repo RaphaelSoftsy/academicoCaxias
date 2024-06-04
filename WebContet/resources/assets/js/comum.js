@@ -10,6 +10,9 @@ $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
 	containerResponsivo();
+	
+	$(".desativar").toggleClass("btn-secondary btn-danger")
+	$(".ativar").toggleClass("btn-secondary btn-success")
 
 	$(document).attr('title', "POC - " + str);
 

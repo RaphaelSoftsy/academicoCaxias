@@ -23,7 +23,7 @@ public class PreCadastrosController {
 		return "preCadastros/cadastroDeFuncionario";
 	}
 	
-	@RequestMapping(value = { "modalidade", "modalidadeEscolar" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "modalidadea", "modalidadeEscolar" }, method = RequestMethod.GET)
 	public String modalidadeEscolar(HttpSession session, Model model) throws Exception {
 		/*if (session.getAttribute("loginFunc") == null) {
 			return "login/loginFuncionario";

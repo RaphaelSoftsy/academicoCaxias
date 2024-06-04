@@ -211,9 +211,9 @@ function listarDados(dados) {
 
 		return (
 			"<tr>" +
-			"<td>" +
+			/*"<td>" +
 			nomeEscola +
-			"</td>" +
+			"</td>" +*/
 			"<td>" +
 			item.modalidadeEscola.modalidadeEscola +
 			"</td>" +

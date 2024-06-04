@@ -89,9 +89,10 @@ String contextPath = request.getContextPath();
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
 					<!-- <a href="novo-telefone" class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a> -->
-					<button class="btn btn-primary btn-lg px-3 py-1 ms-auto"
+					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
 						data-bs-toggle="modal" onclick="limpaCampo()"
-						data-bs-target="#newCadastro">Novo Cadastro</button>
+						data-bs-target="#newCadastro">Novo Cadastro
+					</button>
 				</div>
 			</div>
 
@@ -203,7 +204,7 @@ String contextPath = request.getContextPath();
 								<label for="telefone" class="form-label">Telefone:<span
 									class="red">*</span></label> <input type="tel" id="telefone" required
 									autocomplete="off" name="telefone" class="form-control"
-									data-mask="(00) 00000-0000" />
+									data-mask="(00) 00000-0000" min="10" />
 							</div>
 							<div class="mb-4">
 								<label for="idTipoTelefone" class="form-label">Tipo de
@@ -253,7 +254,7 @@ String contextPath = request.getContextPath();
 								<label for="telefoneEdit" class="form-label">Telefone:<span
 									class="red">*</span></label> <input type="tel" id="telefoneEdit"
 									required autocomplete="off" name="telefoneEdit"
-									class="form-control" data-mask="(00) 00000-0000" />
+									class="form-control" data-mask="(00) 00000-0000" min="10" />
 							</div>
 							<div class="mb-4">
 								<label for="idTipoTelefoneEdit" class="form-label">Tipo

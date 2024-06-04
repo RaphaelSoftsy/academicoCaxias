@@ -69,7 +69,7 @@ public class Cadastros {
 		return "escolas/newLinkInternet";
 	}
 	
-	@RequestMapping(value = { "modalidades", "escolaModalidades" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "escola-modalidades", "escolaModalidades" }, method = RequestMethod.GET)
 	public String escolaModalidades(HttpSession session, Model model) throws Exception {
 		
 		return "escolas/escolaModalidade";
