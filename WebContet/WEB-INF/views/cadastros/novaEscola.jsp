@@ -22,7 +22,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script charset="UTF-8" 
+<script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
@@ -36,18 +36,20 @@ String contextPath = request.getContextPath();
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
-<script charset="UTF-8" 
+<script charset="UTF-8"
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<script charset="UTF-8"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script charset="UTF-8" 
+<script charset="UTF-8"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script charset="UTF-8"
 	src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"></script>
-<script charset="UTF-8" 
+<script charset="UTF-8"
 	src="https://cdnjs.cloudflare.com/ajax/libs/bs58/4.0.1/bs58.min.js"></script>
 <!-- CSS -->
 
 <!-- Sweetalert -->
-<script charset="UTF-8"  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script charset="UTF-8"  src="sweetalert2.all.min.js"></script>
+<script charset="UTF-8"
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -57,7 +59,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8"  src="https://kit.fontawesome.com/2476720ce5.js"
+<script charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
@@ -109,9 +111,11 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 
 					<div class="col-md-6">
-						<label for="email" class="form-label">Email:<span
-							class="red">*</span></label> <input type="email" id="email" required
-							autocomplete="off" name="email" class="form-control " />
+						<label for="codigoInep" class="form-label">Código Inep:<span
+							class="red">*</span></label> <input type="number" id="codigoInep"
+							required autocomplete="off" name="codigoInep"
+							class="form-control" min='0'
+							oninput="this.value = Math.abs(this.value)" />
 					</div>
 
 					<div class="col-md-6" id="cardCNPJ">
@@ -122,15 +126,15 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div>
-				<div class="row mb-3">
-
+				<div class="row mb-3" hidden>
+				
 					<div class="col-md-6">
-						<label for="codigoInep" class="form-label">Código Inep:<span
-							class="red">*</span></label> <input type="number" id="codigoInep"
-							required autocomplete="off" name="codigoInep"
-							class="form-control" min='0'
-							oninput="this.value = Math.abs(this.value)" />
+						<label for="email" class="form-label">Email:<span
+							class="red">*</span></label> <input type="email" id="email" required
+							autocomplete="off" name="email" class="form-control " />
 					</div>
+
+
 
 					<div class="col-md-6">
 						<label for="zoneamentoId" class="form-label">Zoneamento:<span
@@ -185,7 +189,7 @@ String contextPath = request.getContextPath();
 							</label> <label for="compartilhaEspaco">Não</label>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6">
 						<label for="usaEspacoEntornoEscolar" class="form-label">Usa
 							Espaço Entorno Escolar:<span class="red">*</span>
@@ -199,12 +203,12 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-				
-				
 
-				<div class="row mb-3">
 
-					
+
+				<div class="row mb-3" hidden>
+
+
 
 					<div class="col-md-6">
 						<label for="pppAtualizado12Meses" class="form-label">PPP
@@ -218,7 +222,7 @@ String contextPath = request.getContextPath();
 							</label> <label for="pppAtualizado12Meses">Não</label>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6">
 						<label for="numCME" class="form-label">Nº do cadastro:<span
 							class="red">*</span></label> <input type="number" id="numCME" required
@@ -228,9 +232,9 @@ String contextPath = request.getContextPath();
 
 				</div>
 
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 
-					
+
 					<div class="col-md-6">
 						<label for="numParecerCME" class="form-label">Nº do
 							Parecer:<span class="red">*</span>
@@ -238,8 +242,8 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="numParecerCME" class="form-control"
 							min='0' oninput="this.value = Math.abs(this.value)" />
 					</div>
-					
-					
+
+
 					<div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Dependência
 							Administrativa:<span class="red">*</span>
@@ -252,7 +256,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="situacaoFuncionamentoId" class="form-label">Situação
 							de Funcionamento:<span class="red">*</span>
@@ -283,13 +287,13 @@ String contextPath = request.getContextPath();
 							aria-label="Tipo Escola" id="tipoEscola" required
 							name="tipoEscola">
 							<option selected value='' disabled>Selecione o tipo</option>
-							<option  value="PU">Pública</option>
+							<option value="PU">Pública</option>
 							<option value="PV">Privada</option>
 						</select>
 					</div>
 
 
-					<div class="col-md-6">
+					<div class="col-md-6" hidden>
 						<label for="categoriaEscolaPrivadaId" class="form-label">Categoria
 							Escola Privada:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Categoria Escola Privada"
@@ -300,7 +304,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="entidadeSuperiorId" class="form-label">Entidade
 							Superior:<span class="red">*</span>
@@ -398,24 +402,25 @@ String contextPath = request.getContextPath();
 
 	</main>
 
-	<script charset="UTF-8"  src="https://code.jquery.com/jquery-3.7.1.js"
+	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/cadastros/novaEscola.js"></script>
-	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 
