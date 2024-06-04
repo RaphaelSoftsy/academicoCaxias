@@ -22,7 +22,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script charset="UTF-8" 
+<script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
@@ -36,12 +36,13 @@ String contextPath = request.getContextPath();
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
-<script charset="UTF-8" 
+<script charset="UTF-8"
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-<script charset="UTF-8"  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script charset="UTF-8"  src="sweetalert2.all.min.js"></script>
+<script charset="UTF-8"
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- CSS -->
 
@@ -53,7 +54,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8"  src="https://kit.fontawesome.com/2476720ce5.js"
+<script charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
@@ -81,8 +82,15 @@ String contextPath = request.getContextPath();
 		<section class="pt-4">
 			<form id="formEditar"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h1 id="tituloForm" class="text-center mb-5">Editar dados da
-					Escola</h1>
+				<div class="button-status mb-5">
+					<h1 id="tituloForm">Editar dados da
+						Escola</h1>
+						<button type="button" onclick='ativar("escolas")'
+							class="ativar btn btn-secondary">Ativar</button>
+						<button type="button" onclick='desativar("escolas")'
+							class="desativar btn btn-secondary">Desativar</button>
+				</div>
+
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
@@ -104,11 +112,11 @@ String contextPath = request.getContextPath();
 							</label> <label for="alteraLogo">Não</label>
 						</div>
 					</div>
-				
+
 				</div>
-				
+
 				<div class="row mb-3">
-						<div class="col-md-6 mt-3" id="divLogoEscola">
+					<div class="col-md-6 mt-3" id="divLogoEscola">
 						<label for="logoEscola" class="form-label">Logo:<span
 							class="red">*</span></label> <input class="form-control inputForm"
 							type="file" id="logoEscola" name="logoEscola"> </input>
@@ -126,7 +134,7 @@ String contextPath = request.getContextPath();
 							<option value="PV">Privada</option>
 						</select>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6" hidden>
 						<label for="email" class="form-label">Email:<span
 							class="red">*</span></label> <input type="email" id="email" required
 							autocomplete="off" name="email" class="form-control inputForm" />
@@ -204,7 +212,7 @@ String contextPath = request.getContextPath();
 
 				</div>
 
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="pppAtualizado12Meses" class="form-label">PPP
 							Atualizado (12 Meses):<span class="red">*</span>
@@ -226,7 +234,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="numParecerCME" class="form-label">Nº Parecer
 							CME:<span class="red">*</span>
@@ -247,7 +255,7 @@ String contextPath = request.getContextPath();
 
 				</div>
 
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="situacaoFuncionamentoId" class="form-label">Situação
 							de Funcionamento:<span class="red">*</span>
@@ -269,7 +277,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="zoneamentoId" class="form-label">Zoneamento:<span
 							class="red">*</span>
@@ -289,7 +297,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="orgaoPublicoId" class="form-label">Orgão
 							Público:<span class="red">*</span>
@@ -300,23 +308,24 @@ String contextPath = request.getContextPath();
 					</div>
 
 					<div class="col-md-6">
-						<label for="localizacaoId" class="form-label">Tipo de
-							Localização:<span class="red">*</span>
-						</label> <select class="form-select" aria-label="Tipo de Localização"
-							id="localizacaoId" required name="localizacaoId">
-							<option selected disabled>Selecione o Tipo</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="row mb-3">
-
-					<div class="col-md-6">
 						<label for="entidadeSuperiorId" class="form-label">Entidade
 							Superior:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Entidade Superior"
 							id="entidadeSuperiorId" required name="entidadeSuperiorId">
 							<option selected value='' disabled>Selecione a Entidade</option>
+						</select>
+					</div>
+
+				</div>
+
+				<div class="row mb-3">
+
+					<div class="col-md-6">
+						<label for="localizacaoId" class="form-label">Tipo de
+							Localização:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Tipo de Localização"
+							id="localizacaoId" required name="localizacaoId">
+							<option selected disabled>Selecione o Tipo</option>
 						</select>
 					</div>
 
@@ -378,13 +387,6 @@ String contextPath = request.getContextPath();
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="longitude" required disabled name="longitude" />
 					</div>
-
-					<div class="col-md-6">
-						<button type="button" onclick='ativar("escolas")'
-							class="ativar btn btn-secondary mt-5">Ativar</button>
-						<button type="button" onclick='desativar("escolas")'
-							class="desativar btn btn-secondary mt-5">Desativar</button>
-					</div>
 				</div>
 				<div class="col-md-12 text-center">
 
@@ -396,24 +398,25 @@ String contextPath = request.getContextPath();
 
 	</main>
 
-	<script charset="UTF-8"  src="https://code.jquery.com/jquery-3.7.1.js"
+	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/cadastros/editarEscola.js"></script>
-	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
 </html>
