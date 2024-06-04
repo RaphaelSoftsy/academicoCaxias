@@ -16,6 +16,8 @@ $("#cep").blur(function() {
 		}
 	}).done(function(data) {
 		Swal.close();
+		
+		
 
 		if (data.erro == true) {
 
@@ -32,6 +34,10 @@ $("#cep").blur(function() {
 			$("#uf").val('');
 			$("#longitude").val('');
 			$("#latitude").val('');
+		
+		}else if(data.bairro == '' && data.logradouro == ''){
+			$("#bairro").prop('disabled', false)
+			$("#endereco").prop('disabled', false)
 		
 		} else {
 			$("#uf").prop('disabled', true)

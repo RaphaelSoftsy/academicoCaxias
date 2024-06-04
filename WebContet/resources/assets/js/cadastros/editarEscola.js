@@ -117,8 +117,13 @@ $("#cep").blur(function() {
 		url: 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/',
 		type: "get",
 		async: false,
+		beforeSend: function() {
+				// Mostrar indicador de carregamento
+				Swal.showLoading()
+		}
 	}).done(function(data) {
-
+		Swal.close();
+		
 		if (data.erro == true) {
 
 			$("#uf").prop('disabled', false)
@@ -136,7 +141,11 @@ $("#cep").blur(function() {
 			$("#latitude").val('');
 
 			$('.bg-loading').fadeOut()
-		} else {
+		} else if(data.bairro == '' && data.logradouro == ''){
+			$("#bairro").prop('disabled', false)
+			$("#endereco").prop('disabled', false)
+		
+		}else {
 			$("#uf").prop('disabled', true)
 			$("#municipio").prop('disabled', true)
 			$("#bairro").prop('disabled', true)
@@ -163,7 +172,7 @@ $("#cep").blur(function() {
 			$("#latitude").val(lat);
 		});
 	})
-	$('.bg-loading').fadeOut()
+	
 
 });
 
