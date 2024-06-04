@@ -194,7 +194,7 @@ function desativar(endpoint) {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			aSwal.fire({
+			Swal.fire({
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",

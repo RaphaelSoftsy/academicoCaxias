@@ -52,29 +52,29 @@ $(document).ready(function() {
 				$("#tipoEscola").val('PV').attr('selected', true);
 			}
 
-/*			if (ref.educacaoIndigena === 'S') {
-				$('input[id="isIndigena"]').attr('checked', true)
-			} else {
-				$('input[id="isIndigena"]').attr('checked', false)
-			}
-
-			if (ref.exameSelecao === 'S') {
-				$('input[id="exameSelecao"]').attr('checked', true)
-			} else {
-				$('input[id="exameSelecao"]').attr('checked', false)
-			}
-
-			if (ref.compartilhaEspaco === 'S') {
-				$('input[id="compartilhaEspaco"]').attr('checked', true)
-			} else {
-				$('input[id="compartilhaEspaco"]').attr('checked', false)
-			}
-
-			if (ref.usaEspacoEntornoEscolar === 'S') {
-				$('input[id="usaEspacoEntornoEscolar"]').attr('checked', true)
-			} else {
-				$('input[id="usaEspacoEntornoEscolar"]').attr('checked', false)
-			}*/
+			/*			if (ref.educacaoIndigena === 'S') {
+							$('input[id="isIndigena"]').attr('checked', true)
+						} else {
+							$('input[id="isIndigena"]').attr('checked', false)
+						}
+			
+						if (ref.exameSelecao === 'S') {
+							$('input[id="exameSelecao"]').attr('checked', true)
+						} else {
+							$('input[id="exameSelecao"]').attr('checked', false)
+						}
+			
+						if (ref.compartilhaEspaco === 'S') {
+							$('input[id="compartilhaEspaco"]').attr('checked', true)
+						} else {
+							$('input[id="compartilhaEspaco"]').attr('checked', false)
+						}
+			
+						if (ref.usaEspacoEntornoEscolar === 'S') {
+							$('input[id="usaEspacoEntornoEscolar"]').attr('checked', true)
+						} else {
+							$('input[id="usaEspacoEntornoEscolar"]').attr('checked', false)
+						}*/
 
 			if (ref.pppAtualizado12Meses === 'S') {
 				$('input[id="pppAtualizado12Meses"]').attr('checked', true)
@@ -118,12 +118,12 @@ $("#cep").blur(function() {
 		type: "get",
 		async: false,
 		beforeSend: function() {
-				// Mostrar indicador de carregamento
-				Swal.showLoading()
+			// Mostrar indicador de carregamento
+			Swal.showLoading()
 		}
 	}).done(function(data) {
 		Swal.close();
-		
+
 		if (data.erro == true) {
 
 			$("#uf").prop('disabled', false)
@@ -141,11 +141,11 @@ $("#cep").blur(function() {
 			$("#latitude").val('');
 
 			$('.bg-loading').fadeOut()
-		} else if(data.bairro == '' && data.logradouro == ''){
+		} else if (data.bairro == '' && data.logradouro == '') {
 			$("#bairro").prop('disabled', false)
 			$("#endereco").prop('disabled', false)
-		
-		}else {
+
+		} else {
 			$("#uf").prop('disabled', true)
 			$("#municipio").prop('disabled', true)
 			$("#bairro").prop('disabled', true)
@@ -172,7 +172,7 @@ $("#cep").blur(function() {
 			$("#latitude").val(lat);
 		});
 	})
-	
+
 
 });
 
@@ -279,6 +279,76 @@ $("#formEditar").submit(function(e) {
 
 
 });
+
+function desativarEscola(endpoint) {
+	$.ajax({
+		url: url_base + `/${endpoint}/${id}/desativar`,
+		type: "PUT",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+
+			});
+		}
+	}).done(function(data) {
+			Swal.fire({
+				title: "Desativado com sucesso",
+				icon: "success",
+			}).then(result => {
+				window.location.reload();
+			})
+		})
+	return false;
+}
+
+function ativarEscola(endpoint) {
+	$.ajax({
+		url: url_base + `/${endpoint}/${id}/ativar`,
+		type: "PUT",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+
+			});
+		}
+	}).done(function(data) {
+			
+			Swal.fire({
+				title: "Ativado com sucesso",
+				icon: "success",
+			}).then(result => {
+				window.location.reload();
+
+			})
+		})
+	return false;
+}
+
+/*const desativar = () => {
+
+	Swal.fire({
+		title: "Deseja mesmo desativar essa escola?",
+		showDenyButton: true,
+		confirmButtonText: "Não",
+		denyButtonText: `Sim`
+	}).then((result) => {
+		if (result.isDenied) {
+			Swal.fire("Saved!", "", "success");
+		} else{
+			Swal.fire("Changes are not saved", "", "info");
+		}
+	});
+}*/
 
 function enviarDadosFormulario(objeto) {
 	console.log(objeto)

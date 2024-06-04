@@ -85,9 +85,9 @@ String contextPath = request.getContextPath();
 				<div class="button-status mb-5">
 					<h1 id="tituloForm">Editar dados da
 						Escola</h1>
-						<button type="button" onclick='ativar("escolas")'
+						<button type="button" onclick='ativarEscola("escolas")'
 							class="ativar btn btn-secondary">Ativar</button>
-						<button type="button" onclick='desativar("escolas")'
+						<button type="button" onclick='desativarEscola("escolas")'
 							class="desativar btn btn-secondary">Desativar</button>
 				</div>
 
