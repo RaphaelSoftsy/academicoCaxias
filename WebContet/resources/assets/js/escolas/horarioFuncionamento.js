@@ -9,6 +9,7 @@ var id = '';
 var idEscola = '';
 var horaIni = '';
 var horaFim = '';
+var descricao = '';
 var diaSemana = '';
 var ativo = '';
 const contaId = Number(sessionStorage.getItem('contaId'))
@@ -172,7 +173,7 @@ function getDados() {
 }
 
 function obterNomeDiaSemana(numeroDia) {
-	const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+	const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta"];
 	return diasSemana[numeroDia - 1];
 }
 
@@ -201,9 +202,6 @@ function listarDados(dados) {
 		return (
 			"<tr>" +
 			"<td>" +
-			nomeEscola +
-			"</td>" +
-			"<td>" +
 			nomeDiaSemana +
 			"</td>" +
 			"<td>" +
@@ -214,6 +212,10 @@ function listarDados(dados) {
 			"<td>" +
 			'Às ' +
 			horaFimFormatada
+			+
+			"</td>" +
+			"<td>" +
+			item.descricao
 			+
 			"</td>" +
 			"<td>" +
@@ -231,6 +233,8 @@ function listarDados(dados) {
 			item.diaSemana +
 			'" data-ativo="' +
 			item.ativo +
+			'" data-desc="' +
+			item.descricao +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -249,7 +253,7 @@ $('#exportar-excel').click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "licenciamentoSanitario.xlsx");
+	XLSX.writeFile(livro, "horariosFuncionamento.xlsx");
 });
 
 
@@ -262,11 +266,13 @@ function showModal(ref) {
 	horaFim = ref.getAttribute("data-horaFim");
 	diaSemana = ref.getAttribute("data-diaSemana");
 	ativo = ref.getAttribute("data-ativo");
+	descricao = ref.getAttribute("data-desc")
 
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
 	$("#horaInicioEdit").val(horaIni);
 	$("#horaFimEdit").val(horaFim);
 	$("#diaSemanaEdit").val(diaSemana).attr('selected', true);
+	$("#descricaoEdit").val(descricao)
 
 
 	if (ativo == "S") {
@@ -297,6 +303,7 @@ function editar() {
 		horaInicio: formatarHoraParaAPI($("#horaInicioEdit").val()),
 		horaFim: formatarHoraParaAPI($("#horaFimEdit").val()),
 		diaSemana: $("#diaSemanaEdit").val(),
+		descricao: $("#descricaoEdit").val()
 	};
 
 	console.log(objeto)
@@ -321,6 +328,7 @@ function editar() {
 			$("#horaInicioEdit").val('');
 			$("#horaFimEdit").val('');
 			$("#diaSemanaEdit").val('');
+			$("#descricaoEdit").val('');
 			mudarAnexo = false;
 			getDados();
 			showPage(currentPage);
@@ -351,6 +359,7 @@ function cadastrar() {
 		horaInicio: formatarHoraParaAPI($("#horaInicio").val()),
 		horaFim: formatarHoraParaAPI($("#horaFim").val()),
 		diaSemana: $("#diaSemana").val(),
+		descricao: $("#descricao").val()
 	};
 	console.log(objeto)
 
@@ -374,6 +383,7 @@ function cadastrar() {
 			$("#horaInicio").val('');
 			$("#horaFim").val('');
 			$("#diaSemana").val('');
+			$("#descricaoEdit").val('');
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -399,4 +409,5 @@ function limpaCampo() {
 	$("#horaInicio").val('');
 	$("#horaFim").val('');
 	$("#diaSemana").val('');
+	$("#descricaoEdit").val('');
 }
