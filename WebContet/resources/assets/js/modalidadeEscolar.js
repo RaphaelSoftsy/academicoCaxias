@@ -216,7 +216,7 @@ function cadastrar() {
 			updatePagination();
 			showPage(currentPage);
 			Swal.fire({
-				title: "Editado com sucesso",
+				title: "Cadastrado com sucesso",
 				icon: "success",
 			})
 		})

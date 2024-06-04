@@ -80,7 +80,7 @@ String contextPath = request.getContextPath();
 					<div class="tooltiptext">Modalidade Escolar um termo que
 						geralmente se refere ao tipo ou estilo de educação oferecido por
 						uma instituição educacional exemplo, a modalidade escolar pode ser
-						presencial, ensino à distância, educação bilíngue, entre outros.</div>
+						Educação Infantil, Ensino Fundamentas entre outros.</div>
 					<i class="fa-solid fa-info"></i>
 
 				</div>
