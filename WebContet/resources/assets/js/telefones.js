@@ -143,7 +143,6 @@ function cadastrar() {
 	var objeto = {
 		tipoTelefone: $('#cadastro-nome').val(),
 		contaId: contaId
-
 	}
 
 	$.ajax({

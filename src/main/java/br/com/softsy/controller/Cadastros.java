@@ -214,4 +214,11 @@ public class Cadastros {
 		
 		return "preCadastros/tipoTelefone";
 	}
+	
+	@RequestMapping(value = { "novo-telefone" }, method = RequestMethod.GET)
+	public String novoTelefone(HttpSession session, Model model) throws Exception {
+		
+		return "escolas/novoTelefone";
+	}
+
 }

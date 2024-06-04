@@ -9,11 +9,12 @@ var id = '';
 var idEscola = '';
 var idSelect2 = '';
 var telefone = '';
-const contaId = Number(sessionStorage.getItem('contaId'))
+var descricao = '';
+const contaId = Number(sessionStorage.getItem('contaId'));
 var idEscola = localStorage.getItem("escolaId");
-var pefilEscola = localStorage.getItem("perfil")
-var escola = JSON.parse(pefilEscola)
-var nomeEscola = escola.nome
+var pefilEscola = localStorage.getItem("perfil");
+var escola = JSON.parse(pefilEscola);
+var nomeEscola = escola.nome;
 
 $(document).ready(function() {
 
@@ -190,7 +191,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/escolaTelefone",
+		url: url_base + "/escolaTelefone/escola/" + idEscola,
 		type: "GET",
 		async: false,
 	})
@@ -224,7 +225,7 @@ function listarDados(dados) {
 			item.tipoTelefone.tipoTelefone +
 			"</td>" +
 			"<td>" +
-			nomeEscola +
+			item.descricao +
 			"</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
 			item.escolaId +
@@ -234,6 +235,8 @@ function listarDados(dados) {
 			item.tipoTelefone.idTipoTelefone +
 			'" data-tel="' +
 			item.telefone +
+			'" data-desc="' +
+			item.descricao +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -263,10 +266,12 @@ function showModal(ref) {
 	idEscola = ref.getAttribute("data-idEscola");
 	idSelect2 = ref.getAttribute("data-idSelect2");
 	telefone = ref.getAttribute("data-tel");
+	descricao = ref.getAttribute("data-desc");
 
 	$("#escolaIdEdit").val(idEscola).attr('selected', true);
 	$("#idTipoTelefoneEdit").val(idSelect2).attr('selected', true);
 	$("#telefoneEdit").val(telefone);
+	$("#descricaoEdit").val(descricao);
 }
 
 
@@ -277,7 +282,8 @@ function editar() {
 		idTelefoneEscola: Number(id),
 		telefone: $('#telefoneEdit').val().replace(/[^\d]+/g, ''),
 		escolaId: Number(idEscola),
-		tipoTelefoneId: Number($('#idTipoTelefoneEdit').val())
+		tipoTelefoneId: Number($('#idTipoTelefoneEdit').val()),
+		descricao: $("#descricaoEdit").val()
 	}
 
 	$.ajax({
@@ -299,6 +305,7 @@ function editar() {
 			$("#escolaIdEdit").val('');
 			$("#telefoneEdit").val('');
 			$("#idTipoTelefoneEdit").val('');
+			$("#descricaoEdit").val('');
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -320,10 +327,13 @@ $('#formEdit').on('submit', function(e) {
 
 function cadastrar() {
 
+
+
 	var objeto = {
 		escolaId: Number(idEscola),
 		telefone: $('#telefone').val().replace(/[^\d]+/g, ''),
-		tipoTelefoneId: Number($('#idTipoTelefone').val())
+		tipoTelefoneId: Number($('#idTipoTelefone').val()),
+		descricao: $("#descricao").val()
 	}
 
 	$.ajax({
@@ -345,6 +355,7 @@ function cadastrar() {
 			$("#escolaId").val('');
 			$("#idTipoTelefone").val('');
 			$("#telefone").val('');
+			descricao: $("#descricao").val()
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -369,4 +380,6 @@ function limpaCampo() {
 	$("#escolaId").val('');
 	$("#idTipoTelefone").val('');
 	$("#telefone").val('');
+	$("#descricao").val('');
+
 }

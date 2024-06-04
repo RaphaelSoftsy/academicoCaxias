@@ -166,9 +166,9 @@ String contextPath = request.getContextPath();
 							</div>
 							
 							<div class="d-flex justify-content-end gap-2">
-							<button type="button" onclick='remover("areaConhecimento")'
+							<!-- <button type="button" onclick='remover("areaConhecimento")'
 									class="btn btn-danger" data-bs-dismiss="modal">
-									Remover</button>
+									Remover</button> -->
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -195,7 +195,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8" 
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/areaConhecimento.js"></script>
+	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/tipoTelefone.js"></script>
 	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

@@ -89,10 +89,10 @@ String contextPath = request.getContextPath();
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
+				<!-- <a href="novo-telefone" class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a> -->
 				<button class="btn btn-primary btn-lg px-3 py-1 ms-auto"
 					data-bs-toggle="modal" onclick="limpaCampo()"
 					data-bs-target="#newCadastro">Novo Cadastro</button>
-
 			</div>
 
 			<table
