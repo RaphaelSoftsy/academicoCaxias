@@ -1,11 +1,10 @@
 const contaId = sessionStorage.getItem('contaId')
-
+var cnpj = ''
 $(document).ready(function() {
 	getValorSelects()
 });
 
 $("#cep").blur(function() {
-	$('.bg-loading').fadeIn()
 	$.ajax({
 		url: 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/',
 		type: "get",
@@ -73,8 +72,6 @@ $("#cep").blur(function() {
 
 		})
 	})
-
-	$('.bg-loading').fadeOut()
 });
 
 
@@ -110,12 +107,18 @@ $("#formNovoCadastro").submit(function(e) {
 	if (logoEscolaFile) {
 		convertToBase64(logoEscolaFile, function(base64String) {
 			let imgSplit = base64String.split(',')
+			
+			if($("#cnpj").val() == ''){
+				cnpj = null
+			}else{
+				cnpj = $('#cnpj').val().replace(/[^\d]+/g, '');
+			}
 
 			var dadosFormulario = {
 				nomeEscola: $('#nome').val(),
 				logoEscola: imgSplit[1],
 				tipoEscola: $('#tipoEscola').val(),
-				cnpj: $('#cnpj').val().replace(/[^\d]+/g, ''),
+				cnpj: cnpj,
 				codigoInep: $('#codigoInep').val(),
 				cep: $('#cep').val().replace(/[^\d]+/g, ''),
 				endereco: $('#endereco').val(),
@@ -134,13 +137,13 @@ $("#formNovoCadastro").submit(function(e) {
 				usaEspacoEntornoEscolar:"N",
 				pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 				localizacaoId: Number($('#localizacaoId').val()),
-				dependenciaAdmId: Number($('#dependenciaAdmId').val()),
-				situacaoFuncionamentoId: Number($('#situacaoFuncionamentoId').val()),
-				formaOcupacaoPredioId: Number($('#formaOcupacaoPredioId').val()),
-				"zoneamentoId": Number($('#zoneamentoId').val()),
-				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
-				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
-				"orgaoPublicoId": Number($('#orgaoPublicoId').val()),
+				dependenciaAdmId: 1/*Number($('#dependenciaAdmId').val())*/,
+				situacaoFuncionamentoId:1 /*Number($('#situacaoFuncionamentoId').val())*/,
+				formaOcupacaoPredioId:1 /*Number($('#formaOcupacaoPredioId').val())*/,
+				"zoneamentoId": 1/*Number($('#zoneamentoId').val())*/,
+				"categoriaEscolaPrivadaId":1/* Number($('#categoriaEscolaPrivadaId').val())*/,
+				"entidadeSuperiorId":1 /*Number($('#entidadeSuperiorId').val())*/,
+				"orgaoPublicoId": 1/*Number($('#orgaoPublicoId').val())*/,
 				contaId: Number(contaId)
 			};
 

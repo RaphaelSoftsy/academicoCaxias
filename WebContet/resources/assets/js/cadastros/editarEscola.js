@@ -1,5 +1,6 @@
 var id = '';
 var logo = '';
+var cnpj = '';
 const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
@@ -30,6 +31,7 @@ $(document).ready(function() {
 			$('#numero').val(ref.numero)
 			$('#bairro').val(ref.bairro)
 			$('#municipio').val(ref.municipio)
+			$("#complemento").val(ref.complemento)
 			$('#uf').val(ref.uf)
 			$('#numCME').val(ref.numCME)
 			$('#numParecerCME').val(ref.numParecerCME)
@@ -81,8 +83,6 @@ $(document).ready(function() {
 			} else {
 				$('input[id="pppAtualizado12Meses"]').attr('checked', false)
 			}
-
-
 			$("#localizacaoId").val(ref.localizacao.idLocalizacao).attr('selected', true);
 			$("#dependenciaAdmId").val(ref.dependenciaAdm.idDependenciaAdministrativa).attr('selected', true);
 			$("#situacaoFuncionamentoId").val(ref.situacaoFuncionamento.idSituacaoFuncionamento).attr('selected', true);
@@ -214,6 +214,7 @@ $("#formEditar").submit(function(e) {
 				numero: $('#numero').val(),
 				bairro: $('#bairro').val(),
 				municipio: $('#municipio').val(),
+				complemento: $("#complemento").val(),
 				uf: $('#uf').val(),
 				numCME: $('#numCME').val(),
 				numParecerCME: $('#numParecerCME').val(),
@@ -226,13 +227,13 @@ $("#formEditar").submit(function(e) {
 				usaEspacoEntornoEscolar: "N",
 				pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 				localizacaoId: Number($('#localizacaoId').val()),
-				dependenciaAdmId: Number($('#dependenciaAdmId').val()),
-				situacaoFuncionamentoId: Number($('#situacaoFuncionamentoId').val()),
-				formaOcupacaoPredioId: Number($('#formaOcupacaoPredioId').val()),
-				"zoneamentoId": Number($('#zoneamentoId').val()),
-				"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
-				"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
-				"orgaoPublicoId": Number($('#orgaoPublicoId').val()),
+				dependenciaAdmId: 1/*Number($('#dependenciaAdmId').val())*/,
+				situacaoFuncionamentoId:1 /*Number($('#situacaoFuncionamentoId').val())*/,
+				formaOcupacaoPredioId:1 /*Number($('#formaOcupacaoPredioId').val())*/,
+				"zoneamentoId": 1/*Number($('#zoneamentoId').val())*/,
+				"categoriaEscolaPrivadaId":1/* Number($('#categoriaEscolaPrivadaId').val())*/,
+				"entidadeSuperiorId":1 /*Number($('#entidadeSuperiorId').val())*/,
+				"orgaoPublicoId": 1/*Number($('#orgaoPublicoId').val())*/,
 				contaId: Number(contaId)
 			};
 
@@ -253,6 +254,7 @@ $("#formEditar").submit(function(e) {
 			bairro: $('#bairro').val(),
 			municipio: $('#municipio').val(),
 			uf: $('#uf').val(),
+			complemento: $("#complemento").val(),
 			numCME: $('#numCME').val(),
 			numParecerCME: $('#numParecerCME').val(),
 			latitude: $('#latitude').val(),
@@ -264,13 +266,13 @@ $("#formEditar").submit(function(e) {
 			usaEspacoEntornoEscolar: "N",
 			pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 			localizacaoId: Number($('#localizacaoId').val()),
-			dependenciaAdmId: Number($('#dependenciaAdmId').val()),
-			situacaoFuncionamentoId: Number($('#situacaoFuncionamentoId').val()),
-			formaOcupacaoPredioId: Number($('#formaOcupacaoPredioId').val()),
-			"zoneamentoId": Number($('#zoneamentoId').val()),
-			"categoriaEscolaPrivadaId": Number($('#categoriaEscolaPrivadaId').val()),
-			"entidadeSuperiorId": Number($('#entidadeSuperiorId').val()),
-			"orgaoPublicoId": Number($('#orgaoPublicoId').val()),
+			dependenciaAdmId: 1/*Number($('#dependenciaAdmId').val())*/,
+			situacaoFuncionamentoId: 1 /*Number($('#situacaoFuncionamentoId').val())*/,
+			formaOcupacaoPredioId: 1 /*Number($('#formaOcupacaoPredioId').val())*/,
+			"zoneamentoId": 1/*Number($('#zoneamentoId').val())*/,
+			"categoriaEscolaPrivadaId": 1/* Number($('#categoriaEscolaPrivadaId').val())*/,
+			"entidadeSuperiorId": 1 /*Number($('#entidadeSuperiorId').val())*/,
+			"orgaoPublicoId": 1/*Number($('#orgaoPublicoId').val())*/,
 			contaId: Number(contaId)
 		};
 
@@ -296,13 +298,13 @@ function desativarEscola(endpoint) {
 			});
 		}
 	}).done(function(data) {
-			Swal.fire({
-				title: "Desativado com sucesso",
-				icon: "success",
-			}).then(result => {
-				window.location.reload();
-			})
+		Swal.fire({
+			title: "Desativado com sucesso",
+			icon: "success",
+		}).then(result => {
+			window.location.reload();
 		})
+	})
 	return false;
 }
 
@@ -322,15 +324,15 @@ function ativarEscola(endpoint) {
 			});
 		}
 	}).done(function(data) {
-			
-			Swal.fire({
-				title: "Ativado com sucesso",
-				icon: "success",
-			}).then(result => {
-				window.location.reload();
 
-			})
+		Swal.fire({
+			title: "Ativado com sucesso",
+			icon: "success",
+		}).then(result => {
+			window.location.reload();
+
 		})
+	})
 	return false;
 }
 

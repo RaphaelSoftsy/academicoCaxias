@@ -134,7 +134,7 @@ String contextPath = request.getContextPath();
 							<option value="PV">Privada</option>
 						</select>
 					</div>
-					<div class="col-md-6" hidden>
+					<div class="col-md-6">
 						<label for="email" class="form-label">Email:<span
 							class="red">*</span></label> <input type="email" id="email" required
 							autocomplete="off" name="email" class="form-control inputForm" />
@@ -156,7 +156,7 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div>
-
+<!-- 
 				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="isIndigena" class="form-label">Educação
@@ -316,8 +316,10 @@ String contextPath = request.getContextPath();
 						</select>
 					</div>
 
-				</div>
-
+				</div> -->
+				
+				<hr>
+				
 				<div class="row mb-3">
 
 					<div class="col-md-6">
@@ -366,27 +368,31 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="numero" class="form-label">Número:<span
+						<label for="numero" class="form-label">Número:</label> <input type='number' class="form-control"
+							id="numero" name="numero" />
+					</div>
+					
+					<div class="col-md-6">
+						<label for="complemento" class="form-label">Complemento:</label> <input type='text' class="form-control"
+							id="complemento"  disabled name="complemento" />
+					</div>
+					
+
+
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6 ">
+						<label for="longitude" class="form-label">Longitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
-							id="numero" required name="numero" />
+							id="longitude" required disabled name="longitude" />
 					</div>
 					<div class="col-md-6">
 						<label for="latitude" class="form-label">Latitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="latitude" required disabled name="latitude" />
 					</div>
-
-
-
-
-				</div>
-
-				<div class="row mb-3">
-					<div class="col-md-6 mt-3">
-						<label for="longitude" class="form-label">Longitude:<span
-							class="red">*</span></label> <input type='number' class="form-control"
-							id="longitude" required disabled name="longitude" />
-					</div>
+					
 				</div>
 				<div class="col-md-12 text-center">
 

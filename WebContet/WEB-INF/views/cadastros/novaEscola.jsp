@@ -126,16 +126,16 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div>
-				<div class="row mb-3" hidden>
-				
+				<div class="row mb-3">
+
 					<div class="col-md-6">
 						<label for="email" class="form-label">Email:<span
 							class="red">*</span></label> <input type="email" id="email" required
 							autocomplete="off" name="email" class="form-control " />
 					</div>
 
-
-
+				</div>
+				<!-- 
 					<div class="col-md-6">
 						<label for="zoneamentoId" class="form-label">Zoneamento:<span
 							class="red">*</span>
@@ -146,7 +146,7 @@ String contextPath = request.getContextPath();
 						</select>
 					</div>
 
-				</div>
+				
 
 				<div class="row mb-3" hidden>
 
@@ -277,8 +277,8 @@ String contextPath = request.getContextPath();
 						</select>
 					</div>
 				</div>
-
-				<div class="row mb-3">
+ -->
+				<!-- <div class="row mb-3">
 
 
 					<div class="col-md-6">
@@ -322,7 +322,8 @@ String contextPath = request.getContextPath();
 						</select>
 					</div>
 				</div>
-
+ -->
+ 				<hr>
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="localizacaoId" class="form-label">Tipo de
@@ -372,20 +373,23 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="numero" class="form-label">Número:<span
-							class="red">*</span></label> <input type='text' class="form-control"
+						<label for="numero" class="form-label">Número:</label> <input type='text' class="form-control"
 							id="numero" name="numero" />
 					</div>
+					<div class="col-md-6">
+						<label for="complemento" class="form-label">Complemento:</label> <input type='text' class="form-control"
+							id="complemento"  disabled name="complemento" />
+					</div>
+					
+
+				</div>
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="latitude" class="form-label">Latitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="latitude" disabled name="latitude" />
 					</div>
-
-				</div>
-				<div class="row mb-3">
-
-					<div class="col-md-6 mt-3">
+					<div class="col-md-6">
 						<label for="longitude" class="form-label">Longitude:<span
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="longitude" disabled name="longitude" />
