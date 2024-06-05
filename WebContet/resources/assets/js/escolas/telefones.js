@@ -173,6 +173,7 @@ $(document).ready(function() {
 
 		});
 		listarDados(dadosOrdenados);
+		console.log("teste")
 	}
 
 
