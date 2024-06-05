@@ -41,18 +41,25 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			$('#modalidadeEscolaIdEdit').append($('<option>', {
+			
+			if(item.ativo == "S"){
+				$('#modalidadeEscolaIdEdit').append($('<option>', {
 				value: item.idModalidadeEscola,
 				text: item.modalidadeEscola,
 				name: item.modalidadeEscola
 			}));
+			}
+			
 		});
 		$.each(data, function(index, item) {
-			$('#modalidadeEscolaId').append($('<option>', {
+			if(item.ativo == "S"){
+				$('#modalidadeEscolaId').append($('<option>', {
 				value: item.idModalidadeEscola,
 				text: item.modalidadeEscola,
 				name: item.modalidadeEscola
 			}));
+			}
+			
 		});
 
 	})
