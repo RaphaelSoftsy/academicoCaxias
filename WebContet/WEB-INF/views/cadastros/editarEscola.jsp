@@ -83,12 +83,11 @@ String contextPath = request.getContextPath();
 			<form id="formEditar"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<div class="button-status mb-5">
-					<h1 id="tituloForm">Editar dados da
-						Escola</h1>
-						<button type="button" onclick='ativarEscola("escolas")'
-							class="ativar btn btn-secondary">Ativar</button>
-						<button type="button" onclick='desativarEscola("escolas")'
-							class="desativar btn btn-secondary">Desativar</button>
+					<h1 id="tituloForm">Editar dados da Escola</h1>
+					<button type="button" onclick='ativarEscola("escolas")'
+						class="ativar btn btn-secondary">Ativar</button>
+					<button type="button" onclick='desativarEscola("escolas")'
+						class="desativar btn btn-secondary">Desativar</button>
 				</div>
 
 				<input type="text" id="usuarioCadastro" hidden
@@ -102,8 +101,7 @@ String contextPath = request.getContextPath();
 							maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="alteraLogo" class="form-label"> Alterar Logo:<span
-							class="red">*</span>
+						<label for="alteraLogo" class="form-label"> Alterar Logo:
 						</label>
 						<div class="form-control">
 							<label for="alteraLogo">Sim</label> <label class="switch">
@@ -143,9 +141,8 @@ String contextPath = request.getContextPath();
 				</div>
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="cnpj" class="form-label">CNPJ:<span
-							class="red">*</span></label> <input type="tel" disabled id="cnpj"
-							required autocomplete="off" name="cnpj"
+						<label for="cnpj" class="form-label">CNPJ:</label> <input
+							type="tel" disabled id="cnpj" autocomplete="off" name="cnpj"
 							class="form-control inputForm" data-mask="00.000.000/0000-00" />
 					</div>
 					<div class="col-md-6">
@@ -156,7 +153,7 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div>
-<!-- 
+				<!-- 
 				<div class="row mb-3" hidden>
 					<div class="col-md-6">
 						<label for="isIndigena" class="form-label">Educação
@@ -317,9 +314,9 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div> -->
-				
+
 				<hr>
-				
+
 				<div class="row mb-3">
 
 					<div class="col-md-6">
@@ -368,15 +365,16 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="numero" class="form-label">Número:</label> <input type='number' class="form-control"
-							id="numero" name="numero" />
+						<label for="numero" class="form-label">Número:</label> <input
+							type='number' class="form-control" id="numero" name="numero" />
 					</div>
-					
+
 					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento:</label> <input type='text' class="form-control"
-							id="complemento"  disabled name="complemento" />
+						<label for="complemento" class="form-label">Complemento:</label> <input
+							type='text' class="form-control" id="complemento"
+							name="complemento" />
 					</div>
-					
+
 
 
 				</div>
@@ -392,7 +390,7 @@ String contextPath = request.getContextPath();
 							class="red">*</span></label> <input type='number' class="form-control"
 							id="latitude" required disabled name="latitude" />
 					</div>
-					
+
 				</div>
 				<div class="col-md-12 text-center">
 

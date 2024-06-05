@@ -16,11 +16,27 @@ $(document).ready(function() {
 	})
 		.done(function(data) {
 
-
-
 			const ref = data
 			logo = ref.logoEscola
 			console.log(ref)
+
+			if (ref.cnpj == '' || ref.cnpj == null) {
+				$('#cnpj').removeAttr("disabled")
+			} else {
+				$('#cnpj').attr("disabled", "disabled")
+			}
+
+			if (ref.bairro == "" || ref.bairro == null) {
+				$('#bairro').removeAttr("disabled")
+			} else {
+				$('#bairro').removeAttr("disabled")
+			}
+
+			if (ref.endereco == "" || ref.endereco == null) {
+				$('#endereco').removeAttr("disabled")
+			} else {
+				$('#endereco').removeAttr("disabled")
+			}
 
 			$('#nome').val(ref.nomeEscola)
 			$("#tipoEscola").val(ref.tipoEscola).attr('selected', true);
@@ -111,69 +127,77 @@ $('input[name="alteraLogo"]').change(function() {
 
 $("#cep").blur(function() {
 
-	$('.bg-loading').fadeIn()
 
-	$.ajax({
-		url: 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/',
-		type: "get",
-		async: false,
-		beforeSend: function() {
-			// Mostrar indicador de carregamento
-			Swal.showLoading()
-		}
-	}).done(function(data) {
-		Swal.close();
 
-		if (data.erro == true) {
-
-			$("#uf").prop('disabled', false)
-			$("#municipio").prop('disabled', false)
-			$("#bairro").prop('disabled', false)
-			$("#endereco").prop('disabled', false)
-			$("#longitude").prop('disabled', false)
-			$("#latitude").prop('disabled', false)
-
-			$("#endereco").val('');
-			$("#bairro").val('');
-			$("#municipio").val('');
-			$("#uf").val('');
-			$("#longitude").val('');
-			$("#latitude").val('');
-
-			$('.bg-loading').fadeOut()
-		} else if (data.bairro == '' && data.logradouro == '') {
-			$("#bairro").prop('disabled', false)
-			$("#endereco").prop('disabled', false)
-
-		} else {
-			$("#uf").prop('disabled', true)
-			$("#municipio").prop('disabled', true)
-			$("#bairro").prop('disabled', true)
-			$("#endereco").prop('disabled', true)
-			$("#longitude").prop('disabled', true)
-			$("#latitude").prop('disabled', true)
-		}
-
-		console.log(data)
-		$("#endereco").val(data.logradouro);
-		$("#bairro").val(data.bairro);
-		$("#municipio").val(data.localidade);
-		$("#uf").val(data.uf);
-
+	if (padrao.test(cep)) {
+		Swal.fire({
+			title: "CEP Inválido",
+			confirmButtonText: "Ok",
+			icon: 'error'
+		}).then((result) => {
+			$("#cep").val('')
+		});
+	} else {
 		$.ajax({
-			url: 'https://nominatim.openstreetmap.org/search?format=json&q=' + data.logradouro + ', ' + data.localidade + ', ' + data.uf,
+			url: 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/',
 			type: "get",
 			async: false,
-		}).done(function(geoData) {
-			var lat = geoData[0].lat;
-			var lng = geoData[0].lon;
+			beforeSend: function() {
+				// Mostrar indicador de carregamento
+				Swal.showLoading()
+			}
+		}).done(function(data) {
+			Swal.close();
 
-			$("#longitude").val(lng);
-			$("#latitude").val(lat);
-		});
-	})
+			if (data.erro == true) {
 
+				$("#uf").prop('disabled', false)
+				$("#municipio").prop('disabled', false)
+				$("#bairro").prop('disabled', false)
+				$("#endereco").prop('disabled', false)
+				$("#longitude").prop('disabled', false)
+				$("#latitude").prop('disabled', false)
 
+				$("#endereco").val('');
+				$("#bairro").val('');
+				$("#municipio").val('');
+				$("#uf").val('');
+				$("#longitude").val('');
+				$("#latitude").val('');
+
+				$('.bg-loading').fadeOut()
+			} else if (data.bairro == '' && data.logradouro == '') {
+				$("#bairro").prop('disabled', false)
+				$("#endereco").prop('disabled', false)
+
+			} else {
+				$("#uf").prop('disabled', true)
+				$("#municipio").prop('disabled', true)
+				$("#bairro").prop('disabled', true)
+				$("#endereco").prop('disabled', true)
+				$("#longitude").prop('disabled', true)
+				$("#latitude").prop('disabled', true)
+			}
+
+			console.log(data)
+			$("#endereco").val(data.logradouro);
+			$("#bairro").val(data.bairro);
+			$("#municipio").val(data.localidade);
+			$("#uf").val(data.uf);
+
+			$.ajax({
+				url: 'https://nominatim.openstreetmap.org/search?format=json&q=' + data.logradouro + ', ' + data.localidade + ', ' + data.uf,
+				type: "get",
+				async: false,
+			}).done(function(geoData) {
+				var lat = geoData[0].lat;
+				var lng = geoData[0].lon;
+
+				$("#longitude").val(lng);
+				$("#latitude").val(lat);
+			});
+		})
+	}
 });
 
 
@@ -200,6 +224,12 @@ $("#formEditar").submit(function(e) {
 
 	var logoEscolaFile = $('#logoEscola')[0].files[0];
 
+	if ($("#cnpj").val() == '') {
+		cnpj = null
+	} else {
+		cnpj = $('#cnpj').val().replace(/[^\d]+/g, '');
+	}
+
 	if (logoEscolaFile) {
 		convertToBase64(logoEscolaFile, function(base64String) {
 			var dadosComImgBase64 = {
@@ -207,7 +237,7 @@ $("#formEditar").submit(function(e) {
 				nomeEscola: $('#nome').val(),
 				logoEscola: '',
 				tipoEscola: $('#tipoEscola').val(),
-				cnpj: $('#cnpj').val().replace(/[^\d]+/g, ''),
+				cnpj: cnpj,
 				codigoInep: $('#codigoInep').val(),
 				cep: $('#cep').val().replace(/[^\d]+/g, ''),
 				endereco: $('#endereco').val(),
@@ -228,11 +258,11 @@ $("#formEditar").submit(function(e) {
 				pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 				localizacaoId: Number($('#localizacaoId').val()),
 				dependenciaAdmId: 1/*Number($('#dependenciaAdmId').val())*/,
-				situacaoFuncionamentoId:1 /*Number($('#situacaoFuncionamentoId').val())*/,
-				formaOcupacaoPredioId:1 /*Number($('#formaOcupacaoPredioId').val())*/,
+				situacaoFuncionamentoId: 1 /*Number($('#situacaoFuncionamentoId').val())*/,
+				formaOcupacaoPredioId: 1 /*Number($('#formaOcupacaoPredioId').val())*/,
 				"zoneamentoId": 1/*Number($('#zoneamentoId').val())*/,
-				"categoriaEscolaPrivadaId":1/* Number($('#categoriaEscolaPrivadaId').val())*/,
-				"entidadeSuperiorId":1 /*Number($('#entidadeSuperiorId').val())*/,
+				"categoriaEscolaPrivadaId": 1/* Number($('#categoriaEscolaPrivadaId').val())*/,
+				"entidadeSuperiorId": 1 /*Number($('#entidadeSuperiorId').val())*/,
 				"orgaoPublicoId": 1/*Number($('#orgaoPublicoId').val())*/,
 				contaId: Number(contaId)
 			};
@@ -246,7 +276,7 @@ $("#formEditar").submit(function(e) {
 			nomeEscola: $('#nome').val(),
 			logoEscola: '',
 			tipoEscola: $('#tipoEscola').val(),
-			cnpj: $('#cnpj').val().replace(/[^\d]+/g, ''),
+			cnpj: cnpj,
 			codigoInep: $('#codigoInep').val(),
 			cep: $('#cep').val().replace(/[^\d]+/g, ''),
 			endereco: $('#endereco').val(),

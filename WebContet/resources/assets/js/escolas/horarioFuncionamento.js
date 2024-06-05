@@ -149,6 +149,22 @@ $(document).ready(function() {
 
 });
 
+
+$("horaFim").on('blur', function(){
+	var horaInicioFormatada = parseInt($("horaInicio").val())
+	var horaFimFormatada = parseInt($("horaFim").val())
+	
+	if(horaFimFormatada < horaInicioFormatada){
+		Swal.fire({
+			title: "A hora fim é maior que a hora início",
+			confirmButtonText: "Ok",
+			icon:'error'
+		}).then((result) => {
+			$("#horaFim").val('')
+		});
+	}
+})
+
 $('#limpa-filtros').click(function() {
 	listarDados(dadosOriginais);
 	$('.searchInput').val('');
