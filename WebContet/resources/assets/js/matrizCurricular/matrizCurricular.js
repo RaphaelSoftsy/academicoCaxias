@@ -398,7 +398,7 @@ function limpaCampo() {
 */
 
 
-$("#btn-adcionar").on("click", function (e) {
+$("#btn-adicionar").on("click", function (e) {
   e.preventDefault();
   adcionar()
   return false;

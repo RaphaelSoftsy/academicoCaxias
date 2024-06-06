@@ -132,12 +132,12 @@ String contextPath = request.getContextPath();
 
 				<div class="col-md-12 text-center mt-3">
 					<button type="submit" class="btn btn-primary px-5"
-						id="btn-adcionar">Adcionar</button>
+						id="btn-adicionar">Adicionar</button>
 				</div>
 				
 				<table
 					class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
-					<caption>Disciplinas Adcionadas no Curso -</caption>
+					<caption>Disciplinas Adicionadas no Curso -</caption>
 					<thead>
 						<tr>
 

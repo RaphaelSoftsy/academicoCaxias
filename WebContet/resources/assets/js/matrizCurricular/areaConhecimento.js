@@ -4,6 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
@@ -90,6 +91,7 @@ function editar() {
 	var objeto = {
 		idAreaConhecimento: Number(id),
 		areaConhecimento: $('#edit-nome').val(),
+		"contaId": Number(contaId)
 		//dependenciaAdmId:  $('#dependenciaAdmIdEdit').val()
 	}
 
@@ -136,7 +138,7 @@ function cadastrar() {
 
 	var objeto = {
 		areaConhecimento: $('#cadastro-nome').val(),
-		dependenciaAdmId: $('#dependenciaAdmId').val()
+		"contaId": Number(contaId)
 	}
 
 	$.ajax({

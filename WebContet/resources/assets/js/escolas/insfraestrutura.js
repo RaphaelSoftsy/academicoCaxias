@@ -1,4 +1,3 @@
-
 var pefilEscola = localStorage.getItem("perfil");
 var escola = JSON.parse(pefilEscola);
 var nomeEscola = escola.nome;

@@ -85,7 +85,7 @@ String contextPath = request.getContextPath();
 					Disciplina</h1>
 
 				<div class="row mb-3 justify-content-center">
-					<div class="col-md-6">
+					<!-- <div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Dependência
 							administrativa:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Provedor da Internet"
@@ -93,7 +93,7 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione a dependência</option>
 						</select>
 					</div>
-
+ -->
 					<div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Área de
 							Conhecimento:<span class="red">*</span>

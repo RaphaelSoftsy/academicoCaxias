@@ -164,7 +164,7 @@ String contextPath = request.getContextPath();
 									type="text" class="form-control" id="edit-nome" required
 									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
-							<div class="mb-4">
+						<!-- 	<div class="mb-4">
 								<label for="dependenciaAdmId" class="form-label">Dependência
 									Administrativa:<span class="red">*</span>
 								</label> <select class="form-select"
@@ -172,7 +172,7 @@ String contextPath = request.getContextPath();
 									required name="dependenciaAdmId">
 								<option value="0" selected disabled>Selecione a Dependência</option>
 								</select>
-							</div>
+							</div> -->
 							<div class="d-flex justify-content-end gap-2">
 							<button type="button" onclick='remover("areaConhecimento")'
 									class="btn btn-danger" data-bs-dismiss="modal">
@@ -203,7 +203,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8" 
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/areaConhecimento.js"></script>
+	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/matrizCurricular/areaConhecimento.js"></script>
 	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

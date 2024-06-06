@@ -150,9 +150,9 @@ $(document).ready(function() {
 });
 
 
-$("horaFim").on('blur', function(){
-	var horaInicioFormatada = parseInt($("horaInicio").val())
-	var horaFimFormatada = parseInt($("horaFim").val())
+$("#horaFim").on('blur', function(){
+	var horaInicioFormatada = parseInt($("#horaInicio").val())
+	var horaFimFormatada = parseInt($("#horaFim").val())
 	
 	if(horaFimFormatada < horaInicioFormatada){
 		Swal.fire({

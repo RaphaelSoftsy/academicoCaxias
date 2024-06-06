@@ -99,7 +99,7 @@ String contextPath = request.getContextPath();
 					<caption>Itens Cadastrados</caption>
 					<thead>
 						<tr>						
-							<th scope="col" class="sortable border-end"
+						<!-- 	<th scope="col" class="sortable border-end"
 								data-column="escolaId">
 								<div
 									class='d-flex align-items-center justify-content-between pe-2'>
@@ -121,7 +121,7 @@ String contextPath = request.getContextPath();
 										</div>
 									</div>
 								</div>
-							</th>
+							</th> -->
 							<th scope="col" class="sortable border-end"
 								data-column="areaConhecimentoId">
 								<div
@@ -234,7 +234,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8" 
-		src="<%=contextPath%>/resources/assets/js/escolas/disciplinas.js"></script>
+		src="<%=contextPath%>/resources/assets/js/matrizCurricular/disciplinas.js"></script>
 	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
