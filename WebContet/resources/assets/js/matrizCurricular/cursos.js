@@ -223,7 +223,7 @@ function listarDados(dados) {
       return (
         "<tr>" +
         "<td>" +
-        nomeEscola +
+        item.conta.conta +
         "</td>" +
         "<td>" +
         item.codCurso +
@@ -233,9 +233,6 @@ function listarDados(dados) {
         "</td>" +
         "<td>" +
         item.codCursoInpe +
-        "</td>" +
-        "<td>" +
-        item.dependenciaAdm.dependenciaAdministrativa +
         "</td>" +
         "<td>" +
         ativo +

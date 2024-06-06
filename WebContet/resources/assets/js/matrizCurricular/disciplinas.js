@@ -205,7 +205,7 @@ function listarDados(dados) {
 				 +
 				"</td>" +
 				"<td>" +
-				item.disciplina +
+				item.nome +
 				"</td>" +
 				"<td>" +
 				item.horasAula +
