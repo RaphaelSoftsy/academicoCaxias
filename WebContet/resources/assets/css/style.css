@@ -191,6 +191,15 @@ body {
 	height: 2em;
 	
 }
+
+.infra-title{
+	font-size: 2rem;
+}
+
+.col-xl-6 {
+    flex: 0 0 auto;
+    width: 100%;
+}
 /* The switch - the box around the slider */
 .switch {
   transform: rotate(180deg);
@@ -247,7 +256,7 @@ body {
 }
 
 .card-form{
-	width: 45%;
+	width: 40%;
 	display: flex;
 	justify-content: center;
 	align-items: center;

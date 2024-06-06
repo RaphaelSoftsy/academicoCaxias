@@ -75,8 +75,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <label id="tituloForm"></label>
-					
+					<i class="fa-solid fa-school fa-lg"></i> <span id="tituloForm">Água</span>
 				</div>
 			</div>
 		</section>
@@ -89,10 +88,12 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3"> 
 					<div class="col-md-6">
-						<div class="form-control tittle-switch">
-							<label for="isSemAgua">Sim</label> <label class="ball-switch">
+					<label for="isSemAgua" class="form-label">Possui água<span
+							class="red">*</span></label>
+						<div class="form-control card-form">
+							<label for="isSemAgua">Sim</label> <label class="switch">
 								<input type="checkbox" id="isSemAgua" name="isSemAgua">
-								<span class="title-slider"></span>
+								<span class="slider"></span>
 							</label> <label for="isSemAgua">Não</label>
 
 						</div>

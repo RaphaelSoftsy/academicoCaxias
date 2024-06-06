@@ -90,11 +90,11 @@ String contextPath = request.getContextPath();
 							Periodica<span class="red">*</span>
 						</label>
 						<div class="form-control card-form">
-							<label for="isAcessivel">Sim</label>
-							<label class="switch"> <input type="checkbox" id="isAcessivel" name="isAcessivel"> <span
+							<label for="isColetaPeriodica">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isColetaPeriodica" name="isColetaPeriodica"> <span
 								class="slider"></span>
 							</label>
-							<label for="isAcessivel">Não</label>
+							<label for="isColetaPeriodica">Não</label>
 						
 						</div>
 					</div>

@@ -12,6 +12,8 @@ var idEscolaAgua = 0
 var dados = []
 
 $(document).ready(function() {
+	
+	$('#tituloForm').text(nomeEscola + " - Água");
 	getDados()
 })
 
@@ -77,7 +79,7 @@ function getDados() {
 					$('#isCacimba').attr('checked', false);
 				}
 
-				if (data[0].fonteRio == "S") {
+				if (data[0].aguaFonteRio == "S") {
 					$('#isFonteRio').attr('checked', true);
 				} else {
 					$('#isFonteRio').attr('checked', false);
@@ -152,7 +154,7 @@ function atualizar() {
 	var objeto = {
 		"idEscolaAgua": idEscolaAgua,
 		"escolaId": escolaId,
-		"aguaTratada": getAswer($('#isAguatratada')),
+		"aguaTratada": getAswer($('#isAguaTratada')),
 		"aguaPocoArtesiano": getAswer($("#isPocoArtesiano")),
 		"aguaCacimba": getAswer($("#isCacimba")),
 		"aguaFonteRio": getAswer($("#isFonteRio")),
@@ -195,7 +197,7 @@ function cadastrar() {
 
 	var objeto = {
 		"escolaId": Number(escolaId),
-		"aguaTratada": getAswer($('#isAguatratada')),
+		"aguaTratada": getAswer($('#isAguaTratada')),
 		"aguaPocoArtesiano": getAswer($("#isPocoArtesiano")),
 		"aguaCacimba": getAswer($("#isCacimba")),
 		"aguaFonteRio": getAswer($("#isFonteRio")),

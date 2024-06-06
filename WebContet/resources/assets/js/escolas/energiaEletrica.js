@@ -9,6 +9,7 @@ var escolaId = localStorage.getItem('escolaId');
 let checkS = $("#isOutrosS")
 let checkN = $("#isOutrosN")
 var idEscolaEnergiaEletrica = 0
+var isSemEnergiaEletrica = 'S'
 var dados = []
 
 
@@ -45,8 +46,6 @@ function getDados() {
 			} else {
 				$('input[id="isRedePublica"]').attr('checked', false)
 			}
-
-
 			if (data[0].gerador == "S") {
 				$('input[id="isGerador"]').attr('checked', true)
 			} else {
@@ -61,19 +60,20 @@ function getDados() {
 
 			if (data[0].descricaoOutros == null) {
 				$("#cardDesc").hide()
-				$('input[id="isRedePublica"]').attr('checked', true)
 			} else {
 				$("#cardDesc").show()
 				$("#cardDesc").val(data[0].descricaoOutros)
 			}
 
-			if (data[0].semEnergiaEletrica == 'N') {
+			if (data[0].semEnergiaEletrica == 'S') {
 				$('input[id="isSemEnergiaEletrica"]').attr('checked', false)
 				$('input[id="isGerador"]').attr('checked', false)
 				$('input[id="isGerador"]').prop('disabled', true)
 				$('input[id="isOutros"]').attr('checked', false)
 				$('input[id="isOutros"]').prop('disabled', true)
 				$("#cardDesc").hide()
+			}else{
+				$('input[id="isSemEnergiaEletrica"]').attr('checked', true)
 			}
 
 		})
@@ -147,7 +147,15 @@ function getAswer(input) {
 
 }
 
+
+
 function atualizar() {
+	
+	
+	
+	if(getAswer("#isSemEnergiaEletrica") == 'S'){
+		isSemEnergiaEletrica = "N"
+	}
 	if ($('input[id="isOutros"]').is(':checked')) {
 		var objeto = {
 			"idEscolaEnergiaEletrica": idEscolaEnergiaEletrica,
@@ -156,7 +164,7 @@ function atualizar() {
 			"gerador": getAswer("#isGerador"),
 			"outros": getAswer("#isOutros"),
 			"descricaoOutros": $("#descricao").val(),
-			"semEnergiaEletrica": getAswer("#isSemEnergiaEletrica")
+			"semEnergiaEletrica": isSemEnergiaEletrica
 		}
 	} else {
 		var objeto = {
@@ -165,7 +173,7 @@ function atualizar() {
 			"redePublica": getAswer("#isRedePublica"),
 			"gerador": getAswer("#isGerador"),
 			"outros": getAswer("#isOutros"),
-			"semEnergiaEletrica": getAswer("#isSemEnergiaEletrica")
+			"semEnergiaEletrica": isSemEnergiaEletrica
 		}
 	}
 
@@ -200,6 +208,10 @@ function atualizar() {
 }
 
 function cadastrar() {
+	
+	if(getAswer("#isSemEnergiaEletrica") == 'S'){
+		isSemEnergiaEletrica = "N"
+	}
 	if ($('input[id="isOutros"]').is(':checked')) {
 		var objeto = {
 			"escolaId": Number(escolaId),
@@ -207,7 +219,7 @@ function cadastrar() {
 			"gerador": getAswer("#isGerador"),
 			"outros": getAswer("#isOutros"),
 			"descricaoOutros": $("#descricao").val(),
-			"semEnergiaEletrica": getAswer("#isSemEnergiaEletrica")
+			"semEnergiaEletrica": isSemEnergiaEletrica
 		}
 	} else {
 		var objeto = {
@@ -215,7 +227,7 @@ function cadastrar() {
 			"redePublica": getAswer("#isRedePublica"),
 			"gerador": getAswer("#isGerador"),
 			"outros": getAswer("#isOutros"),
-			"semEnergiaEletrica": getAswer("#isSemEnergiaEletrica")
+			"semEnergiaEletrica": isSemEnergiaEletrica
 		}
 	}
 	$.ajax({
