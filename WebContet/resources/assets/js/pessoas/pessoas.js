@@ -160,13 +160,13 @@ function listarDados(dados) {
 		return (
 			"<tr>" +
 			"<td>" +
-			item.nome +
+			item.nomeCompleto +
 			"</td>" +
 			"<td>" +
-			item.dependenciaAdm.dependenciaAdministrativa +
+			item.email +
 			"</td>" +
 			"<td>" +
-			item.cpf +
+			item.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") +
 			"</td>" +
 			"<td>" +
 			formatarDataParaBR(item.dtNascimento) +

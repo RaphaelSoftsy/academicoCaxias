@@ -1,18 +1,6 @@
-$(document).ready(function() {
-	$.ajax({
-		url: url_base + '/dependenciaAdministrativa',
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$('#dependenciaAdmId').append($('<option>', {
-				value: item.idDependenciaAdministrativa,
-				text: item.dependenciaAdministrativa,
-				name: item.dependenciaAdministrativa
-			}));
-		});
-	})
+const contaId = sessionStorage.getItem('contaId')
 
+$(document).ready(function() {
 	$.ajax({
 		url: url_base + '/raca',
 		type: "get",
@@ -38,6 +26,11 @@ $(document).ready(function() {
 				text: item.nomePais,
 				name: item.nomePais
 			}));
+			$('#nacionalidadeId').append($('<option>', {
+				value: item.idPais,
+				text: item.codigoIso,
+				name: item.codigoIso
+			}));
 		});
 		$.each(data, function(index, item) {
 			$('#paisResidenciaId').append($('<option>', {
@@ -46,6 +39,7 @@ $(document).ready(function() {
 				name: item.nomePais
 			}));
 		});
+		
 	})
 
 	$.ajax({
@@ -55,6 +49,30 @@ $(document).ready(function() {
 	}).done(function(data) {
 		$.each(data, function(index, item) {
 			$('#ufNascimentoId').append($('<option>', {
+				value: item.idUf,
+				text: item.codUf,
+				name: item.codUf
+			}));
+
+			$('#rgUfEmissorId').append($('<option>', {
+				value: item.idUf,
+				text: item.codUf,
+				name: item.codUf
+			}));
+
+			$('#rneUfEmissorId').append($('<option>', {
+				value: item.idUf,
+				text: item.codUf,
+				name: item.codUf
+			}));
+
+			$('#certidaoNascimentoUfCartorioId').append($('<option>', {
+				value: item.idUf,
+				text: item.codUf,
+				name: item.codUf
+			}));
+
+			$('#certidaoCasamentoUfCartorioId').append($('<option>', {
 				value: item.idUf,
 				text: item.codUf,
 				name: item.codUf
@@ -159,27 +177,62 @@ $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
 
 	var dadosFormulario = {
-		nome: $('#nome').val(),
-		dependenciaAdmId: $('#dependenciaAdmId').val(),
+		contaId: parseInt(contaId), 
+		nomeCompleto: $('#nomeCompleto').val(),
+		nomeSocial: $('#nomeSocial').val(),
 		cpf: $('#cpf').val().replace(/[^\d]+/g, ''),
+		rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
+		rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
+		rgUfEmissorId: parseInt($('#rgUfEmissorId').val()),
+		rgDataExpedicao: $('#rgDataExpedicao').val(),
+		rneNumero: $('#rneNumero').val(),
+		rneOrgaoExpedidor: $('#rneOrgaoExpedidor').val(),
+		rneUfEmissorId: parseInt($('#rneUfEmissorId').val()),
+		rneDataExpedicao: $('#rneDataExpedicao').val(),
+		certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
+		certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
+		certidaoNascimentoUfCartorioId: parseInt($('#certidaoNascimentoUfCartorioId').val()),
+		certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
+		certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
+		certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
+		certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
+		certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
+		certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
+		certidaoCasamentoUfCartorioId: parseInt($('#certidaoCasamentoUfCartorioId').val()),
+		certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
+		certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
+		certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
+		certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
 		dtNascimento: $('#dtNascimento').val(),
 		sexo: $('input[name="sexo"]:checked').val(),
-		racaId: $('#racaId').val(),
-		paisNascimentoId: $('#paisNascimentoId').val(),
-		ufNascimentoId: $('#ufNascimentoId').val(),
-		municipioNascimentoId: $('#municipioNascimentoId').val(),
-		paisResidenciaId: $('#paisResidenciaId').val(),
+		racaId:parseInt( $('#racaId').val()),
+		paisNascimentoId: parseInt($('#paisNascimentoId').val()),
+		ufNascimentoId: parseInt($('#ufNascimentoId').val()),
+		nacionalidadeId: parseInt($('#nacionalidadeId').val()),
+		municipioNascimentoId: parseInt($('#municipioNascimentoId').val()),
+		paisResidenciaId: parseInt($('#paisResidenciaId').val()),
+		nacionalidade: $('#nacionalidadeId option:selected').text().substring(0, 2),
 		nomePai: $('#nomePai').val(),
 		nomeMae: $('#nomeMae').val(),
 		cep: $('#cep').val().replace(/[^\d]+/g, ''),
-		numero: $('#numero').val(),
 		endereco: $('#endereco').val(),
+		numero: $('#numero').val(),
 		complemento: $('#complemento').val(),
 		bairro: $('#bairro').val(),
 		municipio: $('#municipio').val(),
 		distrito: $('#distrito').val(),
 		uf: $('#uf').val(),
+		telefone: $('#telefone').val().replace(/[^\d]+/g, ''),
+		celular: $('#celular').val().replace(/[^\d]+/g, ''),
+		email: $('#email').val(),
+		empresa: $('#empresa').val(),
+		ocupacao: $('#ocupacao').val(),
+		telefoneComercial: $('#telefoneComercial').val().replace(/[^\d]+/g, ''),
+		usuario: $('#usuario').val(),
+		senha: $('#senha').val()
 	};
+
+	console.log(dadosFormulario)
 
 	$.ajax({
 		url: url_base + '/pessoas',
@@ -188,6 +241,7 @@ $("#formNovoCadastro").submit(function(e) {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			console.log(e)
+			console.log(e.responseJSON)
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
