@@ -8,387 +8,281 @@ var escolas = [];
 var id = "";
 var idEscola = "";
 var ativo = "";
+const contaId = sessionStorage.getItem('contaId')
 
-$(document).ready(function () {
-  $.ajax({
-    url: url_base + "/escolas",
-    type: "GET",
-    async: false,
-  })
-    .done(function (data) {
-      escolas = data;
-      $.each(data, function (index, item) {
-        $("#escolaIdEdit").append(
-          $("<option>", {
-            value: item.idEscola,
-            text: item.nomeEscola,
-            name: item.nomeEscola,
-          })
-        );
-      });
-      $.each(data, function (index, item) {
-        $("#escolaId").append(
-          $("<option>", {
-            value: item.idEscola,
-            text: item.nomeEscola,
-            name: item.nomeEscola,
-          })
-        );
-      });
-    })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-    });
+$(document).ready(function() {
+	$.ajax({
+		url: url_base + "/escolas",
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			escolas = data;
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
 
-  $.ajax({
-    url: url_base + "/dependenciaAdministrativa",
-    type: "get",
-    async: false,
-  }).done(function (data) {
-    $.each(data, function (index, item) {
-      $("#dependenciaAdmId").append(
-        $("<option>", {
-          value: item.idDependenciaAdministrativa,
-          text: item.dependenciaAdministrativa,
-          name: item.dependenciaAdministrativa,
-        })
-      );
-    });
-	$.each(data, function (index, item) {
-		$("#dependenciaAdmIdEdit").append(
-		  $("<option>", {
-			value: item.idDependenciaAdministrativa,
-			text: item.dependenciaAdministrativa,
-			name: item.dependenciaAdministrativa,
-		  })
-		);
-	  });
-  });
 
-  getDados();
 
-  // Dropdown de Pesquisa
-  $(".dropdown-toggle-form").click(function () {
-    $(this).siblings(".dropdown-content-form").toggleClass("show");
-  });
+	getDados();
 
-  $(".searchButton").click(function () {
-    var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
-    var columnToSearch = $(this).closest(".sortable").data("column");
-    var filteredData;
+	// Dropdown de Pesquisa
+	$(".dropdown-toggle-form").click(function() {
+		$(this).siblings(".dropdown-content-form").toggleClass("show");
+	});
 
-    if (columnToSearch === "dependenciaAdm") {
-      filteredData = dadosOriginais.filter(function (item) {
-        return item.dependenciaAdm.dependenciaAdministrativa
-          .toLowerCase()
-          .includes(searchInput);
-      });
-    } else if (columnToSearch === "escolaId") {
-      filteredData = dadosOriginais.filter(function (item) {
-        var escola = escolas.find(function (school) {
-          return school.idEscola === item.escolaId;
-        });
-        var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
-        return nomeEscola.includes(searchInput);
-      });
-    } else {
-      filteredData = dadosOriginais.filter(function (item) {
-        return item[columnToSearch]
-          .toString()
-          .toLowerCase()
-          .includes(searchInput);
-      });
-    }
+	$(".searchButton").click(function() {
+		var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
+		var columnToSearch = $(this).closest(".sortable").data("column");
+		var filteredData;
 
-    listarDados(filteredData);
+		if (columnToSearch === "dependenciaAdm") {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.dependenciaAdm.dependenciaAdministrativa
+					.toLowerCase()
+					.includes(searchInput);
+			});
+		} else if (columnToSearch === "escolaId") {
+			filteredData = dadosOriginais.filter(function(item) {
+				var escola = escolas.find(function(school) {
+					return school.idEscola === item.escolaId;
+				});
+				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
+				return nomeEscola.includes(searchInput);
+			});
+		} else {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item[columnToSearch]
+					.toString()
+					.toLowerCase()
+					.includes(searchInput);
+			});
+		}
 
-    $(this).siblings(".searchInput").val("");
-    $(this).closest(".dropdown-content-form").removeClass("show");
-  });
+		listarDados(filteredData);
 
-  $(document).on("click", ".sortable .col", function () {
-    var column = $(this).closest("th").data("column");
-    var currentOrder = sortOrder[column] || "vazio";
-    var newOrder;
+		$(this).siblings(".searchInput").val("");
+		$(this).closest(".dropdown-content-form").removeClass("show");
+	});
 
-    if (currentOrder === "vazio") {
-      newOrder = "asc";
-    } else if (currentOrder === "asc") {
-      newOrder = "desc";
-    } else {
-      newOrder = "vazio";
-    }
+	$(document).on("click", ".sortable .col", function() {
+		var column = $(this).closest("th").data("column");
+		var currentOrder = sortOrder[column] || "vazio";
+		var newOrder;
 
-    $(".sortable span").removeClass("asc desc");
-    $(this).find("span").addClass(newOrder);
+		if (currentOrder === "vazio") {
+			newOrder = "asc";
+		} else if (currentOrder === "asc") {
+			newOrder = "desc";
+		} else {
+			newOrder = "vazio";
+		}
 
-    var icon = $(this).find("i");
-    icon.removeClass("fa-sort-up fa-sort-down fa-sort");
+		$(".sortable span").removeClass("asc desc");
+		$(this).find("span").addClass(newOrder);
 
-    if (newOrder === "asc") {
-      icon.addClass("fa-sort-up");
-      sortData(column, newOrder);
-    } else if (newOrder === "desc") {
-      icon.addClass("fa-sort-down");
-      sortData(column, newOrder);
-    } else {
-      icon.addClass("fa-sort");
-      listarDados(dadosOriginais);
-    }
+		var icon = $(this).find("i");
+		icon.removeClass("fa-sort-up fa-sort-down fa-sort");
 
-    sortOrder[column] = newOrder;
-  });
+		if (newOrder === "asc") {
+			icon.addClass("fa-sort-up");
+			sortData(column, newOrder);
+		} else if (newOrder === "desc") {
+			icon.addClass("fa-sort-down");
+			sortData(column, newOrder);
+		} else {
+			icon.addClass("fa-sort");
+			listarDados(dadosOriginais);
+		}
 
-  function sortData(column, order) {
-    var dadosOrdenados = dadosOriginais.slice();
+		sortOrder[column] = newOrder;
+	});
 
-    dadosOrdenados.sort(function (a, b) {
-      if (column === "dependenciaAdm") {
-        var valueA = a.dependenciaAdm.dependenciaAdministrativa.toLowerCase();
-        var valueB = b.dependenciaAdm.dependenciaAdministrativa.toLowerCase();
-        if (order === "asc") {
-          return valueA.localeCompare(valueB);
-        } else {
-          return valueB.localeCompare(valueA);
-        }
-      } else if (column === "escolaId") {
-        var escolaA = escolas.find(function (school) {
-          return school.idEscola === a.escolaId;
-        });
-        var escolaB = escolas.find(function (school) {
-          return school.idEscola === b.escolaId;
-        });
-        var nomeEscolaA = escolaA ? escolaA.nomeEscola.toLowerCase() : "";
-        var nomeEscolaB = escolaB ? escolaB.nomeEscola.toLowerCase() : "";
-        if (order === "asc") {
-          return nomeEscolaA.localeCompare(nomeEscolaB);
-        } else {
-          return nomeEscolaB.localeCompare(nomeEscolaA);
-        }
-      } else {
-        var valueA = a[column].toString().toLowerCase();
-        var valueB = b[column].toString().toLowerCase();
-        if (order === "asc") {
-          return valueA.localeCompare(valueB);
-        } else {
-          return valueB.localeCompare(valueA);
-        }
-      }
-    });
-    listarDados(dadosOrdenados);
-  }
+	function sortData(column, order) {
+		var dadosOrdenados = dadosOriginais.slice();
 
-  showPage(currentPage);
-  updatePagination();
+		dadosOrdenados.sort(function(a, b) {
+			if (column === "dependenciaAdm") {
+				var valueA = a.dependenciaAdm.dependenciaAdministrativa.toLowerCase();
+				var valueB = b.dependenciaAdm.dependenciaAdministrativa.toLowerCase();
+				if (order === "asc") {
+					return valueA.localeCompare(valueB);
+				} else {
+					return valueB.localeCompare(valueA);
+				}
+			} else if (column === "escolaId") {
+				var escolaA = escolas.find(function(school) {
+					return school.idEscola === a.escolaId;
+				});
+				var escolaB = escolas.find(function(school) {
+					return school.idEscola === b.escolaId;
+				});
+				var nomeEscolaA = escolaA ? escolaA.nomeEscola.toLowerCase() : "";
+				var nomeEscolaB = escolaB ? escolaB.nomeEscola.toLowerCase() : "";
+				if (order === "asc") {
+					return nomeEscolaA.localeCompare(nomeEscolaB);
+				} else {
+					return nomeEscolaB.localeCompare(nomeEscolaA);
+				}
+			} else {
+				var valueA = a[column].toString().toLowerCase();
+				var valueB = b[column].toString().toLowerCase();
+				if (order === "asc") {
+					return valueA.localeCompare(valueB);
+				} else {
+					return valueB.localeCompare(valueA);
+				}
+			}
+		});
+		listarDados(dadosOrdenados);
+	}
+
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
+
+	showPage(currentPage);
+	updatePagination();
 });
 
-$("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);
-  $(".searchInput").val("");
+$("#limpa-filtros").click(function() {
+	listarDados(dadosOriginais);
+	$(".searchInput").val("");
 });
 
 function getDados() {
-  $.ajax({
-    url: url_base + "/cursos",
-    type: "GET",
-    async: false,
-  })
-    .done(function (data) {
-      dados = data;
-      dadosOriginais = data;
-      listarDados(data);
-    })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-    });
+	$.ajax({
+		url: url_base + "/cursos/conta/" + contaId,
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			dados = data;
+			dadosOriginais = data;
+			listarDados(data);
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+}
+
+function editar(curso) {
+	var idCurso = curso.getAttribute("data-id");
+	window.location.href = "novo-curso?id=" + idCurso;
+}
+
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+	console.log(status)
+
+	$.ajax({
+		url: url_base + `/cursos/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'curso'
+	})
 }
 
 function listarDados(dados) {
-  var html = dados
-    .map(function (item) {
-      var escola = escolas.find(function (school) {
-        return school.idEscola === item.escolaId;
-      });
+	var html = dados
+		.map(function(item) {
+			var escola = escolas.find(function(school) {
+				return school.idEscola === item.escolaId;
+			});
 
-      if (item.ativo == "N") {
-        ativo =
-          '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-      } else {
-        ativo =
-          "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-      }
+			if (item.ativo == "N") {
+				ativo =
+					'<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+			} else {
+				ativo =
+					"<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+			}
 
-      var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
+			var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
 
-      return (
-        "<tr>" +
-        "<td>" +
-        item.conta.conta +
-        "</td>" +
-        "<td>" +
-        item.codCurso +
-        "</td>" +
-        "<td>" +
-        item.nome +
-        "</td>" +
-        "<td>" +
-        item.codCursoInpe +
-        "</td>" +
-        "<td>" +
-        ativo +
-        "</td>" +
-        '<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idEscola="' +
-        item.escolaId +
-        '" data-id="' +
-        item.idCurso +
-        '" data-ativo="' +
-        item.ativo +
-        '"  onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-        "</tr>"
-      );
-    })
-    .join("");
+			return (
+				"<tr>" +
+				"<td>" +
+				item.conta.conta +
+				"</td>" +
+				"<td>" +
+				item.codCurso +
+				"</td>" +
+				"<td>" +
+				item.nome +
+				"</td>" +
+				"<td>" +
+				ativo +
+				"</td>" +
+				'<td class="d-flex justify-content-center"><span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-contaId="' +
+				item.conta.idConta +
+				'" data-id="' +
+				item.idCurso +
+				'" data-nome="' +
+				item.nome +
+				'" data-codCursoInpe="' +
+				item.codCursoInpe +
+				'" data-codCurso="' +
+				item.codCurso +
+				'" data-ativo="' +
+				item.ativo +
+				'"  onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span><input type="checkbox" data-status="' +
+				item.ativo +
+				'" data-id="' +
+				item.idCurso +
+				'" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+				"</tr>"
+			);
+		})
+		.join("");
 
-  $("#cola-tabela").html(html);
+	$("#cola-tabela").html(html);
 }
 
 // Exportar Dados
 
-$("#exportar-excel").click(function () {
-  var planilha = XLSX.utils.json_to_sheet(dados);
+$("#exportar-excel").click(function() {
+	var planilha = XLSX.utils.json_to_sheet(dados);
 
-  var livro = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+	var livro = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-  XLSX.writeFile(livro, "cursos.xlsx");
+	XLSX.writeFile(livro, "cursos.xlsx");
 });
 
-// Abrir modal
-
-function showModal(ref) {
-  id = ref.getAttribute("data-id");
-  idEscola = ref.getAttribute("data-idEscola");
-  ativo = ref.getAttribute("data-ativo");
-
-  $("#escolaIdEdit").val(idEscola).attr("selected", true);
-  if (ativo == "S") {
-    $(".ativar").hide();
-    $(".desativar").show();
-  } else {
-    $(".desativar").hide();
-    $(".ativar").show();
-  }
-
-  $.ajax({
-    url: url_base + "/cursos/escola/" + idEscola,
-    type: "GET",
-    async: false,
-    error: function (e) {
-      console.log(e.responseJSON.message);
-      alert(e.responseJSON.message);
-    },
-  }).done(function (data) {
-    var curso = data.find(function (item) {
-      return item.idCurso == id;
-    });
-    $("#dependenciaAdmIdEdit")
-      .val(curso.dependenciaAdm.idDependenciaAdministrativa)
-      .attr("selected", true);
-    $("#codCursoEdit").val(curso.codCurso);
-    $("#nomeEdit").val(curso.nome);
-    $("#codCursoInpeEdit").val(curso.codCursoInpe);
-  });
-}
-
-// Editar
-
-function editar() {
-  var objeto = {
-    idCurso: Number(id),
-    escolaId: Number($("#escolaIdEdit").val()),
-    dependenciaAdmId: Number($("#dependenciaAdmIdEdit").val()),
-    codCurso: $("#codCursoEdit").val(),
-    nome: $("#nomeEdit").val(),
-    codCursoInpe: $("#codCursoInpeEdit").val(),
-  };
-
-  $.ajax({
-    url: url_base + "/cursos",
-    type: "PUT",
-    data: JSON.stringify(objeto),
-    contentType: "application/json; charset=utf-8",
-    async: false,
-    error: function (e) {
-      console.log(e.responseJSON.message);
-      alert(e.responseJSON.message);
-    },
-  }).done(function (data) {
-    $("#escolaIdEdit").val("");
-    $("#dependenciaAdmIdEdit").val("");
-    $("#codCursoEdit").val("");
-    $("#nomeEdit").val("");
-    $("#codCursoInpeEdit").val("");
-
-    getDados();
-    showPage(currentPage);
-    updatePagination();
-    alert("Editado com Sucesso!");
-  });
-  return false;
-}
-$("#formEdit").on("submit", function (e) {
-  e.preventDefault();
-  editar();
-  return false;
-});
-
-// Cadastrar
-
-function cadastrar() {
-  var objeto = {
-    escolaId: Number($("#escolaId").val()),
-    dependenciaAdmId: Number($("#dependenciaAdmId").val()),
-    codCurso: $("#codCurso").val(),
-    nome: $("#nome").val(),
-    codCursoInpe: $("#codCursoInpe").val(),
-  };
-
-  $.ajax({
-    url: url_base + "/cursos",
-    type: "POST",
-    data: JSON.stringify(objeto),
-    contentType: "application/json; charset=utf-8",
-    async: false,
-    error: function (e) {
-      console.log(e.responseJSON.message);
-      alert(e.responseJSON.message);
-    },
-  }).done(function (data) {
-    $("#escolaId").val("");
-    $("#dependenciaAdmId").val("");
-    $("#codCurso").val("");
-    $("#nome").val("");
-    $("#codCursoInpe").val("");
-    getDados();
-    showPage(currentPage);
-    updatePagination();
-    alert("Cadastrado com Sucesso!");
-  });
-  return false;
-}
-
-$("#formCadastro").on("submit", function (e) {
-  e.preventDefault();
-  cadastrar();
-  return false;
-});
 
 // Limpa input
 
 function limpaCampo() {
-  $("#escolaId").val("");
-  $("#dependenciaAdmId").val("");
-  $("#codCurso").val("");
-  $("#nome").val("");
-  $("#codCursoInpe").val("");
+	$("#escolaId").val("");
+	$("#dependenciaAdmId").val("");
+	$("#codCurso").val("");
+	$("#nome").val("");
+	$("#codCursoInpe").val("");
 }

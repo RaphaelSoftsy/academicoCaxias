@@ -74,7 +74,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-plus fa-lg"></i><span>Novo Cadastro</span>
+					<i class="fa-solid fa-plus fa-lg"></i><span id="h1-curso">Novo Cadastro</span>
 				</div>
 			</div>
 		</section>
@@ -96,9 +96,16 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="nome" class="form-label">Nome do Curso:<span
+						<label for="nomeCurso" class="form-label">Nome do curso:<span
 							class="red">*</span>
-						</label> <input type="text" id="nome" required autocomplete="off"
+						</label> <input type="text" id="nomeCurso" required autocomplete="off"
+							name="nome" class="form-control" />
+					</div>
+					
+					<div class="col-md-6">
+						<label for="codCurso" class="form-label">Código do curso:<span
+							class="red">*</span>
+						</label> <input type="text" id="codCurso" required autocomplete="off"
 							name="nome" class="form-control" />
 					</div>
 
@@ -106,94 +113,17 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="dependenciaAdmId" class="form-label">Área de
-							Conhecimento:<span class="red">*</span>
-						</label> <select class="form-select" aria-label="Disciplina"
-							id="areaConhecimentoId" required name="areaConhecimentoId">
-							<option selected value="" disabled>Selecione a área</option>
-							<option  value="Linguagens">Linguagens</option>
-							
-						</select>
-					</div>
-
-					<div class="col-md-6">
-						<label for="dependenciaAdmId" class="form-label">Disciplina:<span
+						<label for="codCursoInpe" class="form-label">Código do curso inep:<span
 							class="red">*</span>
-						</label> <select class="form-select" aria-label="Disciplina"
-							id="disciplinaId" required name="disciplinaId">
-							<option selected value="" disabled>Selecione a disciplina</option>
-							<option value="Lingua Estrangeira">Lingua Estrangeira</option>
-							<option  value="Lingua Portuguesa">Lingua Portuguesa</option>
-
-						</select>
+						</label> <input type="text" id="codCursoInpe" required autocomplete="off"
+							name="nome" class="form-control" />
 					</div>
-
 				</div>
 
 				<div class="col-md-12 text-center mt-3">
 					<button type="submit" class="btn btn-primary px-5"
 						id="btn-adicionar">Adicionar</button>
 				</div>
-				
-				<table
-					class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
-					<caption>Disciplinas Adicionadas no Curso -</caption>
-					<thead>
-						<tr>
-
-
-							<th scope="col" class="sortable border-end" data-column="nome">
-								<div
-									class="d-flex align-items-center justify-content-between pe-2">
-									<div
-										class="col d-flex align-items-center justify-content-between">
-										<span>Área de conhecimento</span> <i class="fas fa-sort me-3"
-											style="color: #dddddd"></i>
-									</div>
-									<div class="dropdown-form">
-										<div class="dropdown-toggle-form" id="dropdownButton4">
-											<i class="fas fa-search" style="color: #dddddd"></i>
-										</div>
-										<div
-											class="dropdown-content-form rounded-3 dropdown-content-left"
-											id="dropdownContent4">
-											<input type="text" class="form-control mb-3 searchInput"
-												placeholder="Digite..." />
-											<button class="btn btn-sm col-12 btn-success searchButton">
-												Buscar</button>
-										</div>
-									</div>
-								</div>
-							</th>
-							<th scope="col" class="sortable border-end" data-column="nome">
-								<div
-									class="d-flex align-items-center justify-content-between pe-2">
-									<div
-										class="col d-flex align-items-center justify-content-between">
-										<span>Disciplina</span> <i class="fas fa-sort me-3"
-											style="color: #dddddd"></i>
-									</div>
-									<div class="dropdown-form">
-										<div class="dropdown-toggle-form" id="dropdownButton4">
-											<i class="fas fa-search" style="color: #dddddd"></i>
-										</div>
-										<div
-											class="dropdown-content-form rounded-3 dropdown-content-left"
-											id="dropdownContent4">
-											<input type="text" class="form-control mb-3 searchInput"
-												placeholder="Digite..." />
-											<button class="btn btn-sm col-12 btn-success searchButton">
-												Buscar</button>
-										</div>
-									</div>
-								</div>
-							</th>
-						</tr>
-					</thead>
-					<tbody id="cola-tabela" class="table-group-divider"></tbody>
-				</table>
-				<div id="pagination" class="mx-auto mt-auto"></div>
-
 			</form>
 		</section>
 	</main>
