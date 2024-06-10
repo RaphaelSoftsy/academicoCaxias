@@ -30,7 +30,7 @@ $(document).ready(function() {
 		anoEdit.appendChild(option);
 	}
 
-	$.ajax({
+	/*$.ajax({
 		url: url_base + "/dependenciaAdministrativa",
 		type: "GET",
 		async: false,
@@ -58,7 +58,7 @@ $(document).ready(function() {
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", jqXHR);
-		});
+		});*/
 
 	getDados();
 

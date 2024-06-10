@@ -104,7 +104,8 @@ String contextPath = request.getContextPath();
 						<th scope="col">Mnemonico</th>
 						<th scope="col">Horário de Início</th>
 						<th scope="col">Horário de Fim</th>
-						<th class='text-center' scope="col" width="10%"></th>
+						<th scope="col">Ativo</th>
+						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -203,9 +204,12 @@ String contextPath = request.getContextPath();
 									name="horaFimEdit" class="form-control" />
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='remover("turno")'
-									class="btn btn-danger" data-bs-dismiss="modal">
-									Remover</button>
+								<button type="button" onclick='ativar("turno")'
+									class="ativar btn btn-secondary" data-bs-dismiss="modal">
+									Ativar</button>
+								<button type="button" onclick='desativar("turno")'
+									class="desativar btn btn-secondary" data-bs-dismiss="modal">
+									Desativar</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"

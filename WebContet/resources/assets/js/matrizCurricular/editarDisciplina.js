@@ -1,55 +1,54 @@
 var id = '';
+var areaConhecimento = ''
+const contaId = sessionStorage.getItem('contaId')
 
 var idEscola = ''
 $(document).ready(function() {
-	idEscola = getSearchParams("escola");
+
+	$(".desativar").toggleClass("btn-secondary btn-danger")
+	$(".ativar").toggleClass("btn-secondary btn-success")
+	/*	idEscola = getSearchParams("escola");*/
 	id = getSearchParams("id");
+	areaConhecimento = getSearchParams("areaConhecimento")
+
+	console.log(areaConhecimento)
 
 	$.ajax({
-		url: url_base + '/escolas',
+		url: url_base + '/areaConhecimento/',
 		type: "get",
 		async: false,
 	}).done(function(data) {
+
+		var refAreaConhecimento = data.find((item) => item.idAreaConhecimento == areaConhecimento)
+
+		console.log(refAreaConhecimento.areaConhecimento)
+
 		$.each(data, function(index, item) {
-			$('#escolaId').append($('<option>', {
-				value: item.idEscola,
-				text: item.nomeEscola,
-				name: item.nomeEscola
+			$('#areaConhecimentoId').append($('<option>', {
+				value: item.idAreaConhecimento,
+				text: item.areaConhecimento,
+				name: item.areaConhecimento
 			}));
 		});
+
+
+		$("#areaConhecimentoId").val(refAreaConhecimento.idAreaConhecimento)
 	})
 
-	$.ajax({
-		url: url_base + '/dependenciaAdministrativa',
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$('#dependenciaAdmId').append($('<option>', {
-				value: item.idDependenciaAdministrativa,
-				text: item.dependenciaAdministrativa,
-				name: item.dependenciaAdministrativa
-			}));
-		});
-	})
 
 	$.ajax({
-		url: url_base + "/disciplina/escola/" + idEscola,
+		url: url_base + "/disciplina/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
 
 			var ref = data.find((item) => item.idDisciplina == id)
-
-			$('#creditos').val(ref.creditos)
-			$('#horasAula').val(ref.horasAula)
-			$('#horasLab').val(ref.horasLab)
-			$('#horasEstagio').val(ref.horasEstagio)
-			$('#horasAtiv').val(ref.horasAtiv)
+			$('#horasSemanal').val(ref.horasSemanal)
+			$('#horasAno').val(ref.horasAno)
 			$('#nome').val(ref.nome)
-			$('#disciplina').val(ref.disciplina)
-			
+			$('#disciplina').val(ref.codDiscip)
+
 			if (ref.ativo == "S") {
 				$(".ativar").hide();
 				$(".desativar").show()
@@ -59,8 +58,9 @@ $(document).ready(function() {
 				$(".ativar").show();
 			}
 
-			$("#escolaId").val(ref.escolaId).attr('selected', true);
-			$("#dependenciaAdmId").val(ref.dependenciaAdmId.idDependenciaAdministrativa).attr('selected', true);
+
+
+
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -74,16 +74,18 @@ $("#formEditar").submit(function(e) {
 
 	var dadosFormulario = {
 		idDisciplina: id,
-		escolaId: Number($("#escolaId").val()),
-		dependenciaAdmId: Number($("#dependenciaAdmId").val()),
-		creditos: Number($("#creditos").val()),
-		horasAula: Number($("#horasAula").val()),
-		horasLab: Number($("#horasLab").val()),
-		horasEstagio: Number($("#horasEstagio").val()),
-		horasAtiv: Number($("#horasAtiv").val()),
-		disciplina: $("#disciplina").val(),
-		nome: $("#nome").val()
-	  };
+		contaId: Number(contaId),
+		areaConhecimentoId: Number(areaConhecimento),
+		creditos: null,
+		horasAula: null,
+		horasLab: null,
+		horasEstagio: null,
+		horasAtiv: null,
+		codDiscip: $("#disciplina").val(),
+		nome: $("#nome").val(),
+		horasAno: $("#horasAno").val(),
+		horasSemanal: $("#horasSemanal").val()
+	};
 
 	$.ajax({
 		url: url_base + '/disciplina',
@@ -100,9 +102,9 @@ $("#formEditar").submit(function(e) {
 		}
 	}).done(function(data) {
 		Swal.fire({
-				title: "Editado com sucesso",
-				icon: "success",
-			})
+			title: "Editado com sucesso",
+			icon: "success",
+		})
 		window.location.href = "disciplinas";
 	});
 

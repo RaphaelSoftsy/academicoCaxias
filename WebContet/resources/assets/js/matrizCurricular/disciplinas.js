@@ -212,8 +212,8 @@ function listarDados(dados) {
                 "</td>" +
                 '<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
                 item.idDisciplina +
-                '" data-escola="' +
-                item.escolaId +
+                '" data-areaconhecimento="' +
+                item.areaConhecimentoId +
                 '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
                 "</tr>"
             );
@@ -235,7 +235,9 @@ $("#exportar-excel").click(function() {
 // Editar
 function editar(element) {
 	var id = $(element).data("id");
-	var idEscola = $(element).data("escola");
+	console.log(id)
+	var idAreaConhecimento = $(element).data("areaconhecimento");
+	console.log(idAreaConhecimento)
 
-	window.location.href = "editar-disciplina?id=" + id + "&escola=" + idEscola;
+	window.location.href = "editar-disciplina?id=" + id + "&areaConhecimento=" + idAreaConhecimento;
 }

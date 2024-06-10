@@ -120,7 +120,7 @@ function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
 	idSelect = ref.getAttribute("data-idSelect");
-	isAtivo = ref.getAttribute("data-ativo");
+	isAtivo = ref.getAttribute("data-ativo"); 
 
 	if (isAtivo == "S") {
 		$(".ativar").hide();

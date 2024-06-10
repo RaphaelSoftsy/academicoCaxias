@@ -68,6 +68,14 @@ function listarDados(dados) {
 		var horaInicioFormatada = item.horaInicio.substring(0, 5);
 		var horaFimFormatada = item.horaFim.substring(0, 5);
 
+		var ativo;
+
+		if (item.ativo == "N") {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+		} else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
+
 		return (
 			"<tr>" +
 			"<td>" +
@@ -82,6 +90,9 @@ function listarDados(dados) {
 			"<td>" +
 			horaFimFormatada +
 			"</td>" +
+			"<td>" +
+			ativo +
+			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idTurno +
 			'" data-nome="' +
@@ -92,6 +103,8 @@ function listarDados(dados) {
 			item.horaInicio +
 			'" data-horaFim="' +
 			item.horaFim +
+			'" data-ativo="' +
+			item.ativo +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -106,6 +119,16 @@ function showModal(ref) {
 	nome2 = ref.getAttribute("data-nome2");
 	horaIni = ref.getAttribute("data-horaIni");
 	horaFim = ref.getAttribute("data-horaFim");
+	isAtivo = ref.getAttribute("data-ativo");
+
+	if (isAtivo == "S") {
+		$(".ativar").hide();
+		$(".desativar").show()
+	}
+	else {
+		$(".desativar").hide();
+		$(".ativar").show();
+	}
 
 	$('#edit-nome').val(nome);
 	$('#edit-nome2').val(nome2);
@@ -179,10 +202,10 @@ function cadastrar() {
 		mnemonico: $('#cadastro-nome2').val(),
 		horaInicio: formatarHoraParaAPI($("#horaInicio").val()),
 		horaFim: formatarHoraParaAPI($("#horaFim").val()),
-		contaId : contaId
+		contaId: contaId
 
 	}
-	
+
 
 	$.ajax({
 		url: url_base + "/turno",

@@ -84,7 +84,7 @@ String contextPath = request.getContextPath();
 				<h1 id="tituloForm" class="text-center mb-5">Dados da
 					Disciplina</h1>
 
-				<div class="row mb-3 justify-content-center">
+				<div class="row mb-3">
 					<!-- <div class="col-md-6">
 						<label for="dependenciaAdmId" class="form-label">Dependência
 							administrativa:<span class="red">*</span>
@@ -124,16 +124,16 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3 justify-content-center">
 					<div class="col-md-6">
-						<label for="horasAula" class="form-label">Carga Horária
+						<label for="horasSemanal" class="form-label">Carga Horária
 							Semanal:<span class="red">*</span>
-						</label> <input type="number" id="horasAula" required autocomplete="off"
-							name="horasAula" class="form-control" />
+						</label> <input type="number" id="horasSemanal" required autocomplete="off"
+							name="horasSemanal" class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="horasLab" class="form-label">Carga Horária
+						<label for="horasAno" class="form-label">Carga Horária
 							Anual:<span class="red">*</span>
-						</label> <input type="number" id="horasLab" required autocomplete="off"
-							name="horasLab" class="form-control" />
+						</label> <input type="number" id="horasAno" required autocomplete="off"
+							name="horasAno" class="form-control" />
 					</div>
 				</div>
 
@@ -172,7 +172,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/escolas/editarDisciplina.js"></script>
+		src="<%=contextPath%>/resources/assets/js/matrizCurricular/editarDisciplina.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
