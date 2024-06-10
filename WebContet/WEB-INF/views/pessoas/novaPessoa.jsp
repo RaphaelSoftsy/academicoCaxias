@@ -74,12 +74,12 @@ String contextPath = request.getContextPath();
         <section class="mb-5">
             <div class="card">
                 <div class="card-body title">
-                    <i class="fa-solid fa-plus fa-lg"></i><span>Novo Cadastro</span>
+                    <i class="fa-solid fa-plus fa-lg" id="icon"></i><span id="h1-pessoa">Novo Cadastro</span>
                 </div>
             </div>
         </section>
         <section class="pt-4">
-            <form id="formNovoCadastro" class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+            <form id="formSubmit" class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
                 <h1 id="tituloForm" class="text-center mb-5">Cadastrar Pessoa</h1>
                 <input type="text" id="usuarioCadastro" hidden value="${funcionario.idUsuario}" />
 
@@ -94,160 +94,7 @@ String contextPath = request.getContextPath();
                         <input type="text" id="nomeSocial" autocomplete="off" name="nomeSocial" class="form-control" />
                     </div>
                 </div>
-
-                <!-- Segundo bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6" id="cardCpf">
-                        <label for="cpf" class="form-label">CPF:</label>
-                        <input type="text" id="cpf" required autocomplete="off" data-mask="000.000.000-00" name="cpf" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="rgNumero" class="form-label">RG:</label>
-                        <input type="text" id="rgNumero" required autocomplete="off" data-mask="00.000.000-0" name="rgNumero" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Terceiro bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="rgOrgaoExpedidor" class="form-label">Órgão Expedidor-RG:</label>
-                        <input type="text" id="rgOrgaoExpedidor" required autocomplete="off" name="rgOrgaoExpedidor" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="rgUfEmissorId" class="form-label">UF Emissor - RG:</label>
-                        <select class="form-select" aria-label="RG UF Emissor" id="rgUfEmissorId" required name="rgUfEmissorId">
-                            <option selected disabled>Selecione uma opção</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Quarto bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="rgDataExpedicao" class="form-label">RG Data de Expedição:</label>
-                        <input type="date" id="rgDataExpedicao" required autocomplete="off" name="rgDataExpedicao" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="rneNumero" class="form-label">RNE:</label>
-                        <input type="text" id="rneNumero" required autocomplete="off" name="rneNumero" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Quinto bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="rneOrgaoExpedidor" class="form-label">Órgão Expedidor - RNE:</label>
-                        <input type="text" id="rneOrgaoExpedidor" required autocomplete="off" name="rneOrgaoExpedidor" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="rneUfEmissorId" class="form-label">UF Emissor - RNE:</label>
-                        <select class="form-select" aria-label="RNE UF Emissor" id="rneUfEmissorId" required name="rneUfEmissorId">
-                            <option selected disabled>Selecione uma opção</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Sexto bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="rneDataExpedicao" class="form-label">Data de Expedição - RNE:</label>
-                        <input type="date" id="rneDataExpedicao" required autocomplete="off" name="rneDataExpedicao" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="certidaoNascimentoNumero" class="form-label">Número da Certidão de Nascimento:</label>
-                        <input type="text" id="certidaoNascimentoNumero" required autocomplete="off" name="certidaoNascimentoNumero" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Sétimo bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="certidaoNascimentoCartorio" class="form-label">Certidão de Nascimento Cartório:</label>
-                        <input type="text" id="certidaoNascimentoCartorio" required autocomplete="off" name="certidaoNascimentoCartorio" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="certidaoNascimentoUfCartorioId" class="form-label">Certidão de Nascimento UF Cartório:</label>
-                        <select class="form-select" aria-label="Certidão de Nascimento UF Cartório" id="certidaoNascimentoUfCartorioId" required name="certidaoNascimentoUfCartorioId">
-                            <option selected disabled>Selecione uma opção</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Oitavo bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="certidaoNascimentoDataEmissao" class="form-label">Certidão de Nascimento Data de Emissão:</label>
-                        <input type="date" id="certidaoNascimentoDataEmissao" required autocomplete="off" name="certidaoNascimentoDataEmissao" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="certidaoNascimentoFolha" class="form-label">Certidão de Nascimento Folha:</label>
-                        <input type="text" id="certidaoNascimentoFolha" required autocomplete="off" name="certidaoNascimentoFolha" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Nono bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="certidaoNascimentoLivro" class="form-label">Certidão de Nascimento Livro:</label>
-                        <input type="text" id="certidaoNascimentoLivro" required autocomplete="off" name="certidaoNascimentoLivro" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="certidaoNascimentoOrdem" class="form-label">Certidão de Nascimento Ordem:</label>
-                        <input type="text" id="certidaoNascimentoOrdem" required autocomplete="off" name="certidaoNascimentoOrdem" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Décimo bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="certidaoCasamentoNumero" class="form-label">Certidão de Casamento Número:</label>
-                        <input type="text" id="certidaoCasamentoNumero" required autocomplete="off" name="certidaoCasamentoNumero" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="certidaoCasamentoCartorio" class="form-label">Certidão de Casamento Cartório:</label>
-                        <input type="text" id="certidaoCasamentoCartorio" required autocomplete="off" name="certidaoCasamentoCartorio" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Décimo primeiro bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="certidaoCasamentoUfCartorioId" class="form-label">Certidão de Casamento UF Cartório:</label>
-                        <select class="form-select" aria-label="Certidão de Casamento UF Cartório" id="certidaoCasamentoUfCartorioId" required name="certidaoCasamentoUfCartorioId">
-                            <option selected disabled>Selecione uma opção</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="certidaoCasamentoDataEmissao" class="form-label">Certidão de Casamento Data de Emissão:</label>
-                        <input type="date" id="certidaoCasamentoDataEmissao" required autocomplete="off" name="certidaoCasamentoDataEmissao" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Décimo segundo bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="certidaoCasamentoFolha" class="form-label">Certidão de Casamento Folha:</label>
-                        <input type="text" id="certidaoCasamentoFolha" required autocomplete="off" name="certidaoCasamentoFolha" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="certidaoCasamentoLivro" class="form-label">Certidão de Casamento Livro:</label>
-                        <input type="text" id="certidaoCasamentoLivro" required autocomplete="off" name="certidaoCasamentoLivro" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Décimo terceiro bloco -->
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="certidaoCasamentoOrdem" class="form-label">Certidão de Casamento Ordem:</label>
-                        <input type="text" id="certidaoCasamentoOrdem" required autocomplete="off" name="certidaoCasamentoOrdem" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="dtNascimento" class="form-label">Data de Nascimento:</label>
-                        <input type="date" id="dtNascimento" required autocomplete="off" name="dtNascimento" class="form-control" />
-                    </div>
-                </div>
-
-                <!-- Décimo quarto bloco -->
+                
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="sexo" class="form-label">Sexo:<span class="red">*</span></label>
@@ -262,6 +109,147 @@ String contextPath = request.getContextPath();
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="col-md-6">
+                        <label for="dtNascimento" class="form-label">Data de Nascimento:<span class="red">*</span></label>
+                        <input type="date" id="dtNascimento" required autocomplete="off" name="dtNascimento" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6" id="cardCpf">
+                        <label for="cpf" class="form-label">CPF:</label>
+                        <input type="text" id="cpf" required autocomplete="off" data-mask="000.000.000-00" name="cpf" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rgNumero" class="form-label">RG:</label>
+                        <input type="text" id="rgNumero" required autocomplete="off" data-mask="00.000.000-0" name="rgNumero" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="rgOrgaoExpedidor" class="form-label">Órgão Expedidor-RG:</label>
+                        <input type="text" id="rgOrgaoExpedidor" required autocomplete="off" name="rgOrgaoExpedidor" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rgUfEmissorId" class="form-label">UF Emissor - RG:</label>
+                        <select class="form-select" aria-label="RG UF Emissor" id="rgUfEmissorId" required name="rgUfEmissorId">
+                            <option selected disabled>Selecione uma opção</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="rgDataExpedicao" class="form-label">RG Data de Expedição:</label>
+                        <input type="date" id="rgDataExpedicao" autocomplete="off" name="rgDataExpedicao" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rneNumero" class="form-label">RNE:</label>
+                        <input type="text" id="rneNumero" autocomplete="off" name="rneNumero" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="rneOrgaoExpedidor" class="form-label">Órgão Expedidor - RNE:</label>
+                        <input type="text" id="rneOrgaoExpedidor" autocomplete="off" name="rneOrgaoExpedidor" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rneUfEmissorId" class="form-label">UF Emissor - RNE:</label>
+                        <select class="form-select" aria-label="RNE UF Emissor" id="rneUfEmissorId" required name="rneUfEmissorId">
+                            <option selected disabled>Selecione uma opção</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="rneDataExpedicao" class="form-label">Data de Expedição - RNE:</label>
+                        <input type="date" id="rneDataExpedicao" required autocomplete="off" name="rneDataExpedicao" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="certidaoNascimentoNumero" class="form-label">Número da Certidão de Nascimento:</label>
+                        <input type="text" id="certidaoNascimentoNumero" required autocomplete="off" name="certidaoNascimentoNumero" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="certidaoNascimentoCartorio" class="form-label">Certidão de Nascimento Cartório:</label>
+                        <input type="text" id="certidaoNascimentoCartorio" required autocomplete="off" name="certidaoNascimentoCartorio" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="certidaoNascimentoUfCartorioId" class="form-label">Certidão de Nascimento UF Cartório:</label>
+                        <select class="form-select" aria-label="Certidão de Nascimento UF Cartório" id="certidaoNascimentoUfCartorioId" required name="certidaoNascimentoUfCartorioId">
+                            <option selected disabled>Selecione uma opção</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="certidaoNascimentoDataEmissao" class="form-label">Certidão de Nascimento Data de Emissão:</label>
+                        <input type="date" id="certidaoNascimentoDataEmissao" required autocomplete="off" name="certidaoNascimentoDataEmissao" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="certidaoNascimentoFolha" class="form-label">Certidão de Nascimento Folha:</label>
+                        <input type="text" id="certidaoNascimentoFolha" required autocomplete="off" name="certidaoNascimentoFolha" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="certidaoNascimentoLivro" class="form-label">Certidão de Nascimento Livro:</label>
+                        <input type="text" id="certidaoNascimentoLivro" required autocomplete="off" name="certidaoNascimentoLivro" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="certidaoNascimentoOrdem" class="form-label">Certidão de Nascimento Ordem:</label>
+                        <input type="text" id="certidaoNascimentoOrdem" required autocomplete="off" name="certidaoNascimentoOrdem" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="certidaoCasamentoNumero" class="form-label">Certidão de Casamento Número:</label>
+                        <input type="text" id="certidaoCasamentoNumero" required autocomplete="off" name="certidaoCasamentoNumero" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="certidaoCasamentoCartorio" class="form-label">Certidão de Casamento Cartório:</label>
+                        <input type="text" id="certidaoCasamentoCartorio" required autocomplete="off" name="certidaoCasamentoCartorio" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="certidaoCasamentoUfCartorioId" class="form-label">Certidão de Casamento UF Cartório:</label>
+                        <select class="form-select" aria-label="Certidão de Casamento UF Cartório" id="certidaoCasamentoUfCartorioId" required name="certidaoCasamentoUfCartorioId">
+                            <option selected disabled>Selecione uma opção</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="certidaoCasamentoDataEmissao" class="form-label">Certidão de Casamento Data de Emissão:</label>
+                        <input type="date" id="certidaoCasamentoDataEmissao" required autocomplete="off" name="certidaoCasamentoDataEmissao" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="certidaoCasamentoFolha" class="form-label">Certidão de Casamento Folha:</label>
+                        <input type="text" id="certidaoCasamentoFolha" required autocomplete="off" name="certidaoCasamentoFolha" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="certidaoCasamentoLivro" class="form-label">Certidão de Casamento Livro:</label>
+                        <input type="text" id="certidaoCasamentoLivro" required autocomplete="off" name="certidaoCasamentoLivro" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="certidaoCasamentoOrdem" class="form-label">Certidão de Casamento Ordem:</label>
+                        <input type="text" id="certidaoCasamentoOrdem" required autocomplete="off" name="certidaoCasamentoOrdem" class="form-control" />
+                    </div>
                     <div class="col-md-6">
                         <label for="racaId" class="form-label">Raça:</label>
                         <select class="form-select" aria-label="Raça" id="racaId" required name="racaId">
@@ -270,7 +258,6 @@ String contextPath = request.getContextPath();
                     </div>
                 </div>
 
-                <!-- Décimo quinto bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="paisNascimentoId" class="form-label">País de Nascimento:</label>
@@ -286,7 +273,6 @@ String contextPath = request.getContextPath();
                     </div>
                 </div>
 
-                <!-- Décimo sexto bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="ufNascimentoId" class="form-label">UF de Nascimento:</label>
@@ -302,7 +288,6 @@ String contextPath = request.getContextPath();
                     </div>
                 </div>
 
-                <!-- Décimo sétimo bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="nomePai" class="form-label">Nome do Pai:</label>
@@ -314,7 +299,6 @@ String contextPath = request.getContextPath();
                     </div>
                 </div>
 
-                <!-- Décimo oitavo bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="cep" class="form-label">CEP:</label>
@@ -326,7 +310,6 @@ String contextPath = request.getContextPath();
                     </div>
                 </div>
 
-                <!-- Décimo nono bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="numero" class="form-label">Número:</label>
@@ -338,7 +321,6 @@ String contextPath = request.getContextPath();
                     </div>
                 </div>
 
-                <!-- Vigésimo bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="bairro" class="form-label">Bairro:</label>
@@ -350,7 +332,6 @@ String contextPath = request.getContextPath();
                     </div>
                 </div>
 
-                <!-- Vigésimo primeiro bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="distrito" class="form-label">Distrito:</label>
@@ -362,31 +343,28 @@ String contextPath = request.getContextPath();
                     </div>
                 </div>
 
-                <!-- Vigésimo segundo bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="telefone" class="form-label">Telefone:</label>
-                        <input type="tel" id="telefone" data-mask="(00) 0000-0000" required autocomplete="off" name="telefone" class="form-control" />
+                        <input type="tel" id="telefone" data-mask="(00) 0000-0000" autocomplete="off" name="telefone" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="celular" class="form-label">Celular:</label>
-                        <input type="tel" id="celular" data-mask="(00) 00000-0000"ata-mask="(00) 0000-0000" required autocomplete="off" name="celular" class="form-control" />
+                        <input type="tel" id="celular" data-mask="(00) 00000-0000"ata-mask="(00) 0000-0000" autocomplete="off" name="celular" class="form-control" />
                     </div>
                 </div>
 
-                <!-- Vigésimo terceiro bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="email" class="form-label">Email:</label>
-                        <input type="email" id="email" required autocomplete="off" name="email" class="form-control" />
+                        <input type="email" id="email" autocomplete="off" name="email" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="empresa" class="form-label">Empresa:</label>
-                        <input type="text" id="empresa" required autocomplete="off" name="empresa" class="form-control" />
+                        <input type="text" id="empresa" autocomplete="off" name="empresa" class="form-control" />
                     </div>
                 </div>
 
-                <!-- Vigésimo quarto bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="ocupacao" class="form-label">Ocupação:</label>
@@ -394,23 +372,21 @@ String contextPath = request.getContextPath();
                     </div>
                     <div class="col-md-6">
                         <label for="telefoneComercial" class="form-label">Telefone Comercial:</label>
-                        <input type="tel" id="telefoneComercial" data-mask="(00) 00000-0000" required autocomplete="off" name="telefoneComercial" class="form-control" />
+                        <input type="tel" id="telefoneComercial" data-mask="(00) 00000-0000" autocomplete="off" name="telefoneComercial" class="form-control" />
                     </div>
                 </div>
 
-                <!-- Vigésimo quinto bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="usuario" class="form-label">Usuário:</label>
-                        <input type="text" id="usuario" required autocomplete="off" name="usuario" class="form-control" />
+                        <input type="text" id="usuario"  autocomplete="off" name="usuario" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="senha" class="form-label">Senha:</label>
-                        <input type="password" id="senha" required autocomplete="off" name="senha" class="form-control" />
+                        <input type="password" id="senha"  autocomplete="off" name="senha" class="form-control" />
                     </div>
                 </div>
                 
-                <!-- Vigésimo sexto bloco -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="nacionalidadeId" class="form-label">Nacionalidade:</label>

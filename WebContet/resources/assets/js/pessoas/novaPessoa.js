@@ -1,6 +1,9 @@
 const contaId = sessionStorage.getItem('contaId')
+var idPessoa = '';
 
 $(document).ready(function() {
+	idPessoa = getSearchParams("id");
+
 	$.ajax({
 		url: url_base + '/raca',
 		type: "get",
@@ -39,7 +42,7 @@ $(document).ready(function() {
 				name: item.nomePais
 			}));
 		});
-		
+
 	})
 
 	$.ajax({
@@ -93,6 +96,84 @@ $(document).ready(function() {
 			}));
 		});
 	})
+
+	if (idPessoa != undefined) {
+		$("#tituloPagina, #tituloForm").text("Dados da Pessoa")
+		$("#h1-pessoa").text("Editar Dados")
+		$("#btn-submit").text("Editar")
+		let icon = $("#icon")
+
+		if (icon.hasClass('fa-plus')) {
+			icon.removeClass('fa-plus').addClass('fa-pen');
+		}
+
+		$.ajax({
+			url: url_base + '/pessoas/' + idPessoa,
+			type: 'GET',
+			async: false,
+		}).done(function(data) {
+			console.log(data)
+			
+			$('#contaId').val(data.conta.idConta);
+			$('#nomeCompleto').val(data.nomeCompleto);
+			$('#nomeSocial').val(data.nomeSocial);
+			$('#cpf').val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
+			$('#rgNumero').val(data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"));
+			$('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
+			$('#rgUfEmissorId').val(data.rgUfEmissor.idUf);
+			$('#rgDataExpedicao').val(data.rgDataExpedicao);
+			$('#rneNumero').val(data.rneNumero);
+			$('#rneOrgaoExpedidor').val(data.rneOrgaoExpedidor);
+			$('#rneUfEmissorId').val(data.rneUfEmissor.idUf);
+			$('#rneDataExpedicao').val(data.rneDataExpedicao);
+			$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
+			$('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
+			$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoUfCartorio.idUf);
+			$('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
+			$('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
+			$('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
+			$('#certidaoNascimentoOrdem').val(data.certidaoNascimentoOrdem);
+			$('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
+			$('#certidaoCasamentoCartorio').val(data.certidaoCasamentoCartorio);
+			$('#certidaoCasamentoUfCartorioId').val(data.certidaoCasamentoUfCartorio.idUf);
+			$('#certidaoCasamentoDataEmissao').val(data.certidaoCasamentoDataEmissao);
+			$('#certidaoCasamentoFolha').val(data.certidaoCasamentoFolha);
+			$('#certidaoCasamentoLivro').val(data.certidaoCasamentoLivro);
+			$('#certidaoCasamentoOrdem').val(data.certidaoCasamentoOrdem);
+			$('#dtNascimento').val(data.dtNascimento);
+			$('input[name="sexo"][value="' + data.sexo + '"]').prop('checked', true);
+			$('#racaId').val(data.raca.idRaca);
+			$('#paisNascimentoId').val(data.paisNascimento.idPais);
+			$('#ufNascimentoId').val(data.ufNascimento.idUf);
+			$('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade);
+			$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio);
+			$('#paisResidenciaId').val(data.paisResidencia.idPais);
+			$('#nacionalidadeId option').filter(function() {
+				return $(this).text().substring(0, 2) === data.nacionalidade;
+			}).prop('selected', true);
+			$('#nomePai').val(data.nomePai);
+			$('#nomeMae').val(data.nomeMae);
+			$('#cep').val(data.cep);
+			$('#endereco').val(data.endereco);
+			$('#numero').val(data.numero);
+			$('#complemento').val(data.complemento);
+			$('#bairro').val(data.bairro);
+			$('#municipio').val(data.municipio);
+			$('#distrito').val(data.distrito);
+			$('#uf').val(data.uf);
+			$('#telefone').val(data.telefone);
+			$('#celular').val(data.celular);
+			$('#email').val(data.email);
+			$('#empresa').val(data.empresa);
+			$('#ocupacao').val(data.ocupacao);
+			$('#telefoneComercial').val(data.telefoneComercial);
+			$('#usuario').val(data.usuario);
+			$('#senha').val(data.senha);
+		}).fail(function(error) {
+			console.error('Erro ao buscar dados da pessoa:', error);
+		});
+
+	}
 });
 
 function cpfValido(cpf) {
@@ -173,11 +254,19 @@ $("#cep").blur(function() {
 
 });
 
-$("#formNovoCadastro").submit(function(e) {
+$("#formSubmit").submit(function(e) {
 	e.preventDefault();
 
+	if (idPessoa == undefined) {
+		cadastrarPessoa()
+	} else {
+		editarPessoa()
+	}
+});
+
+const editarPessoa = () => {
 	var dadosFormulario = {
-		contaId: parseInt(contaId), 
+		contaId: parseInt(contaId),
 		nomeCompleto: $('#nomeCompleto').val(),
 		nomeSocial: $('#nomeSocial').val(),
 		cpf: $('#cpf').val().replace(/[^\d]+/g, ''),
@@ -205,7 +294,94 @@ $("#formNovoCadastro").submit(function(e) {
 		certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
 		dtNascimento: $('#dtNascimento').val(),
 		sexo: $('input[name="sexo"]:checked').val(),
-		racaId:parseInt( $('#racaId').val()),
+		racaId: parseInt($('#racaId').val()),
+		paisNascimentoId: parseInt($('#paisNascimentoId').val()),
+		ufNascimentoId: parseInt($('#ufNascimentoId').val()),
+		nacionalidadeId: parseInt($('#nacionalidadeId').val()),
+		municipioNascimentoId: parseInt($('#municipioNascimentoId').val()),
+		paisResidenciaId: parseInt($('#paisResidenciaId').val()),
+		nacionalidade: $('#nacionalidadeId option:selected').text().substring(0, 2),
+		nomePai: $('#nomePai').val(),
+		nomeMae: $('#nomeMae').val(),
+		cep: $('#cep').val().replace(/[^\d]+/g, ''),
+		endereco: $('#endereco').val(),
+		numero: $('#numero').val(),
+		complemento: $('#complemento').val(),
+		bairro: $('#bairro').val(),
+		municipio: $('#municipio').val(),
+		distrito: $('#distrito').val(),
+		uf: $('#uf').val(),
+		telefone: $('#telefone').val().replace(/[^\d]+/g, ''),
+		celular: $('#celular').val().replace(/[^\d]+/g, ''),
+		email: $('#email').val(),
+		empresa: $('#empresa').val(),
+		ocupacao: $('#ocupacao').val(),
+		telefoneComercial: $('#telefoneComercial').val().replace(/[^\d]+/g, ''),
+		usuario: $('#usuario').val(),
+		senha: $('#senha').val()
+	};
+
+	console.log(dadosFormulario)
+
+	$.ajax({
+		url: url_base + '/pessoas',
+		type: "PUT",
+		data: JSON.stringify(dadosFormulario),
+		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
+		error: function(e) {
+			Swal.close()
+			console.log(e)
+			console.log(e.responseJSON)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
+		}
+	}).done(function(data) {
+		Swal.close()
+		Swal.fire({
+			title: "Editado com sucesso",
+			icon: "success",
+		})
+		window.location.href = "listarPessoas";
+	});
+}
+
+const cadastrarPessoa = () => {
+	var dadosFormulario = {
+		contaId: parseInt(contaId),
+		nomeCompleto: $('#nomeCompleto').val(),
+		nomeSocial: $('#nomeSocial').val(),
+		cpf: $('#cpf').val().replace(/[^\d]+/g, ''),
+		rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
+		rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
+		rgUfEmissorId: parseInt($('#rgUfEmissorId').val()),
+		rgDataExpedicao: $('#rgDataExpedicao').val(),
+		rneNumero: $('#rneNumero').val(),
+		rneOrgaoExpedidor: $('#rneOrgaoExpedidor').val(),
+		rneUfEmissorId: parseInt($('#rneUfEmissorId').val()),
+		rneDataExpedicao: $('#rneDataExpedicao').val(),
+		certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
+		certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
+		certidaoNascimentoUfCartorioId: parseInt($('#certidaoNascimentoUfCartorioId').val()),
+		certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
+		certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
+		certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
+		certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
+		certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
+		certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
+		certidaoCasamentoUfCartorioId: parseInt($('#certidaoCasamentoUfCartorioId').val()),
+		certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
+		certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
+		certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
+		certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
+		dtNascimento: $('#dtNascimento').val(),
+		sexo: $('input[name="sexo"]:checked').val(),
+		racaId: parseInt($('#racaId').val()),
 		paisNascimentoId: parseInt($('#paisNascimentoId').val()),
 		ufNascimentoId: parseInt($('#ufNascimentoId').val()),
 		nacionalidadeId: parseInt($('#nacionalidadeId').val()),
@@ -239,7 +415,11 @@ $("#formNovoCadastro").submit(function(e) {
 		type: "POST",
 		data: JSON.stringify(dadosFormulario),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
+			Swal.close()
 			console.log(e)
 			console.log(e.responseJSON)
 			Swal.fire({
@@ -249,11 +429,11 @@ $("#formNovoCadastro").submit(function(e) {
 			});
 		}
 	}).done(function(data) {
+		Swal.close()
 		Swal.fire({
 			title: "Cadastrado com sucesso",
 			icon: "success",
 		})
 		window.location.href = "listarPessoas";
 	});
-
-});
+}

@@ -180,7 +180,6 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
 					</tr>
 				</thead>

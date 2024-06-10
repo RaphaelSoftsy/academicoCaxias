@@ -146,16 +146,40 @@ function formatarDataParaBR(data) {
 	return dia + '/' + mes + '/' + ano;
 }
 
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+	console.log(status)
+
+	$.ajax({
+		url: url_base + `/pessoas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	})
+}
+
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-        var ativo = '';
-
-        if (item.ativo == 'N') {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
+		var ativo = '';
 
 		return (
 			"<tr>" +
@@ -171,12 +195,13 @@ function listarDados(dados) {
 			"<td>" +
 			formatarDataParaBR(item.dtNascimento) +
 			"</td>" +
-            "<td>" +
-			ativo +
-			"</td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idPessoa +
-			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span><input type="checkbox" data-status="' +
+			item.ativo +
+			'" data-id="' +
+			item.idPessoa +
+			`" onChange="alteraStatus(this)" ${item.ativo == 'S'? 'checked': ''} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>` +
 			"</tr>"
 		);
 	}).join("");
@@ -198,7 +223,7 @@ $('#exportar-excel').click(function() {
 
 // redirect para edicao
 
-function editar(ref){
+function editar(ref) {
 	id = ref.getAttribute("data-id");
-	 window.location.href="editarPessoa?id="+id;
+	window.location.href = "novaPessoa?id=" + id;
 }
