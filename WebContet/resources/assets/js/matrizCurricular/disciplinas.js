@@ -158,85 +158,68 @@ function getDados() {
 		});
 }
 
-function getAreaConhecimento(dadosDisciplina){
-	
-	dadosDisciplina.map(function(item){
-		$.ajax({
-		url: url_base + "/areaConhecimento/" + item.areaConhecimentoId,
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			return data[0].areaConhecimento
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-	})
-	
+function getAreaConhecimento(dadosDisciplina, callback) {
+    var nomesAreaConhecimento = [];
+    dadosDisciplina.forEach(function(item, index) {
+        $.ajax({
+            url: url_base + "/areaConhecimento/" + item.areaConhecimentoId,
+            type: "GET",
+            async: false,
+        })
+        .done(function(data) {
+            nomesAreaConhecimento[index] = data.areaConhecimento;
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+        });
+    });
+
+    // Chamada do callback passando os nomes das áreas de conhecimento
+    callback(nomesAreaConhecimento);
 }
 
-
-
 function listarDados(dados) {
-	
-	
-	var html = dados
-		.map(function(item) {
-			var ativo;
-
-			var escola = escolas.find(function(school) {
-				return school.idEscola === item.escolaId;
-			});
-
-			var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
-
-			if (item.ativo == "N") {
-				ativo =
-					'<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-			} else {
-				ativo =
-					"<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-			}
-
-			return (
-				"<tr>" +
-				"<td>" +
-				 +
-				"</td>" +
-				"<td>" +
-				item.nome +
-				"</td>" +
-				"<td>" +
-				item.horasAula +
-				"h" +
-				"</td>" +
-				"<td>" +
-				item.horasLab +
-				"h" +
-				"</td>" +
-				"<td>" +
-				item.horasEstagio +
-				"h" +
-				"</td>" +
-				"<td>" +
-				item.horasAtiv +
-				"h" +
-				"</td>" +
-				"<td>" +
-				ativo +
-				"</td>" +
-				'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-				item.idDisciplina +
-				'" data-escola="' +
-				item.escolaId +
-				'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-				"</tr>"
-			);
-		})
-		.join("");
-
-	$("#cola-tabela").html(html);
+    getAreaConhecimento(dados, function(nomesAreaConhecimento) {
+        var html = dados.map(function(item, index) {
+            var ativo;
+            var escola = escolas.find(function(school) {
+                return school.idEscola === item.escolaId;
+            });
+            var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
+            if (item.ativo == "N") {
+                ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+            } else {
+                ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+            }
+            return (
+                "<tr>" +
+                "<td>" +
+                nomesAreaConhecimento[index] + // Usando o nome da área de conhecimento correspondente
+                "</td>" +
+                "<td>" +
+                item.nome +
+                "</td>" +
+                "<td>" +
+                item.horasSemanal +
+                "h" +
+                "</td>" +
+                "<td>" +
+                item.horasAno +
+                "h" +
+                "</td>" +
+                "<td>" +
+                ativo +
+                "</td>" +
+                '<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+                item.idDisciplina +
+                '" data-escola="' +
+                item.escolaId +
+                '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+                "</tr>"
+            );
+        }).join("");
+        $("#cola-tabela").html(html);
+    });
 }
 
 // Exportar Dados

@@ -96,17 +96,10 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="dependenciaAdmId" class="form-label">Dependência administrativa:<span class="red">*</span>
-						</label> <select class="form-select" aria-label="Provedor da Internet"
-							id="dependenciaAdmId" required name="dependenciaAdmId">
-							<option selected disabled>Selecione a dependência</option>
-						</select>
-					</div>
 					
 					<div class="col-md-6">
-						<label for="dependenciaAdmId" class="form-label">Área de Conhecimento:<span class="red">*</span>
-						</label> <select class="form-select" aria-label="Provedor da Internet"
+						<label for="areaConhecimentoId" class="form-label">Área de Conhecimento:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Area de Conhecimento"
 							id="areaConhecimentoId" required name="areaConhecimentoId">
 							<option selected disabled>Selecione a área</option>
 						</select>
@@ -121,7 +114,7 @@ String contextPath = request.getContextPath();
 							name="nome" class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="disciplina" class="form-label">Disciplina:<span
+						<label for="disciplina" class="form-label">Código da disciplina (Exem: MAT):<span
 							class="red">*</span>
 						</label> <input type="text" id="disciplina" required autocomplete="off"
 							name="disciplina" class="form-control" />
@@ -131,15 +124,15 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3 justify-content-center">
 					<div class="col-md-6">
-						<label for="horasAula" class="form-label">Carga Horária Semanal:<span class="red">*</span>
-						</label> <input type="number" id="horasAula" required autocomplete="off"
-							name="horasAula" class="form-control" min='0'
+						<label for="horasSemanal" class="form-label">Carga Horária Semanal:<span class="red">*</span>
+						</label> <input type="number" id="horasSemanal" required autocomplete="off"
+							name="horasSemanal" class="form-control" min='0'
 							oninput="this.value = Math.abs(this.value)"  />
 					</div>
 					<div class="col-md-6">
-						<label for="horasLab" class="form-label">Carga Horária Anual:<span class="red">*</span>
-						</label> <input type="number" id="horasLab" required autocomplete="off"
-							name="horasLab" class="form-control" />
+						<label for="horasAnual" class="form-label">Carga Horária Anual:<span class="red">*</span>
+						</label> <input type="number" id="horasAnual" required autocomplete="off"
+							name="horasAnual" class="form-control" />
 					</div>
 				</div>
 
@@ -165,7 +158,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/escolas/novaDisciplina.js"></script>
+		src="<%=contextPath%>/resources/assets/js/matrizCurricular/novaDisciplina.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"

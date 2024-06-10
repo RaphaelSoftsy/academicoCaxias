@@ -263,6 +263,14 @@ body {
 	gap: 5%;
 }
 
+.card-form-infra{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5%;
+}
+
 .form-label{
 	font-size: .9rem;
 }

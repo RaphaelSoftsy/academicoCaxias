@@ -191,6 +191,7 @@ String contextPath = request.getContextPath();
 									</div>
 								</div>
 							</th>
+					
 							
 							<th scope="col" class="border-end pe-2 th-sem-filtro"
 								data-column="ativo">Ativo</th>

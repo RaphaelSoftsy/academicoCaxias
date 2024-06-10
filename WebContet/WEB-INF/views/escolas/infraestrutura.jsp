@@ -93,7 +93,7 @@ String contextPath = request.getContextPath();
 							<label for="isAcessivel" class="form-label">Escola
 								Acessível<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isAcessivel">Sim</label> <label class="switch">
 									<input type="checkbox" id="isAcessivel" name="isAcessivel">
 									<span class="slider"></span>
@@ -106,7 +106,7 @@ String contextPath = request.getContextPath();
 								Acessível<span class="red">*</span>
 							</label>
 
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isDependenciaAcessivel">Sim</label> <label
 									class="switch"> <input type="checkbox"
 									id="isDependenciaAcessivel" name="isDependenciaAcessivel">
@@ -119,7 +119,7 @@ String contextPath = request.getContextPath();
 							<label for="isSanitarioEscola" class="form-label">Sanitários
 								dentro da Escola<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isSanitarioEscola">Sim</label> <label class="switch">
 									<input type="checkbox" id="isSanitarioEscola"
 									name="isSanitarioEscola"> <span class="slider"></span>
@@ -131,7 +131,7 @@ String contextPath = request.getContextPath();
 							<label for="isSanitariosAcessivel" class="form-label">Sanitários
 								Acessível<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isSanitariosAcessivel">Sim</label> <label
 									class="switch"> <input type="checkbox"
 									id="isSanitariosAcessivel" name="isSanitariosAcessivel">
@@ -153,7 +153,7 @@ String contextPath = request.getContextPath();
 						<div class="col-md-3">
 							<label for="isBiblioteca" class="form-label">Biblioteca<span
 								class="red">*</span></label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isBiblioteca">Sim</label> <label class="switch">
 									<input type="checkbox" id="isBiblioteca" name="isBiblioteca">
 									<span class="slider"></span>
@@ -166,7 +166,7 @@ String contextPath = request.getContextPath();
 							<label for="isCozinha" class="form-label">Cozinha<span
 								class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isCozinha">Sim</label> <label class="switch">
 									<input type="checkbox" id="isCozinha" name="isCozinha">
 									<span class="slider"></span>
@@ -179,7 +179,7 @@ String contextPath = request.getContextPath();
 							<label for="isQuadraEsportes" class="form-label">Quadra
 								Esportes<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isQuadraEsportes">Sim</label> <label class="switch">
 									<input type="checkbox" id="isQuadraEsportes"
 									name="isQuadraEsportes"> <span class="slider"></span>
@@ -193,7 +193,7 @@ String contextPath = request.getContextPath();
 								<label for="isSalaDiretoria" class="form-label">Sala
 									Diretoria<span class="red">*</span>
 								</label>
-								<div class="form-control card-form">
+								<div class="form-control card-form-infra">
 									<label for="isSalaDiretoria">Sim</label> <label class="switch">
 										<input type="checkbox" id="isSalaDiretoria"
 										name="isSalaDiretoria"> <span class="slider"></span>
@@ -206,7 +206,7 @@ String contextPath = request.getContextPath();
 								<label for="isSalaLeitura" class="form-label">Sala de
 									Leitura<span class="red">*</span>
 								</label>
-								<div class="form-control card-form">
+								<div class="form-control card-form-infra">
 									<label for="isSalaLeitura">Sim</label> <label class="switch">
 										<input type="checkbox" id="isSalaLeitura" name="isSalaLeitura">
 										<span class="slider"></span>
@@ -219,7 +219,7 @@ String contextPath = request.getContextPath();
 								<label for="isSalaProfessores" class="form-label">Sala
 									Professores<span class="red">*</span>
 								</label>
-								<div class="form-control card-form">
+								<div class="form-control card-form-infra">
 									<label for="isSalaProfessores">Sim</label> <label
 										class="switch"> <input type="checkbox"
 										id="isSalaProfessores" name="isSalaProfessores"> <span
@@ -235,7 +235,7 @@ String contextPath = request.getContextPath();
 							<label for="isSalaAtendimentoEspecial" class="form-label">Sala
 								Atendimento Especial<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isSalaAtendimentoEspecial">Sim</label> <label
 									class="switch"> <input type="checkbox"
 									id="isSalaAtendimentoEspecial" name="isSalaAtendimentoEspecial">
@@ -256,7 +256,7 @@ String contextPath = request.getContextPath();
 							<label for="isLabInformatica" class="form-label">Laboratório
 								de Informática<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isLabInformatica">Sim</label> <label class="switch">
 									<input type="checkbox" id="isLabInformatica"
 									name="isLabInformatica"> <span class="slider"></span>
@@ -268,7 +268,7 @@ String contextPath = request.getContextPath();
 							<label for="isLabCiencia" class="form-label">Laboratório
 								de Ciência<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isLabCiencia">Sim</label> <label class="switch">
 									<input type="checkbox" id="isLabCiencia" name="isLabCiencia">
 									<span class="slider"></span>
@@ -288,7 +288,7 @@ String contextPath = request.getContextPath();
 							<label for="isAguaFiltrada" class="form-label">Água
 								Filtrada<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isAguaFiltrada">Sim</label> <label class="switch">
 									<input type="checkbox" id="isAguaFiltrada"
 									name="isAguaFiltrada"> <span class="slider"></span>
@@ -300,7 +300,7 @@ String contextPath = request.getContextPath();
 							<label for="isAlimentacaoFornecida" class="form-label">Alimentação
 								Fornecida<span class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isAlimentacaoFornecida">Sim</label> <label
 									class="switch"> <input type="checkbox"
 									id="isAlimentacaoFornecida" name="isAlimentacaoFornecida">
@@ -314,7 +314,7 @@ String contextPath = request.getContextPath();
 							<label for="isInternet" class="form-label">Internet<span
 								class="red">*</span>
 							</label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="isInternet">Sim</label> <label class="switch">
 									<input type="checkbox" id="isInternet" name="isInternet">
 									<span class="slider"></span>
@@ -329,7 +329,7 @@ String contextPath = request.getContextPath();
 						<div class="col-md-3">
 							<label for="isBandaLarga" class="form-label">Banda Larga<span
 								class="red">*</span></label>
-							<div class="form-control card-form">
+							<div class="form-control card-form-infra">
 								<label for="v">Sim</label> <label class="switch"> <input
 									type="checkbox" id="isBandaLarga" name="isBandaLarga">
 									<span class="slider"></span>
