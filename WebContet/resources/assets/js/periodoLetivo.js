@@ -221,9 +221,6 @@ function listarDados(dados) {
 			return (
 				"<tr>" +
 				"<td>" +
-				item.dependenciaAdm.dependenciaAdministrativa +
-				"</td>" +
-				"<td>" +
 				item.ano +
 				"</td>" +
 				"<td>" +
@@ -296,9 +293,6 @@ function showModal(ref) {
 			$(".desativar").hide();
 			$(".ativar").show();
 		}
-		$("#dependenciaAdmIdEdit")
-			.val(data.dependenciaAdm.idDependenciaAdministrativa)
-			.attr("selected", true);
 		$("#anoEdit").val(data.ano);
 		$("#periodoEdit").val(data.periodo);
 		$("#dtInicioEdit").val(data.dtInicio);
@@ -342,7 +336,7 @@ function editar() {
 			});
 		},
 	}).done(function(data) {
-		$("#dependenciaAdmIdEdit").val("");
+
 		$("#descricaoEdit").val("");
 		$("#anoEdit").val("");
 		$("#periodoEdit").val("");
@@ -371,7 +365,6 @@ $("#formEdit").on("submit", function(e) {
 
 function cadastrar() {
 	var objeto = {
-		dependenciaAdmId: Number($("#dependenciaAdmId").val()),
 		contaId: contaId,
 		ano: $("#ano").val(),
 		periodo: $("#periodo").val(),
@@ -397,7 +390,6 @@ function cadastrar() {
 			});
 		},
 	}).done(function(data) {
-		$("#dependenciaAdmId").val("");
 		$("#descricao").val("");
 		$("#ano").val("");
 		$("#periodo").val("");
@@ -425,7 +417,6 @@ $("#formCadastro").on("submit", function(e) {
 // Limpa input
 
 function limpaCampo() {
-	$("#dependenciaAdmId").val("");
 	$("#descricao").val("");
 	$("#ano").val("");
 	$("#periodo").val("");

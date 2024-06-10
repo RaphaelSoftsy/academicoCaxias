@@ -272,7 +272,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-
 		<div class="modal fade" id="editItem" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
@@ -284,16 +284,7 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
-							<div class="mb-4">
-								<label for="dependenciaAdmIdEdit" class="form-label">Dependência
-									Administrativa:<span class="red">*</span>
-								</label> <select class="form-select"
-									aria-label="Dependência Administrativa"
-									id="dependenciaAdmIdEdit" required name="dependenciaAdmIdEdit">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-								</select>
-							</div>
+							
 							<div class="row mb-4">
 								<div class="col-6">
 									<label for="anoEdit" class="form-label">Ano:<span
