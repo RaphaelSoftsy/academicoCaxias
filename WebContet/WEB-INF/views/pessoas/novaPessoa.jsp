@@ -100,12 +100,12 @@ String contextPath = request.getContextPath();
                         <label for="sexo" class="form-label">Sexo:<span class="red">*</span></label>
                         <div class="form-control">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sexo" id="feminino" value="F" />
-                                <label class="form-check-label" for="feminino">Feminino</label>
+                                <input class="form-check-input" type="radio" name="sexo" id="feminino" value="F" required />
+                                <label class="form-check-label" for="feminino" >Feminino</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sexo" id="masculino" value="M" />
-                                <label class="form-check-label" for="masculino">Masculino</label>
+                                <input class="form-check-input" type="radio" name="sexo" id="masculino" value="M" required />
+                                <label class="form-check-label" for="masculino" >Masculino</label>
                             </div>
                         </div>
                     </div>
@@ -119,22 +119,22 @@ String contextPath = request.getContextPath();
                 <div class="row mb-3">
                     <div class="col-md-6" id="cardCpf">
                         <label for="cpf" class="form-label">CPF:</label>
-                        <input type="text" id="cpf" required autocomplete="off" data-mask="000.000.000-00" name="cpf" class="form-control" />
+                        <input type="text" id="cpf"  autocomplete="off" data-mask="000.000.000-00" name="cpf" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="rgNumero" class="form-label">RG:</label>
-                        <input type="text" id="rgNumero" required autocomplete="off" data-mask="00.000.000-0" name="rgNumero" class="form-control" />
+                        <input type="text" id="rgNumero"  autocomplete="off" data-mask="00.000.000-0" name="rgNumero" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="rgOrgaoExpedidor" class="form-label">Órgão Expedidor-RG:</label>
-                        <input type="text" id="rgOrgaoExpedidor" required autocomplete="off" name="rgOrgaoExpedidor" class="form-control" />
+                        <input type="text" id="rgOrgaoExpedidor"  autocomplete="off" name="rgOrgaoExpedidor" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="rgUfEmissorId" class="form-label">UF Emissor - RG:</label>
-                        <select class="form-select" aria-label="RG UF Emissor" id="rgUfEmissorId" required name="rgUfEmissorId">
+                        <select class="form-select" aria-label="RG UF Emissor" id="rgUfEmissorId"  name="rgUfEmissorId">
                             <option selected disabled>Selecione uma opção</option>
                         </select>
                     </div>
@@ -167,22 +167,22 @@ String contextPath = request.getContextPath();
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="rneDataExpedicao" class="form-label">Data de Expedição - RNE:</label>
-                        <input type="date" id="rneDataExpedicao" required autocomplete="off" name="rneDataExpedicao" class="form-control" />
+                        <input type="date" id="rneDataExpedicao"  autocomplete="off" name="rneDataExpedicao" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="certidaoNascimentoNumero" class="form-label">Número da Certidão de Nascimento:</label>
-                        <input type="text" id="certidaoNascimentoNumero" required autocomplete="off" name="certidaoNascimentoNumero" class="form-control" />
+                        <input type="text" id="certidaoNascimentoNumero"  autocomplete="off" name="certidaoNascimentoNumero" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="certidaoNascimentoCartorio" class="form-label">Certidão de Nascimento Cartório:</label>
-                        <input type="text" id="certidaoNascimentoCartorio" required autocomplete="off" name="certidaoNascimentoCartorio" class="form-control" />
+                        <input type="text" id="certidaoNascimentoCartorio"  autocomplete="off" name="certidaoNascimentoCartorio" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="certidaoNascimentoUfCartorioId" class="form-label">Certidão de Nascimento UF Cartório:</label>
-                        <select class="form-select" aria-label="Certidão de Nascimento UF Cartório" id="certidaoNascimentoUfCartorioId" required name="certidaoNascimentoUfCartorioId">
+                        <select class="form-select" aria-label="Certidão de Nascimento UF Cartório" id="certidaoNascimentoUfCartorioId"  name="certidaoNascimentoUfCartorioId">
                             <option selected disabled>Selecione uma opção</option>
                         </select>
                     </div>
@@ -191,68 +191,68 @@ String contextPath = request.getContextPath();
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="certidaoNascimentoDataEmissao" class="form-label">Certidão de Nascimento Data de Emissão:</label>
-                        <input type="date" id="certidaoNascimentoDataEmissao" required autocomplete="off" name="certidaoNascimentoDataEmissao" class="form-control" />
+                        <input type="date" id="certidaoNascimentoDataEmissao"  autocomplete="off" name="certidaoNascimentoDataEmissao" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="certidaoNascimentoFolha" class="form-label">Certidão de Nascimento Folha:</label>
-                        <input type="text" id="certidaoNascimentoFolha" required autocomplete="off" name="certidaoNascimentoFolha" class="form-control" />
+                        <input type="text" id="certidaoNascimentoFolha"  autocomplete="off" name="certidaoNascimentoFolha" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="certidaoNascimentoLivro" class="form-label">Certidão de Nascimento Livro:</label>
-                        <input type="text" id="certidaoNascimentoLivro" required autocomplete="off" name="certidaoNascimentoLivro" class="form-control" />
+                        <input type="text" id="certidaoNascimentoLivro"  autocomplete="off" name="certidaoNascimentoLivro" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="certidaoNascimentoOrdem" class="form-label">Certidão de Nascimento Ordem:</label>
-                        <input type="text" id="certidaoNascimentoOrdem" required autocomplete="off" name="certidaoNascimentoOrdem" class="form-control" />
+                        <input type="text" id="certidaoNascimentoOrdem"  autocomplete="off" name="certidaoNascimentoOrdem" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="certidaoCasamentoNumero" class="form-label">Certidão de Casamento Número:</label>
-                        <input type="text" id="certidaoCasamentoNumero" required autocomplete="off" name="certidaoCasamentoNumero" class="form-control" />
+                        <input type="text" id="certidaoCasamentoNumero"  autocomplete="off" name="certidaoCasamentoNumero" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="certidaoCasamentoCartorio" class="form-label">Certidão de Casamento Cartório:</label>
-                        <input type="text" id="certidaoCasamentoCartorio" required autocomplete="off" name="certidaoCasamentoCartorio" class="form-control" />
+                        <input type="text" id="certidaoCasamentoCartorio"  autocomplete="off" name="certidaoCasamentoCartorio" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="certidaoCasamentoUfCartorioId" class="form-label">Certidão de Casamento UF Cartório:</label>
-                        <select class="form-select" aria-label="Certidão de Casamento UF Cartório" id="certidaoCasamentoUfCartorioId" required name="certidaoCasamentoUfCartorioId">
+                        <select class="form-select" aria-label="Certidão de Casamento UF Cartório" id="certidaoCasamentoUfCartorioId"  name="certidaoCasamentoUfCartorioId">
                             <option selected disabled>Selecione uma opção</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="certidaoCasamentoDataEmissao" class="form-label">Certidão de Casamento Data de Emissão:</label>
-                        <input type="date" id="certidaoCasamentoDataEmissao" required autocomplete="off" name="certidaoCasamentoDataEmissao" class="form-control" />
+                        <input type="date" id="certidaoCasamentoDataEmissao"  autocomplete="off" name="certidaoCasamentoDataEmissao" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="certidaoCasamentoFolha" class="form-label">Certidão de Casamento Folha:</label>
-                        <input type="text" id="certidaoCasamentoFolha" required autocomplete="off" name="certidaoCasamentoFolha" class="form-control" />
+                        <input type="text" id="certidaoCasamentoFolha"  autocomplete="off" name="certidaoCasamentoFolha" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="certidaoCasamentoLivro" class="form-label">Certidão de Casamento Livro:</label>
-                        <input type="text" id="certidaoCasamentoLivro" required autocomplete="off" name="certidaoCasamentoLivro" class="form-control" />
+                        <input type="text" id="certidaoCasamentoLivro"  autocomplete="off" name="certidaoCasamentoLivro" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="certidaoCasamentoOrdem" class="form-label">Certidão de Casamento Ordem:</label>
-                        <input type="text" id="certidaoCasamentoOrdem" required autocomplete="off" name="certidaoCasamentoOrdem" class="form-control" />
+                        <input type="text" id="certidaoCasamentoOrdem"  autocomplete="off" name="certidaoCasamentoOrdem" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="racaId" class="form-label">Raça:</label>
-                        <select class="form-select" aria-label="Raça" id="racaId" required name="racaId">
+                        <select class="form-select" aria-label="Raça" id="racaId"  name="racaId">
                             <option selected disabled>Selecione uma opção</option>
                         </select>
                     </div>
@@ -261,13 +261,13 @@ String contextPath = request.getContextPath();
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="paisNascimentoId" class="form-label">País de Nascimento:</label>
-                        <select class="form-select" aria-label="País de Nascimento" id="paisNascimentoId" required name="paisNascimentoId">
+                        <select class="form-select" aria-label="País de Nascimento" id="paisNascimentoId"  name="paisNascimentoId">
                             <option selected disabled>Selecione uma opção</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="municipioNascimentoId" class="form-label">Município de Nascimento:</label>
-                        <select class="form-select" aria-label="Município de Nascimento" id="municipioNascimentoId" required name="municipioNascimentoId">
+                        <select class="form-select" aria-label="Município de Nascimento" id="municipioNascimentoId"  name="municipioNascimentoId">
                             <option selected disabled>Selecione uma opção</option>
                         </select>
                     </div>
@@ -276,13 +276,13 @@ String contextPath = request.getContextPath();
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="ufNascimentoId" class="form-label">UF de Nascimento:</label>
-                        <select class="form-select" aria-label="UF de Nascimento" id="ufNascimentoId" required name="ufNascimentoId">
+                        <select class="form-select" aria-label="UF de Nascimento" id="ufNascimentoId"  name="ufNascimentoId">
                             <option selected disabled>Selecione uma opção</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="paisResidenciaId" class="form-label">País de Residência:</label>
-                        <select class="form-select" aria-label="País de Residência" id="paisResidenciaId" required name="paisResidenciaId">
+                        <select class="form-select" aria-label="País de Residência" id="paisResidenciaId"  name="paisResidenciaId">
                             <option selected disabled>Selecione uma opção</option>
                         </select>
                     </div>
@@ -291,29 +291,29 @@ String contextPath = request.getContextPath();
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="nomePai" class="form-label">Nome do Pai:</label>
-                        <input type="text" id="nomePai" required autocomplete="off" name="nomePai" class="form-control" />
+                        <input type="text" id="nomePai"  autocomplete="off" name="nomePai" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="nomeMae" class="form-label">Nome da Mãe:</label>
-                        <input type="text" id="nomeMae" required autocomplete="off" name="nomeMae" class="form-control" />
+                        <input type="text" id="nomeMae"  autocomplete="off" name="nomeMae" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="cep" class="form-label">CEP:</label>
-                        <input type="tel" class="form-control" id="cep" required data-mask="00000-000" name="cep" />
+                        <input type="tel" class="form-control" id="cep"  data-mask="00000-000" name="cep" />
                     </div>
                     <div class="col-md-6">
                         <label for="endereco" class="form-label">Endereço:</label>
-                        <input type="text" id="endereco" required autocomplete="off" name="endereco" class="form-control" />
+                        <input type="text" id="endereco"  autocomplete="off" name="endereco" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="numero" class="form-label">Número:</label>
-                        <input type="text" id="numero" required autocomplete="off" name="numero" class="form-control" />
+                        <input type="text" id="numero"  autocomplete="off" name="numero" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="complemento" class="form-label">Complemento:</label>
@@ -324,11 +324,11 @@ String contextPath = request.getContextPath();
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="bairro" class="form-label">Bairro:</label>
-                        <input type="text" id="bairro" required autocomplete="off" name="bairro" class="form-control" />
+                        <input type="text" id="bairro"  autocomplete="off" name="bairro" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="municipio" class="form-label">Município:</label>
-                        <input type="text" id="municipio" required autocomplete="off" name="municipio" class="form-control" />
+                        <input type="text" id="municipio"  autocomplete="off" name="municipio" class="form-control" />
                     </div>
                 </div>
 
@@ -339,7 +339,7 @@ String contextPath = request.getContextPath();
                     </div>
                     <div class="col-md-6">
                         <label for="uf" class="form-label">UF:</label>
-                        <input type="text" id="uf" required autocomplete="off" name="uf" class="form-control" />
+                        <input type="text" id="uf"  autocomplete="off" name="uf" class="form-control" />
                     </div>
                 </div>
 
@@ -368,7 +368,7 @@ String contextPath = request.getContextPath();
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="ocupacao" class="form-label">Ocupação:</label>
-                        <input type="text" id="ocupacao" required autocomplete="off" name="ocupacao" class="form-control" />
+                        <input type="text" id="ocupacao"  autocomplete="off" name="ocupacao" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label for="telefoneComercial" class="form-label">Telefone Comercial:</label>
