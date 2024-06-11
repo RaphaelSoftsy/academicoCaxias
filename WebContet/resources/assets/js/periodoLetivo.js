@@ -185,7 +185,7 @@ $("#limpa-filtros").click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/periodoletivo",
+		url: url_base + "/periodoletivo/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
@@ -231,6 +231,9 @@ function listarDados(dados) {
 				"</td>" +
 				"<td>" +
 				formatarDataParaBR(item.dtFim) +
+				"</td>" +
+				"<td>" +
+				item.descricao+
 				"</td>" +
 				"<td>" +
 				ativo +
@@ -292,7 +295,7 @@ function showModal(ref) {
 		} else {
 			$(".desativar").hide();
 			$(".ativar").show();
-		}
+		} 
 		$("#anoEdit").val(data.ano);
 		$("#periodoEdit").val(data.periodo);
 		$("#dtInicioEdit").val(data.dtInicio);

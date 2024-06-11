@@ -40,7 +40,9 @@ $(document).ready(function() {
 		type: "get",
 		async: false,
 	}).done(function(data) {
-		$.each(data, function(index, item) {
+		
+		
+			$.each(data, function(index, item) {
 			
 			if(item.ativo == "S"){
 				$('#modalidadeEscolaIdEdit').append($('<option>', {
@@ -61,6 +63,7 @@ $(document).ready(function() {
 			}
 			
 		});
+
 
 	})
 

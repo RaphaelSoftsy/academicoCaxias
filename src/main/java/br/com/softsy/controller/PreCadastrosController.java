@@ -395,5 +395,11 @@ public class PreCadastrosController {
  
 		return "preCadastros/concurso";
 	}
+	
+	@RequestMapping(value = { "oferta-concurso" }, method = RequestMethod.GET)
+	public String ofertaConcurso(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/ofertaConcurso";
+	}
 }
 

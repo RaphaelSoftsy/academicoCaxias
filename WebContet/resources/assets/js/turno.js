@@ -203,7 +203,6 @@ function cadastrar() {
 		horaInicio: formatarHoraParaAPI($("#horaInicio").val()),
 		horaFim: formatarHoraParaAPI($("#horaFim").val()),
 		contaId: contaId
-
 	}
 
 
@@ -214,7 +213,7 @@ function cadastrar() {
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		error: function(e) {
-			console.log(e.responseJSON.message)
+			console.log(e.responseJSON)
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
