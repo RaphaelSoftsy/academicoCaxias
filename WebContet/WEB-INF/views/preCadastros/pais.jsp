@@ -103,7 +103,7 @@ String contextPath = request.getContextPath();
 						<th scope="col">Código DDI</th>
 						<th scope="col">País/Localidade</th>
 						<th scope="col">Código ISO</th>
-						<th class='text-center' scope="col" width="10%"></th>
+						<th scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">

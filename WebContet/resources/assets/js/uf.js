@@ -107,7 +107,11 @@ function editar() {
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		async: false,
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
+			Swal.close()
 			console.log(e.responseJSON.message)
 			Swal.fire({
 				icon: "error",
@@ -117,14 +121,12 @@ function editar() {
 		}
 	})
 		.done(function(data) {
-			$('#edit-nome').val('');
-			$('#edit-nome2').val('');
-			getDados();
-			showPage(currentPage);
-			updatePagination();
+			Swal.close()
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
+			}).then(result => {
+				window.location.href = 'ufs'
 			})
 		})
 	return false;
@@ -155,7 +157,11 @@ function cadastrar() {
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		async: false,
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
+			Swal.close()
 			console.log(e.responseJSON.message)
 			Swal.fire({
 				icon: "error",
@@ -165,15 +171,13 @@ function cadastrar() {
 		}
 	})
 		.done(function(data) {
-			$('#cadastro-nome').val('');
-			$('#cadastro-nome2').val('');
-			getDados();
-			showPage(currentPage);
-			updatePagination();
-			showPage(currentPage);
+			Swal.close()
+			Swal.close()
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
+			}).then(result => {
+				window.location.href = 'ufs'
 			})
 		})
 	return false;

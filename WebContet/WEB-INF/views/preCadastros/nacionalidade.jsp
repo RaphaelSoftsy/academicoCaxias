@@ -102,7 +102,7 @@ String contextPath = request.getContextPath();
 					<tr>
 						<th scope="col">Nacionalidade</th>
 						<th scope="col">Ativo</th>
-						<th class='text-center' scope="col" width="10%"></th>
+						<th scope="col" width="15%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">

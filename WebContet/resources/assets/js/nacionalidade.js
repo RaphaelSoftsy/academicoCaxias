@@ -37,6 +37,12 @@ $(document).ready(function() {
 		}
 	}
 
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
 
 	showPage(currentPage);
 	updatePagination();
@@ -56,6 +62,39 @@ function getDados() {
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
+}
+
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+	console.log(status)
+
+	$.ajax({
+		url: url_base + `/nacionalidade/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'nacionalidade'
+	})
 }
 
 function listarDados(dados) {
@@ -82,7 +121,11 @@ function listarDados(dados) {
 			item.nacionalidade +
 			'" data-ativo="' +
 			item.ativo +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span><input type="checkbox" data-status="' +
+			item.ativo +
+			'" data-id="' +
+			item.idNacionalidade +
+			'" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -131,13 +174,11 @@ function editar() {
 		}
 	})
 		.done(function(data) {
-			$('#edit-nome').val('');
-			getDados();
-			showPage(currentPage);
-			updatePagination();
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
+			}).then(result => {
+				window.location.href = 'nacionalidade'
 			})
 		})
 	return false;
@@ -173,19 +214,16 @@ function cadastrar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				
+
 			});
 		}
 	})
 		.done(function(data) {
-			$('#cadastro-nome').val('');
-			getDados();
-			showPage(currentPage);
-			updatePagination();
-			showPage(currentPage);
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
+			}).then(result => {
+				window.location.href = 'nacionalidade'
 			})
 		})
 	return false;

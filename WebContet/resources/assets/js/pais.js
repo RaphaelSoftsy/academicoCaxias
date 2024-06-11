@@ -123,20 +123,17 @@ function editar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				
+
 			});
 		}
 	})
 		.done(function(data) {
-			$('#edit-nome').val('');
-			$('#edit-nome2').val('');
-			$('#edit-input3').val('');
-			getDados();
-			showPage(currentPage);
-			updatePagination();
+			Swal.close()
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
+			}).then(result => {
+				window.location.href = 'paises'
 			})
 		})
 	return false;
@@ -158,7 +155,7 @@ function cadastrar() {
 		codPais: $('#cadastro-nome').val(),
 		nomePais: $('#cadastro-nome2').val(),
 		codigoIso: $('#cadastro-input3').val(),
-		contaId : contaId
+		contaId: contaId
 
 	}
 
@@ -168,27 +165,27 @@ function cadastrar() {
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		async: false,
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
+			Swal.close()
 			console.log(e.responseJSON.message)
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				
+
 			});
 		}
 	})
 		.done(function(data) {
-			$('#cadastro-nome').val('');
-			$('#cadastro-nome2').val('');
-			$('#cadastro-input3').val('');
-			getDados();
-			showPage(currentPage);
-			updatePagination();
-			showPage(currentPage);
+			Swal.close()
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
+			}).then(result => {
+				window.location.href = 'paises'
 			})
 		})
 	return false;
