@@ -103,7 +103,7 @@ function editar() {
 		async: false,
 		error: function(e) {
 			console.log(objeto)
-			console.log(e.responseJSON[0].mensagem)
+			console.log(e.responseJSON)
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
@@ -150,11 +150,11 @@ function cadastrar() {
 		error: function(e) {
 			console.log(objeto)
 			console.log(e)
-			console.log(e.responseJSON[0].mensagem)
+			console.log(e.responseJSON)
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Something went wrong!",
+				text: "Essa área de conhecimento já existe!",
 			
 			});
 		}

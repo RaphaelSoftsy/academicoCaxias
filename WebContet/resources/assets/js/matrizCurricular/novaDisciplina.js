@@ -2,7 +2,7 @@ var idEscola = localStorage.getItem("escolaId");
 var pefilEscola = localStorage.getItem("perfil")
 var escola = JSON.parse(pefilEscola)
 const contaId = Number(sessionStorage.getItem('contaId'))
-var nomeEscola = escola.nome
+
 
 $(document).ready(function() {
 	/*$.ajax({
