@@ -266,6 +266,7 @@ $("#formSubmit").submit(function(e) {
 
 const editarPessoa = () => {
 	var dadosFormulario = {
+		idPessoa: idPessoa,
 		contaId: parseInt(contaId),
 		nomeCompleto: $('#nomeCompleto').val(),
 		nomeSocial: $('#nomeSocial').val(),
