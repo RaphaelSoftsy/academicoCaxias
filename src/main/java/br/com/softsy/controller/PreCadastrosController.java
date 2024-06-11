@@ -389,4 +389,11 @@ public class PreCadastrosController {
  
 		return "preCadastros/periodoLetivo";
 	}
+	
+	@RequestMapping(value = { "concurso" }, method = RequestMethod.GET)
+	public String concurso(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/concurso";
+	}
 }
+
