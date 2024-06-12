@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ReservaVaga {
 	
 	@RequestMapping(value = { "dadosResponsavel" }, method = RequestMethod.GET)
-	public String login(HttpSession session, Model model) throws Exception {
+	public String dadosResponsavel(HttpSession session, Model model) throws Exception {
  
 		return "reservaVaga/dadosResponsavel";
 	}
