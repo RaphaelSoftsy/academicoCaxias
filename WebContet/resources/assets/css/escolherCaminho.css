@@ -1,0 +1,33 @@
+@charset "ISO-8859-1";
+
+header{
+	width: 100%;
+	height: 10vh;
+	display: flex;
+	padding: 2%;
+	color: #FFF;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #031E3B;
+}
+
+
+.card{
+	width: 90%;	
+	
+	
+}
+
+
+.mb-5{
+	margin: 0;
+	display: flex;
+	justify-content: center
+}
+main{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+

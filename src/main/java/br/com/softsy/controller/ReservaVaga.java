@@ -18,4 +18,10 @@ public class ReservaVaga {
  
 		return "reservaVaga/dadosResponsavel";
 	}
+	
+	@RequestMapping(value = { "escolher-caminho" }, method = RequestMethod.GET)
+	public String escolherCaminho(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/escolherCaminho";
+	}
 }
