@@ -223,12 +223,26 @@ function atualizar() {
 function cadastrar() {
 	var objeto = {
 		"escolaId": Number(escolaId),
-		"redePublica": $('input[name="isRedePublica"]:checked').val(),
-		"fossa": $('input[name="isFossa"]:checked').val(),
-		"inexistente": $('input[name="isInexistente"]:checked').val()
+		"escolaAcessivel": getAswer('#isAcessivel'),
+		"dependenciasAcessiveis": getAswer('#isDependenciaAcessivel'),
+		"sanitariosAcessiveis": getAswer('#isSanitariosAcessivel'),
+		"alimentacaoFornecida": getAswer('#isAlimentacaoFornecida'),
+		"aguaFiltrada": getAswer('#isAguaFiltrada'),
+		"sanitarioDentroEscola": getAswer('#isSanitarioEscola'),
+		"biblioteca": getAswer('#isBiblioteca'),
+		"cozinha": getAswer('#isCozinha'),
+		"labInformatica": getAswer('#isLabInformatica'),
+		"labCiencias": getAswer('#isLabCiencia'),
+		"salaLeitura": getAswer('#isSalaLeitura'),
+		"quadraEsportes": getAswer('#isQuadraEsportes'),
+		"salaDiretoria": getAswer('#isSalaDiretoria'),
+		"salaProfessores": getAswer('#isSalaProfessores'),
+		"salaAtendimentoEspecial": getAswer('#isSalaAtendimentoEspecial'),
+		"internet": getAswer('#isInternet'),
+		"bandaLarga": getAswer('#isBandaLarga')
 	}
 	$.ajax({
-		url: url_base + "/escolaEsgoto",
+		url: url_base + "/escolaInfraestrutura",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",

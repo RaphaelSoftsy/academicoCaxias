@@ -126,7 +126,7 @@ $("#formNovoCadastro").submit(function(e) {
 			var dadosFormulario = {
 				nomeEscola: $('#nome').val(),
 				logoEscola: imgSplit[1],
-				tipoEscola: $('#tipoEscola').val(),
+				tipoEscola: "PU",
 				cnpj: cnpj,
 				codigoInep: $('#codigoInep').val(),
 				cep: $('#cep').val().replace(/[^\d]+/g, ''),

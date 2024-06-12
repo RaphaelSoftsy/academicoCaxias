@@ -401,5 +401,16 @@ public class PreCadastrosController {
  
 		return "preCadastros/ofertaConcurso";
 	}
+	
+	@RequestMapping(value = { "tipo-ingresso" }, method = RequestMethod.GET)
+	public String tipoIngresso(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/tipoIngresso";
+	}
+	@RequestMapping(value = { "papel-pessoa" }, method = RequestMethod.GET)
+	public String papelPessoa(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/papelPessoa";
+	}
 }
 

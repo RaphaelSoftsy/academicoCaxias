@@ -22,7 +22,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script charset="UTF-8"
+<script charset="UTF-8" 
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
@@ -36,14 +36,13 @@ String contextPath = request.getContextPath();
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
-<script charset="UTF-8"
+<script charset="UTF-8" 
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-<script charset="UTF-8"
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script charset="UTF-8" src="sweetalert2.all.min.js"></script>
-
+    <script charset="UTF-8"  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script charset="UTF-8"  src="sweetalert2.all.min.js"></script>
+    
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -54,7 +53,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
+<script charset="UTF-8"  src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
@@ -75,7 +74,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Oferta Concurso</span>
+					<i class="fa-solid fa-phone fa-lg"></i> <span>Papel Pessoa</span>
 				</div>
 			</div>
 		</section>
@@ -101,16 +100,8 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Concurso</th>
-						<th scope="col">Curso</th>
-						<th scope="col">Escola</th>
-						<th scope="col">Turno</th>
-						<th scope="col">Série</th>
-						<th scope="col">Descrição</th>
-						<th scope="col">Vagas</th>
-						<th scope="col">Min Vagas</th>
-						<th scope="col">Ativo</th>
-						<th class='text-center' scope="col" width="10%" height="100%">Ações</th>
+						<th scope="col">Papel Pessoa</th>
+						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -140,66 +131,13 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="concurso" class="form-label">Concurso:</label> <select
-									class="form-select" aria-label="concurso" id="concursoSelect"
-									required name="concurso">
-									<option selected disabled value="">Selecione o
-										Concurso</option>
-								</select>
-							</div>
-
-							<div class="mb-4">
-								<label for="curso" class="form-label">Curso:<span
-									class="red">*</span>
-								</label><select class="form-select" aria-label="curso"
-									id="cursoSelect" required name="curso">
-									<option selected disabled value="">Selecione o Curso</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="escola" class="form-label">Escola<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="escola"
-									id="escola" required name="escola">
-									<option selected disabled value="">Selecione a Escola</option>
-								</select>
-							</div>
-
-							<div class="col-6 mb-3">
-								<label for="turno" class="form-label">Turno:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="turno"
-									id="turno" required name="turno">
-									<option selected disabled value="">Selecione o Turno</option>
-								</select>
-							</div>
-
-							<div class="mb-4">
-								<label for="serie" class="form-label">Série:</label> <input
-									type="text" class="form-control" id="serie" required
+								<label for="nome" class="form-label">Papel Pessoa:</label> <input
+									type="text" class="form-control" id="cadastro-nome" required
 									aria-describedby="Descricao" autocomplete="off">
 							</div>
-
-							<div class="mb-4">
-								<label for="descricao" class="form-label">Descrição:</label>
-								<input type="text" class="form-control" id="descricao"
-									required aria-describedby="Descricao" autocomplete="off">
-							</div>
-
-							<div class="mb-4">
-								<label for="vagas" class="form-label">Vagas:</label> <input
-									type="number" class="form-control" id="vagas" required
-									aria-describedby="vagas" autocomplete="off">
-							</div>
 							
-								<div class="mb-4">
-								<label for="vagasMin" class="form-label">Vagas Mínimas para Abertura:</label> <input
-									type="text" class="form-control" id="vagasMin" required
-									aria-describedby="vagasMin" autocomplete="off">
-							</div>
-
 							<div class="d-flex justify-content-end gap-2">
-
+							
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -222,73 +160,15 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="concursoEdit" class="form-label">Concurso:</label> <select
-									class="form-select" aria-label="concursoEdit" id="concursoEdit"
-									required name="concursoEdit">
-									<option selected disabled value="">Selecione o
-										Concurso</option>
-								</select>
-							</div>
-
-							<div class="mb-4">
-								<label for="cursoEdit" class="form-label">Curso:<span
-									class="red">*</span>
-								</label><select class="form-select" aria-label="cursoEdit"
-									id="cursoEdit" required name="cursoEdit">
-									<option selected disabled value="">Selecione o Curso</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="escolaEdit" class="form-label">Escola<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="escolaEdit"
-									id="escolaEdit" required name="escolaEdit">
-									<option selected disabled value="">Selecione a Escola</option>
-								</select>
-							</div>
-
-							<div class="col-6 mb-3">
-								<label for="turnoEdit" class="form-label">Turno:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="turnoEdit"
-									id="turnoEdit" required name="turnoEdit">
-									<option selected disabled value="">Selecione o Turno</option>
-								</select>
-							</div>
-
-							<div class="mb-4">
-								<label for="serieEdit" class="form-label">Série:</label> <input
-									type="text" class="form-control" id="serieEdit" required
-									aria-describedby="Descricao" autocomplete="off">
-							</div>
-
-							<div class="mb-4">
-								<label for="descricaoEdit" class="form-label">Descrição:</label>
-								<input type="text" class="form-control" id="descricaoEdit"
-									required aria-describedby="Descricao" autocomplete="off">
-							</div>
-
-							<div class="mb-4">
-								<label for="vagasEdit" class="form-label">Vagas:</label> <input
-									type="number" class="form-control" id="vagasEdit" required
-									aria-describedby="Vagas" autocomplete="off">
+								<label for="nome" class="form-label">Papel Pessoa:</label> <input
+									type="text" class="form-control" id="edit-nome" required
+									aria-describedby="atoRegulatorio" autocomplete="off">
 							</div>
 							
-								<div class="mb-4">
-								<label for="vagasMinEdit" class="form-label">Vagas Mínimas para Abertura:</label> <input
-									type="text" class="form-control" id="vagasMinEdit" required
-									aria-describedby="VagasMin" autocomplete="off">
-							</div>
-
-
-
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='ativar("ofertasConcurso")'
-									class="ativar btn btn-secondary" data-bs-dismiss="modal">
-									Ativar</button>
-								<button type="button" onclick='desativar("ofertasConcurso")'
-									class="desativar btn btn-secondary" data-bs-dismiss="modal">
-									Desativar</button>
+							<!-- <button type="button" onclick='remover("areaConhecimento")'
+									class="btn btn-danger" data-bs-dismiss="modal">
+									Remover</button> -->
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
@@ -301,25 +181,23 @@ String contextPath = request.getContextPath();
 		</div>
 	</main>
 
-	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
+	<script charset="UTF-8"  src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
+	<script charset="UTF-8" 
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/ofertaConcurso.js"></script>
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script charset="UTF-8"
+	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/papelPessoa.js"></script>
+	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8" 
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
 </html>
