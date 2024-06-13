@@ -37,5 +37,15 @@ public class ReservaVaga {
 		return "reservaVaga/enderecoAluno";
 	}
 	
+	@RequestMapping(value = { "listaResponsavel" }, method = RequestMethod.GET)
+	public String listaResponsavel(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/listaResponsavel";
+	}
 	
+	@RequestMapping(value = { "vagaDesejada" }, method = RequestMethod.GET)
+	public String vagaDesejada(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/vagaDesejada";
+	}
 }

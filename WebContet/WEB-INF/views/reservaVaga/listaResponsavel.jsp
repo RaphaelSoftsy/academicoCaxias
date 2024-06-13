@@ -61,6 +61,14 @@ String contextPath = request.getContextPath();
 </head>
 
 <body>
+<div class="bg-loading">
+		<div class="spinner">
+			<div class="rect1"></div>
+			<div class="rect2"></div>
+			<div class="rect3"></div>
+			<div class="rect4"></div>
+		</div>
+	</div>
 	<header>
 		<img class="logo" style="width: 15%"
 			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
@@ -72,11 +80,155 @@ String contextPath = request.getContextPath();
 			<div class="card">
 				<div class="card-body title d-flex align-items-center gap-2">
 					<i class="fa-solid fa-clipboard" style="font-size: 36px"></i>
-					<h1 class="pt-2" id="tituloForm">Dados do(a) Responsável</h1>
+					<h1 class="pt-2" id="tituloForm">Responsáveis pelo(a) aluno(a)</h1>
 				</div>
 			</div>
 		</section>
-		
+		<section class="pt-4 card card-table px-5 py-3">
+			<table
+				class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
+				<caption>Itens Cadastrados</caption>
+				<thead>
+					<tr>
+						<th scope="col" class="sortable border-end" data-column="nome">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Nome</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton1">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite o nome da escola" />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="relacionamento">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Relacionamento</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="telefone">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Telefone</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton4">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent4">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="celular">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Celular</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton4">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent4">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="email">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>E-mail</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton4">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent4">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody id="cola-tabela" class="table-group-divider"></tbody>
+			</table>
+			<div id="pagination" class="mx-auto mt-auto">
+				<button id="prev" class="btn btn-sm">
+					<i class="fa-solid fa-angle-left fa-xl"></i>
+				</button>
+				<div id="page-numbers" class="btn-group"></div>
+				<button id="next" class="btn btn-sm">
+					<i class="fa-solid fa-angle-right fa-xl"></i>
+				</button>
+			</div>
+			<div class="mt-3 mb-3"
+				style="display: flex; align-items: center; justify-content: end">
+				<div class="d-flex align-items-center gap-2">
+					<a href="dadosResponsavel"
+						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Adicionar responsável</a>
+					<a href="#" id="btnNext"
+						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Próximo</a>
+				</div>
+			</div>
+		</section>
 	</main>
 
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
@@ -95,7 +247,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosResponsavel.js"></script>
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/listaResponsavel.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
