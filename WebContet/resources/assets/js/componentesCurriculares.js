@@ -112,7 +112,10 @@ function editar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			alert('Editado com Sucesso!')
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }
@@ -150,7 +153,10 @@ function cadastrar() {
 			showPage(currentPage);
 			updatePagination();
 			showPage(currentPage);
-			alert('Cadastrado com Sucesso!')
+			Swal.fire({
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			})
 		})
 	return false;
 }

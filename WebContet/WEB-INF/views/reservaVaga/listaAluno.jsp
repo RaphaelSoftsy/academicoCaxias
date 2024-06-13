@@ -56,8 +56,7 @@ String contextPath = request.getContextPath();
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/escolherCaminho.css">
-
+	href="<%=contextPath%>/resources/assets/css/login.css">
 
 </head>
 
@@ -65,46 +64,20 @@ String contextPath = request.getContextPath();
 	<header>
 		<img class="logo" style="width: 15%"
 			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
-			alt="Logo Prefeitura Caxias do Sul" /> <span>Cadastro de
-			Reserva de Vaga</span>
+			alt="Logo Prefeitura Caxias do Sul" />
 	</header>
 
 	<main class="container-section">
-		<section class="mb-5 mt-5">
+		<section class="mb-5">
 			<div class="card">
-				<div class="card-body title">
-					<i class="fa-regular fa-folder-open"></i> <span>Selecione
-						umas das opções</span>
+				<div class="card-body title d-flex align-items-center gap-2">
+					<i class="fa-solid fa-clipboard" style="font-size: 36px"></i>
+					<h1 class="pt-2" id="tituloForm">Dados do(a) Responsável</h1>
 				</div>
 			</div>
 		</section>
-		<section class="pt-4 card card-table px-5 py-3">
-			<div class="row gap-5 mt-3">
-				<div class="card text-center mb-3" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">Nova Reserva</h5>
-					<p class="card-text">Começe uma nova resreva de vaga!</p>
-					<a href="dados-aluno" class="btn btn-primary">Clique aqui!</a>
-				</div>
-			</div>
-			<div class="card text-center mb-3" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">Continue sua reserva</h5>
-					<p class="card-text">Continue sua reserva de onde parou.</p>
-					<a href="#" class="btn btn-primary">Clique aqui!</a>
-				</div>
-			</div>
-		</div>
 		
-		<div class="row text-center mt-3" style="display: flex; width: 100%; justify-content: center; align-items: center; ">
-			<h5 class="card-title" style="width: auto">Continue sua reserva</h5>
-		</div>
-		
-		
-		
-		</section>
 	</main>
-
 
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -119,12 +92,10 @@ String contextPath = request.getContextPath();
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/escolherCaminho.js"></script>
-
-
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosAluno.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 

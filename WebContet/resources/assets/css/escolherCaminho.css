@@ -14,15 +14,19 @@ header{
 
 .card{
 	width: 90%;	
-	
-	
 }
 
+
+.card-table{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
 
 .mb-5{
 	margin: 0;
 	display: flex;
-	justify-content: center
+	justify-content: center;
 }
 main{
 	display: flex;
