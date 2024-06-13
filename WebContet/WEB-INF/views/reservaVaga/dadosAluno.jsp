@@ -393,63 +393,12 @@ String contextPath = request.getContextPath();
 							class="form-control" />
 					</div>
 				</div>
+				
+					  <div class="col-md-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary px-5" id="btn-submit"  onclick="window.location.href = 'endereco-aluno' ">Próximo</button>
+                </div>
 			</section>
-			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h2 id="tituloEndereco" class="mb-5">Endereço</h2>
-
-			
-
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:</label> <input type="tel"
-							class="form-control" id="cep" data-mask="00000-000" name="cep" />
-					</div>
-					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:</label> <input
-							type="text" id="endereco" autocomplete="off" name="endereco"
-							class="form-control" />
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="numero" class="form-label">Número:</label> <input
-							type="text" id="numero" autocomplete="off" name="numero"
-							class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento:</label> <input
-							type="text" id="complemento" autocomplete="off"
-							name="complemento" class="form-control" />
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:</label> <input
-							type="text" id="bairro" autocomplete="off" name="bairro"
-							class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="municipio" class="form-label">Município:</label> <input
-							type="text" id="municipio" autocomplete="off" name="municipio"
-							class="form-control" />
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="distrito" class="form-label">Distrito:</label> <input
-							type="text" id="distrito" autocomplete="off" name="distrito"
-							class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="uf" class="form-label">UF:</label> <input type="text"
-							id="uf" autocomplete="off" name="uf" class="form-control" />
-					</div>
-				</div>
-			</section>
+		
 		</form>
 	</main>
 

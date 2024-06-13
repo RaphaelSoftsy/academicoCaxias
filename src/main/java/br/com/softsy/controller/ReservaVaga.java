@@ -30,4 +30,12 @@ public class ReservaVaga {
  
 		return "reservaVaga/dadosAluno";
 	}
+	
+	@RequestMapping(value = { "endereco-aluno" }, method = RequestMethod.GET)
+	public String enderecoAluno(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/enderecoAluno";
+	}
+	
+	
 }

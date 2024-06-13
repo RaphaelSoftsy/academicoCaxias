@@ -4,6 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
@@ -144,7 +145,12 @@ function cadastrar() {
 		async: false,
 		error: function(e) {
 			console.log(e.responseJSON.message)
-			alert(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+				
+			});
 		}
 	})
 		.done(function(data) {
