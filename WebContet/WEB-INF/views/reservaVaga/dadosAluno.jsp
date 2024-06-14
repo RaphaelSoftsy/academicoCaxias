@@ -395,7 +395,7 @@ String contextPath = request.getContextPath();
 				</div>
 				
 					  <div class="col-md-12 text-center mt-3">
-                    <button type="submit" class="btn btn-primary px-5" id="btn-submit"  onclick="window.location.href = 'endereco-aluno' ">Próximo</button>
+                    <button type="submit" class="btn btn-primary px-5" id="btn-submit"  onclick="window.location.href = 'dadosResponsavel' ">Próximo</button>
                 </div>
 			</section>
 		

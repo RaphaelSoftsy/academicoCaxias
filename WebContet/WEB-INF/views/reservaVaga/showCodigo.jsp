@@ -56,7 +56,8 @@ String contextPath = request.getContextPath();
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/login.css">
+	href="<%=contextPath%>/resources/assets/css/escolherCaminho.css">
+
 
 </head>
 
@@ -64,83 +65,46 @@ String contextPath = request.getContextPath();
 	<header>
 		<img class="logo" style="width: 15%"
 			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
-			alt="Logo Prefeitura Caxias do Sul" />
+			alt="Logo Prefeitura Caxias do Sul" /> <span>Cadastro de
+			Reserva de Vaga</span>
 	</header>
 
 	<main class="container-section">
-		<form class="container-section pb-5" id="formSubmit">
-			<section class="mb-5">
-				<div class="card">
-					<div class="card-body title d-flex align-items-center gap-2">
-						<i class="fa-solid fa-clipboard" style="font-size: 26px"></i>
-						<h3 class="pt-2" id="tituloForm">Dados do(a) Aluno</h3>
-					</div>
+		<section class="mb-5 mt-5">
+			<div class="card">
+				<div class="card-body title">
+					<i class="fa-regular fa-folder-open"></i> <span>Dados
+						Reserva da vaga</span>
 				</div>
-			</section>
-	
-			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h2 id="tituloEndereco" class="mb-5">Endereço</h2>
+			</div>
+		</section>
+		<section class="pt-4 card card-table px-5 py-3">
+
+			<div class="row text-center mt-3"
+				style="display: flex; width: 100%; justify-content: center; align-items: center;">
+				<h5 class="card-title" style="width: auto">Número da Reserva:</h5>
+			</div>
+			<div class="row text-center mt-3"
+				style="display: flex; width: 100%; justify-content: center; align-items: center;">
+				<h6 class="card-title" style="width: auto">Anote o número da
+					reserva para que, caso você precise voltar para completar o
+					cadastro, você utilizará esse número.</h6>
+			</div>
+
+			<div class="col-md-12 text-center mt-3">
+				<button type="submit" class="btn btn-primary px-5" id="btn-submit"
+					onclick="window.location.href = 'dadosResponsavel' ">Próximo</button>
+			</div>
 
 
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:</label> <input type="tel"
-							class="form-control" id="cep" data-mask="00000-000" name="cep" />
-					</div>
-					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:</label> <input
-							type="text" id="endereco" autocomplete="off" name="endereco"
-							class="form-control" />
-					</div>
-				</div>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="numero" class="form-label">Número:</label> <input
-							type="text" id="numero" autocomplete="off" name="numero"
-							class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento:</label> <input
-							type="text" id="complemento" autocomplete="off"
-							name="complemento" class="form-control" />
-					</div>
-				</div>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:</label> <input
-							type="text" id="bairro" autocomplete="off" name="bairro"
-							class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="municipio" class="form-label">Município:</label> <input
-							type="text" id="municipio" autocomplete="off" name="municipio"
-							class="form-control" />
-					</div>
-				</div>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="distrito" class="form-label">Distrito:</label> <input
-							type="text" id="distrito" autocomplete="off" name="distrito"
-							class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="uf" class="form-label">UF:</label> <input type="text"
-							id="uf" autocomplete="off" name="uf" class="form-control" />
-					</div>
-				</div>
 
-				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class="btn btn-primary px-5" id="btn-submit" onclick="window.location.href = 'endereco-aluno' ">Próximo</button>
-				</div>
-			</section>
-
-		</form>
+		</section>
 	</main>
+
 
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -155,10 +119,12 @@ String contextPath = request.getContextPath();
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosAluno.js"></script>
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/escolherCaminho.js"></script>
+
+
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 

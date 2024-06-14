@@ -48,4 +48,23 @@ public class ReservaVaga {
  
 		return "reservaVaga/vagaDesejada";
 	}
+	
+	@RequestMapping(value = { "codigo-reserva" }, method = RequestMethod.GET)
+	public String showCodigo(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/showCodigo";
+	}
+	
+	@RequestMapping(value = { "reserva" }, method = RequestMethod.GET)
+	public String reserva(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/reserva";
+	}
+	
+	@RequestMapping(value = { "reserva-documentos" }, method = RequestMethod.GET)
+	public String envioDocumentos(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/envioDocumentos";
+	}
+
 }

@@ -81,27 +81,49 @@ String contextPath = request.getContextPath();
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="row gap-5 mt-3">
 				<div class="card text-center mb-3" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">Nova Reserva</h5>
-					<p class="card-text">Começe uma nova resreva de vaga!</p>
-					<a href="dados-aluno" class="btn btn-primary">Clique aqui!</a>
+					<div class="card-body">
+						<h5 class="card-title">Nova Reserva</h5>
+						<p class="card-text">Começe uma nova resreva de vaga!</p>
+						<a href="dados-aluno" class="btn btn-primary">Clique aqui!</a>
+					</div>
+				</div>
+				<div class="card text-center mb-3" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title">Continue sua reserva</h5>
+						<p class="card-text">Continue sua reserva de onde parou.</p>
+						<a href="#" class="btn btn-primary">Clique aqui!</a>
+					</div>
 				</div>
 			</div>
-			<div class="card text-center mb-3" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">Continue sua reserva</h5>
-					<p class="card-text">Continue sua reserva de onde parou.</p>
-					<a href="#" class="btn btn-primary">Clique aqui!</a>
-				</div>
+
+			<div class="row text-center mt-3"
+				style="display: flex; width: 100%; justify-content: center; align-items: center;">
+				<h5 class="card-title" style="width: auto">Continue sua reserva</h5>
 			</div>
-		</div>
-		
-		<div class="row text-center mt-3" style="display: flex; width: 100%; justify-content: center; align-items: center; ">
-			<h5 class="card-title" style="width: auto">Continue sua reserva</h5>
-		</div>
-		
-		
-		
+
+			<div class="row text-center mt-3"
+				style="display: flex; width: 100%; justify-content: center; align-items: center;">
+				<div class="col-md-6">
+					<label for="" class="form-label"></label> <select
+						class="form-control" aria-label="RG UF Emissor" id="rgUfEmissorId"
+						name="tipo">
+						<option selected disabled>Selecione uma opção</option>
+						<option value="1">CPF</option>
+						<option value="2">Número da reserva</option>
+						<option value="3">RG</option>
+						<option value="4">Certidão de Nascimento</option>
+						<option value="5">Certidão de Casamento</option>
+						
+					</select>
+				</div>
+				 <div class="col-md-6 mt-4">
+                        <input type="text" id="selecionarCaminho" autocomplete="off" name="telefoneComercial" class="form-control" />
+                    </div>
+			</div>
+
+
+
+
 		</section>
 	</main>
 
