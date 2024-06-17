@@ -102,7 +102,7 @@ String contextPath = request.getContextPath();
 
 			<div class="col-md-12 text-center mt-3">
 				<button type="submit" class="btn btn-primary px-5" id="btn-submit"
-					onclick="window.location.href = 'dadosResponsavel' ">Próximo</button>
+					onclick="window.location.href = 'reserva-documentos' ">Próximo</button>
 			</div>
 
 

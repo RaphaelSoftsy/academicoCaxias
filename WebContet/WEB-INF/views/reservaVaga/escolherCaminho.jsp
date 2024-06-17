@@ -79,15 +79,15 @@ String contextPath = request.getContextPath();
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="row gap-5 mt-3">
-				<div class="card text-center mb-3" style="width: 18rem;">
+			<div class="row gap-5 mt-3 row-cards">
+				<div class="mb-3 card-caminho">
 					<div class="card-body">
 						<h5 class="card-title">Nova Reserva</h5>
 						<p class="card-text">Começe uma nova resreva de vaga!</p>
 						<a href="dados-aluno" class="btn btn-primary">Clique aqui!</a>
 					</div>
 				</div>
-				<div class="card text-center mb-3" style="width: 18rem;">
+				<div class="mb-3 card-caminho">
 					<div class="card-body">
 						<h5 class="card-title">Continue sua reserva</h5>
 						<p class="card-text">Continue sua reserva de onde parou.</p>
@@ -97,12 +97,12 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<div class="row text-center mt-3"
-				style="display: flex; width: 100%; justify-content: center; align-items: center;">
+				style="display: flex; width: 100%; justify-content: center; align-items: center;" hidden>
 				<h5 class="card-title" style="width: auto">Continue sua reserva</h5>
 			</div>
 
 			<div class="row text-center mt-3"
-				style="display: flex; width: 100%; justify-content: center; align-items: center;">
+				style="display: flex; width: 100%; justify-content: center; align-items: center;" hidden>
 				<div class="col-md-6">
 					<label for="" class="form-label"></label> <select
 						class="form-control" aria-label="RG UF Emissor" id="rgUfEmissorId"

@@ -80,8 +80,8 @@ String contextPath = request.getContextPath();
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h2 id="tituloDados" class="mb-5">Dados Pessoais</h2>
-				<input type="text" id="usuarioCadastro" hidden
-					value="${funcionario.idUsuario}" />
+			<%-- 	<input type="text" id="usuarioCadastro" hidden
+					name="usuarioCadastro" value="${funcionario.idUsuario}" /> --%>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -92,8 +92,7 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="col-md-6">
 						<label for="tipoIngressoId" class="form-label">Tipo
-							Ingresso:<span class="red">*</span>
-						</label> <select class="form-select" required aria-label="Tipo Ingresso"
+							Ingresso: </label> <select class="form-select" aria-label="Tipo Ingresso"
 							id="tipoIngressoId" name="tipoIngressoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
@@ -102,18 +101,18 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="nomeCompleto" class="form-label">Nome da Mãe:<span class="red">*</span>
-						</label> <input type="text" id="nomeCompleto" required autocomplete="off"
-							name="nomeCompleto" class="form-control" />
+						<label for="nomeMae" class="form-label">Nome da Mãe: </label> <input
+							type="text" id="nomeMae" autocomplete="off" name="nomeMae"
+							class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="nomeCompleto" class="form-label">Nome do Pai:<span class="red">*</span>
-						</label> <input type="text" id="nomeCompleto" required autocomplete="off"
-							name="nomeCompleto" class="form-control" />
+						<label for="nomePai" class="form-label">Nome do Pai: </label> <input
+							type="text" id="nomePai" autocomplete="off" name="nomePai"
+							class="form-control" />
 					</div>
 				</div>
 
-				
+
 
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -144,25 +143,24 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6" id="cardCpf">
-						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label>
-						<input type="text" id="cpf" autocomplete="off" 
+						<label for="cpf" class="form-label">CPF:</label> <input
+							type="text" id="cpf" autocomplete="off"
 							data-mask="000.000.000-00" name="cpf" class="form-control" />
 					</div>
-					<div class="col-md-6">
+					<!-- <div class="col-md-6">
 						<label for="rgNumero" class="form-label">RG:</label> <input
 							type="text" id="rgNumero" autocomplete="off"
 							data-mask="00.000.000-0" name="rgNumero" class="form-control" />
-					</div>
+					</div> -->
 				</div>
 
-				
+
 
 				<div class="row mb-3">
-					
+
 					<div class="col-md-6">
-						<label for="racaId" class="form-label">Raça:<span
-							class="red">*</span></label> <select required class="form-select"
-							aria-label="Raça" id="racaId" name="racaId">
+						<label for="racaId" class="form-label">Raça:</label> <select
+							class="form-select" aria-label="Raça" id="racaId" name="racaId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
@@ -208,48 +206,48 @@ String contextPath = request.getContextPath();
 				</div>
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="sexo" class="form-label">Estado Civil:<span
+						<label for="estadoCivil" class="form-label">Estado Civil:<span
 							class="red">*</span><span class="red">*</span></label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="solteiro" value="s" required /> <label
-									class="form-check-label" for="solteiro">Solteiro(a)</label>
+									id="estadoCivil" value="s" /> <label class="form-check-label"
+									for="solteiro">Solteiro(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="casado" value="c" required /> <label
-									class="form-check-label" for="casado">Casado(a)</label>
+									id="estadoCivil" value="c" /> <label class="form-check-label"
+									for="casado">Casado(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="viuvo" value="v" required /> <label
-									class="form-check-label" for="viuvo">Viúvo(a)</label>
+									id="estadoCivil" value="v" /> <label class="form-check-label"
+									for="viuvo">Viúvo(a)</label>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			
+
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h2 id="tituloCasamento" class="mb-5">RG</h2>
-				
-				
-				<div class="row mb-3">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+
+
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="rgNumero" class="form-label">RG:</label> <input
 							type="text" id="rgNumero" autocomplete="off"
 							data-mask="00.000.000-0" name="rgNumero" class="form-control" />
 					</div>
-					
+
 					<div class="col-md-6">
 						<label for="rgDataExpedicao" class="form-label">RG Data de
 							Expedição:</label> <input type="date" id="rgDataExpedicao"
 							autocomplete="off" name="rgDataExpedicao" class="form-control" />
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="rgOrgaoExpedidor" class="form-label">Órgão
@@ -393,12 +391,12 @@ String contextPath = request.getContextPath();
 							class="form-control" />
 					</div>
 				</div>
-				
-					  <div class="col-md-12 text-center mt-3">
-                    <button type="submit" class="btn btn-primary px-5" id="btn-submit"  onclick="window.location.href = 'dadosResponsavel' ">Próximo</button>
-                </div>
+
+				<div class="col-md-12 text-center mt-3">
+					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Próximo</button>
+				</div>
 			</section>
-		
+
 		</form>
 	</main>
 

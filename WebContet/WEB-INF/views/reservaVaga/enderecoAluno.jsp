@@ -135,7 +135,9 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class="btn btn-primary px-5" id="btn-submit" onclick="window.location.href = 'endereco-aluno' ">Próximo</button>
+				
+				<a href="codigo-reserva" class="btn btn-primary">Próximo</a>
+					<!-- <button type="submit" class="btn btn-primary px-5" id="btn-submit" onclick="window.location.href = 'dadosResponsavel' ">Próximo</button> -->
 				</div>
 			</section>
 
@@ -155,10 +157,10 @@ String contextPath = request.getContextPath();
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-	<script charset="UTF-8"
+	 <script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosAluno.js"></script>
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosAluno.js"></script> 
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 

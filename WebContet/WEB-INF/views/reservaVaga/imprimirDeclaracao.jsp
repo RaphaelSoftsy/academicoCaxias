@@ -73,34 +73,41 @@ String contextPath = request.getContextPath();
 		<section class="mb-5 mt-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-regular fa-folder-open"></i> <span>Envio de Documentos</span>
+					<i class="fa-regular fa-folder-open"></i> <span>Dados
+						Reserva da vaga</span>
 				</div>
 			</div>
 		</section>
-		<section class="pt-4 card card-table px-5 py-3 align-items-center justify-content-center" style="height: 100%">
-			<div class="row gap-5 mb-3">
-				<div class="card text-center mb-3" style="width: 18rem;">
-					<div class="card-body text-center">
-						<h5 class="card-title">Certidão de Nascimento do(a) aluno(a)</h5>
-						<p class="card-text">Envie seu documento aqui!</p>
-						
-						<input class="form-control" required type="file" id="logoEscola" name="logoEscola">
+		<section class="pt-4 card card-table px-5 py-3">
+
+			<div class="row text-center mt-3"
+				style="display: flex; width: 100%; justify-content: center; align-items: center;">
+				<h5 class="card-title" style="width: auto">Número da Reserva:</h5>
+			</div>
+			<div class="row text-center mt-3"
+				style="display: flex; width: 100%; justify-content: center; align-items: center;">
+				<h6 class="card-title" style="width: auto">Agora é só aguardar o contato da escola para a confirmação da matrícula.</h6>
+				<h6 class="card-title" style="width: auto">Caso deseje, você já pode realizar o preenchimento da ficha médica do(a) aluno(a), para isto, basta clicar no botão abaixo.</h6>
 				
-					</div>
-				</div>
-				<div class="card text-center mb-3" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Comprovante de Residencia em nome do Responsável</h5>
-						<p class="card-text">Envie seu documento aqui!</p>
-						<input class="form-control" required type="file" id="logoEscola" name="logoEscola"> 
-					</div>
-				</div>
+			</div>
+
+			
+			
+			<div class="row mt-3">
+				
+			<div class="col-md-12 text-center mt-3">
+				<button type="submit" class="btn btn-primary px-5" id="btn-submit"
+					onclick="window.location.href = 'dadosResponsavel' ">Preencher Ficha Médica</button>
 			</div>
 			
-			<div class="row mb-3">
-				<a href="reserva-declaracao" class="btn btn-primary">Enviar documentos</a>
+			<div class="col-md-12 text-center mt-3">
+				<button type="submit" class="btn btn-primary px-5" id="btn-submit"
+					onclick="window.location.href = 'dadosResponsavel' ">Baixar declaração</button>
 			</div>
-			
+			</div>
+
+
+
 
 
 
@@ -125,7 +132,7 @@ String contextPath = request.getContextPath();
 
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/escolherCaminho.js"></script> 
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/escolherCaminho.js"></script>
 
 
 	<script charset="UTF-8"

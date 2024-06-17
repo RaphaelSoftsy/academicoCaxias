@@ -198,9 +198,9 @@ $('#btnNext').click(() => {
 		denyButtonText: 'Escolher o horário primeiro e depois verificar as escolas disponiveis.'
 	}).then((result) => {
 		if (result.isConfirmed) {
-			alert('fuii')
+			window.location.href = "vagaDesejada"
 		} else if (result.isDenied) {
-			alert('teste')
+			window.location.href = "vagaDesejada"
 		} else {
 			alert('POC')
 		}

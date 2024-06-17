@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -117,6 +117,12 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
+				</div>
+				
+				<div class="col-md-12 text-center mt-3">
+				
+				<a href="reserva" class="btn btn-primary">Próximo</a>
+					<!-- <button type="submit" class="btn btn-primary px-5" id="btn-submit" onclick="window.location.href = 'dadosResponsavel' ">Próximo</button> -->
 				</div>
 			</section>
 		</form>

@@ -4,13 +4,26 @@ header{
 	width: 100%;
 	height: 10vh;
 	display: flex;
-	padding: 2%;
+	padding: 0 5%;
 	color: #FFF;
 	justify-content: space-between;
 	align-items: center;
 	background-color: #031E3B;
 }
 
+
+.row-cards{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-caminho{
+	width: 40%;
+	border:	var(--bs-card-border-width) solid var(--bs-card-border-color);
+	border-radius: var(--bs-border-radius);
+}
 
 .card{
 	width: 90%;	

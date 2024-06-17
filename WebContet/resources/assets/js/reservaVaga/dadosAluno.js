@@ -113,6 +113,84 @@ $(document).ready(function() {
 			}));
 		});
 	})
+
+	// Função para capturar os dados do formulário ao ser submetido
+	$('#formSubmit').submit(function(event) {
+		
+		   event.preventDefault();
+
+        // Aqui você pode acessar os valores dos campos de input usando jQuery
+        var dadosFormulario = {
+            nomeCompleto: $('#nomeCompleto').val(),
+            tipoIngressoId: $('#tipoIngressoId').val(),
+            nomeMae: $('#nomeMae').val(),
+            nomePai: $('#nomePai').val(),
+            sexo: $('input[name="sexo"]:checked').val(),
+            dtNascimento: $('#dtNascimento').val(),
+            cpf: $('#cpf').val(),
+            racaId: $('#racaId').val(),
+            paisNascimentoId: $('#paisNascimentoId').val(),
+            ufNascimentoId: $('#ufNascimentoId').val(),
+            municipioNascimentoId: $('#municipioNascimentoId').val(),
+            nacionalidadeId: $('#nacionalidadeId').val(),
+            estadoCivil: $('input[name="estadoCivil"]:checked').val(),
+            rgNumero: $('#rgNumero').val(),
+            rgDataExpedicao: $('#rgDataExpedicao').val(),
+            rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
+            rgUfEmissorId: $('#rgUfEmissorId').val(),
+            certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
+            certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
+            certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
+            certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
+            certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
+            certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
+            certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
+            certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
+            certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
+            certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
+            certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
+            certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
+            certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
+            certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
+            certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
+            certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val()
+        };
+
+        // Exibindo os valores no console para verificação
+        console.log(dadosFormulario);
+
+		// Aqui você pode enviar o objeto formData para onde for necessário, como uma requisição AJAX
+		// Exemplo:
+
+		$.ajax({
+			url: url_base + '/pessoas',
+			type: "POST",
+			data: JSON.stringify(formData),
+			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading()
+			},
+			error: function(e) {
+				Swal.close()
+				console.log(e)
+				console.log(e.responseJSON)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+				});
+			}
+		}).done(function(data) {
+			Swal.close()
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			})
+			window.location.href = "endereco-aluno";
+		});
+	});
+
+
 })
 
 
@@ -175,3 +253,6 @@ function ValidarCpf() {
 $("#cpf").blur(function() {
 	ValidarCpf()
 });
+
+
+
