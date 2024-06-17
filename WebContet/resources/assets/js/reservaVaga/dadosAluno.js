@@ -121,20 +121,21 @@ $(document).ready(function() {
 
         // Aqui você pode acessar os valores dos campos de input usando jQuery
         var dadosFormulario = {
+			contaId: contaId,
             nomeCompleto: $('#nomeCompleto').val(),
             tipoIngressoId: $('#tipoIngressoId').val(),
             nomeMae: $('#nomeMae').val(),
             nomePai: $('#nomePai').val(),
             sexo: $('input[name="sexo"]:checked').val(),
             dtNascimento: $('#dtNascimento').val(),
-            cpf: $('#cpf').val(),
+            cpf: $('#cpf').val().replace(/[^\d]+/g, ''),
             racaId: $('#racaId').val(),
             paisNascimentoId: $('#paisNascimentoId').val(),
             ufNascimentoId: $('#ufNascimentoId').val(),
             municipioNascimentoId: $('#municipioNascimentoId').val(),
             nacionalidadeId: $('#nacionalidadeId').val(),
             estadoCivil: $('input[name="estadoCivil"]:checked').val(),
-            rgNumero: $('#rgNumero').val(),
+            rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
             rgDataExpedicao: $('#rgDataExpedicao').val(),
             rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
             rgUfEmissorId: $('#rgUfEmissorId').val(),
@@ -156,16 +157,13 @@ $(document).ready(function() {
             certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val()
         };
 
-        // Exibindo os valores no console para verificação
-        console.log(dadosFormulario);
-
 		// Aqui você pode enviar o objeto formData para onde for necessário, como uma requisição AJAX
 		// Exemplo:
 
-		$.ajax({
+		/*$.ajax({
 			url: url_base + '/pessoas',
 			type: "POST",
-			data: JSON.stringify(formData),
+			data: JSON.stringify(dadosFormulario),
 			contentType: "application/json; charset=utf-8",
 			beforeSend: function() {
 				Swal.showLoading()
@@ -186,11 +184,12 @@ $(document).ready(function() {
 				title: "Editado com sucesso",
 				icon: "success",
 			})
-			window.location.href = "endereco-aluno";
-		});
+			
+		});*/
+		
+		localStorage.setItem('jsonAluno', JSON.stringify(dadosFormulario))
+		window.location.href = "endereco-aluno";
 	});
-
-
 })
 
 
