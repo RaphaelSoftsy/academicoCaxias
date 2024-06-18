@@ -23,30 +23,34 @@ $("#cep").blur(function() {
 });
 
 $('#formSubmit').submit(function(event) {
+
+
 	event.preventDefault();
 
-	dadosForm.cep = $("#cep").val().replace(/[^\d]+/g, '')
-	dadosForm.endereco = $("#endereco").val();
-	dadosForm.bairro = $("#bairro").val();
-	dadosForm.municipio = $("#municipio").val();
-	dadosForm.numero = $("#numero").val();
-	dadosForm.distrito = $("#distrito").val();
-	dadosForm.complemento = $("#complemento").val();
-	dadosForm.uf = $("#uf").val()
-	
+	dadosForm.pessoaDTO.cep = $("#cep").val().replace(/[^\d]+/g, '')
+	dadosForm.pessoaDTO.endereco = $("#endereco").val();
+	dadosForm.pessoaDTO.bairro = $("#bairro").val();
+	dadosForm.pessoaDTO.municipio = $("#municipio").val();
+	dadosForm.pessoaDTO.numero = $("#numero").val();
+	dadosForm.pessoaDTO.distrito = $("#distrito").val();
+	dadosForm.pessoaDTO.complemento = $("#complemento").val();
+	dadosForm.pessoaDTO.uf = $("#uf").val()
+
 	//Gatos pra funcionar
-	dadosForm.senha = 'teste'
+	dadosForm.pessoaDTO.senha = 'teste'
 	/*dadosForm.nacionalidade = 'BR'
 	dadosForm.rneUfEmissorId = 1
 	dadosForm.rneNumero = '1234567890'
 	dadosForm.rneOrgaoExpedidor = 'DPF'
 	dadosForm.rneDataExpedicao = '1995-01-01'*/
-	dadosForm.tipoIngressoId = 1
-	dadosForm.paisResidenciaId = 2
-	dadosForm.rneUfEmissorId = 1
+	dadosForm.pessoaDTO.tipoIngressoId = 1
+	dadosForm.pessoaDTO.paisResidenciaId = 2
+	dadosForm.pessoaDTO.rneUfEmissorId = 1
+	
+	console.log(dadosForm)
 
 	$.ajax({
-		url: url_base + '/pessoas',
+		url: url_base + '/candidatos/pessoa-candidato',
 		type: "POST",
 		data: JSON.stringify(dadosForm),
 		contentType: "application/json; charset=utf-8",
@@ -64,11 +68,13 @@ $('#formSubmit').submit(function(event) {
 			});
 		}
 	}).done(function(data) {
+
 		Swal.close()
 		Swal.fire({
 			title: "Cadastrado com sucesso",
 			icon: "success",
 		})
+
 
 	});
 

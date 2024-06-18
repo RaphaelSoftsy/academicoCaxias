@@ -152,6 +152,8 @@ String contextPath = request.getContextPath();
 							type="text" id="rgNumero" autocomplete="off"
 							data-mask="00.000.000-0" name="rgNumero" class="form-control" />
 					</div> -->
+					
+					
 				</div>
 
 
@@ -226,6 +228,36 @@ String contextPath = request.getContextPath();
 							</div>
 						</div>
 					</div>
+					
+					<div class="col-md-6">
+						<label for="qualPreencher" class="form-label">Qual deseja preencher?<span
+							class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="qualPreencher">Certidão de Nascimento</label>
+							<label class="switch"> <input type="checkbox" id="qualPreencher" name="qualPreencher"> <span
+								class="slider"></span>
+							</label>
+							<label for="qualPreencher">Certidão de Casamento</label>
+						</div>
+					</div>
+					
+					
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6" style="display: none" id="rne">
+						<label for="isRne" class="form-label">Possui Rne?<span
+							class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isRne">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isRne" name="isRne"> <span
+								class="slider"></span>
+							</label>
+							<label for="isRne">Não</label>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -263,9 +295,44 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 			</section>
+			
+			<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center" style="display: none" id="rneSec">
+				<h2 class="mb-5">RNE</h2>
+
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="rneNumero" class="form-label">Rne:</label> <input
+							type="text" id="rneNumero" autocomplete="off"
+							data-mask="00000000-0" name="rneNumero" class="form-control" />
+					</div>
+
+					<div class="col-md-6">
+						<label for="rneDataExpedicao" class="form-label">Rne Data de
+							Expedição:</label> <input type="date" id="rneDataExpedicao"
+							autocomplete="off" name="rneDataExpedicao" class="form-control" />
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="rneOrgaoExpedidor" class="form-label">Órgão
+							Expedidor-Rne:</label> <input type="text" id="rneOrgaoExpedidor"
+							autocomplete="off" name="rneOrgaoExpedidor" class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="rneUfEmissorId" class="form-label">UF Emissor -
+							rne:</label> <select class="form-select" aria-label="RG UF Emissor"
+							id="rneUfEmissorId" name="rneUfEmissorId">
+							<option selected disabled>Selecione uma opção</option>
+						</select>
+					</div>
+				</div>
+			</section>
 
 			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center" id="certidaoNascimento">
 				<h2 id="titulonNascimento" class="mb-5">Certidao de Nascimento</h2>
 
 				<div class="row mb-3">
@@ -330,7 +397,7 @@ String contextPath = request.getContextPath();
 			</section>
 
 			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center" id="certidaoCasamento">
 				<h2 id="tituloCasamento" class="mb-5">Certidao de Casamento</h2>
 
 				<div class="row mb-3">
@@ -392,7 +459,12 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="col-md-12 text-center mt-3">
+				
+			</section>
+			
+				<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+				<div class="col-md-12 text-center">
 					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Próximo</button>
 				</div>
 			</section>

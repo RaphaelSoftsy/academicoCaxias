@@ -3,6 +3,14 @@ const contaId = sessionStorage.getItem('contaId')
 $(document).ready(function() {
 
 
+	if ($('input[id="qualPreencher"]').is(':checked')) {
+		$("#certidaoCasamento").hide()
+		$("#certidaoNascimento").show()
+	} else {
+		$("#certidaoNascimento").hide()
+		$("#certidaoCasamento").show()
+	}
+
 	$.ajax({
 		url: url_base + '/tiposIngresso',
 		type: "get",
@@ -12,7 +20,7 @@ $(document).ready(function() {
 
 			if (item.ativo == "S") {
 				$('#tipoIngressoId').append($('<option>', {
-					value: item.ididTipoIngresso,
+					value: item.idTipoIngresso,
 					text: item.tipoIngresso,
 					name: item.tipoIngresso
 				}));
@@ -114,48 +122,133 @@ $(document).ready(function() {
 		});
 	})
 
+
+
 	// Função para capturar os dados do formulário ao ser submetido
 	$('#formSubmit').submit(function(event) {
-		
-		   event.preventDefault();
 
-        // Aqui você pode acessar os valores dos campos de input usando jQuery
-        var dadosFormulario = {
-			contaId: contaId,
-            nomeCompleto: $('#nomeCompleto').val(),
-            tipoIngressoId: $('#tipoIngressoId').val(),
-            nomeMae: $('#nomeMae').val(),
-            nomePai: $('#nomePai').val(),
-            sexo: $('input[name="sexo"]:checked').val(),
-            dtNascimento: $('#dtNascimento').val(),
-            cpf: $('#cpf').val().replace(/[^\d]+/g, ''),
-            racaId: $('#racaId').val(),
-            paisNascimentoId: $('#paisNascimentoId').val(),
-            ufNascimentoId: $('#ufNascimentoId').val(),
-            municipioNascimentoId: $('#municipioNascimentoId').val(),
-            nacionalidadeId: $('#nacionalidadeId').val(),
-            estadoCivil: $('input[name="estadoCivil"]:checked').val(),
-            rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
-            rgDataExpedicao: $('#rgDataExpedicao').val(),
-            rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
-            rgUfEmissorId: $('#rgUfEmissorId').val(),
-            certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
-            certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
-            certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-            certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
-            certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
-            certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
-            certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
-            certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
-            certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
-            certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-            certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
-            certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
-            certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
-            certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
-            certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
-            certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val()
-        };
+		event.preventDefault();
+
+		let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
+
+		if (cpf == "") {
+			var dadosFormulario = {
+				pessoaDTO: {
+					contaId: contaId,
+					nomeCompleto: $('#nomeCompleto').val(),
+					tipoIngressoId: $('#tipoIngressoId').val(),
+					nomeMae: $('#nomeMae').val(),
+					nomePai: $('#nomePai').val(),
+					sexo: $('input[name="sexo"]:checked').val(),
+					dtNascimento: $('#dtNascimento').val(),
+					cpf: null,
+					racaId: $('#racaId').val(),
+					paisNascimentoId: $('#paisNascimentoId').val(),
+					ufNascimentoId: $('#ufNascimentoId').val(),
+					municipioNascimentoId: $('#municipioNascimentoId').val(),
+					nacionalidadeId: $('#nacionalidadeId').val(),
+					estadoCivil: $('input[name="estadoCivil"]:checked').val(),
+					rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
+					rgDataExpedicao: $('#rgDataExpedicao').val(),
+					rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
+					rgUfEmissorId: $('#rgUfEmissorId').val(),
+					certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
+					certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
+					certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
+					certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
+					certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
+					certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
+					certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
+					certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
+					certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
+					certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
+					certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
+					certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
+					certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
+					certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
+					certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
+					certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
+					rneNumero: $("#rneNumero").val(),
+					rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
+					rneUfEmissorId: $("#rneUfEmissorId").val(),
+					rneDataExpedicao: $("#rneDataExpedicao").val()
+				},
+				candidatoDTO: {
+					contaId: contaId,
+					"pessoaId": 2,
+					"candidato": parseInt(Math.random() * 100000),
+					"ofertaConcursoId": 3,
+					"tipoIngressoId": $('#tipoIngressoId').val(),
+					"classificacao": 3,
+					"aluno": "9",
+					"aprovado": "S",
+					"usuarioAprovacaoId": 1
+				}
+
+
+			};
+
+		} else {
+			var dadosFormulario = {
+				pessoaDTO: {
+					contaId: contaId,
+					nomeCompleto: $('#nomeCompleto').val(),
+					nomeMae: $('#nomeMae').val(),
+					nomePai: $('#nomePai').val(),
+					sexo: $('input[name="sexo"]:checked').val(),
+					dtNascimento: $('#dtNascimento').val(),
+					cpf: cpf,
+					racaId: $('#racaId').val(),
+					paisNascimentoId: $('#paisNascimentoId').val(),
+					ufNascimentoId: $('#ufNascimentoId').val(),
+					municipioNascimentoId: $('#municipioNascimentoId').val(),
+					nacionalidadeId: $('#nacionalidadeId').val(),
+					estadoCivil: $('input[name="estadoCivil"]:checked').val(),
+					rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
+					rgDataExpedicao: $('#rgDataExpedicao').val(),
+					rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
+					rgUfEmissorId: $('#rgUfEmissorId').val(),
+					certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
+					certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
+					certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
+					certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
+					certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
+					certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
+					certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
+					certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
+					certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
+					certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
+					certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
+					certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
+					certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
+					certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
+					certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
+					certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
+					rneNumero: $("#rneNumero").val(),
+					rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
+					rneUfEmissorId: $("#rneUfEmissorId").val(),
+					rneDataExpedicao: $("#rneDataExpedicao").val()
+				},
+				candidatoDTO: {
+					contaId: contaId,
+					"pessoaId": 2,
+					"candidato": parseInt(Math.random() * 100000),
+					"ofertaConcursoId": null,
+					"tipoIngressoId": $('#tipoIngressoId').val(),
+					"classificacao": null,
+					"aluno": null,
+					"aprovado": null,
+					"usuarioAprovacaoId": null
+				}
+
+			};
+
+		}
+
+		console.log(cpf)
+
+
+		// Aqui você pode acessar os valores dos campos de input usando jQuery
 
 		// Aqui você pode enviar o objeto formData para onde for necessário, como uma requisição AJAX
 		// Exemplo:
@@ -186,12 +279,41 @@ $(document).ready(function() {
 			})
 			
 		});*/
-		
+
 		localStorage.setItem('jsonAluno', JSON.stringify(dadosFormulario))
 		window.location.href = "endereco-aluno";
 	});
 })
 
+
+
+$('input[name="isRne"]').click(function() {
+	if ($(this).is(':checked')) {
+		$("#rneSec").show();
+	} else {
+		$("#rneSec").hide();
+	}
+});
+
+$('input[name="qualPreencher"]').click(function() {
+	if ($(this).is(':checked')) {
+		$("#certidaoNascimento").show();
+		$("#certidaoCasamento").hide();
+	} else {
+		$("#certidaoNascimento").hide();
+		$("#certidaoCasamento").show();
+	}
+});
+
+
+
+$("#nacionalidadeId").on("blur", () => {
+	if ($('#nacionalidadeId').find(":selected").text() != "BRA") {
+		$("#rne").show()
+	} else {
+		$("#rne").hide()
+	}
+})
 
 function cpfValido(cpf) {
 	cpf = cpf.replace(/[^\d]+/g, '');
