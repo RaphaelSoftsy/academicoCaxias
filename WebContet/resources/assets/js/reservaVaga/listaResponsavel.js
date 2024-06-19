@@ -9,6 +9,7 @@ var id = "";
 var idEscola = "";
 var ativo = "";
 const contaId = sessionStorage.getItem('contaId')
+const candidatoId = localStorage.getItem("idCandidato")
 
 $(document).ready(function() {
 
@@ -138,7 +139,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/cursos/conta/" + contaId,
+		url: url_base + "/responsavel/candidato/" + candidatoId,
 		type: "GET",
 		async: false,
 	}).done(function(data) {

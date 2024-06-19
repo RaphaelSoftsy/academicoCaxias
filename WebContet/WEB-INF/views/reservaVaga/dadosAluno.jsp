@@ -170,8 +170,7 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="paisNascimentoId" class="form-label">País de
-							Nascimento:<span class="red">*</span>
-						</label> <select class="form-select" aria-label="País de Nascimento"
+							Nascimento:</label> <select class="form-select" aria-label="País de Nascimento"
 							id="paisNascimentoId" required name="paisNascimentoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
@@ -179,7 +178,7 @@ String contextPath = request.getContextPath();
 
 					<div class="col-md-6">
 						<label for="ufNascimentoId" class="form-label">UF de
-							Nascimento:<span class="red">*</span>
+							Nascimento:
 						</label> <select class="form-select" aria-label="UF de Nascimento"
 							id="ufNascimentoId" required name="ufNascimentoId">
 							<option selected disabled>Selecione uma opção</option>
@@ -191,15 +190,14 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="municipioNascimentoId" class="form-label">Município
-							de Nascimento:<span class="red">*</span>
+							de Nascimento:
 						</label> <select class="form-select" aria-label="Município de Nascimento"
 							id="municipioNascimentoId" required name="municipioNascimentoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="nacionalidadeId" class="form-label">Nacionalidade:<span
-							class="red">*</span></label> <select class="form-select"
+						<label for="nacionalidadeId" class="form-label">Nacionalidade:</label> <select class="form-select"
 							aria-label="Município de Nascimento" id="nacionalidadeId"
 							required name="nacionalidadeId">
 							<option selected disabled>Selecione uma opção</option>
@@ -208,8 +206,7 @@ String contextPath = request.getContextPath();
 				</div>
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="estadoCivil" class="form-label">Estado Civil:<span
-							class="red">*</span><span class="red">*</span></label>
+						<label for="estadoCivil" class="form-label">Estado Civil:</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
@@ -363,7 +360,7 @@ String contextPath = request.getContextPath();
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoUfCartorioId"
 							name="certidaoNascimentoUfCartorioId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected value="" disabled>Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -421,7 +418,7 @@ String contextPath = request.getContextPath();
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
 							name="certidaoCasamentoUfCartorioId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">

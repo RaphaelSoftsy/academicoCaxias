@@ -255,11 +255,60 @@ String contextPath = request.getContextPath();
 							</div>
 						</div>
 					</div>
+					
+					<div class="col-md-6">
+						<label for="qualPreencher" class="form-label">Qual deseja preencher?<span
+							class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="qualPreencher">Certidão de Nascimento</label>
+							<label class="switch"> <input type="checkbox" id="qualPreencher" name="qualPreencher"> <span
+								class="slider"></span>
+							</label>
+							<label for="qualPreencher">Certidão de Casamento</label>
+						</div>
+					</div>
+					
 				</div>
 			</section>
-
+			
 			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center" style="display: none" id="rneSec">
+				<h2 class="mb-5">RNE</h2>
+
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="rneNumero" class="form-label">Rne:</label> <input
+							type="text" id="rneNumero" autocomplete="off"
+							data-mask="00000000-0" name="rneNumero" class="form-control" />
+					</div>
+
+					<div class="col-md-6">
+						<label for="rneDataExpedicao" class="form-label">Rne Data de
+							Expedição:</label> <input type="date" id="rneDataExpedicao"
+							autocomplete="off" name="rneDataExpedicao" class="form-control" />
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="rneOrgaoExpedidor" class="form-label">Órgão
+							Expedidor-Rne:</label> <input type="text" id="rneOrgaoExpedidor"
+							autocomplete="off" name="rneOrgaoExpedidor" class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="rneUfEmissorId" class="form-label">UF Emissor -
+							rne:</label> <select class="form-select" aria-label="RG UF Emissor"
+							id="rneUfEmissorId" name="rneUfEmissorId">
+							<option selected disabled>Selecione uma opção</option>
+						</select>
+					</div>
+				</div>
+			</section>
+			
+			<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center" id="certidaoNascimento">
 				<h2 id="titulonNascimento" class="mb-5">Certidao de Nascimento</h2>
 
 				<div class="row mb-3">
@@ -290,7 +339,7 @@ String contextPath = request.getContextPath();
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoUfCartorioId"
 							name="certidaoNascimentoUfCartorioId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -324,7 +373,7 @@ String contextPath = request.getContextPath();
 			</section>
 
 			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center" id="certidaoCasamento">
 				<h2 id="tituloCasamento" class="mb-5">Certidao de Casamento</h2>
 
 				<div class="row mb-3">
@@ -348,7 +397,7 @@ String contextPath = request.getContextPath();
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
 							name="certidaoCasamentoUfCartorioId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
@@ -390,25 +439,19 @@ String contextPath = request.getContextPath();
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h2 id="tituloEndereco" class="mb-5">Endereço</h2>
 
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="sexo" class="form-label">Utilizar o mesmo
-							endereço do(a) aluno(a)?<span class="red">*</span>
+				<div class="col-md-6">
+						<label for="isEnderecoAluno" class="form-label">Utilizar o mesmo endereço do aluno?<span
+							class="red">*</span>
 						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="enderecoAluno" id="sim" value="S" required /> <label
-									class="form-check-label" for="sim">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="enderecoAluno" id="nao" value="N" required /> <label
-									class="form-check-label" for="nao">Não</label>
-							</div>
+						<div class="card-form form-control" style="width: 40%">
+							<label for="isEnderecoAluno">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isEnderecoAluno" name="isEnderecoAluno"> <span
+								class="slider"></span>
+							</label>
+							<label for="qualPreencher">Não</label>
 						</div>
 					</div>
-				</div>
+					
 
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -481,9 +524,15 @@ String contextPath = request.getContextPath();
                         <input type="tel" id="telefoneComercial" data-mask="(00) 00000-0000" autocomplete="off" name="telefoneComercial" class="form-control" />
                     </div>
                 </div>
-                <div class="col-md-12 text-center mt-3">
-                    <a href="listaResponsavel" class="btn btn-primary">Próximo</a>
-                </div>
+              
+			</section>
+			
+			
+				<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+				<div class="col-md-12 text-center">
+					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Próximo</button>
+				</div>
 			</section>
 			
 		</form>

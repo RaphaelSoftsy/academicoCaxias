@@ -74,6 +74,9 @@ $('#formSubmit').submit(function(event) {
 			title: "Cadastrado com sucesso",
 			icon: "success",
 		})
+		
+		localStorage.setItem("idCandidato", data.idCandidato)
+		window.location.href = "codigo-reserva"
 
 
 	});

@@ -256,11 +256,13 @@ body {
 }
 
 .card-form{
+	
 	width: 40%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 5%;
+	
 }
 
 .card-form-infra{
