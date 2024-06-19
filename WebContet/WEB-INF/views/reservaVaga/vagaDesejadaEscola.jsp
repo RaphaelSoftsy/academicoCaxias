@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -82,47 +83,45 @@ String contextPath = request.getContextPath();
 				<h2 id="tituloDados" class="mb-5">Dados</h2>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="curso" class="form-label">Curso:
-						</label> <select class="form-select" aria-label="País de Nascimento"
-							id="curso" required name="paisNascimentoId">
+						<label for="curso" class="form-label">Curso: </label> <select
+							class="form-select" aria-label="País de Nascimento" id="curso"
+							required name="paisNascimentoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
 
 					<div class="col-md-6">
-						<label for="escola" class="form-label">Escola:
-						</label> <select class="form-select" aria-label="UF de Nascimento"
-							id="escola" required name="ufNascimentoId">
+						<label for="escola" class="form-label">Escola: </label> <select
+							class="form-select" aria-label="UF de Nascimento" id="escola"
+							required name="ufNascimentoId" disabled>
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="serie" class="form-label">Série:
-						</label> <select class="form-select" aria-label="Serie"
-							id="serie" required name="serie">
+						<label for="serie" class="form-label">Série: </label> <select
+							class="form-select" aria-label="Serie" id="serie" required
+							name="serie" disabled>
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
 
 					<div class="col-md-6">
-						<label for="turno" class="form-label">Turno:
-						</label> <select class="form-select" aria-label="Turno"
-							id="turno" required name="turno">
+						<label for="turno" class="form-label">Turno: </label> <select
+							class="form-select" aria-label="Turno" id="turno" required
+							name="turno" disabled>
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="col-md-12 text-center mt-3">
-				
-				<a href="reserva" class="btn btn-primary">Próximo</a>
-					<!-- <button type="submit" class="btn btn-primary px-5" id="btn-submit" onclick="window.location.href = 'dadosResponsavel' ">Próximo</button> -->
+					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Próximo</button>
 				</div>
 			</section>
 		</form>

@@ -243,7 +243,7 @@ $('#formSubmit').submit(function(event) {
 				
 				"candidatoId": idCandidadto,
 				"pessoaId": data.idPessoa,
-				"papelPessoalId": Number($('#relacionamentoId').val())
+				"papelPessoaId": Number($('#relacionamentoId').val())
 			}
 
 		};
@@ -301,10 +301,10 @@ $('#formSubmit').submit(function(event) {
 				"telefoneComercial": $("#telefoneComercial").val().replace(/[^\d]+/g, ''),
 			},
 			candidatoRelacionamentoDTO: {
-				contaId: contaId,
+					contaId: contaId,
 				"candidatoId": idCandidadto,
 				"pessoaId": 1,
-				"papelPessoalId": Number($('#relacionamentoId').val())
+				"papelPessoaId": Number($('#relacionamentoId').val())
 			}
 
 		};
