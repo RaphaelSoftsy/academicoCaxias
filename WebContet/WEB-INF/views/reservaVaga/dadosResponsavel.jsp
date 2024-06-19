@@ -339,7 +339,7 @@ String contextPath = request.getContextPath();
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoUfCartorioId"
 							name="certidaoNascimentoUfCartorioId">
-							<option selected disabled value="">Selecione uma opção</option>
+							<option  selected disabled >Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -397,7 +397,7 @@ String contextPath = request.getContextPath();
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
 							name="certidaoCasamentoUfCartorioId">
-							<option selected disabled value="">Selecione uma opção</option>
+							<option selected disabled >Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">

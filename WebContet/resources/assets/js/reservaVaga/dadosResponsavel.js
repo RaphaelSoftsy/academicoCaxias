@@ -1,6 +1,7 @@
 const contaId = sessionStorage.getItem('contaId')
 const idCandidadto = localStorage.getItem("idCandidato")
 
+
 $(document).ready(function() {
 
 
@@ -182,19 +183,18 @@ function cpfValido(cpf) {
 	return true;
 }
 
+
+
+
 $('#formSubmit').submit(function(event) {
 
 	event.preventDefault();
 
 	let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
 	
-	if($("#certidaoCasamentoUfCartorioId").val() == 0){
-		$("#certidaoCasamentoUfCartorioId").val(null)
-	}
-	
-	if($("#certidaoNascimentoUfCartorioId").val() == 0){
-		$("#certidaoCasamentoUfCartorioId").val(null)
-	}
+	const formDataLimpoPessoaDTO = {};
+	const formDataLimpoCandidatoRelacionamentoDTO = {};
+
 
 	if (cpf == "") {
 		var dadosFormulario = {
@@ -205,6 +205,7 @@ $('#formSubmit').submit(function(event) {
 				nomeMae: $('#nomeMae').val(),
 				nomePai: $('#nomePai').val(),
 				sexo: $('input[name="sexo"]:checked').val(),
+				email: $('input[name="sexo"]:checked').val(),
 				dtNascimento: $('#dtNascimento').val(),
 				cpf: null,
 				racaId: $('#racaId').val(),
@@ -239,12 +240,11 @@ $('#formSubmit').submit(function(event) {
 				rneDataExpedicao: $("#rneDataExpedicao").val()
 			},
 			candidatoRelacionamentoDTO: {
+				
 				"candidatoId": idCandidadto,
 				"pessoaId": data.idPessoa,
 				"papelPessoalId": Number($('#relacionamentoId').val())
 			}
-			
-
 
 		};
 
@@ -298,9 +298,10 @@ $('#formSubmit').submit(function(event) {
 				uf: $("#uf").val(),
 				"empresa": $("#empresa").val(),
 				"ocupacao": $("#ocupacao").val(),
-				"telefoneComercial": $("#telefoneComercial").val(),
+				"telefoneComercial": $("#telefoneComercial").val().replace(/[^\d]+/g, ''),
 			},
 			candidatoRelacionamentoDTO: {
+				contaId: contaId,
 				"candidatoId": idCandidadto,
 				"pessoaId": 1,
 				"papelPessoalId": Number($('#relacionamentoId').val())
@@ -309,8 +310,30 @@ $('#formSubmit').submit(function(event) {
 		};
 
 	}
-
-	console.log(dadosFormulario)
+	
+	 
+    for (const key in dadosFormulario.pessoaDTO) {
+      if (Object.hasOwnProperty.call(dadosFormulario.pessoaDTO, key)) {
+        if (dadosFormulario.pessoaDTO[key] == 0) {
+          dadosFormulario.pessoaDTO[key] = null
+        }
+        formDataLimpoPessoaDTO[key] = dadosFormulario.pessoaDTO[key]
+      }
+    }
+    
+      for (const key in dadosFormulario.candidatoRelacionamentoDTO) {
+      if (Object.hasOwnProperty.call(dadosFormulario.candidatoRelacionamentoDTO, key)) {
+        if (dadosFormulario.candidatoRelacionamentoDTO[key] == 0) {
+          dadosFormulario.candidatoRelacionamentoDTO[key] = null
+        }
+        formDataLimpoCandidatoRelacionamentoDTO[key] = dadosFormulario.candidatoRelacionamentoDTO[key]
+      }
+    }
+    
+    dadosFormulario.pessoaDTO = formDataLimpoPessoaDTO
+    dadosFormulario.candidatoRelacionamentoDTO = formDataLimpoCandidatoRelacionamentoDTO
+	
+	
 
 
 	$.ajax({
