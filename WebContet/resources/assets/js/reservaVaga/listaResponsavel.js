@@ -191,7 +191,8 @@ $('#btnNext').click(() => {
 		title: "Informe a vaga desejada:",
 		color: '#1a1a1a',
 		icon: "success",
-		iconColor: '#0054ff',
+		iconColor: '#053872',
+		padding: "2rem",
 		showDenyButton: true,
 		confirmButtonColor: "#053872",
 		denyButtonColor: "#053872",
@@ -199,11 +200,9 @@ $('#btnNext').click(() => {
 		denyButtonText: 'Escolher o horário primeiro e depois verificar as escolas disponiveis.'
 	}).then((result) => {
 		if (result.isConfirmed) {
-			window.location.href = "vagaDesejada"
+			window.location.href = "vagaDesejadaEscola"
 		} else if (result.isDenied) {
-			window.location.href = "vagaDesejada"
-		} else {
-			alert('POC')
+			window.location.href = "vagaDesejadaTurno"
 		}
 	})
 })
