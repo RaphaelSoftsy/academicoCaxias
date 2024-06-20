@@ -191,83 +191,31 @@ $('#formSubmit').submit(function(event) {
 	event.preventDefault();
 
 	let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
-	
+
 	const formDataLimpoPessoaDTO = {};
 	const formDataLimpoCandidatoRelacionamentoDTO = {};
 
 
 	if (cpf == "") {
 		var dadosFormulario = {
-			pessoaDTO: {
-				contaId: contaId,
-				nomeCompleto: $('#nomeCompleto').val(),
-				tipoIngressoId: $('#tipoIngressoId').val(),
-				nomeMae: $('#nomeMae').val(),
-				nomePai: $('#nomePai').val(),
-				sexo: $('input[name="sexo"]:checked').val(),
-				email: $('input[name="sexo"]:checked').val(),
+			"pessoaDTO": {
+				"contaId": contaId,
+				"nomeCompleto": $('#nomeCompleto').val(),
+				"sexo": $('input[name="sexo"]:checked').val(),
 				dtNascimento: $('#dtNascimento').val(),
-				cpf: null,
-				racaId: $('#racaId').val(),
-				paisNascimentoId: $('#paisNascimentoId').val(),
-				ufNascimentoId: $('#ufNascimentoId').val(),
-				municipioNascimentoId: $('#municipioNascimentoId').val(),
-				nacionalidadeId: $('#nacionalidadeId').val(),
-				estadoCivil: $('input[name="estadoCivil"]:checked').val(),
-				rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
-				rgDataExpedicao: $('#rgDataExpedicao').val(),
+				"cpf": null,
+				"racaId": $('#racaId').val(),
+				"paisResidenciaId": $('#paisResidenciaId').val(),
+				"paisNascimentoId": $('#paisNascimentoId').val(),
+				"ufNascimentoId": Number($('#ufNascimentoId').val()),
+				"municipioNascimentoId": Number($('#municipioNascimentoId').val()),
+				"nacionalidadeId": $('#nacionalidadeId').val(),
+				"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0,2),
+				"estadoCivil": $('input[name="estadoCivil"]:checked').val(),
+				"rgNumero": $('#rgNumero').val().replace(/[^\d]+/g, ''),
+				"rgDataExpedicao": $('#rgDataExpedicao').val(),
 				rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
-				rgUfEmissorId: $('#rgUfEmissorId').val(),
-				certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
-				certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
-				certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-				certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
-				certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
-				certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
-				certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
-				certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
-				certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
-				certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-				certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
-				certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
-				certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
-				certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
-				certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
-				certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
-				rneNumero: $("#rneNumero").val(),
-				rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
-				rneUfEmissorId: $("#rneUfEmissorId").val(),
-				rneDataExpedicao: $("#rneDataExpedicao").val()
-			},
-			candidatoRelacionamentoDTO: {
-				
-				"candidatoId": idCandidadto,
-				"pessoaId": data.idPessoa,
-				"papelPessoaId": Number($('#relacionamentoId').val())
-			}
-
-		};
-
-	} else {
-		var dadosFormulario = {
-			pessoaDTO: {
-				contaId: contaId,
-				nomeCompleto: $('#nomeCompleto').val(),
-				nomeMae: $('#nomeMae').val(),
-				nomePai: $('#nomePai').val(),
-				sexo: $('input[name="sexo"]:checked').val(),
-				dtNascimento: $('#dtNascimento').val(),
-				cpf: cpf,
-				racaId: $('#racaId').val(),
-				paisNascimentoId: $('#paisNascimentoId').val(),
-				ufNascimentoId: $('#ufNascimentoId').val(),
-				municipioNascimentoId: $('#municipioNascimentoId').val(),
-				nacionalidadeId: $('#nacionalidadeId').val(),
-				estadoCivil: $('input[name="estadoCivil"]:checked').val(),
-				rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
-				rgDataExpedicao: $('#rgDataExpedicao').val(),
-				rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
-				rgUfEmissorId: $('#rgUfEmissorId').val(),
+				rgUfEmissorId: Number($('#rgUfEmissorId').val()),
 				certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
 				certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
 				certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
@@ -286,7 +234,7 @@ $('#formSubmit').submit(function(event) {
 				certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
 				rneNumero: $("#rneNumero").val(),
 				rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
-				rneUfEmissorId: $("#rneUfEmissorId").val(),
+				rneUfEmissorId: Number($("#rneUfEmissorId").val()),
 				rneDataExpedicao: $("#rneDataExpedicao").val(),
 				cep: $("#cep").val().replace(/[^\d]+/g, ''),
 				endereco: $("#endereco").val(),
@@ -299,10 +247,80 @@ $('#formSubmit').submit(function(event) {
 				"empresa": $("#empresa").val(),
 				"ocupacao": $("#ocupacao").val(),
 				"telefoneComercial": $("#telefoneComercial").val().replace(/[^\d]+/g, ''),
+				"email": $('#email').val(),
+				"telefone": $('#telefone').val().replace(/[^\d]+/g, ''),
+				"celular": $('#celular').val(),
+				"senha": "teste",
+				"nomePai": null,
+				"nomeMae": null
 			},
-			candidatoRelacionamentoDTO: {
-					contaId: contaId,
-				"candidatoId": idCandidadto,
+			"candidatoRelacionamentoDTO": {
+				"candidatoId": Number(idCandidadto),
+				"pessoaId": 1,
+				"papelPessoaId": Number($('#relacionamentoId').val())
+			}
+		};
+
+	} else {
+		var dadosFormulario = {
+			"pessoaDTO": {
+				"contaId": contaId,
+				"nomeCompleto": $('#nomeCompleto').val(),
+				"sexo": $('input[name="sexo"]:checked').val(),
+				"dtNascimento": $('#dtNascimento').val(),
+				"cpf": cpf,
+				"racaId": $('#racaId').val(),
+				"paisResidenciaId": $('#paisResidenciaId').val(),
+				"paisNascimentoId": $('#paisNascimentoId').val(),
+				"ufNascimentoId": Number($('#ufNascimentoId').val()),
+				"municipioNascimentoId": Number($('#municipioNascimentoId').val()),
+				"nacionalidadeId": $('#nacionalidadeId').val(),
+				"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0,2),
+				"estadoCivil": $('input[name="estadoCivil"]:checked').val(),
+				"rgNumero": $('#rgNumero').val().replace(/[^\d]+/g, ''),
+				"rgDataExpedicao": $('#rgDataExpedicao').val(),
+				rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
+				rgUfEmissorId: Number($('#rgUfEmissorId').val()),
+				certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
+				certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
+				certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
+				certidaoNascimentoUfCartorioId: Number($('#certidaoNascimentoUfCartorioId').val()),
+				certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
+				certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
+				certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
+				certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
+				certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
+				certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
+				certidaoCasamentoUfCartorioId: Number($('#certidaoCasamentoUfCartorioId').val()),
+				certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
+				certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
+				certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
+				certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
+				certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
+				rneNumero: $("#rneNumero").val(),
+				rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
+				rneUfEmissorId: Number($("#rneUfEmissorId").val()),
+				rneDataExpedicao: $("#rneDataExpedicao").val(),
+				cep: $("#cep").val().replace(/[^\d]+/g, ''),
+				endereco: $("#endereco").val(),
+				numero: $("#numero").val(),
+				complemento: $("#complemento").val(),
+				bairro: $("#bairro").val(),
+				municipio: $("#municipio").val(),
+				distrito: $("#distrito").val(),
+				uf: $("#uf").val(),
+				"empresa": $("#empresa").val(),
+				"ocupacao": $("#ocupacao").val(),
+				"telefoneComercial": $("#telefoneComercial").val().replace(/[^\d]+/g, ''),
+				"email": $('#email').val(),
+				"telefone": $('#telefone').val().replace(/[^\d]+/g, ''),
+				"celular": $('#celular').val(),
+				"senha": "teste",
+				"nomePai": null,
+				"nomeMae": null
+			},
+			"candidatoRelacionamentoDTO": {
+				"candidatoId": Number(idCandidadto),
 				"pessoaId": 1,
 				"papelPessoaId": Number($('#relacionamentoId').val())
 			}
@@ -310,30 +328,30 @@ $('#formSubmit').submit(function(event) {
 		};
 
 	}
-	
-	 
-    for (const key in dadosFormulario.pessoaDTO) {
-      if (Object.hasOwnProperty.call(dadosFormulario.pessoaDTO, key)) {
-        if (dadosFormulario.pessoaDTO[key] == 0) {
-          dadosFormulario.pessoaDTO[key] = null
-        }
-        formDataLimpoPessoaDTO[key] = dadosFormulario.pessoaDTO[key]
-      }
-    }
-    
-      for (const key in dadosFormulario.candidatoRelacionamentoDTO) {
-      if (Object.hasOwnProperty.call(dadosFormulario.candidatoRelacionamentoDTO, key)) {
-        if (dadosFormulario.candidatoRelacionamentoDTO[key] == 0) {
-          dadosFormulario.candidatoRelacionamentoDTO[key] = null
-        }
-        formDataLimpoCandidatoRelacionamentoDTO[key] = dadosFormulario.candidatoRelacionamentoDTO[key]
-      }
-    }
-    
-    dadosFormulario.pessoaDTO = formDataLimpoPessoaDTO
-    dadosFormulario.candidatoRelacionamentoDTO = formDataLimpoCandidatoRelacionamentoDTO
-	
-	
+
+
+	for (const key in dadosFormulario.pessoaDTO) {
+		if (Object.hasOwnProperty.call(dadosFormulario.pessoaDTO, key)) {
+			if (dadosFormulario.pessoaDTO[key] == 0) {
+				dadosFormulario.pessoaDTO[key] = null
+			}
+			formDataLimpoPessoaDTO[key] = dadosFormulario.pessoaDTO[key]
+		}
+	}
+
+	for (const key in dadosFormulario.candidatoRelacionamentoDTO) {
+		if (Object.hasOwnProperty.call(dadosFormulario.candidatoRelacionamentoDTO, key)) {
+			if (dadosFormulario.candidatoRelacionamentoDTO[key] == 0) {
+				dadosFormulario.candidatoRelacionamentoDTO[key] = null
+			}
+			formDataLimpoCandidatoRelacionamentoDTO[key] = dadosFormulario.candidatoRelacionamentoDTO[key]
+		}
+	}
+
+	dadosFormulario.pessoaDTO = formDataLimpoPessoaDTO
+	dadosFormulario.candidatoRelacionamentoDTO = formDataLimpoCandidatoRelacionamentoDTO
+
+
 
 
 	$.ajax({
@@ -360,10 +378,10 @@ $('#formSubmit').submit(function(event) {
 		Swal.fire({
 			title: "Cadastrado com sucesso",
 			icon: "success",
-			
+
 		})
-		
-			window.location.href = "listaResponsavel";
+
+		window.location.href = "listaResponsavel";
 
 
 	});

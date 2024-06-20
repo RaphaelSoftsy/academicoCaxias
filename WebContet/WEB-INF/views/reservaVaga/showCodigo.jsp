@@ -82,7 +82,7 @@ String contextPath = request.getContextPath();
 
 			<div class="row text-center mt-3"
 				style="display: flex; width: 100%; justify-content: center; align-items: center;">
-				<h5 class="card-title" style="width: auto" id="reserva"></h5>
+				<h5 class="card-title" style="width: auto; padding: 0" >Numero da Reserva</h5> <h1 id="reserva"></h1>
 			</div>
 			<div class="row text-center mt-3"
 				style="display: flex; width: 100%; justify-content: center; align-items: center;">

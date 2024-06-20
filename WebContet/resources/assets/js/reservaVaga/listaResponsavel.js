@@ -143,9 +143,11 @@ function getDados() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
+		$(".bg-loading").addClass("none");
+		console.log(data)
 		dados = data;
 		dadosOriginais = data;
-		//listarDados(data);
+		listarDados(data);
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -158,23 +160,23 @@ function listarDados(dados) {
 				"<tr>" +
 
 				"<td>" +
-				item.nome +
+				item.pessoa.nomeCompleto +
 				"</td>" +
 
 				"<td>" +
-				item.relacionamento +
+				item.papelPessoa +
 				"</td>" +
 
 				"<td>" +
-				item.telefone +
+				item.pessoa.telefone +
 				"</td>" +
 
 				"<td>" +
-				item.celular +
+				item.pessoa.celular +
 				"</td>" +
 
 				"<td>" +
-				item.email +
+				item.pessoa.email +
 				"</td>" +
 
 				"</tr>"

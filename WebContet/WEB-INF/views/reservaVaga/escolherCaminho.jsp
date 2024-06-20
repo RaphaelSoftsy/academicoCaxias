@@ -91,34 +91,46 @@ String contextPath = request.getContextPath();
 					<div class="card-body">
 						<h5 class="card-title">Continue sua reserva</h5>
 						<p class="card-text">Continue sua reserva de onde parou.</p>
-						<a href="#" class="btn btn-primary">Clique aqui!</a>
+						<a id="continueReserva" class="btn btn-primary">Clique aqui!</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="row text-center mt-3"
-				style="display: flex; width: 100%; justify-content: center; align-items: center;" hidden>
-				<h5 class="card-title" style="width: auto">Continue sua reserva</h5>
-			</div>
+			<div class="col-md-12 text-center" style="display: none"
+				id="containerContinuarRes">
 
-			<div class="row text-center mt-3"
-				style="display: flex; width: 100%; justify-content: center; align-items: center;" hidden>
-				<div class="col-md-6">
-					<label for="" class="form-label"></label> <select
-						class="form-control" aria-label="RG UF Emissor" id="rgUfEmissorId"
-						name="tipo">
-						<option selected disabled>Selecione uma opção</option>
-						<option value="1">CPF</option>
-						<option value="2">Número da reserva</option>
-						<option value="3">RG</option>
-						<option value="4">Certidão de Nascimento</option>
-						<option value="5">Certidão de Casamento</option>
-						
-					</select>
-				</div>
-				 <div class="col-md-6 mt-4">
-                        <input type="text" id="selecionarCaminho" autocomplete="off" name="telefoneComercial" class="form-control" />
-                    </div>
+				<form action="">
+					<div class="row text-center mt-3"
+						style="display: flex; width: 100%; justify-content: center; align-items: center;">
+						<h5 class="card-title" style="width: auto">Continue sua
+							reserva</h5>
+					</div>
+
+					<div class="row text-center mt-3"
+						style="display: flex; width: 100%; justify-content: center; align-items: center;">
+						<div class="col-md-6 mt-4">
+							<select class="form-control" aria-label="typeDigitado"
+								id="reserva" name="tipo">
+								<option selected disabled>Selecione uma opção</option>
+								<option value="1">CPF</option>
+								<option value="2">Número da reserva</option>
+								<option value="3">RG</option>
+								<option value="4">Certidão de Nascimento</option>
+								<option value="5">Certidão de Casamento</option>
+
+							</select>
+						</div>
+						<div class="col-md-6 mt-4">
+							<input type="text" id="typeDigitado" autocomplete="off" name="reserva"
+								class="form-control"  placeholder="Digite aqui"/>
+						</div>
+
+						<div class="col-md-6 mt-4">
+							<button type="submit" id="btn-submit" class="btn btn-primary">Buscar</button>
+						</div>
+					</div>
+				</form>
+
 			</div>
 
 
@@ -144,8 +156,11 @@ String contextPath = request.getContextPath();
 
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/escolherCaminho.js"></script>
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/selecionarCaminho.js"></script>
 
+<%-- 	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script> --%>
+	
 
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

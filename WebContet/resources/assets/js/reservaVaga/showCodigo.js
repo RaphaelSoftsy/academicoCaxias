@@ -10,7 +10,7 @@ const reserva = localStorage.getItem('numeroReserva')
 $(document).ready(function() {
 	
 	
-	$("#reserva").text("Número da reserva: " + reserva)
+	$("#reserva").text(reserva)
 
 /*	if (isNaN(contaId)) {
 		Swal.fire({

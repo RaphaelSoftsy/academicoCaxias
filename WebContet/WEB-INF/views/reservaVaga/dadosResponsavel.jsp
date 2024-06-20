@@ -203,8 +203,22 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-
+					
 					<div class="col-md-6">
+						<label for="paisResidencialId" class="form-label">País de Residencia:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="País de Residencia"
+							id="paisResidenciaId" required name="paisResidenciaId">
+							<option selected disabled>Selecione uma opção</option>
+						</select>
+					</div>
+					
+
+					
+
+				</div>
+
+				<div class="row mb-3">
+				<div class="col-md-6">
 						<label for="ufNascimentoId" class="form-label">UF de
 							Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="UF de Nascimento"
@@ -212,10 +226,7 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-
-				</div>
-
-				<div class="row mb-3">
+					
 					<div class="col-md-6">
 						<label for="municipioNascimentoId" class="form-label">Município
 							de Nascimento:<span class="red">*</span>
@@ -224,7 +235,10 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-					<div class="col-md-6">
+					
+				</div>
+				<div class="row mb-3">
+				<div class="col-md-6">
 						<label for="nacionalidadeId" class="form-label">Nacionalidade:<span
 							class="red">*</span></label> <select class="form-select"
 							aria-label="Município de Nascimento" id="nacionalidadeId"
@@ -232,8 +246,7 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-				</div>
-				<div class="row mb-3">
+					
 					<div class="col-md-6">
 						<label for="sexo" class="form-label">Estado Civil:<span
 							class="red">*</span><span class="red">*</span></label>
@@ -256,6 +269,9 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 					
+				</div>
+				
+				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="qualPreencher" class="form-label">Qual deseja preencher?<span
 							class="red">*</span>
@@ -269,6 +285,18 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 					
+					<div class="col-md-6" style="display: none" id="rne">
+						<label for="isRne" class="form-label">Possui Rne?<span
+							class="red">*</span>
+						</label>
+						<div class="form-control card-form">
+							<label for="isRne">Sim</label>
+							<label class="switch"> <input type="checkbox" id="isRne" name="isRne"> <span
+								class="slider"></span>
+							</label>
+							<label for="isRne">Não</label>
+						</div>
+					</div>
 				</div>
 			</section>
 			
