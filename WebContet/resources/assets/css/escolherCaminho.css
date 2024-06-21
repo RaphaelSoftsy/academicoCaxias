@@ -48,3 +48,21 @@ main{
 	flex-direction: column;
 }
 
+@media screen and (max-width: 1279px) {
+	
+	main{
+		width: 100%;
+	}
+    .card-body {
+       	width: auto;
+        /* width: 70vw; */
+    }
+    .row-cards{
+    	flex-direction: column;
+    }
+    
+    
+    .card-caminho{
+    	width: 100%;
+    }
+}

@@ -285,6 +285,10 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 					
+					
+				</div>
+				
+				<div class="row mb-3">
 					<div class="col-md-6" style="display: none" id="rne">
 						<label for="isRne" class="form-label">Possui Rne?<span
 							class="red">*</span>
@@ -471,12 +475,12 @@ String contextPath = request.getContextPath();
 						<label for="isEnderecoAluno" class="form-label">Utilizar o mesmo endereço do aluno?<span
 							class="red">*</span>
 						</label>
-						<div class="card-form form-control" style="width: 40%">
+						<div class="card-form form-control" >
 							<label for="isEnderecoAluno">Sim</label>
-							<label class="switch"> <input type="checkbox" id="isEnderecoAluno" name="isEnderecoAluno"> <span
+							<label class="switch"> <input type="checkbox" name="isEnderecoAluno" id="isEnderecoAluno" name="isEnderecoAluno"> <span
 								class="slider"></span>
 							</label>
-							<label for="qualPreencher">Não</label>
+							<label for="isEnderecoAluno">Não</label>
 						</div>
 					</div>
 					

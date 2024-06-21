@@ -95,17 +95,14 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 			</div>
-
 			<div class="col-md-12 text-center" style="display: none"
 				id="containerContinuarRes">
-
 				<form action="">
 					<div class="row text-center mt-3"
 						style="display: flex; width: 100%; justify-content: center; align-items: center;">
 						<h5 class="card-title" style="width: auto">Continue sua
 							reserva</h5>
 					</div>
-
 					<div class="row text-center mt-3"
 						style="display: flex; width: 100%; justify-content: center; align-items: center;">
 						<div class="col-md-6 mt-4">
@@ -130,12 +127,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</form>
-
 			</div>
-
-
-
-
 		</section>
 	</main>
 

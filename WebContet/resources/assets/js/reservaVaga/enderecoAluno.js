@@ -35,6 +35,20 @@ $('#formSubmit').submit(function(event) {
 	dadosForm.pessoaDTO.distrito = $("#distrito").val();
 	dadosForm.pessoaDTO.complemento = $("#complemento").val();
 	dadosForm.pessoaDTO.uf = $("#uf").val()
+	
+	
+	const enderecoAluno ={}
+	
+	enderecoAluno.cep = $("#cep").val().replace(/[^\d]+/g, '')
+	enderecoAluno.endereco = $("#endereco").val();
+	enderecoAluno.bairro = $("#bairro").val();
+	enderecoAluno.municipio = $("#municipio").val();
+	enderecoAluno.numero = $("#numero").val();
+	enderecoAluno.distrito = $("#distrito").val();
+	enderecoAluno.complemento = $("#complemento").val();
+	enderecoAluno.uf = $("#uf").val()
+	
+	localStorage.setItem("enderecoAluno", JSON.stringify(enderecoAluno ))
 
 	//Gatos pra funcionar
 	dadosForm.pessoaDTO.senha = 'teste'

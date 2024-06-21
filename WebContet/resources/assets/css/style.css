@@ -1158,7 +1158,7 @@ background-color: #ddd;
 
 @media screen and (max-width: 1279px) {
 
- 
+	
   .logoSumare{
 	width: 70%
   }
@@ -1190,7 +1190,11 @@ background-color: #ddd;
 }
 
 @media screen and (max-width: 1110px){
-	
+	.card-form{
+		width: 100%;
+	}
+ 
+ 
 	.menu-mobile{
 		display: block;
 		flex-direction: row;

@@ -210,7 +210,7 @@ $('#formSubmit').submit(function(event) {
 				"ufNascimentoId": Number($('#ufNascimentoId').val()),
 				"municipioNascimentoId": Number($('#municipioNascimentoId').val()),
 				"nacionalidadeId": $('#nacionalidadeId').val(),
-				"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0,2),
+				"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 2),
 				"estadoCivil": $('input[name="estadoCivil"]:checked').val(),
 				"rgNumero": $('#rgNumero').val().replace(/[^\d]+/g, ''),
 				"rgDataExpedicao": $('#rgDataExpedicao').val(),
@@ -275,7 +275,7 @@ $('#formSubmit').submit(function(event) {
 				"ufNascimentoId": Number($('#ufNascimentoId').val()),
 				"municipioNascimentoId": Number($('#municipioNascimentoId').val()),
 				"nacionalidadeId": $('#nacionalidadeId').val(),
-				"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0,2),
+				"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 2),
 				"estadoCivil": $('input[name="estadoCivil"]:checked').val(),
 				"rgNumero": $('#rgNumero').val().replace(/[^\d]+/g, ''),
 				"rgDataExpedicao": $('#rgDataExpedicao').val(),
@@ -429,6 +429,36 @@ $('input[name="isRne"]').click(function() {
 		$("#rneSec").hide();
 	}
 });
+
+$('input[name="isEnderecoAluno"]').click(function() {
+	if ($(this).is(':checked')) {
+
+		const enderecoAluno = localStorage.getItem("enderecoAluno")
+		const enderecoAlunoJson = JSON.parse(enderecoAluno)
+		console.log(enderecoAlunoJson.cep)
+
+		$("#cep").val(enderecoAlunoJson.cep)
+		$("#endereco").val(enderecoAlunoJson.endereco)
+		$("#numero").val(enderecoAlunoJson.numero)
+		$("#complemento").val(enderecoAlunoJson.complemento)
+		$("#bairro").val(enderecoAlunoJson.bairro)
+		$("#municipio").val(enderecoAlunoJson.municipio)
+		$("#distrito").val(enderecoAlunoJson.distrito)
+		$("#uf").val(enderecoAlunoJson.uf)
+
+	} else {
+		$("#cep").val("")
+		$("#endereco").val("")
+		$("#numero").val("")
+		$("#complemento").val("")
+		$("#bairro").val("")
+		$("#municipio").val("")
+		$("#distrito").val("")
+		$("#uf").val("")
+	}
+});
+
+
 
 $("#nacionalidadeId").on("blur", () => {
 	if ($('#nacionalidadeId').find(":selected").text() != "BRA") {

@@ -91,8 +91,6 @@ String contextPath = request.getContextPath();
 				
 			</div>
 
-			
-			
 			<div class="row mt-3">
 				
 			<div class="col-md-12 text-center mt-3">
@@ -105,12 +103,6 @@ String contextPath = request.getContextPath();
 					onclick="window.location.href = 'dadosResponsavel' ">Baixar declaração</button>
 			</div>
 			</div>
-
-
-
-
-
-
 
 		</section>
 	</main>
