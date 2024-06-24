@@ -35,7 +35,7 @@ $(document).ready(function() {
 			if (item.ativo == "S") {
 				$('#periodoLetivo').append($('<option>', {
 					value: item.idPeriodoLetivo,
-					text: item.periodo + ' - ' + item.descricao,
+					text: item.ano + '/' + item.periodo + " - " + formatarPeriodo(item.tipoPeriodicidade) + " - " + item.descricao,
 					name: item.periodo
 				}));
 			}
@@ -77,6 +77,19 @@ $(document).ready(function() {
 
 });
 
+
+function formatarPeriodo(tipoPeriodicidade){
+	if(tipoPeriodicidade == "A"){
+		return "Anual"
+	}else if(tipoPeriodicidade == "B"){
+		return "Bimestral"
+	}else if(tipoPeriodicidade == "T"){
+		return "Trimestral"
+	}else if(tipoPeriodicidade == "S"){
+		return "Semestral"
+	}
+	
+}
 
 function formatarDataParaBR(data) {
 	var dataISO = data + "T00:00:00";

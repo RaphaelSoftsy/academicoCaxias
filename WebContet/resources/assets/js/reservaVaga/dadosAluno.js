@@ -12,7 +12,7 @@ $(document).ready(function() {
 	}
 
 	$.ajax({
-		url: url_base + '/tiposIngresso',
+		url: url_base + '/tiposIngresso/conta/'+ contaId,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -35,11 +35,13 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
+			if (item.ativo == "S") {
 			$('#racaId').append($('<option>', {
 				value: item.idRaca,
 				text: item.raca,
 				name: item.raca
 			}));
+			}
 		});
 	})
 
@@ -49,6 +51,7 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
+			
 			$('#paisNascimentoId').append($('<option>', {
 				value: item.idPais,
 				text: item.nomePais,
@@ -59,14 +62,15 @@ $(document).ready(function() {
 				text: item.codigoIso,
 				name: item.codigoIso
 			}));
-		});
-		$.each(data, function(index, item) {
+			
 			$('#paisResidenciaId').append($('<option>', {
 				value: item.idPais,
 				text: item.nomePais,
 				name: item.nomePais
 			}));
+			
 		});
+		
 
 	})
 
@@ -341,7 +345,7 @@ $('input[name="qualPreencher"]').click(function() {
 });
 
 $("#nacionalidadeId").on("blur", () => {
-	if ($('#nacionalidadeId').find(":selected").text() != "BRA") {
+	if ($('#nacionalidadeId').find(":selected").text() != "BRA" && $('#nacionalidadeId').find(":selected").text() != "Selecione uma opção") {
 		$("#rne").show()
 	} else {
 		$("#rne").hide()

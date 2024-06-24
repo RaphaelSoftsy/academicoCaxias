@@ -78,7 +78,7 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</section>
-		<section class="pt-4" style="width: 70vw">
+		<section class="pt-4">
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				

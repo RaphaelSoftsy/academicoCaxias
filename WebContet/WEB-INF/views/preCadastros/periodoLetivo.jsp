@@ -267,8 +267,10 @@ String contextPath = request.getContextPath();
 									id="tipoPeriodicidade" required name="tipoPeriodicidade">
 									<option selected disabled value="">Selecione uma opção
 									</option>
-									<option value="A">A</option>
-									<option value="B">B</option>
+									<option value="A">Anual</option>
+									<option value="B">Bimestral</option>
+									<option value="T">Trimestral</option>
+									<option value="S">Semestral</option>
 								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">

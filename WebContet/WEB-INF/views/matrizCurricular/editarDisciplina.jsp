@@ -133,7 +133,8 @@ String contextPath = request.getContextPath();
 						<label for="horasAno" class="form-label">Carga Horária
 							Anual:<span class="red">*</span>
 						</label> <input type="number" id="horasAno" required autocomplete="off"
-							name="horasAno" class="form-control" />
+							name="horasAno" class="form-control"  min='0'
+							oninput="this.value = Math.abs(this.value)"/>
 					</div>
 				</div>
 

@@ -225,23 +225,34 @@ String contextPath = request.getContextPath();
 							</div>
 						</div>
 					</div>
-					
-					<div class="col-md-6">
+				</div>
+
+				<div class="row mb-3">
 						<label for="qualPreencher" class="form-label">Qual deseja preencher?<span
 							class="red">*</span>
 						</label>
-						<div class="form-control card-form">
+						<div class="form-control card-form qualPreencherSwitch">
 							<label for="qualPreencher">Certidão de Nascimento</label>
 							<label class="switch"> <input type="checkbox" id="qualPreencher" name="qualPreencher"> <span
 								class="slider"></span>
 							</label>
 							<label for="qualPreencher">Certidão de Casamento</label>
 						</div>
+						
+							<div class="form-control qualPreencher">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="qualPreencherCheck"
+									id="isCertidaoNascimento" value="s" required /> <label
+									class="form-check-label" for="qualPreencherCheck">Certidão de Nascimento</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="qualPreencherCheck"
+									id="isCertidaoCasamento" value="c" required /> <label
+									class="form-check-label" for="qualPreencherCheck">Certidão de Casamento</label>
+							</div>
+						</div>
 					</div>
 					
-					
-				</div>
-				
 				<div class="row">
 					<div class="col-md-6" style="display: none" id="rne">
 						<label for="isRne" class="form-label">Possui Rne?<span
