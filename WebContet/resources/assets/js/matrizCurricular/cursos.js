@@ -26,6 +26,13 @@ $(document).ready(function() {
 
 
 	getDados();
+	
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
 
 	// Dropdown de Pesquisa
 	$(".dropdown-toggle-form").click(function() {
@@ -238,7 +245,11 @@ function listarDados(dados) {
 				item.nome +
 				"</td>" +
 				"<td>" +
-				ativo +
+				'<input type="checkbox" data-status="' +
+				item.ativo +
+				'" data-id="' +
+				item.idCurso +
+				' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 				"</td>" +
 				'<td class="d-flex justify-content-center"><span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-contaId="' +
 				item.conta.idConta +
@@ -252,11 +263,7 @@ function listarDados(dados) {
 				item.codCurso +
 				'" data-ativo="' +
 				item.ativo +
-				'"  onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span><input type="checkbox" data-status="' +
-				item.ativo +
-				'" data-id="' +
-				item.idCurso +
-				'" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+				'"  onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 				"</tr>"
 			);
 		})
