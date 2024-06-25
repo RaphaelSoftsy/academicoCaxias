@@ -83,7 +83,7 @@ String contextPath = request.getContextPath();
 				<div class="mb-3 card-caminho">
 					<div class="card-body">
 						<h5 class="card-title">Nova Reserva</h5>
-						<p class="card-text">Começe uma nova resreva de vaga!</p>
+						<p class="card-text">Começe uma nova reserva de vaga!</p>
 						<a href="dados-aluno" class="btn btn-primary">Clique aqui!</a>
 					</div>
 				</div>

@@ -176,7 +176,7 @@ String contextPath = request.getContextPath();
 
 							<div class="mb-4">
 								<label for="serie" class="form-label">Série:</label> <input
-									type="number" class="form-control" id="serie" required
+									type="number" class="form-control" id="serie" 
 									aria-describedby="Descricao" autocomplete="off">
 							</div>
 

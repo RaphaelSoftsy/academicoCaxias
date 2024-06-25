@@ -146,13 +146,13 @@ $("#formNovoCadastro").submit(function(e) {
 				usaEspacoEntornoEscolar: "N",
 				pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
 				localizacaoId: Number($('#localizacaoId').val()),
-				dependenciaAdmId: 1/*Number($('#dependenciaAdmId').val())*/,
-				situacaoFuncionamentoId: 1 /*Number($('#situacaoFuncionamentoId').val())*/,
-				formaOcupacaoPredioId: 1 /*Number($('#formaOcupacaoPredioId').val())*/,
-				"zoneamentoId": 1/*Number($('#zoneamentoId').val())*/,
-				"categoriaEscolaPrivadaId": 1/* Number($('#categoriaEscolaPrivadaId').val())*/,
-				"entidadeSuperiorId": 1 /*Number($('#entidadeSuperiorId').val())*/,
-				"orgaoPublicoId": 1/*Number($('#orgaoPublicoId').val())*/,
+				dependenciaAdmId: null/*Number($('#dependenciaAdmId').val())*/,
+				situacaoFuncionamentoId: null/*Number($('#situacaoFuncionamentoId').val())*/,
+				formaOcupacaoPredioId: null /*Number($('#formaOcupacaoPredioId').val())*/,
+				"zoneamentoId": null/*Number($('#zoneamentoId').val())*/,
+				"categoriaEscolaPrivadaId": null/* Number($('#categoriaEscolaPrivadaId').val())*/,
+				"entidadeSuperiorId": null /*Number($('#entidadeSuperiorId').val())*/,
+				"orgaoPublicoId": null/*Number($('#orgaoPublicoId').val())*/,
 				contaId: Number(contaId)
 			};
 

@@ -210,18 +210,23 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="s" /> <label class="form-check-label"
+									id="estadoCivil" value="so" /> <label class="form-check-label"
 									for="solteiro">Solteiro(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="c" /> <label class="form-check-label"
+									id="estadoCivil" value="ca" /> <label class="form-check-label"
 									for="casado">Casado(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="v" /> <label class="form-check-label"
+									id="estadoCivil" value="vi" /> <label class="form-check-label"
 									for="viuvo">Viúvo(a)</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="estadoCivil"
+									id="estadoCivil" value="di" /> <label class="form-check-label"
+									for="divorciado">Divorciado(a)</label>
 							</div>
 						</div>
 					</div>

@@ -62,7 +62,7 @@ String contextPath = request.getContextPath();
 <body>
 	<header>
 		<img class="logo"
- style="width: 15%"			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
+ style="width: 15%"	src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
 			alt="Logo Prefeitura Caxias do Sul" />
 	</header>
 

@@ -3,9 +3,9 @@ let contas = [
 		"contaId": 1,
 		"email": "teste@gmail.com",
 		"senha": "1234",
-		"conta": "CAXIAS DO SUL",
+		"conta": "Prefeitura de Uruçui",
 		"tipoConta": "PU",
-		"cnpj": "08770189000103",
+		"cnpj": "06.985.832/0001-90",
 		"cep": "95070561",
 		"endereco": "AV. Professor Antonio Vignoli",
 		"numero": "151",
@@ -16,26 +16,7 @@ let contas = [
 		"uf": "RS",
 		"dataCadastro": "2024-05-07T15:04:45",
 		"ativo": "S",
-		"logo": "https://www.eetcs.com.br/images/logo-transparente-eetcs.png"
-	},
-	{
-		"contaId": 2,
-		"email": "teste2@gmail.com",
-		"senha": "1234",
-		"conta": "Tathilandia ",
-		"tipoConta": "PV",
-		"cnpj": "08770189000103",
-		"cep": "95070561",
-		"endereco": "AV. Professor Antonio Vignoli",
-		"numero": "151",
-		"complemento": "",
-		"bairro": "Presidente Vargas",
-		"municipio": "Caxias do Sul",
-		"distrito": "",
-		"uf": "RS",
-		"dataCadastro": "2024-05-07T15:04:45",
-		"ativo": "S",
-		"logo": "https://tathilandia.com.br/wp-content/uploads/logo-abertura.png"
+		"logo": "http://localhost:8090/front-educacional-caxias/resources/assets/img/logoPrefeitura.png"
 	}
 ]
 
