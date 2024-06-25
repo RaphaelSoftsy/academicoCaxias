@@ -192,7 +192,7 @@ String contextPath = request.getContextPath();
 						<label for="municipioNascimentoId" class="form-label">Município
 							de Nascimento:
 						</label> <select class="form-select" aria-label="Município de Nascimento"
-							id="municipioNascimentoId" required name="municipioNascimentoId">
+							id="municipioNascimentoId" required disabled name="municipioNascimentoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
@@ -247,12 +247,12 @@ String contextPath = request.getContextPath();
 							<div class="form-control qualPreencher">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="qualPreencherCheck"
-									id="isCertidaoNascimento" value="s" required /> <label
+									id="isCertidaoNascimento" value="s"  /> <label
 									class="form-check-label" for="qualPreencherCheck">Certidão de Nascimento</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="qualPreencherCheck"
-									id="isCertidaoCasamento" value="c" required /> <label
+									id="isCertidaoCasamento" value="c"  /> <label
 									class="form-check-label" for="qualPreencherCheck">Certidão de Casamento</label>
 							</div>
 						</div>

@@ -12,7 +12,7 @@ $(document).ready(function() {
 	}
 
 	$.ajax({
-		url: url_base + '/tiposIngresso/conta/'+ contaId,
+		url: url_base + '/tiposIngresso/conta/' + contaId,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -36,11 +36,11 @@ $(document).ready(function() {
 	}).done(function(data) {
 		$.each(data, function(index, item) {
 			if (item.ativo == "S") {
-			$('#racaId').append($('<option>', {
-				value: item.idRaca,
-				text: item.raca,
-				name: item.raca
-			}));
+				$('#racaId').append($('<option>', {
+					value: item.idRaca,
+					text: item.raca,
+					name: item.raca
+				}));
 			}
 		});
 	})
@@ -51,28 +51,41 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			
+
 			$('#paisNascimentoId').append($('<option>', {
 				value: item.idPais,
 				text: item.nomePais,
 				name: item.nomePais
 			}));
-			$('#nacionalidadeId').append($('<option>', {
-				value: item.idPais,
-				text: item.codigoIso,
-				name: item.codigoIso
-			}));
-			
+
 			$('#paisResidenciaId').append($('<option>', {
 				value: item.idPais,
 				text: item.nomePais,
 				name: item.nomePais
 			}));
-			
+
 		});
-		
+
 
 	})
+
+
+
+	$.ajax({
+		url: url_base + '/nacionalidade',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#nacionalidadeId').append($('<option>', {
+				value: item.idNacionalidade,
+				text: item.nacionalidade,
+				name: item.nacionalidade
+			}));
+		});
+	})
+
+
 
 	$.ajax({
 		url: url_base + '/uf',
@@ -82,7 +95,7 @@ $(document).ready(function() {
 		$.each(data, function(index, item) {
 			$('#ufNascimentoId').append($('<option>', {
 				value: item.idUf,
-				text: item.codUf,
+				text: item.codUf + " - " + item.nomeUf,
 				name: item.codUf
 			}));
 
@@ -112,19 +125,6 @@ $(document).ready(function() {
 		});
 	})
 
-	$.ajax({
-		url: url_base + '/municipio',
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$('#municipioNascimentoId').append($('<option>', {
-				value: item.idMunicipio,
-				text: item.nomeMunicipio,
-				name: item.nomeMunicipio
-			}));
-		});
-	})
 
 
 
@@ -147,9 +147,10 @@ $(document).ready(function() {
 					cpf: null,
 					racaId: $('#racaId').val(),
 					paisNascimentoId: $('#paisNascimentoId').val(),
-					ufNascimentoId: $('#ufNascimentoId').val(),
+					/*ufNascimentoId: $('#ufNascimentoId').val(),*/
 					municipioNascimentoId: $('#municipioNascimentoId').val(),
 					nacionalidadeId: $('#nacionalidadeId').val(),
+					"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 3),
 					estadoCivil: $('input[name="estadoCivil"]:checked').val(),
 					rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
 					rgDataExpedicao: $('#rgDataExpedicao').val(),
@@ -158,14 +159,14 @@ $(document).ready(function() {
 					certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
 					certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
 					certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-					certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
+					/*certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),*/
 					certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
 					certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
 					certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
 					certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
 					certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
 					certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-					certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
+					/*certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),*/
 					certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
 					certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
 					certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
@@ -203,9 +204,10 @@ $(document).ready(function() {
 					cpf: cpf,
 					racaId: $('#racaId').val(),
 					paisNascimentoId: $('#paisNascimentoId').val(),
-					ufNascimentoId: $('#ufNascimentoId').val(),
+					/*ufNascimentoId: $('#ufNascimentoId').val(),*/
 					municipioNascimentoId: $('#municipioNascimentoId').val(),
 					nacionalidadeId: $('#nacionalidadeId').val(),
+					"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 3),
 					estadoCivil: $('input[name="estadoCivil"]:checked').val(),
 					rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
 					rgDataExpedicao: $('#rgDataExpedicao').val(),
@@ -214,14 +216,14 @@ $(document).ready(function() {
 					certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
 					certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
 					certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-					certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
+					/*certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),*/
 					certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
 					certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
 					certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
 					certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
 					certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
 					certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-					certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
+					/*certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),*/
 					certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
 					certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
 					certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
@@ -290,6 +292,26 @@ $(document).ready(function() {
 })
 
 
+$('#ufNascimentoId').change(() => {
+	$("#municipioNascimentoId").attr("disabled", false)
+	$("#municipioNascimentoId").empty()
+	$.ajax({
+		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#municipioNascimentoId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+		});
+
+
+	})
+})
+
 
 $('input[name="isRne"]').click(function() {
 	if ($(this).is(':checked')) {
@@ -341,7 +363,7 @@ $('input[name="qualPreencher"]').click(function() {
 		$("[name='certidaoNascimentoFolha']").removeattr("required", false);
 		$("[name='certidaoNascimentoLivro']").attr("required", false);
 		$("[name='certidaoNascimentoOrdem']").attr("required", false);
-		
+
 	}
 });
 

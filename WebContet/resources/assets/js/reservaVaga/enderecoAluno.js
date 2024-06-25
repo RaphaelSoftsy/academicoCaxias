@@ -59,7 +59,6 @@ $('#formSubmit').submit(function(event) {
 	dadosForm.rneDataExpedicao = '1995-01-01'*/
 	dadosForm.pessoaDTO.tipoIngressoId = 1
 	dadosForm.pessoaDTO.paisResidenciaId = 2
-	dadosForm.pessoaDTO.rneUfEmissorId = 1
 	
 	console.log(dadosForm)
 
