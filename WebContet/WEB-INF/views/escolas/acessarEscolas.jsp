@@ -212,8 +212,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable  border-end pe-2 th-sem-filtro"
-							data-column="ativo">Ativo</th>
+						<th scope="col" class="sortable  border-end pe-2 th-sem-filtro" data-column="ativo">Ativo</th>
 						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>

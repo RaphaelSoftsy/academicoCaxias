@@ -274,7 +274,7 @@ $("#exportar-excel").click(function() {
 	var livro = XLSX.utils.book_new();
 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 
-	XLSX.writeFile(livro, "cursos.xlsx");
+	XLSX.writeFile(livro, "reservas.xlsx");
 });
 
 
