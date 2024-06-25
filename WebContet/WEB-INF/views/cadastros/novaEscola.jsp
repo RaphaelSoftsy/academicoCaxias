@@ -102,8 +102,7 @@ String contextPath = request.getContextPath();
 							maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="logoEscola" class="form-label">Logo:<span
-							class="red">*</span></label> <input class="form-control " required
+						<label for="logoEscola" class="form-label">Logo:</label> <input class="form-control " required
 							type="file" id="logoEscola" name="logoEscola"> </input>
 					</div>
 				</div>
@@ -329,7 +328,7 @@ String contextPath = request.getContextPath();
 							Localização:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Tipo de Localização"
 							id="localizacaoId" required name="localizacaoId">
-							<option selected disabled>Selecione o Tipo</option>
+							<option selected disabled value="">Selecione o Tipo</option>
 						</select>
 					</div>
 

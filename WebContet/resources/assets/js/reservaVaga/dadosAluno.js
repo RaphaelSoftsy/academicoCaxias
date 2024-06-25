@@ -322,6 +322,8 @@ $('input[name="qualPreencher"]').click(function() {
 		$("[name='certidaoCasamentoDataEmissao']").attr("required", false);
 
 	} else {
+		$("#certidaoNascimento").hide();
+		$("#certidaoCasamento").show();
 		$("[name='certidaoCasamentoNumero']").attr("required", true);
 		$("[name='certidaoCasamentoCartorio']").attr("required", true);
 		$("[name='certidaoCasamentoUfCartorioId']").attr("required", true);
@@ -339,8 +341,7 @@ $('input[name="qualPreencher"]').click(function() {
 		$("[name='certidaoNascimentoFolha']").removeattr("required", false);
 		$("[name='certidaoNascimentoLivro']").attr("required", false);
 		$("[name='certidaoNascimentoOrdem']").attr("required", false);
-		$("#certidaoNascimento").hide();
-		$("#certidaoCasamento").show();
+		
 	}
 });
 

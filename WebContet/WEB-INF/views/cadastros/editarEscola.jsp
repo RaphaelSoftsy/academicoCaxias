@@ -324,7 +324,7 @@ String contextPath = request.getContextPath();
 							Localização:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Tipo de Localização"
 							id="localizacaoId" required name="localizacaoId">
-							<option selected disabled>Selecione o Tipo</option>
+							<option selected disabled value="">Selecione o Tipo</option>
 						</select>
 					</div>
 

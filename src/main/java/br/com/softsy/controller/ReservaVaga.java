@@ -80,5 +80,11 @@ public class ReservaVaga {
  
 		return "reservaVaga/imprimirDeclaracao";
 	}
+	
+	@RequestMapping(value = { "listaReserva" }, method = RequestMethod.GET)
+	public String listaReserva(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/listaReservas";
+	}
 
 }
