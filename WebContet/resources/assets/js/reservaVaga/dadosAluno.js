@@ -2,6 +2,7 @@ const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
 
+$('#municipioNascimentoId').select2();
 
 	if ($('input[id="qualPreencher"]').is(':checked')) {
 		$("#certidaoCasamento").hide()
