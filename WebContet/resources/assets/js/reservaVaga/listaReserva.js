@@ -9,21 +9,9 @@ var id = "";
 var idEscola = "";
 var ativo = "";
 const contaId = sessionStorage.getItem('contaId')
-const escolaId = sessionStorage.getItem('escolaId')
+const escolaId = localStorage.getItem('escolaId')
 
 $(document).ready(function() {
-	$.ajax({
-		url: url_base + "/escolas",
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			escolas = data;
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
 
 
 	getDados();
@@ -210,6 +198,18 @@ function alteraStatus(element) {
 	})
 }
 
+function getTipoIngresso(idTipoIngresso){
+	$.ajax({
+		url: url_base + '/tiposIngresso/' + idTipoIngresso,
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+		const tipoIngresso = data.tipoIngresso
+		return tipoIngresso
+	})
+}
+
 function listarDados(dados) {
 	var html = dados
 		.map(function(item) {
@@ -217,12 +217,10 @@ function listarDados(dados) {
 				return school.idEscola === item.escolaId;
 			});
 
-			if (item.ativo == "N") {
-				ativo =
-					'<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+			if (item.aprovado == null) {
+				status = "Aguandando"
 			} else {
-				ativo =
-					"<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+					
 			}
 
 			var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
@@ -230,34 +228,26 @@ function listarDados(dados) {
 			return (
 				"<tr>" +
 				"<td>" +
-				item.conta.conta +
+				item.candidato +
 				"</td>" +
 				"<td>" +
-				item.codCurso +
+				item.nomeCompleto +
 				"</td>" +
 				"<td>" +
-				item.nome +
+				item.nomeEscola +
 				"</td>" +
 				"<td>" +
-				'<input type="checkbox" data-status="' +
-				item.ativo +
-				'" data-id="' +
-				item.idCurso +
-				' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm">'+
+				item.turno +
 				"</td>" +
-				'<td class="d-flex justify-content-center"><span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-contaId="' +
-				item.conta.idConta +
-				'" data-id="' +
-				item.idCurso +
-				'" data-nome="' +
-				item.nome +
-				'" data-codCursoInpe="' +
-				item.codCursoInpe +
-				'" data-codCurso="' +
-				item.codCurso +
-				'" data-ativo="' +
-				item.ativo +
-				'"  onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				"<td>" +
+				item.serie +
+				"</td>" +
+				"<td>" +
+				getTipoIngresso(item.idTipoIngresso) +
+				"</td>" +
+				"<td>" +
+				item.serie +
+				"</td>" +
 				"</tr>"
 			);
 		})

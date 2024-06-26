@@ -166,7 +166,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="nome">
+				<!-- 		<th scope="col" class="sortable border-end" data-column="nome">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -188,7 +188,7 @@ String contextPath = request.getContextPath();
 									</div>
 								</div>
 							</div>
-						</th>
+						</th> -->
 						
 						<th scope="col" class="sortable border-end" data-column="nome">
 							<div

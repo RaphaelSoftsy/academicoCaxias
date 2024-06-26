@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+-<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -203,7 +203,7 @@ String contextPath = request.getContextPath();
 						<label for="municipioNascimentoId" class="form-label">Município
 							de Nascimento: </label> <select class="form-select"
 							aria-label="Município de Nascimento" id="municipioNascimentoId"
-							required disabled name="municipioNascimentoId">
+							required disabled name="municipioNascimentoId" >
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
