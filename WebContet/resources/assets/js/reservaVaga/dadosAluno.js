@@ -124,6 +124,8 @@ $(document).ready(function() {
 			}));
 		});
 	})
+	
+		
 
 
 
@@ -175,18 +177,20 @@ $(document).ready(function() {
 					rneNumero: $("#rneNumero").val(),
 					rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
 					rneUfEmissorId: $("#rneUfEmissorId").val(),
-					rneDataExpedicao: $("#rneDataExpedicao").val()
+					rneDataExpedicao: $("#rneDataExpedicao").val(),
+					"certidaoNascimentoMunicipioCartorioId": $('#certidaoNascimentoMunicipioCartorioId').val(),
+					"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoCidadeCartorioId').val()
 				},
 				candidatoDTO: {
 					contaId: contaId,
 					"pessoaId": 2,
 					"candidato": parseInt(Math.random() * 100000),
-					"ofertaConcursoId": 3,
+					"ofertaConcursoId": null,
 					"tipoIngressoId": $('#tipoIngressoId').val(),
-					"classificacao": 3,
-					"aluno": "9",
-					"aprovado": "S",
-					"usuarioAprovacaoId": 1
+					"classificacao": null,
+					"aluno": null,
+					"aprovado": null,
+					"usuarioAprovacaoId": null
 				}
 
 
@@ -232,7 +236,9 @@ $(document).ready(function() {
 					rneNumero: $("#rneNumero").val(),
 					rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
 					rneUfEmissorId: $("#rneUfEmissorId").val(),
-					rneDataExpedicao: $("#rneDataExpedicao").val()
+					rneDataExpedicao: $("#rneDataExpedicao").val(),
+					"certidaoNascimentoMunicipioCartorioId": $('#certidaoNascimentoMunicipioCartorioId').val(),
+					"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoCidadeCartorioId').val()
 				},
 				candidatoDTO: {
 					contaId: contaId,
@@ -312,6 +318,48 @@ $('#ufNascimentoId').change(() => {
 	})
 })
 
+$('#certidaoCasamentoUfCartorioId').change(() => {
+	$("#certidaoCasamentoCidadeCartorioId").attr("disabled", false)
+	$("#certidaoCasamentoCidadeCartorioId").empty()
+	$.ajax({
+		url: url_base + '/municipio/uf/' + $('#certidaoCasamentoUfCartorioId').val(),
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#certidaoCasamentoCidadeCartorioId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+		});
+
+
+	})
+})
+
+
+$('#certidaoNascimentoUfCartorioId').change(() => {
+	$("#certidaoNascimentoMunicipioCartorioId").attr("disabled", false)
+	$("#certidaoNascimentoMunicipioCartorioId").empty()
+	$.ajax({
+		url: url_base + '/municipio/uf/' + $('#certidaoNascimentoUfCartorioId').val(),
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#certidaoNascimentoMunicipioCartorioId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+		});
+
+
+	})
+})
+
+
 
 $('input[name="isRne"]').click(function() {
 	if ($(this).is(':checked')) {
@@ -368,7 +416,7 @@ $('input[name="qualPreencher"]').click(function() {
 });
 
 $("#nacionalidadeId").on("blur", () => {
-	if ($('#nacionalidadeId').find(":selected").text() != "BRA" && $('#nacionalidadeId').find(":selected").text() != "Selecione uma opção") {
+	if ($('#nacionalidadeId').find(":selected").text() != "Brasileiro" && $('#nacionalidadeId').find(":selected").text() != "Selecione uma opção") {
 		$("#rne").show()
 	} else {
 		$("#rne").hide()

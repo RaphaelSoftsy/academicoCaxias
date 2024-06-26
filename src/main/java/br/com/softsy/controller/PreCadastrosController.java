@@ -245,18 +245,7 @@ public class PreCadastrosController {
 		return "preCadastros/formaOcupacao";
 	}
 	
-	@RequestMapping(value = { "acessar-escolas", "acessarEscolas" }, method = RequestMethod.GET)
-	public String acessarEscolas(HttpSession session, Model model) throws Exception {
-		/*if (session.getAttribute("loginFunc") == null) {
-			return "login/loginFuncionario";
-		}
-		/*
-		 * String perfil = session.getAttribute("perfil").toString();
-		 * 
-		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
-		 */
-		return "escolas/acessarEscolas";
-	}
+	
 	
 	@RequestMapping(value = { "escola-marca-equipamento" }, method = RequestMethod.GET)
 	public String marcaEquipamento(HttpSession session, Model model) throws Exception {

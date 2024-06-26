@@ -231,7 +231,7 @@ String contextPath = request.getContextPath();
 						<label for="municipioNascimentoId" class="form-label">Município
 							de Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Município de Nascimento"
-							id="municipioNascimentoId" required name="municipioNascimentoId">
+							id="municipioNascimentoId" required name="municipioNascimentoId" disabled>
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
@@ -286,12 +286,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control qualPreencher">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="qualPreencherCheck"
-									id="isCertidaoNascimento" value="s" required /> <label
+									id="isCertidaoNascimento" value="s"/> <label
 									class="form-check-label" for="qualPreencherCheck">Certidão de Nascimento</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="qualPreencherCheck"
-									id="isCertidaoCasamento" value="c" required /> <label
+									id="isCertidaoCasamento" value="c"/> <label
 									class="form-check-label" for="qualPreencherCheck">Certidão de Casamento</label>
 							</div>
 						</div>
@@ -359,21 +359,18 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="certidaoNascimentoNumero"
 							class="form-control" />
 					</div>
-					<div class="col-md-6">
-						<label for="certidaoNascimentoCidadeCartorio" class="form-label">Cidade
-							do cartório:</label> <input type="text"
-							id="certidaoNascimentoCidadeCartorio" autocomplete="off"
-							name="certidaoNascimentoCidadeCartorio" class="form-control" />
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<div class="col-md-6">
+					
+						<div class="col-md-6">
 						<label for="certidaoNascimentoCartorio" class="form-label">Cartório
 							de registro:</label> <input type="text" id="certidaoNascimentoCartorio"
 							autocomplete="off" name="certidaoNascimentoCartorio"
 							class="form-control" />
 					</div>
+					
+				</div>
+
+				<div class="row mb-3">
+				
 					<div class="col-md-6">
 						<label for="certidaoNascimentoUfCartorioId" class="form-label">UF
 							do cartório:</label> <select class="form-select"
@@ -381,6 +378,16 @@ String contextPath = request.getContextPath();
 							id="certidaoNascimentoUfCartorioId"
 							name="certidaoNascimentoUfCartorioId">
 							<option  selected disabled >Selecione uma opção</option>
+						</select>
+					</div>
+					
+					<div class="col-md-6">
+						<label for="certidaoNascimentoCidadeCartorio" class="form-label">Cidade
+							do cartório:</label> <select class="form-select"
+							aria-label="Certidão de Nascimento UF Cartório"
+							id="certidaoNascimentoMunicipioCartorioId"
+							name="certidaoNascimentoMunicipioCartorioId" disabled>
+							<option selected value="" disabled>Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -442,10 +449,13 @@ String contextPath = request.getContextPath();
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoCasamentoCidadeCartorio" class="form-label">Cidade
-							do cartório:</label> <input type="text"
-							id="certidaoCasamentoCidadeCartorio" autocomplete="off"
-							name="certidaoCasamentoCidadeCartorio" class="form-control" />
+						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">UF
+							do cartório:</label> <select class="form-select"
+							aria-label="Certidão de Casamento UF Cartório"
+							id="certidaoCasamentoCidadeCartorioId"
+							name="certidaoCasamentoCidadeCartorioId" disabled>
+							<option selected disabled value="">Selecione uma opção</option>
+						</select>
 					</div>
 				</div>
 

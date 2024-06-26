@@ -13,6 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ReservaVaga {
 	
+	@RequestMapping(value = { "acessar-escolas", "acessarEscolas" }, method = RequestMethod.GET)
+	public String acessarEscolas(HttpSession session, Model model) throws Exception {
+		/*if (session.getAttribute("loginFunc") == null) {
+			return "login/loginFuncionario";
+		}
+		/*
+		 * String perfil = session.getAttribute("perfil").toString();
+		 * 
+		 * if (!LoginUtils.acessoAdmin(perfil)) { return "login/acesssoNegado"; }
+		 */
+		return "escolas/acessarEscolas";
+	}
+	
 	@RequestMapping(value = { "dadosResponsavel" }, method = RequestMethod.GET)
 	public String dadosResponsavel(HttpSession session, Model model) throws Exception {
  
