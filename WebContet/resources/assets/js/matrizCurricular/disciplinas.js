@@ -133,6 +133,13 @@ $(document).ready(function() {
 		listarDados(dadosOrdenados);
 	}
 
+		$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
+
 	showPage(currentPage);
 	updatePagination();
 });
@@ -159,67 +166,105 @@ function getDados() {
 }
 
 function getAreaConhecimento(dadosDisciplina, callback) {
-    var nomesAreaConhecimento = [];
-    dadosDisciplina.forEach(function(item, index) {
-        $.ajax({
-            url: url_base + "/areaConhecimento/" + item.areaConhecimentoId,
-            type: "GET",
-            async: false,
-        })
-        .done(function(data) {
-            nomesAreaConhecimento[index] = data.areaConhecimento;
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-        });
-    });
+	var nomesAreaConhecimento = [];
+	dadosDisciplina.forEach(function(item, index) {
+		$.ajax({
+			url: url_base + "/areaConhecimento/" + item.areaConhecimentoId,
+			type: "GET",
+			async: false,
+		})
+			.done(function(data) {
+				nomesAreaConhecimento[index] = data.areaConhecimento;
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+			});
+	});
 
-    // Chamada do callback passando os nomes das áreas de conhecimento
-    callback(nomesAreaConhecimento);
+	// Chamada do callback passando os nomes das áreas de conhecimento
+	callback(nomesAreaConhecimento);
 }
 
 function listarDados(dados) {
-    getAreaConhecimento(dados, function(nomesAreaConhecimento) {
-        var html = dados.map(function(item, index) {
-            var ativo;
-            var escola = escolas.find(function(school) {
-                return school.idEscola === item.escolaId;
-            });
-            var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
-            if (item.ativo == "N") {
-                ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-            } else {
-                ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-            }
-            return (
-                "<tr>" +
-                "<td>" +
-                nomesAreaConhecimento[index] + // Usando o nome da área de conhecimento correspondente
-                "</td>" +
-                "<td>" +
-                item.nome +
-                "</td>" +
-                "<td>" +
-                item.horasSemanal +
-                "h" +
-                "</td>" +
-                "<td>" +
-                item.horasAno +
-                "h" +
-                "</td>" +
-                "<td>" +
-                ativo +
-                "</td>" +
-                '<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-                item.idDisciplina +
-                '" data-areaconhecimento="' +
-                item.areaConhecimentoId +
-                '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-                "</tr>"
-            );
-        }).join("");
-        $("#cola-tabela").html(html);
-    });
+	getAreaConhecimento(dados, function(nomesAreaConhecimento) {
+		var html = dados.map(function(item, index) {
+			var ativo;
+			var escola = escolas.find(function(school) {
+				return school.idEscola === item.escolaId;
+			});
+			var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
+			if (item.ativo == "N") {
+				ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+			} else {
+				ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+			}
+			return (
+				"<tr>" +
+				"<td>" +
+				nomesAreaConhecimento[index] + // Usando o nome da área de conhecimento correspondente
+				"</td>" +
+				"<td>" +
+				item.nome +
+				"</td>" +
+				"<td>" +
+				item.horasSemanal +
+				"h" +
+				"</td>" +
+				"<td>" +
+				item.horasAno +
+				"h" +
+				"</td>" +
+				"<td><div class='d-flex align-items-center gap-1'>" +
+				'<input type="checkbox" data-status="' +
+				item.ativo +
+				'" data-id="' +
+				item.idDisciplina +
+				' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+				"</div></td>" +
+				'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+				item.idDisciplina +
+				'" data-areaconhecimento="' +
+				item.areaConhecimentoId +
+				'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				"</tr>"
+			);
+		}).join("");
+		$("#cola-tabela").html(html);
+	});
+}
+
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+	console.log(status)
+
+	$.ajax({
+		url: url_base + `/disciplina/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'disciplinas'
+	})
 }
 
 // Exportar Dados

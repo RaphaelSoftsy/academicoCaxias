@@ -62,6 +62,12 @@ $(document).ready(function() {
 		}
 	}
 
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
 
 	showPage(currentPage);
 	updatePagination();
@@ -97,9 +103,13 @@ function listarDados(dados) {
 			"<td>" +
 			item.modalidadeEscola +
 			"</td>" +
-			"<td>" +
-			ativo +
-			"</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" data-status="' +
+			item.ativo +
+			'" data-id="' +
+			item.idModalidadeEscola +
+			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idModalidadeEscola +
 			'" data-nome="' +
@@ -116,11 +126,45 @@ function listarDados(dados) {
 	$("#cola-tabela").html(html);
 }
 
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+	console.log(status)
+
+	$.ajax({
+		url: url_base + `/modalidadeEscola/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'modalidades'
+	})
+}
+
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
 	idSelect = ref.getAttribute("data-idSelect");
-	isAtivo = ref.getAttribute("data-ativo"); 
+	isAtivo = ref.getAttribute("data-ativo");
 
 	if (isAtivo == "S") {
 		$(".ativar").hide();
@@ -156,7 +200,7 @@ function editar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				
+
 			});
 		}
 	})
@@ -188,7 +232,7 @@ function cadastrar() {
 
 	var objeto = {
 		modalidadeEscola: $('#cadastro-nome').val(),
-		contaId : contaId
+		contaId: contaId
 
 	}
 
@@ -204,7 +248,7 @@ function cadastrar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-				
+
 			});
 		}
 	})

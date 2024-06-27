@@ -152,6 +152,7 @@ function getDados() {
 		.done(function(data) {
 			dados = data;
 			dadosOriginais = data;
+			console.log(data)
 			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -194,66 +195,59 @@ function alteraStatus(element) {
 			});
 		}
 	}).then(data => {
+		
 		window.location.href = 'curso'
 	})
 }
 
-function getTipoIngresso(idTipoIngresso){
-	$.ajax({
+function getTipoIngresso(idTipoIngresso) {
+	return $.ajax({
 		url: url_base + '/tiposIngresso/' + idTipoIngresso,
 		type: "get",
-		async: false,
-	}).done(function(data) {
-		console.log(data)
-		const tipoIngresso = data.tipoIngresso
-		return tipoIngresso
-	})
+		async: true,  // async é true por padrão, pode omitir
+	}).then(function(data) {
+		return data.tipoIngresso;
+	});
 }
 
 function listarDados(dados) {
-	var html = dados
-		.map(function(item) {
+	// Converte a lista de dados em uma lista de promessas
+	var promessas = dados.map(function(item) {
+		return getTipoIngresso(item.idTipoIngresso).then(function(tipoIngresso) {
 			var escola = escolas.find(function(school) {
 				return school.idEscola === item.escolaId;
 			});
 
+			var status = item.aprovado == null ? "Aguardando" : "Aprovado"; // Você pode ajustar essa lógica conforme necessário
+			
 			if (item.aprovado == null) {
 				status = "Aguandando"
-			} else {
-					
+			} else if(item.aprovado == "N") {
+				status = "Reprovado"
+			}else{
+				status = "Aprovado"
 			}
 
 			var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
 
 			return (
 				"<tr>" +
-				"<td>" +
-				item.candidato +
-				"</td>" +
-				"<td>" +
-				item.nomeCompleto +
-				"</td>" +
-				"<td>" +
-				item.nomeEscola +
-				"</td>" +
-				"<td>" +
-				item.turno +
-				"</td>" +
-				"<td>" +
-				item.serie +
-				"</td>" +
-				"<td>" +
-				getTipoIngresso(item.idTipoIngresso) +
-				"</td>" +
-				"<td>" +
-				item.serie +
-				"</td>" +
+				"<td>" + item.candidato + "</td>" +
+				"<td>" + item.nomeCompleto + "</td>" +
+				"<td>" + item.nomeEscola + "</td>" +
+				"<td>" + item.turno + "</td>" +
+				"<td>" + item.serie + "</td>" +
+				"<td>" + tipoIngresso + "</td>" +
+				"<td>" + status + "</td>" +
 				"</tr>"
 			);
-		})
-		.join("");
+		});
+	});
 
-	$("#cola-tabela").html(html);
+	// Aguarda todas as promessas serem resolvidas
+	Promise.all(promessas).then(function(linhas) {
+		$("#cola-tabela").html(linhas.join(""));
+	});
 }
 
 // Exportar Dados

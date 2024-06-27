@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+
+.row{
+	flex-wrap: nowrap;
+}
 .select2-dropdown.select2-dropdown--below {
 	width: 250px !important;
 }
@@ -421,6 +425,8 @@ body {
 .rotate {
 	transform: rotate(90deg);
 }
+
+
 
 .tab-wrap {
 	transition: 0.3s box-shadow ease;
@@ -1446,7 +1452,7 @@ a {
 }
 
 .title span {
-	font-size: .8em;
+	font-size: 1.3em;
 }
 
 .mb-3 {

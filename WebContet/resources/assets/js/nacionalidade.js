@@ -112,20 +112,20 @@ function listarDados(dados) {
 			"<td>" +
 			item.nacionalidade +
 			"</td>" +
-			"<td>" +
-			ativo +
-			"</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" data-status="' +
+			item.ativo +
+			'" data-id="' +
+			item.idNacionalidade +
+			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
 			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idNacionalidade +
 			'" data-nome="' +
 			item.nacionalidade +
 			'" data-ativo="' +
 			item.ativo +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span><input type="checkbox" data-status="' +
-			item.ativo +
-			'" data-id="' +
-			item.idNacionalidade +
-			'" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
