@@ -163,13 +163,6 @@ String contextPath = request.getContextPath();
 							data-mask="00.000.000-0" name="rgNumero" class="form-control" />
 					</div> -->
 
-
-				</div>
-
-
-
-				<div class="row mb-3">
-
 					<div class="col-md-6">
 						<label for="racaId" class="form-label">Raça:</label> <select
 							class="form-select" aria-label="Raça" id="racaId" name="racaId">
@@ -177,6 +170,7 @@ String contextPath = request.getContextPath();
 						</select>
 					</div>
 				</div>
+
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="paisNascimentoId" class="form-label">País de
@@ -199,7 +193,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-md-6">
+					<div class="col-md-6" style="display: flex; flex-direction: column;">
 						<label for="municipioNascimentoId" class="form-label">Município
 							de Nascimento: </label> <select class="form-select"
 							aria-label="Município de Nascimento" id="municipioNascimentoId"
@@ -243,33 +237,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-3">
-					<label for="qualPreencher" class="form-label">Qual deseja
-						preencher?<span class="red">*</span>
-					</label>
-					<div class="form-control card-form qualPreencherSwitch">
-						<label for="qualPreencher">Certidão de Nascimento</label> <label
-							class="switch"> <input type="checkbox" id="qualPreencher"
-							name="qualPreencher"> <span class="slider"></span>
-						</label> <label for="qualPreencher">Certidão de Casamento</label>
-					</div>
-
-					<div class="form-control qualPreencher">
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio"
-								name="qualPreencherCheck" id="isCertidaoNascimento" value="s" />
-							<label class="form-check-label" for="qualPreencherCheck">Certidão
-								de Nascimento</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio"
-								name="qualPreencherCheck" id="isCertidaoCasamento" value="c" />
-							<label class="form-check-label" for="qualPreencherCheck">Certidão
-								de Casamento</label>
-						</div>
-					</div>
-				</div>
-
+			
 				<div class="row">
 					<div class="col-md-6" style="display: none" id="rne">
 						<label for="isRne" class="form-label">Possui Rne?<span
@@ -316,6 +284,35 @@ String contextPath = request.getContextPath();
 							id="rgUfEmissorId" name="rgUfEmissorId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
+					</div>
+				</div>
+			</section>
+			
+			<section class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
+				<div class="row mb-3">
+					<label for="qualPreencher" class="form-label">Qual deseja
+						preencher?<span class="red">*</span>
+					</label>
+					<div class="form-control card-form qualPreencherSwitch">
+						<label for="qualPreencher">Certidão de Nascimento</label> <label
+							class="switch"> <input type="checkbox" id="qualPreencher"
+							name="qualPreencher"> <span class="slider slider-certidao"></span>
+						</label> <label for="qualPreencher">Certidão de Casamento</label>
+					</div>
+
+					<div class="form-control qualPreencher">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="qualPreencherCheck" id="isCertidaoNascimento" value="s" />
+							<label class="form-check-label" for="qualPreencherCheck">Certidão
+								de Nascimento</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="qualPreencherCheck" id="isCertidaoCasamento" value="c" />
+							<label class="form-check-label" for="qualPreencherCheck">Certidão
+								de Casamento</label>
+						</div>
 					</div>
 				</div>
 			</section>

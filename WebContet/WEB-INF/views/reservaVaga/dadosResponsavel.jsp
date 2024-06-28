@@ -34,6 +34,14 @@ String contextPath = request.getContextPath();
 	href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 	rel="stylesheet" />
 
+<!-- Select 2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -203,22 +211,23 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-					
+
 					<div class="col-md-6">
-						<label for="paisResidencialId" class="form-label">País de Residencia:<span class="red">*</span>
+						<label for="paisResidencialId" class="form-label">País de
+							Residencia:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="País de Residencia"
 							id="paisResidenciaId" required name="paisResidenciaId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-					
 
-					
+
+
 
 				</div>
 
 				<div class="row mb-3">
-				<div class="col-md-6">
+					<div class="col-md-6">
 						<label for="ufNascimentoId" class="form-label">UF de
 							Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="UF de Nascimento"
@@ -226,19 +235,20 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-					
+
 					<div class="col-md-6">
 						<label for="municipioNascimentoId" class="form-label">Município
 							de Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Município de Nascimento"
-							id="municipioNascimentoId" required name="municipioNascimentoId" disabled>
+							id="municipioNascimentoId" required name="municipioNascimentoId"
+							disabled>
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-					
+
 				</div>
 				<div class="row mb-3">
-				<div class="col-md-6">
+					<div class="col-md-6">
 						<label for="nacionalidadeId" class="form-label">Nacionalidade:<span
 							class="red">*</span></label> <select class="form-select"
 							aria-label="Município de Nascimento" id="nacionalidadeId"
@@ -246,75 +256,81 @@ String contextPath = request.getContextPath();
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-					
+
 					<div class="col-md-6">
-						<label for="sexo" class="form-label">Estado Civil:<span
-							class="red">*</span><span class="red">*</span></label>
+						<label for="estadoCivil" class="form-label">Estado Civil:</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="solteiro" value="s" required /> <label
-									class="form-check-label" for="solteiro">Solteiro(a)</label>
+									id="estadoCivil" value="so" /> <label class="form-check-label"
+									for="solteiro">Solteiro(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="casado" value="c" required /> <label
-									class="form-check-label" for="casado">Casado(a)</label>
+									id="estadoCivil" value="ca" /> <label class="form-check-label"
+									for="casado">Casado(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="viuvo" value="v" required /> <label
-									class="form-check-label" for="viuvo">Viúvo(a)</label>
+									id="estadoCivil" value="vi" /> <label class="form-check-label"
+									for="viuvo">Viúvo(a)</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="estadoCivil"
+									id="estadoCivil" value="di" /> <label class="form-check-label"
+									for="divorciado">Divorciado(a)</label>
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
-				
+
 				<div class="row mb-3">
-						<label for="qualPreencher" class="form-label">Qual deseja preencher?<span
-							class="red">*</span>
-						</label>
-						<div class="form-control card-form qualPreencherSwitch">
-							<label for="qualPreencher">Certidão de Nascimento</label>
-							<label class="switch"> <input type="checkbox" id="qualPreencher" name="qualPreencher"> <span
-								class=" slider slider-certidao"></span>
-							</label>
-							<label for="qualPreencher">Certidão de Casamento</label>
+					<label for="qualPreencher" class="form-label">Qual deseja
+						preencher?<span class="red">*</span>
+					</label>
+					<div class="form-control card-form qualPreencherSwitch">
+						<label for="qualPreencher">Certidão de Nascimento</label> <label
+							class="switch"> <input type="checkbox" id="qualPreencher"
+							name="qualPreencher"> <span
+							class=" slider slider-certidao"></span>
+						</label> <label for="qualPreencher">Certidão de Casamento</label>
+					</div>
+
+					<div class="form-control qualPreencher">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="qualPreencherCheck" id="isCertidaoNascimento" value="s" />
+							<label class="form-check-label" for="qualPreencherCheck">Certidão
+								de Nascimento</label>
 						</div>
-						
-						<div class="form-control qualPreencher">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="qualPreencherCheck"
-									id="isCertidaoNascimento" value="s"/> <label
-									class="form-check-label" for="qualPreencherCheck">Certidão de Nascimento</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="qualPreencherCheck"
-									id="isCertidaoCasamento" value="c"/> <label
-									class="form-check-label" for="qualPreencherCheck">Certidão de Casamento</label>
-							</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="qualPreencherCheck" id="isCertidaoCasamento" value="c" />
+							<label class="form-check-label" for="qualPreencherCheck">Certidão
+								de Casamento</label>
 						</div>
+					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6" style="display: none" id="rne">
 						<label for="isRne" class="form-label">Possui Rne?<span
 							class="red">*</span>
 						</label>
 						<div class="form-control card-form">
-							<label for="isRne">Sim</label>
-							<label class="switch"> <input type="checkbox" id="isRne" name="isRne"> <span
+							<label for="isRne">Sim</label> <label class="switch"> <input
+								type="checkbox" id="isRne" name="isRne"> <span
 								class="slider"></span>
-							</label>
-							<label for="isRne">Não</label>
+							</label> <label for="isRne">Não</label>
 						</div>
 					</div>
 				</div>
 			</section>
-			
+
 			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center" style="display: none" id="rneSec">
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center"
+				style="display: none" id="rneSec">
 				<h2 class="mb-5">RNE</h2>
 
 
@@ -326,8 +342,8 @@ String contextPath = request.getContextPath();
 					</div>
 
 					<div class="col-md-6">
-						<label for="rneDataExpedicao" class="form-label">Rne Data de
-							Expedição:</label> <input type="date" id="rneDataExpedicao"
+						<label for="rneDataExpedicao" class="form-label">Rne Data
+							de Expedição:</label> <input type="date" id="rneDataExpedicao"
 							autocomplete="off" name="rneDataExpedicao" class="form-control" />
 					</div>
 				</div>
@@ -339,17 +355,18 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="rneOrgaoExpedidor" class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="rneUfEmissorId" class="form-label">UF Emissor -
-							rne:</label> <select class="form-select" aria-label="RG UF Emissor"
+						<label for="rneUfEmissorId" class="form-label">UF Emissor
+							- rne:</label> <select class="form-select" aria-label="RG UF Emissor"
 							id="rneUfEmissorId" name="rneUfEmissorId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
 			</section>
-			
+
 			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center" id="certidaoNascimento">
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center"
+				id="certidaoNascimento">
 				<h2 id="titulonNascimento" class="mb-5">Certidao de Nascimento</h2>
 
 				<div class="row mb-3">
@@ -359,28 +376,28 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="certidaoNascimentoNumero"
 							class="form-control" />
 					</div>
-					
-						<div class="col-md-6">
+
+					<div class="col-md-6">
 						<label for="certidaoNascimentoCartorio" class="form-label">Cartório
 							de registro:</label> <input type="text" id="certidaoNascimentoCartorio"
 							autocomplete="off" name="certidaoNascimentoCartorio"
 							class="form-control" />
 					</div>
-					
+
 				</div>
 
 				<div class="row mb-3">
-				
+
 					<div class="col-md-6">
 						<label for="certidaoNascimentoUfCartorioId" class="form-label">UF
 							do cartório:</label> <select class="form-select"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoUfCartorioId"
 							name="certidaoNascimentoUfCartorioId">
-							<option  selected disabled >Selecione uma opção</option>
+							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
-					
+
 					<div class="col-md-6">
 						<label for="certidaoNascimentoCidadeCartorio" class="form-label">Cidade
 							do cartório:</label> <select class="form-select"
@@ -421,7 +438,8 @@ String contextPath = request.getContextPath();
 			</section>
 
 			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center" id="certidaoCasamento">
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center"
+				id="certidaoCasamento">
 				<h2 id="tituloCasamento" class="mb-5">Certidao de Casamento</h2>
 
 				<div class="row mb-3">
@@ -445,7 +463,7 @@ String contextPath = request.getContextPath();
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
 							name="certidaoCasamentoUfCartorioId">
-							<option selected disabled >Selecione uma opção</option>
+							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
@@ -491,18 +509,18 @@ String contextPath = request.getContextPath();
 				<h2 id="tituloEndereco" class="mb-5">Endereço</h2>
 
 				<div class="col-md-6">
-						<label for="isEnderecoAluno" class="form-label">Utilizar o mesmo endereço do aluno?<span
-							class="red">*</span>
-						</label>
-						<div class="card-form form-control" >
-							<label for="isEnderecoAluno">Sim</label>
-							<label class="switch"> <input type="checkbox" name="isEnderecoAluno" id="isEnderecoAluno" name="isEnderecoAluno"> <span
-								class="slider"></span>
-							</label>
-							<label for="isEnderecoAluno">Não</label>
-						</div>
+					<label for="isEnderecoAluno" class="form-label">Utilizar o
+						mesmo endereço do aluno?<span class="red">*</span>
+					</label>
+					<div class="card-form form-control">
+						<label for="isEnderecoAluno">Sim</label> <label class="switch">
+							<input type="checkbox" name="isEnderecoAluno"
+							id="isEnderecoAluno" name="isEnderecoAluno"> <span
+							class="slider"></span>
+						</label> <label for="isEnderecoAluno">Não</label>
 					</div>
-					
+				</div>
+
 
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -557,35 +575,39 @@ String contextPath = request.getContextPath();
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h2 id="tituloEndereco" class="mb-5">Dados Profissionais</h2>
-				
+
 				<div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="empresa" class="form-label">Empresa:</label>
-                        <input type="text" id="empresa" autocomplete="off" name="empresa" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="ocupacao" class="form-label">Ocupação:</label>
-                        <input type="text" id="ocupacao"  autocomplete="off" name="ocupacao" class="form-control" />
-                    </div>
-                </div>
-                
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="telefoneComercial" class="form-label">Telefone Comercial:</label>
-                        <input type="tel" id="telefoneComercial" data-mask="(00) 00000-0000" autocomplete="off" name="telefoneComercial" class="form-control" />
-                    </div>
-                </div>
-              
+					<div class="col-md-6">
+						<label for="empresa" class="form-label">Empresa:</label> <input
+							type="text" id="empresa" autocomplete="off" name="empresa"
+							class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="ocupacao" class="form-label">Ocupação:</label> <input
+							type="text" id="ocupacao" autocomplete="off" name="ocupacao"
+							class="form-control" />
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="telefoneComercial" class="form-label">Telefone
+							Comercial:</label> <input type="tel" id="telefoneComercial"
+							data-mask="(00) 00000-0000" autocomplete="off"
+							name="telefoneComercial" class="form-control" />
+					</div>
+				</div>
+
 			</section>
-			
-			
-				<section
+
+
+			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<div class="col-md-12 text-center">
 					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Próximo</button>
 				</div>
 			</section>
-			
+
 		</form>
 	</main>
 
@@ -602,12 +624,15 @@ String contextPath = request.getContextPath();
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-	 <script charset="UTF-8"
+	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosResponsavel.js"></script> 
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosResponsavel.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		
+	<!--  Importação dop Select 2 -->	
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </body>
 </html>

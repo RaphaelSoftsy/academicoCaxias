@@ -1,22 +1,22 @@
 const contaId = sessionStorage.getItem('contaId')
 
 $(document).ready(function() {
-	
+
 	var tamanhoBody = $("body").width()
-	
-	 if(tamanhoBody < 768){
+
+	if (tamanhoBody < 768) {
 		$("#qualPreencher").show()
 		$("#qualPreencherSwitch").hide()
 		$('input[name="qualPreencher"]').attr("required", false)
-	 }else{
+	} else {
 		$("#qualPreencher").hide()
 		$("#qualPreencherSwitch").show()
 		$('input[name="qualPreencher"]').attr("required", true)
-	 }
-	
-	
+	}
 
-$('#municipioNascimentoId').select2();
+
+
+	$('#municipioNascimentoId').select2();
 
 	if ($('input[id="qualPreencher"]').is(':checked')) {
 		$("#certidaoCasamento").hide()
@@ -139,8 +139,8 @@ $('#municipioNascimentoId').select2();
 			}));
 		});
 	})
-	
-		
+
+
 
 
 
@@ -316,7 +316,7 @@ $('#municipioNascimentoId').select2();
 $('#ufNascimentoId').change(() => {
 	$("#municipioNascimentoId").attr("disabled", false)
 	$("#municipioNascimentoId").empty()
-	$("#municipioNascimentoId").append( "<option selected disabled>Selecione uma opção</option>" )
+	$("#municipioNascimentoId").append("<option selected disabled>Selecione uma opção</option>")
 	$.ajax({
 		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
 		type: "get",
@@ -337,7 +337,7 @@ $('#ufNascimentoId').change(() => {
 $('#certidaoCasamentoUfCartorioId').change(() => {
 	$("#certidaoCasamentoCidadeCartorioId").attr("disabled", false)
 	$("#certidaoCasamentoCidadeCartorioId").empty()
-	$("#certidaoCasamentoCidadeCartorioId").append( "<option selected disabled>Selecione uma opção</option>" )
+	$("#certidaoCasamentoCidadeCartorioId").append("<option selected disabled>Selecione uma opção</option>")
 	$.ajax({
 		url: url_base + '/municipio/uf/' + $('#certidaoCasamentoUfCartorioId').val(),
 		type: "get",
@@ -359,7 +359,7 @@ $('#certidaoCasamentoUfCartorioId').change(() => {
 $('#certidaoNascimentoUfCartorioId').change(() => {
 	$("#certidaoNascimentoMunicipioCartorioId").attr("disabled", false)
 	$("#certidaoNascimentoMunicipioCartorioId").empty()
-	$("#certidaoNascimentoMunicipioCartorioId").append( "<option selected disabled>Selecione uma opção</option>" )
+	$("#certidaoNascimentoMunicipioCartorioId").append("<option selected disabled>Selecione uma opção</option>")
 	$.ajax({
 		url: url_base + '/municipio/uf/' + $('#certidaoNascimentoUfCartorioId').val(),
 		type: "get",

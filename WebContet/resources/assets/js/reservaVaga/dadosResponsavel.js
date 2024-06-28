@@ -3,6 +3,22 @@ const idCandidadto = localStorage.getItem("idCandidato")
 
 
 $(document).ready(function() {
+	
+	
+	var tamanhoBody = $("body").width()
+
+	if (tamanhoBody < 768) {
+		$("#qualPreencher").show()
+		$("#qualPreencherSwitch").hide()
+		$('input[name="qualPreencher"]').attr("required", false)
+	} else {
+		$("#qualPreencher").hide()
+		$("#qualPreencherSwitch").show()
+		$('input[name="qualPreencher"]').attr("required", true)
+	}
+	
+	
+	$('#municipioNascimentoId').select2();
 
 
 	if ($('input[id="qualPreencher"]').is(':checked')) {
@@ -77,31 +93,31 @@ $(document).ready(function() {
 		$.each(data, function(index, item) {
 			$('#ufNascimentoId').append($('<option>', {
 				value: item.idUf,
-				text: item.codUf,
+				text: item.codUf + " - " + item.nomeUf,
 				name: item.codUf
 			}));
 
 			$('#rgUfEmissorId').append($('<option>', {
 				value: item.idUf,
-				text: item.codUf,
+				text: item.codUf + " - " + item.nomeUf,
 				name: item.codUf
 			}));
 
 			$('#rneUfEmissorId').append($('<option>', {
 				value: item.idUf,
-				text: item.codUf,
+				text: item.codUf + " - " + item.nomeUf,
 				name: item.codUf
 			}));
 
 			$('#certidaoNascimentoUfCartorioId').append($('<option>', {
 				value: item.idUf,
-				text: item.codUf,
+				text: item.codUf + " - " + item.nomeUf,
 				name: item.codUf
 			}));
 
 			$('#certidaoCasamentoUfCartorioId').append($('<option>', {
 				value: item.idUf,
-				text: item.codUf,
+				text: item.codUf + " - " + item.nomeUf,
 				name: item.codUf
 			}));
 		});
@@ -441,6 +457,7 @@ $('#formSubmit').submit(function(event) {
 $('#ufNascimentoId').change(() => {
 	$("#municipioNascimentoId").attr("disabled", false)
 	$("#municipioNascimentoId").empty()
+	$("#municipioNascimentoId").append("<option selected disabled>Selecione uma opção</option>")
 	$.ajax({
 		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
 		type: "get",

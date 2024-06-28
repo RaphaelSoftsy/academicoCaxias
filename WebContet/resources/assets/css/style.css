@@ -5,9 +5,7 @@
 }
 
 
-.row{
-	flex-wrap: nowrap;
-}
+
 .select2-dropdown.select2-dropdown--below {
 	width: 250px !important;
 }
@@ -1299,6 +1297,10 @@ a {
 	.qualPreencherSwitch {
 		display: none;
 	}
+	
+	.row{
+	flex-wrap: wrap;
+}
 }
 
 @media screen and (max-width: 500px) {
@@ -1455,8 +1457,6 @@ a {
 	font-size: 1.3em;
 }
 
-.mb-3 {
-	gap: 1%;
-}
+
 
 
