@@ -73,7 +73,7 @@ String contextPath = request.getContextPath();
 			
 				<form>
 					<div class="mb-3">
-						<label for="inputPassword" class="form-label">Email</label> <input
+						<label for="emailInput" class="form-label">Usuario</label> <input
 							class="form-control form-control email" type="email"
 							aria-label=".form-control-lg example" id="emailInput" required>
 
@@ -122,6 +122,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 
+	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/login/login.js"></script>
 
 
