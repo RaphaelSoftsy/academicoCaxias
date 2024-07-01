@@ -68,13 +68,13 @@ $('#serie').change(() => {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-				if(item.ativo == "S"){
+			
 			$('#escola').append($('<option>', {
 				value: item.idEscola,
 				text: item.nomeEscola,
 				name: item.nomeEscola
 			}));
-			}
+			
 		});
 	})
 })
