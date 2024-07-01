@@ -18,6 +18,11 @@ public class Acessos {
 		return "acessos/usuarios";
 	}
 	
+	@RequestMapping(value = { "novoUsuario" }, method = RequestMethod.GET)
+	public String novoUsuario(HttpSession session, Model model) throws Exception {
+		return "acessos/novoUsuario";
+	}
+	
 	@RequestMapping(value = { "padraoAcesso" }, method = RequestMethod.GET)
 	public String padraoAcesso(HttpSession session, Model model) throws Exception {
 		return "acessos/padraoAcesso";

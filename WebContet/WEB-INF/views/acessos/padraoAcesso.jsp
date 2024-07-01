@@ -184,12 +184,9 @@ String contextPath = request.getContextPath();
 									autocomplete="off" name="padraoAcessoNameEdit" class="form-control" />
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='ativar("cursos")'
-									class="ativar btn btn-secondary" data-bs-dismiss="modal">
-									Ativar</button>
-								<button type="button" onclick='desativar("cursos")'
+								<button type="button" onclick='excluir()'
 									class="desativar btn btn-secondary" data-bs-dismiss="modal">
-									Desativar</button>
+									Excluir</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"

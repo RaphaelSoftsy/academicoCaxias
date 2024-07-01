@@ -5,7 +5,7 @@ var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
-var id = "";
+let id = "";
 var idEscola = "";
 var ativo = "";
 const contaId = sessionStorage.getItem('contaId')
@@ -193,7 +193,9 @@ function listarDados(dados) {
 				item.idContaPadraoAcesso +
 				'" data-ativo="' +
 				item.ativo +
-				'" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				'" data-nome="' +
+				item.padraoAcesso +
+				'" data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 				"</tr>"
 			);
 		})
@@ -213,14 +215,81 @@ $("#exportar-excel").click(function() {
 	XLSX.writeFile(livro, "cursos.xlsx");
 });
 
+function showModal(ref) {
+	id = ref.getAttribute("data-id");
+	nome = ref.getAttribute("data-nome");
 
-// Limpa input
-function limpaCampo() {
-	$("#escolaId").val("");
-	$("#dependenciaAdmId").val("");
-	$("#codCurso").val("");
-	$("#nome").val("");
-	$("#codCursoInpe").val("");
+	$('#padraoAcessoNameEdit').val(nome);
+}
+
+function excluir() {
+	Swal.fire({
+		title: "Deseja mesmo excluir?",
+		icon: "warning",
+		showCancelButton: true,
+		showConfirmButton: false,
+		showDenyButton: true,
+		denyButtonText: 'Deletar',
+		cancelButtonText: 'Cancelar'
+	}).then(result => {
+		if (result.isDenied) {
+			$.ajax({
+				url: url_base + "/contaPadraoAcessos/" + Number(id),
+				type: "delete",
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!"
+
+					});
+				}
+			}).done(function(data) {
+				Swal.fire({
+					title: "Deletado com sucesso",
+					icon: "success",
+				}).then((data) => {
+					window.location.href = 'padraoAcesso'
+				})
+			})
+		} else if (result.isCanceled) {}
+	})
+}
+
+function editar() {
+	var objeto = {
+		idContaPadraoAcesso: Number(id),
+		contaId: contaId,
+		padraoAcesso: $('#padraoAcessoNameEdit').val(),
+	}
+
+	$.ajax({
+		url: url_base + "/contaPadraoAcessos",
+		type: "PUT",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e.responseJSON.message)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!"
+
+			});
+		}
+	})
+		.done(function(data) {
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			}).then((data) => {
+				window.location.href = 'padraoAcesso'
+			})
+		})
 }
 
 function cadastrar() {
@@ -260,5 +329,11 @@ function cadastrar() {
 $("#formCadastro").on("submit", function(e) {
 	e.preventDefault();
 	cadastrar();
+	return false;
+});
+
+$("#editItem").on("submit", function(e) {
+	e.preventDefault();
+	editar();
 	return false;
 });

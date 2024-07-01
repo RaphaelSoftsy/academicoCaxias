@@ -10,16 +10,21 @@ $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
 	containerResponsivo();
-	
+
 	$(".desativar").toggleClass("btn-secondary btn-danger")
 	$(".ativar").toggleClass("btn-secondary btn-success")
 
 	$(document).attr('title', "POC - " + str);
 
 	const url = window.location.pathname
-	const contaId = sessionStorage.getItem('contaId')
 	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
-		/*		$("#tipoEscola").val('Pública').attr('selected', true);*/
+		const contaIdStorage = localStorage.getItem('contaId')
+		if (contaIdStorage != undefined) {
+			sessionStorage.setItem('contaId', contaIdStorage)
+		}
+
+		const contaId = sessionStorage.getItem('contaId')
+
 		if (isNaN(contaId) || contaId == 0 || contaId == "" || contaId == undefined) {
 			Swal.fire({
 				title: "Nenhum usuário localizado, logue novamente",

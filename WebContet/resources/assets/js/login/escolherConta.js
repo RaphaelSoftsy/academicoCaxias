@@ -1,82 +1,70 @@
-let contas = [
-	{
-		"contaId": 1,
-		"email": "teste@gmail.com",
-		"senha": "1234",
-		"conta": "Prefeitura de Uruçui",
-		"tipoConta": "PU",
-		"cnpj": "06.985.832/0001-90",
-		"cep": "95070561",
-		"endereco": "AV. Professor Antonio Vignoli",
-		"numero": "151",
-		"complemento": "",
-		"bairro": "Presidente Vargas",
-		"municipio": "Caxias do Sul",
-		"distrito": "",
-		"uf": "RS",
-		"dataCadastro": "2024-05-07T15:04:45",
-		"ativo": "S",
-		"logo": "http://localhost:8090/front-educacional-caxias/resources/assets/img/logoPrefeitura.png"
-	}
-]
+const contaId = sessionStorage.getItem('contaId')
 
+function formatarDataParaBR(data) {
+	var partesData = data.split("-");
 
+	var dataObj = new Date(Date.UTC(
+		parseInt(partesData[0]),
+		parseInt(partesData[1]) - 1,
+		parseInt(partesData[2])
+	));
 
+	var dia = String(dataObj.getUTCDate()).padStart(2, "0");
+	var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
+	var ano = dataObj.getUTCFullYear();
+
+	return dia + "/" + mes + "/" + ano;
+}
 
 $(document).ready(function() {
+	$.ajax({
+		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
+		type: "get",
+		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			console.log(e)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!"
 
+			});
+		}
+	}).done(function(data) {
+		data.forEach(
+			escola => {
+				let card = $('<div class="card"></div>')
+				card.css({
+					"width": "18rem",
+					"height": "10rem",
+					"display": "flex",
+					"flex-direction": "column",
+					"padding": ".5%"
+				})
+				let cardBody = $('<div  class="card-body school-card"></div>')
+				let cardTitle = $('<h5 class="card-title"></h5>')
+				cardTitle.css('padding-right', '0')
+				cardTitle.append(escola.padraoAcesso)
+				let cardText = $('<p class="card-text"></p>')
+				cardText.append( formatarDataParaBR(escola.dtCadastro))
+				let cardButton = $('<a href="#" class="btn btn-primary">Entrar</a>')
 
-	contas.forEach(
-		escola => {
-			let card = $('<div class="card"></div>')
-			card.css({
-				"width": "18rem",
-				"height": "16rem",
-				"display": "flex",
-				"align-items": "center",
-				"flex-direction": "column",
-				"padding": ".5%"
-			})
-			let containerImg = $('<div></div>')
-			containerImg.css({
-				"width": "100%",
-				"height": "40%",
-				"display": "flex",
-				"justify-content": "center"
-				
-				
-			})
-			let imgCard = $('<img class="card-img-top">')
-			containerImg.append(imgCard)
-			imgCard.attr('src', escola.logo)
-			imgCard.css('width','100%')
-			let cardBody = $('<div  class="card-body school-card"></div>')
-			let cardTitle = $('<h5 class="card-title"></h5>')
-			cardTitle.css('padding-right', '0')
-			cardTitle.append(escola.conta)
-			let cardText = $('<p class="card-text"></p>')
-			cardText.append(escola.cnpj)
-			let cardButton = $('<a href="#" class="btn btn-primary">Entrar</a>')
-			
-			card.append(containerImg)
-			card.append(cardBody)
-			cardBody.append(cardTitle)
-			cardBody.append(cardText)
-			cardBody.append(cardButton)
-			$('#cardContainer').append(card)
-			$('#cardContainer').css({
-				"display": "flex",
-				"flex-wrap": "wrap"
-			})
-			
-			cardButton.click(function(){
-					sessionStorage.setItem('nomeConta', escola.conta)
-				   window.location.href = $("#caminhoRelativo").val()+"/acessar-escolas"
-			})
+				card.append(cardBody)
+				cardBody.append(cardTitle)
+				cardBody.append(cardText)
+				cardBody.append(cardButton)
+				$('#cardContainer').append(card)
+				$('#cardContainer').css({
+					"display": "flex",
+					"flex-wrap": "wrap"
+				})
 
-		})
-		
-		
+				cardButton.click(function() {
+					sessionStorage.setItem('nomeConta', escola.padraoAcesso)
+					window.location.href = $("#caminhoRelativo").val() + "/acessar-escolas"
+				})
+			})
+	})
 });
 
 
