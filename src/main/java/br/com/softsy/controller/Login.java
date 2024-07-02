@@ -13,24 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class Login {
 	
-	@RequestMapping(value = { "login" }, method = RequestMethod.GET)
-	public String login(HttpSession session, Model model) throws Exception {
- 
-		return "login/login";
-	}
-	
-	@RequestMapping(value = { "login/senha" }, method = RequestMethod.GET)
-	public String recuperarSenha(HttpSession session, Model model) throws Exception {
- 
-		return "login/recuperarSenha";
-	}
-	
-	@RequestMapping(value = { "login/conta" }, method = RequestMethod.GET)
-	public String escolherEscola(HttpSession session, Model model) throws Exception {
- 
-		return "login/escolherConta";
-	}
-	
+
 	
 	
 	

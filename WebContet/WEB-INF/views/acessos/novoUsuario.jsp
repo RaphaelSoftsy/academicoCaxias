@@ -84,7 +84,7 @@ String contextPath = request.getContextPath();
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Usuário</h1>
 
-				<div class="row mb-3">
+				<div class="row mb-3" id="containerAlterarSenha">
 					<div class="col-md-6" id="alterarSenha">
 						<label for="alterarSenha" class="form-label"> Alterar Senha:<span
 							class="red">*</span>
@@ -99,7 +99,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6" id="divNovaSenha">
 						<label for="novaSenha" class="form-label">Nova Senha:<span
 							class="red">*</span>
-						</label> <input type="password" id="novaSenha" required autocomplete="off"
+						</label> <input type="password" id="novaSenha"  autocomplete="off"
 							name="novaSenha" class="form-control" />
 					</div>
 				</div>

@@ -5,41 +5,62 @@ $(document).ready(function() {
 	if (idUsuario != undefined) {
 		$("#divSenha").hide();
 		$("#divNovaSenha").hide();
-		$("#tituloPagina, #tituloForm").text("Editar Usuario")
-		$("#h1-curso").text("Editar Usuario")
-		$("#btn-adicionar").text("Editar")
+		$("#tituloPagina, #tituloForm").text("Editar Usuario");
+		$("#h1-curso").text("Editar Usuario");
+		$("#btn-adicionar").text("Editar");
 
 		$.ajax({
 			url: url_base + '/usuario/' + idUsuario,
 			type: "GET",
 			contentType: "application/json; charset=utf-8",
 			beforeSend: function() {
-				Swal.showLoading()
+				Swal.showLoading();
 			},
 			error: function(e) {
-				console.log(e)
+				console.log(e);
 				Swal.close();
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
-					text: "Não foi possível cadastar nesse momento!",
+					text: "Não foi possível cadastrar nesse momento!",
 				});
 			}
 		}).done(function(data) {
 			Swal.close();
-			$('#usuario').val(data.usuario),
-			$('#nomeCompleto').val(data.nomeCompleto)
-			$('#email').val(data.email)
-			$('#cpf').val(data.cpf)
-			$('#dataNascimento').val(data.dataNascimento)
-			$('#senha').val(data.senha)
-			$('#celular').val(data.celular)
+			$('#usuario').val(data.usuario);
+			$('#nomeCompleto').val(data.nomeCompleto);
+			$('#email').val(data.email);
+			$('#cpf').val(data.cpf);
+			$('#dataNascimento').val(formatarDataParaISO(data.dataNascimento)); // Aqui colocamos no formato yyyy-MM-dd
+			$('#senha').val(data.senha);
+			$('#celular').val(data.celular);
 		});
-	}else{
-		$("#alterarLogo").hide();
+	} else {
+		$("#containerAlterarSenha").hide();
 		$("#divNovaSenha").hide();
+		$("#novaSenha").removeAttr("required");
 	}
 });
+
+function formatarDataParaISO(data) {
+	if (!data) {
+		return "";
+	}
+
+	var dataObj = new Date(data);
+
+	if (isNaN(dataObj)) {
+		return "";
+	}
+
+	var dia = String(dataObj.getUTCDate()).padStart(2, "0");
+	var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
+	var ano = dataObj.getUTCFullYear();
+
+	return ano + "-" + mes + "-" + dia; // Formato ISO para campos de data (yyyy-MM-dd)
+}
+
+
 
 function cpfValido(cpf) {
 	cpf = cpf.replace(/[^\d]+/g, '');
@@ -122,7 +143,7 @@ $("#formNovoCadastro").submit(function(e) {
 			"email": $('#email').val(),
 			"emailVerificado": "N",
 			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"dataNascimento": $('#dataNascimento').val(),
+			"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
 			"senha": $('#senha').val(),
 			"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 			"celularVerificado": "N"
