@@ -33,7 +33,7 @@ public class Cadastros {
 		return "cadastros/escolas";
 	}
 	
-	@RequestMapping(value = { "padrao-acesso" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "configuracao-acesso" }, method = RequestMethod.GET)
 	public String padraoDeAcesso(HttpSession session, Model model) throws Exception {
  
 		return "cadastros/padraoDeAcesso";
