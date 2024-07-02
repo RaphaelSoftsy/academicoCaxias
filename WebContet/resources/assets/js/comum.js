@@ -19,11 +19,11 @@ $(document).ready(function() {
 	const url = window.location.pathname
 	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
 		const contaIdStorage = localStorage.getItem('contaId')
-		if (contaIdStorage != undefined) {
-			sessionStorage.setItem('contaId', contaIdStorage)
-		}
-
 		const contaId = sessionStorage.getItem('contaId')
+		if (contaIdStorage != undefined && contaId == undefined) {
+			sessionStorage.setItem('contaId', contaIdStorage)
+			contaId = sessionStorage.getItem('contaId')
+		}
 
 		if (isNaN(contaId) || contaId == 0 || contaId == "" || contaId == undefined) {
 			Swal.fire({
