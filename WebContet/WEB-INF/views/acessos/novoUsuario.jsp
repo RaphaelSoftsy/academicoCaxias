@@ -45,6 +45,10 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- CSS -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css"
+	rel="stylesheet" />
+
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -86,8 +90,8 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3" id="containerAlterarSenha">
 					<div class="col-md-6" id="alterarSenha">
-						<label for="alterarSenha" class="form-label"> Alterar Senha:<span
-							class="red">*</span>
+						<label for="alterarSenha" class="form-label"> Alterar
+							Senha:<span class="red">*</span>
 						</label>
 						<div class="form-control">
 							<label for="alterarSenha">Sim</label> <label class="switch">
@@ -99,11 +103,11 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6" id="divNovaSenha">
 						<label for="novaSenha" class="form-label">Nova Senha:<span
 							class="red">*</span>
-						</label> <input type="password" id="novaSenha"  autocomplete="off"
+						</label> <input type="password" id="novaSenha" autocomplete="off"
 							name="novaSenha" class="form-control" />
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="nomeCompleto" class="form-label">Nome
@@ -142,12 +146,13 @@ String contextPath = request.getContextPath();
 							name="usuario" class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="dataNascimento" class="form-label">Data de Nascimento:<span class="red">*</span></label>
-						<input type='date' class="form-control" id="dataNascimento"
+						<label for="dataNascimento" class="form-label">Data de
+							Nascimento:<span class="red">*</span>
+						</label> <input type='date' class="form-control" id="dataNascimento"
 							required name="dataNascimento" />
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6" id="divSenha">
 						<label for="senha" class="form-label">Senha:<span
@@ -155,6 +160,15 @@ String contextPath = request.getContextPath();
 						</label> <input type="password" id="senha" required autocomplete="off"
 							name="senha" class="form-control" />
 					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="senha" class="form-label">Padroes de acesso:<span
+						class="red">*</span>
+					</label> <select id="mySelect" multiple="multiple" class="col-md-6"
+						data-placeholder='Selecione as permissões desse usuário'>
+
+					</select>
 				</div>
 
 				<div class="col-md-12 text-center mt-3">
@@ -178,6 +192,11 @@ String contextPath = request.getContextPath();
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
 
 
 	<script charset="UTF-8"

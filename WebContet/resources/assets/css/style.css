@@ -4,7 +4,40 @@
 	box-sizing: border-box;
 }
 
+.chosen-container {
+	width: 50% !important;
+}
 
+.chosen-choices{
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+     background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    padding: .370rem .75rem !important;
+}
+
+.chosen-search-input, .active-result{
+	font-size: 0.85rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+}
+
+.active-result{
+    font-weight: 500 !important;
+}
+
+.chosen-drop{
+	width: 96.5% !important;
+}
+
+/* .select2-dropdown{
+	border: none;
+	padding-left: 30px !important;
+} */
 
 .select2-dropdown.select2-dropdown--below {
 	width: 250px !important;

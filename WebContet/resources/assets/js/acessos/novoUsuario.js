@@ -2,6 +2,25 @@ const contaId = sessionStorage.getItem('contaId')
 const idUsuario = params.get("id");
 
 $(document).ready(function() {
+	$.ajax({
+		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			if (item.ativo == "S") {
+				$('#mySelect').append($('<option>', {
+					value: item.idContaPadraoAcesso,
+					text: item.padraoAcesso,
+					name: item.idContaPadraoAcesso
+				}));
+			}
+		});
+	})
+
+	//Exemplo para setar valor
+	/*$('#mySelect').val([1, 6])*/
+
 	if (idUsuario != undefined) {
 		$("#divSenha").hide();
 		$("#divNovaSenha").hide();
@@ -40,6 +59,8 @@ $(document).ready(function() {
 		$("#divNovaSenha").hide();
 		$("#novaSenha").removeAttr("required");
 	}
+
+	$('#mySelect').chosen();
 });
 
 function formatarDataParaISO(data) {
@@ -132,87 +153,121 @@ $('input[name="alterarSenha"]').change(function() {
 	}
 });
 
+const cadastrar = () => {
+	let dadosFormulario = {
+		"usuario": $('#usuario').val(),
+		"nomeCompleto": $('#nomeCompleto').val(),
+		"email": $('#email').val(),
+		"emailVerificado": "N",
+		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
+		"senha": $('#senha').val(),
+		"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"celularVerificado": "N"
+	};
+
+	$.ajax({
+		url: url_base + '/usuario',
+		type: "POST",
+		data: JSON.stringify(dadosFormulario),
+		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
+		error: function(e) {
+			Swal.close();
+			console.log(e)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível cadastar nesse momento!",
+			});
+		}
+	}).done(function(data) {
+		let arrayAcessos = $('#mySelect').val()
+
+		$.each(arrayAcessos, function(index, item) {
+			let objeto = {
+				"usuarioId": data.idUsuario,
+				"contaPadraoAcessoId": item
+			}
+
+			$.ajax({
+				url: url_base + '/usuarioContas',
+				type: "POST",
+				data: JSON.stringify(objeto),
+				contentType: "application/json; charset=utf-8",
+				error: function(e) {
+					Swal.close();
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível cadastar nesse momento!",
+					});
+				}
+			}).done(function(res) {
+			});
+		});
+
+		Swal.close();
+		Swal.fire({
+			title: "Cadastrado com sucesso",
+			icon: "success",
+		}).then(() => {
+			window.location.href = "usuarios";
+		})
+	});
+}
+
+const editar = () => {
+	let dadosFormulario = {
+		"idUsuario": idUsuario,
+		"usuario": $('#usuario').val(),
+		"nomeCompleto": $('#nomeCompleto').val(),
+		"email": $('#email').val(),
+		"emailVerificado": "N",
+		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
+		"senha": $('#senha').val(),
+		"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"celularVerificado": "N"
+	};
+
+	$.ajax({
+		url: url_base + '/usuario',
+		type: "PUT",
+		data: JSON.stringify(dadosFormulario),
+		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
+		error: function(e) {
+			Swal.close();
+			console.log(e)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível cadastar nesse momento!",
+			});
+		}
+	}).done(function(data) {
+		Swal.close();
+		Swal.fire({
+			title: "Editado com sucesso",
+			icon: "success",
+		}).then(() => {
+			window.location.href = "usuarios";
+		})
+	});
+}
+
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
 
 	if (idUsuario != undefined) {
-		let dadosFormulario = {
-			"idUsuario": idUsuario,
-			"usuario": $('#usuario').val(),
-			"nomeCompleto": $('#nomeCompleto').val(),
-			"email": $('#email').val(),
-			"emailVerificado": "N",
-			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
-			"senha": $('#senha').val(),
-			"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"celularVerificado": "N"
-		};
-
-		$.ajax({
-			url: url_base + '/usuario',
-			type: "PUT",
-			data: JSON.stringify(dadosFormulario),
-			contentType: "application/json; charset=utf-8",
-			beforeSend: function() {
-				Swal.showLoading()
-			},
-			error: function(e) {
-				Swal.close();
-				console.log(e)
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível cadastar nesse momento!",
-				});
-			}
-		}).done(function(data) {
-			Swal.close();
-			Swal.fire({
-				title: "Editado com sucesso",
-				icon: "success",
-			}).then(() => {
-				window.location.href = "usuarios";
-			})
-		});
+		editar()
 	} else {
-		let dadosFormulario = {
-			"usuario": $('#usuario').val(),
-			"nomeCompleto": $('#nomeCompleto').val(),
-			"email": $('#email').val(),
-			"emailVerificado": "N",
-			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
-			"senha": $('#senha').val(),
-			"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"celularVerificado": "N"
-		};
-
-		$.ajax({
-			url: url_base + '/usuario',
-			type: "POST",
-			data: JSON.stringify(dadosFormulario),
-			contentType: "application/json; charset=utf-8",
-			beforeSend: function() {
-				Swal.showLoading()
-			},
-			error: function(e) {
-				Swal.close();
-				console.log(e)
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível cadastar nesse momento!",
-				});
-			}
-		}).done(function(data) {
-			Swal.close();
-			Swal.fire({
-				title: "Cadastrado com sucesso",
-				icon: "success",
-			}).then(() => {
-				window.location.href = "usuarios";
-			})
-		});
+		cadastrar()
 	}
 });
