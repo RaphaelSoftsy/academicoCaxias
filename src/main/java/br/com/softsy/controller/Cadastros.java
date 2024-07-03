@@ -36,7 +36,7 @@ public class Cadastros {
 	@RequestMapping(value = { "configuracao-acesso" }, method = RequestMethod.GET)
 	public String padraoDeAcesso(HttpSession session, Model model) throws Exception {
  
-		return "cadastros/padraoDeAcesso";
+		return "preCadastros/padraoDeAcesso";
 	}
 	
 	@RequestMapping(value = { "nova-escola" }, method = RequestMethod.GET)
