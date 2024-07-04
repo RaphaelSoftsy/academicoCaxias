@@ -22,6 +22,7 @@ $(document).ready(function() {
 	/*$('#mySelect').val([1, 6])*/
 
 	if (idUsuario != undefined) {
+		let listaAcessos = []
 		$("#divSenha").hide();
 		$("#divNovaSenha").hide();
 		$("#tituloPagina, #tituloForm").text("Editar Usuario");
@@ -46,21 +47,35 @@ $(document).ready(function() {
 			}
 		}).done(function(data) {
 			Swal.close();
-			$('#usuario').val(data.usuario);
-			$('#nomeCompleto').val(data.nomeCompleto);
-			$('#email').val(data.email);
-			$('#cpf').val(data.cpf);
-			$('#dataNascimento').val(formatarDataParaISO(data.dataNascimento)); // Aqui colocamos no formato yyyy-MM-dd
-			$('#senha').val(data.senha);
-			$('#celular').val(data.celular);
+			$('#usuario').val(data.usuario.usuario);
+			$('#nomeCompleto').val(data.usuario.nomeCompleto);
+			$('#email').val(data.usuario.email);
+			$('#cpf').val(data.usuario.cpf);
+			$('#dataNascimento').val(formatarDataParaISO(data.usuario.dataNascimento)); // Aqui colocamos no formato yyyy-MM-dd
+			$('#senha').val(data.usuario.senha);
+			$('#celular').val(data.usuario.celular);
+
+
+
+			$.each(data.usuarioConta, function(index, item) {
+				console.log(item)
+				listaAcessos.push(item.contaPadraoAcessoId)
+			});
+
+			console.log(listaAcessos)
+			$('#mySelect').val(listaAcessos)
+			console.log(listaAcessos)
+			console.log($('#mySelect').val())
+
+			$('#mySelect').chosen();
 		});
 	} else {
 		$("#containerAlterarSenha").hide();
 		$("#divNovaSenha").hide();
 		$("#novaSenha").removeAttr("required");
+		$('#mySelect').chosen();
 	}
 
-	$('#mySelect').chosen();
 });
 
 function formatarDataParaISO(data) {
@@ -248,10 +263,51 @@ const editar = () => {
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Não foi possível cadastar nesse momento!",
+				text: "Não foi possível editar nesse momento!",
 			});
 		}
 	}).done(function(data) {
+		$.ajax({
+			url: url_base + '/usuarioContas/usuario/' + idUsuario,
+			type: "delete",
+			contentType: "application/json; charset=utf-8",
+			error: function(e) {
+				Swal.close();
+				console.log(e)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível editar nesse momento!",
+				});
+			}
+		})
+
+		let arrayAcessos = $('#mySelect').val()
+
+		$.each(arrayAcessos, function(index, item) {
+			let objeto = {
+				"usuarioId": idUsuario,
+				"contaPadraoAcessoId": item
+			}
+
+			$.ajax({
+				url: url_base + '/usuarioContas',
+				type: "POST",
+				data: JSON.stringify(objeto),
+				contentType: "application/json; charset=utf-8",
+				error: function(e) {
+					Swal.close();
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível editar nesse momento!",
+					});
+				}
+			}).done(function(res) {
+			});
+		});
+
 		Swal.close();
 		Swal.fire({
 			title: "Editado com sucesso",
