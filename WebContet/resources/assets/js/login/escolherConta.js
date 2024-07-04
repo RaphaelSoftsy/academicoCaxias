@@ -60,6 +60,9 @@ $(document).ready(function() {
 				})
 
 				cardButton.click(function() {
+					
+					
+					localStorage.setItem('idContaAcesso', escola.idContaPadraoAcesso)
 					sessionStorage.setItem('nomeConta', escola.padraoAcesso)
 					window.location.href = $("#caminhoRelativo").val() + "/acessar-escolas"
 				})

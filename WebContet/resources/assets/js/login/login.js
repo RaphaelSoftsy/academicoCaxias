@@ -51,6 +51,12 @@ $('#btnLogin').click(function() {
 				})
 			}
 		}).done(function(data) {
+
+
+			if ( data.usuarioConta.length == 1) {
+				localStorage.setItem("idContaAcesso", data.usuarioConta[0].contaPadraoAcessoId);
+			}
+		
 			console.log(data)
 			$.ajax({
 				url: url_base + '/contaPadraoAcessos/' + data.usuarioConta[0].contaPadraoAcessoId,
@@ -72,6 +78,9 @@ $('#btnLogin').click(function() {
 					sessionStorage.setItem('contaId', responseData.contaId)
 				}
 
+
+
+
 				Swal.fire({
 					title: 'Login feito com sucesso',
 					text: 'Redirecionando você...',
@@ -79,6 +88,7 @@ $('#btnLogin').click(function() {
 					showConfirmButton: false,
 					timer: 1500
 				})
+				
 				window.location.href = "login/conta"
 			})
 		});

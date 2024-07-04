@@ -109,9 +109,12 @@ String contextPath = request.getContextPath();
 				
 				<span class="infra-title"> Configurações </span>
 				<hr class="hr-config">
-				<hr class="hr-config">
-				<hr class="hr-config">
-				<hr class="hr-config">
+				<span class="infra-title"> Escolas </span>
+				<hr class="hr-escolas">
+				<span class="infra-title"> Matriz Curricular </span>
+				<hr class="hr-matriz">
+				<span class="infra-title"> Acesso </span>
+				<hr class="hr-acesso">
 				
 
 				
@@ -119,8 +122,7 @@ String contextPath = request.getContextPath();
 
 
 				<div class="col-md-12 text-center mt-3">
-					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Cadastrar
-						Padrão de Acesso</button>
+					<button type="submit" class='btn btn-primary px-5' id='formSubmit'>Cadastrar Padrão de Acesso</button>
 				</div>
 			</form>
 		</section>
