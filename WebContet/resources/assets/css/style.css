@@ -4,6 +4,20 @@
 	box-sizing: border-box;
 }
 
+
+.reveal {
+	border: solid 1px #c0c0c0;
+	width: 10%;
+	border-radius:5%;
+}
+
+.reveal-pwd{
+	border: solid 1px #c0c0c0;
+	width: 10%;
+	border-radius:5%;
+}
+
+
 .chosen-container {
 	width: 50% !important;
 }

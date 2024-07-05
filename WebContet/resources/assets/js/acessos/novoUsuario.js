@@ -2,6 +2,31 @@ const contaId = sessionStorage.getItem('contaId')
 const idUsuario = params.get("id");
 
 $(document).ready(function() {
+
+	$(".reveal").on('click', function() {
+		let pwd = $(this).siblings("input");
+		let icon = $(this).find("i");
+		if (pwd.attr('type') === 'password') {
+			pwd.attr('type', 'text');
+			icon.removeClass("fa-eye").addClass("fa-eye-slash");
+		} else {
+			pwd.attr('type', 'password');
+			icon.removeClass("fa-eye-slash").addClass("fa-eye");
+		}
+	});
+
+	$(".reveal-pwd").on('click', function() {
+		let pwd = $(this).siblings("input");
+		let icon = $(this).find("i");
+		if (pwd.attr('type') === 'password') {
+			pwd.attr('type', 'text');
+			icon.removeClass("fa-eye").addClass("fa-eye-slash");
+		} else {
+			pwd.attr('type', 'password');
+			icon.removeClass("fa-eye-slash").addClass("fa-eye");
+		}
+	});
+
 	$.ajax({
 		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
 		type: "get",
@@ -157,6 +182,8 @@ function ValidarCpf() {
 $("#cpf").blur(function() {
 	ValidarCpf()
 });
+
+
 
 $('input[name="alterarSenha"]').change(function() {
 	if ($(this).is(':checked') == true) {
@@ -320,6 +347,14 @@ const editar = () => {
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
+
+	if ($("#senhaConfirmacao").val() != $("#senha")) {
+		Swal.fire({
+			icon: "error",
+			title: "A duas senhas devem ser iguais!",
+			text: "Verifique as senha novamente!",
+		});
+	}
 
 	if (idUsuario != undefined) {
 		editar()

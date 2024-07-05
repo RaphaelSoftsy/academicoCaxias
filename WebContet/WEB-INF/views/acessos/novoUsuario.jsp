@@ -49,6 +49,10 @@ String contextPath = request.getContextPath();
 	href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css"
 	rel="stylesheet" />
 
+<link rel="stylesheet"
+	href="<%=contextPath%>/resources/assets/css/style.css" />
+
+
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -129,7 +133,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6" id="cardCpf">
 						<label for="cpf" class="form-label">CPF:<span class="red">*</span>
 						</label> <input type="text" id="cpf" required autocomplete="off"
-							name="cpf" data-mask="000-000-000-00" class="form-control" />
+							name="cpf" data-mask="000.000.000-00" class="form-control" />
 					</div>
 					<div class="col-md-6">
 						<label for="celular" class="form-label">Celular:<span
@@ -153,14 +157,33 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-3">
+				<div class="row mb-3" id="divSenha">
 					<div class="col-md-6" id="divSenha">
-						<label for="senha" class="form-label">Senha:<span
-							class="red">*</span>
-						</label> <input type="password" id="senha" required autocomplete="off"
-							name="senha" class="form-control" />
+						<label for="senha" class="form-label">Senha</label>
+						<div class="input-group">
+							<input class="form-control form-control pwd senha"
+								type="password" aria-label=".form-control-lg example" id="senha"
+								required>
+							<button class="btn-default reveal" type="button">
+								<i class="fa-regular fa-eye"></i>
+							</button>
+						</div>
+					</div>
+
+					<div class="col-md-6" >
+						<label for="senha" class="form-label">Confirme a Senha:<span
+							class="red">*</span></label>
+						<div class="input-group">
+							<input class="form-control form-control pwd-conf senha"
+								type="password" aria-label=".form-control-lg example"
+								id="senhaConfirmacao" required>
+							<button class="btn-default reveal-pwd" type="button">
+								<i class="fa-regular fa-eye"></i>
+							</button>
+						</div>
 					</div>
 				</div>
+
 
 				<div class="row mb-3">
 					<label for="senha" class="form-label">Padroes de acesso:<span
