@@ -207,7 +207,7 @@
 			
 			<div class="item">
 				<a class="sub-btn"> <i class="fa-solid fa-address-card"></i> <span
-					id="itemName3">Acessos</span> <i
+					id="itemName4">Acessos</span> <i
 					class="fas fa-angle-right dropdown"></i></a>
 				<div class="sub-menu">
 					<a href="usuarios" id="usuarios" class="sub-item">Usuários</a>
@@ -218,7 +218,7 @@
 
 			<div class="item">
 				<a class="sub-btn"><i class="fa-solid fa-right-from-bracket"></i><span
-					id="itemName4">Sair</span><i class="fas fa-angle-right dropdown"></i></a>
+					id="itemName5">Sair</span><i class="fas fa-angle-right dropdown"></i></a>
 				<div class="sub-menu">
 					<a class="sub-btn" id="sair"> <i
 						class="fa-solid fa-circle-user"></i>Login
@@ -256,6 +256,7 @@ var idContaAcesso = localStorage.getItem('idContaAcesso')
 				$("#itemName2").text('');
 				$("#itemName3").text('');
 				$("#itemName4").text('');
+				$("#itemName5").text('');
 				
 				$(".container-icon").css({
 					"width": "100%",
@@ -299,8 +300,9 @@ var idContaAcesso = localStorage.getItem('idContaAcesso')
 				}
 				
 				$("#itemName2").text('Escolas');
-				$("#itemName4").text('Sair');
+				$("#itemName4").text('Acesso');
 				$("#itemName3").text('Matriz Curricular');
+				$("#itemName5").text('Sair');
 			}
 			
 		})

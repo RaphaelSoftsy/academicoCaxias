@@ -39,12 +39,12 @@ $(document).ready(function() {
 
     $(document).on('click', '#btnTirarPermissao', function(event) {
         event.preventDefault();
-        $(this).closest('.card-check').remove();
+    	
     });
     
     $(document).on('click', '#formSubmit', function(event) {
         event.preventDefault();
-
+        
         let jsonArray = [];
 
         $('.card-check').each(function() {
@@ -99,6 +99,7 @@ $(document).ready(function() {
 });
 
 function criarCards(textCard, idCodHtml, idTransacao) {
+	
     var card = $('<div>').addClass('card card-check');
 
     var cardHeader = $('<div>').addClass('card-header d-flex justify-content-between');
@@ -119,6 +120,7 @@ function criarCards(textCard, idCodHtml, idTransacao) {
         id: idCodHtml + 'LeituraSim',
         value: 'S'
     });
+    
     var labelLeituraSim = $('<label>').addClass('form-check-label').attr('for', idCodHtml + 'LeituraSim').text('Sim');
     var radioLeituraNao = $('<input>').addClass('form-check-input').attr({
         type: 'radio',
