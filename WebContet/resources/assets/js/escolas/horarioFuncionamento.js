@@ -13,8 +13,8 @@ var descricao = '';
 var diaSemana = '';
 var ativo = '';
 const contaId = Number(sessionStorage.getItem('contaId'))
-var idEscola = localStorage.getItem("escolaId");
-var pefilEscola = localStorage.getItem("perfil")
+var idEscola = sessionStorage.getItem("escolaId");
+var pefilEscola = sessionStorage.getItem("perfil")
 var escola = JSON.parse(pefilEscola)
 var nomeEscola = escola.nome
 

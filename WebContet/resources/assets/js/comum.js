@@ -37,7 +37,7 @@ $(document).ready(function() {
 		}
 	}
 	console.log(url)
-	const perfilEscola = localStorage.getItem("perfil")
+	const perfilEscola = sessionStorage.getItem("perfil")
 	if (window.location.href.indexOf("escola") > -1 && !(window.location.toString().includes("acessar")) && !(window.location.toString().includes("nova-escola")) && !(window.location.toString().includes("editar-escola"))) {
 
 		if (perfilEscola == undefined || perfilEscola == null) {

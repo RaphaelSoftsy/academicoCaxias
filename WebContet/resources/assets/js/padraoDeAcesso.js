@@ -46,6 +46,22 @@ $(document).ready(function() {
 		});
 	})
 
+	var accordionItems = document.querySelectorAll('.accordion-item');
+
+	accordionItems.forEach(function(item) {
+		var button = item.querySelector('.accordion-button');
+
+		button.addEventListener('click', function() {
+			var isCollapsed = button.getAttribute('aria-expanded') === 'false';
+			button.setAttribute('aria-expanded', String(!isCollapsed));
+			var collapseId = button.getAttribute('aria-controls');
+			var collapse = document.getElementById(collapseId);
+			if (collapse) {
+				collapse.classList.toggle('show');
+			}
+		});
+	});
+
 	$(document).on('click', '#formSubmit', function(event) {
 		event.preventDefault();
 
@@ -160,15 +176,15 @@ function criarCards(textCard, idCodHtml, idTransacao) {
 	);
 
 	// Verifica se labelLeituraNao está checado
-	radioLeituraNao.click(()=>{
+	radioLeituraNao.click(() => {
 		colEscrita.hide()
 	})
-	
-	radioLeituraSim.click(()=>{
+
+	radioLeituraSim.click(() => {
 		colEscrita.show()
 	})
-	
-	if(radioLeituraNao.is(":checked")){
+
+	if (radioLeituraNao.is(":checked")) {
 		colEscrita.hide()
 	}
 

@@ -6,7 +6,7 @@ var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
 var id = "";
-var idEscola = localStorage.getItem("escolaId");
+var idEscola = sessionStorage.getItem("escolaId");
 var ativo = "";
 const contaId = sessionStorage.getItem('contaId');
 

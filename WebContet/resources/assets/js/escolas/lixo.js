@@ -1,5 +1,5 @@
 
-var pefilEscola = localStorage.getItem("perfil");
+var pefilEscola = sessionStorage.getItem("perfil");
 var escola = JSON.parse(pefilEscola);
 var nomeEscola = escola.nome;
 var dados = []
@@ -7,7 +7,7 @@ var rows = 8;
 var idEscolaLixo = 0
 var currentPage = 1;
 var pagesToShow = 5;
-var escolaId = localStorage.getItem('escolaId');
+var escolaId = sessionStorage.getItem('escolaId');
 
 
 $(document).ready(function() {

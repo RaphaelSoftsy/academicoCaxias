@@ -1,11 +1,11 @@
 
-var pefilEscola = localStorage.getItem("perfil");
+var pefilEscola = sessionStorage.getItem("perfil");
 var escola = JSON.parse(pefilEscola);
 var nomeEscola = escola.nome;
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-var escolaId = localStorage.getItem('escolaId');
+var escolaId = sessionStorage.getItem('escolaId');
 let checkS = $("#isOutrosS")
 let checkN = $("#isOutrosN")
 var idEscolaEnergiaEletrica = 0

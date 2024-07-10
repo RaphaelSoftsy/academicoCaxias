@@ -48,8 +48,7 @@ $('#escola').change(() => {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			
-				$('#serie').append($('<option>', {
+			$('#serie').append($('<option>', {
 				value: item.serie,
 				text: item.serie,
 				name: item.serie
