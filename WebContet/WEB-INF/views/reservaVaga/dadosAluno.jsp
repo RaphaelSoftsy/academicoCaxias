@@ -265,7 +265,7 @@ String contextPath = request.getContextPath();
 							data-mask="00.000.000-0" name="rgNumero" class="form-control" />
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-6" id="rgDataExpedicaoDiv">
 						<label for="rgDataExpedicao" class="form-label">RG Data de
 							Expedição:</label> <input type="date" id="rgDataExpedicao"
 							autocomplete="off" name="rgDataExpedicao" class="form-control" />
@@ -399,7 +399,7 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-md-6">
+					<div class="col-md-6" id='certidaoNascimentoDataEmissaoDiv'>
 						<label for="certidaoNascimentoDataEmissao" class="form-label">Data
 							de emissão:</label> <input type="date" id="certidaoNascimentoDataEmissao"
 							autocomplete="off" name="certidaoNascimentoDataEmissao"
@@ -485,7 +485,7 @@ String contextPath = request.getContextPath();
 						<input type="text" id="certidaoCasamentoOrdem" autocomplete="off"
 							name="certidaoCasamentoOrdem" class="form-control" />
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6" id='certidaoCasamentoDataEmissaoDiv'>
 						<label for="certidaoCasamentoDataEmissao" class="form-label">Data
 							de emissão:</label> <input type="date" id="certidaoCasamentoDataEmissao"
 							autocomplete="off" name="certidaoCasamentoDataEmissao"

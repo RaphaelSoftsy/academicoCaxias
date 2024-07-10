@@ -686,3 +686,45 @@ function ValidarCpf() {
 $("#cpf").blur(function() {
 	ValidarCpf()
 });
+
+
+//nomeBox: Mande o nome do id do elemento que envolve o input e label
+//valorDataNascimento: mande o VALOR do input de data de nascimento
+//valorComparado: mande o valor do input de data que tem que ser MAIOR que a data de nascimento
+const validarDatas = (nomeBox, valorDataNascimento, idElementoComparado) => {
+	const rgDataExpedicao = $(`#${idElementoComparado}`)
+	const box = $(`#${nomeBox}`)
+	const message = $(`<p id='errMessage${idElementoComparado}'></p>`).text("Data inválida").css('color', '#FF0000');
+	const dtNasc = new Date(valorDataNascimento);
+	const dataComparada = new Date(rgDataExpedicao.val());
+
+	if (dataComparada > dtNasc) {
+		$("#btn-submit").removeAttr('disabled');
+		rgDataExpedicao.removeClass('err-message')
+		$(`#errMessage${idElementoComparado}`).css('display', 'none')
+	} else {
+		if ($(`#${nomeBox}`).find(`#errMessage${idElementoComparado}`).length > 0) {
+			$(`#errMessage${idElementoComparado}`).remove()
+		}
+		$("#btn-submit").attr("disabled", "disabled");
+		rgDataExpedicao.addClass('err-message')
+		$(`#${nomeBox}`).append(message)
+		message.show()
+	}
+}
+$("#rgDataExpedicao").blur(function() {
+	const dtNasc = $('#dtNascimento').val()
+	validarDatas('rgDataExpedicaoDiv', dtNasc, 'rgDataExpedicao')
+});
+$("#certidaoCasamentoDataEmissao").blur(function() {
+	const dtNasc = $('#dtNascimento').val()
+	validarDatas('certidaoCasamentoDataEmissaoDiv', dtNasc, 'certidaoCasamentoDataEmissao')
+});
+$("#certidaoNascimentoDataEmissao").blur(function() {
+	const dtNasc = $('#dtNascimento').val()
+	validarDatas('certidaoNascimentoDataEmissaoDiv', dtNasc, 'certidaoNascimentoDataEmissao')
+});
+
+ 
+
+
