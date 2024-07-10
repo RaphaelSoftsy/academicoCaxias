@@ -176,7 +176,7 @@ String contextPath = request.getContextPath();
 						<div class="input-group">
 							<input class="form-control form-control pwd-conf senha"
 								type="password" aria-label=".form-control-lg example"
-								id="senhaConfirmacao" required>
+								id="senhaConfirmacao">
 							<button class="btn-default reveal-pwd" type="button">
 								<i class="fa-regular fa-eye"></i>
 							</button>

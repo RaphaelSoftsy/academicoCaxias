@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%
-String contextPath = request.getContextPath();
-%>
+<% String contextPath = request.getContextPath(); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>

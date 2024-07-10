@@ -1,6 +1,4 @@
 $(document).ready(function() {
-
-
 	$(".reveal").on('click', function() {
 		let pwd = $(".pwd");
 		let icon = $(".fa-regular");
@@ -12,9 +10,6 @@ $(document).ready(function() {
 			icon.removeClass("fa-eye-slash").addClass("fa-eye");
 		}
 	});
-
-	
-
 });
 
 
@@ -52,11 +47,10 @@ $('#btnLogin').click(function() {
 				})
 			}
 		}).done(function(data) {
+		
+		sessionStorage.setItem('nomeConta', data.usuarioLogado.nomeCompleto)
+		localStorage.setItem("idContaAcesso", data.usuarioConta[0].contaPadraoAcessoId)
 
-
-			if ( data.usuarioConta.length == 1) {
-				localStorage.setItem("idContaAcesso", data.usuarioConta[0].contaPadraoAcessoId);
-			}
 		
 			console.log(data)
 			$.ajax({
@@ -73,15 +67,15 @@ $('#btnLogin').click(function() {
 					})
 				}
 			}).done(function(responseData) {
+				
+				
+				
 				if ($("#remeberMeCheck").checked) {
 					localStorage.setItem('contaId', responseData.contaId)
 				} else {
 					sessionStorage.setItem('contaId', responseData.contaId)
 				}
-
-
-
-
+				
 				Swal.fire({
 					title: 'Login feito com sucesso',
 					text: 'Redirecionando você...',
@@ -90,7 +84,8 @@ $('#btnLogin').click(function() {
 					timer: 1500
 				})
 				
-				window.location.href = "login/conta"
+				window.location.href = "acessar-escolas"
+				
 			})
 		});
 	}

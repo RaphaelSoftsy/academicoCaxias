@@ -98,6 +98,8 @@ $(document).ready(function() {
 		$("#containerAlterarSenha").hide();
 		$("#divNovaSenha").hide();
 		$("#novaSenha").removeAttr("required");
+		$("#novaSenha").val("");
+		$("#senhaConfirmacao").val("");
 		$('#mySelect').chosen();
 	}
 
@@ -348,19 +350,21 @@ const editar = () => {
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
 
-	if ($("#senhaConfirmacao").val() != $("#senha").val()) {
-		Swal.fire({
-			icon: "error",
-			title: "A duas senhas devem ser iguais!",
-			text: "Verifique as senha novamente!",
-		});
-	}else{
-		if (idUsuario != undefined) {
+
+	if (idUsuario != undefined) {
 		editar()
 	} else {
-		cadastrar()
-	}
+		if ($("#senhaConfirmacao").val() != $("#senha").val()) {
+			Swal.fire({
+				icon: "error",
+				title: "A duas senhas devem ser iguais!",
+				text: "Verifique as senha novamente!",
+			});
+		}else{
+			cadastrar()
+		}
+		
+		
 	}
 
-	
 });
