@@ -348,17 +348,19 @@ const editar = () => {
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
 
-	if ($("#senhaConfirmacao").val() != $("#senha")) {
+	if ($("#senhaConfirmacao").val() != $("#senha").val()) {
 		Swal.fire({
 			icon: "error",
 			title: "A duas senhas devem ser iguais!",
 			text: "Verifique as senha novamente!",
 		});
-	}
-
-	if (idUsuario != undefined) {
+	}else{
+		if (idUsuario != undefined) {
 		editar()
 	} else {
 		cadastrar()
 	}
+	}
+
+	
 });
