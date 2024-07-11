@@ -4,6 +4,17 @@
 	box-sizing: border-box;
 }
 
+/* Transição suave para o accordion */
+.accordion-collapse {
+    transition: height 1000ms ease-in-out; /* Define a transição suave */
+    width: auto;
+}
+
+.accordion-item {
+    overflow: hidden; /* Garante que o conteúdo não vaze quando recolhido */
+}
+
+
 
 .reveal {
 	border: solid 1px #c0c0c0;

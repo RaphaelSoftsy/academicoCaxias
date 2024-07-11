@@ -221,7 +221,7 @@ function listarDados(dados) {
 			var status = item.aprovado == null ? "Aguardando" : "Aprovado"; // Você pode ajustar essa lógica conforme necessário
 			
 			if (item.aprovado == null) {
-				status = "Aguandando"
+				status = "Aguardando"
 			} else if(item.aprovado == "N") {
 				status = "Reprovado"
 			}else{

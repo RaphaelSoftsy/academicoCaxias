@@ -147,6 +147,11 @@ $("#limpa-filtros").click(function() {
 	$(".searchInput").val("");
 });
 
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 function getDados() {
 	$.ajax({
 		url: url_base + "/contaPadraoAcessos/conta/" + contaId,
@@ -195,7 +200,14 @@ function listarDados(dados) {
 				item.ativo +
 				'" data-nome="' +
 				item.padraoAcesso +
-				'" data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				'" data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span><span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" data-toggle="tooltip" data-placement="top" title="Configurar pad~rao de acesso" class="btn btn-primary btn-sm"' +
+				'" data-id="' +
+				item.idContaPadraoAcesso +
+				'" data-ativo="' +
+				item.ativo +
+				'" data-nome="' +
+				item.padraoAcesso +
+				'" data-bs-toggle="modal" onclick="" data-bs-target="#editItem"><i class="fa-solid fa-gear"></i></span></td>' +
 				"</tr>"
 			);
 		})

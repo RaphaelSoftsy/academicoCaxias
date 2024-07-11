@@ -56,11 +56,11 @@ $(document).ready(function() {
             var collapseId = button.getAttribute('aria-controls');
             var collapse = document.getElementById(collapseId);
             if (collapse) {
+                // Toggle class 'show' for smooth transition
                 collapse.classList.toggle('show');
             }
         });
     });
-
     $(document).on('click', '#formSubmit', function(event) {
         event.preventDefault();
 	
