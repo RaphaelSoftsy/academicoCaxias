@@ -9,7 +9,7 @@ var id = "";
 var idEscola = "";
 var ativo = "";
 const contaId = sessionStorage.getItem('contaId')
-const escolaId = localStorage.getItem('escolaId')
+const escolaId = sessionStorage.getItem('escolaId')
 
 $(document).ready(function() {
 
@@ -145,7 +145,7 @@ $("#limpa-filtros").click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/candidatos/listaReservaDeVagas?idConta=" + contaId  + "&idEscola=" + escolaId  ,
+		url: url_base + "/candidatos/listaReservaDeVagas?idConta=" + contaId  ,
 		type: "GET",
 		async: false,
 	})

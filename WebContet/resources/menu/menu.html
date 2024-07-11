@@ -83,7 +83,7 @@
 					<!-- <a href="provedorInternet" class="sub-item" id="provedorInternet">Provedor Internet</a>-->
 					<a hidden href="raca" id="raca" class="sub-item">Raças</a>
 					<a hidden
-						href="escolas-reservas" id="escolasReservas" class="sub-item">Reservas
+						href="reservas" id="escolasReservas" class="sub-item">Reservas
 						de Vaga</a> <a
 						hidden href="situacaoFuncionamento" id="situacaoFuncionamento"
 						class="sub-item">Situação de Funcionamento</a> <a hidden
@@ -241,13 +241,14 @@
 <script charset="UTF-8" type="text/javascript">
 var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
 var idContaAcesso = localStorage.getItem('idContaAcesso');
+const usuarioId = sessionStorage.getItem('usuarioId');
 
 $(document).ready(function() {
     var tamanhoMenu = $(".abracaMenu").width();
     const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
 
     $.ajax({
-        url: url_base + '/contaPadraoAcessoTransacoes/contaPadraoAcesso/' + contaPadraoAcesso,
+        url: url_base + `/transacoes/${usuarioId}/acessos`,
         type: "GET",
         contentType: "application/json; charset=utf-8",
         error: function(e) {
@@ -260,12 +261,12 @@ $(document).ready(function() {
             });
         }
     }).done(function(data) {
-        var transacoes = data.map(item => item.transacaoId);
+        var transacoes = data.map(item => item.idTransacao);
         var promises = [];
 
-        $.each(transacoes, function(index, transacaoId) {
+        $.each(transacoes, function(index, idTransacao) {
             var promise = $.ajax({
-                url: url_base + '/transacoes/' + transacaoId,
+                url: url_base + '/transacoes/' + idTransacao,
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
                 error: function(e) {
@@ -346,7 +347,12 @@ $(document).ready(function() {
                 "padding-right": "10%",
                 "padding-top": "0"
             });
-      
+      		
+            if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
+                $("#itemName1").text('Trocar Escola');
+            } else {
+                $("#itemName0").text('Configurações');
+            }
 
             $("#itemName2").text('Escolas');
             $("#itemName4").text('Acesso');
@@ -390,10 +396,17 @@ $(document).ready(function() {
                 "padding-right": "10%",
                 "padding-top": "0"
             });
-    
+            if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
+                $("#itemName1").text('Trocar Escola');
+            } else {
+                $("#itemName0").text('Configurações');
+            }
 
             $("#itemName2").text('Escolas');
-            $("#itemName3").text('Sair');
+            $("#itemName4").text('Acesso');
+            $("#itemName3").text('Matriz Curricular');
+            $("#itemName5").text('Sair');
+    
         }
 
         $(this).next(".sub-menu").slideToggle();

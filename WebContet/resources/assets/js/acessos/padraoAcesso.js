@@ -319,7 +319,7 @@ function cadastrar() {
 			title: "Cadastrado com sucesso",
 			icon: "success",
 		}).then((data) => {
-			window.location.href = 'padraoAcesso'
+			window.location.href = 'configuracao-acesso'
 		})
 	});
 

@@ -18,7 +18,7 @@ $(document).ready(function() {
 	}
 	
 	
-	$('#municipioNascimentoId').select2();
+	$('select').select2();
 
 
 	if ($('input[id="qualPreencher"]').is(':checked')) {

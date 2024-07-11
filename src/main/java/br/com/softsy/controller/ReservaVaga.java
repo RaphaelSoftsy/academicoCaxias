@@ -94,7 +94,7 @@ public class ReservaVaga {
 		return "reservaVaga/imprimirDeclaracao";
 	}
 	
-	@RequestMapping(value = { "escolas-reservas" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "reservas" }, method = RequestMethod.GET)
 	public String listaReserva(HttpSession session, Model model) throws Exception {
  
 		return "reservaVaga/listaReservas";
