@@ -1,19 +1,19 @@
 <html>
-<head></head>
-<body>
 
+<head></head>
+
+<body>
 	<section id="menu-mobile" class="menu-mobile">
 		<div class="container-header">
 			<div class="img-mobile-menu">
 				<img class="logo-mobile"
 					src="http://localhost:8090/front-educacional-caxias/resources/assets/img/logoPrefeitura.png"
 					alt="Logo Prefeitura Caxias do Sul" />
-
 			</div>
 			<i class="fa-solid fa-bars" id="barsIcon"></i>
 		</div>
 	</section>
-	<section id="modalMenu" class="abracaMenu modalMenu ">
+	<section id="modalMenu" class="abracaMenu modalMenu">
 		<div class="close-btn-menu botao-desativa-menu" id="closeBtn">
 			<i class="fas fa-times"></i>
 		</div>
@@ -21,413 +21,332 @@
 			<i class="fa-solid fa-chevron-left arrow"></i>
 		</div>
 		<div class="img-menu">
-			<img class="logoSumare animate__animated animate__bounceIn mx-auto"
-				alt="Logo Prefeitura de Uruçui" id="imgLogoMenu"
+			<img class="logoSumare animate__animated animate__bounceIn mx-auto" alt="Logo Prefeitura de Uruçui"
+				id="imgLogoMenu"
 				src="http://localhost:8090/front-educacional-caxias/resources/assets/img/logoPrefeitura.png" />
 		</div>
-
 		<hr />
 		<p>
-			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span
-				id="nome-user"></span>
+			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span id="nome-user"></span>
 		</p>
 		<hr />
-		<nav class="menu">
+		<nav class="menu" id="navMenu">
 			<div class="item" id="sairEscola">
-				<a class="sub-btn" > <i
-					class="fa-solid fa-person-walking-arrow-right"></i><span
-					id="itemName1"> Trocar Escola</span>
+				<a class="sub-btn"> <i class="fa-solid fa-person-walking-arrow-right"></i><span id="itemName1"> Trocar
+						Escola</span>
 				</a>
 			</div>
-			<div class="item">
-				<a class="sub-btn"><i class="fas fa-cogs"></i><span
-					id="itemName0">Configurações</span> <i
-					class="fas fa-angle-right dropdown"></i></a>
+			<!-- <div class="item">
+				<a class="sub-btn">
+					<i class="fas fa-cogs"></i><span id="itemName0">Configurações</span>
+					<i class="fas fa-angle-right dropdown"></i>
+				</a>
 				<div class="sub-menu">
-					<!-- <a href="area-conhecimento" id="area-conhecimento" class="sub-item">Áreas
-						de Conhecimento</a> -->
-					<!-- <a href="ato-regulatorio" id="ato-regulatorio" class="sub-item">Atos Regulatórios</a> -->
-					<a hidden href="cargo-professor" id="cargo-professor"
-						class="sub-item">Cargo Professor</a> <a hidden
-						href="componentes-curriculares" id="componentes-curriculares"
-						class="sub-item">Componentes Curriculares</a> <a hidden
-						href="concurso" id="concurso" class="sub-item">Concurso</a>
-					<!-- <a href="categoriaEscolaPrivada" class="sub-item" id="categoriaEscolaPrivada">Categoria Escola Privada</a>
-					<a href="deficiencias" id="deficiencias" class="sub-item">Deficiências</a>
-					<a href="dependencia-administrativa" id="dependencia-administrativa" class="sub-item">Dependências Administrativas</a>
-					<a href="destinacaoLixo" id="destLixo" class="sub-item">Destinação de Lixo</a>
-					<a href="equipamentos" class="sub-item" id="equipamentos">Equipamentos</a>
-					<a href="entidadeSuperior" class="sub-item" id="entidadeSuperior">Entidade Superior</a>
-					<a href="esgotoSanitario" class="sub-item" id="esgotamentoSanitario">Esgotamento Sanitário</a>
-					<a href="fonteEnergia" class="sub-item" id="fonteEnergiaEletrica">Fonte de Energia</a>
-					<a href="forma-ocupacao" class="sub-item" id="formaOcupacao">Formas de Ocupação</a>
-					<a href="fornecimentoDeAgua" class="sub-item" id="fornecimentoAgua">Fornecimento de Água</a>
-					<a href="instrutor-pedagogico" class="sub-item" id="intrutoresPedagogicos">Instrutores Pedagógicos</a>
-					<a href="linguas-ensino" class="sub-item" id="linguaEnsino">Línguas de Ensino</a>
-					<a href="tipoLocalizacao" class="sub-item" id="localizacao">Localização</a>
-					<a href="marca-equipamento" class="sub-item" id="marcaEquipamento">Marcas de Equipamentos</a> -->
-					<a hidden href="modalidades" class="sub-item"
-						id="modalidadeEscolar">Modalidades Escolares</a>
-					<!-- <a href="municipios" id="municipios" class="sub-item">Município</a>-->
+					<a hidden href="cargo-professor" id="cargo-professor" class="sub-item">Cargo Professor</a>
+					<a hidden href="componentes-curriculares" id="componentes-curriculares" class="sub-item">Componentes
+						Curriculares</a>
+					<a hidden href="concurso" id="concurso" class="sub-item">Concurso</a>
+					<a hidden href="modalidades" class="sub-item" id="modalidadeEscolar">Modalidades Escolares</a>
 					<a hidden href="nacionalidade" id="nacionalidade" class="sub-item">Nacionalidade</a>
-					<!--<a href="orgaoPublico" class="sub-item" id="orgaoPublico">Orgão Público</a>
-					<a href="forma-organ-ensino" id="forma-organ-ensino" class="sub-item">Organizações de Ensino</a>-->
-					<a hidden href="paises" id="paises" class="sub-item">Países</a> <a
-						hidden href="papel-pessoa" class="sub-item" id="papelPessoa">Papel
-						Pessoa</a> <a hidden href="oferta-concurso" id="oferta-concurso"
-						class="sub-item">Oferta Concurso</a>
-
-					<!-- <a href="periodicidade" class="sub-item" id="periodicidade">Periodicidade</a>-->
-					<a hidden href="periodo-letivo" id="periodo-letivo"
-						class="sub-item">Período Letivo</a>
-					<!-- <a href="provedorInternet" class="sub-item" id="provedorInternet">Provedor Internet</a>-->
+					<a hidden href="paises" id="paises" class="sub-item">Países</a>
+					<a hidden href="papel-pessoa" class="sub-item" id="papelPessoa">Papel Pessoa</a>
+					<a hidden href="oferta-concurso" id="oferta-concurso" class="sub-item">Oferta Concurso</a>
+					<a hidden href="periodo-letivo" id="periodo-letivo" class="sub-item">Período Letivo</a>
 					<a hidden href="raca" id="raca" class="sub-item">Raças</a>
-					<a hidden
-						href="reservas" id="escolasReservas" class="sub-item">Reservas
-						de Vaga</a> <a
-						hidden href="situacaoFuncionamento" id="situacaoFuncionamento"
-						class="sub-item">Situação de Funcionamento</a> <a hidden
-						href="situacao-professor" id="situacao-professor" class="sub-item">Situação
-						Professor</a> <a hidden href="tipoAtoRegulatorio"
-						id="tipoAtoRegulatorio" class="sub-item">Tipo Ato Regulatório</a>
-					<!-- <a href="tipo-atendimento" id="tipo-atendimento" class="sub-item">Tipo Atendimento</a> -->
-					<a hidden href="tipo-dependencia" class="sub-item"
-						id="tipoDependencia">Tipo Dependência</a>
-					<!-- <a href="tipo-ensino-medio" id="tipo-ensino-medio" class="sub-item">Tipo Ensino Médio</a>
-					<a href="tipo-profissional" class="sub-item" id="tipoProfissional">Tipo Profissional</a>
-					<a href="tipo-medicao" id="tipo-medicao" class="sub-item">Tipo Medição</a> -->
-					<a hidden href="tipo-ingresso" class="sub-item" id="tipoIngresso">Tipo
-						Ingresso</a> <a hidden href="tipoLocalizacao" class="sub-item"
-						id="localizacao">Tipo Localização</a> <a hidden
-						href="tipo-telefone" class="sub-item" id="tipoTelefone">Tipo
-						Telefone</a> <a hidden href="turnos" id="turnos" class="sub-item">Turnos</a>
-					<!-- <a href="turno-professor" id="turno-professor" class="sub-item">Turno Professor</a>
-					<a href="telefones" id="telefones" class="sub-item">Tipo Telefone</a>
-					<a href="dependenciasAdm" id="dependenciasAdm" class="sub-item">Tipos de Dependências Adm</a>
-					<a href="tratamentoDeLixo" class="sub-item" id="tratamentoLixo">Tratamento de Lixo</a>-->
-					<a hidden href="ufs" id="ufs" class="sub-item">UFs</a>
-					<!-- <a href="zoneamento" class="sub-item" id="zoneamento">Zoneamento</a> -->
-				</div>
-			</div>
-			<div class="item">
-				<a class="sub-btn"> <i class="fa-solid fa-school"></i><span
-					id="itemName2">Escolas</span> <i
-					class="fas fa-angle-right dropdown"></i></a>
-				<div class="sub-menu">
-					<!-- <a href="escolas" href="cadastros-escolas" class="sub-item">Cadastros</a> -->
-					<a hidden href="acessar-escolas" id="acessar-escolas"
-						class="sub-item">Minhas Escolas</a> <a hidden href="escola-agua"
-						id="escola-agua" class="sub-item">Água</a>
-					<!-- <a href="escola-destinacao-de-lixo" class="sub-item">Destinações de Lixo</a> -->
-					<!-- <a href=z"escola-disciplinas" class="sub-item">Disciplinas</a> -->
-					<a hidden href="escola-dispostivo" id="escola-dispostivo"
-						class="sub-item">Dispositivos</a>
-					<!-- <a href="escola-equipamento" class="sub-item">Equipamentos</a> -->
-					<a hidden href="escola-energia-eletrica"
-						id="escola-energia-eletrica" class="sub-item">Energia Elétrica</a>
-					<!-- <a href="escola-esgotamento-sanitario" class="sub-item">Esgotamentos Sanitários</a> -->
-					<a hidden href="escola-esgoto" id="escola-esgoto" class="sub-item">Esgoto</a>
-					<!-- <a href="escola-fornecimento-de-agua" class="sub-item">Fornecimentos de Água</a>-->
-					<a hidden href="escola-horario-funcionamento"
-						id="escola-horario-funcionamento" class="sub-item">Horários de
+					<a hidden href="escolas-reservas" id="escolasReservas" class="sub-item">Reservas de Vaga</a>
+					<a hidden href="situacaoFuncionamento" id="situacaoFuncionamento" class="sub-item">Situação de
 						Funcionamento</a>
-					<!-- <a href="escola-instrutor-pedagogico" class="sub-item">Instrutor Pedagógico</a> -->
+					<a hidden href="situacao-professor" id="situacao-professor" class="sub-item">Situação Professor</a>
+					<a hidden href="tipoAtoRegulatorio" id="tipoAtoRegulatorio" class="sub-item">Tipo Ato
+						Regulatório</a>
+					<a hidden href="tipo-dependencia" class="sub-item" id="tipoDependencia">Tipo Dependência</a>
+					<a hidden href="tipo-ingresso" class="sub-item" id="tipoIngresso">Tipo Ingresso</a>
+					<a hidden href="tipoLocalizacao" class="sub-item" id="localizacao">Tipo Localização</a>
+					<a hidden href="tipo-telefone" class="sub-item" id="tipoTelefone">Tipo Telefone</a>
+					<a hidden href="turnos" id="turnos" class="sub-item">Turnos</a>
+					<a hidden href="ufs" id="ufs" class="sub-item">UFs</a>
+				</div>
+			</div>
+			<div class="item">
+				<a class="sub-btn">
+					<i class="fa-solid fa-school"></i><span id="itemName2">Escolas</span>
+					<i class="fas fa-angle-right dropdown"></i>
+				</a>
+				<div class="sub-menu">
+					<a hidden href="acessar-escolas" id="acessar-escolas" class="sub-item">Minhas Escolas</a>
+					<a hidden href="escola-agua" id="escola-agua" class="sub-item">Água</a>
+					<a hidden href="escola-dispostivo" id="escola-dispostivo" class="sub-item">Dispositivos</a>
+					<a hidden href="escola-energia-eletrica" id="escola-energia-eletrica" class="sub-item">Energia
+						Elétrica</a>
+					<a hidden href="escola-esgoto" id="escola-esgoto" class="sub-item">Esgoto</a>
+					<a hidden href="escola-horario-funcionamento" id="escola-horario-funcionamento"
+						class="sub-item">Horários de Funcionamento</a>
 					<a hidden href="escola-infraestrutura" id="escola-infraestrutura"
-						class="sub-item">Infraestrutura</a> 
-					<!-- <a href="escola-internet" class="sub-item">Internet</a>
-						<a href="escola-licenciamento-sanitario" class="sub-item">Licenciamentos Sanitários</a>
-						<a href="escola-linguas-de-ensino" class="sub-item">Línguas de Ensino</a> -->
+						class="sub-item">Infraestrutura</a>
 					<a hidden href="escola-lixo" id="escola-lixo" class="sub-item">Lixo</a>
-					<a hidden href="escola-modalidades" id="escola-modalidades"
-						class="sub-item">Modalidades</a>
-					<!-- <a href="escola-marca-equipamento" class="sub-item">Marca Equipamento</a>
-						
-						<a href="escola-ppci" class="sub-item">PPCIs</a>
-					<a href="escola-lixo" class="sub-item">Lixo</a>
-					<!-- <a href="escola-marca-equipamento" class="sub-item">Marca Equipamento</a>-->
-					<!-- <a href="escola-modalidades" class="sub-item">Modalidades</a> -->
-					<!--<a href="escola-ppci" class="sub-item">PPCIs</a>
-						<a href="escola-predios-compartilhados" class="sub-item">Prédios Compartilhados</a>
-						<a href="escola-profissional" class="sub-item">Profissionais</a>
-						<a href="escola-regime-escolar" class="sub-item">Regime Escolar</a>
-						<a href="escola-termo-colaboracao" class="sub-item">Termos de Colaboração</a> -->
-					<a hidden href="escola-telefones" id="escola-telefones"
-						class="sub-item">Telefones</a>
-					<!-- <a href="escola-tratamento-de-lixo" class="sub-item">Tratamentos de Lixo</a> -->
-				</div>
-			</div>
-			<!-- <div class="item">
-				<a class="sub-btn"> <i class="fa-solid fa-bars-staggered"></i>Turmas
-					<i class="fas fa-angle-right dropdown"></i></a>
-				<div class="sub-menu">
-					<a href="escolas-turmas" class="sub-item" id="escolas-turmas">Cadastros</a>
-					<a href="turmas-areas-conhecimento" id="turmas-areas-conhecimento"
-						class="sub-item">Áreas de Conhecimento</a> <a
-						href="turmas-componentes-curriculares" class="sub-item">Componentes
-						Curriculares</a> <a href="turmas-disciplina" id="turmas-disciplina"
-						class="sub-item">Disciplinas</a> <a href="turmas-dias-semana"
-						id="turmas-dias-semana class="sub-item">Dias da Semana</a> <a
-						href="turmas-professores" id="turmas-professores" class="sub-item">Professores</a>
+					<a hidden href="escola-modalidades" id="escola-modalidades" class="sub-item">Modalidades</a>
+					<a hidden href="escola-telefones" id="escola-telefones" class="sub-item">Telefones</a>
 				</div>
 			</div>
 			<div class="item">
-				<a class="sub-btn"> <i class="fa-solid fa-graduation-cap"></i>Cursos
-					<i class="fas fa-angle-right dropdown"></i></a>
+				<a class="sub-btn">
+					<i class="fa-solid fa-users"></i> <span id="itemName3">Matriz Curricular</span>
+					<i class="fas fa-angle-right dropdown"></i>
+				</a>
 				<div class="sub-menu">
-					<a href="cursos" class="sub-item">Cadastros</a> <a
-						href="curriculos" class="sub-item">Currículos</a> <a
-						href="cursos-grade-curricular" class="sub-item">Grade
-						Currícular</a> <a href="cursos-serie" class="sub-item">Séries</a>
-				</div>
-			</div>
-			<div class="item">
-				<a class="sub-btn"> <i class="fa-solid fa-chalkboard-user"></i>Professores
-					<i class="fas fa-angle-right dropdown"></i></a>
-				<div class="sub-menu">
-					<a href="professores" class="sub-item">Cadastros</a> <a
-						href="professores-deficiencia" class="sub-item">Deficiências</a> <a
-						href="professores-disciplina" class="sub-item">Disciplinas</a> <a
-						href="professores-escola" class="sub-item">Escolas</a> <a
-						href="professores-formacao" class="sub-item">Formação</a>
-				</div>
-			</div>-->
-			<!-- <div class="item">
-				<a class="sub-btn"> <i class="fa-solid fa-users"></i>Alunos <i
-					class="fas fa-angle-right dropdown"></i></a>
-				<div class="sub-menu"></div>
-			</div> -->
-			<!-- 	<div class="item">
-				<a class="sub-btn"> <i class="fa-solid fa-people-group"></i>Pessoas
-					<i class="fas fa-angle-right dropdown"></i></a>
-				<div class="sub-menu">
-					<a href="listarPessoas" class="sub-item">Cadastros</a> <a
-						href="pessoas-nacionalidades" class="sub-item">Nacionalidades</a>
-				</div>
-			</div>  -->
-
-			<div class="item">
-				<a class="sub-btn"> <i class="fa-solid fa-users"></i> <span
-					id="itemName3">Matriz Curricular</span> <i
-					class="fas fa-angle-right dropdown"></i></a>
-				<div class="sub-menu">
-					<a hidden href="area-conhecimento" id="areaConhecimento"
-						class="sub-item">Áreas de conhecimento</a> <a hidden
-						href="disciplinas" id="disciplinas" class="sub-item">Disciplinas</a>
+					<a hidden href="area-conhecimento" id="areaConhecimento" class="sub-item">Áreas de conhecimento</a>
+					<a hidden href="disciplinas" id="disciplinas" class="sub-item">Disciplinas</a>
 					<a hidden href="curso" id="curso" class="sub-item">Curso</a>
 				</div>
 			</div>
-
 			<div class="item">
-				<a class="sub-btn"> <i class="fa-solid fa-address-card"></i> <span
-					id="itemName4">Acessos</span> <i
-					class="fas fa-angle-right dropdown"></i></a>
+				<a class="sub-btn">
+					<i class="fa-solid fa-address-card"></i> <span id="itemName4">Acessos</span>
+					<i class="fas fa-angle-right dropdown"></i>
+				</a>
 				<div class="sub-menu">
-			<a hidden href="usuarios" id="usuarios" class="sub-item">Usuários</a>
-					<a hidden href="padraoAcesso" id="padraoAcesso" class="sub-item">Padrões
-						de acesso</a> <a hidden href="configuracao-acesso" id="configuracao-acesso" class="sub-item">Configurar
+					<a hidden href="usuarios" id="usuarios" class="sub-item">Usuários</a>
+					<a hidden href="padraoAcesso" id="padraoAcesso" class="sub-item">Padrões de acesso</a>
+					<a hidden href="configuracao-acesso" id="configuracao-acesso" class="sub-item">Configurar
 						Padrões</a>
 				</div>
 			</div>
-
 			<div class="item" id="sair">
-				<a class="sub-btn"><i class="fa-solid fa-right-from-bracket"></i><span
-					id="itemName5">Sair</span></a>
-				
-			</div>
-
+				<a class="sub-btn">
+					<i class="fa-solid fa-right-from-bracket"></i><span id="itemName5">Sair</span>
+				</a>
+			</div> -->
 		</nav>
 	</section>
 </body>
 <script charset="UTF-8" type="text/javascript">
-var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
-var idContaAcesso = localStorage.getItem('idContaAcesso');
-const usuarioId = sessionStorage.getItem('usuarioId');
+	var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
+	var idContaAcesso = localStorage.getItem('idContaAcesso');
+	const usuarioId = sessionStorage.getItem('usuarioId');
+	let isMenuClickEventAttached = false;
 
-$(document).ready(function() {
-    var tamanhoMenu = $(".abracaMenu").width();
-    const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
+	$(document).ready(function () {
+		var tamanhoMenu = $(".abracaMenu").width();
+		const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
 
-    $.ajax({
-        url: url_base + `/transacoes/${usuarioId}/acessos`,
-        type: "GET",
-        contentType: "application/json; charset=utf-8",
-        error: function(e) {
-            Swal.close();
-            console.log(e);
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Não foi possível cadastar nesse momento!",
-            });
-        }
-    }).done(function(data) {
-        var transacoes = data.map(item => item.idTransacao);
-        var promises = [];
+		$.ajax({
+			url: `${url_base}/modulo`,
+			type: "GET",
+			contentType: "application/json; charset=utf-8",
+			async: true,
+			error: function (error) {
+				console.log('Erro ao carregar módulos:', error);
+			}
+		}).done(function (modules) {
+			$.each(modules, function (index, module) {
+				$.ajax({
+					url: `${url_base}/transacoes/${usuarioId}/acessos/modulo/${module.idModulo}`,
+					type: "GET",
+					async: true,
+					contentType: "application/json; charset=utf-8",
+					error: function (error) {
+						console.log(`Erro ao carregar subitens para o módulo ${module.idModulo}:`, error);
+					}
+				}).done(function (listaTransicoes) {
+					if (listaTransicoes.length > 0) {
+						let moduleHtml = `
+	                        <div class="item">
+	                            <a class="sub-btn show">
+	                                <i class="fa-solid fa-address-card"></i><span id="itemName${index}">${module.modulo}</span>
+	                                <i class="fas fa-angle-right dropdown"></i>
+	                            </a>
+	                            <div class="sub-menu" id="sub-menu-${module.idModulo}"></div>
+	                            <a class="sub-btn hidden">
+                                	<i class="fa-solid fa-address-card"></i>
+                            	</a>
+	                        </div>`;
+						$('#navMenu').append(moduleHtml);
 
-        $.each(transacoes, function(index, idTransacao) {
-            var promise = $.ajax({
-                url: url_base + '/transacoes/' + idTransacao,
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                error: function(e) {
-                    Swal.close();
-                    console.log(e);
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Não foi possível cadastar nesse momento!",
-                    });
-                }
-            }).done(function(resData) {
-                $(`#${resData.idCodHtml}`).removeAttr('hidden');
-            });
+						$.each(listaTransicoes, function (index, subItem) {
+							let subItemHtml = `<a href="${subItem.idCodHtml}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
+							$(`#sub-menu-${module.idModulo}`).append(subItemHtml);
+						});
 
-            promises.push(promise);
-        });
+						// Anexa o evento click aos sub-itens após serem adicionados ao DOM
+						$(".sub-btn").off('click').on('click', function () {
+							console.log('teste');
+							if ($(".abracaMenu").width() == 60) {
+								$(".logoSumare").show();
+								$(".abracaMenu").css("width", "250px");
+								$(".container-res").css("margin-left", "25%");
+								$(".fa-chevron-left").css("transform", "rotate(0deg)");
+								$(".logoSumare").show();
+								$("#nome-user").show();
+								$(".fa-angle-right").show();
+								$(".container-icon").css({
+									"width": "100%",
+									"display": "flex",
+									"align-items": "flex-end",
+									"justify-content": "flex-end",
+									"height": "2em",
+									"padding-right": "10%",
+									"padding-top": "0"
+								});
+							}
+							$(this).next(".sub-menu").slideToggle();
+							$(this).find(".dropdown").toggleClass("rotate");
+						});
+						$(".arrow").css("transform", "rotate(180deg)");
+						$(".arrow").css("transition", "1000ms");
+						$(".abracaMenu").css("width", "60px");
+						$(".abracaMenu").css("transition", "1000ms");
+						$(".container-res").css("margin-left", "10%");
+						$(".container-res").css("transition", "1000ms");
+						$(".logoSumare").hide();
+						$("#nome-user").hide();
+						$(".img-menu").hide();
+						$(".sub-menu").hide();
+						/* $(".fa-angle-right").hide(); */
+						/* $("#itemName1").text('');
+						$("#itemName0").text('');
+						$("#itemName2").text('');
+						$("#itemName3").text('');
+						$("#itemName4").text('');
+						$("#itemName5").text(''); */
+						$(".show").hide();
+						$(".hidden").show();
 
-        // Esconder os divs de item que não possuem transações, exceto o "sair"
-        $.when.apply($, promises).then(function() {
-            $(".menu .item").each(function() {
-                if ($(this).attr('id') !== 'sair' && $(this).find(".sub-menu").children(":not([hidden])").length === 0 && $(this).attr('id') !== 'sairEscola') {
-                    $(this).hide();
-                }
-            });
-        });
-    });
+						$(".container-icon").css({
+							"width": "100%",
+							"display": "flex",
+							"align-items": "center",
+							"justify-content": "center",
+							"height": "8%",
+							"padding-top": "20%",
+							"padding-right": "0"
+						}); $(".arrow").css("transform", "rotate(180deg)");
+						$(".arrow").css("transition", "1000ms");
+						$(".abracaMenu").css("width", "60px");
+						$(".abracaMenu").css("transition", "1000ms");
+						$(".container-res").css("margin-left", "10%");
+						$(".container-res").css("transition", "1000ms");
+						$(".logoSumare").hide();
+						$("#nome-user").hide();
+						$(".img-menu").hide();
+						$(".sub-menu").hide();
+						/* $(".fa-angle-right").hide(); */
+						/* $("#itemName1").text('');
+						$("#itemName0").text('');
+						$("#itemName2").text('');
+						$("#itemName3").text('');
+						$("#itemName4").text('');
+						$("#itemName5").text(''); */
+						$(".show").hide();
+						$(".hidden").show();
 
-    $(".fa-chevron-left").click(() => {
-        if ($(".abracaMenu").width() > 60) {
-            $(".arrow").css("transform", "rotate(180deg)");
-            $(".arrow").css("transition", "1000ms");
-            $(".abracaMenu").css("width", "60px");
-            $(".abracaMenu").css("transition", "1000ms");
-            $(".container-res").css("margin-left", "10%");
-            $(".container-res").css("transition", "1000ms");
-            $(".logoSumare").hide();
-            $("#nome-user").hide();
-            $(".img-menu").hide();
-            $(".sub-menu").hide();
-            $(".fa-angle-right").hide();
-            $("#itemName1").text('');
-            $("#itemName0").text('');
-            $("#itemName2").text('');
-            $("#itemName3").text('');
-            $("#itemName4").text('');
-            $("#itemName5").text('');
+						$(".container-icon").css({
+							"width": "100%",
+							"display": "flex",
+							"align-items": "center",
+							"justify-content": "center",
+							"height": "8%",
+							"padding-top": "20%",
+							"padding-right": "0"
+						});
+					}
+				});
+			});
+		});
 
-            $(".container-icon").css({
-                "width": "100%",
-                "display": "flex",
-                "align-items": "center",
-                "justify-content": "center",
-                "height": "8%",
-                "padding-top": "20%",
-                "padding-right": "0"
-            });
-        } else {
-            if (tamanhoMenu == 280) {
-                $(".abracaMenu").css("width", "280px");
-                $(".container-res").css("margin-left", "19em");
-            } else {
-                $(".abracaMenu").css("width", "250px");
-                $(".container-res").css("margin-left", "25%");
-            }
+		$(".fa-chevron-left").click(() => {
+			if ($(".abracaMenu").width() > 60) {
+				$(".arrow").css("transform", "rotate(180deg)");
+				$(".arrow").css("transition", "1000ms");
+				$(".abracaMenu").css("width", "60px");
+				$(".abracaMenu").css("transition", "1000ms");
+				$(".container-res").css("margin-left", "10%");
+				$(".container-res").css("transition", "1000ms");
+				$(".logoSumare").hide();
+				$("#nome-user").hide();
+				$(".img-menu").hide();
+				$(".sub-menu").hide();
+				/* $(".fa-angle-right").hide(); */
+				/* $("#itemName1").text('');
+				$("#itemName0").text('');
+				$("#itemName2").text('');
+				$("#itemName3").text('');
+				$("#itemName4").text('');
+				$("#itemName5").text(''); */
+				$(".show").hide();
+				$(".hidden").show();
 
-            $(".arrow").css("transform", "rotate(0deg)");
-            $(".logoSumare").show();
-            $("#nome-user").show();
-            $(".fa-angle-right").show();
-            $(".img-menu").show();
-            $(".container-icon").css({
-                "width": "100%",
-                "display": "flex",
-                "align-items": "flex-end",
-                "justify-content": "flex-end",
-                "height": "2em",
-                "padding-right": "10%",
-                "padding-top": "0"
-            });
-      		
-            if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
-                $("#itemName1").text('Trocar Escola');
-            } else {
-                $("#itemName0").text('Configurações');
-            }
+				$(".container-icon").css({
+					"width": "100%",
+					"display": "flex",
+					"align-items": "center",
+					"justify-content": "center",
+					"height": "8%",
+					"padding-top": "20%",
+					"padding-right": "0"
+				});
+			} else {
+				if (tamanhoMenu == 280) {
+					$(".abracaMenu").css("width", "280px");
+					$(".container-res").css("margin-left", "19em");
+				} else {
+					$(".abracaMenu").css("width", "250px");
+					$(".container-res").css("margin-left", "25%");
+				}
 
-            $("#itemName2").text('Escolas');
-            $("#itemName4").text('Acesso');
-            $("#itemName3").text('Matriz Curricular');
-            $("#itemName5").text('Sair');
-        }
+				$(".arrow").css("transform", "rotate(0deg)");
+				$(".logoSumare").show();
+				$("#nome-user").show();
 
-    });
+				$(".show").show();
+				$(".hidden").hide();
 
-    str = sessionStorage.getItem('nomeConta');
-    $("#nome-user").text(str);
+				/* $(".fa-angle-right").show(); */
+				$(".img-menu").show();
+				$(".container-icon").css({
+					"width": "100%",
+					"display": "flex",
+					"align-items": "flex-end",
+					"justify-content": "flex-end",
+					"height": "2em",
+					"padding-right": "10%",
+					"padding-top": "0"
+				});
+			}
+		});
 
-    if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
-        $("#sairEscola").show();
-        $("#nome-user").text(perfilArmazenado.nome);
+		str = sessionStorage.getItem('nomeConta');
+		$("#nome-user").text(str);
 
-        $(".menu .sub-btn").each(function() {
-            if ($(this).text().trim() === "Configurações") {
-                $(this).parent().hide();
-            }
-        });
-    } else {
-        $("#sairEscola").hide();
-    }
+		if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
+			$("#sairEscola").show();
+			$("#nome-user").text(perfilArmazenado.nome);
 
-    $(".sub-btn").click(function() {
-        if ($(".abracaMenu").width() == 60) {
-            $(".logoSumare").show();
-            $(".abracaMenu").css("width", "250px");
-            $(".container-res").css("margin-left", "25%");
-            $(".fa-chevron-left").css("transform", "rotate(0deg)");
-            $(".logoSumare").show();
-            $("#nome-user").show();
-            $(".fa-angle-right").show();
-            $(".container-icon").css({
-                "width": "100%",
-                "display": "flex",
-                "align-items": "flex-end",
-                "justify-content": "flex-end",
-                "height": "2em",
-                "padding-right": "10%",
-                "padding-top": "0"
-            });
-            if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
-                $("#itemName1").text('Trocar Escola');
-            } else {
-                $("#itemName0").text('Configurações');
-            }
+			$(".menu .sub-btn").each(function () {
+				if ($(this).text().trim() === "Configurações") {
+					$(this).parent().hide();
+				}
+			});
+		} else {
+			$("#sairEscola").hide();
+		}
 
-            $("#itemName2").text('Escolas');
-            $("#itemName4").text('Acesso');
-            $("#itemName3").text('Matriz Curricular');
-            $("#itemName5").text('Sair');
-    
-        }
+		$('#barsIcon').click(function () {
+			$('#modalMenu').show();
+		});
 
-        $(this).next(".sub-menu").slideToggle();
-        $(this).find(".dropdown").toggleClass("rotate");
-    });
+		$("#sair").click(() => {
+			sessionStorage.removeItem('contaId')
+			sessionStorage.removeItem('contaId')
+			window.location.href = 'http://localhost:8090/front-educacional-caxias/login'
+		});
 
-    $('#barsIcon').click(function() {
-        $('#modalMenu').show();
-    });
-    
-	$("#sair").click(() => {
-		sessionStorage.removeItem('contaId')
-		sessionStorage.removeItem('contaId')
-		window.location.href = 'http://localhost:8090/front-educacional-caxias/login'
-	})
-	$("#sairEscola").click(()=>{
+		$("#sairEscola").click(() => {
 			sessionStorage.removeItem('escolaId')
 			sessionStorage.removeItem('perfil')
 			window.location.href = 'http://localhost:8090/front-educacional-caxias/acessar-escolas'
-	})
-});
+		});
+	});
 
 </script>
+
 </html>
