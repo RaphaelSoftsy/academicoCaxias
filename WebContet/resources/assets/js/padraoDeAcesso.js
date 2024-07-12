@@ -55,7 +55,7 @@ $(document).ready(function() {
 						card.find(`.col-md-6.small-inputs`).show(); // Mostrar inputs de escrita
 					} else {
 						card.find(`input[name$="Leitura"][value="N"]`).prop('checked', true);
-						 // Esconder inputs de escrita
+						// Esconder inputs de escrita
 						card.find(`input[name$="Escrita"][value="N"]`).prop('checked', true);
 					}
 
@@ -155,6 +155,51 @@ $(document).ready(function() {
 	});
 });
 
+$(document).ready(function() {
+	let isDirty = true;
+
+	$('input, textarea').on('input', function() {
+		isDirty = true;
+	});
+
+	function showExitConfirmation(action) {
+		Swal.fire({
+			title: 'Você tem alterações não salvas.',
+			text: "Deseja sair sem salvar?",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Sair sem salvar',
+			cancelButtonText: 'Salvar e sair',
+			allowOutsideClick: false
+		}).then((result) => {
+			if (result.isConfirmed) {
+				isDirty = false;
+				if (action) {
+					window.location.href = action;
+				} else {
+					window.close();
+				}
+			} else if (result.dismiss === Swal.DismissReason.cancel) {
+				// Lógica para salvar
+				alert('Alterações salvas!');
+				isDirty = false;
+				if (action) {
+					window.location.href = action;
+				} else {
+					window.close();
+				}
+			}
+		});
+	}
+
+	$(window).on('beforeunload', function(e) {
+		if (isDirty) {
+			e.preventDefault();
+			showExitConfirmation(null);
+		}
+	});
+});
+
 function criarCards(textCard, idCodHtml, idTransacao) {
 	var card = $('<div>').addClass('card card-check');
 
@@ -168,7 +213,7 @@ function criarCards(textCard, idCodHtml, idTransacao) {
 	var row = $('<div>').addClass('row mb-3');
 	var colLeitura = $('<div>').addClass('col-md-6 small-inputs');
 	var colEscrita = $('<div>').addClass('col-md-6 small-inputs').attr("id", idCodHtml + 'EscritaNao');
-	
+
 
 	var labelLeitura = $('<label>').addClass('form-label').attr('for', idCodHtml + 'Leitura').text('Leitura:');
 	var divLeitura = $('<div>').addClass('form-control');

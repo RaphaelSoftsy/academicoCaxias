@@ -171,6 +171,36 @@
 						$(".sub-btn").off('click').on('click', function () {
 							console.log('teste');
 							if ($(".abracaMenu").width() == 60) {
+								if ($(".abracaMenu").width() <= 60) {
+									if (tamanhoMenu == 280) {
+										$(".abracaMenu").css("width", "280px");
+										$(".container-res").css("margin-left", "19em");
+									} else {
+										$(".abracaMenu").css("width", "250px");
+										$(".container-res").css("margin-left", "25%");
+									}
+
+									$(".arrow").css("transform", "rotate(0deg)");
+									$(".logoSumare").show();
+									$("#nome-user").show();
+									$("#itemName1").text('Trocar escola')
+
+									$(".show").show();
+									$(".hidden").hide();
+
+									/* $(".fa-angle-right").show(); */
+									$(".img-menu").show();
+									$(".container-icon").css({
+										"width": "100%",
+										"display": "flex",
+										"align-items": "flex-end",
+										"justify-content": "flex-end",
+										"height": "2em",
+										"padding-right": "10%",
+										"padding-top": "0"
+									});
+								}
+								
 								$(".logoSumare").show();
 								$(".abracaMenu").css("width", "250px");
 								$(".container-res").css("margin-left", "25%");
@@ -219,35 +249,9 @@
 							"height": "8%",
 							"padding-top": "20%",
 							"padding-right": "0"
-						}); $(".arrow").css("transform", "rotate(180deg)");
-						$(".arrow").css("transition", "1000ms");
-						$(".abracaMenu").css("width", "60px");
-						$(".abracaMenu").css("transition", "1000ms");
-						$(".container-res").css("margin-left", "10%");
-						$(".container-res").css("transition", "1000ms");
-						$(".logoSumare").hide();
-						$("#nome-user").hide();
-						$(".img-menu").hide();
-						$(".sub-menu").hide();
-						/* $(".fa-angle-right").hide(); */
-						/* $("#itemName1").text('');
-						$("#itemName0").text('');
-						$("#itemName2").text('');
-						$("#itemName3").text('');
-						$("#itemName4").text('');
-						$("#itemName5").text(''); */
-						$(".show").hide();
-						$(".hidden").show();
-
-						$(".container-icon").css({
-							"width": "100%",
-							"display": "flex",
-							"align-items": "center",
-							"justify-content": "center",
-							"height": "8%",
-							"padding-top": "20%",
-							"padding-right": "0"
-						});
+						}); 
+						
+						
 					}
 				});
 			});
@@ -274,6 +278,7 @@
 				$("#itemName5").text(''); */
 				$(".show").hide();
 				$(".hidden").show();
+				$("#itemName1").text('')
 
 				$(".container-icon").css({
 					"width": "100%",
@@ -296,6 +301,7 @@
 				$(".arrow").css("transform", "rotate(0deg)");
 				$(".logoSumare").show();
 				$("#nome-user").show();
+				$("#itemName1").text('Trocar escola')
 
 				$(".show").show();
 				$(".hidden").hide();
@@ -320,6 +326,7 @@
 		if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
 			$("#sairEscola").show();
 			$("#nome-user").text(perfilArmazenado.nome);
+			$("#itemName1").text('')
 
 			$(".menu .sub-btn").each(function () {
 				if ($(this).text().trim() === "Configurações") {
