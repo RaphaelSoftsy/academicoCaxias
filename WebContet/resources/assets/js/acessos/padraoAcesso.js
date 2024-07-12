@@ -148,9 +148,6 @@ $("#limpa-filtros").click(function() {
 });
 
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
 
 function getDados() {
 	$.ajax({
@@ -177,44 +174,37 @@ function getDados() {
 }*/
 
 function listarDados(dados) {
-	console.log(dados)
-	var html = dados
-		.map(function(item) {
-			if (item.ativo == "N") {
-				ativo =
-					'<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-			} else {
-				ativo =
-					"<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-			}
+    console.log(dados)
+    var html = dados
+        .map(function(item) {
+            var ativo;
+            if (item.ativo == "N") {
+                ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+            } else {
+                ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+            }
 
-			return (
-				"<tr>" +
-				"<td>" +
-				item.padraoAcesso +
-				"</td>" +
-				'<td class="d-flex justify-content-center"><span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
-				'" data-id="' +
-				item.idContaPadraoAcesso +
-				'" data-ativo="' +
-				item.ativo +
-				'" data-nome="' +
-				item.padraoAcesso +
-				'" data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span><span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" data-toggle="tooltip" data-placement="top" title="Configurar pad~rao de acesso" class="btn btn-primary btn-sm"' +
-				'" data-id="' +
-				item.idContaPadraoAcesso +
-				'" data-ativo="' +
-				item.ativo +
-				'" data-nome="' +
-				item.padraoAcesso +
-				'" data-bs-toggle="modal" onclick="" data-bs-target="#editItem"><i class="fa-solid fa-gear"></i></span></td>' +
-				"</tr>"
-			);
-		})
-		.join("");
+            return (
+                "<tr>" +
+                "<td>" + item.padraoAcesso + "</td>" +
+                '<td class="d-flex justify-content-center">' +
+                '<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+                ' data-id="' + item.idContaPadraoAcesso + '"' +
+                ' data-ativo="' + item.ativo + '"' +
+                ' data-nome="' + item.padraoAcesso + '"' +
+                ' data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editItem">' +
+                '<i class="fa-solid fa-pen fa-lg"></i></span>' +
+                '<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" onClick="window.location.href=\'configuracao-acesso\'">' +
+                '<i class="fa-solid fa-gear fa-lg"></i></span>' +
+                '</td>' +
+                "</tr>"
+            );
+        })
+        .join("");
 
-	$("#cola-tabela").html(html);
+    $("#cola-tabela").html(html);
 }
+
 
 // Exportar Dados
 
@@ -267,7 +257,7 @@ function excluir() {
 					window.location.href = 'padraoAcesso'
 				})
 			})
-		} else if (result.isCanceled) {}
+		} else if (result.isCanceled) { }
 	})
 }
 
