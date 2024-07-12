@@ -74,7 +74,8 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-graduation-cap fa-lg"></i> <span>Reserva de Vagas</span>
+					<i class="fa-solid fa-graduation-cap fa-lg"></i> <span>Reserva
+						de Vagas</span>
 				</div>
 			</div>
 		</section>
@@ -88,7 +89,8 @@ String contextPath = request.getContextPath();
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
-					<a href="dados-aluno" class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
+					<a href="dados-aluno"
+						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
 				</div>
 			</div>
 
@@ -166,7 +168,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-				<!-- 		<th scope="col" class="sortable border-end" data-column="nome">
+						<!-- 		<th scope="col" class="sortable border-end" data-column="nome">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -189,7 +191,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th> -->
-						
+
 						<th scope="col" class="sortable border-end" data-column="nome">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
@@ -213,7 +215,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-						
+
 						<th scope="col" class="sortable border-end" data-column="nome">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
@@ -260,6 +262,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
+						<th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
 						<th scope="col" class="sortable border-end" data-column="nome">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
@@ -267,7 +270,7 @@ String contextPath = request.getContextPath();
 									class="col d-flex align-items-center justify-content-between">
 									<span>Vaga Aceita</span>
 								</div>
-								
+
 							</div>
 						</th>
 					</tr>

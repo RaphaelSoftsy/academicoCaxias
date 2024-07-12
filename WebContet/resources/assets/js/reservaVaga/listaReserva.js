@@ -184,7 +184,7 @@ function alteraStatus(element) {
 	console.log(status)
 
 	$.ajax({
-		url: url_base + `/cursos/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		url: url_base + `/candidato/${id}${status === "S" ? '/desativar' : '/ativar'}`,
 		type: "put",
 		error: function(e) {
 			Swal.close();
@@ -238,6 +238,13 @@ function listarDados(dados) {
 				"<td>" + item.turno + "</td>" +
 				"<td>" + item.serie + "</td>" +
 				"<td>" + tipoIngresso + "</td>" +
+				"<td>" +
+				'<input type="checkbox" data-status="' +
+				item.ativo +
+				'" data-id="' +
+				item.idCandidato +
+				' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+				"</td>" +
 				"<td>" + status + "</td>" +
 				"</tr>"
 			);

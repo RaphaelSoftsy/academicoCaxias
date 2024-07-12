@@ -15,6 +15,9 @@
 }
 
 
+.modalMenu{
+	border-right: 3px solid #FEC422;
+}
 
 .reveal {
 	border: solid 1px #c0c0c0;
@@ -170,9 +173,7 @@ body {
 	padding-right: 5%;
 }
 
-.modalMenu {
-	overflow-y: scroll;
-}
+
 
 .fa-bars {
 	font-size: 1.2rem;
@@ -898,6 +899,7 @@ a {
 }
 
 .img-menu {
+	background-color: #fff;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -1314,6 +1316,7 @@ a {
 		color: #fff;
 	}
 	.modalMenu {
+		
 		display: none;
 		overflow: scroll;
 	}
