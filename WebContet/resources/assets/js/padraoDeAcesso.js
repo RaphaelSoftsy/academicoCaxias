@@ -156,13 +156,13 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-	let isDirty = true;
+	/*let isDirty = true;
 
 	$('input, textarea').on('input', function() {
 		isDirty = true;
 	});
 
-	function showExitConfirmation(action) {
+	function showExitConfirmation() {
 		Swal.fire({
 			title: 'Você tem alterações não salvas.',
 			text: "Deseja sair sem salvar?",
@@ -174,20 +174,11 @@ $(document).ready(function() {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				isDirty = false;
-				if (action) {
-					window.location.href = action;
-				} else {
-					window.close();
-				}
+				alert('Alterações salvas222!');
 			} else if (result.dismiss === Swal.DismissReason.cancel) {
 				// Lógica para salvar
 				alert('Alterações salvas!');
 				isDirty = false;
-				if (action) {
-					window.location.href = action;
-				} else {
-					window.close();
-				}
 			}
 		});
 	}
@@ -196,7 +187,17 @@ $(document).ready(function() {
 		if (isDirty) {
 			e.preventDefault();
 			showExitConfirmation(null);
+			e.returnValue = 'teste'; // Requerido para navegadores modernos
+			return 'teste'; // Requerido para navegadores mais antigos
 		}
+	});*/
+
+	// Registrar o evento beforeunload
+	$(window).on('beforeunload', function(e) {
+		e.preventDefault();
+		alert('teste')
+		e.returnValue = undefined;
+		return undefined;
 	});
 });
 
