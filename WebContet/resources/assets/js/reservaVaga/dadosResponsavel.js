@@ -694,7 +694,7 @@ $("#cpf").blur(function() {
 const validarDatas = (nomeBox, valorDataNascimento, idElementoComparado) => {
 	const rgDataExpedicao = $(`#${idElementoComparado}`)
 	const box = $(`#${nomeBox}`)
-	const message = $(`<p id='errMessage${idElementoComparado}'></p>`).text("Data inválida").css('color', '#FF0000');
+	const message = $(`<p id='errMessage${idElementoComparado}'></p>`).text("Data inferior a data de nascimento.").css('color', '#FF0000');
 	const dtNasc = new Date(valorDataNascimento);
 	const dataComparada = new Date(rgDataExpedicao.val());
 

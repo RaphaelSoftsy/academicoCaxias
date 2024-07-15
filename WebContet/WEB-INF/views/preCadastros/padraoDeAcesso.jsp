@@ -164,7 +164,7 @@ String contextPath = request.getContextPath();
                 
 
                 <div class="col-md-12 text-center mt-3">
-                    <button type="submit" class='btn btn-primary px-5' id='formSubmit'>Cadastrar Padrão de Acesso</button>
+                    <button type="submit" class='btn btn-primary px-5' id='formSubmit'>Salvar Padrão de Acesso</button>
                 </div>
             </form>
         </section>

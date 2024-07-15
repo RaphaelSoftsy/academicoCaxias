@@ -110,8 +110,12 @@
 					<a hidden href="configuracao-acesso" id="configuracao-acesso" class="sub-item">Configurar
 						Padrões</a>
 				</div>
-			</div>-->
-			
+			</div>
+			<div class="item" id="sair">
+				<a class="sub-btn">
+					<i class="fa-solid fa-right-from-bracket"></i><span id="itemName5">Sair</span>
+				</a>
+			</div> -->
 		</nav>
 	</section>
 </body>
@@ -124,8 +128,139 @@
 	$(document).ready(function () {
 		var tamanhoMenu = $(".abracaMenu").width();
 		const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
-
+		let sairModule = `
+        	<div class="item" id="sair" >
+ 				<a class="sub-btn">
+ 					<i class="fa-solid fa-right-from-bracket"></i><span id="itemName5"></span>
+ 				</a>
+ 			</div>`
+		
 		$.ajax({
+			url: `${url_base}/modulo/acessos/${usuarioId}`,
+			type: "GET",
+			contentType: "application/json; charset=utf-8",
+			async: true,
+			error: function (error) {
+				console.log('Erro ao carregar módulos:', error);
+			}
+		}).done(function (modules) {
+		
+			$.each(modules, function (index, module) { 
+				if(module.exibe == 'S'){
+					console.log(module)
+					let moduleHtml = `
+                        <div class="item">
+                            <a class="sub-btn show">
+                            	${module.iconeModulo}<span id="itemName${index}">${module.modulo}</span>
+                                <i class="fas fa-angle-right dropdown"></i>
+                            </a>
+                            <div class="sub-menu" id="sub-menu-${module.idModulo}"></div>
+                            <a class="sub-btn hidden">
+                            	${module.iconeModulo}
+                        	</a>
+                        </div>`;
+					$('#navMenu').append(moduleHtml);
+				}
+			})
+			
+			$(".arrow").css("transform", "rotate(180deg)");
+			$(".arrow").css("transition", "1000ms");
+			$(".abracaMenu").css("width", "60px");
+			$(".abracaMenu").css("transition", "1000ms");
+			$(".container-res").css("margin-left", "10%");
+			$(".container-res").css("transition", "1000ms");
+			$(".logoSumare").hide();
+			$("#nome-user").hide();
+			$(".img-menu").hide();
+			$(".sub-menu").hide();
+			$(".show").hide();
+			$(".hidden").show();
+			$("#itemName1").text('')
+			$(".container-icon").css({
+				"width": "100%",
+				"display": "flex",
+				"align-items": "center",
+				"justify-content": "center",
+				"height": "8%",
+				"padding-top": "20%",
+				"padding-right": "0"
+			});
+		})
+		
+		$.ajax({
+			url: `${url_base}/transacoes/${usuarioId}/acessos`,
+			type: "GET",
+			contentType: "application/json; charset=utf-8",
+			async: true,
+			error: function (error) {
+				console.log('Erro ao carregar módulos:', error);
+			}
+		}).done(function (transacoes) {
+			$.each(transacoes, function (index, subItem) {
+				if(subItem.acessa != 'N'){
+					let subItemHtml = `<a href="${subItem.url.replace(/\//g, '')}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
+					$(`#sub-menu-${subItem.idModulo}`).append(subItemHtml);
+				}
+			});
+			
+			$('#navMenu').append(sairModule);
+			
+			$(".sub-btn").off('click').on('click', function () {
+				console.log('teste');
+				if ($(".abracaMenu").width() == 60) {
+					if ($(".abracaMenu").width() <= 60) {
+						if (tamanhoMenu == 280) {
+							$(".abracaMenu").css("width", "280px");
+							$(".container-res").css("margin-left", "19em");
+						} else {
+							$(".abracaMenu").css("width", "250px");
+							$(".container-res").css("margin-left", "25%");
+						}
+
+						$(".arrow").css("transform", "rotate(0deg)");
+						$(".logoSumare").show();
+						$("#nome-user").show();
+						$("#itemName1").text('Trocar escola')
+
+						$(".show").show();
+						$(".hidden").hide();
+
+						/* $(".fa-angle-right").show(); */
+						$(".img-menu").show();
+						$(".container-icon").css({
+							"width": "100%",
+							"display": "flex",
+							"align-items": "flex-end",
+							"justify-content": "flex-end",
+							"height": "2em",
+							"padding-right": "10%",
+							"padding-top": "0"
+						});
+					}
+					
+					$(".logoSumare").show();
+					$(".abracaMenu").css("width", "250px");
+					$(".container-res").css("margin-left", "25%");
+					$(".fa-chevron-left").css("transform", "rotate(0deg)");
+					$(".logoSumare").show();
+					$("#nome-user").show();
+					$(".fa-angle-right").show();
+					$(".container-icon").css({
+						"width": "100%",
+						"display": "flex",
+						"align-items": "flex-end",
+						"justify-content": "flex-end",
+						"height": "2em",
+						"padding-right": "10%",
+						"padding-top": "0"
+					});
+				}
+				$(this).next(".sub-menu").slideToggle();
+				$(this).find(".dropdown").toggleClass("rotate");
+			});
+		})
+
+		/* $.ajax({
 			url: `${url_base}/modulo`,
 			type: "GET",
 			contentType: "application/json; charset=utf-8",
@@ -134,16 +269,6 @@
 				console.log('Erro ao carregar módulos:', error);
 			}
 		}).done(function (modules) {
-			
-			 let sairModule = `
-           	  <div class="item" id="sair" >
- 				<a class="sub-btn">
- 					<i class="fa-solid fa-right-from-bracket"></i><span id="itemName5"></span>
- 				</a>
- 			</div> 	
-             `
-             
-             
 			$.each(modules, function (index, module) {
 				$.ajax({
 					url: `${url_base}/transacoes/${usuarioId}/acessos/modulo/${module.idModulo}`,
@@ -158,20 +283,19 @@
 						let moduleHtml = `
 	                        <div class="item">
 	                            <a class="sub-btn show">
-	                                <i class="fa-solid fa-address-card"></i><span id="itemName${index}">${module.modulo}</span>
+	                            	${module.icone}<span id="itemName${index}">${module.modulo}</span>
 	                                <i class="fas fa-angle-right dropdown"></i>
 	                            </a>
 	                            <div class="sub-menu" id="sub-menu-${module.idModulo}"></div>
 	                            <a class="sub-btn hidden">
-                                	<i class="fa-solid fa-address-card"></i>
+	                            	${module.icone}
                             	</a>
 	                        </div>`;
-	                        
-	                        $('#navMenu').append(moduleHtml);
+						$('#navMenu').append(moduleHtml);
 
 						$.each(listaTransicoes, function (index, subItem) {
-							if(subItem.acessa == "S"){
-								let subItemHtml = `<a href="${subItem.url.replace(/\//g, '')}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
+							if(subItem.acessa != 'N'){
+								let subItemHtml = `<a href="${subItem.idCodHtml}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
 								$(`#sub-menu-${module.idModulo}`).append(subItemHtml);
 							}
 						});
@@ -193,11 +317,11 @@
 									$(".logoSumare").show();
 									$("#nome-user").show();
 									$("#itemName1").text('Trocar escola')
-									
+
 									$(".show").show();
 									$(".hidden").hide();
 
-									/* $(".fa-angle-right").show(); */
+									 $(".fa-angle-right").show(); 
 									$(".img-menu").show();
 									$(".container-icon").css({
 										"width": "100%",
@@ -240,13 +364,13 @@
 						$("#nome-user").hide();
 						$(".img-menu").hide();
 						$(".sub-menu").hide();
-						/* $(".fa-angle-right").hide(); */
-						/* $("#itemName1").text('');
+						$(".fa-angle-right").hide(); 
+						$("#itemName1").text('');
 						$("#itemName0").text('');
 						$("#itemName2").text('');
 						$("#itemName3").text('');
 						$("#itemName4").text('');
-						$("#itemName5").text(''); */
+						$("#itemName5").text(''); 
 						$(".show").hide();
 						$(".hidden").show();
 
@@ -264,10 +388,7 @@
 					}
 				});
 			});
-			
-			$('#navMenu').append(sairModule);
-			
-		});
+		}); */
 
 		$(".fa-chevron-left").click(() => {
 			if ($(".abracaMenu").width() > 60) {
@@ -281,13 +402,6 @@
 				$("#nome-user").hide();
 				$(".img-menu").hide();
 				$(".sub-menu").hide();
-				/* $(".fa-angle-right").hide(); */
-				/* $("#itemName1").text('');
-				$("#itemName0").text('');
-				$("#itemName2").text('');
-				$("#itemName3").text('');
-				$("#itemName4").text('');
-				$("#itemName5").text(''); */
 				$(".show").hide();
 				$(".hidden").show();
 				$("#itemName1").text('')
@@ -316,6 +430,7 @@
 				$("#nome-user").show();
 				$("#itemName1").text('Trocar escola')
 				$("#itemName5").text('Sair')
+
 				$(".show").show();
 				$(".hidden").hide();
 

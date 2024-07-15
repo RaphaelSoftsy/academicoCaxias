@@ -9,6 +9,14 @@ const nomeConta = sessionStorage.getItem("nomeConta")
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
+
+	/*// Função para adicionar ou atualizar um segmento na URL
+	function atualizarSegmentoURL(novoSegmento) {
+		var parametro = 'id=' + novoSegmento;
+		var novaUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + parametro;
+		history.pushState({ path: novaUrl }, '', novaUrl);
+	}
+	*/
 	containerResponsivo();
 
 	$(".desativar").toggleClass("btn-secondary btn-danger")
@@ -24,6 +32,9 @@ $(document).ready(function() {
 			sessionStorage.setItem('contaId', contaIdStorage)
 			contaId = sessionStorage.getItem('contaId')
 		}
+
+		//const usuarioId = sessionStorage.getItem("usuarioId")
+		//atualizarSegmentoURL(usuarioId);
 
 		if (isNaN(contaId) || contaId == 0 || contaId == "" || contaId == undefined) {
 			Swal.fire({
