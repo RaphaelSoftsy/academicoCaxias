@@ -145,7 +145,7 @@ $("#limpa-filtros").click(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/candidatos/listaReservaDeVagas?idConta=" + contaId  ,
+		url: url_base + "/candidatos/listaReservaDeVagas?idConta=" + contaId,
 		type: "GET",
 		async: false,
 	})
@@ -161,44 +161,10 @@ function getDados() {
 }
 
 function editar(curso) {
-	var idCurso = curso.getAttribute("data-id");
-	window.location.href = "novo-curso?id=" + idCurso;
+	var idCandidato = curso.getAttribute("data-id");
+	window.location.href = "dados-aluno?id=" + "teste";
 }
 
-function alteraStatus(element) {
-	var id = element.getAttribute("data-id");
-	var status = element.getAttribute("data-status");
-
-	const button = $(element).closest("tr").find(".btn-status");
-	if (status === "S") {
-		button.removeClass("btn-success").addClass("btn-danger");
-		button.find("i").removeClass("fa-check").addClass("fa-xmark");
-		element.setAttribute("data-status", "N");
-	} else {
-		button.removeClass("btn-danger").addClass("btn-success");
-		button.find("i").removeClass("fa-xmark").addClass("fa-check");
-		element.setAttribute("data-status", "S");
-	}
-
-	console.log(id)
-	console.log(status)
-
-	$.ajax({
-		url: url_base + `/candidato/${id}${status === "S" ? '/desativar' : '/ativar'}`,
-		type: "put",
-		error: function(e) {
-			Swal.close();
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: e.responseJSON.message
-			});
-		}
-	}).then(data => {
-		
-		window.location.href = 'curso'
-	})
-}
 
 function getTipoIngresso(idTipoIngresso) {
 	return $.ajax({
@@ -219,12 +185,12 @@ function listarDados(dados) {
 			});
 
 			var status = item.aprovado == null ? "Aguardando" : "Aprovado"; // Você pode ajustar essa lógica conforme necessário
-			
+
 			if (item.aprovado == null) {
 				status = "Aguardando"
-			} else if(item.aprovado == "N") {
+			} else if (item.aprovado == "N") {
 				status = "Reprovado"
-			}else{
+			} else {
 				status = "Aprovado"
 			}
 
@@ -238,14 +204,10 @@ function listarDados(dados) {
 				"<td>" + item.turno + "</td>" +
 				"<td>" + item.serie + "</td>" +
 				"<td>" + tipoIngresso + "</td>" +
-				"<td>" +
-				'<input type="checkbox" data-status="' +
-				item.ativo +
-				'" data-id="' +
-				item.idCandidato +
-				' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-				"</td>" +
 				"<td>" + status + "</td>" +
+				"</td>" +
+				'<td class="d-flex justify-content-center"><span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" ' +
+				' onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 				"</tr>"
 			);
 		});
@@ -269,12 +231,4 @@ $("#exportar-excel").click(function() {
 });
 
 
-// Limpa input
 
-function limpaCampo() {
-	$("#escolaId").val("");
-	$("#dependenciaAdmId").val("");
-	$("#codCurso").val("");
-	$("#nome").val("");
-	$("#codCursoInpe").val("");
-}

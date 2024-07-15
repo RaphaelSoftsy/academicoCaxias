@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	const contaId = sessionStorage.getItem('contaId');
+	const id = getSearchParams("id");
+	console.log(id)
 
 	$.ajax({
 		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
@@ -34,9 +36,21 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	if(id != undefined){
+		
+		$("#padroesAcessoId").val(id)
+		$("#padroesAcessoId").attr('select', true)
+		getDados(id)
+	}
+	
 	$("#padroesAcessoId").on("blur", function() {
+		getDados($("#padroesAcessoId").val())
+	});
+	
+	function getDados(idPadraoAcesso){
 		$.ajax({
-			url: url_base + `/contaPadraoAcessoTransacoes/contaPadraoAcesso/${$(this).val()}`,
+			url: url_base + `/contaPadraoAcessoTransacoes/contaPadraoAcesso/${idPadraoAcesso}`,
 			type: "get",
 			async: false,
 		}).done(function(data) {
@@ -67,7 +81,9 @@ $(document).ready(function() {
 				});
 			}
 		});
-	});
+		
+		return false
+	}
 
 
 

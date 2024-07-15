@@ -110,12 +110,8 @@
 					<a hidden href="configuracao-acesso" id="configuracao-acesso" class="sub-item">Configurar
 						Padrões</a>
 				</div>
-			</div>
-			<div class="item" id="sair">
-				<a class="sub-btn">
-					<i class="fa-solid fa-right-from-bracket"></i><span id="itemName5">Sair</span>
-				</a>
-			</div> -->
+			</div>-->
+			
 		</nav>
 	</section>
 </body>
@@ -138,6 +134,16 @@
 				console.log('Erro ao carregar módulos:', error);
 			}
 		}).done(function (modules) {
+			
+			 let sairModule = `
+           	  <div class="item" id="sair" >
+ 				<a class="sub-btn">
+ 					<i class="fa-solid fa-right-from-bracket"></i><span id="itemName5"></span>
+ 				</a>
+ 			</div> 	
+             `
+             
+             
 			$.each(modules, function (index, module) {
 				$.ajax({
 					url: `${url_base}/transacoes/${usuarioId}/acessos/modulo/${module.idModulo}`,
@@ -160,11 +166,14 @@
                                 	<i class="fa-solid fa-address-card"></i>
                             	</a>
 	                        </div>`;
-						$('#navMenu').append(moduleHtml);
+	                        
+	                        $('#navMenu').append(moduleHtml);
 
 						$.each(listaTransicoes, function (index, subItem) {
-							let subItemHtml = `<a href="${subItem.idCodHtml}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
-							$(`#sub-menu-${module.idModulo}`).append(subItemHtml);
+							if(subItem.acessa == "S"){
+								let subItemHtml = `<a href="${subItem.url.replace(/\//g, '')}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
+								$(`#sub-menu-${module.idModulo}`).append(subItemHtml);
+							}
 						});
 
 						// Anexa o evento click aos sub-itens após serem adicionados ao DOM
@@ -184,7 +193,7 @@
 									$(".logoSumare").show();
 									$("#nome-user").show();
 									$("#itemName1").text('Trocar escola')
-
+									
 									$(".show").show();
 									$(".hidden").hide();
 
@@ -255,6 +264,9 @@
 					}
 				});
 			});
+			
+			$('#navMenu').append(sairModule);
+			
 		});
 
 		$(".fa-chevron-left").click(() => {
@@ -279,6 +291,7 @@
 				$(".show").hide();
 				$(".hidden").show();
 				$("#itemName1").text('')
+				$("#itemName5").text('')
 
 				$(".container-icon").css({
 					"width": "100%",
@@ -302,7 +315,7 @@
 				$(".logoSumare").show();
 				$("#nome-user").show();
 				$("#itemName1").text('Trocar escola')
-
+				$("#itemName5").text('Sair')
 				$(".show").show();
 				$(".hidden").hide();
 
