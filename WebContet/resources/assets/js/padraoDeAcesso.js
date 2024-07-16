@@ -279,6 +279,7 @@ function criarCards(textCard, idCodHtml, idTransacao) {
 
 	radioLeituraNao.click(() => {
 		colEscrita.hide();
+		radioEscritaNao.prop('checked', true)
 	});
 
 	radioLeituraSim.click(() => {
