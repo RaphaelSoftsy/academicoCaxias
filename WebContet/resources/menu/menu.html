@@ -129,8 +129,8 @@
 		var tamanhoMenu = $(".abracaMenu").width();
 		const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
 		let sairModule = `
-        	<div class="item" id="sair" >
- 				<a class="sub-btn">
+        	<div class="item"  >
+ 				<a class="sub-btn" id="sair"  >
  					<i class="fa-solid fa-right-from-bracket"></i><span id="itemName5"></span>
  				</a>
  			</div>`
@@ -176,6 +176,7 @@
 			$(".show").hide();
 			$(".hidden").show();
 			$("#itemName1").text('')
+			
 			$(".container-icon").css({
 				"width": "100%",
 				"display": "flex",
@@ -186,7 +187,7 @@
 				"padding-right": "0"
 			});
 		})
-		
+		4
 		$.ajax({
 			url: `${url_base}/transacoes/${usuarioId}/acessos`,
 			type: "GET",
@@ -206,7 +207,13 @@
 			$('#navMenu').append(sairModule);
 			
 			$(".sub-btn").off('click').on('click', function () {
-				console.log('teste');
+				
+				/* if($(this).attr('id') == 'sair'){
+					sessionStorage.removeItem('usuarioId')
+					sessionStorage.removeItem('contaId')
+					window.location.href = 'login'
+				}  */
+				
 				if ($(".abracaMenu").width() == 60) {
 					if ($(".abracaMenu").width() <= 60) {
 						if (tamanhoMenu == 280) {
@@ -257,6 +264,12 @@
 				}
 				$(this).next(".sub-menu").slideToggle();
 				$(this).find(".dropdown").toggleClass("rotate");
+			});
+			
+			$("#sair").click(() => {
+				sessionStorage.removeItem('contaId')
+				sessionStorage.removeItem('usuarioId')
+				window.location.href = 'login'
 			});
 		})
 
@@ -468,17 +481,13 @@
 		$('#barsIcon').click(function () {
 			$('#modalMenu').show();
 		});
-
-		$("#sair").click(() => {
-			sessionStorage.removeItem('contaId')
-			sessionStorage.removeItem('contaId')
-			window.location.href = 'http://localhost:8090/front-educacional-caxias/login'
-		});
+		
+	
 
 		$("#sairEscola").click(() => {
 			sessionStorage.removeItem('escolaId')
 			sessionStorage.removeItem('perfil')
-			window.location.href = 'http://localhost:8090/front-educacional-caxias/acessar-escolas'
+			window.location.href = 'acessar-escolas'
 		});
 	});
 

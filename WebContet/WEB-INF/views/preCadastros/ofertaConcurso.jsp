@@ -101,14 +101,152 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Concurso</th>
-						<th scope="col">Curso</th>
-						<th scope="col">Escola</th>
-						<th scope="col">Turno</th>
-						<th scope="col">Série</th>
-						<th scope="col">Descrição</th>
-						<th scope="col">Vagas</th>
-						<th scope="col">Min Vagas</th>
+						<th scope="col" class="sortable border-end"
+							data-column="concurso">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Concurso</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton1">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite o nome">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
+											escola</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column=curso style="width: 18%">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Curso</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton2">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite o nome">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
+											escola</button>
+									</div>
+								</div>
+							</div>
+						</th>
+							<th scope="col" class="sortable border-end"
+							data-column="nomeEscola" style="width: 40%">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Nome</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite o nome">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
+											escola</button>
+									</div>
+								</div>
+							</div>
+						</th>
+							<th scope="col" class="sortable border-end"
+							data-column="turno">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Turno</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton4">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite o nome">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
+											escola</button>
+									</div>
+								</div>
+							</div>
+						</th>
+							<th scope="col" class="sortable border-end"
+							data-column="serie">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Série</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButto5">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite o nome">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
+											escola</button>
+									</div>
+								</div>
+							</div>
+						</th>
+							<th scope="col" class="sortable border-end"
+							data-column="descricao" style="width: 30%">
+							<div
+								class='d-flex align-items-center justify-content-between pe-2'>
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Descrição</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton1">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class='form-control mb-3 searchInput'
+											placeholder="Digite a descrição">
+										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
+											escola</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" >Vagas</th>
+						<th scope="col" style="width: 10%">Min Vagas</th>
 						<th scope="col">Ativo</th>
 						<th class='text-center' scope="col" width="10%" height="100%">Ações</th>
 					</tr>

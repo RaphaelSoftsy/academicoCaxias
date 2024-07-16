@@ -119,7 +119,7 @@ String contextPath = request.getContextPath();
 						<th class='text-center th-sem-filtro border-end' scope="col" width="10%">Acessar
 							Perfil</th>
 						<th scope="col" class="sortable border-end"
-							data-column="nomeEscola">
+							data-column="nomeEscola" >
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div

@@ -10,6 +10,12 @@
     width: auto;
 }
 
+th, tr {
+		/*     overflow: hidden; */
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
 .accordion-item {
     overflow: hidden; /* Garante que o conteúdo não vaze quando recolhido */
 }
