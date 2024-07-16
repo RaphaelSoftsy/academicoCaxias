@@ -288,6 +288,7 @@ function criarCards(textCard, idCodHtml, idTransacao) {
 
 	if (radioLeituraNao.is(":checked")) {
 		colEscrita.hide();
+		radioEscritaNao.prop('checked', true)
 	}
 
 	colLeitura.append(labelLeitura, divLeitura);
