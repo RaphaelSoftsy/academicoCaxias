@@ -9,9 +9,34 @@ var id = "";
 var idEscola = "";
 var ativo = "";
 const contaId = sessionStorage.getItem('contaId')
+let dadosUser = ''
 
 $(document).ready(function() {
 	getDados();
+
+	$(".reveal").on('click', function() {
+		let pwd = $(this).siblings("input");
+		let icon = $(this).find("i");
+		if (pwd.attr('type') === 'password') {
+			pwd.attr('type', 'text');
+			icon.removeClass("fa-eye").addClass("fa-eye-slash");
+		} else {
+			pwd.attr('type', 'password');
+			icon.removeClass("fa-eye-slash").addClass("fa-eye");
+		}
+	});
+
+	$(".reveal-pwd").on('click', function() {
+		let pwd = $(this).siblings("input");
+		let icon = $(this).find("i");
+		if (pwd.attr('type') === 'password') {
+			pwd.attr('type', 'text');
+			icon.removeClass("fa-eye").addClass("fa-eye-slash");
+		} else {
+			pwd.attr('type', 'password');
+			icon.removeClass("fa-eye-slash").addClass("fa-eye");
+		}
+	});
 
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
@@ -250,7 +275,19 @@ function listarDados(dados) {
 				item.email +
 				'" data-ativo="' +
 				item.ativo +
-				'"  onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				'"  onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
+				'" data-id="' + item.idUsuario +
+				'" data-usuario="' + item.usuario +
+				'" data-nome-completo="' + item.nomeCompleto +
+				'" data-email="' + item.email +
+				'" data-email-verificado="' + item.emailVerificado +
+				'" data-cpf="' + item.cpf +
+				'" data-data-nascimento="' + item.dataNascimento +
+				'" data-celular="' + item.celular +
+				'" data-celular-verificado="' + item.celularVerificado +
+				'"data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editPassword"><i class="fa-solid fa-key"></i></span>' +
+				'</td>' +
 				"</tr>"
 			);
 		})
@@ -259,8 +296,69 @@ function listarDados(dados) {
 	$("#cola-tabela").html(html);
 }
 
-// Exportar Dados
+function showModal(ref) {
+	$('#novaSenha').val('')
+	$('#confirmaNovaSenha').val('')
+	
+	dadosUser = {
+		"idUsuario": ref.getAttribute("data-id"),
+		"usuario": ref.getAttribute("data-usuario"),
+		"nomeCompleto": ref.getAttribute("data-nome-completo"),
+		"email": ref.getAttribute("data-email"),
+		"emailVerificado": ref.getAttribute("data-email-verificado"),
+		"cpf": ref.getAttribute("data-cpf"),
+		"dataNascimento": ref.getAttribute("data-data-nascimento"),
+		"celular": ref.getAttribute("data-celular"),
+		"celularVerificado": ref.getAttribute("data-celular-verificado"),
+	}
+	
+	console.log(dadosUser)
+}
 
+const editPassword = () => {
+	let novaSenha = $('#novaSenha').val()
+	let confirmaNovaSenha = $('#confirmaNovaSenha').val()
+
+	console.log(novaSenha)
+	console.log(confirmaNovaSenha)
+
+	if (novaSenha != confirmaNovaSenha) {
+		Swal.fire({
+			title: "As senha não coencidem!!",
+			icon: "warning",
+		})
+	} else {
+		dadosUser.senha = novaSenha
+
+		console.log(dadosUser)
+
+		$.ajax({
+			url: url_base + "/usuario",
+			type: "PUT",
+			data: JSON.stringify(dadosUser),
+			contentType: "application/json; charset=utf-8",
+			async: false,
+			error: function(e) {
+				console.log(e)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!"
+
+				});
+			}
+		}).done(function(data) {
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			}).then((data) => {
+				window.location.href = 'usuarios'
+			})
+		})
+	}
+}
+
+// Exportar Dados
 $("#exportar-excel").click(function() {
 	var planilha = XLSX.utils.json_to_sheet(dados);
 
@@ -279,3 +377,9 @@ function limpaCampo() {
 	$("#nome").val("");
 	$("#codCursoInpe").val("");
 }
+
+$("#editPassword").on("submit", function(e) {
+	e.preventDefault();
+	editPassword();
+	return false;
+});

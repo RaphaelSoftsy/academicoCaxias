@@ -48,8 +48,6 @@ $(document).ready(function() {
 
 	if (idUsuario != undefined) {
 		let listaAcessos = []
-		$("#divSenha").hide();
-		$("#divNovaSenha").hide();
 		$("#tituloPagina, #tituloForm").text("Editar Usuario");
 		$("#h1-curso").text("Editar Usuario");
 		$("#btn-adicionar").text("Editar");
@@ -77,10 +75,7 @@ $(document).ready(function() {
 			$('#email').val(data.usuario.email);
 			$('#cpf').val(data.usuario.cpf);
 			$('#dataNascimento').val(formatarDataParaISO(data.usuario.dataNascimento)); // Aqui colocamos no formato yyyy-MM-dd
-			$('#senha').val(data.usuario.senha);
 			$('#celular').val(data.usuario.celular);
-
-
 
 			$.each(data.usuarioConta, function(index, item) {
 				console.log(item)
@@ -95,11 +90,8 @@ $(document).ready(function() {
 			$('#mySelect').chosen();
 		});
 	} else {
-		$("#containerAlterarSenha").hide();
-		$("#divNovaSenha").hide();
-		$("#novaSenha").removeAttr("required");
-		$("#novaSenha").val("");
-		$("#senhaConfirmacao").val("");
+		$("#senha").hide()
+		$("#senhaConfirmacao").hide()
 		$('#mySelect').chosen();
 	}
 
@@ -186,17 +178,6 @@ $("#cpf").blur(function() {
 });
 
 
-
-$('input[name="alterarSenha"]').change(function() {
-	if ($(this).is(':checked') == true) {
-		$('#divNovaSenha').show();
-		$("#novaSenha").attr('required', true);
-	} else {
-		$('#divNovaSenha').hide();
-		$("#novaSenha").val(null).attr('required', false);
-	}
-});
-
 const cadastrar = () => {
 	let dadosFormulario = {
 		"usuario": $('#usuario').val(),
@@ -273,10 +254,10 @@ const editar = () => {
 		"emailVerificado": "N",
 		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
-		"senha": $('#senha').val(),
 		"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"celularVerificado": "N"
 	};
+
 
 	$.ajax({
 		url: url_base + '/usuario',
@@ -306,50 +287,50 @@ const editar = () => {
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
-					text: "Não foi possível editar nesse momento!",
+					text: "Não foi possível deletar nesse momento!",
 				});
 			}
-		})
+		}).done(function(resp) {
+			let arrayAcessos = $('#mySelect').val()
 
-		let arrayAcessos = $('#mySelect').val()
-
-		$.each(arrayAcessos, function(index, item) {
-			let objeto = {
-				"usuarioId": idUsuario,
-				"contaPadraoAcessoId": item
-			}
-
-			$.ajax({
-				url: url_base + '/usuarioContas',
-				type: "POST",
-				data: JSON.stringify(objeto),
-				contentType: "application/json; charset=utf-8",
-				error: function(e) {
-					Swal.close();
-					console.log(e)
-					Swal.fire({
-						icon: "error",
-						title: "Oops...",
-						text: "Não foi possível editar nesse momento!",
-					});
+			$.each(arrayAcessos, function(index, item) {
+				let objeto = {
+					"usuarioId": idUsuario,
+					"contaPadraoAcessoId": item,
+					"escolaId": 10
 				}
-			}).done(function(res) {
-			});
-		});
 
-		Swal.close();
-		Swal.fire({
-			title: "Editado com sucesso",
-			icon: "success",
-		}).then(() => {
-			window.location.href = "usuarios";
+				$.ajax({
+					url: url_base + '/usuarioContas',
+					type: "POST",
+					data: JSON.stringify(objeto),
+					contentType: "application/json; charset=utf-8",
+					error: function(e) {
+						Swal.close();
+						console.log(e)
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Não foi possível editar usuario conta!",
+						});
+					}
+				}).done(function(res) {
+				});
+			});
+
+			Swal.close();
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			}).then(() => {
+				window.location.href = "usuarios";
+			})
 		})
 	});
 }
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
-
 
 	if (idUsuario != undefined) {
 		editar()
@@ -360,11 +341,8 @@ $("#formNovoCadastro").submit(function(e) {
 				title: "A duas senhas devem ser iguais!",
 				text: "Verifique as senha novamente!",
 			});
-		}else{
+		} else {
 			cadastrar()
 		}
-		
-		
 	}
-
 });

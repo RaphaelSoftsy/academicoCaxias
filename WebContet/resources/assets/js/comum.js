@@ -23,6 +23,7 @@ $(document).ready(function() {
 	$(".ativar").toggleClass("btn-secondary btn-success")
 
 	$(document).attr('title', "POC - " + str);
+	$(document).attr('title', "Front Educacional");
 
 	const url = window.location.pathname
 	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
@@ -33,8 +34,32 @@ $(document).ready(function() {
 			contaId = sessionStorage.getItem('contaId')
 		}
 
-		//const usuarioId = sessionStorage.getItem("usuarioId")
-		//atualizarSegmentoURL(usuarioId);
+		const usuarioId = sessionStorage.getItem("usuarioId")
+		console.log(url.replace('/front-educacional-caxias', ''))
+		$.ajax({
+			url: url_base + `/transacoes/acessos/${usuarioId}?url=${url.replace('/front-educacional-caxias', '')}`,
+			type: "get",
+			error: function(e) {
+				console.log();
+				if (e.responseText == "Nenhum acesso encontrado para o usuário ou transação informado.") {
+					console.log(e.responseText)
+					console.log(url)
+				}
+			}
+		}).then(data => {
+			console.log(data)
+			console.log(data[0])
+			if (data[0].acessa == 'N') {
+				Swal.fire({
+					title: "O seu usuário não tem autorização para acessar essa tela, logue novamente",
+					icon: "info",
+				}).then(result => {
+					if (result) {
+						window.location.href = "login"
+					}
+				})
+			}
+		})
 
 		if (isNaN(contaId) || contaId == 0 || contaId == "" || contaId == undefined) {
 			Swal.fire({
