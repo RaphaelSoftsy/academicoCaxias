@@ -10,6 +10,7 @@ var idEscola = "";
 var ativo = "";
 const contaId = sessionStorage.getItem('contaId')
 const escolaId = sessionStorage.getItem('escolaId')
+let idCandidato = ''
 
 $(document).ready(function() {
 
@@ -196,18 +197,27 @@ function listarDados(dados) {
 
 			var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
 
+			let escolaNome = item.nomeEscola ? item.nomeEscola : 'Não possui escola'
+			let turno = item.turno ? item.turno : 'Não possui turno'
+			let serie = item.serie ? item.serie : 'Não possui serie'
+
 			return (
 				"<tr>" +
 				"<td>" + item.candidato + "</td>" +
 				"<td>" + item.nomeCompleto + "</td>" +
-				"<td>" + item.nomeEscola + "</td>" +
-				"<td>" + item.turno + "</td>" +
-				"<td>" + item.serie + "</td>" +
+				"<td>" + escolaNome + "</td>" +
+				"<td>" + turno + "</td>" +
+				"<td>" + serie + "</td>" +
 				"<td>" + tipoIngresso + "</td>" +
 				"<td>" + status + "</td>" +
 				"</td>" +
-				'<td class="d-flex justify-content-center"><span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" ' +
-				' onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				'<td class="d-flex justify-content-center">' +
+				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" ' +
+				' onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" ' +
+				'data-id=' + item.idCandidato +
+				' onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#documentos"><i class="fa-solid fa-file-lines"></i></span>' +
+				'</td>' +
 				"</tr>"
 			);
 		});
@@ -219,8 +229,101 @@ function listarDados(dados) {
 	});
 }
 
-// Exportar Dados
+function showModal(ref) {
+	idCandidato = ref.getAttribute("data-id");
+	$.ajax({
+		url: url_base + "/candidatos/listaReservaDeVagas?idConta=" + contaId,
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
 
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+}
+
+$('#formDoc').submit((e) => {
+	e.preventDefault();
+
+	var buttonId = $(document.activeElement).attr('id');
+	console.log(buttonId);
+
+	if (buttonId == 'aprovar') {
+		Swal.fire({
+			title: "Deseja mesmo aprovar esse candidato?",
+			icon: "question",
+			showCancelButton: true,
+			showConfirmButton: true,
+			showDenyButton: false,
+			confirmButtonText: 'Aprovar',
+			cancelButtonText: 'Cancelar'
+		}).then(result => {
+			if (result.isConfirmed) {
+				$.ajax({
+					url: url_base + "/candidatos/" + Number(idCandidato) + '/aprovar',
+					type: "put",
+					contentType: "application/json; charset=utf-8",
+					async: false,
+					error: function(e) {
+						console.log(e)
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Não foi possível realizar esse comando!"
+
+						});
+					}
+				}).done(function(data) {
+					Swal.fire({
+						title: "Aprovado com sucesso",
+						icon: "success",
+					}).then((data) => {
+						window.location.href = 'reservas'
+					})
+				})
+			} else if (result.isCanceled) { }
+		})
+	} else {
+		Swal.fire({
+			title: "Deseja mesmo reprovar esse candidato?",
+			icon: "question",
+			showCancelButton: true,
+			showConfirmButton: false,
+			showDenyButton: true,
+			denyButtonText: 'Reprovar',
+			cancelButtonText: 'Cancelar'
+		}).then(result => {
+			if (result.isDenied) {
+				$.ajax({
+					url: url_base + "/candidatos/" + Number(idCandidato) + '/reprovar',
+					type: "put",
+					contentType: "application/json; charset=utf-8",
+					async: false,
+					error: function(e) {
+						console.log(e)
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Não foi possível realizar esse comando!"
+
+						});
+					}
+				}).done(function(data) {
+					Swal.fire({
+						title: "Reprovado com sucesso",
+						icon: "success",
+					}).then((data) => {
+						window.location.href = 'reservas'
+					})
+				})
+			} else if (result.isCanceled) { }
+		})
+	}
+})
+
+// Exportar Dados
 $("#exportar-excel").click(function() {
 	var planilha = XLSX.utils.json_to_sheet(dados);
 

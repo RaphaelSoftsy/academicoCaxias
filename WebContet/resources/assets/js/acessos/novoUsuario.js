@@ -1,7 +1,15 @@
+var dados = [];
+var id = '';
+var nome = '';
+var rows = 8;
+var currentPage = 1;
+var pagesToShow = 5;
 const contaId = sessionStorage.getItem('contaId')
 const idUsuario = params.get("id");
+let idArray = 0
 
 $(document).ready(function() {
+	getDados()
 
 	$(".reveal").on('click', function() {
 		let pwd = $(this).siblings("input");
@@ -27,21 +35,37 @@ $(document).ready(function() {
 		}
 	});
 
-	$.ajax({
-		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			if (item.ativo == "S") {
-				$('#mySelect').append($('<option>', {
-					value: item.idContaPadraoAcesso,
-					text: item.padraoAcesso,
-					name: item.idContaPadraoAcesso
-				}));
-			}
-		});
-	})
+	$("#inputBusca").on("keyup", function() {
+		var valorBusca = $(this).val().toLowerCase();
+
+		if (valorBusca === '') {
+			busca()
+			$("#cola-tabela tr").show();
+		} else {
+			$("#cola-tabela tr").hide().filter(function() {
+				return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
+			}).show();
+		}
+	});
+
+	$("#inputBusca").on("input", function() {
+		var valorBusca = $(this).val().toLowerCase();
+		realizarBusca(valorBusca);
+	});
+
+	function realizarBusca(valorInput) {
+		if (valorInput === '') {
+			showPage(currentPage);
+		} else {
+			$("#cola-tabela tr").hide().filter(function() {
+				return $(this).text().toLowerCase().indexOf(valorInput) > -1;
+			}).show();
+		}
+	}
+
+
+	showPage(currentPage);
+	updatePagination();
 
 	//Exemplo para setar valor
 	/*$('#mySelect').val([1, 6])*/
@@ -51,6 +75,10 @@ $(document).ready(function() {
 		$("#tituloPagina, #tituloForm").text("Editar Usuario");
 		$("#h1-curso").text("Editar Usuario");
 		$("#btn-adicionar").text("Editar");
+		$("#divSenha").hide()
+		$("#divSenhaConfirmacao").hide()
+		$("#senha").removeAttr("required");
+		$("#senhaConfirmacao").removeAttr("required");
 
 		$.ajax({
 			url: url_base + '/usuario/' + idUsuario,
@@ -77,25 +105,135 @@ $(document).ready(function() {
 			$('#dataNascimento').val(formatarDataParaISO(data.usuario.dataNascimento)); // Aqui colocamos no formato yyyy-MM-dd
 			$('#celular').val(data.usuario.celular);
 
+
 			$.each(data.usuarioConta, function(index, item) {
-				console.log(item)
-				listaAcessos.push(item.contaPadraoAcessoId)
+				let nomeEscola = ''
+				let padraoAcesso = ''
+
+				$.ajax({
+					url: url_base + '/escolas/' + item.escolaId,
+					type: "GET",
+					contentType: "application/json; charset=utf-8",
+					error: function(e) {
+						console.log(e);
+						Swal.close();
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Não foi possível cadastrar nesse momento!",
+						});
+					}
+				}).done(function(dataEscola) {
+					nomeEscola = dataEscola.nomeEscola
+
+					$.ajax({
+						url: url_base + '/contaPadraoAcessos/' + item.contaPadraoAcessoId,
+						type: "GET",
+						contentType: "application/json; charset=utf-8",
+						error: function(e) {
+							console.log(e);
+							Swal.close();
+							Swal.fire({
+								icon: "error",
+								title: "Oops...",
+								text: "Não foi possível cadastrar nesse momento!",
+							});
+						}
+					}).done(function(dataPadrao) {
+						idArray += 1
+						dados.push({
+							id: idArray,
+							escolaId: item.escolaId,
+							padraoAcessoId: item.contaPadraoAcessoId,
+							nomeEscola: nomeEscola,
+							padraoAcesso: dataPadrao.padraoAcesso,
+						})
+						listarDados(dados)
+
+						console.log({
+							id: idArray,
+							escolaId: item.escolaId,
+							padraoAcessoId: item.contaPadraoAcessoId,
+							nomeEscola: nomeEscola,
+							padraoAcesso: dataPadrao.padraoAcesso,
+						})
+					})
+				})
 			});
 
-			console.log(listaAcessos)
-			$('#mySelect').val(listaAcessos)
-			console.log(listaAcessos)
-			console.log($('#mySelect').val())
 
-			$('#mySelect').chosen();
+			//$('#mySelect').val(listaAcessos)
+
+			//$('#mySelect').chosen();
 		});
 	} else {
-		$("#senha").hide()
-		$("#senhaConfirmacao").hide()
-		$('#mySelect').chosen();
+		//$('#mySelect').chosen();
 	}
-
 });
+
+const removerItem = (ref) => {
+	let id = ref.getAttribute("data-id");
+
+	dados = dados.filter(item => item.id != id);
+	listarDados(dados)
+}
+
+
+$('#add-table').click(() => {
+	if (
+		$('#escola').val() == 0 ||
+		$('#escola').val() == null &&
+		$('#padraoAcessoId').val() == 0 ||
+		$('#padraoAcessoId').val() == null
+	) {
+		Swal.fire({
+			icon: "warning",
+			title: "Valores incompletos",
+			text: "Para adicionar selecione uma escola e um padrão de acesso",
+		})
+	} else if (
+		$('#escola').val() == 0 ||
+		$('#escola').val() == null
+	) {
+		Swal.fire({
+			icon: "warning",
+			title: "Valores incompletos",
+			text: "Para adicionar também selecione uma escola",
+		})
+	} else if (
+		$('#padraoAcessoId').val() == 0 ||
+		$('#padraoAcessoId').val() == null
+	) {
+		Swal.fire({
+			icon: "warning",
+			title: "Valores incompletos",
+			text: "Para adicionar também selecione um padrão de acesso",
+		})
+	} else {
+		getValues()
+		listarDados(dados)
+		$('#escola').val(0)
+		$('#padraoAcessoId').val(0)
+	}
+})
+
+const listarDados = (dadosTabela) => {
+	var html = dadosTabela.map(function(item) {
+		console.log(item)
+
+		return (
+			"<tr>" +
+			"<td>" + item.padraoAcesso + "</td>" +
+			"<td>" + item.nomeEscola + "</td>" +
+			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-id="' +
+			item.id +
+			'" onclick="removerItem(this)"><i class="fa-solid fa-xmark"></i></span></td>' +
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela").html(html);
+}
 
 function formatarDataParaISO(data) {
 	if (!data) {
@@ -115,7 +253,91 @@ function formatarDataParaISO(data) {
 	return ano + "-" + mes + "-" + dia; // Formato ISO para campos de data (yyyy-MM-dd)
 }
 
+function getDados() {
+	$.ajax({
+		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			if (item.ativo == "S") {
+				/*$('#mySelect').append($('<option>', {
+					value: item.idContaPadraoAcesso,
+					text: item.padraoAcesso,
+					name: item.idContaPadraoAcesso
+				}));*/
 
+				$('#padraoAcessoId').append($('<option>', {
+					value: item.idContaPadraoAcesso,
+					text: item.padraoAcesso,
+					name: item.padraoAcesso
+				}));
+			}
+		});
+	})
+
+	$.ajax({
+		url: url_base + "/escolas/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			if (item.ativo == "S") {
+				$('#escola').append($('<option>', {
+					value: item.idEscola,
+					text: item.nomeEscola,
+					name: item.nomeEscola
+				}));
+			}
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+}
+
+const getValues = () => {
+	idArray += 1
+	dados.push({
+		id: idArray,
+		escolaId: $('#escola').val(),
+		padraoAcessoId: $('#padraoAcessoId').val(),
+		nomeEscola: $('#escola option:selected').text(),
+		padraoAcesso: $('#padraoAcessoId option:selected').text(),
+	})
+
+	return dados
+}
+
+/*$('#add-table').click(() => {
+	let dadosTabela = getValues()
+
+	console.log($('#padraoAcesso').val())
+	console.log($('#padraoAcesso option:selected').attr('name'))
+	console.log($('#padraoAcesso option:selected').text())
+
+	var html = dadosTabela.map(function(item) {
+		console.log(item)
+
+		return (
+			"<tr>" +
+			"<td>" +
+			item.padraoAcesso +
+			"</td>" +
+			"<td>" +
+			item.nomeEscola +
+			"</td>" +
+			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			item.id +
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela").html(html);
+	$('#escola option:selected').val(0)
+	$('#padraoAcesso option:selected').val(0)
+
+})*/
 
 function cpfValido(cpf) {
 	cpf = cpf.replace(/[^\d]+/g, '');
@@ -179,125 +401,48 @@ $("#cpf").blur(function() {
 
 
 const cadastrar = () => {
-	let dadosFormulario = {
-		"usuario": $('#usuario').val(),
-		"nomeCompleto": $('#nomeCompleto').val(),
-		"email": $('#email').val(),
-		"emailVerificado": "N",
-		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
-		"senha": $('#senha').val(),
-		"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"celularVerificado": "N"
-	};
-
-	$.ajax({
-		url: url_base + '/usuario',
-		type: "POST",
-		data: JSON.stringify(dadosFormulario),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
-			Swal.close();
-			console.log(e)
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível cadastar nesse momento!",
-			});
-		}
-	}).done(function(data) {
-		let arrayAcessos = $('#mySelect').val()
-
-		$.each(arrayAcessos, function(index, item) {
-			let objeto = {
-				"usuarioId": data.idUsuario,
-				"contaPadraoAcessoId": item
-			}
-
-			$.ajax({
-				url: url_base + '/usuarioContas',
-				type: "POST",
-				data: JSON.stringify(objeto),
-				contentType: "application/json; charset=utf-8",
-				error: function(e) {
-					Swal.close();
-					console.log(e)
-					Swal.fire({
-						icon: "error",
-						title: "Oops...",
-						text: "Não foi possível cadastar nesse momento!",
-					});
-				}
-			}).done(function(res) {
-			});
-		});
-
-		Swal.close();
+	if (dados.length == 0) {
 		Swal.fire({
-			title: "Cadastrado com sucesso",
-			icon: "success",
-		}).then(() => {
-			window.location.href = "usuarios";
+			icon: "warning",
+			title: "Valores incompletos",
+			text: "Para cadastrar selecione uma escola e um padrão de acesso",
 		})
-	});
-}
+	} else {
+		let dadosFormulario = {
+			"usuario": $('#usuario').val(),
+			"nomeCompleto": $('#nomeCompleto').val(),
+			"email": $('#email').val(),
+			"emailVerificado": "N",
+			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+			"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
+			"senha": $('#senha').val(),
+			"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+			"celularVerificado": "N"
+		};
 
-const editar = () => {
-	let dadosFormulario = {
-		"idUsuario": idUsuario,
-		"usuario": $('#usuario').val(),
-		"nomeCompleto": $('#nomeCompleto').val(),
-		"email": $('#email').val(),
-		"emailVerificado": "N",
-		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
-		"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"celularVerificado": "N"
-	};
-
-
-	$.ajax({
-		url: url_base + '/usuario',
-		type: "PUT",
-		data: JSON.stringify(dadosFormulario),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
-			Swal.close();
-			console.log(e)
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível editar nesse momento!",
-			});
-		}
-	}).done(function(data) {
 		$.ajax({
-			url: url_base + '/usuarioContas/usuario/' + idUsuario,
-			type: "delete",
+			url: url_base + '/usuario',
+			type: "POST",
+			data: JSON.stringify(dadosFormulario),
 			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading()
+			},
 			error: function(e) {
 				Swal.close();
 				console.log(e)
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
-					text: "Não foi possível deletar nesse momento!",
+					text: "Não foi possível cadastar nesse momento!",
 				});
 			}
-		}).done(function(resp) {
-			let arrayAcessos = $('#mySelect').val()
-
-			$.each(arrayAcessos, function(index, item) {
+		}).done(function(data) {
+			$.each(dados, function(index, item) {
 				let objeto = {
-					"usuarioId": idUsuario,
-					"contaPadraoAcessoId": item,
-					"escolaId": 10
+					"usuarioId": data.idUsuario,
+					"contaPadraoAcessoId": item.padraoAcessoId,
+					"escolaId": item.escolaId
 				}
 
 				$.ajax({
@@ -311,7 +456,7 @@ const editar = () => {
 						Swal.fire({
 							icon: "error",
 							title: "Oops...",
-							text: "Não foi possível editar usuario conta!",
+							text: "Não foi possível cadastar nesse momento!",
 						});
 					}
 				}).done(function(res) {
@@ -320,13 +465,104 @@ const editar = () => {
 
 			Swal.close();
 			Swal.fire({
-				title: "Editado com sucesso",
+				title: "Cadastrado com sucesso",
 				icon: "success",
 			}).then(() => {
 				window.location.href = "usuarios";
 			})
+		});
+	}
+}
+
+const editar = () => {
+	if (dados.length == 0) {
+		Swal.fire({
+			icon: "warning",
+			title: "Valores incompletos",
+			text: "Para cadastrar selecione uma escola e um padrão de acesso",
 		})
-	});
+	} else {
+		let dadosFormulario = {
+			"idUsuario": idUsuario,
+			"usuario": $('#usuario').val(),
+			"nomeCompleto": $('#nomeCompleto').val(),
+			"email": $('#email').val(),
+			"emailVerificado": "N",
+			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+			"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
+			"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+			"celularVerificado": "N"
+		};
+
+
+		$.ajax({
+			url: url_base + '/usuario',
+			type: "PUT",
+			data: JSON.stringify(dadosFormulario),
+			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading()
+			},
+			error: function(e) {
+				Swal.close();
+				console.log(e)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível editar nesse momento!",
+				});
+			}
+		}).done(function(data) {
+			$.ajax({
+				url: url_base + '/usuarioContas/usuario/' + idUsuario,
+				type: "delete",
+				contentType: "application/json; charset=utf-8",
+				error: function(e) {
+					Swal.close();
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível deletar nesse momento!",
+					});
+				}
+			}).done(function(resp) {
+
+				$.each(dados, function(index, item) {
+					let objeto = {
+						"usuarioId": idUsuario,
+						"contaPadraoAcessoId": item.padraoAcessoId,
+						"escolaId": item.escolaId
+					}
+
+					$.ajax({
+						url: url_base + '/usuarioContas',
+						type: "POST",
+						data: JSON.stringify(objeto),
+						contentType: "application/json; charset=utf-8",
+						error: function(e) {
+							Swal.close();
+							console.log(e)
+							Swal.fire({
+								icon: "error",
+								title: "Oops...",
+								text: "Não foi possível editar usuario conta!",
+							});
+						}
+					}).done(function(res) {
+					});
+				});
+
+				Swal.close();
+				Swal.fire({
+					title: "Editado com sucesso",
+					icon: "success",
+				}).then(() => {
+					window.location.href = "usuarios";
+				})
+			})
+		});
+	}
 }
 
 $("#formNovoCadastro").submit(function(e) {

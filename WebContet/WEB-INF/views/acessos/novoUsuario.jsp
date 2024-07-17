@@ -157,9 +157,9 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-3" id="divSenha">
+				<div class="row mb-4" id="divSenha">
 					<div class="col-md-6" id="divSenha">
-						<label for="senha" class="form-label">Senha</label>
+						<label for="senha" class="form-label">Senha</label><span class="red">*</span>
 						<div class="input-group">
 							<input class="form-control form-control pwd senha"
 								type="password" aria-label=".form-control-lg example" id="senha"
@@ -170,9 +170,10 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 
-					<div class="col-md-6" >
-						<label for="senha" class="form-label">Confirme a Senha:<span
-							class="red">*</span></label>
+					<div class="col-md-6" id="divSenhaConfirmacao">
+						<label for="senhaConfirmacao" class="form-label">Confirme
+							a Senha:<span class="red">*</span>
+						</label>
 						<div class="input-group">
 							<input class="form-control form-control pwd-conf senha"
 								type="password" aria-label=".form-control-lg example"
@@ -184,8 +185,30 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
+				<div class="row mb-3 mt-3">
 
-				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="padraoAcesso" class="form-label">Padrão de
+							acesso:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="padraoAcessoId"
+							id="padraoAcessoId" required name="padraoAcessoId">
+							<option value='0' selected disabled>Selecione o padrão de acesso</option>
+						</select>
+					</div>
+
+					<div class="col-md-6">
+						<label for="escola" class="form-label">Escola:<span
+							class="red">*</span>
+						</label> <select class="form-select" aria-label="escola"
+							id="escola" required name="escola">
+							<option value='0' selected disabled>Selecione a escola</option>
+						</select>
+					</div>
+
+				</div>
+
+
+				<div class="row mb-3" hidden>
 					<label for="senha" class="form-label">Padroes de acesso:<span
 						class="red">*</span>
 					</label> <select id="mySelect" multiple="multiple" class="col-md-6"
@@ -194,9 +217,36 @@ String contextPath = request.getContextPath();
 					</select>
 				</div>
 
+				<div class="col-md-12 text-center mt-3 mb-3">
+					<a class="btn btn-primary px-5" id="add-table">Adicionar</a>
+				</div>
+
+				<table
+					class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+					<thead>
+						<tr>
+							<th scope="col" >Padrão de acesso</th>
+							<th scope="col">Escola</th>
+							<th class='text-center' scope="col" width="10%">Ações</th>
+						</tr>
+					</thead>
+					<tbody id="cola-tabela" class="table-group-divider">
+
+					</tbody>
+				</table>
+				<div id="pagination" class="mx-auto mt-auto">
+					<button id="prev" class="btn btn-sm">
+						<i class="fa-solid fa-angle-left fa-xl"></i>
+					</button>
+					<div id="page-numbers" class="btn-group"></div>
+					<button id="next" class="btn btn-sm">
+						<i class="fa-solid fa-angle-right fa-xl"></i>
+					</button>
+				</div>
+
 				<div class="col-md-12 text-center mt-3">
 					<button type="submit" class="btn btn-primary px-5"
-						id="btn-adicionar">Adicionar</button>
+						id="btn-adicionar">Cadastrar</button>
 				</div>
 			</form>
 		</section>
