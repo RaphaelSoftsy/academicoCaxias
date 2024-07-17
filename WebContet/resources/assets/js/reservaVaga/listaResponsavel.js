@@ -178,7 +178,8 @@ function listarDados(dados) {
 				"<td>" +
 				item.pessoa.email +
 				"</td>" +
-
+				"</td>" +
+                '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" onClick="window.location.href=\'dadosResponsavel?id=' + item.pessoa.idPessoa + '\'" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 				"</tr>"
 			);
 		})

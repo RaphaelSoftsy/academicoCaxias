@@ -61,7 +61,7 @@ String contextPath = request.getContextPath();
 </head>
 
 <body>
-<div class="bg-loading">
+	<div class="bg-loading">
 		<div class="spinner">
 			<div class="rect1"></div>
 			<div class="rect2"></div>
@@ -206,6 +206,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
+						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider"></tbody>
@@ -223,8 +224,8 @@ String contextPath = request.getContextPath();
 				style="display: flex; align-items: center; justify-content: end">
 				<div class="d-flex align-items-center gap-2">
 					<a href="dadosResponsavel"
-						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Adicionar responsável</a>
-					<a href="#" id="btnNext"
+						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Adicionar
+						responsável</a> <a href="#" id="btnNext"
 						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Próximo</a>
 				</div>
 			</div>
@@ -247,7 +248,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/listaResponsavel.js"></script> 
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/listaResponsavel.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 

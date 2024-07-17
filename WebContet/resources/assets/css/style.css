@@ -11,10 +11,16 @@
 }
 
 th, tr {
-		/*     overflow: hidden; */
-		white-space: nowrap;
-		text-overflow: ellipsis;
-	}
+	/*     overflow: hidden; */
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+	
+	
+.h1, h1 {
+   font-size: 2.5rem;
+}
+
 
 .accordion-item {
     overflow: hidden; /* Garante que o conteúdo não vaze quando recolhido */

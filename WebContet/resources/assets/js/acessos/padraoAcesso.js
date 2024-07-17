@@ -285,11 +285,13 @@ function editar() {
 		}
 	})
 		.done(function(data) {
+			let idPadraoAcesso = data.idContaPadraoAcesso
+			
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
 			}).then((data) => {
-				window.location.href = 'padraoAcesso'
+				window.location.href = 'configuracao-acesso?id=' + idPadraoAcesso
 			})
 		})
 }
@@ -317,11 +319,14 @@ function cadastrar() {
 			});
 		},
 	}).done(function(data) {
+		
+		let idPadraoAcesso = data.idContaPadraoAcesso
+		
 		Swal.fire({
 			title: "Cadastrado com sucesso",
 			icon: "success",
 		}).then((data) => {
-			window.location.href = 'configuracao-acesso'
+			window.location.href = 'configuracao-acesso?id=' + idPadraoAcesso
 		})
 	});
 

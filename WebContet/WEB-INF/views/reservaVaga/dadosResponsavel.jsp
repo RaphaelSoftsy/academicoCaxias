@@ -127,12 +127,12 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="sexo"
-									id="feminino" value="F" required /> <label
+									id="sexo_F" value="F" required /> <label
 									class="form-check-label" for="feminino">Feminino</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="sexo"
-									id="masculino" value="M" required /> <label
+									id="sexo_M" value="M" required /> <label
 									class="form-check-label" for="masculino">Masculino</label>
 							</div>
 						</div>
@@ -467,8 +467,7 @@ String contextPath = request.getContextPath();
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">UF
-							do cartório:</label> <select class="form-select"
+						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">Município do Cartório</label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoCidadeCartorioId"
 							name="certidaoCasamentoCidadeCartorioId" disabled>
@@ -508,7 +507,7 @@ String contextPath = request.getContextPath();
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h2 id="tituloEndereco" class="mb-5">Endereço</h2>
 
-				<div class="col-md-6">
+				<div class="col-md-6" id="enderecoAlunoSwitch">
 					<label for="isEnderecoAluno" class="form-label">Utilizar o
 						mesmo endereço do aluno?<span class="red">*</span>
 					</label>

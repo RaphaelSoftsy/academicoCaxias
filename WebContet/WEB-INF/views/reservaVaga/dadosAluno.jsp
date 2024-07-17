@@ -29,7 +29,9 @@ String contextPath = request.getContextPath();
 
 
 <!-- Select 2 -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
 
 <script
 	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
@@ -50,7 +52,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 
-	
+
 <!-- Sweetalert -->
 <script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -193,11 +195,12 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-md-6" style="display: flex; flex-direction: column;">
+					<div class="col-md-6"
+						style="display: flex; flex-direction: column;">
 						<label for="municipioNascimentoId" class="form-label">Município
 							de Nascimento: </label> <select class="form-select"
 							aria-label="Município de Nascimento" id="municipioNascimentoId"
-							required disabled name="municipioNascimentoId" >
+							required disabled name="municipioNascimentoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
@@ -237,7 +240,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-			
+
 				<div class="row">
 					<div class="col-md-6" style="display: none" id="rne">
 						<label for="isRne" class="form-label">Possui Rne?<span
@@ -287,8 +290,9 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 			</section>
-			
-			<section class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
+
+			<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
 				<div class="row mb-3">
 					<label for="qualPreencher" class="form-label">Qual deseja
 						preencher?<span class="red">*</span>
@@ -296,7 +300,8 @@ String contextPath = request.getContextPath();
 					<div class="form-control card-form qualPreencherSwitch">
 						<label for="qualPreencher">Certidão de Nascimento</label> <label
 							class="switch"> <input type="checkbox" id="qualPreencher"
-							name="qualPreencher"> <span class="slider slider-certidao"></span>
+							name="qualPreencher"> <span
+							class="slider slider-certidao"></span>
 						</label> <label for="qualPreencher">Certidão de Casamento</label>
 					</div>
 
@@ -505,8 +510,8 @@ String contextPath = request.getContextPath();
 
 		</form>
 	</main>
-	
-	
+
+
 
 
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
@@ -529,7 +534,8 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
 </body>
