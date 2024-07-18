@@ -1,4 +1,14 @@
 const contaId = sessionStorage.getItem('contaId')
+const id = getSearchParams("id");
+var url_base = "http://10.40.110.2:8080/api-educacional";
+
+function getSearchParams(k) {
+	var p = {};
+	location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(s, key, value) {
+		p[key] = value;
+	});
+	return k ? p[k] : p;
+}
 
 $(document).ready(function() {
 
@@ -100,6 +110,32 @@ $(document).ready(function() {
 		});
 	})
 
+	$.ajax({
+		url: url_base + '/municipio',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#municipioNascimentoId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+
+			$('#certidaoNascimentoMunicipioCartorioId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+
+			$('#certidaoCasamentoCidadeCartorioId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+
+		});
+	})
 
 
 	$.ajax({
@@ -140,11 +176,7 @@ $(document).ready(function() {
 		});
 	})
 
-
-
-
-
-
+	carregarDados(id)
 	// Função para capturar os dados do formulário ao ser submetido
 	$('#formSubmit').submit(function(event) {
 
@@ -308,7 +340,12 @@ $(document).ready(function() {
 
 		localStorage.setItem('jsonAluno', JSON.stringify(dadosFormulario))
 		localStorage.setItem('numeroReserva', dadosFormulario.candidatoDTO.candidato)
-		window.location.href = "endereco-aluno";
+		if(id != undefined){
+			window.location.href = "endereco-aluno?id=" + id;
+		}else{
+			window.location.href = "endereco-aluno";
+		}
+		
 	});
 })
 
@@ -333,6 +370,159 @@ $('#ufNascimentoId').change(() => {
 
 	})
 })
+
+
+function carregarDados(id) {
+	
+	$(".bg-loading").fadeIn();
+	
+	if (id != undefined) {
+		
+
+		$('#municipioNascimentoId').attr('disabled', false)
+		$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
+		$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
+
+		$.ajax({
+			url: url_base + '/candidatos/' + id,
+			type: "get",
+			async: false,
+		}).done(function(data) {
+
+			$("#tipoIngressoId").val(data.tipoIngresso.idTipoIngresso)
+
+
+
+			$.ajax({
+				url: url_base + '/pessoas/' + data.pessoa,
+				type: "get",
+				async: false,
+			}).done(function(data) {
+				// Verificar se os dados de certidão de nascimento estão preenchidos
+				if (data.certidaoNascimentoNumero !== null ||
+					data.certidaoNascimentoDataEmissao !== null ||
+					data.certidaoNascimentoFolha !== null ||
+					data.certidaoNascimentoLivro !== null ||
+					data.certidaoNascimentoOrdem !== null) {
+
+					$('input[id="qualPreencher"]').attr('checked', true)
+
+					$("#certidaoCasamento").hide()
+					$("#certidaoNascimento").show()
+
+
+					$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
+					$('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
+					$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio.ufId);
+					$('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio.idMunicipio);
+					$('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
+					$('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
+					$('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
+					$('#certidaoNascimentoOrdem').val(data.certidaoNascimentoOrdem);
+
+					$("[name='certidaoCasamentoNumero']").attr("required", false);
+					$("[name='certidaoCasamentoCartorio']").attr("required", false);
+					$("[name='certidaoCasamentoUfCartorioId']").attr("required", false);
+					$("[name='certidaoCasamentoCidadeCartorio']").attr("required", false);
+					$("[name='certidaoCasamentoFolha']").attr("required", false);
+					$("[name='certidaoCasamentoLivro']").attr("required", false);
+					$("[name='certidaoCasamentoOrdem']").attr("required", false);
+					$("[name='certidaoCasamentoDataEmissao']").attr("required", false);
+				} else if (data.certidaoCasamentoCartorio !== null ||
+					data.certidaoCasamentoMunicipioCartorio !== null ||
+					data.certidaoCasamentoDataEmissao !== null ||
+					data.certidaoCasamentoFolha !== null ||
+					data.certidaoCasamentoLivro !== null ||
+					data.certidaoCasamentoOrdem !== null) {
+					// Verificar se os dados de certidão de casamento estão preenchidos
+					$('input[id="qualPreencher"]').attr('checked', false)
+					$("#certidaoNascimento").hide()
+					$("#certidaoCasamento").show()
+					$('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
+					$('#certidaoCasamentoCartorio').val(data.certidaoCasamentoCartorio);
+					$('#certidaoCasamento').val(data.certidaoCasamentoMunicipioCartorio);
+					$('#certidaoCasamentoDataEmissao').val(data.certidaoCasamentoDataEmissao);
+					$('#certidaoCasamentoOrdem').val(data.certidaoCasamentoOrdem);
+					$('#certidaoCasamentoFolha').val(data.certidaoCasamentoFolha);
+					$('#certidaoCasamentoLivro').val(data.certidaoCasamentoLivro);
+
+					$("[name='certidaoNascimentoNumero']").attr("required", false);
+					$("[name='certidaoNascimentoCidadeCartorio']").attr("required", false);
+					$("[name='certidaoNascimentoCartorio']").attr("required", false);
+					$("[name='certidaoNascimentoUfCartorioId']").attr("required", false);
+					$("[name='certidaoNascimentoDataEmissao']").attr("required", false);
+					$("[name='certidaoNascimentoFolha']").attr("required", false);
+					$("[name='certidaoNascimentoLivro']").attr("required", false);
+					$("[name='certidaoNascimentoOrdem']").attr("required", false);
+
+				}
+				// Preenchendo campos de input
+				$('#nomeCompleto').val(data.nomeCompleto);
+				$('#nomeMae').val(data.nomeMae);
+				$('#nomePai').val(data.nomePai);
+				$('#nomeSocial').val(data.nomeSocial);
+				$('#cpf').val(data.cpf);
+				$('#rgNumero').val(data.rgNumero);
+				$('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
+				$('#rgDataExpedicao').val(data.rgDataExpedicao);
+				$('#dtNascimento').val(data.dtNascimento);
+				$('#sexo_' + data.sexo).prop('checked', true); // Supondo que o valor de 'sexo' seja uma string como 'M' ou 'F'
+				$('#sexo_' + data.estadoCivil).prop('checked', true); // Supondo que o valor de 'sexo' seja uma string como 'M' ou 'F'
+				$('#cep').val(data.cep);
+				$('#endereco').val(data.endereco);
+				$('#numero').val(data.numero);
+				$('#complemento').val(data.complemento);
+				$('#bairro').val(data.bairro);
+				$('#municipio').val(data.municipio);
+				$('#distrito').val(data.distrito);
+				$('#uf').val(data.uf);
+				$('#telefone').val(data.telefone);
+				$('#celular').val(data.celular);
+				$('#email').val(data.email);
+				$('#empresa').val(data.empresa);
+				$('#ocupacao').val(data.ocupacao);
+				$('#telefoneComercial').val(data.telefoneComercial);
+
+
+
+				// Preenchendo campos de select (exemplo com raca, nacionalidade, paisNascimento, paisResidencia)
+				$('#racaId').val(data.raca.idRaca);
+				$('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade);
+				$('#paisNascimentoId').val(data.paisNascimento.idPais);
+				$('#paisResidenciaId').val(data.paisResidencia.idPais);
+				$('#relacionamentoId').val(data.idPapelPessoa);
+				/*	$('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade).attr("selected", true);;
+					$('#paisNascimentoId').val(data.paisNascimento.idPais).attr("selected", true);;
+					$('#paisResidenciaId').val(data.paisResidencia.idPais).attr("selected", true);;
+					$('#ufNascimentoId').val(data.municipioNascimento.ufId).attr("selected", true);*/
+
+
+
+				// Exemplo de preenchimento para campos específicos como certidaoNascimentoNumero, certidaoCasamentoNumero, etc.
+				$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
+				$('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
+
+				// Aqui você pode adicionar os demais campos conforme necessário
+
+				// Exemplo para preenchimento de campo select com município de nascimento
+				$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio);
+				$('#ufNascimentoId').val(data.municipioNascimento.ufId);
+				$('#rgUfEmissorId').val(data.rgUfEmissor.idUf);
+
+				// Exemplo para estado civil usando radio button
+				$('input[name="estadoCivil"][value="' + data.estadoCivil + '"]').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'
+
+				
+				
+			})
+		})
+
+	}
+	$(".bg-loading").addClass("none");
+	$(".bg-loading").fadeOut()
+
+}
+
 
 $('#certidaoCasamentoUfCartorioId').change(() => {
 	$("#certidaoCasamentoCidadeCartorioId").attr("disabled", false)
@@ -389,51 +579,51 @@ $('input[name="isRne"]').click(function() {
 
 
 
-	if ($('input[name="qualPreencher"]').is(':checked')) {
-		$("#certidaoNascimento").show();
-		$("#certidaoCasamento").hide();
-		$("[name='certidaoNascimentoNumero']").attr("required", true);
-		$("[name='certidaoNascimentoCidadeCartorio']").attr("required", true);
-		$("[name='certidaoNascimentoCartorio']").attr("required", true);
-		$("[name='certidaoNascimentoUfCartorioId']").attr("required", true);
-		$("[name='certidaoNascimentoDataEmissao']").attr("required", true);
-		$("[name='certidaoNascimentoFolha']").attr("required", true);
-		$("[name='certidaoNascimentoLivro']").attr("required", true);
-		$("[name='certidaoNascimentoOrdem']").attr("required", true);
+if ($('input[name="qualPreencher"]').is(':checked')) {
+	$("#certidaoNascimento").show();
+	$("#certidaoCasamento").hide();
+	$("[name='certidaoNascimentoNumero']").attr("required", true);
+	$("[name='certidaoNascimentoCidadeCartorio']").attr("required", true);
+	$("[name='certidaoNascimentoCartorio']").attr("required", true);
+	$("[name='certidaoNascimentoUfCartorioId']").attr("required", true);
+	$("[name='certidaoNascimentoDataEmissao']").attr("required", true);
+	$("[name='certidaoNascimentoFolha']").attr("required", true);
+	$("[name='certidaoNascimentoLivro']").attr("required", true);
+	$("[name='certidaoNascimentoOrdem']").attr("required", true);
 
-		$("[name='certidaoCasamentoNumero']").attr("required", false);
-		$("[name='certidaoCasamentoCartorio']").attr("required", false);
-		$("[name='certidaoCasamentoUfCartorioId']").attr("required", false);
-		$("[name='certidaoCasamentoCidadeCartorio']").attr("required", false);
-		$("[name='certidaoCasamentoFolha']").attr("required", false);
-		$("[name='certidaoCasamentoLivro']").attr("required", false);
-		$("[name='certidaoCasamentoOrdem']").attr("required", false);
-		$("[name='certidaoCasamentoDataEmissao']").attr("required", false);
+	$("[name='certidaoCasamentoNumero']").attr("required", false);
+	$("[name='certidaoCasamentoCartorio']").attr("required", false);
+	$("[name='certidaoCasamentoUfCartorioId']").attr("required", false);
+	$("[name='certidaoCasamentoCidadeCartorio']").attr("required", false);
+	$("[name='certidaoCasamentoFolha']").attr("required", false);
+	$("[name='certidaoCasamentoLivro']").attr("required", false);
+	$("[name='certidaoCasamentoOrdem']").attr("required", false);
+	$("[name='certidaoCasamentoDataEmissao']").attr("required", false);
 
-	} else {
-		$("#certidaoNascimento").hide();
-		$("#certidaoCasamento").show();
-		$("[name='certidaoCasamentoNumero']").attr("required", true);
-		$("[name='certidaoCasamentoCartorio']").attr("required", true);
-		$("[name='certidaoCasamentoUfCartorioId']").attr("required", true);
-		$("[name='certidaoCasamentoCidadeCartorio']").attr("required", true);
-		$("[name='certidaoCasamentoFolha']").attr("required", true);
-		$("[name='certidaoCasamentoLivro']").attr("required", true);
-		$("[name='certidaoCasamentoOrdem']").attr("required", true);
-		$("[name='certidaoCasamentoDataEmissao']").attr("required", true);
+} else {
+	$("#certidaoNascimento").hide();
+	$("#certidaoCasamento").show();
+	$("[name='certidaoCasamentoNumero']").attr("required", true);
+	$("[name='certidaoCasamentoCartorio']").attr("required", true);
+	$("[name='certidaoCasamentoUfCartorioId']").attr("required", true);
+	$("[name='certidaoCasamentoCidadeCartorio']").attr("required", true);
+	$("[name='certidaoCasamentoFolha']").attr("required", true);
+	$("[name='certidaoCasamentoLivro']").attr("required", true);
+	$("[name='certidaoCasamentoOrdem']").attr("required", true);
+	$("[name='certidaoCasamentoDataEmissao']").attr("required", true);
 
-		$("[name='certidaoNascimentoNumero']").attr("required", false);
-		$("[name='certidaoNascimentoCidadeCartorio']").attr("required", false);
-		$("[name='certidaoNascimentoCartorio']").attr("required", false);
-		$("[name='certidaoNascimentoUfCartorioId']").attr("required", false);
-		$("[name='certidaoNascimentoDataEmissao']").attr("required", false);
-		$("[name='certidaoNascimentoFolha']").attr("required", false);
-		$("[name='certidaoNascimentoLivro']").attr("required", false);
-		$("[name='certidaoNascimentoOrdem']").attr("required", false);
+	$("[name='certidaoNascimentoNumero']").attr("required", false);
+	$("[name='certidaoNascimentoCidadeCartorio']").attr("required", false);
+	$("[name='certidaoNascimentoCartorio']").attr("required", false);
+	$("[name='certidaoNascimentoUfCartorioId']").attr("required", false);
+	$("[name='certidaoNascimentoDataEmissao']").attr("required", false);
+	$("[name='certidaoNascimentoFolha']").attr("required", false);
+	$("[name='certidaoNascimentoLivro']").attr("required", false);
+	$("[name='certidaoNascimentoOrdem']").attr("required", false);
 
-	}
-	
-	
+}
+
+
 $('input[name="qualPreencher"]').click(function() {
 	if ($(this).is(':checked')) {
 		$("#certidaoNascimento").show();
@@ -584,6 +774,3 @@ $("#certidaoNascimentoDataEmissao").blur(function() {
 	const dtNasc = $('#dtNascimento').val()
 	validarDatas('certidaoNascimentoDataEmissaoDiv', dtNasc, 'certidaoNascimentoDataEmissao')
 });
-
- 
-

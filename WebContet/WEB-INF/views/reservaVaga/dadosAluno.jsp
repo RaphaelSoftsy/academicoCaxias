@@ -73,6 +73,14 @@ String contextPath = request.getContextPath();
 </head>
 
 <body>
+	<div class="bg-loading">
+		<div class="spinner">
+			<div class="rect1"></div>
+			<div class="rect2"></div>
+			<div class="rect3"></div>
+			<div class="rect4"></div>
+		</div>
+	</div>
 	<header>
 		<img class="logo" style="width: 15%"
 			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
@@ -92,6 +100,7 @@ String contextPath = request.getContextPath();
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h2 id="tituloDados" class="mb-5">Dados Pessoais</h2>
+
 				<%-- 	<input type="text" id="usuarioCadastro" hidden
 					name="usuarioCadastro" value="${funcionario.idUsuario}" /> --%>
 
@@ -127,22 +136,26 @@ String contextPath = request.getContextPath();
 
 
 				<div class="row mb-3">
+				
 					<div class="col-md-6">
 						<label for="sexo" class="form-label">Sexo:<span
 							class="red">*</span></label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="sexo"
-									id="feminino" value="F" required /> <label
+									id="sexo_F" value="F" required /> <label
 									class="form-check-label" for="feminino">Feminino</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="sexo"
-									id="masculino" value="M" required /> <label
+									id="sexo_M" value="M" required /> <label
 									class="form-check-label" for="masculino">Masculino</label>
 							</div>
 						</div>
 					</div>
+					
+					
+
 
 					<div class="col-md-6">
 						<label for="dtNascimento" class="form-label">Data de
@@ -151,6 +164,7 @@ String contextPath = request.getContextPath();
 							name="dtNascimento" class="form-control" />
 					</div>
 				</div>
+
 
 
 				<div class="row mb-3">
@@ -184,7 +198,7 @@ String contextPath = request.getContextPath();
 					</div>
 
 					<div class="col-md-6">
-						<label for="ufNascimentoId" class="form-label">UF de
+						<label for="ufNascimentoIdLabel" class="form-label">UF de
 							Nascimento: </label> <select class="form-select"
 							aria-label="UF de Nascimento" id="ufNascimentoId" required
 							name="ufNascimentoId">
@@ -212,30 +226,28 @@ String contextPath = request.getContextPath();
 						</select>
 					</div>
 				</div>
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="estadoCivil" class="form-label">Estado Civil:</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="so" /> <label class="form-check-label"
-									for="solteiro">Solteiro(a)</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="ca" /> <label class="form-check-label"
-									for="casado">Casado(a)</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="vi" /> <label class="form-check-label"
-									for="viuvo">Viúvo(a)</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="di" /> <label class="form-check-label"
-									for="divorciado">Divorciado(a)</label>
-							</div>
+				<div class="col-md-6">
+					<label for="estadoCivil" class="form-label">Estado Civil:</label>
+					<div class="form-control">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="estadoCivil"
+								id="estadoCivil_co" value="so" /> <label
+								class="form-check-label" for="solteiro">Solteiro(a)</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="estadoCivil"
+								id="estadoCivil_ca" value="ca" /> <label
+								class="form-check-label" for="casado">Casado(a)</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="estadoCivil"
+								id="estadoCivil_vi" value="vi" /> <label
+								class="form-check-label" for="viuvo">Viúvo(a)</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="estadoCivil"
+								id="estadoCivil_di" value="di" /> <label
+								class="form-check-label" for="divorciado">Divorciado(a)</label>
 						</div>
 					</div>
 				</div>
@@ -380,21 +392,21 @@ String contextPath = request.getContextPath();
 
 				</div>
 
-				<div class="row mb-3">
+					<div class="row mb-3">
 
-					<div class="col-md-6">
+					<div class="col-md-6" style="display: flex; flex-direction: column;">
 						<label for="certidaoNascimentoUfCartorioId" class="form-label">UF
-							do cartório:</label> <select class="form-select"
+							do cartório:</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoUfCartorioId"
 							name="certidaoNascimentoUfCartorioId">
-							<option selected value="" disabled>Selecione uma opção</option>
+							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-6" style="display: flex; flex-direction: column;">
 						<label for="certidaoNascimentoCidadeCartorio" class="form-label">Cidade
-							do cartório:</label> <select class="form-select"
+							do cartório:</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoMunicipioCartorioId"
 							name="certidaoNascimentoMunicipioCartorioId" disabled>
@@ -527,8 +539,7 @@ String contextPath = request.getContextPath();
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosAluno.js"></script>
 	<script charset="UTF-8"

@@ -161,9 +161,9 @@ function getDados() {
 		});
 }
 
-function editar(curso) {
-	var idCandidato = curso.getAttribute("data-id");
-	window.location.href = "dados-aluno?id=" + "teste";
+function editar(candidato) {
+	var idCandidato = candidato.getAttribute("data-id");
+	window.location.href = "dados-aluno?id=" + idCandidato;
 }
 
 
@@ -213,7 +213,8 @@ function listarDados(dados) {
 				"</td>" +
 				'<td class="d-flex justify-content-center">' +
 				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" ' +
-				' onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+				'data-id="'+ item.idCandidato +
+				'" onclick="editar(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
 				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" ' +
 				'data-id=' + item.idCandidato +
 				' onclick="showModal(this)"><i class="fa-solid fa-file-lines"></i></span>' +

@@ -216,10 +216,6 @@ $(document).ready(function() {
 			async: false,
 		}).done(function(data) {
 			console.log(data)
-
-
-
-
 			// Verificar se os dados de certidão de casamento estão nulos
 
 

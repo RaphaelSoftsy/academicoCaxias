@@ -61,6 +61,14 @@ String contextPath = request.getContextPath();
 </head>
 
 <body>
+	<div class="bg-loading">
+		<div class="spinner">
+			<div class="rect1"></div>
+			<div class="rect2"></div>
+			<div class="rect3"></div>
+			<div class="rect4"></div>
+		</div>
+	</div>
 	<header>
 		<img class="logo" style="width: 15%"
 			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"

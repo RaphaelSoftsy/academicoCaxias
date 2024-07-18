@@ -1,5 +1,9 @@
 let dadosForm = JSON.parse(localStorage.getItem('jsonAluno'))
+const id = getSearchParams("id");
 
+$(document).ready(function(){
+	carregarDados(id)
+})
 $("#cep").blur(function() {
 	$.ajax({
 		url: 'https://viacep.com.br/ws/' + $('#cep').val().replace(/[^\d]+/g, '') + '/json/',
@@ -22,6 +26,35 @@ $("#cep").blur(function() {
 
 });
 
+
+function carregarDados(id) {
+	$(".bg-loading").fadeIn();
+	if (id != undefined) {
+		
+		$.ajax({
+			url: url_base + '/candidatos/' + id,
+			type: "get",
+			async: false,
+		}).done(function(data) {
+			$.ajax({
+				url: url_base + '/pessoas/' + data.pessoa,
+				type: "get",
+				async: false,
+			}).done(function(data) {
+				$("#cep").val(data.cep)
+				$("#endereco").val(data.endereco);
+				$("#bairro").val(data.bairro);
+				$("#municipio").val(data.municipio);
+				$("#uf").val(data.uf);
+				$("#distrito").val(data.distrito);
+				$("#complemento").val(data.complemento);
+				$("#numero").val(data.numero)
+			})
+		})
+	}
+	$(".bg-loading").fadeOut();
+}
+
 $('#formSubmit').submit(function(event) {
 
 
@@ -35,10 +68,10 @@ $('#formSubmit').submit(function(event) {
 	dadosForm.pessoaDTO.distrito = $("#distrito").val();
 	dadosForm.pessoaDTO.complemento = $("#complemento").val();
 	dadosForm.pessoaDTO.uf = $("#uf").val()
-	
-	
-	const enderecoAluno ={}
-	
+
+
+	const enderecoAluno = {}
+
 	enderecoAluno.cep = $("#cep").val().replace(/[^\d]+/g, '')
 	enderecoAluno.endereco = $("#endereco").val();
 	enderecoAluno.bairro = $("#bairro").val();
@@ -47,8 +80,8 @@ $('#formSubmit').submit(function(event) {
 	enderecoAluno.distrito = $("#distrito").val();
 	enderecoAluno.complemento = $("#complemento").val();
 	enderecoAluno.uf = $("#uf").val()
-	
-	localStorage.setItem("enderecoAluno", JSON.stringify(enderecoAluno ))
+
+	localStorage.setItem("enderecoAluno", JSON.stringify(enderecoAluno))
 
 	//Gatos pra funcionar
 	dadosForm.pessoaDTO.senha = 'teste'
@@ -59,9 +92,45 @@ $('#formSubmit').submit(function(event) {
 	dadosForm.rneDataExpedicao = '1995-01-01'*/
 	dadosForm.pessoaDTO.tipoIngressoId = 1
 	dadosForm.pessoaDTO.paisResidenciaId = 2
-	
-	console.log(dadosForm)
 
+	console.log(dadosForm)
+	if(id != undefined){
+		
+		dadosForm.pessoaDTO.idCandidato = id
+		$.ajax({
+		url: url_base + '/candidatos/pessoa-candidato',
+		type: "PUT",
+		data: JSON.stringify(dadosForm),
+		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
+		error: function(e) {
+			Swal.close()
+			console.log(e)
+			console.log(e.responseJSON)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
+		}
+	}).done(function(data) {
+
+		Swal.close()
+		Swal.fire({
+			title: "Cadastrado com sucesso",
+			icon: "success",
+		})
+
+		localStorage.setItem("idCandidato", data.idCandidato)
+		window.location.href = "codigo-reserva"
+
+
+	});
+	}else{
+		
+	
 	$.ajax({
 		url: url_base + '/candidatos/pessoa-candidato',
 		type: "POST",
@@ -87,12 +156,13 @@ $('#formSubmit').submit(function(event) {
 			title: "Cadastrado com sucesso",
 			icon: "success",
 		})
-		
+
 		localStorage.setItem("idCandidato", data.idCandidato)
 		window.location.href = "codigo-reserva"
 
 
 	});
+	}
 
 })
 
