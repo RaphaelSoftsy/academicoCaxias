@@ -1,6 +1,7 @@
 const contaId = sessionStorage.getItem('contaId')
 const idCandidadto = localStorage.getItem("idCandidato")
 const id = getSearchParams("id");
+let idCandidatoRelacionamento = 0
 
 
 $(document).ready(function() {
@@ -17,7 +18,7 @@ $(document).ready(function() {
 	} else {
 		$("#qualPreencher").hide()
 		$("#qualPreencherSwitch").show()
-		
+
 	}
 
 
@@ -32,6 +33,14 @@ $(document).ready(function() {
 		$("#certidaoCasamento").show()
 	}
 
+	$.ajax({
+		url: url_base + '/candidatoRelacionamento/pessoa/' + id,
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		idCandidatoRelacionamento = data[0].idCandidatoRelacionamento
+		console.log(data[0].idCandidatoRelacionamento)
+	})
 
 	$.ajax({
 		url: url_base + '/papelPessoa/conta/' + contaId,
@@ -151,8 +160,22 @@ $(document).ready(function() {
 				text: item.nomeMunicipio,
 				name: item.nomeMunicipio
 			}));
+
+			$('#certidaoNascimentoMunicipioCartorioId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+
+			$('#certidaoNascimentoMunicipioCartorioId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+
 		});
 	})
+
 
 	$("#cep").blur(function() {
 		$.ajax({
@@ -178,11 +201,14 @@ $(document).ready(function() {
 
 
 	if (id != undefined) {
-		
+		const loader = document.querySelector(".bg-loading");
+		loader.parentElement.removeChild(loader);
+
+
 		$('#municipioNascimentoId').attr('disabled', false)
 		$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
 		$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
-			
+
 		$("isEnderecoAluno").hide()
 		$.ajax({
 			url: url_base + '/responsavel/pessoa/' + id,
@@ -191,7 +217,7 @@ $(document).ready(function() {
 		}).done(function(data) {
 			console.log(data)
 
-			
+
 
 
 			// Verificar se os dados de certidão de casamento estão nulos
@@ -212,8 +238,8 @@ $(document).ready(function() {
 
 				$('#certidaoNascimentoNumero').val(data.pessoa.certidaoNascimentoNumero);
 				$('#certidaoNascimentoCartorio').val(data.pessoa.certidaoNascimentoCartorio);
+				$('#certidaoNascimentoUfCartorioId').val(data.pessoa.certidaoNascimentoMunicipioCartorio.uf.idUf);
 				$('#certidaoNascimentoMunicipioCartorioId').val(data.pessoa.certidaoNascimentoMunicipioCartorio.idMunicipio);
-				$('#certidaoNascimentoUfCartorioId').val(data.pessoa.certidaoNascimentoMunicipioCartorio.idUf);
 				$('#certidaoNascimentoDataEmissao').val(data.pessoa.certidaoNascimentoDataEmissao);
 				$('#certidaoNascimentoFolha').val(data.pessoa.certidaoNascimentoFolha);
 				$('#certidaoNascimentoLivro').val(data.pessoa.certidaoNascimentoLivro);
@@ -246,6 +272,7 @@ $(document).ready(function() {
 			$('#rgDataExpedicao').val(data.pessoa.rgDataExpedicao);
 			$('#dtNascimento').val(data.pessoa.dtNascimento);
 			$('#sexo_' + data.pessoa.sexo).prop('checked', true); // Supondo que o valor de 'sexo' seja uma string como 'M' ou 'F'
+			$('#sexo_' + data.pessoa.estadoCivil).prop('checked', true); // Supondo que o valor de 'sexo' seja uma string como 'M' ou 'F'
 			$('#cep').val(data.pessoa.cep);
 			$('#endereco').val(data.pessoa.endereco);
 			$('#numero').val(data.pessoa.numero);
@@ -268,6 +295,7 @@ $(document).ready(function() {
 			$('#nacionalidadeId').val(data.pessoa.nacionalidadeId.idNacionalidade);
 			$('#paisNascimentoId').val(data.pessoa.paisNascimento.idPais);
 			$('#paisResidenciaId').val(data.pessoa.paisResidencia.idPais);
+			$('#relacionamentoId').val(data.idPapelPessoa);
 			/*	$('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade).attr("selected", true);;
 				$('#paisNascimentoId').val(data.paisNascimento.idPais).attr("selected", true);;
 				$('#paisResidenciaId').val(data.paisResidencia.idPais).attr("selected", true);;
@@ -289,6 +317,8 @@ $(document).ready(function() {
 			// Exemplo para estado civil usando radio button
 			$('input[name="estadoCivil"][value="' + data.pessoa.estadoCivil + '"]').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'
 
+			$(".bg-loading").addClass("none");
+			$(".bg-loading").fadeOut();
 		})
 	}
 })
@@ -469,8 +499,8 @@ $('#formSubmit').submit(function(event) {
 				"senha": "teste",
 				"nomePai": null,
 				"nomeMae": null,
-				"certidaoNascimentoMunicipioCartorioId": $('#certidaoNascimentoMunicipioCartorioId').val(),
-				"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoCidadeCartorioId').val()
+				"certidaoNascimentoMunicipioCartorioId": Number($('#certidaoNascimentoMunicipioCartorioId').val()),
+				"certidaoCasamentoMunicipioCartorioId": Number($('#certidaoCasamentoCidadeCartorioId').val())
 			},
 			"candidatoRelacionamentoDTO": {
 				"candidatoId": Number(idCandidadto),
@@ -505,12 +535,15 @@ $('#formSubmit').submit(function(event) {
 	dadosFormulario.candidatoRelacionamentoDTO = formDataLimpoCandidatoRelacionamentoDTO
 
 
-	console.log("dados do formulario: " + dadosFormulario)
+
 
 	if (id != undefined) {
-		
+		dadosFormulario.candidatoRelacionamentoDTO.pessoaId = Number(id)
 		dadosFormulario.pessoaDTO.idPessoa = Number(id)
-		dadosFormulario.candidatoRelacionamentoDTO.idCandidatoRelacionamento = Number(localStorage.getItem('idCandidatoRelacionamento'))
+		dadosFormulario.candidatoRelacionamentoDTO.idCandidatoRelacionamento = idCandidatoRelacionamento
+
+
+		console.log("dados do formulario: " + JSON.stringify(dadosFormulario, null, 2))
 		$.ajax({
 			url: url_base + '/responsavel/pessoa-candidato',
 			type: "PUT",
@@ -569,8 +602,8 @@ $('#formSubmit').submit(function(event) {
 				icon: "success",
 
 			})
-			
-			/*localStorage.setItem("idCandidatoRelacionamento", data.)*/
+
+			/*\vpnlocalStorage.setItem("idCandidatoRelacionamento", data.)*/
 
 			window.location.href = "listaResponsavel";
 
@@ -583,7 +616,7 @@ $('#formSubmit').submit(function(event) {
 	// Aqui você pode enviar o objeto formData para onde for necessário, como uma requisição AJAX
 	// Exemplo:
 
-	/*$.ajax({
+	$.ajax({
 		url: url_base + '/pessoas',
 		type: "POST",
 		data: JSON.stringify(dadosFormulario),
@@ -607,8 +640,8 @@ $('#formSubmit').submit(function(event) {
 			title: "Editado com sucesso",
 			icon: "success",
 		})
-		
-	});*/
+
+	});
 
 });
 
@@ -632,6 +665,12 @@ $('#ufNascimentoId').change(() => {
 
 	})
 })
+
+window.addEventListener("load", function() {
+	$("#menu").load(path_base + "/menu.html");
+
+
+});
 
 $('#certidaoCasamentoUfCartorioId').change(() => {
 	$("#certidaoCasamentoCidadeCartorioId").attr("disabled", false)

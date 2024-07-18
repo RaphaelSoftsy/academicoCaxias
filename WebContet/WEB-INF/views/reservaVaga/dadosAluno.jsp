@@ -361,7 +361,7 @@ String contextPath = request.getContextPath();
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center"
 				id="certidaoNascimento">
-				<h2 id="titulonNascimento" class="mb-5">Certidao de Nascimento</h2>
+				<h2 id="titulonNascimento" class="mb-5">Certidão de Nascimento</h2>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -434,7 +434,7 @@ String contextPath = request.getContextPath();
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center"
 				id="certidaoCasamento">
-				<h2 id="tituloCasamento" class="mb-5">Certidao de Casamento</h2>
+				<h2 id="tituloCasamento" class="mb-5">Certidão de Casamento</h2>
 
 				<div class="row mb-3">
 					<div class="col-md-6">

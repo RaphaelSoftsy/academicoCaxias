@@ -214,7 +214,6 @@ function alteraStatus(element) {
 
 	console.log(id)
 	console.log(status)
-
 	$.ajax({
 		url: url_base + `/escolas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
 		type: "put",

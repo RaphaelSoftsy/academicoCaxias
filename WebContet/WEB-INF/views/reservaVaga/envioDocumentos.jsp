@@ -16,7 +16,6 @@ String contextPath = request.getContextPath();
 
 <title>POC - Contas</title>
 <!-- Bootstrap -->
-<!-- Bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -48,16 +47,13 @@ String contextPath = request.getContextPath();
 
 <!-- FontAwesome -->
 <script charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
-	crossorigin="anonymous">
-	
-</script>
+	crossorigin="anonymous"></script>
 
 <!-- Css -->
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/escolherCaminho.css">
-
 
 </head>
 
@@ -73,41 +69,45 @@ String contextPath = request.getContextPath();
 		<section class="mb-5 mt-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-regular fa-folder-open"></i> <span>Envio de Documentos</span>
+					<i class="fa-regular fa-folder-open"></i> <span>Envio de
+						Documentos</span>
 				</div>
 			</div>
 		</section>
-		<section class="pt-4 card card-table px-5 py-3 align-items-center justify-content-center" style="height: 100%">
-			<div class="row gap-5 mb-3">
-				<div class="card text-center mb-3" style="width: 18rem;">
-					<div class="card-body text-center">
-						<h5 class="card-title">Certidão de Nascimento do(a) aluno(a)</h5>
-						<p class="card-text">Envie seu documento aqui!</p>
-						
-						<input class="form-control" required type="file" id="logoEscola" name="logoEscola">
-				
+		<section
+			class="pt-4 card card-table px-5 py-3 align-items-center justify-content-center"
+			style="height: 100%">
+			<form id="documentForm">
+				<div class="agrupador">
+					<div class="row gap-5 mb-3">
+						<div class="card text-center mb-3" style="width: 18rem;">
+							<div class="card-body text-center">
+								<h5 class="card-title">Certidão de Nascimento do(a)
+									aluno(a)</h5>
+								<p class="card-text">Envie seu documento aqui!</p>
+								<input class="form-control" required type="file"
+									id="certidaoNascimento" name="logoEscola">
+							</div>
+						</div>
+						<div class="card text-center mb-3" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Comprovante de Residência em nome do
+									Responsável</h5>
+								<p class="card-text">Envie seu documento aqui!</p>
+								<input class="form-control" required type="file"
+									id="comprovanteResidencia" name="logoEscola">
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="card text-center mb-3" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Comprovante de Residencia em nome do Responsável</h5>
-						<p class="card-text">Envie seu documento aqui!</p>
-						<input class="form-control" required type="file" id="logoEscola" name="logoEscola"> 
-					</div>
+
+				<div class="col-md-12 text-center">
+					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Enviar
+						Documentos</button>
 				</div>
-			</div>
-			
-			<div class="row mb-3">
-				<a href="reserva-declaracao" class="btn btn-primary">Enviar documentos</a>
-			</div>
-			
-
-
-
-
+			</form>
 		</section>
 	</main>
-
 
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -123,13 +123,13 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/escolherCaminho.js"></script> 
-
-
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/reservaDocumento.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 
 </body>
 </html>

@@ -69,6 +69,14 @@ String contextPath = request.getContextPath();
 </head>
 
 <body>
+<div class="bg-loading">
+		<div class="spinner">
+			<div class="rect1"></div>
+			<div class="rect2"></div>
+			<div class="rect3"></div>
+			<div class="rect4"></div>
+		</div>
+	</div>
 	<header>
 		<img class="logo" style="width: 15%"
 			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
@@ -262,22 +270,22 @@ String contextPath = request.getContextPath();
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="so" /> <label class="form-check-label"
+									id="estadoCivil_co" value="so" /> <label class="form-check-label"
 									for="solteiro">Solteiro(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="ca" /> <label class="form-check-label"
+									id="estadoCivil_ca" value="ca" /> <label class="form-check-label"
 									for="casado">Casado(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="vi" /> <label class="form-check-label"
+									id="estadoCivil_vi" value="vi" /> <label class="form-check-label"
 									for="viuvo">Viúvo(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil" value="di" /> <label class="form-check-label"
+									id="estadoCivil_di" value="di" /> <label class="form-check-label"
 									for="divorciado">Divorciado(a)</label>
 							</div>
 						</div>
@@ -367,7 +375,7 @@ String contextPath = request.getContextPath();
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center"
 				id="certidaoNascimento">
-				<h2 id="titulonNascimento" class="mb-5">Certidao de Nascimento</h2>
+				<h2 id="titulonNascimento" class="mb-5">Certidão de Nascimento</h2>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -440,7 +448,7 @@ String contextPath = request.getContextPath();
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center"
 				id="certidaoCasamento">
-				<h2 id="tituloCasamento" class="mb-5">Certidao de Casamento</h2>
+				<h2 id="tituloCasamento" class="mb-5">Certidão de Casamento</h2>
 
 				<div class="row mb-3">
 					<div class="col-md-6">

@@ -8,11 +8,10 @@ var escolas = [];
 var id = "";
 var idEscola = "";
 var ativo = "";
-const contaId = sessionStorage.getItem('contaId')
-const candidatoId = localStorage.getItem("idCandidato")
+const contaId = sessionStorage.getItem('contaId');
+const candidatoId = localStorage.getItem("idCandidato");
 
 $(document).ready(function() {
-
 	getDados();
 
 	// Dropdown de Pesquisa
@@ -144,42 +143,37 @@ function getDados() {
 		async: false,
 	}).done(function(data) {
 		$(".bg-loading").addClass("none");
-		console.log(data)
-		dados = data;
-		dadosOriginais = data;
-		listarDados(data);
+		
+		dados.push(data);
+		console.log(dados)
+		// Verifique se a resposta é um array
+		if (Array.isArray(dados)) {
+			dadosOriginais = data;
+			listarDados(dados);
+		} else {
+			console.error("A resposta não é um array:", data);
+		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 }
 
 function listarDados(dados) {
+	if (!Array.isArray(dados)) {
+		console.error("listarDados espera um array como argumento, mas recebeu:", dados);
+		return;
+	}
+
 	var html = dados
 		.map(function(item) {
 			return (
 				"<tr>" +
-
-				"<td>" +
-				item.pessoa.nomeCompleto +
-				"</td>" +
-
-				"<td>" +
-				item.papelPessoa +
-				"</td>" +
-
-				"<td>" +
-				item.pessoa.telefone +
-				"</td>" +
-
-				"<td>" +
-				item.pessoa.celular +
-				"</td>" +
-
-				"<td>" +
-				item.pessoa.email +
-				"</td>" +
-				"</td>" +
-                '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" onClick="window.location.href=\'dadosResponsavel?id=' + item.pessoa.idPessoa + '\'" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				"<td>" + item.pessoa.nomeCompleto + "</td>" +
+				"<td>" + item.papelPessoa + "</td>" +
+				"<td>" + item.pessoa.telefone + "</td>" +
+				"<td>" + item.pessoa.celular + "</td>" +
+				"<td>" + item.pessoa.email + "</td>" +
+				'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" onClick="window.location.href=\'dadosResponsavel?id=' + item.pessoa.idPessoa + '\'" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 				"</tr>"
 			);
 		})
@@ -187,7 +181,6 @@ function listarDados(dados) {
 
 	$("#cola-tabela").html(html);
 }
-
 
 $('#btnNext').click(() => {
 	Swal.fire({
@@ -199,16 +192,13 @@ $('#btnNext').click(() => {
 		showDenyButton: true,
 		confirmButtonColor: "#053872",
 		denyButtonColor: "#053872",
-		confirmButtonText: "Escolher pela Escola primeiro e depois verificar o horário disponivel na escola.",
-		denyButtonText: 'Escolher o horário primeiro e depois verificar as escolas disponiveis.'
+		confirmButtonText: "Escolher pela Escola primeiro e depois verificar o horário disponível na escola.",
+		denyButtonText: 'Escolher o horário primeiro e depois verificar as escolas disponíveis.'
 	}).then((result) => {
 		if (result.isConfirmed) {
-			window.location.href = "vagaDesejadaEscola"
+			window.location.href = "vagaDesejadaEscola";
 		} else if (result.isDenied) {
-			window.location.href = "vagaDesejadaTurno"
+			window.location.href = "vagaDesejadaTurno";
 		}
-	})
-})
-
-
-
+	});
+});
