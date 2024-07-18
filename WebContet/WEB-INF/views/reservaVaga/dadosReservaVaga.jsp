@@ -85,12 +85,17 @@ String contextPath = request.getContextPath();
 		<section
 			class="p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 			<div class="d-flex justify-content-end gap-2">
-				<button type="button" class="btn btn-secondary"
-					data-bs-dismiss="modal">Fechar</button>
-				<button type="submit" id='reprovar' class="btn btn-danger"
-					data-bs-dismiss="modal">Reprovar</button>
+				<button type="submit" id='reprovar'
+					class="btn btn-danger d-flex gap-2 align-items-center"
+					data-bs-dismiss="modal">
+					<i class="fa-regular fa-circle-xmark"></i> <span>Reprovar
+						Candidato</span>
+				</button>
 				<button type="submit" id='aprovar' data-bs-dismiss="modal"
-					class="btn btn-success">Aprovar</button>
+					class="btn btn-success d-flex gap-2 align-items-center">
+					<i class="fa-regular fa-circle-check"></i> <span>Aprovar
+						Candidato</span>
+				</button>
 			</div>
 			<nav>
 				<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
@@ -316,7 +321,7 @@ String contextPath = request.getContextPath();
 						<div class="form-control w-100 card-form qualPreencherSwitch">
 							<label for="qualPreencher">Certidão de Nascimento</label> <label
 								class="switch"> <input type="checkbox"
-								id="qualPreencher" name="qualPreencher"> <span
+								id="qualPreencherResponsavel" name="qualPreencher"> <span
 								class="slider slider-certidao"></span>
 							</label> <label for="qualPreencher">Certidão de Casamento</label>
 						</div>
@@ -986,21 +991,119 @@ String contextPath = request.getContextPath();
 					aria-labelledby="nav-doc-tab" tabindex="0">
 
 					<h2 id="tituloDocumentos" class="mb-3">Aprovação documentos</h2>
-
-					<div class="d-flex justify-content-end gap-2">
-						<button type="button" class="btn btn-secondary"
-							data-bs-dismiss="modal">Fechar</button>
-						<button type="submit" id='reprovar' class="btn btn-danger"
-							data-bs-dismiss="modal">Reprovar</button>
-						<button type="submit" id='aprovar' data-bs-dismiss="modal"
-							class="btn btn-success">Aprovar</button>
+					<div class="col-md-6 mb-3">
+						<div class="form-control d-flex flex-column gap-2">
+							<h3 class="form-label">Certidão de nascimento:</h3>
+							<div class="d-flex gap-2">
+								<a href="" id='docCN' download
+									class="btn btn-primary d-flex gap-2 align-items-center"> <i
+									class="fa-solid fa-download"></i> <span>Baixar</span>
+								</a>
+								<button type="submit" id='reprovarCN' data-bs-toggle="modal"
+									data-bs-target="#reprovarDoc"
+									class="btn btn-danger reprovarDoc">
+									<i class="fa-solid fa-thumbs-down"></i> <span>Reprovar</span>
+								</button>
+								<button type="submit" id='aprovarCN' data-bs-toggle="modal"
+									data-bs-target="#aprovarDoc" class="btn btn-success">
+									<i class="fa-solid fa-thumbs-up"></i> <span>Aprovar</span>
+								</button>
+							</div>
+						</div>
 					</div>
-
+					<div class="col-md-6 mb-3">
+						<div class="form-control d-flex flex-column gap-2">
+							<h3 class="form-label">Comprovante de residência:</h3>
+							<div class="d-flex gap-2">
+								<a href="" download id='docCR'
+									class="btn btn-primary d-flex gap-2 align-items-center"> <i
+									class="fa-solid fa-download"></i> <span>Baixar</span>
+								</a>
+								<button id='reprovarCR' data-bs-toggle="modal"
+									data-bs-target="#reprovarDoc"
+									class="btn btn-danger reprovarDoc">
+									<i class="fa-solid fa-thumbs-down"></i> <span>Reprovar</span>
+								</button>
+								<button id='aprovarCR' class="btn btn-success"data-bs-toggle="modal"
+									data-bs-target="#aprovarDoc">
+									<i class="fa-solid fa-thumbs-up"></i> <span>Aprovar</span>
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="tab-pane fade" id="nav-disabled" role="tabpanel"
 					aria-labelledby="nav-disabled-tab" tabindex="0">Profile 3</div>
 			</div>
 		</section>
+		<div class="modal fade" id="reprovarDoc" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="title-edit"></h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form id="formDoc">
+							<!-- <div class="d-flex flex-column align-items-center mb-4 gap-2"
+								id="divSenha">
+							</div> -->
+							<div class="mb-4">
+								<label for="motivoReprovacaoDocumentoId" class="form-label">Motivo
+									reprovação:<span class="red">*</span>
+								</label> <select class="form-select" aria-label="motivoReprovacaoDocumentoId"
+									id="motivoReprovacaoDocumentoId" required name="motivoReprovacaoDocumentoId">
+									<option value='0' selected disabled>Selecione um motivo:</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="obsAprovacao" class="form-label">Observação:
+								</label> <input type="text" id="obsAprovacao"
+									autocomplete="off" name="obsAprovacao" class="form-control" />
+							</div>
+							<div class="d-flex justify-content-end gap-2">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Fechar</button>
+								<button type="submit" id='reprovar' class="btn btn-danger"
+									data-bs-dismiss="modal">Reprovar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="aprovarDoc" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="title-aprovar"></h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form id="formDocAprovar">
+							<!-- <div class="d-flex flex-column align-items-center mb-4 gap-2"
+								id="divSenha">
+							</div> -->
+							<div class="mb-4">
+								<label for="obsAprovacaoID" class="form-label">Observação:
+								</label> <input type="text" id="obsAprovacaoID"
+									autocomplete="off" name="obsAprovacaoID" class="form-control" />
+							</div>
+							<div class="d-flex justify-content-end gap-2">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Fechar</button>
+								<button type="submit" id='aprovarModal' class="btn btn-success"
+									data-bs-dismiss="modal">Aprovar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
 
 	<script charset="UTF-8"
@@ -1021,9 +1124,10 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosReservaVaga.js"></script>
-	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosReservaVaga.js"></script>
+
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
