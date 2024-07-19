@@ -1,6 +1,14 @@
 const contaId = sessionStorage.getItem('contaId')
+const idCandidato = sessionStorage.getItem('idCandidato')
 const id = getSearchParams("id");
 var url_base = "http://10.40.110.2:8080/api-educacional";
+var idPessoa = 0
+var numeroCandidato = 0
+var ofertaConcursoId = 0
+var aprovado = ""
+var usuarioAprovacaoId = 0
+var classificacao = ""
+
 
 function getSearchParams(k) {
 	var p = {};
@@ -196,7 +204,7 @@ $(document).ready(function() {
 					cpf: null,
 					racaId: $('#racaId').val(),
 					paisNascimentoId: $('#paisNascimentoId').val(),
-					/*ufNascimentoId: $('#ufNascimentoId').val(),*/
+					ufNascimentoId: $('#ufNascimentoId').val(),
 					municipioNascimentoId: $('#municipioNascimentoId').val(),
 					nacionalidadeId: $('#nacionalidadeId').val(),
 					"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 3),
@@ -208,14 +216,14 @@ $(document).ready(function() {
 					certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
 					certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
 					certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-					/*certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),*/
+					certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
 					certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
 					certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
 					certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
 					certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
 					certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
 					certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-					/*certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),*/
+					certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
 					certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
 					certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
 					certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
@@ -255,7 +263,7 @@ $(document).ready(function() {
 					cpf: cpf,
 					racaId: $('#racaId').val(),
 					paisNascimentoId: $('#paisNascimentoId').val(),
-					/*ufNascimentoId: $('#ufNascimentoId').val(),*/
+					ufNascimentoId: $('#ufNascimentoId').val(),
 					municipioNascimentoId: $('#municipioNascimentoId').val(),
 					nacionalidadeId: $('#nacionalidadeId').val(),
 					"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 3),
@@ -267,14 +275,14 @@ $(document).ready(function() {
 					certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
 					certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
 					certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-					/*certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),*/
+					certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
 					certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
 					certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
 					certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
 					certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
 					certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
 					certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-					/*certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),*/
+					certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
 					certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
 					certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
 					certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
@@ -338,14 +346,26 @@ $(document).ready(function() {
 			
 		});*/
 
-		localStorage.setItem('jsonAluno', JSON.stringify(dadosFormulario))
-		localStorage.setItem('numeroReserva', dadosFormulario.candidatoDTO.candidato)
-		if(id != undefined){
+
+		if (id != undefined) {
+			dadosFormulario.candidatoDTO.idCandidato = id
+			dadosFormulario.candidatoDTO.pessoaId = idPessoa
+			dadosFormulario.pessoaDTO.idPessoa = idPessoa
+			dadosFormulario.candidatoDTO.aprovado = aprovado
+			dadosFormulario.candidatoDTO.candidato = Number(numeroCandidato)
+			dadosFormulario.candidatoDTO.ofertaConcursoId = ofertaConcursoId
+			dadosFormulario.candidatoDTO.usuarioAprovacaoId = usuarioAprovacaoId
+			dadosFormulario.candidatoDTO.classificacao = classificacao
+			
+			localStorage.setItem('jsonAluno', JSON.stringify(dadosFormulario))
+			localStorage.setItem('numeroReserva', dadosFormulario.candidatoDTO.candidato)
 			window.location.href = "endereco-aluno?id=" + id;
-		}else{
+		} else {
+			localStorage.setItem('jsonAluno', JSON.stringify(dadosFormulario))
+			localStorage.setItem('numeroReserva', dadosFormulario.candidatoDTO.candidato)
 			window.location.href = "endereco-aluno";
 		}
-		
+
 	});
 })
 
@@ -373,11 +393,11 @@ $('#ufNascimentoId').change(() => {
 
 
 function carregarDados(id) {
-	
+
 	$(".bg-loading").fadeIn();
-	
+
 	if (id != undefined) {
-		
+
 
 		$('#municipioNascimentoId').attr('disabled', false)
 		$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
@@ -391,7 +411,12 @@ function carregarDados(id) {
 
 			$("#tipoIngressoId").val(data.tipoIngresso.idTipoIngresso)
 
-
+			numeroCandidato = data.candidato
+			idPessoa = data.pessoa
+			idCandidadto = data.idCandidato
+			aprovado = data.aprovado
+			usuarioAprovacaoId = data.usuarioAprovacao
+			classificacao = data.classificacao
 
 			$.ajax({
 				url: url_base + '/pessoas/' + data.pessoa,
@@ -512,8 +537,8 @@ function carregarDados(id) {
 				// Exemplo para estado civil usando radio button
 				$('input[name="estadoCivil"][value="' + data.estadoCivil + '"]').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'
 
-				
-				
+
+
 			})
 		})
 

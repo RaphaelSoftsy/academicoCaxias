@@ -22,6 +22,9 @@ $(document).ready(function() {
 
 $('#curso').change(() => { 
 	$('#escola').removeAttr('disabled');
+	$('#escola').empty()
+	$('#serie').empty()
+	$('#turno').empty()
 	let curso = $('#curso').val()
 	$.ajax({
 		url: url_base + `/escolas/ativos/${contaId}/${curso}`,
@@ -40,6 +43,8 @@ $('#curso').change(() => {
 
 $('#escola').change(() => {
 	$('#serie').removeAttr('disabled');
+	$('#serie').empty()
+	$('#turno').empty()
 	let curso = $('#curso').val()
 	let escola = $('#escola').val()
 	$.ajax({
@@ -61,9 +66,11 @@ $('#escola').change(() => {
 
 $('#serie').change(() => {
 	$('#turno').removeAttr('disabled');
+	$('#turno').empty()
 	let curso = $('#curso').val()
 	let serie = $('#serie').val()
 	let escola = $('#escola').val()
+	
 	
 	$.ajax({
 		url: url_base + `/turno/conta/${contaId}/curso/${curso}/escola/${escola}/serie/${serie}`,

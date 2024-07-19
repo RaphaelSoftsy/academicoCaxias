@@ -99,5 +99,10 @@ public class ReservaVaga {
  
 		return "reservaVaga/listaReservas";
 	}
+	@RequestMapping(value = { "reserva-ficha" }, method = RequestMethod.GET)
+	public String fichaMedica(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/fichaMedica";
+	}
 
 }

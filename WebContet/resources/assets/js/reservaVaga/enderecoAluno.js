@@ -112,19 +112,18 @@ $('#formSubmit').submit(function(event) {
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
+				text: "Não foi possível editar o aluno!",
 			});
 		}
 	}).done(function(data) {
 
 		Swal.close()
 		Swal.fire({
-			title: "Cadastrado com sucesso",
+			title: "Editado com sucesso",
 			icon: "success",
 		})
-
-		localStorage.setItem("idCandidato", data.idCandidato)
-		window.location.href = "codigo-reserva"
+		
+		window.location.href = "reservas"
 
 
 	});
@@ -146,7 +145,7 @@ $('#formSubmit').submit(function(event) {
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
+				text: "Não foi possível adcionar o aluno nesse momento!",
 			});
 		}
 	}).done(function(data) {
