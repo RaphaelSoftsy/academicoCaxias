@@ -133,8 +133,9 @@ $('#limpa-filtros').click(function() {
         });
 
 function getDados() {
+	const usuarioId = sessionStorage.getItem("usuarioId");
 	$.ajax({
-		url: url_base + "/escolas/conta/" + contaId,
+		url: url_base + "/escolas/usuario/" + contaId+ "/"+usuarioId,
 		type: "GET",
 		async: false,
 	})

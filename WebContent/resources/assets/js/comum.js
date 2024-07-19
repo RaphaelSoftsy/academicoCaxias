@@ -3,11 +3,11 @@ var url_base = "http://10.40.110.2:8080/api-educacional";
 
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
-const path_base = "http://localhost:8090/front-educacional-caxias/resources/menu";
+const path_base = $(location).attr("origin")+"/"+$(location).attr("pathname").split("/")[1]+ "/resources/menu";
 const nomeConta = sessionStorage.getItem("nomeConta")
 
 $('#escolaIdStyle').css('display', 'none')
-$('#escolaIdStyleEdit').css('display', 'none')
+$('#escolaIdStyleEdit').css('display', 'none')  
 $(document).ready(function() {
 
 	/*// Função para adicionar ou atualizar um segmento na URL
@@ -34,10 +34,11 @@ $(document).ready(function() {
 			contaId = sessionStorage.getItem('contaId')
 		}
 
-		const usuarioId = sessionStorage.getItem("usuarioId")
-		console.log(url.replace('/front-educacional-caxias', ''))
+		const usuarioId = sessionStorage.getItem("usuarioId");
+		const transacao = "/"+ $(location).attr('href').split("/")[$(location).attr('href').split("/").length-1];
+		console.log(transacao);
 		$.ajax({
-			url: url_base + `/transacoes/acessos/${usuarioId}?url=${url.replace('/front-educacional-caxias', '')}`,
+			url: url_base + `/transacoes/acessos/${usuarioId}?url=${transacao}`,
 			type: "get",
 			error: function(e) {
 				console.log();
@@ -51,11 +52,11 @@ $(document).ready(function() {
 			console.log(data[0])
 			if (data[0].acessa == 'N') {
 				Swal.fire({
-					title: "O seu usuário não tem autorização para acessar essa tela, logue novamente",
+					title: "Acesso não autorizado.",
 					icon: "info",
 				}).then(result => {
 					if (result) {
-						window.location.href = "login"
+						window.location.href = "acessar-escolas"
 					}
 				})
 			}
