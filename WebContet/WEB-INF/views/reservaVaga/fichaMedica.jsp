@@ -98,10 +98,11 @@ String contextPath = request.getContextPath();
 					name="usuarioCadastro" value="${funcionario.idUsuario}" /> --%>
 
 				<div class="row mb-3">
-						<div class="col-md-6">
-						<label for="responsavelEmergencia" class="form-label">Qual o responsável de emergência?</label> <select class="form-select"
-							aria-label="Responsável de Emergia" id="responsavelEmergencia" required
-							name="responsavelEmergencia">
+					<div class="col-md-6">
+						<label for="responsavelEmergencia" class="form-label">Qual
+							o responsável de emergência?</label> <select class="form-select"
+							aria-label="Responsável de Emergia" id="responsavelEmergencia"
+							required name="responsavelEmergencia">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 					</div>
@@ -174,21 +175,11 @@ String contextPath = request.getContextPath();
 							name="numCarterinha" class="form-control" />
 					</div>
 
-					<div class="col-md-6">
-						<label for="lugarEmergencia" class="form-label">Em caso de
-							emergência, encaminhar o aluno para qual Hospital/Clinica? </label> <input
-							type="text" id="lugarEmergencia" required autocomplete="off"
-							name="lugarEmergencia" class="form-control" />
-					</div>
 
 				</div>
-				<div class="row mb-3">
-					<div class="col-md-6" id="cardCpf">
-						<label for="cpf" class="form-label">Numero da Carterinha:</label>
-						<input type="text" id="numCarterinha" autocomplete="off"
-							name="numCarterinha" class="form-control" />
-					</div>
-				</div>
+
+				<span class="infra-title"> Dados Hospital/Clínica </span>
+				<hr>
 
 
 				<div class="row mb-3">
@@ -202,10 +193,10 @@ String contextPath = request.getContextPath();
 					</div>
 
 					<div class="col-md-6">
-						<label for="telefone" class="form-label">Telefone do
-							Hospital/Clínica:</label><span class="red">*</span> <input
-							type="tel" id="telefone" data-mask="(00) 0000-0000"
-							autocomplete="off" name="telefone" class="form-control" required />
+						<label for="telefone" class="form-label">Telefone:</label><span
+							class="red">*</span> <input type="tel" id="telefone"
+							data-mask="(00) 0000-0000" autocomplete="off" name="telefone"
+							class="form-control" required />
 					</div>
 
 				</div>
@@ -213,55 +204,52 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP do
-							Hospital/Clínica:</label><span class="red">*</span> <input type="tel" class="form-control" id="cep"
+						<label for="cep" class="form-label">CEP :</label><span class="red">*</span>
+						<input type="tel" class="form-control" id="cep"
 							data-mask="00000-000" name="cep" />
 					</div>
 					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço do
-							Hospital/Clínica:</label> <span class="red">*</span><input type="text" id="endereco"
+						<label for="endereco" class="form-label">Endereço:</label> <span
+							class="red">*</span><input type="text" id="endereco"
 							autocomplete="off" name="endereco" class="form-control" required />
 					</div>
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="numero" class="form-label">Número do
-							Hospital/Clínica:</label> <input type="text" id="numero"
-							autocomplete="off" name="numero" class="form-control" />
+						<label for="numero" class="form-label">Número :</label> <input
+							type="text" id="numero" autocomplete="off" name="numero"
+							class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento do
-							Hospital/Clínica</label> <input type="text" id="complemento"
-							autocomplete="off" name="complemento" class="form-control" />
+						<label for="complemento" class="form-label">Complemento</label> <input
+							type="text" id="complemento" autocomplete="off"
+							name="complemento" class="form-control" />
 					</div>
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro do
-							Hospital/Clínica:</label> <span class="red">*</span> <input type="text" id="bairro"
+						<label for="bairro" class="form-label">Bairro:</label> <span
+							class="red">*</span> <input type="text" id="bairro"
 							autocomplete="off" name="bairro" class="form-control required" />
 					</div>
 					<div class="col-md-6">
-						<label for="municipio" class="form-label">Município do
-							Hospital/Clínica:</label> <span class="red">*</span> <input type="text" id="municipio"
+						<label for="municipio" class="form-label">Município :</label> <span
+							class="red">*</span> <input type="text" id="municipio"
 							autocomplete="off" name="municipio" class="form-control" required />
 					</div>
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="distrito" class="form-label">Distrito do
-							Hospital/Clínica:</label> <input type="text" id="distrito"
-							autocomplete="off" name="distrito" class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="uf" class="form-label">UF do Hospital/Clínica: </label><span class="red">*</span>
+						<label for="uf" class="form-label">UF: </label><span class="red">*</span>
 						<input type="text" id="uf" autocomplete="off" name="uf"
-							class="form-control"  required/>
+							class="form-control" required />
 					</div>
 				</div>
+				
+				<hr>
 
 				<div class="row mb-3">
 
@@ -332,13 +320,13 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div>
-				
+
 				<div class="row mb-3">
 
 
 					<div class="col-md-6" style="display: none" id="divDescDoenca">
-						<label for="outrasDoencas" class="form-label">Possui outras doenças?:<span
-							class="red">*</span>
+						<label for="outrasDoencas" class="form-label">Possui
+							outras doenças?:<span class="red">*</span>
 						</label> <input type="text" id="outrasDoencas" autocomplete="off"
 							name="outrasDoencas" class="form-control" />
 					</div>

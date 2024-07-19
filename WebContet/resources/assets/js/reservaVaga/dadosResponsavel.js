@@ -1,7 +1,16 @@
 const contaId = sessionStorage.getItem('contaId')
+var url_base = "http://10.40.110.2:8080/api-educacional";
 const idCandidadto = localStorage.getItem("idCandidato")
 const id = getSearchParams("id");
 let idCandidatoRelacionamento = 0
+
+function getSearchParams(k) {
+	var p = {};
+	location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(s, key, value) {
+		p[key] = value;
+	});
+	return k ? p[k] : p;
+}
 
 
 $(document).ready(function() {
@@ -32,15 +41,26 @@ $(document).ready(function() {
 		$("#certidaoNascimento").hide()
 		$("#certidaoCasamento").show()
 	}
+	if (id != undefined) {
+		$.ajax({
+			url: url_base + '/candidatoRelacionamento/pessoa/' + id,
+			type: "get",
+			async: false,
+		}).done(function(data) {
+			if (data.length == 0) {
+				$(".bg-loading").fadeOut()
+				Swal.fire({
+					title: "O responsável não possui nenhum relacionamento, selecione outro responsável",
+					icon: "info",
+				}).then(result => {
+					if (result) {
+						window.location.href = "listaResponsavel"
+					}
+				})
+			}
+		})
+	}
 
-	$.ajax({
-		url: url_base + '/candidatoRelacionamento/pessoa/' + id,
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		idCandidatoRelacionamento = data[0].idCandidatoRelacionamento
-		console.log(data[0].idCandidatoRelacionamento)
-	})
 
 	$.ajax({
 		url: url_base + '/papelPessoa/conta/' + contaId,
@@ -216,7 +236,16 @@ $(document).ready(function() {
 			async: false,
 		}).done(function(data) {
 			console.log(data)
-			// Verificar se os dados de certidão de casamento estão nulos
+
+
+
+			$.ajax({
+				url: url_base + '/candidatoRelacionamento/pessoa/' + id,
+				type: "get",
+				async: false,
+			}).done(function(data) {
+				idCandidatoRelacionamento = data[0].idCandidatoRelacionamento
+			})
 
 
 			// Verificar se os dados de certidão de nascimento estão preenchidos
@@ -268,7 +297,7 @@ $(document).ready(function() {
 			$('#rgDataExpedicao').val(data.pessoa.rgDataExpedicao);
 			$('#dtNascimento').val(data.pessoa.dtNascimento);
 			$('#sexo_' + data.pessoa.sexo).prop('checked', true); // Supondo que o valor de 'sexo' seja uma string como 'M' ou 'F'
-			$('#sexo_' + data.pessoa.estadoCivil).prop('checked', true); // Supondo que o valor de 'sexo' seja uma string como 'M' ou 'F'
+			$('#estadoCivil_' + data.pessoa.estadoCivil).prop('checked', true); // Supondo que o valor de 'sexo' seja uma string como 'M' ou 'F'
 			$('#cep').val(data.pessoa.cep);
 			$('#endereco').val(data.pessoa.endereco);
 			$('#numero').val(data.pessoa.numero);
@@ -374,7 +403,7 @@ $('#formSubmit').submit(function(event) {
 	if (cpf == "") {
 		var dadosFormulario = {
 			"pessoaDTO": {
-				"contaId": contaId,
+				"contaId": Number(contaId),
 				"nomeCompleto": $('#nomeCompleto').val(),
 				"sexo": $('input[name="sexo"]:checked').val(),
 				dtNascimento: $('#dtNascimento').val(),
@@ -441,10 +470,10 @@ $('#formSubmit').submit(function(event) {
 	} else {
 		var dadosFormulario = {
 			"pessoaDTO": {
-				"contaId": contaId,
+				"contaId": Number(contaId),
 				"nomeCompleto": $('#nomeCompleto').val(),
 				"sexo": $('input[name="sexo"]:checked').val(),
-				"dtNascimento": $('#dtNascimento').val(),
+				"dtNascimento": `${$('#dtNascimento').val()}T00:00:00`,
 				"cpf": cpf,
 				"racaId": $('#racaId').val(),
 				"paisResidenciaId": $('#paisResidenciaId').val(),
@@ -531,6 +560,8 @@ $('#formSubmit').submit(function(event) {
 	dadosFormulario.candidatoRelacionamentoDTO = formDataLimpoCandidatoRelacionamentoDTO
 
 
+	console.log("dados do formulario: " + JSON.stringify(dadosFormulario, null, 2))
+
 
 
 	if (id != undefined) {
@@ -539,9 +570,9 @@ $('#formSubmit').submit(function(event) {
 		dadosFormulario.candidatoRelacionamentoDTO.idCandidatoRelacionamento = idCandidatoRelacionamento
 
 
-		console.log("dados do formulario: " + JSON.stringify(dadosFormulario, null, 2))
+		console.log("dados do formulario para editar: " + JSON.stringify(dadosFormulario, null, 2))
 		$.ajax({
-			url: url_base + '/responsavel/pessoa-candidato',
+			url: url_base + '/responsavel/pessoa-candidatoRelacionamento',
 			type: "PUT",
 			data: JSON.stringify(dadosFormulario),
 			contentType: "application/json; charset=utf-8",
@@ -572,8 +603,9 @@ $('#formSubmit').submit(function(event) {
 
 		});
 	} else {
+		console.log("dados do formulario para cadastrar: " + JSON.stringify(dadosFormulario, null, 2))
 		$.ajax({
-			url: url_base + '/responsavel/pessoa-candidato',
+			url: url_base + '/responsavel/pessoa-candidatoRelacionamento',
 			type: "POST",
 			data: JSON.stringify(dadosFormulario),
 			contentType: "application/json; charset=utf-8",
@@ -662,11 +694,6 @@ $('#ufNascimentoId').change(() => {
 	})
 })
 
-window.addEventListener("load", function() {
-	$("#menu").load(path_base + "/menu.html");
-
-
-});
 
 $('#certidaoCasamentoUfCartorioId').change(() => {
 	$("#certidaoCasamentoCidadeCartorioId").attr("disabled", false)

@@ -415,6 +415,7 @@ function carregarDados(id) {
 			idPessoa = data.pessoa
 			idCandidadto = data.idCandidato
 			aprovado = data.aprovado
+			ofertaConcursoId = data.ofertaConcursoId
 			usuarioAprovacaoId = data.usuarioAprovacao
 			classificacao = data.classificacao
 

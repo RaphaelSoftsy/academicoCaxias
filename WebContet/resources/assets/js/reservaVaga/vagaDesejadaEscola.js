@@ -8,23 +8,24 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-	
-				$('#curso').append($('<option>', {
+
+			$('#curso').append($('<option>', {
 				value: item.idCurso,
 				text: item.nome,
 				name: item.nome
 			}));
-			
-			
+
+
 		});
 	})
 })
 
-$('#curso').change(() => { 
+$('#curso').change(() => {
 	$('#escola').removeAttr('disabled');
-	$('#escola').empty()
-	$('#serie').empty()
-	$('#turno').empty()
+	$('#escola').val(0);
+	$('#serie').val(0);
+	$('#turno').val(0);
+
 	let curso = $('#curso').val()
 	$.ajax({
 		url: url_base + `/escolas/ativos/${contaId}/${curso}`,
@@ -32,7 +33,7 @@ $('#curso').change(() => {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-				$('#escola').append($('<option>', {
+			$('#escola').append($('<option>', {
 				value: item.idEscola,
 				text: item.nomeEscola,
 				name: item.nomeEscola
@@ -43,8 +44,11 @@ $('#curso').change(() => {
 
 $('#escola').change(() => {
 	$('#serie').removeAttr('disabled');
-	$('#serie').empty()
-	$('#turno').empty()
+	$('#serie').val(0);
+	$('#turno').val(0);
+	$('#serie').empty();
+	$('#turno').empty();
+
 	let curso = $('#curso').val()
 	let escola = $('#escola').val()
 	$.ajax({
@@ -58,33 +62,33 @@ $('#escola').change(() => {
 				text: item.serie,
 				name: item.serie
 			}));
-			
-			
+
+
 		});
 	})
 })
 
 $('#serie').change(() => {
 	$('#turno').removeAttr('disabled');
-	$('#turno').empty()
+	$('#turno').val(0)
 	let curso = $('#curso').val()
 	let serie = $('#serie').val()
 	let escola = $('#escola').val()
-	
-	
+
+
 	$.ajax({
 		url: url_base + `/turno/conta/${contaId}/curso/${curso}/escola/${escola}/serie/${serie}`,
 		type: "get",
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-		
-				$('#turno').append($('<option>', {
+
+			$('#turno').append($('<option>', {
 				value: item.idTurno,
 				text: item.turno,
 				name: item.turno
 			}));
-		
+
 		});
 	})
 })

@@ -89,7 +89,7 @@ String contextPath = request.getContextPath();
 						<label for="curso" class="form-label">Curso: </label> <select
 							class="form-select" aria-label="País de Nascimento" id="curso"
 							required name="paisNascimentoId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -97,7 +97,7 @@ String contextPath = request.getContextPath();
 						<label for="escola" class="form-label">Escola: </label> <select
 							class="form-select" aria-label="UF de Nascimento" id="escola"
 							required name="ufNascimentoId" disabled>
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -107,7 +107,7 @@ String contextPath = request.getContextPath();
 						<label for="serie" class="form-label">Série: </label> <select
 							class="form-select" aria-label="Serie" id="serie" required
 							name="serie" disabled>
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -115,7 +115,7 @@ String contextPath = request.getContextPath();
 						<label for="turno" class="form-label">Turno: </label> <select
 							class="form-select" aria-label="Turno" id="turno" required
 							name="turno" disabled>
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
