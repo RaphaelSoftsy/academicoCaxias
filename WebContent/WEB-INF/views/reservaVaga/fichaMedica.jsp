@@ -104,7 +104,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</label> <select class="form-select"
 							aria-label="Responsável de Emergência" id="responsavelEmergencia"
 							required name="responsavelEmergencia">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="0">Selecione
+								uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -120,7 +121,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<label for="altura" class="form-label">Altura (Em cm):<span
 							class="text-danger">*</span></label> <input type="number" id="altura"
 							required autocomplete="off" name="altura" class="form-control"
-							min="0" oninput="this.value = Math.abs(this.value)">
+							min="0">
 					</div>
 				</div>
 
@@ -147,7 +148,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</label>
 						<div class="form-control card-form">
 							<label for="transfusao">Sim</label> <label class="switch">
-								<input type="checkbox" id="transfusao" name="transfusao"> <span class="slider"></span>
+								<input type="checkbox" id="transfusao" name="transfusao">
+								<span class="slider"></span>
 							</label> <label for="transfusao">Não</label>
 						</div>
 					</div>
@@ -338,6 +340,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 <script charset="UTF-8"
 	src="<%=contextPath%>/resources/assets/js/reservaVaga/fichaMedica.js"></script>
+
+<script charset="UTF-8"
+	src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 <script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
