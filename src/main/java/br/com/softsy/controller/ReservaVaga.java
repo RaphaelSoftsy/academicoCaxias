@@ -104,5 +104,11 @@ public class ReservaVaga {
  
 		return "reservaVaga/fichaMedica";
 	}
+	
+	@RequestMapping(value = { "dados-reserva-vaga" }, method = RequestMethod.GET)
+	public String dadosReservaVaga(HttpSession session, Model model) throws Exception {
+ 
+		return "reservaVaga/dadosReservaVaga";
+	}
 
 }
