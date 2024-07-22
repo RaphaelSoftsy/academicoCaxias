@@ -16,8 +16,6 @@ function getSearchParams(k) {
 $(document).ready(function() {
 
 
-
-
 	var tamanhoBody = $("body").width()
 
 	if (tamanhoBody < 768) {
@@ -345,6 +343,9 @@ $(document).ready(function() {
 			$(".bg-loading").addClass("none");
 			$(".bg-loading").fadeOut();
 		})
+	}else{
+		$(".bg-loading").addClass("none");
+			$(".bg-loading").fadeOut();
 	}
 })
 
@@ -638,39 +639,6 @@ $('#formSubmit').submit(function(event) {
 
 		});
 	}
-
-	// Aqui você pode acessar os valores dos campos de input usando jQuery
-
-	// Aqui você pode enviar o objeto formData para onde for necessário, como uma requisição AJAX
-	// Exemplo:
-
-	$.ajax({
-		url: url_base + '/pessoas',
-		type: "POST",
-		data: JSON.stringify(dadosFormulario),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
-			Swal.close()
-			console.log(e)
-			console.log(e.responseJSON)
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-		}
-	}).done(function(data) {
-		Swal.close()
-		Swal.fire({
-			title: "Editado com sucesso",
-			icon: "success",
-		})
-
-	});
-
 });
 
 $('#ufNascimentoId').change(() => {

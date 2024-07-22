@@ -143,12 +143,11 @@ function getDados() {
 		async: false,
 	}).done(function(data) {
 		$(".bg-loading").addClass("none");
-		
-		dados.push(data);
-		console.log(dados)
+
 		// Verifique se a resposta é um array
-		if (Array.isArray(dados)) {
+		if (Array.isArray(data)) {
 			dadosOriginais = data;
+			dados = data;
 			listarDados(dados);
 		} else {
 			console.error("A resposta não é um array:", data);

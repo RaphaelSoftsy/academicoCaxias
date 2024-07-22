@@ -59,7 +59,8 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous">
 	
@@ -74,7 +75,6 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 </head>
 
 <body>
-
 	<header>
 		<img class="logo" style="width: 15%"
 			src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
@@ -95,135 +95,124 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h2 id="tituloDados" class="mb-5">Ficha</h2>
 
-				<%-- 	<input type="text" id="usuarioCadastro" hidden
-					name="usuarioCadastro" value="${funcionario.idUsuario}" /> --%>
+				<!-- <input type="text" id="usuarioCadastro" hidden name="usuarioCadastro" value="${funcionario.idUsuario}" /> -->
 
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="responsavelEmergencia" class="form-label">Qual
-							o responsável de emergência?</label> <select class="form-select"
-							aria-label="Responsável de Emergia" id="responsavelEmergencia"
+							o responsável de emergência?<span class="text-danger">*</span>
+						</label> <select class="form-select"
+							aria-label="Responsável de Emergência" id="responsavelEmergencia"
 							required name="responsavelEmergencia">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
-
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="peso" class="form-label">Peso:<span
-							class="red">*</span>
-						</label> <input type="number" id="peso" required autocomplete="off"
-							name="peso" class="form-control" min='0'
-							oninput="this.value = Math.abs(this.value)">
+							class="text-danger">*</span></label> <input type="number" id="peso"
+							required autocomplete="off" name="peso" class="form-control"
+							min="0" oninput="this.value = Math.abs(this.value)">
 					</div>
 					<div class="col-md-6">
 						<label for="altura" class="form-label">Altura (Em cm):<span
-							class="red">*</span>
-						</label> <input type="number" id="altura" required autocomplete="off"
-							name="altura" class="form-control" min='0' data-mask="0.00"
-							oninput="this.value = Math.abs(this.value)">
+							class="text-danger">*</span></label> <input type="number" id="altura"
+							required autocomplete="off" name="altura" class="form-control"
+							min="0" oninput="this.value = Math.abs(this.value)">
 					</div>
 				</div>
 
 				<div class="row mb-3">
-
 					<div class="col-md-6">
 						<label for="tipoSanguineo" class="form-label">Tipo
-							Sanguíneo:<span class="red">*</span>
-						</label> <input type="text" id="tipoSanguineo" required autocomplete="off"
-							name="tipoSanguineo" class="form-control" />
+							Sanguíneo:</label> <select class="form-select"
+							aria-label="Tipo Sanguíneo" id="tipoSanguineo"
+							name="tipoSanguineo">
+							<option selected disabled value="0">Selecione uma opção</option>
+							<option value="O+">O+</option>
+							<option value="O-">O-</option>
+							<option value="A+">A+</option>
+							<option value="A-">A-</option>
+							<option value="B+">B+</option>
+							<option value="B-">B-</option>
+							<option value="AB+">AB+</option>
+							<option value="AB-">AB-</option>
+						</select>
 					</div>
-
-
 					<div class="col-md-6">
 						<label for="transfusao" class="form-label">Aceita
-							transfusão de Sangue?<span class="red">*</span>
+							transfusão de Sangue?<span class="text-danger">*</span>
 						</label>
 						<div class="form-control card-form">
 							<label for="transfusao">Sim</label> <label class="switch">
-								<input type="checkbox" id="transfusao" name="transfusao"
-								required> <span class="slider"></span>
+								<input type="checkbox" id="transfusao" name="transfusao"> <span class="slider"></span>
 							</label> <label for="transfusao">Não</label>
 						</div>
 					</div>
 				</div>
 
-
 				<div class="row mb-3">
-
 					<div class="col-md-6">
-						<label for="numeroSUS" class="form-label">Numero SUS</label> <input
+						<label for="numeroSUS" class="form-label">Número SUS:</label> <input
 							type="text" id="numeroSUS" autocomplete="off" name="numeroSUS"
 							class="form-control" />
 					</div>
-
-
 					<div class="col-md-6">
-						<label for="planoSaude" class="form-label">Plano de Saúde
-						</label> <input type="text" id="planoSaude" autocomplete="off"
+						<label for="planoSaude" class="form-label">Plano de Saúde:</label>
+						<input type="text" id="planoSaude" autocomplete="off"
 							name="planoSaude" class="form-control" />
 					</div>
 				</div>
 
-
-
 				<div class="row mb-3">
 					<div class="col-md-6" id="cardCpf">
-						<label for="cpf" class="form-label">Numero da Carterinha:</label>
-						<input type="text" id="numCarterinha" autocomplete="off"
-							name="numCarterinha" class="form-control" />
+						<label for="numCarterinha" class="form-label">Número da
+							Carteirinha:</label> <input type="text" id="numCarterinha"
+							autocomplete="off" name="numCarterinha" class="form-control" />
 					</div>
-
-
 				</div>
 
-				<span class="infra-title"> Dados Hospital/Clínica </span>
+				<span class="infra-title">Dados Hospital/Clínica</span>
 				<hr>
 
-
 				<div class="row mb-3">
-
-
 					<div class="col-md-6">
 						<label for="lugarEmergencia" class="form-label">Em caso de
-							emergência, encaminhar o aluno para qual Hospital/Clinica? </label> <input
+							emergência, encaminhar o aluno para qual Hospital/Clínica?</label> <input
 							type="text" id="lugarEmergencia" required autocomplete="off"
 							name="lugarEmergencia" class="form-control" />
 					</div>
-
 					<div class="col-md-6">
-						<label for="telefone" class="form-label">Telefone:</label><span
-							class="red">*</span> <input type="tel" id="telefone"
+						<label for="telefone" class="form-label">Telefone:<span
+							class="text-danger">*</span></label> <input type="tel" id="telefone"
 							data-mask="(00) 0000-0000" autocomplete="off" name="telefone"
 							class="form-control" required />
 					</div>
-
 				</div>
-
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP :</label><span class="red">*</span>
-						<input type="tel" class="form-control" id="cep"
-							data-mask="00000-000" name="cep" />
+						<label for="cep" class="form-label">CEP:<span
+							class="text-danger">*</span></label> <input type="text" id="cep"
+							data-mask="00000-000" name="cep" class="form-control" required />
 					</div>
 					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:</label> <span
-							class="red">*</span><input type="text" id="endereco"
+						<label for="endereco" class="form-label">Endereço:<span
+							class="text-danger">*</span></label> <input type="text" id="endereco"
 							autocomplete="off" name="endereco" class="form-control" required />
 					</div>
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="numero" class="form-label">Número :</label> <input
+						<label for="numero" class="form-label">Número:</label> <input
 							type="text" id="numero" autocomplete="off" name="numero"
 							class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento</label> <input
+						<label for="complemento" class="form-label">Complemento:</label> <input
 							type="text" id="complemento" autocomplete="off"
 							name="complemento" class="form-control" />
 					</div>
@@ -231,33 +220,32 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:</label> <span
-							class="red">*</span> <input type="text" id="bairro"
-							autocomplete="off" name="bairro" class="form-control required" />
+						<label for="bairro" class="form-label">Bairro:<span
+							class="text-danger">*</span></label> <input type="text" id="bairro"
+							autocomplete="off" name="bairro" class="form-control" required />
 					</div>
 					<div class="col-md-6">
-						<label for="municipio" class="form-label">Município :</label> <span
-							class="red">*</span> <input type="text" id="municipio"
+						<label for="municipio" class="form-label">Município:<span
+							class="text-danger">*</span></label> <input type="text" id="municipio"
 							autocomplete="off" name="municipio" class="form-control" required />
 					</div>
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="uf" class="form-label">UF: </label><span class="red">*</span>
-						<input type="text" id="uf" autocomplete="off" name="uf"
-							class="form-control" required />
+						<label for="uf" class="form-label">UF:<span
+							class="text-danger">*</span></label> <input type="text" id="uf"
+							autocomplete="off" name="uf" class="form-control" required />
 					</div>
 				</div>
-				
+
 				<hr>
 
 				<div class="row mb-3">
-
 					<div class="col-md-6">
 						<label for="isAlergico" class="form-label">O aluno é
-							alérgico a algum tipo de medicamento tópico, oral ou injetável? <span
-							class="red">*</span>
+							alérgico a algum tipo de medicamento tópico, oral ou injetável?<span
+							class="text-danger">*</span>
 						</label>
 						<div class="form-control card-form">
 							<label for="isAlergico">Sim</label> <label class="switch">
@@ -266,21 +254,18 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</label> <label for="isAlergico">Não</label>
 						</div>
 					</div>
-
 					<div class="col-md-6" style="display: none" id="divDescIsAlergico">
 						<label for="descIsAlergico" class="form-label">Especifique:<span
-							class="red">*</span>
-						</label> <input type="text" id="descIsAlergico" autocomplete="off"
-							name="descIsAlergico" class="form-control" />
+							class="text-danger">*</span></label> <input type="text"
+							id="descIsAlergico" autocomplete="off" name="descIsAlergico"
+							class="form-control" />
 					</div>
-
 				</div>
 
 				<div class="row mb-3">
-
 					<div class="col-md-6">
 						<label for="tratamentoMedico" class="form-label">Faz
-							tratamento médico? <span class="red">*</span>
+							tratamento médico?<span class="text-danger">*</span>
 						</label>
 						<div class="form-control card-form">
 							<label for="tratamentoMedico">Sim</label> <label class="switch">
@@ -289,88 +274,75 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</label> <label for="tratamentoMedico">Não</label>
 						</div>
 					</div>
-
 					<div class="col-md-6" style="display: none"
 						id="divDescTratamentoMedico">
-						<label for="descTratamentoMedico" class="form-label">Especifique:
-						</label> <input type="text" id="descTratamentoMedico" autocomplete="off"
+						<label for="descTratamentoMedico" class="form-label">Especifique:</label>
+						<input type="text" id="descTratamentoMedico" autocomplete="off"
 							name="descTratamentoMedico" class="form-control" />
 					</div>
-
 				</div>
 
 				<div class="row mb-3">
-
 					<div class="col-md-6">
 						<label for="possuiDoenca" class="form-label">Possui
-							doencas/comorbidades?<span class="red">*</span>
+							doenças/comorbidades?<span class="text-danger">*</span>
 						</label>
 						<div class="form-control card-form">
-							<label for="transfusao">Sim</label> <label class="switch">
+							<label for="possuiDoenca">Sim</label> <label class="switch">
 								<input type="checkbox" id="possuiDoenca" name="possuiDoenca"
 								required> <span class="slider"></span>
 							</label> <label for="possuiDoenca">Não</label>
 						</div>
 					</div>
-
 					<div class="col-md-6" style="display: none" id="divDescDoenca">
 						<label for="descDoenca" class="form-label">Especifique:<span
-							class="red">*</span>
-						</label> <input type="text" id="descDoenca" autocomplete="off"
-							name="descDoenca" class="form-control" />
+							class="text-danger">*</span></label> <input type="text" id="descDoenca"
+							autocomplete="off" name="descDoenca" class="form-control" />
 					</div>
-
 				</div>
 
 				<div class="row mb-3">
-
-
-					<div class="col-md-6" style="display: none" id="divDescDoenca">
+					<div class="col-md-6" style="display: none" id="divOutrasDoencas">
 						<label for="outrasDoencas" class="form-label">Possui
-							outras doenças?:<span class="red">*</span>
+							outras doenças?<span class="text-danger">*</span>
 						</label> <input type="text" id="outrasDoencas" autocomplete="off"
 							name="outrasDoencas" class="form-control" />
 					</div>
-
 				</div>
 
-
-			</section>
-
-			<section
-				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<div class="col-md-12 text-center">
 					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Próximo</button>
 				</div>
 			</section>
-
 		</form>
 	</main>
+</body>
 
 
 
 
-	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
-		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/reservaVaga/fichaMedica.js"></script>
-	<script charset="UTF-8"
-		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
+	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+	crossorigin="anonymous"></script>
+<script charset="UTF-8"
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+	integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+	crossorigin="anonymous"></script>
+<script charset="UTF-8"
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+	integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+	crossorigin="anonymous"></script>
+<script charset="UTF-8"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script charset="UTF-8"
+	src="<%=contextPath%>/resources/assets/js/reservaVaga/fichaMedica.js"></script>
+<script charset="UTF-8"
+	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
 </body>
