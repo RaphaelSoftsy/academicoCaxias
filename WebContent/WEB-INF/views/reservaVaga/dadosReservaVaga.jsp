@@ -54,8 +54,8 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
-	crossorigin="anonymous"></script>
+<script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js" crossorigin="anonymous"></script>
+	
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 <link rel="stylesheet"
@@ -85,14 +85,13 @@ String contextPath = request.getContextPath();
 		<section
 			class="p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 			<div class="d-flex justify-content-end gap-2">
-				<button type="submit" id='reprovar'
-					class="btn btn-danger d-flex gap-2 align-items-center"
-					data-bs-dismiss="modal">
+				<button type="submit" id='reprovarCandidato' class="btn btn-danger"
+					onclick='reprovarCandidato()'>
 					<i class="fa-regular fa-circle-xmark"></i> <span>Reprovar
 						Candidato</span>
 				</button>
-				<button type="submit" id='aprovar' data-bs-dismiss="modal"
-					class="btn btn-success d-flex gap-2 align-items-center">
+				<button type="submit" id='aprovarCandidato'
+					onclick='aprovarCandidato()' class="btn btn-success">
 					<i class="fa-regular fa-circle-check"></i> <span>Aprovar
 						Candidato</span>
 				</button>
@@ -314,14 +313,14 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 
-					<div class="row mb-3 mt-3">
+					<div class="row mb-3 mt-3" id='boxQualPreencher'>
 						<label for="qualPreencher" class="form-label">Qual deseja
 							preencher?<span class="red">*</span>
 						</label>
 						<div class="form-control w-100 card-form qualPreencherSwitch">
 							<label for="qualPreencher">Certidão de Nascimento</label> <label
 								class="switch"> <input type="checkbox"
-								id="qualPreencherResponsavel" name="qualPreencher"> <span
+								id="qualPreencher" name="qualPreencher"> <span
 								class="slider slider-certidao"></span>
 							</label> <label for="qualPreencher">Certidão de Casamento</label>
 						</div>
@@ -709,7 +708,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 
-					<div class="row mb-3">
+					<div class="row mb-3" id="boxQualPreencherResponsavel">
 						<label for="qualPreencherResponsavel" class="form-label">Qual
 							deseja preencher?<span class="red">*</span>
 						</label>
@@ -992,48 +991,325 @@ String contextPath = request.getContextPath();
 
 					<h2 id="tituloDocumentos" class="mb-3">Aprovação documentos</h2>
 					<div class="col-md-6 mb-3">
-						<div class="form-control d-flex flex-column gap-2">
-							<h3 class="form-label">Certidão de nascimento:</h3>
-							<div class="d-flex gap-2">
+						<div class="form-control d-flex flex-column gap-2 ">
+							<div id="boxTxtCN"
+								class="d-flex gap-2 align-items-center justify-content-between">
+								<p class="form-label fw-medium">Certidão de nascimento:</p>
+								<!-- <p class="form-label fw-semibold">Em aprovação</p> -->
+							</div>
+							<!-- <div class="d-flex gap-2 align-items-center">
+								<p class="form-label fw-medium">Comprovante de residência:</p>
+								<p class="form-label fw-medium">
+									Status:<strong>Em aprovação</strong>
+								</p>
+							</div> -->
+							<div class="containerBtnCN">
 								<a href="" id='docCN' download
 									class="btn btn-primary d-flex gap-2 align-items-center"> <i
 									class="fa-solid fa-download"></i> <span>Baixar</span>
 								</a>
+
+								<button type="submit" id='aprovarCN' data-bs-toggle="modal"
+									data-bs-target="#aprovarDoc" class="btn btn-success">
+									<i class="fa-solid fa-thumbs-up"></i> <span>Aprovar</span>
+								</button>
 								<button type="submit" id='reprovarCN' data-bs-toggle="modal"
 									data-bs-target="#reprovarDoc"
 									class="btn btn-danger reprovarDoc">
 									<i class="fa-solid fa-thumbs-down"></i> <span>Reprovar</span>
 								</button>
-								<button type="submit" id='aprovarCN' data-bs-toggle="modal"
-									data-bs-target="#aprovarDoc" class="btn btn-success">
-									<i class="fa-solid fa-thumbs-up"></i> <span>Aprovar</span>
-								</button>
 							</div>
+							<h3 class="semDocCN">Documento não enviado</h3>
 						</div>
 					</div>
 					<div class="col-md-6 mb-3">
 						<div class="form-control d-flex flex-column gap-2">
-							<h3 class="form-label">Comprovante de residência:</h3>
-							<div class="d-flex gap-2">
+							<div id="boxTxtCR"
+								class="d-flex gap-2 align-items-center justify-content-between">
+								<p class="form-label fw-medium">Comprovante de residência:</p>
+								<!-- <p class="form-label fw-semibold">Em aprovação</p> -->
+							</div>
+							<div class="containerBtnCR">
 								<a href="" download id='docCR'
 									class="btn btn-primary d-flex gap-2 align-items-center"> <i
 									class="fa-solid fa-download"></i> <span>Baixar</span>
 								</a>
+
+								<button id='aprovarCR' class="btn btn-success"
+									data-bs-toggle="modal" data-bs-target="#aprovarDoc">
+									<i class="fa-solid fa-thumbs-up"></i> <span>Aprovar</span>
+								</button>
 								<button id='reprovarCR' data-bs-toggle="modal"
 									data-bs-target="#reprovarDoc"
 									class="btn btn-danger reprovarDoc">
 									<i class="fa-solid fa-thumbs-down"></i> <span>Reprovar</span>
 								</button>
-								<button id='aprovarCR' class="btn btn-success"data-bs-toggle="modal"
-									data-bs-target="#aprovarDoc">
-									<i class="fa-solid fa-thumbs-up"></i> <span>Aprovar</span>
-								</button>
 							</div>
+							<h3 class="semDocCR">Documento não enviado</h3>
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="nav-disabled" role="tabpanel"
-					aria-labelledby="nav-disabled-tab" tabindex="0">Profile 3</div>
+				<div class="tab-pane fade mb-5" id="nav-disabled" role="tabpanel"
+					aria-labelledby="nav-disabled-tab" tabindex="0">
+					<h2 id="tituloDados" class="mb-3">Ficha</h2>
+
+					<%-- 	<input type="text" id="usuarioCadastro" hidden
+					name="usuarioCadastro" value="${funcionario.idUsuario}" /> --%>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="responsavelEmergencia" class="form-label">Qual
+								o responsável de emergência?</label> <select class="form-select"
+								aria-label="Responsável de Emergia" id="responsavelEmergencia"
+								required name="responsavelEmergencia">
+								<option selected disabled>Selecione uma opção</option>
+							</select>
+						</div>
+
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="peso" class="form-label">Peso:<span
+								class="red">*</span>
+							</label> <input type="number" id="peso" required autocomplete="off"
+								name="peso" class="form-control" min='0'
+								oninput="this.value = Math.abs(this.value)">
+						</div>
+						<div class="col-md-6">
+							<label for="altura" class="form-label">Altura (Em cm):<span
+								class="red">*</span>
+							</label> <input type="number" id="altura" required autocomplete="off"
+								name="altura" class="form-control" min='0' data-mask="0.00"
+								oninput="this.value = Math.abs(this.value)">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+
+						<div class="col-md-6">
+							<label for="tipoSanguineo" class="form-label">Tipo
+								Sanguíneo:<span class="red">*</span>
+							</label> <input type="text" id="tipoSanguineo" required
+								autocomplete="off" name="tipoSanguineo" class="form-control" />
+						</div>
+
+
+						<div class="col-md-6">
+							<label for="transfusao" class="form-label">Aceita
+								transfusão de Sangue?<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="transfusao">Sim</label> <label class="switch">
+									<input type="checkbox" id="transfusao" name="transfusao"
+									required> <span class="slider"></span>
+								</label> <label for="transfusao">Não</label>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row mb-3">
+
+						<div class="col-md-6">
+							<label for="numeroSUS" class="form-label">Numero SUS</label> <input
+								type="text" id="numeroSUS" autocomplete="off" name="numeroSUS"
+								class="form-control" />
+						</div>
+
+
+						<div class="col-md-6">
+							<label for="planoSaude" class="form-label">Plano de Saúde
+							</label> <input type="text" id="planoSaude" autocomplete="off"
+								name="planoSaude" class="form-control" />
+						</div>
+					</div>
+
+
+
+					<div class="row mb-3">
+						<div class="col-md-6" id="cardCpf">
+							<label for="cpf" class="form-label">Numero da Carterinha:</label>
+							<input type="text" id="numCarterinha" autocomplete="off"
+								name="numCarterinha" class="form-control" />
+						</div>
+
+						<div class="col-md-6">
+							<label for="lugarEmergencia" class="form-label">Em caso
+								de emergência, encaminhar o aluno para qual Hospital/Clinica? </label> <input
+								type="text" id="lugarEmergencia" required autocomplete="off"
+								name="lugarEmergencia" class="form-control" />
+						</div>
+
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-6" id="cardCpf">
+							<label for="cpf" class="form-label">Numero da Carterinha:</label>
+							<input type="text" id="numCarterinha" autocomplete="off"
+								name="numCarterinha" class="form-control" />
+						</div>
+					</div>
+
+
+					<div class="row mb-3">
+
+
+						<div class="col-md-6">
+							<label for="lugarEmergencia" class="form-label">Em caso
+								de emergência, encaminhar o aluno para qual Hospital/Clinica? </label> <input
+								type="text" id="lugarEmergencia" required autocomplete="off"
+								name="lugarEmergencia" class="form-control" />
+						</div>
+
+						<div class="col-md-6">
+							<label for="telefone" class="form-label">Telefone do
+								Hospital/Clínica:</label><span class="red">*</span> <input type="tel"
+								id="telefone" data-mask="(00) 0000-0000" autocomplete="off"
+								name="telefone" class="form-control" required />
+						</div>
+
+					</div>
+
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="cep" class="form-label">CEP do
+								Hospital/Clínica:</label><span class="red">*</span> <input type="tel"
+								class="form-control" id="cep" data-mask="00000-000" name="cep" />
+						</div>
+						<div class="col-md-6">
+							<label for="endereco" class="form-label">Endereço do
+								Hospital/Clínica:</label> <span class="red">*</span><input type="text"
+								id="endereco" autocomplete="off" name="endereco"
+								class="form-control" required />
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="numero" class="form-label">Número do
+								Hospital/Clínica:</label> <input type="text" id="numero"
+								autocomplete="off" name="numero" class="form-control" />
+						</div>
+						<div class="col-md-6">
+							<label for="complemento" class="form-label">Complemento
+								do Hospital/Clínica</label> <input type="text" id="complemento"
+								autocomplete="off" name="complemento" class="form-control" />
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="bairro" class="form-label">Bairro do
+								Hospital/Clínica:</label> <span class="red">*</span> <input type="text"
+								id="bairro" autocomplete="off" name="bairro"
+								class="form-control required" />
+						</div>
+						<div class="col-md-6">
+							<label for="municipio" class="form-label">Município do
+								Hospital/Clínica:</label> <span class="red">*</span> <input type="text"
+								id="municipio" autocomplete="off" name="municipio"
+								class="form-control" required />
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="distrito" class="form-label">Distrito do
+								Hospital/Clínica:</label> <input type="text" id="distrito"
+								autocomplete="off" name="distrito" class="form-control" />
+						</div>
+						<div class="col-md-6">
+							<label for="uf" class="form-label">UF do
+								Hospital/Clínica: </label><span class="red">*</span> <input type="text"
+								id="uf" autocomplete="off" name="uf" class="form-control"
+								required />
+						</div>
+					</div>
+
+					<div class="row mb-3">
+
+						<div class="col-md-6">
+							<label for="isAlergico" class="form-label">O aluno é
+								alérgico a algum tipo de medicamento tópico, oral ou injetável?
+								<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isAlergico">Sim</label> <label class="switch">
+									<input type="checkbox" id="isAlergico" name="isAlergico"
+									required> <span class="slider"></span>
+								</label> <label for="isAlergico">Não</label>
+							</div>
+						</div>
+
+						<div class="col-md-6" style="display: none" id="divDescIsAlergico">
+							<label for="descIsAlergico" class="form-label">Especifique:<span
+								class="red">*</span>
+							</label> <input type="text" id="descIsAlergico" autocomplete="off"
+								name="descIsAlergico" class="form-control" />
+						</div>
+
+					</div>
+
+					<div class="row mb-3">
+
+						<div class="col-md-6">
+							<label for="tratamentoMedico" class="form-label">Faz
+								tratamento médico? <span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="tratamentoMedico">Sim</label> <label class="switch">
+									<input type="checkbox" id="tratamentoMedico"
+									name="tratamentoMedico" required> <span class="slider"></span>
+								</label> <label for="tratamentoMedico">Não</label>
+							</div>
+						</div>
+
+						<div class="col-md-6" style="display: none"
+							id="divDescTratamentoMedico">
+							<label for="descTratamentoMedico" class="form-label">Especifique:
+							</label> <input type="text" id="descTratamentoMedico" autocomplete="off"
+								name="descTratamentoMedico" class="form-control" />
+						</div>
+
+					</div>
+
+					<div class="row mb-3">
+
+						<div class="col-md-6">
+							<label for="possuiDoenca" class="form-label">Possui
+								doencas/comorbidades?<span class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="transfusao">Sim</label> <label class="switch">
+									<input type="checkbox" id="possuiDoenca" name="possuiDoenca"
+									required> <span class="slider"></span>
+								</label> <label for="possuiDoenca">Não</label>
+							</div>
+						</div>
+
+						<div class="col-md-6" style="display: none" id="divDescDoenca">
+							<label for="descDoenca" class="form-label">Especifique:<span
+								class="red">*</span>
+							</label> <input type="text" id="descDoenca" autocomplete="off"
+								name="descDoenca" class="form-control" />
+						</div>
+
+					</div>
+
+					<div class="row mb-3">
+
+
+						<div class="col-md-6" style="display: none" id="divDescDoenca">
+							<label for="outrasDoencas" class="form-label">Possui
+								outras doenças?:<span class="red">*</span>
+							</label> <input type="text" id="outrasDoencas" autocomplete="off"
+								name="outrasDoencas" class="form-control" />
+						</div>
+
+					</div>
+
+				</div>
 			</div>
 		</section>
 		<div class="modal fade" id="reprovarDoc" tabindex="-1"
@@ -1053,15 +1329,18 @@ String contextPath = request.getContextPath();
 							<div class="mb-4">
 								<label for="motivoReprovacaoDocumentoId" class="form-label">Motivo
 									reprovação:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="motivoReprovacaoDocumentoId"
-									id="motivoReprovacaoDocumentoId" required name="motivoReprovacaoDocumentoId">
-									<option value='0' selected disabled>Selecione um motivo:</option>
+								</label> <select class="form-select"
+									aria-label="motivoReprovacaoDocumentoId"
+									id="motivoReprovacaoDocumentoId" required
+									name="motivoReprovacaoDocumentoId">
+									<option value='0' selected disabled>Selecione um
+										motivo:</option>
 								</select>
 							</div>
 							<div class="mb-4">
 								<label for="obsAprovacao" class="form-label">Observação:
-								</label> <input type="text" id="obsAprovacao"
-									autocomplete="off" name="obsAprovacao" class="form-control" />
+								</label> <input type="text" id="obsAprovacao" autocomplete="off"
+									name="obsAprovacao" class="form-control" />
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
@@ -1090,8 +1369,8 @@ String contextPath = request.getContextPath();
 							</div> -->
 							<div class="mb-4">
 								<label for="obsAprovacaoID" class="form-label">Observação:
-								</label> <input type="text" id="obsAprovacaoID"
-									autocomplete="off" name="obsAprovacaoID" class="form-control" />
+								</label> <input type="text" id="obsAprovacaoID" autocomplete="off"
+									name="obsAprovacaoID" class="form-control" />
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"

@@ -8,27 +8,9 @@ let idPessoa = ''
 
 $(document).ready(function() {
 	var buttonId;
-
-	loadSelects()
-	getDadosCandidato()
-	getDocumentos()
-	/*getDadosResponsavel()*/
-
-	if ($('input[id="qualPreencherResponsavel"]').is(':checked')) {
-		$("#certidaoCasamentoResponsavel").hide()
-		$("#certidaoNascimentoResponsavel").show()
-	} else {
-		$("#certidaoNascimentoResponsavel").hide()
-		$("#certidaoCasamentoResponsavel").show()
-	}
-
-	/*if ($('input[id="qualPreencher"]').is(':checked')) {
-		$("#certidaoCasamento").hide()
-		$("#certidaoNascimento").show()
-	} else {
-		$("#certidaoNascimento").hide()
-		$("#certidaoCasamento").show()
-	}*/
+	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
+	$('#nav-responsavel input, #nav-responsavel select').attr('disabled', true);
+	$('#municipioNascimentoId').attr('disabled', true);
 
 	$.ajax({
 		url: url_base + "/motivoReprovacaoDocumento/conta/" + contaId,
@@ -46,6 +28,21 @@ $(document).ready(function() {
 		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
 	});
 
+	getDocumentos()
+	loadSelects()
+	getDadosCandidato()
+	getDadosResponsavel()
+	/*getDadosResponsavel()*/
+	/*if ($('input[id="qualPreencher"]').is(':checked')) {
+		$("#certidaoCasamento").hide()
+		$("#certidaoNascimento").show()
+	} else {
+		$("#certidaoNascimento").hide()
+		$("#certidaoCasamento").show()
+	}*/
+	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
+	$('#nav-responsavel input, #nav-responsavel select').attr('disabled', true);
+	$('#nav-disabled input, #nav-disabled select').attr('disabled', true);
 })
 
 
@@ -202,13 +199,14 @@ const getDadosResponsavel = () => {
 	});
 
 
-	$('#municipioNascimentoIdResponsavel').attr('disabled', false);
-	$('#certidaoNascimentoMunicipioCartorioIdResponsavel').attr('disabled', false);
-	$('#certidaoNascimentoMunicipioCartorioIdResponsavel').attr('disabled', false);
+	$('#municipioNascimentoIdResponsavel').attr('disabled', true);
+	$('#certidaoNascimentoMunicipioCartorioIdResponsavel').attr('disabled', true);
+	$('#certidaoNascimentoMunicipioCartorioIdResponsavel').attr('disabled', true);
 
 	$("isEnderecoAluno").hide();
+	console.log(idPessoa)
 	$.ajax({
-		url: url_base + '/responsavel/pessoa/' + idPessoa,
+		url: url_base + '/responsavel/candidato/' + idCandidato,
 		type: "get",
 		async: false,
 		error: function(e) {
@@ -231,7 +229,7 @@ const getDadosResponsavel = () => {
 
 			$('#certidaoNascimentoNumeroResponsavel').val(data.pessoa.certidaoNascimentoNumero);
 			$('#certidaoNascimentoCartorioResponsavel').val(data.pessoa.certidaoNascimentoCartorio);
-			$('#certidaoNascimentoUfCartorioIdResponsavel').val(data.pessoa.certidaoNascimentoMunicipioCartorio.uf.idUf);
+			$('#certidaoNascimentoUfCartorioIdResponsavel').val(data.pessoa.certidaoNascimentoMunicipioCartorio.ufId);
 			$('#certidaoNascimentoMunicipioCartorioIdResponsavel').val(data.pessoa.certidaoNascimentoMunicipioCartorio.idMunicipio);
 			$('#certidaoNascimentoDataEmissaoResponsavel').val(data.pessoa.certidaoNascimentoDataEmissao);
 			$('#certidaoNascimentoFolhaResponsavel').val(data.pessoa.certidaoNascimentoFolha);
@@ -297,7 +295,7 @@ const getDadosResponsavel = () => {
 		// Exemplo para preenchimento de campo select com município de nascimento
 		$('#municipioNascimentoIdResponsavel').val(data.pessoa.municipioNascimento.idMunicipio);
 		$('#ufNascimentoIdResponsavel').val(data.pessoa.municipioNascimento.uf.idUf);
-		$('#rgUfEmissorIdResponsavel').val(data.pessoa.rgUfEmissor.idUf);
+		$('#rgUfEmissorIdResponsavel').val(data.pessoa.rgUfEmissor != null ? data.pessoa.rgUfEmissor.idUf : '');
 
 		// Exemplo para estado civil usando radio button
 		$('input[name="estadoCivilResponsavel"][value="' + data.pessoa.estadoCivil + '"]').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'
@@ -434,6 +432,28 @@ const getDadosCandidato = () => {
 		}
 	}).done(function(response) {
 		idPessoa = response.pessoa
+		console.log(idPessoa)
+
+		if (response.aprovado == 'S') {
+			$('#aprovarCandidato').hide()
+			$('#reprovarCandidato').css('display', 'flex')
+			$('#reprovarCandidato').css('gap', '0.5rem')
+			$('#reprovarCandidato').css('align-items', 'center')
+		} else if (response.aprovado == 'N') {
+			$('#reprovarCandidato').hide()
+			$('#aprovarCandidato').css('display', 'flex')
+			$('#aprovarCandidato').css('gap', '0.5rem')
+			$('#aprovarCandidato').css('align-items', 'center')
+		} else {
+			$('#aprovarCandidato').css('display', 'flex')
+			$('#aprovarCandidato').css('gap', '0.5rem')
+			$('#aprovarCandidato').css('align-items', 'center')
+			$('#reprovarCandidato').css('display', 'flex')
+			$('#reprovarCandidato').css('gap', '0.5rem')
+			$('#reprovarCandidato').css('align-items', 'center')
+		}
+
+
 		$.ajax({
 			url: url_base + '/pessoas/' + response.pessoa,
 			type: "get",
@@ -507,7 +527,7 @@ const getDadosCandidato = () => {
 				data.certidaoNascimentoLivro !== null ||
 				data.certidaoNascimentoOrdem !== null) {
 
-				$('input[id="qualPreencher"]').prop('checked', true)
+				$('input[id="qualPreencher"]').attr('checked', true)
 
 				$("#certidaoCasamento").hide()
 				$("#certidaoNascimento").show()
@@ -580,11 +600,12 @@ const getDadosCandidato = () => {
 
 	})
 
-	$('#municipioNascimentoId').attr('disabled', false)
-	$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
-	$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
+	$('#municipioNascimentoId').attr('disabled', true)
+	$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', true)
+	$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', true)
 
 	$("isEnderecoAluno").hide()
+
 }
 
 const getDocumentos = () => {
@@ -593,82 +614,137 @@ const getDocumentos = () => {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		$.each(data, function(index, item) {
-			let img = { "caminho": item.docFileServer }
-			console.log(item)
-			/*$.ajax({
-				url: url_base + `/candidatoDocumentoIngresso/${item.idCandidatoDocumentoIngresso}/arquivo`,
-				type: "GET",
-				data: JSON.stringify(img),
-				async: false,
-			}).done(function(response) {
-				alert(item.obsAprovacao + ' ' + index)
-				if (item.obsAprovacao == 'CN') {
-					$('#docCN').attr('href', './pdfCN.pdf');
-				} else {
-					$('#docCR').attr('href', './pdfCR.pdf');
-				}
-			}).fail(function(jqXHR, textStatus, errorThrown) {
-				console.error("Erro na solicitação de imagens AJAX:", textStatus, errorThrown);
-			});*/
-			if (index == 0) {
-				$('#reprovarCR').attr('data-id', item.idCandidatoDocumentoIngresso);
-				$('#aprovarCR').attr('data-id', item.idCandidatoDocumentoIngresso);
-				$('#docCR').attr('href', '../../../resources/js/reservaVaga/pdfCR.pdf');
-			} else {
-				$('#reprovarCN').attr('data-id', item.idCandidatoDocumentoIngresso);
-				$('#aprovarCN').attr('data-id', item.idCandidatoDocumentoIngresso);
-				$('#docCN').attr('href', '../../../resources/js/reservaVaga/pdfCN.pdf');
-			}
-		});
+		if (data.length == 0) {
+			$('.containerBtnCR').attr("hidden", true);
+			$('.containerBtnCN').attr("hidden", true);
+		} else if (data.length == 1) {
+			$('.containerBtnCR').css('display', 'flex')
+			$('.containerBtnCR').css('gap', '0.5rem')
+			$('.containerBtnCN').attr("hidden", true);
+			$('.semDocCR').hide()
+		} else {
+			$('.containerBtnCR').css('display', 'flex')
+			$('.containerBtnCR').css('gap', '0.5rem')
+			$('.containerBtnCN').css('display', 'flex')
+			$('.containerBtnCN').css('gap', '0.5rem')
+			$('.semDocCR').hide()
+			$('.semDocCN').hide()
+			$.each(data, function(index, item) {
+				let img = { "caminho": item.docFileServer }
+				let text = ''
+				let color = null
 
+				if (item.docAprovado == null) {
+					text = 'Em aprovação'
+					if (index == 0) {
+						$('#reprovarCR').attr('data-id', item.idCandidatoDocumentoIngresso);
+						$('#aprovarCR').attr('data-id', item.idCandidatoDocumentoIngresso);
+						$('#docCR').attr('href', '../../../resources/js/reservaVaga/pdfCR.pdf');
+
+						const message = $("<p class='form-label fw-semibold'></p>").text(text)
+						$("#boxTxtCR").append(message)
+					} else {
+						$('#reprovarCN').attr('data-id', item.idCandidatoDocumentoIngresso);
+						$('#aprovarCN').attr('data-id', item.idCandidatoDocumentoIngresso);
+						$('#docCN').attr('href', '../../../resources/js/reservaVaga/pdfCN.pdf');
+
+						const message = $("<p class='form-label fw-semibold'></p>").text(text)
+						$("#boxTxtCN").append(message)
+					}
+				} else {
+					if (item.docAprovado == 'S') {
+						text = 'Aprovado'
+						color = '#157347'
+					} else {
+						text = 'Reprovado'
+						color = '#BB2D3B'
+					}
+
+					if (index == 0) {
+						if (item.docAprovado == 'S') {
+							$('#aprovarCR').hide()
+							$('#reprovarCR').attr('data-id', item.idCandidatoDocumentoIngresso);
+						} else {
+							$('#reprovarCR').hide()
+							$('#aprovarCR').attr('data-id', item.idCandidatoDocumentoIngresso);
+						}
+
+						$('#docCR').attr('href', '../../../resources/js/reservaVaga/pdfCR.pdf');
+						const message = $("<p class='form-label fw-semibold'></p>").text(text).css('color', color != null ? color : '');
+						$("#boxTxtCR").append(message)
+					} else {
+						if (item.docAprovado == 'S') {
+							$('#aprovarCN').hide()
+							$('#reprovarCN').attr('data-id', item.idCandidatoDocumentoIngresso);
+						} else {
+							$('#reprovarCN').hide()
+							$('#aprovarCN').attr('data-id', item.idCandidatoDocumentoIngresso);
+						}
+
+						$('#docCN').attr('href', '../../../resources/js/reservaVaga/pdfCR.pdf');
+						const message = $("<p class='form-label fw-semibold'></p>").text(text).css('color', color != null ? color : '');
+						$("#boxTxtCN").append(message)
+					}
+				}
+			})
+		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
 	});
-
-	// Configura o evento de clique para iniciar o download
-	$('#docCN, #docCR').on('click', function(event) {
-		// Impede o comportamento padrão do link
-		event.preventDefault();
-
-		// Obtém o URL do arquivo a ser baixado do atributo href
-		var downloadUrl = $(this).attr('href');
-
-		console.log(downloadUrl)
-
-		// Cria um link temporário para iniciar o download
-		var link = document.createElement('a');
-		link.href = downloadUrl;
-		link.download = 'documento.pdf'; // Nome do arquivo a ser baixado
-
-		// Adiciona o link ao corpo do documento e simula um clique para iniciar o download
-		document.body.appendChild(link);
-		link.click();
-
-		// Remove o link do corpo do documento depois que o download começar
-		document.body.removeChild(link);
-	});
 }
 
+
+// Configura o evento de clique para iniciar o download
+$('#docCN, #docCR').on('click', function(event) {
+	// Impede o comportamento padrão do link
+	event.preventDefault();
+
+	// Obtém o URL do arquivo a ser baixado do atributo href
+	var downloadUrl = $(this).attr('href');
+
+	console.log(downloadUrl)
+
+	// Cria um link temporário para iniciar o download
+	var link = document.createElement('a');
+	link.href = downloadUrl;
+	link.download = 'documento.pdf'; // Nome do arquivo a ser baixado
+
+	// Adiciona o link ao corpo do documento e simula um clique para iniciar o download
+	document.body.appendChild(link);
+	link.click();
+
+	// Remove o link do corpo do documento depois que o download começar
+	document.body.removeChild(link);
+});
+
+
 $('#reprovarCR').click(() => {
+	$('#obsAprovacao').attr('disabled', false);
+	$('#obsAprovacaoID').attr('disabled', false);
 	$('#title-edit').text('Comprovante de residência')
 	idDoc = $('#reprovarCR').attr('data-id')
 	console.log(idDoc)
 })
 
 $('#aprovarCR').click(() => {
+	$('#obsAprovacaoID').attr('disabled', false);
+	$('#obsAprovacao').attr('disabled', false);
 	$('#title-aprovar').text('Comprovante de residência')
 	idDoc = $('#aprovarCR').attr('data-id')
 	console.log(idDoc)
 })
 
 $('#reprovarCN').click(() => {
+	$('#obsAprovacao').attr('disabled', false);
+	$('#obsAprovacaoID').attr('disabled', false);
 	$('#title-edit').text('Certidão de nascimento')
 	idDoc = $('#reprovarCN').attr('data-id')
 	console.log(idDoc)
 })
 
 $('#aprovarCN').click(() => {
+	$('#obsAprovacaoID').attr('disabled', false);
+	$('#obsAprovacao').attr('disabled', false);
 	$('#title-aprovar').text('Certidão de nascimento')
 	idDoc = $('#aprovarCN').attr('data-id')
 	console.log(idDoc)
@@ -713,6 +789,8 @@ const reprovarDocumento = () => {
 		Swal.fire({
 			title: "Documento Reprovado",
 			icon: "success",
+		}).then(result => {
+			window.location.reload()
 		})
 	});
 }
@@ -756,6 +834,8 @@ const aprovarDocumento = () => {
 		Swal.fire({
 			title: "Documento Aprovado",
 			icon: "success",
+		}).then(result => {
+			window.location.reload()
 		})
 	});
 }
@@ -764,6 +844,7 @@ $("#formDoc").on("submit", function(e) {
 	e.preventDefault();
 	reprovarDocumento();
 	limparCampos()
+
 	return false;
 });
 
@@ -781,7 +862,7 @@ const limparCampos = () => {
 
 $('input[name="qualPreencher"]').click(function() {
 	console.log($('input[name="qualPreencher"]').attr('checked'))
-	console.log($('input[name="qualPreencher"]').val())
+	console.log($('input[name="qualPreencher"]').is(':checked'))
 	if ($(this).is(':checked')) {
 		$("#certidaoNascimento").show();
 		$("#certidaoCasamento").hide();
@@ -826,3 +907,124 @@ $('input[name="qualPreencher"]').click(function() {
 
 	}
 });
+
+$('input[name="qualPreencherResponsavel"]').click(function() {
+	console.log($('input[name="qualPreencher"]').attr('checked'))
+	console.log($('input[name="qualPreencher"]').is(':checked'))
+	if ($(this).is(':checked')) {
+		$("#certidaoNascimentoResponsavel").show();
+		$("#certidaoCasamentoResponsavel").hide();
+		$("[name='certidaoNascimentoNumeroResponsavel']").attr("required", true);
+		$("[name='certidaoNascimentoCidadeCartorioResponsavel']").attr("required", true);
+		$("[name='certidaoNascimentoCartorioResponsavel']").attr("required", true);
+		$("[name='certidaoNascimentoUfCartorioIdResponsavel']").attr("required", true);
+		$("[name='certidaoNascimentoDataEmissaoResponsavel']").attr("required", true);
+		$("[name='certidaoNascimentoFolhaResponsavel']").attr("required", true);
+		$("[name='certidaoNascimentoLivroResponsavel']").attr("required", true);
+		$("[name='certidaoNascimentoOrdemResponsavel']").attr("required", true);
+
+		$("[name='certidaoCasamentoNumeroResponsavel']").attr("required", false);
+		$("[name='certidaoCasamentoCartorioResponsavel']").attr("required", false);
+		$("[name='certidaoCasamentoUfCartorioIdResponsavel']").attr("required", false);
+		$("[name='certidaoCasamentoCidadeCartorioResponsavel']").attr("required", false);
+		$("[name='certidaoCasamentoFolhaResponsavel']").attr("required", false);
+		$("[name='certidaoCasamentoLivroResponsavel']").attr("required", false);
+		$("[name='certidaoCasamentoOrdemResponsavel']").attr("required", false);
+		$("[name='certidaoCasamentoDataEmissaoResponsavel']").attr("required", false);
+	} else {
+		$("#certidaoNascimentoResponsavel").hide();
+		$("#certidaoCasamentoResponsavel").show();
+		$("[name='certidaoCasamentoNumeroResponsavel']").attr("required", true);
+		$("[name='certidaoCasamentoCartorioResponsavel']").attr("required", true);
+		$("[name='certidaoCasamentoUfCartorioIdResponsavel']").attr("required", true);
+		$("[name='certidaoCasamentoCidadeCartorioResponsavel']").attr("required", true);
+		$("[name='certidaoCasamentoFolhaResponsavel']").attr("required", true);
+		$("[name='certidaoCasamentoLivroResponsavel']").attr("required", true);
+		$("[name='certidaoCasamentoOrdemResponsavel']").attr("required", true);
+		$("[name='certidaoCasamentoDataEmissaoResponsavel']").attr("required", true);
+
+		$("[name='certidaoNascimentoNumeroResponsavel']").attr("required", false);
+		$("[name='certidaoNascimentoCidadeCartorioResponsavel']").attr("required", false);
+		$("[name='certidaoNascimentoCartorioResponsavel']").attr("required", false);
+		$("[name='certidaoNascimentoUfCartorioIdResponsavel']").attr("required", false);
+		$("[name='certidaoNascimentoDataEmissaoResponsavel']").attr("required", false);
+		$("[name='certidaoNascimentoFolhaResponsavel']").attr("required", false);
+		$("[name='certidaoNascimentoLivroResponsavel']").attr("required", false);
+		$("[name='certidaoNascimentoOrdemResponsavel']").attr("required", false);
+	}
+});
+
+const aprovarCandidato = () => {
+	Swal.fire({
+		title: "Deseja mesmo aprovar esse candidato?",
+		icon: "question",
+		showCancelButton: true,
+		showConfirmButton: true,
+		showDenyButton: false,
+		confirmButtonText: 'Aprovar',
+		cancelButtonText: 'Cancelar'
+	}).then(result => {
+		if (result.isConfirmed) {
+			$.ajax({
+				url: url_base + "/candidatos/" + Number(idCandidato) + '/aprovar',
+				type: "put",
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!"
+
+					});
+				}
+			}).done(function(data) {
+				Swal.fire({
+					title: "Aprovado com sucesso",
+					icon: "success",
+				}).then((data) => {
+					window.location.href = 'reservas'
+				})
+			})
+		} else if (result.isCanceled) { }
+	})
+}
+
+const reprovarCandidato = () => {
+	Swal.fire({
+		title: "Deseja mesmo reprovar esse candidato?",
+		icon: "question",
+		showCancelButton: true,
+		showConfirmButton: false,
+		showDenyButton: true,
+		denyButtonText: 'Reprovar',
+		cancelButtonText: 'Cancelar'
+	}).then(result => {
+		if (result.isDenied) {
+			$.ajax({
+				url: url_base + "/candidatos/" + Number(idCandidato) + '/reprovar',
+				type: "put",
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!"
+
+					});
+				}
+			}).done(function(data) {
+				Swal.fire({
+					title: "Reprovado com sucesso",
+					icon: "success",
+				}).then((data) => {
+					window.location.href = 'reservas'
+				})
+			})
+		} else if (result.isCanceled) { }
+	})
+}
+
