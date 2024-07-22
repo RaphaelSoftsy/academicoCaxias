@@ -44,7 +44,8 @@
 <script charset="UTF-8"  src="sweetalert2.all.min.js"></script>
 
 <!-- FontAwesome -->
-<script charset="UTF-8"  src="https://kit.fontawesome.com/2476720ce5.js"
+<script charset="UTF-8" src="
+https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous">
 	
 </script>
