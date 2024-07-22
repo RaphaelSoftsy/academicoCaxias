@@ -54,8 +54,9 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js" crossorigin="anonymous"></script>
-	
+<script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
+	crossorigin="anonymous"></script>
+
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 <link rel="stylesheet"
@@ -102,9 +103,9 @@ String contextPath = request.getContextPath();
 						data-bs-toggle="tab" data-bs-target="#nav-dados-aluno"
 						type="button" role="tab" aria-controls="nav-dados-aluno"
 						aria-selected="true">Dados do Aluno</button>
-					<button class="nav-link" id="nav-responsavel-tab"
-						data-bs-toggle="tab" data-bs-target="#nav-responsavel"
-						type="button" role="tab" aria-controls="nav-responsavel"
+					<button class="nav-link" id="table-responsavel-tab"
+						data-bs-toggle="tab" data-bs-target="#table-responsavel"
+						type="button" role="tab" aria-controls="table-responsavel"
 						aria-selected="false">Responsáveis</button>
 					<button class="nav-link" id="nav-doc-tab" data-bs-toggle="tab"
 						data-bs-target="#nav-doc" type="button" role="tab"
@@ -118,7 +119,14 @@ String contextPath = request.getContextPath();
 			<div class="tab-content" id="nav-tabContent">
 				<div class="tab-pane fade show active mb-4" id="nav-dados-aluno"
 					role="tabpanel" aria-labelledby="nav-dados-aluno-tab" tabindex="0">
-					<h2 id="tituloDados" class="mb-3">Dados Pessoais</h2>
+					<div class="d-flex align-items-center justify-content-between">
+						<h2 id="tituloDados" class="mb-3">Dados Pessoais</h2>
+						<button type="submit" id='editarCandidato'
+							class="btn btn-primary d-flex gap-2 h-50 align-items-center" onclick='editarCandidato()'>
+							<i class="fa-solid fa-pen"></i> <span>Editar
+								Candidato</span>
+						</button>
+					</div>
 					<%-- 	<input type="text" id="usuarioCadastro" hidden
 					name="usuarioCadastro" value="${funcionario.idUsuario}" /> --%>
 
@@ -485,6 +493,34 @@ String contextPath = request.getContextPath();
 									name="certidaoCasamentoDataEmissao" class="form-control" />
 							</div>
 						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade mb-4" id="table-responsavel"
+					role="tabpanel" aria-labelledby="table-responsavel-tab"
+					tabindex="0">
+
+					<table
+						class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+						<thead>
+							<tr>
+								<th scope="col">Nome</th>
+								<th scope="col">Parêntesco</th>
+								<th scope="col">Estado Civil</th>
+								<th class='text-center' scope="col" width="10%">Ações</th>
+							</tr>
+						</thead>
+						<tbody id="cola-tabela" class="table-group-divider">
+
+						</tbody>
+					</table>
+					<div id="pagination" class="mx-auto mt-auto">
+						<button id="prev" class="btn btn-sm">
+							<i class="fa-solid fa-angle-left fa-xl"></i>
+						</button>
+						<div id="page-numbers" class="btn-group"></div>
+						<button id="next" class="btn btn-sm">
+							<i class="fa-solid fa-angle-right fa-xl"></i>
+						</button>
 					</div>
 
 				</div>

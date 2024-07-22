@@ -1,7 +1,11 @@
 let dadosForm = JSON.parse(localStorage.getItem('jsonAluno'))
-const id = getSearchParams("id");
+let id = getSearchParams("id");
+const candidatoId = getSearchParams("idCandidato");
 
-$(document).ready(function(){
+$(document).ready(function() {
+	if (candidatoId != undefined) {
+		id = candidatoId
+	}
 	carregarDados(id)
 })
 $("#cep").blur(function() {
@@ -29,8 +33,9 @@ $("#cep").blur(function() {
 
 function carregarDados(id) {
 	$(".bg-loading").fadeIn();
+
 	if (id != undefined) {
-		
+
 		$.ajax({
 			url: url_base + '/candidatos/' + id,
 			type: "get",
@@ -94,73 +99,75 @@ $('#formSubmit').submit(function(event) {
 	dadosForm.pessoaDTO.paisResidenciaId = 2
 
 	console.log(dadosForm)
-	if(id != undefined){
-		
+	if (id != undefined) {
+
 		dadosForm.pessoaDTO.idCandidato = id
 		$.ajax({
-		url: url_base + '/candidatos/pessoa-candidato',
-		type: "PUT",
-		data: JSON.stringify(dadosForm),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
+			url: url_base + '/candidatos/pessoa-candidato',
+			type: "PUT",
+			data: JSON.stringify(dadosForm),
+			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading()
+			},
+			error: function(e) {
+				Swal.close()
+				console.log(e)
+				console.log(e.responseJSON)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível editar o aluno!",
+				});
+			}
+		}).done(function(data) {
+
 			Swal.close()
-			console.log(e)
-			console.log(e.responseJSON)
 			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível editar o aluno!",
-			});
-		}
-	}).done(function(data) {
+				title: "Editado com sucesso",
+				icon: "success",
+			})
 
-		Swal.close()
-		Swal.fire({
-			title: "Editado com sucesso",
-			icon: "success",
-		})
-		
-		window.location.href = "reservas"
+			if (candidatoId != undefined) {
+				window.location.href = "dados-reserva-vaga?id=" + candidatoId
+			} else {
+				window.location.href = "reservas"
+			}
+		});
+	} else {
 
 
-	});
-	}else{
-		
-	
-	$.ajax({
-		url: url_base + '/candidatos/pessoa-candidato',
-		type: "POST",
-		data: JSON.stringify(dadosForm),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
+		$.ajax({
+			url: url_base + '/candidatos/pessoa-candidato',
+			type: "POST",
+			data: JSON.stringify(dadosForm),
+			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading()
+			},
+			error: function(e) {
+				Swal.close()
+				console.log(e)
+				console.log(e.responseJSON)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível adcionar o aluno nesse momento!",
+				});
+			}
+		}).done(function(data) {
+
 			Swal.close()
-			console.log(e)
-			console.log(e.responseJSON)
 			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível adcionar o aluno nesse momento!",
-			});
-		}
-	}).done(function(data) {
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			})
 
-		Swal.close()
-		Swal.fire({
-			title: "Cadastrado com sucesso",
-			icon: "success",
-		})
-
-		localStorage.setItem("idCandidato", data.idCandidato)
-		window.location.href = "codigo-reserva"
+			localStorage.setItem("idCandidato", data.idCandidato)
+			window.location.href = "codigo-reserva"
 
 
-	});
+		});
 	}
 
 })

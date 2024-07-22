@@ -70,7 +70,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 </head>
 
 <body>
-<div class="bg-loading">
+	<div class="bg-loading">
 		<div class="spinner">
 			<div class="rect1"></div>
 			<div class="rect2"></div>
@@ -271,23 +271,23 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil_co" value="so" /> <label class="form-check-label"
-									for="solteiro">Solteiro(a)</label>
+									id="estadoCivil_co" value="so" /> <label
+									class="form-check-label" for="solteiro">Solteiro(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil_ca" value="ca" /> <label class="form-check-label"
-									for="casado">Casado(a)</label>
+									id="estadoCivil_ca" value="ca" /> <label
+									class="form-check-label" for="casado">Casado(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil_vi" value="vi" /> <label class="form-check-label"
-									for="viuvo">Viúvo(a)</label>
+									id="estadoCivil_vi" value="vi" /> <label
+									class="form-check-label" for="viuvo">Viúvo(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil_di" value="di" /> <label class="form-check-label"
-									for="divorciado">Divorciado(a)</label>
+									id="estadoCivil_di" value="di" /> <label
+									class="form-check-label" for="divorciado">Divorciado(a)</label>
 							</div>
 						</div>
 					</div>
@@ -476,7 +476,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">Município do Cartório</label> <select class="form-select"
+						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">Município
+							do Cartório</label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoCidadeCartorioId"
 							name="certidaoCasamentoCidadeCartorioId" disabled>
@@ -634,12 +635,15 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosResponsavel.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-		
-	<!--  Importação dop Select 2 -->	
-	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+	<!--  Importação dop Select 2 -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </body>
 </html>

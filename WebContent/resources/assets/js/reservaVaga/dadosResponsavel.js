@@ -1,7 +1,8 @@
 const contaId = sessionStorage.getItem('contaId')
 var url_base = "http://10.40.110.2:8080/api-educacional";
 const idCandidadto = localStorage.getItem("idCandidato")
-const id = getSearchParams("id");
+let id = getSearchParams("id");
+let responsavelIdParams = getSearchParams("idResponsavel");
 let idCandidatoRelacionamento = 0
 
 function getSearchParams(k) {
@@ -218,10 +219,16 @@ $(document).ready(function() {
 	});
 
 
-	if (id != undefined) {
+	if (id != undefined || responsavelIdParams != undefined) {
+		console.log(responsavelIdParams)
 		const loader = document.querySelector(".bg-loading");
 		loader.parentElement.removeChild(loader);
+		
+		if( responsavelIdParams != undefined){
+			id = responsavelIdParams
+		}
 
+		console.log(id)
 
 		$('#municipioNascimentoId').attr('disabled', false)
 		$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
@@ -229,7 +236,7 @@ $(document).ready(function() {
 
 		$("isEnderecoAluno").hide()
 		$.ajax({
-			url: url_base + '/responsavel/pessoa/' + id,
+			url: url_base + '/responsavel/' + id,
 			type: "get",
 			async: false,
 		}).done(function(data) {
@@ -238,11 +245,11 @@ $(document).ready(function() {
 
 
 			$.ajax({
-				url: url_base + '/candidatoRelacionamento/pessoa/' + id,
+				url: url_base + '/candidatoRelacionamento/pessoa/' + data.pessoa.idPessoa,
 				type: "get",
 				async: false,
-			}).done(function(data) {
-				idCandidatoRelacionamento = data[0].idCandidatoRelacionamento
+			}).done(function(res) {
+				idCandidatoRelacionamento = res[0].idCandidatoRelacionamento
 			})
 
 
@@ -565,7 +572,9 @@ $('#formSubmit').submit(function(event) {
 
 
 
-	if (id != undefined) {
+	if (id != undefined || responsavelIdParams != undefined) {
+		id = responsavelIdParams
+		dadosFormulario.candidatoRelacionamentoDTO.candidatoId = Number(idCandidadto)
 		dadosFormulario.candidatoRelacionamentoDTO.pessoaId = Number(id)
 		dadosFormulario.pessoaDTO.idPessoa = Number(id)
 		dadosFormulario.candidatoRelacionamentoDTO.idCandidatoRelacionamento = idCandidatoRelacionamento

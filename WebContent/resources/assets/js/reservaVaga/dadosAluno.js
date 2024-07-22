@@ -1,6 +1,7 @@
 const contaId = sessionStorage.getItem('contaId')
 const idCandidato = sessionStorage.getItem('idCandidato')
-const id = getSearchParams("id");
+let id = getSearchParams("id");
+const candidatoId = getSearchParams("idCandidato");
 var url_base = "http://10.40.110.2:8080/api-educacional";
 var idPessoa = 0
 var numeroCandidato = 0
@@ -184,7 +185,12 @@ $(document).ready(function() {
 		});
 	})
 
-	carregarDados(id)
+	if (candidatoId != undefined) {
+		carregarDados(candidatoId)
+	} else {
+		carregarDados(id)
+	}
+
 	// Função para capturar os dados do formulário ao ser submetido
 	$('#formSubmit').submit(function(event) {
 
@@ -356,10 +362,15 @@ $(document).ready(function() {
 			dadosFormulario.candidatoDTO.ofertaConcursoId = ofertaConcursoId
 			dadosFormulario.candidatoDTO.usuarioAprovacaoId = usuarioAprovacaoId
 			dadosFormulario.candidatoDTO.classificacao = classificacao
-			
+
 			localStorage.setItem('jsonAluno', JSON.stringify(dadosFormulario))
 			localStorage.setItem('numeroReserva', dadosFormulario.candidatoDTO.candidato)
-			window.location.href = "endereco-aluno?id=" + id;
+
+			if (candidatoId != undefined) {
+				window.location.href = "endereco-aluno?idCandidato=" + id;
+			} else {
+				window.location.href = "endereco-aluno?id=" + id;
+			}
 		} else {
 			localStorage.setItem('jsonAluno', JSON.stringify(dadosFormulario))
 			localStorage.setItem('numeroReserva', dadosFormulario.candidatoDTO.candidato)
