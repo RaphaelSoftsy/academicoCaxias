@@ -1,8 +1,7 @@
 const contaId = sessionStorage.getItem('contaId')
 var url_base = "http://10.40.110.2:8080/api-educacional";
 const idCandidadto = localStorage.getItem("idCandidato")
-let id = getSearchParams("id");
-let responsavelIdParams = getSearchParams("idResponsavel");
+const id = getSearchParams("id");
 let idCandidatoRelacionamento = 0
 
 function getSearchParams(k) {
@@ -219,16 +218,10 @@ $(document).ready(function() {
 	});
 
 
-	if (id != undefined || responsavelIdParams != undefined) {
-		console.log(responsavelIdParams)
+	if (id != undefined) {
 		const loader = document.querySelector(".bg-loading");
 		loader.parentElement.removeChild(loader);
-		
-		if( responsavelIdParams != undefined){
-			id = responsavelIdParams
-		}
 
-		console.log(id)
 
 		$('#municipioNascimentoId').attr('disabled', false)
 		$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
@@ -236,7 +229,7 @@ $(document).ready(function() {
 
 		$("isEnderecoAluno").hide()
 		$.ajax({
-			url: url_base + '/responsavel/' + id,
+			url: url_base + '/responsavel/pessoa/' + id,
 			type: "get",
 			async: false,
 		}).done(function(data) {
@@ -245,11 +238,11 @@ $(document).ready(function() {
 
 
 			$.ajax({
-				url: url_base + '/candidatoRelacionamento/pessoa/' + data.pessoa.idPessoa,
+				url: url_base + '/candidatoRelacionamento/pessoa/' + id,
 				type: "get",
 				async: false,
-			}).done(function(res) {
-				idCandidatoRelacionamento = res[0].idCandidatoRelacionamento
+			}).done(function(data) {
+				idCandidatoRelacionamento = data[0].idCandidatoRelacionamento
 			})
 
 
@@ -572,9 +565,7 @@ $('#formSubmit').submit(function(event) {
 
 
 
-	if (id != undefined || responsavelIdParams != undefined) {
-		id = responsavelIdParams
-		dadosFormulario.candidatoRelacionamentoDTO.candidatoId = Number(idCandidadto)
+	if (id != undefined) {
 		dadosFormulario.candidatoRelacionamentoDTO.pessoaId = Number(id)
 		dadosFormulario.pessoaDTO.idPessoa = Number(id)
 		dadosFormulario.candidatoRelacionamentoDTO.idCandidatoRelacionamento = idCandidatoRelacionamento
@@ -648,6 +639,7 @@ $('#formSubmit').submit(function(event) {
 
 		});
 	}
+
 });
 
 $('#ufNascimentoId').change(() => {

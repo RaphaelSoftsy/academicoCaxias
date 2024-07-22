@@ -923,6 +923,7 @@ a {
 }
 
 .logoSumare {
+	cursor: pointer;
 	width: 100%;
     background: #fff;
     border-radius: 25px;

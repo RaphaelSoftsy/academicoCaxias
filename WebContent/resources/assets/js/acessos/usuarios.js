@@ -315,6 +315,28 @@ function showModal(ref) {
 	console.log(dadosUser)
 }
 
+function validarSenha() {
+	let novaSenha = $('#novaSenha').val()
+	let confirmaNovaSenha = $('#confirmaNovaSenha').val()
+	const message = $("<p id='errMessage'></p>").text("A senhas não coincidem!").css('color', '#FF0000');
+	if (novaSenha == confirmaNovaSenha) {
+		confirmaNovaSenha.removeClass('err-message')
+		$('#errMessage').css('display', 'none')
+	} else {
+		if ($("#cardNovaSenha").find('#errMessage').length > 0) {
+			$('#errMessage').remove()
+		}
+		$("#btn-submit").attr("disabled", "disabled");
+		cpf.addClass('err-message')
+		$("#cardNovaSenha").append(message)
+		message.show()
+	}
+
+}
+$("#confirmaNovaSenha").blur(function() {
+	validaSenha()
+});
+
 const editPassword = () => {
 	let novaSenha = $('#novaSenha').val()
 	let confirmaNovaSenha = $('#confirmaNovaSenha').val()

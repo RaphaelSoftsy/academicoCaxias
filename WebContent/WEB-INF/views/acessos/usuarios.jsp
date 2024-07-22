@@ -233,7 +233,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4" id="divSenha">
 								<label for="confirmaNovaSenha" class="form-label">Confirme
 									senha: </label>
-								<div class="input-group">
+								<div class="input-group" id="cardNovaSenha">
 									<input class="form-control form-control pwd senha"
 										type="password" aria-label=".form-control-lg example"
 										id="confirmaNovaSenha" required>
