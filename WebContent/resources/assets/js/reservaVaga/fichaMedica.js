@@ -26,7 +26,30 @@ $(document).ready(function() {
 				});
 			}
 		}).done(function(data) {
-			
+			console.log(data)
+			$('#responsavelEmergencia').val(data.responsavelPessoaId);
+			$('#peso').val(data.peso);
+			$('#altura').val(data.altura);
+			$('#tipoSanguineo').val(data.tipoSanguineo);
+			$('#transfusao').prop('checked', data.aceitaTransfusao === 'S');
+			$('#numeroSUS').val(data.numeroCartSus);
+			$('#planoSaude').val(data.planoSaude);
+			$('#numCarterinha').val(data.numeroCarteirinha);
+			$('#cep').val(data.psEmergenciaCep);
+			$('#endereco').val(data.psEmergenciaEndereco);
+			$('#numero').val(data.psEmergenciaNumero);
+			$('#complemento').val(data.psEmergenciaComplemento);
+			$('#bairro').val(data.psEmergenciaBairro);
+			$('#municipio').val(data.psEmergenciaMunicipio);
+			$('#uf').val(data.psEmergenciaUf);
+			$('#telefone').val(data.psEmergenciaTelefone);
+			$('#isAlergico').prop('checked', data.alergia === 'S');
+			$('#descIsAlergico').val(data.descricaoAlergia);
+			$('#tratamentoMedico').prop('checked', data.tratamentoMedico === 'S');
+			$('#descTratamentoMedico').val(data.descricaoTratamentoMedico);
+			$('#possuiDoenca').prop('checked', data.comorbidades === 'S');
+			$('#descDoenca').val(data.descricaoComorbidades);
+			$('#outrasDoencas').val(data.outrasDoencas);
 		});
 	}
 
@@ -157,34 +180,67 @@ $('#btn-submit').on("click", function(event) {
 	dadosFormulario = formDataLimpo
 
 	console.log('Dados do formulário:', dadosFormulario);
+	
 
-	$.ajax({
-		url: url_base + `/fichasMedicas`, // Ajuste a URL conforme necessário
-		type: "POST",
-		data: JSON.stringify(dadosFormulario),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading();
-		},
-		success: function(data) {
-			Swal.close();
-			Swal.fire({
-				title: "Cadastrado com sucesso",
-				icon: "success",
-			}).then(() => {
-				window.location.href = "reservas"; // Ajuste o redirecionamento conforme necessário
-			});
-		},
-		error: function(e) {
-			Swal.close();
-			console.error('Erro na requisição:', e);
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-		}
-	});
+	if (id != undefined) {
+		dadosFormulario.idPessoaFichaMedica = id
+		$.ajax({
+			url: url_base + `/fichasMedicas/`+ id, // Ajuste a URL conforme necessário
+			type: "PUT",
+			data: JSON.stringify(dadosFormulario),
+			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading();
+			},
+			success: function(data) {
+				Swal.close();
+				Swal.fire({
+					title: "Editado com sucesso",
+					icon: "success",
+				}).then(() => {
+					window.location.href = "dados-reserva-vaga?id=" + idCandidato; // Ajuste o redirecionamento conforme necessário
+				});
+			},
+			error: function(e) {
+				Swal.close();
+				console.error('Erro na requisição:', e);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+				});
+			}
+		});
+	} else {
+
+		$.ajax({
+			url: url_base + `/fichasMedicas`, // Ajuste a URL conforme necessário
+			type: "POST",
+			data: JSON.stringify(dadosFormulario),
+			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading();
+			},
+			success: function(data) {
+				Swal.close();
+				Swal.fire({
+					title: "Cadastrado com sucesso",
+					icon: "success",
+				}).then(() => {
+					window.location.href = "reservas"; // Ajuste o redirecionamento conforme necessário
+				});
+			},
+			error: function(e) {
+				Swal.close();
+				console.error('Erro na requisição:', e);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+				});
+			}
+		});
+	}
 });
 
 
