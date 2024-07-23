@@ -122,9 +122,9 @@ String contextPath = request.getContextPath();
 					<div class="d-flex align-items-center justify-content-between">
 						<h2 id="tituloDados" class="mb-3">Dados Pessoais</h2>
 						<button type="submit" id='editarCandidato'
-							class="btn btn-primary d-flex gap-2 h-50 align-items-center" onclick='editarCandidato()'>
-							<i class="fa-solid fa-pen"></i> <span>Editar
-								Candidato</span>
+							class="btn btn-primary d-flex gap-2 h-50 align-items-center"
+							onclick='editarCandidato()'>
+							<i class="fa-solid fa-pen"></i> <span>Editar Candidato</span>
 						</button>
 					</div>
 					<%-- 	<input type="text" id="usuarioCadastro" hidden
@@ -1085,12 +1085,12 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade mb-5" id="nav-disabled" role="tabpanel"
+				<%-- <div class="tab-pane fade mb-5" id="nav-disabled" role="tabpanel"
 					aria-labelledby="nav-disabled-tab" tabindex="0">
 					<h2 id="tituloDados" class="mb-3">Ficha</h2>
 
-					<%-- 	<input type="text" id="usuarioCadastro" hidden
-					name="usuarioCadastro" value="${funcionario.idUsuario}" /> --%>
+						<input type="text" id="usuarioCadastro" hidden
+					name="usuarioCadastro" value="${funcionario.idUsuario}" />
 
 					<div class="row mb-3">
 						<div class="col-md-6">
@@ -1343,6 +1343,35 @@ String contextPath = request.getContextPath();
 								name="outrasDoencas" class="form-control" />
 						</div>
 
+					</div>
+
+				</div> --%>
+				<div class="tab-pane fade mb-5" id="nav-disabled" role="tabpanel"
+					aria-labelledby="nav-disabled-tab" tabindex="0">
+					<div class="container-table">
+						<table
+							class="table-ficha tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+							<thead>
+								<tr>
+									<th scope="col">Peso</th>
+									<th scope="col">Altura</th>
+									<th scope="col">Plano de Saúde</th>
+									<th class='text-center' scope="col" width="10%">Ações</th>
+								</tr>
+							</thead>
+							<tbody id="tabela-ficha" class="table-group-divider">
+
+							</tbody>
+						</table>
+					</div>
+					<div id="pagination-ficha" class="mx-auto mt-auto">
+						<button id="prevFicha" class="btn btn-sm">
+							<i class="fa-solid fa-angle-left fa-xl"></i>
+						</button>
+						<div id="page-numbers-ficha" class="btn-group"></div>
+						<button id="nextFicha" class="btn btn-sm">
+							<i class="fa-solid fa-angle-right fa-xl"></i>
+						</button>
 					</div>
 
 				</div>

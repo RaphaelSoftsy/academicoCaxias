@@ -353,8 +353,8 @@ $(document).ready(function() {
 		});*/
 
 
-		if (id != undefined) {
-			dadosFormulario.candidatoDTO.idCandidato = id
+		if (id != undefined || candidatoId != undefined) {
+			dadosFormulario.candidatoDTO.idCandidato = candidatoId
 			dadosFormulario.candidatoDTO.pessoaId = idPessoa
 			dadosFormulario.pessoaDTO.idPessoa = idPessoa
 			dadosFormulario.candidatoDTO.aprovado = aprovado
@@ -367,7 +367,7 @@ $(document).ready(function() {
 			localStorage.setItem('numeroReserva', dadosFormulario.candidatoDTO.candidato)
 
 			if (candidatoId != undefined) {
-				window.location.href = "endereco-aluno?idCandidato=" + id;
+				window.location.href = "endereco-aluno?idCandidato=" + candidatoId;
 			} else {
 				window.location.href = "endereco-aluno?id=" + id;
 			}

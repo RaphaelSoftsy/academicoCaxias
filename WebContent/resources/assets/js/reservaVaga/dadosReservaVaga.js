@@ -216,6 +216,17 @@ const getDadosResponsavel = () => {
 	}).done(function(data) {
 		listarDados(data)
 	});
+
+	$.ajax({
+		url: url_base + '/fichasMedicas/pessoa/' + idPessoa,
+		type: "get",
+		async: false,
+		error: function(e) {
+			console.log(e);
+		}
+	}).done(function(data) {
+		listarFichaMedica(data)
+	});
 }
 
 const listarDados = (dadosTabela) => {
@@ -250,6 +261,29 @@ const listarDados = (dadosTabela) => {
 
 	$("#cola-tabela").html(html);
 };
+
+const listarFichaMedica = (dadosTabela) => {
+	var html = dadosTabela.map(function(item) {
+		console.log(item);
+
+		return (
+			"<tr>" +
+			"<td>" + item.peso + "</td>" +
+			"<td>" + item.altura + "</td>" +
+			"<td>" + item.planoSaude + "</td>" +
+			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			item.idPessoaFichaMedica +
+			'" onclick="showFichaMedica(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			"</tr>"
+		);
+	}).join("");
+
+	$("#tabela-ficha").html(html);
+};
+
+const showFichaMedica = (ref) => {
+	window.location.href = "reserva-ficha?idPessoaFichaMedica=" + ref.getAttribute("data-id");
+}
 
 const showResponsavel = (ref) => {
 	window.location.href = "dadosResponsavel?idResponsavel=" + ref.getAttribute("data-id");
@@ -980,4 +1014,78 @@ const reprovarCandidato = () => {
 		} else if (result.isCanceled) { }
 	})
 }
+
+function showPage(page) {
+	var start = (page - 1) * rows;
+	var end = start + rows;
+
+	$('#cola-tabela tr').hide();
+	$('#cola-tabela tr').slice(start, end).show();
+}
+
+function toggleNavigation() {
+	var totalRows = $('#tabela-ficha tr').length;
+	var totalPages = Math.ceil(totalRows / rows);
+
+	$('#prevFicha').prop('disabled', currentPage === 1);
+	$('#nextFicha').prop('disabled', currentPage === totalPages);
+
+	$('#pagination-ficha').toggle(totalRows > 0);
+
+	$('#page-numbers-ficha').empty();
+
+	if (totalRows > 0) {
+		var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+		var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+		if (startPage > 1) {
+			$('#page-numbers-ficha').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+			if (startPage > 2) {
+				$('#page-numbers-ficha').append('<span>...</span>');
+			}
+		}
+
+		for (var i = startPage; i <= endPage; i++) {
+			var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+			$('#page-numbers-ficha').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+		}
+
+		if (endPage < totalPages) {
+			if (endPage < totalPages - 1) {
+				$('#page-numbers-ficha').append('<span>...</span>');
+			}
+			$('#page-numbers-ficha').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+		}
+
+		$('.btn-page-ficha').click(function() {
+			goToPage(parseInt($(this).data('page')));
+
+		});
+	}
+}
+
+
+function updatePagination() {
+	toggleNavigation();
+}
+
+function goToPage(page) {
+	if (page >= 1 && page <= Math.ceil($('#tabela-ficha tr').length / rows)) {
+		currentPage = page;
+		showPage(currentPage);
+		updatePagination();
+
+	}
+}
+
+
+$('#prevFicha').click(function() {
+	goToPage(currentPage - 1);
+});
+
+$('#nextFicha').click(function() {
+	goToPage(currentPage + 1);
+});
+
+
 

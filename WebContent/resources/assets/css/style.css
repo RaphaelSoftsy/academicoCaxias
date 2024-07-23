@@ -15,6 +15,55 @@ th, tr {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+#prevFicha, #nextFicha, .btn-page {
+    padding: 4px;
+    width: 3em;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #333;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-right: 5px;
+}
+
+.table-ficha>:not(caption)>*>* {
+    padding: .5rem .5rem;
+    color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
+    background-color: var(--bs-table-bg);
+    border-bottom-width: var(--bs-border-width);
+    box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+}
+
+.table-ficha {
+	display: table;
+	border-collapse: separate;
+	box-sizing: border-box;
+	text-indent: initial;
+	unicode-bidi: isolate;
+	border-spacing: 2px;
+	border-color: gray;
+	caption-side: bottom;
+    border-collapse: collapse;
+	    --bs-table-color-type: initial;
+    --bs-table-bg-type: initial;
+    --bs-table-color-state: initial;
+    --bs-table-bg-state: initial;
+    --bs-table-color: var(--bs-emphasis-color);
+    --bs-table-bg: var(--bs-body-bg);
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: var(--bs-emphasis-color);
+    --bs-table-striped-bg: rgba(var(--bs-emphasis-color-rgb), 0.05);
+    --bs-table-active-color: var(--bs-emphasis-color);
+    --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);
+    --bs-table-hover-color: var(--bs-emphasis-color);
+    --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+}
 	
 	
 .abracaMenu{

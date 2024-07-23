@@ -1,7 +1,8 @@
 const contaId = sessionStorage.getItem('contaId')
 var url_base = "http://10.40.110.2:8080/api-educacional";
 const idCandidadto = localStorage.getItem("idCandidato")
-const id = getSearchParams("id");
+let id = getSearchParams("id");
+let responsavelIdParams = getSearchParams("idResponsavel");
 let idCandidatoRelacionamento = 0
 
 function getSearchParams(k) {
@@ -218,7 +219,8 @@ $(document).ready(function() {
 	});
 
 
-	if (id != undefined) {
+	if (id != undefined || responsavelIdParams != undefined) {
+		console.log(responsavelIdParams)
 		const loader = document.querySelector(".bg-loading");
 		loader.parentElement.removeChild(loader);
 
@@ -228,21 +230,23 @@ $(document).ready(function() {
 		$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', false)
 
 		$("isEnderecoAluno").hide()
+		let pathPut = responsavelIdParams != undefined ? `/responsavel/${responsavelIdParams}` :
+			`/responsavel/pessoa/${id}`
 		$.ajax({
-			url: url_base + '/responsavel/pessoa/' + id,
+			url: url_base + pathPut,
 			type: "get",
 			async: false,
 		}).done(function(data) {
 			console.log(data)
 
-
+			id = data.pessoa.idPessoa
 
 			$.ajax({
-				url: url_base + '/candidatoRelacionamento/pessoa/' + id,
+				url: url_base + '/candidatoRelacionamento/pessoa/' + data.pessoa.idPessoa,
 				type: "get",
 				async: false,
-			}).done(function(data) {
-				idCandidatoRelacionamento = data[0].idCandidatoRelacionamento
+			}).done(function(res) {
+				idCandidatoRelacionamento = res[0].idCandidatoRelacionamento
 			})
 
 
@@ -343,9 +347,9 @@ $(document).ready(function() {
 			$(".bg-loading").addClass("none");
 			$(".bg-loading").fadeOut();
 		})
-	}else{
+	} else {
 		$(".bg-loading").addClass("none");
-			$(".bg-loading").fadeOut();
+		$(".bg-loading").fadeOut();
 	}
 })
 
@@ -565,7 +569,8 @@ $('#formSubmit').submit(function(event) {
 
 
 
-	if (id != undefined) {
+	if (id != undefined || responsavelIdParams != undefined) {
+		dadosFormulario.candidatoRelacionamentoDTO.candidatoId = Number(idCandidadto)
 		dadosFormulario.candidatoRelacionamentoDTO.pessoaId = Number(id)
 		dadosFormulario.pessoaDTO.idPessoa = Number(id)
 		dadosFormulario.candidatoRelacionamentoDTO.idCandidatoRelacionamento = idCandidatoRelacionamento
@@ -597,9 +602,14 @@ $('#formSubmit').submit(function(event) {
 				title: "Editado com sucesso",
 				icon: "success",
 
+			}).then(result => {
+				if (id != undefined || responsavelIdParams != undefined) {
+					window.location.href = "dados-reserva-vaga?id=" + idCandidadto;
+				} else {
+					window.location.href = "listaResponsavel";
+				}
 			})
 
-			window.location.href = "listaResponsavel";
 
 
 		});
