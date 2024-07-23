@@ -299,7 +299,7 @@ function listarDados(dados) {
 function showModal(ref) {
 	$('#novaSenha').val('')
 	$('#confirmaNovaSenha').val('')
-	
+
 	dadosUser = {
 		"idUsuario": ref.getAttribute("data-id"),
 		"usuario": ref.getAttribute("data-usuario"),
@@ -311,7 +311,7 @@ function showModal(ref) {
 		"celular": ref.getAttribute("data-celular"),
 		"celularVerificado": ref.getAttribute("data-celular-verificado"),
 	}
-	
+
 	console.log(dadosUser)
 }
 
@@ -320,21 +320,22 @@ function validarSenha() {
 	let confirmaNovaSenha = $('#confirmaNovaSenha').val()
 	const message = $("<p id='errMessage'></p>").text("A senhas não coincidem!").css('color', '#FF0000');
 	if (novaSenha == confirmaNovaSenha) {
-		confirmaNovaSenha.removeClass('err-message')
+		$("#agrupadorNovaSenha").removeClass('err-message')
 		$('#errMessage').css('display', 'none')
+		$("#btn-salvar").removeAttr("disabled");
 	} else {
 		if ($("#cardNovaSenha").find('#errMessage').length > 0) {
 			$('#errMessage').remove()
 		}
-		$("#btn-submit").attr("disabled", "disabled");
-		cpf.addClass('err-message')
+		$("#btn-salvar").attr("disabled", "disabled");
+		$("#agrupadorNovaSenha").addClass('err-message')
 		$("#cardNovaSenha").append(message)
 		message.show()
 	}
 
 }
 $("#confirmaNovaSenha").blur(function() {
-	validaSenha()
+	validarSenha()
 });
 
 const editPassword = () => {
@@ -343,41 +344,35 @@ const editPassword = () => {
 
 	console.log(novaSenha)
 	console.log(confirmaNovaSenha)
+	
+	dadosUser.senha = novaSenha
 
-	if (novaSenha != confirmaNovaSenha) {
-		Swal.fire({
-			title: "As senha não coencidem!!",
-			icon: "warning",
-		})
-	} else {
-		dadosUser.senha = novaSenha
+	console.log(dadosUser)
 
-		console.log(dadosUser)
-
-		$.ajax({
-			url: url_base + "/usuario",
-			type: "PUT",
-			data: JSON.stringify(dadosUser),
-			contentType: "application/json; charset=utf-8",
-			async: false,
-			error: function(e) {
-				console.log(e)
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível realizar esse comando!"
-
-				});
-			}
-		}).done(function(data) {
+	$.ajax({
+		url: url_base + "/usuario",
+		type: "PUT",
+		data: JSON.stringify(dadosUser),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e)
 			Swal.fire({
-				title: "Editado com sucesso",
-				icon: "success",
-			}).then((data) => {
-				window.location.href = 'usuarios'
-			})
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!"
+
+			});
+		}
+	}).done(function(data) {
+		Swal.fire({
+			title: "Editado com sucesso",
+			icon: "success",
+		}).then((data) => {
+			window.location.href = 'usuarios'
 		})
-	}
+	})
+
 }
 
 // Exportar Dados

@@ -135,11 +135,12 @@ $('#limpa-filtros').click(function() {
 function getDados() {
 	const usuarioId = sessionStorage.getItem("usuarioId");
 	$.ajax({
-		url: url_base + "/escolas/usuario/" + contaId+ "/"+usuarioId,
+		url: url_base + "/escolas/usuario/" + contaId+ "/" + usuarioId,
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
+			console.log(data)
 			dados = data
 			dadosOriginais = data;
 			listarDados(data);

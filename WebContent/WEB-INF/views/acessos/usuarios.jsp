@@ -230,10 +230,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									</button>
 								</div>
 							</div>
-							<div class="mb-4" id="divSenha">
+							<div class="mb-4" id="cardNovaSenha">
 								<label for="confirmaNovaSenha" class="form-label">Confirme
 									senha: </label>
-								<div class="input-group" id="cardNovaSenha">
+								<div class="input-group" id="agrupadorNovaSenha">
 									<input class="form-control form-control pwd senha"
 										type="password" aria-label=".form-control-lg example"
 										id="confirmaNovaSenha" required>
@@ -246,7 +246,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
+									class="btn btn-primary" id="btn-salvar" disabled>Salvar</button>
 							</div>
 						</form>
 					</div>

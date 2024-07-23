@@ -138,6 +138,7 @@ th, tr {
 
 .err-message {
 	border: 1px solid #FF0000;
+    border-radius: var(--bs-border-radius);
 }
 
 .logo-sumare-mobile {
