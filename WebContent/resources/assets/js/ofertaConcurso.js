@@ -235,8 +235,6 @@ function getCurso(dadosOfertaConcurso, callback) {
     curso.nomeEscola = escolaCorrespondente.nome;
   }
 });
- 
-assim vini
 				curso[index] = data.nome;
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
@@ -304,6 +302,14 @@ function getDados() {
 				getTurno(data, function(turnoData) {
 					getConcurso(data, function(concursoData) {
 						getCurso(data, function(cursoData) {
+							/*Esse exemplo será usado em cada get
+							
+							cursosOfertados.forEach((curso) => {
+                            const escolaCorrespondente = escolaData.find((escola) => escola.escolaId === curso.idEscola);
+                            if (escolaCorrespondente) {
+                                curso.nomeEscola = escolaCorrespondente.nome;
+                            }
+                        });*/
 							listarDados(data, concursoData, cursoData, escolaData, turnoData);
 						});
 					});
