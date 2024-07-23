@@ -226,6 +226,17 @@ function getCurso(dadosOfertaConcurso, callback) {
 			async: false,
 		})
 			.done(function(data) {
+				cursosOfertados.forEach((curso) => {
+  const escolaCorrespondente = escolas.find(
+    (escola) => escola.escolaId === curso.idEscola
+  );
+ 
+  if (escolaCorrespondente) {
+    curso.nomeEscola = escolaCorrespondente.nome;
+  }
+});
+ 
+assim vini
 				curso[index] = data.nome;
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {

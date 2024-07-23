@@ -1,5 +1,5 @@
 const contaId = sessionStorage.getItem('contaId');
-const id = getSearchParams("id");
+const id = getSearchParams("idPessoaFichaMedica");
 var url_base = "http://10.40.110.2:8080/api-educacional";
 const idCandidato = localStorage.getItem('idCandidato');
 var pessoaId = 0;
@@ -10,7 +10,25 @@ $(document).ready(function() {
 
 	// Inicializar Select2
 	$('#responsavelEmergencia').select2();
-	$('#tipoSanguineo').select2(); 
+	$('#tipoSanguineo').select2();
+
+	if (id != undefined || id != 0) {
+		$.ajax({
+			url: url_base + "/fichasMedicas/" + id,
+			type: "GET",
+			contentType: "application/json; charset=utf-8",
+			error: function(e) {
+				console.log(e);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+				});
+			}
+		}).done(function(data) {
+			
+		});
+	}
 
 	$.ajax({
 		url: url_base + "/candidatos/" + idCandidato,
@@ -135,7 +153,7 @@ $('#btn-submit').on("click", function(event) {
 			formDataLimpo[key] = dadosFormulario[key]
 		}
 	}
-	
+
 	dadosFormulario = formDataLimpo
 
 	console.log('Dados do formulário:', dadosFormulario);
