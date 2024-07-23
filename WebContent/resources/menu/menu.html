@@ -21,19 +21,21 @@
 			<i class="fa-solid fa-chevron-left arrow"></i>
 		</div>
 		<div class="img-menu">
-			<img class="logoSumare animate__animated animate__bounceIn mx-auto" alt="Logo Prefeitura de Uruçui"
-				id="imgLogoMenu"
+			<img class="logoSumare animate__animated animate__bounceIn mx-auto"
+				alt="Logo Prefeitura de Uruçui" id="imgLogoMenu"
 				src="resources/assets/img/logoPrefeitura.png" />
 		</div>
 		<hr />
 		<p>
-			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span id="nome-user"></span>
+			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span
+				id="nome-user"></span>
 		</p>
 		<hr />
 		<nav class="menu" id="navMenu">
 			<div class="item" id="sairEscola">
-				<a class="sub-btn"> <i class="fa-solid fa-person-walking-arrow-right"></i><span id="itemName1"> Trocar
-						Escola</span>
+				<a class="sub-btn"> <i
+					class="fa-solid fa-person-walking-arrow-right"></i><span
+					id="itemName1"> Trocar Escola</span>
 				</a>
 			</div>
 			<!-- <div class="item">
@@ -186,6 +188,39 @@
 				"padding-top": "20%",
 				"padding-right": "0"
 			});
+			
+			$(".hidden").click(() => {
+				alert('eu')
+				
+				if (tamanhoMenu == 280) {
+					$(".abracaMenu").css("width", "280px");
+					$(".container-res").css("margin-left", "19em");
+				} else {
+					$(".abracaMenu").css("width", "250px");
+					$(".container-res").css("margin-left", "25%");
+				}
+
+				$(".arrow").css("transform", "rotate(0deg)");
+				$(".logoSumare").show();
+				$("#nome-user").show();
+				$("#itemName1").text('Trocar escola')
+				$("#itemName5").text('Sair')
+
+				$(".showMenu").show();
+				$(".hidden").hide();
+
+				/* $(".fa-angle-right").show(); */
+				$(".img-menu").show();
+				$(".container-icon").css({
+					"width": "100%",
+					"display": "flex",
+					"align-items": "center",
+					"justify-content": "flex-end",
+					"height": "2em",
+					"padding-right": "10%",
+					"padding-top": "0"
+				});
+			});
 		})
 		4
 		$.ajax({
@@ -205,8 +240,38 @@
 			});
 			
 			$('#navMenu').append(sairModule);
-			
 			$(".sub-btn").off('click').on('click', function () {
+				
+				$(".hidden").click(() => {					
+					if (tamanhoMenu == 280) {
+						$(".abracaMenu").css("width", "280px");
+						$(".container-res").css("margin-left", "19em");
+					} else {
+						$(".abracaMenu").css("width", "250px");
+						$(".container-res").css("margin-left", "25%");
+					}
+
+					$(".arrow").css("transform", "rotate(0deg)");
+					$(".logoSumare").show();
+					$("#nome-user").show();
+					$("#itemName1").text('Trocar escola')
+					$("#itemName5").text('Sair')
+
+					$(".showMenu").show();
+					$(".hidden").hide();
+
+					/* $(".fa-angle-right").show(); */
+					$(".img-menu").show();
+					$(".container-icon").css({
+						"width": "100%",
+						"display": "flex",
+						"align-items": "center",
+						"justify-content": "flex-end",
+						"height": "2em",
+						"padding-right": "10%",
+						"padding-top": "0"
+					});
+				});
 				
 				/* if($(this).attr('id') == 'sair'){
 					sessionStorage.removeItem('usuarioId')
@@ -402,6 +467,7 @@
 				});
 			});
 		}); */
+
 
 		$(".fa-chevron-left").click(() => {
 			if ($(".abracaMenu").width() > 60) {

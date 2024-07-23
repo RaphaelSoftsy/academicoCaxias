@@ -334,6 +334,11 @@ function validarSenha() {
 	}
 
 }
+$("#novaSenha").blur(function() {
+	if($("#confirmaNovaSenha").val().length > 0){		
+	validarSenha()
+	}
+});
 $("#confirmaNovaSenha").blur(function() {
 	validarSenha()
 });
