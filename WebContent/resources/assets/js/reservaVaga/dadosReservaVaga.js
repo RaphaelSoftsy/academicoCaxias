@@ -1,6 +1,5 @@
 const contaId = sessionStorage.getItem('contaId')
 const escolaId = sessionStorage.getItem('escolaId')
-/*const usuarioId = sessionStorage.getItem("usuarioId")*/
 let idCandidato = params.get("id");
 let listaDocumentos = []
 let idDoc = ''
@@ -44,7 +43,6 @@ $(document).ready(function() {
 	var buttonId;
 	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
 	$('#nav-responsavel input, #nav-responsavel select').attr('disabled', true);
-	/*$('#nav-det-ficha input, #nav-det-ficha select').attr('disabled', true);*/
 	localStorage.setItem("idCandidato", idCandidato)
 	$('#municipioNascimentoId').attr('disabled', true);
 
@@ -68,14 +66,8 @@ $(document).ready(function() {
 	loadSelects()
 	getDadosCandidato()
 	getDadosResponsavel()
-	/*getDadosResponsavel()*/
-	/*if ($('input[id="qualPreencher"]').is(':checked')) {
-		$("#certidaoCasamento").hide()
-		$("#certidaoNascimento").show()
-	} else {
-		$("#certidaoNascimento").hide()
-		$("#certidaoCasamento").show()
-	}*/
+
+
 	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
 	$('#nav-responsavel input, #nav-responsavel select').attr('disabled', true);
 	$('#nav-disabled input, #nav-disabled select').attr('disabled', true);
@@ -712,10 +704,6 @@ const getDadosCandidato = () => {
 			$('#paisNascimentoId').val(data.paisNascimento.idPais);
 			$('#paisResidenciaId').val(data.paisResidencia.idPais);
 			$('#relacionamentoId').val(data.idPapelPessoa);
-			/*  $('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade).attr("selected", true);;
-				$('#paisNascimentoId').val(data.paisNascimento.idPais).attr("selected", true);;
-				$('#paisResidenciaId').val(data.paisResidencia.idPais).attr("selected", true);;
-				$('#ufNascimentoId').val(data.municipioNascimento.ufId).attr("selected", true);*/
 
 			// Exemplo de preenchimento para campos específicos como certidaoNascimentoNumero, certidaoCasamentoNumero, etc.
 			$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
@@ -974,9 +962,6 @@ const reprovarDocumento = () => {
 		"usuarioAprovacaoId": usuarioId
 	}
 
-	console.log(dadosFormulario)
-
-
 	$.ajax({
 		url: url_base + '/candidatoDocumentoIngresso',
 		type: "PUT",
@@ -1018,9 +1003,6 @@ const aprovarDocumento = () => {
 		"obsAprovacao": $('#obsAprovacao').val() == '' ? null : $('obsAprovacao').val(),
 		"usuarioAprovacaoId": usuarioId
 	}
-
-	console.log(dadosFormulario)
-
 
 	$.ajax({
 		url: url_base + '/candidatoDocumentoIngresso',
@@ -1069,100 +1051,6 @@ const limparCampos = () => {
 	$('#motivoReprovacaoDocumentoId').val(0)
 	$('#obsAprovacao').val('')
 }
-
-$('input[name="qualPreencher"]').click(function() {
-	console.log($('input[name="qualPreencher"]').attr('checked'))
-	console.log($('input[name="qualPreencher"]').is(':checked'))
-	if ($(this).is(':checked')) {
-		$("#certidaoNascimento").show();
-		$("#certidaoCasamento").hide();
-		$("[name='certidaoNascimentoNumero']").attr("required", true);
-		$("[name='certidaoNascimentoCidadeCartorio']").attr("required", true);
-		$("[name='certidaoNascimentoCartorio']").attr("required", true);
-		$("[name='certidaoNascimentoUfCartorioId']").attr("required", true);
-		$("[name='certidaoNascimentoDataEmissao']").attr("required", true);
-		$("[name='certidaoNascimentoFolha']").attr("required", true);
-		$("[name='certidaoNascimentoLivro']").attr("required", true);
-		$("[name='certidaoNascimentoOrdem']").attr("required", true);
-
-		$("[name='certidaoCasamentoNumero']").attr("required", false);
-		$("[name='certidaoCasamentoCartorio']").attr("required", false);
-		$("[name='certidaoCasamentoUfCartorioId']").attr("required", false);
-		$("[name='certidaoCasamentoCidadeCartorio']").attr("required", false);
-		$("[name='certidaoCasamentoFolha']").attr("required", false);
-		$("[name='certidaoCasamentoLivro']").attr("required", false);
-		$("[name='certidaoCasamentoOrdem']").attr("required", false);
-		$("[name='certidaoCasamentoDataEmissao']").attr("required", false);
-
-	} else {
-		$("#certidaoNascimento").hide();
-		$("#certidaoCasamento").show();
-		$("[name='certidaoCasamentoNumero']").attr("required", true);
-		$("[name='certidaoCasamentoCartorio']").attr("required", true);
-		$("[name='certidaoCasamentoUfCartorioId']").attr("required", true);
-		$("[name='certidaoCasamentoCidadeCartorio']").attr("required", true);
-		$("[name='certidaoCasamentoFolha']").attr("required", true);
-		$("[name='certidaoCasamentoLivro']").attr("required", true);
-		$("[name='certidaoCasamentoOrdem']").attr("required", true);
-		$("[name='certidaoCasamentoDataEmissao']").attr("required", true);
-
-		$("[name='certidaoNascimentoNumero']").attr("required", false);
-		$("[name='certidaoNascimentoCidadeCartorio']").attr("required", false);
-		$("[name='certidaoNascimentoCartorio']").attr("required", false);
-		$("[name='certidaoNascimentoUfCartorioId']").attr("required", false);
-		$("[name='certidaoNascimentoDataEmissao']").attr("required", false);
-		$("[name='certidaoNascimentoFolha']").attr("required", false);
-		$("[name='certidaoNascimentoLivro']").attr("required", false);
-		$("[name='certidaoNascimentoOrdem']").attr("required", false);
-
-	}
-});
-
-$('input[name="qualPreencherResponsavel"]').click(function() {
-	console.log($('input[name="qualPreencher"]').attr('checked'))
-	console.log($('input[name="qualPreencher"]').is(':checked'))
-	if ($(this).is(':checked')) {
-		$("#certidaoNascimentoResponsavel").show();
-		$("#certidaoCasamentoResponsavel").hide();
-		$("[name='certidaoNascimentoNumeroResponsavel']").attr("required", true);
-		$("[name='certidaoNascimentoCidadeCartorioResponsavel']").attr("required", true);
-		$("[name='certidaoNascimentoCartorioResponsavel']").attr("required", true);
-		$("[name='certidaoNascimentoUfCartorioIdResponsavel']").attr("required", true);
-		$("[name='certidaoNascimentoDataEmissaoResponsavel']").attr("required", true);
-		$("[name='certidaoNascimentoFolhaResponsavel']").attr("required", true);
-		$("[name='certidaoNascimentoLivroResponsavel']").attr("required", true);
-		$("[name='certidaoNascimentoOrdemResponsavel']").attr("required", true);
-
-		$("[name='certidaoCasamentoNumeroResponsavel']").attr("required", false);
-		$("[name='certidaoCasamentoCartorioResponsavel']").attr("required", false);
-		$("[name='certidaoCasamentoUfCartorioIdResponsavel']").attr("required", false);
-		$("[name='certidaoCasamentoCidadeCartorioResponsavel']").attr("required", false);
-		$("[name='certidaoCasamentoFolhaResponsavel']").attr("required", false);
-		$("[name='certidaoCasamentoLivroResponsavel']").attr("required", false);
-		$("[name='certidaoCasamentoOrdemResponsavel']").attr("required", false);
-		$("[name='certidaoCasamentoDataEmissaoResponsavel']").attr("required", false);
-	} else {
-		$("#certidaoNascimentoResponsavel").hide();
-		$("#certidaoCasamentoResponsavel").show();
-		$("[name='certidaoCasamentoNumeroResponsavel']").attr("required", true);
-		$("[name='certidaoCasamentoCartorioResponsavel']").attr("required", true);
-		$("[name='certidaoCasamentoUfCartorioIdResponsavel']").attr("required", true);
-		$("[name='certidaoCasamentoCidadeCartorioResponsavel']").attr("required", true);
-		$("[name='certidaoCasamentoFolhaResponsavel']").attr("required", true);
-		$("[name='certidaoCasamentoLivroResponsavel']").attr("required", true);
-		$("[name='certidaoCasamentoOrdemResponsavel']").attr("required", true);
-		$("[name='certidaoCasamentoDataEmissaoResponsavel']").attr("required", true);
-
-		$("[name='certidaoNascimentoNumeroResponsavel']").attr("required", false);
-		$("[name='certidaoNascimentoCidadeCartorioResponsavel']").attr("required", false);
-		$("[name='certidaoNascimentoCartorioResponsavel']").attr("required", false);
-		$("[name='certidaoNascimentoUfCartorioIdResponsavel']").attr("required", false);
-		$("[name='certidaoNascimentoDataEmissaoResponsavel']").attr("required", false);
-		$("[name='certidaoNascimentoFolhaResponsavel']").attr("required", false);
-		$("[name='certidaoNascimentoLivroResponsavel']").attr("required", false);
-		$("[name='certidaoNascimentoOrdemResponsavel']").attr("required", false);
-	}
-});
 
 const aprovarCandidato = () => {
 	Swal.fire({
