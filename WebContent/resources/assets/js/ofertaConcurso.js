@@ -17,31 +17,31 @@ var id = 0;
 
 $(document).ready(function() {
 
-	getDados()
 
-$('.dropdown-toggle-form').click(function() {
-    console.log('TESTE');
-    $(this).siblings('.dropdown-content-form').toggleClass('show');
-});
 
-$('.searchButton').click(function() {
-    var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
-    console.log("Search Input:", searchInput);
+	$('.dropdown-toggle-form').click(function() {
+		console.log('TESTE');
+		$(this).siblings('.dropdown-content-form').toggleClass('show');
+	});
 
-    var columnToSearch = $(this).closest('.sortable').data('column');
-    console.log("Column to Search:", columnToSearch);
+	$('.searchButton').click(function() {
+		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
+		console.log("Search Input:", searchInput);
 
-    var filteredData = dadosOriginais.filter(function(item) {
-        var valueToCheck = item[columnToSearch] ? item[columnToSearch].toLowerCase() : '';
-        return valueToCheck.includes(searchInput);
-    });
+		var columnToSearch = $(this).closest('.sortable').data('column');
+		console.log("Column to Search:", columnToSearch);
 
-    console.log("Filtered Data:", filteredData);
-    listarDados(filteredData);
+		var filteredData = dadosOriginais.filter(function(item) {
+			var valueToCheck = item[columnToSearch] ? item[columnToSearch].toLowerCase() : '';
+			return valueToCheck.includes(searchInput);
+		});
 
-    $(this).siblings('.searchInput').val('');
-    $(this).closest('.dropdown-content-form').removeClass('show');
-});
+		console.log("Filtered Data:", filteredData);
+		listarDados(filteredData);
+
+		$(this).siblings('.searchInput').val('');
+		$(this).closest('.dropdown-content-form').removeClass('show');
+	});
 
 	$.ajax({
 		url: url_base + '/concursos/conta/' + contaId,
@@ -49,6 +49,8 @@ $('.searchButton').click(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
+
+			console.log(item)
 
 			if (item.ativo == "S") {
 				$('#concursoEdit').append($('<option>', {
@@ -192,6 +194,7 @@ $('.searchButton').click(function() {
 
 	showPage(currentPage);
 	updatePagination();
+	getDados()
 
 });
 
@@ -354,7 +357,7 @@ function editar() {
 			$("#vagasMinEdit").val('');
 			$("#vagasEdit").val('');
 			getDados();
-			
+
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
@@ -417,6 +420,7 @@ function cadastrar() {
 				title: "Cadastrado com sucesso",
 				icon: "success",
 			})
+			window.location.href("oferta-concurso")
 		})
 	return false;
 }
