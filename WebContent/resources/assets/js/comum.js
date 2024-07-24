@@ -5,6 +5,7 @@ const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
 const path_base = $(location).attr("origin")+"/"+$(location).attr("pathname").split("/")[1]+ "/resources/menu";
 const nomeConta = sessionStorage.getItem("nomeConta")
+const usuarioId = sessionStorage.getItem("usuarioId");
 
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')  
@@ -34,7 +35,7 @@ $(document).ready(function() {
 			contaId = sessionStorage.getItem('contaId')
 		}
 
-		const usuarioId = sessionStorage.getItem("usuarioId");
+		
 		const transacao = "/"+ $(location).attr('href').split("/")[$(location).attr('href').split("/").length-1];
 		console.log(transacao);
 		$.ajax({

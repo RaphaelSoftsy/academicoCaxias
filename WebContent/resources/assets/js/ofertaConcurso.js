@@ -10,6 +10,7 @@ var serie = 0
 var minVagasAbertTurma = 0
 var vagas = 0
 const contaId = sessionStorage.getItem('contaId');
+
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
@@ -19,28 +20,28 @@ $(document).ready(function() {
 
 	getDados()
 
-    $('.dropdown-toggle-form').click(function() {
-        console.log('TESTE');
-        $(this).siblings('.dropdown-content-form').toggleClass('show');
-    });
+	$('.dropdown-toggle-form').click(function() {
+		console.log('TESTE');
+		$(this).siblings('.dropdown-content-form').toggleClass('show');
+	});
 
-    $('.searchButton').click(function() {
-        var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
-        console.log("Search Input:", searchInput);
+	$('.searchButton').click(function() {
+		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
+		console.log("Search Input:", searchInput);
 
-        var columnToSearch = $(this).closest('.sortable').data('column');
-        console.log("Column to Search:", columnToSearch);
+		var columnToSearch = $(this).closest('.sortable').data('column');
+		console.log("Column to Search:", columnToSearch);
 
-        var filteredData = dadosOriginais.filter(function(item) {
-            return item[columnToSearch].toLowerCase().includes(searchInput);
-        });
+		var filteredData = dadosOriginais.filter(function(item) {
+			return item[columnToSearch].toLowerCase().includes(searchInput);
+		});
 
-        console.log("Filtered Data:", filteredData);
-        listarDados(filteredData);
+		console.log("Filtered Data:", filteredData);
+		listarDados(filteredData);
 
-        $(this).siblings('.searchInput').val('');
-        $(this).closest('.dropdown-content-form').removeClass('show');
-    });
+		$(this).siblings('.searchInput').val('');
+		$(this).closest('.dropdown-content-form').removeClass('show');
+	});
 
 	$.ajax({
 		url: url_base + '/concursos/conta/' + contaId,
@@ -99,7 +100,7 @@ $(document).ready(function() {
 	})
 
 	$.ajax({
-		url: url_base + '/escolas/conta/' + contaId,
+		url: url_base + "/escolas/usuario/" + contaId + "/" + usuarioId,
 		type: "get",
 		async: false,
 	}).done(function(data) {
@@ -226,15 +227,6 @@ function getCurso(dadosOfertaConcurso, callback) {
 			async: false,
 		})
 			.done(function(data) {
-				cursosOfertados.forEach((curso) => {
-  const escolaCorrespondente = escolas.find(
-    (escola) => escola.escolaId === curso.idEscola
-  );
- 
-  if (escolaCorrespondente) {
-    curso.nomeEscola = escolaCorrespondente.nome;
-  }
-});
 				curso[index] = data.nome;
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
@@ -249,6 +241,7 @@ function getCurso(dadosOfertaConcurso, callback) {
 
 
 function getEscola(dadosOfertaConcurso, callback) {
+
 	var escola = []; // Array para armazenar os resultados dos cursos
 
 	dadosOfertaConcurso.forEach(function(item, index) {
@@ -305,11 +298,11 @@ function getDados() {
 							/*Esse exemplo será usado em cada get
 							
 							cursosOfertados.forEach((curso) => {
-                            const escolaCorrespondente = escolaData.find((escola) => escola.escolaId === curso.idEscola);
-                            if (escolaCorrespondente) {
-                                curso.nomeEscola = escolaCorrespondente.nome;
-                            }
-                        });*/
+							const escolaCorrespondente = escolaData.find((escola) => escola.escolaId === curso.idEscola);
+							if (escolaCorrespondente) {
+								curso.nomeEscola = escolaCorrespondente.nome;
+							}
+						});*/
 							listarDados(data, concursoData, cursoData, escolaData, turnoData);
 						});
 					});
@@ -327,36 +320,36 @@ function getDados() {
 }
 
 
-    function listarDados(dados, concurso, curso, escola, turno) {
-        var html = dados.map(function(item, index) {
-            var ativo;
+function listarDados(dados, concurso, curso, escola, turno) {
+	var html = dados.map(function(item, index) {
+		var ativo;
 
-            if (item.ativo == "N") {
-                ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-            } else {
-                ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-            }
+		if (item.ativo == "N") {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+		} else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
 
-            return (
-                "<tr>" +
-                "<td>" + concurso[index] + "</td>" +
-                "<td>" + curso[index] + "</td>" +
-                "<td>" + escola[index] + "</td>" +
-                "<td>" + turno[index] + "</td>" +
-                "<td>" + item.serie + "</td>" +
-                "<td>" + item.descricaoOferta + "</td>" +
-                "<td>" + item.vagas + "</td>" +
-                "<td>" + item.minVagasAbertTurma + "</td>" +
-                "<td><div class='d-flex align-items-center gap-1'>" +
-                '<input type="checkbox" data-status="' + item.ativo + '" data-id="' + item.idOfertaConcurso + ' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-                "</div></td>" +
-                '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-concursoId="' + item.concursoId + '" data-cursoId="' + item.cursoId + '" data-escolaId="' + item.escolaId + '" data-turnoId="' + item.turnoId + '" data-serie="' + item.serie + '" data-descricaoOferta="' + item.descricaoOferta + '" data-vagas="' + item.vagas + '" data-minVagasAbertTurma="' + item.minVagasAbertTurma + '" data-id="' + item.idOfertaConcurso + '" data-ativo="' + item.ativo + '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-                "</tr>"
-            );
-        }).join("");
+		return (
+			"<tr>" +
+			"<td>" + concurso[index] + "</td>" +
+			"<td>" + curso[index] + "</td>" +
+			"<td>" + escola[index] + "</td>" +
+			"<td>" + turno[index] + "</td>" +
+			"<td>" + item.serie + "</td>" +
+			"<td>" + item.descricaoOferta + "</td>" +
+			"<td>" + item.vagas + "</td>" +
+			"<td>" + item.minVagasAbertTurma + "</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" data-status="' + item.ativo + '" data-id="' + item.idOfertaConcurso + ' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
+			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-concursoId="' + item.concursoId + '" data-cursoId="' + item.cursoId + '" data-escolaId="' + item.escolaId + '" data-turnoId="' + item.turnoId + '" data-serie="' + item.serie + '" data-descricaoOferta="' + item.descricaoOferta + '" data-vagas="' + item.vagas + '" data-minVagasAbertTurma="' + item.minVagasAbertTurma + '" data-id="' + item.idOfertaConcurso + '" data-ativo="' + item.ativo + '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			"</tr>"
+		);
+	}).join("");
 
-        $("#cola-tabela").html(html);
-    }
+	$("#cola-tabela").html(html);
+}
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");
 	var status = element.getAttribute("data-status");
