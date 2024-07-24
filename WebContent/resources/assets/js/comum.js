@@ -23,8 +23,7 @@ $(document).ready(function() {
 	$(".desativar").toggleClass("btn-secondary btn-danger")
 	$(".ativar").toggleClass("btn-secondary btn-success")
 
-	$(document).attr('title', "POC - " + str);
-	$(document).attr('title', "Front Educacional");
+
 
 	const url = window.location.pathname
 	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
