@@ -18,10 +18,33 @@ $(document).ready(function() {
 		})
 	})
 
+	$.ajax({
+		url: url_base + "/responsavel/candidato/" + idCandidato,
+		type: "GET",
+		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			console.log(e);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
+		}
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			console.log(item);
+			$('#responsavelEmergenciaFichaMedica').append($('<option>', {
+				value: item.pessoa.idPessoa,
+				text: item.pessoa.nomeCompleto,
+				name: item.pessoa.nomeCompleto
+			}));
+		});
+	});
+
 	var buttonId;
 	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
 	$('#nav-responsavel input, #nav-responsavel select').attr('disabled', true);
-	$('#nav-det-ficha input, #nav-det-ficha select').attr('disabled', true);
+	/*$('#nav-det-ficha input, #nav-det-ficha select').attr('disabled', true);*/
 	localStorage.setItem("idCandidato", idCandidato)
 	$('#municipioNascimentoId').attr('disabled', true);
 
@@ -264,9 +287,9 @@ const listarDados = (dadosTabela) => {
 			"<td>" + item.pessoa.nomeCompleto + "</td>" +
 			"<td>" + item.papelPessoa + "</td>" +
 			"<td>" + estadoCivil + "</td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" data-id="' +
 			item.idResponsavel +
-			'" onclick="show(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" onclick="show(this)"><i class="fa-solid fa-floppy-disk"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -381,18 +404,31 @@ const getResponsavel = (id) => {
 	});
 }
 
+function formatarDataParaBR(data) {
+	var dataObj = new Date(data);
+
+	var dia = String(dataObj.getUTCDate()).padStart(2, "0");
+	var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
+	var ano = dataObj.getUTCFullYear();
+	return dia + "/" + mes + "/" + ano;
+}
+
 const listarFichaMedica = (dadosTabela) => {
 	var html = dadosTabela.map(function(item) {
 		console.log(item);
 
+		let data = formatarDataParaBR(item.dtCadastro)
+
 		return (
 			"<tr>" +
+			"<td>" + item.responsavelPessoaId + "</td>" +
+			"<td>" + data + "</td>" +
 			"<td>" + item.peso + "</td>" +
 			"<td>" + item.altura + "</td>" +
 			"<td>" + item.planoSaude + "</td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" data-id="' +
 			item.idPessoaFichaMedica +
-			'" onclick="fichaMedica(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" onclick="fichaMedica(this)"><i class="fa-solid fa-floppy-disk"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -406,11 +442,70 @@ const fichaMedica = (ref) => {
 
 	idFichaMedica = ref.getAttribute("data-id")
 
-	/*getResponsavel(idResponsavel)*/
+	getFicha(idFichaMedica)
+}
+
+const getFicha = (id) => {
+	$.ajax({
+		url: url_base + "/fichasMedicas/" + id,
+		type: "GET",
+		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			console.log(e);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
+		}
+	}).done(function(data) {
+		console.log(data)
+		console.log($('#tipoSanguineoFichaMedica').val())
+		$('#responsavelEmergenciaFichaMedica').val(data.responsavelPessoaId);
+		$('#pesoFichaMedica').val(data.peso);
+		$('#alturaFichaMedica').val(data.altura);
+		$('#tipoSanguineoFichaMedica').val(data.tipoSanguineo);
+		$('#transfusaoFichaMedica').prop('checked', data.aceitaTransfusao === 'S');
+		$('#numeroSUSFichaMedica').val(data.numeroCartSus);
+		$('#planoSaudeFichaMedica').val(data.planoSaude);
+		$('#numCarterinhaFichaMedica').val(data.numeroCarteirinha);
+		$('#cepFichaMedica').val(data.psEmergenciaCep);
+		$('#enderecoFichaMedica').val(data.psEmergenciaEndereco);
+		$('#numeroFichaMedica').val(data.psEmergenciaNumero);
+		$('#complementoFichaMedica').val(data.psEmergenciaComplemento);
+		$('#bairroFichaMedica').val(data.psEmergenciaBairro);
+		$('#municipioFichaMedica').val(data.psEmergenciaMunicipio);
+		$('#ufFichaMedica').val(data.psEmergenciaUf);
+		$('#telefoneFichaMedica').val(data.psEmergenciaTelefone);
+		$('#isAlergicoFichaMedica').prop('checked', data.alergia === 'S');
+		$('#descIsAlergicoFichaMedica').val(data.descricaoAlergia);
+		$('#tratamentoMedicoFichaMedica').prop('checked', data.tratamentoMedico === 'S');
+		$('#descTratamentoMedicoFichaMedica').val(data.descricaoTratamentoMedico);
+		$('#possuiDoencaFichaMedica').prop('checked', data.comorbidades === 'S');
+		$('#descDoencaFichaMedica').val(data.descricaoComorbidades);
+		$('#outrasDoencasFichaMedica').val(data.outrasDoencas);
+		console.log($('#tipoSanguineoFichaMedica').val())
+
+		// Inicializar Select2
+		$('#responsavelEmergenciaFichaMedica').select2();
+		$('#tipoSanguineoFichaMedica').select2();
+
+		if (data.alergia === 'S') {
+			$("#divDescIsAlergico").show();
+		}
+		if (data.tratamentoMedico === 'S') {
+			$("#divDescTratamentoMedico").show();
+		}
+		if (data.comorbidades === 'S') {
+			$("#divDescDoenca").show();
+		}
+
+		$('#nav-det-ficha input, #nav-det-ficha select').attr('disabled', true);
+	});
 }
 
 const showFichaMedica = (ref) => {
-	window.location.href = "reserva-ficha?idPessoaFichaMedica=" + ref.getAttribute("data-id");
+	window.location.href = "reserva-ficha?idFichaMedica=" + idFichaMedica;
 }
 
 const showResponsavel = () => {

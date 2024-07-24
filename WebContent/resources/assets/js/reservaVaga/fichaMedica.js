@@ -1,5 +1,6 @@
 const contaId = sessionStorage.getItem('contaId');
 const id = getSearchParams("idPessoaFichaMedica");
+const idFicha = getSearchParams("idFichaMedica");
 var url_base = "http://10.40.110.2:8080/api-educacional";
 const idCandidato = localStorage.getItem('idCandidato');
 var pessoaId = 0;
@@ -12,9 +13,11 @@ $(document).ready(function() {
 	$('#responsavelEmergencia').select2();
 	$('#tipoSanguineo').select2();
 
-	if (id != undefined || id != 0) {
+	if (id != undefined || idFicha != undefined) {
+		let fichaMedicaId = id != undefined ? id : idFicha
+
 		$.ajax({
-			url: url_base + "/fichasMedicas/" + id,
+			url: url_base + "/fichasMedicas/" + fichaMedicaId,
 			type: "GET",
 			contentType: "application/json; charset=utf-8",
 			error: function(e) {
@@ -50,6 +53,22 @@ $(document).ready(function() {
 			$('#possuiDoenca').prop('checked', data.comorbidades === 'S');
 			$('#descDoenca').val(data.descricaoComorbidades);
 			$('#outrasDoencas').val(data.outrasDoencas);
+
+			if (data.alergia === 'S') {
+				console.log('Alergia')
+				$("#divDescIsAlergico").show();
+			}
+			
+			if (data.tratamentoMedico === 'S') {
+				console.log('Tratamento')
+				$("#divDescTratamentoMedico").show();
+			}
+			
+			if (data.comorbidades === 'S') {
+				console.log('Doencas')
+				$("#divDescDoenca").show();
+			}
+
 		});
 	}
 
@@ -180,12 +199,13 @@ $('#btn-submit').on("click", function(event) {
 	dadosFormulario = formDataLimpo
 
 	console.log('Dados do formulário:', dadosFormulario);
-	
 
-	if (id != undefined) {
-		dadosFormulario.idPessoaFichaMedica = id
+
+	if (id != undefined || idFicha != undefined) {
+		let fichaMedicaId = id != undefined ? id : idFicha
+		dadosFormulario.idPessoaFichaMedica = fichaMedicaId
 		$.ajax({
-			url: url_base + `/fichasMedicas/`+ id, // Ajuste a URL conforme necessário
+			url: url_base + `/fichasMedicas/` + fichaMedicaId, // Ajuste a URL conforme necessário
 			type: "PUT",
 			data: JSON.stringify(dadosFormulario),
 			contentType: "application/json; charset=utf-8",
@@ -198,7 +218,11 @@ $('#btn-submit').on("click", function(event) {
 					title: "Editado com sucesso",
 					icon: "success",
 				}).then(() => {
-					window.location.href = "dados-reserva-vaga?id=" + idCandidato; // Ajuste o redirecionamento conforme necessário
+					if (idFicha != undefined) {
+						window.location.href = "dados-reserva-vaga?id=" + idCandidato; // Ajuste o redirecionamento conforme necessário
+					} else {
+						window.location.href = "dados-reserva-vaga?id=" + idCandidato; // Ajuste o redirecionamento conforme necessário						
+					}
 				});
 			},
 			error: function(e) {

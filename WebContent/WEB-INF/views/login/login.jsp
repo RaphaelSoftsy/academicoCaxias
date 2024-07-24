@@ -98,7 +98,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="container-btns">
 					<button type="submit" class="btn btn-primary" data-toggle="modal"
 						data-target="#exampleModalCenter" id="btnLogin">Entrar</button>
-					<button type="button" class="btn btn-danger" data-toggle="modal"
+					<button hidden type="button" class="btn btn-danger" data-toggle="modal"
 						data-target="#exampleModalCenter" id="btnRecuperarSenha">
 						Esqueci a senha</button>
 				</div>
