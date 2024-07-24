@@ -63,7 +63,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/login.css" />
-<title></title>
+<title>Softsy - Educacional</title>
 </head>
 <body>
 	<header>

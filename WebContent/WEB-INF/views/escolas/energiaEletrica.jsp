@@ -14,7 +14,7 @@ String contextPath = request.getContextPath();
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
 
-<title></title>
+<title>Softsy - Educacional</title>
 <!-- Bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
