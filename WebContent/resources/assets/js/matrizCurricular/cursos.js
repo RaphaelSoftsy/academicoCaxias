@@ -236,9 +236,6 @@ function listarDados(dados) {
 			return (
 				"<tr>" +
 				"<td>" +
-				item.conta.conta +
-				"</td>" +
-				"<td>" +
 				item.codCurso +
 				"</td>" +
 				"<td>" +

@@ -114,6 +114,14 @@ String contextPath = request.getContextPath();
 						data-bs-target="#nav-disabled" type="button" role="tab"
 						aria-controls="nav-disabled" aria-selected="false">Ficha
 						Médica</button>
+					<button class="nav-link" hidden id="nav-responsavel-tab"
+						data-bs-toggle="tab" data-bs-target="#nav-responsavel"
+						type="button" role="tab" aria-controls="nav-responsavel"
+						aria-selected="false">Detalhe Responsavel</button>
+					<button class="nav-link" hidden id="nav-det-ficha-tab"
+						data-bs-toggle="tab" data-bs-target="#nav-det-ficha"
+						type="button" role="tab" aria-controls="nav-det-ficha"
+						aria-selected="false">Detalhe Ficha</button>
 				</div>
 			</nav>
 			<div class="tab-content" id="nav-tabContent">
@@ -527,7 +535,15 @@ String contextPath = request.getContextPath();
 				<div class="tab-pane fade mb-4" id="nav-responsavel" role="tabpanel"
 					aria-labelledby="nav-responsavel-tab" tabindex="0">
 
-					<h2 id="tituloDados" class="mb-3">Dados Pessoais</h2>
+					<div class="d-flex align-items-center justify-content-between">
+						<h2 id="tituloDados" class="mb-3">Dados Pessoais</h2>
+						<button type="submit" id='editarCandidato'
+							class="btn btn-primary d-flex gap-2 h-50 align-items-center"
+							onclick='showResponsavel()'>
+							<i class="fa-solid fa-pen"></i> <span>Editar Responsavel</span>
+						</button>
+					</div>
+
 					<input type="text" id="usuarioCadastroResponsavel" hidden
 						value="${funcionario.idUsuario}" />
 
@@ -1085,9 +1101,16 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-				<%-- <div class="tab-pane fade mb-5" id="nav-disabled" role="tabpanel"
-					aria-labelledby="nav-disabled-tab" tabindex="0">
-					<h2 id="tituloDados" class="mb-3">Ficha</h2>
+				<div class="tab-pane fade mb-5" id="nav-det-ficha" role="tabpanel"
+					aria-labelledby="nav-det-ficha-tab" tabindex="0">
+					<div class="d-flex align-items-center justify-content-between">
+						<h2 id="tituloDados" class="mb-3">Ficha</h2>
+						<button type="submit" id='editarCandidato'
+							class="btn btn-primary d-flex gap-2 h-50 align-items-center"
+							onclick='editarFichaMedica()'>
+							<i class="fa-solid fa-pen"></i> <span>Editar</span>
+						</button>
+					</div>
 
 						<input type="text" id="usuarioCadastro" hidden
 					name="usuarioCadastro" value="${funcionario.idUsuario}" />
@@ -1345,7 +1368,7 @@ String contextPath = request.getContextPath();
 
 					</div>
 
-				</div> --%>
+				</div> 
 				<div class="tab-pane fade mb-5" id="nav-disabled" role="tabpanel"
 					aria-labelledby="nav-disabled-tab" tabindex="0">
 					<div class="container-table">

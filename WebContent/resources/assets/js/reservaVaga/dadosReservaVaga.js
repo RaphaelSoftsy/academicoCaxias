@@ -5,11 +5,23 @@ let idCandidato = params.get("id");
 let listaDocumentos = []
 let idDoc = ''
 let idPessoa = ''
+let idResponsavel = ''
+let idFichaMedica = ''
 
 $(document).ready(function() {
+	var triggerTabList = [].slice.call(document.querySelectorAll('#nav-tab button'))
+	triggerTabList.forEach(function(triggerEl) {
+		var tabTrigger = new bootstrap.Tab(triggerEl)
+		triggerEl.addEventListener('click', function(event) {
+			event.preventDefault()
+			tabTrigger.show()
+		})
+	})
+
 	var buttonId;
 	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
 	$('#nav-responsavel input, #nav-responsavel select').attr('disabled', true);
+	$('#nav-det-ficha input, #nav-det-ficha select').attr('disabled', true);
 	localStorage.setItem("idCandidato", idCandidato)
 	$('#municipioNascimentoId').attr('disabled', true);
 
@@ -254,13 +266,120 @@ const listarDados = (dadosTabela) => {
 			"<td>" + estadoCivil + "</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idResponsavel +
-			'" onclick="showResponsavel(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" onclick="show(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
 
 	$("#cola-tabela").html(html);
 };
+
+const show = (ref) => {
+	var tabTrigger = new bootstrap.Tab($('#nav-responsavel-tab'));
+	tabTrigger.show();
+
+	idResponsavel = ref.getAttribute("data-id")
+
+	getResponsavel(idResponsavel)
+}
+
+const getResponsavel = (id) => {
+	$.ajax({
+		url: url_base + '/responsavel/' + id,
+		type: "get",
+		async: false,
+		error: function(e) {
+			console.log(e);
+		}
+	}).done(function(data) {
+		if (data.certidaoNascimentoNumero !== null ||
+			data.pessoa.certidaoNascimentoDataEmissao !== null ||
+			data.pessoa.certidaoNascimentoFolha !== null ||
+			data.pessoa.certidaoNascimentoLivro !== null ||
+			data.pessoa.certidaoNascimentoOrdem !== null) {
+
+			$('input[id="qualPreencherResponsavel"]').attr('checked', true);
+
+			$("#certidaoCasamentoResponsavel").hide();
+			$("#certidaoNascimentoResponsavel").show();
+
+			$('#certidaoNascimentoNumeroResponsavel').val(data.pessoa.certidaoNascimentoNumero);
+			$('#certidaoNascimentoCartorioResponsavel').val(data.pessoa.certidaoNascimentoCartorio);
+			$('#certidaoNascimentoUfCartorioIdResponsavel').val(data.pessoa.certidaoNascimentoMunicipioCartorio.ufId);
+			$('#certidaoNascimentoMunicipioCartorioIdResponsavel').val(data.pessoa.certidaoNascimentoMunicipioCartorio.idMunicipio);
+			$('#certidaoNascimentoDataEmissaoResponsavel').val(data.pessoa.certidaoNascimentoDataEmissao);
+			$('#certidaoNascimentoFolhaResponsavel').val(data.pessoa.certidaoNascimentoFolha);
+			$('#certidaoNascimentoLivroResponsavel').val(data.pessoa.certidaoNascimentoLivro);
+			$('#certidaoNascimentoOrdemResponsavel').val(data.pessoa.certidaoNascimentoOrdem);
+		} else if (data.pessoa.certidaoCasamentoCartorio !== null ||
+			data.pessoa.certidaoCasamentoMunicipioCartorio !== null ||
+			data.pessoa.certidaoCasamentoDataEmissao !== null ||
+			data.pessoa.certidaoCasamentoFolha !== null ||
+			data.pessoa.certidaoCasamentoLivro !== null ||
+			data.pessoa.certidaoCasamentoOrdem !== null) {
+			// Verificar se os dados de certidão de casamento estão preenchidos
+			$('input[id="qualPreencherResponsavel"]').attr('checked', false);
+			$("#certidaoNascimentoResponsavel").hide();
+			$("#certidaoCasamentoResponsavel").show();
+			$('#certidaoCasamentoNumeroResponsavel').val(data.pessoa.certidaoCasamentoNumero);
+			$('#certidaoCasamentoCartorioResponsavel').val(data.pessoa.certidaoCasamentoCartorio);
+			$('#certidaoCasamentoResponsavel').val(data.pessoa.certidaoCasamentoMunicipioCartorio);
+			$('#certidaoCasamentoDataEmissaoResponsavel').val(data.pessoa.certidaoCasamentoDataEmissao);
+			$('#certidaoCasamentoOrdemResponsavel').val(data.pessoa.certidaoCasamentoOrdem);
+			$('#certidaoCasamentoFolhaResponsavel').val(data.pessoa.certidaoCasamentoFolha);
+			$('#certidaoCasamentoLivroResponsavel').val(data.pessoa.certidaoCasamentoLivro);
+		}
+
+		// Preenchendo campos de input
+		$('#nomeCompletoResponsavel').val(data.pessoa.nomeCompleto);
+		$('#nomeSocialResponsavel').val(data.pessoa.nomeSocial);
+		$('#cpfResponsavel').val(data.pessoa.cpf);
+		$('#rgNumeroResponsavel').val(data.pessoa.rgNumero);
+		$('#rgOrgaoExpedidorResponsavel').val(data.pessoa.rgOrgaoExpedidor);
+		$('#rgDataExpedicaoResponsavel').val(data.pessoa.rgDataExpedicao);
+		$('#dtNascimentoResponsavel').val(data.pessoa.dtNascimento);
+		$('#sexo_' + data.pessoa.sexo + 'Responsavel').prop('checked', true); // Supondo que o valor de 'sexo' seja uma string como 'M' ou 'F'
+		$('#estadoCivil_' + data.pessoa.estadoCivil + 'Responsavel').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'
+		$('#cepResponsavel').val(data.pessoa.cep);
+		$('#enderecoResponsavel').val(data.pessoa.endereco);
+		$('#numeroResponsavel').val(data.pessoa.numero);
+		$('#complementoResponsavel').val(data.pessoa.complemento);
+		$('#bairroResponsavel').val(data.pessoa.bairro);
+		$('#municipioResponsavel').val(data.pessoa.municipio);
+		$('#distritoResponsavel').val(data.pessoa.distrito);
+		$('#ufResponsavel').val(data.pessoa.uf);
+		$('#telefoneResponsavel').val(data.pessoa.telefone);
+		$('#celularResponsavel').val(data.pessoa.celular);
+		$('#emailResponsavel').val(data.pessoa.email);
+		$('#empresaResponsavel').val(data.pessoa.empresa);
+		$('#ocupacaoResponsavel').val(data.pessoa.ocupacao);
+		$('#telefoneComercialResponsavel').val(data.pessoa.telefoneComercial);
+
+		// Preenchendo campos de select (exemplo com raca, nacionalidade, paisNascimento, paisResidencia)
+		$('#racaIdResponsavel').val(data.pessoa.raca.idRaca);
+		$('#nacionalidadeIdResponsavel').val(data.pessoa.nacionalidadeId.idNacionalidade);
+		$('#paisNascimentoIdResponsavel').val(data.pessoa.paisNascimento.idPais);
+		$('#paisResidenciaIdResponsavel').val(data.pessoa.paisResidencia.idPais);
+		$('#relacionamentoIdResponsavel').val(data.idPapelPessoa);
+
+		// Exemplo de preenchimento para campos específicos como certidaoNascimentoNumero, certidaoCasamentoNumero, etc.
+		$('#certidaoNascimentoNumeroResponsavel').val(data.pessoa.certidaoNascimentoNumero);
+		$('#certidaoCasamentoNumeroResponsavel').val(data.pessoa.certidaoCasamentoNumero);
+
+		// Aqui você pode adicionar os demais campos conforme necessário
+
+		// Exemplo para preenchimento de campo select com município de nascimento
+		$('#municipioNascimentoIdResponsavel').val(data.pessoa.municipioNascimento.idMunicipio);
+		$('#ufNascimentoIdResponsavel').val(data.pessoa.municipioNascimento.uf.idUf);
+		$('#rgUfEmissorIdResponsavel').val(data.pessoa.rgUfEmissor != null ? data.pessoa.rgUfEmissor.idUf : '');
+
+		// Exemplo para estado civil usando radio button
+		$('input[name="estadoCivilResponsavel"][value="' + data.pessoa.estadoCivil + '"]').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'
+
+		$(".bg-loading").addClass("none");
+		$(".bg-loading").fadeOut();
+	});
+}
 
 const listarFichaMedica = (dadosTabela) => {
 	var html = dadosTabela.map(function(item) {
@@ -273,7 +392,7 @@ const listarFichaMedica = (dadosTabela) => {
 			"<td>" + item.planoSaude + "</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idPessoaFichaMedica +
-			'" onclick="showFichaMedica(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" onclick="fichaMedica(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -281,12 +400,21 @@ const listarFichaMedica = (dadosTabela) => {
 	$("#tabela-ficha").html(html);
 };
 
+const fichaMedica = (ref) => {
+	var tabTrigger = new bootstrap.Tab($('#nav-det-ficha-tab'));
+	tabTrigger.show();
+
+	idFichaMedica = ref.getAttribute("data-id")
+
+	/*getResponsavel(idResponsavel)*/
+}
+
 const showFichaMedica = (ref) => {
 	window.location.href = "reserva-ficha?idPessoaFichaMedica=" + ref.getAttribute("data-id");
 }
 
-const showResponsavel = (ref) => {
-	window.location.href = "dadosResponsavel?idResponsavel=" + ref.getAttribute("data-id");
+const showResponsavel = () => {
+	window.location.href = "dadosResponsavel?idResponsavel=" + idResponsavel;
 }
 
 const loadSelects = () => {

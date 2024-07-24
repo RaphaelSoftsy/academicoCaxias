@@ -98,29 +98,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col" class="sortable border-end" data-column="escolaId">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Escola</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton1">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o nome da escola" />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar</button>
-									</div>
-								</div>
-							</div>
-						</th>
+						
 						<th scope="col" class="sortable border-end" data-column="codCurso">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
