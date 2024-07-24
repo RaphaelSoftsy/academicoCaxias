@@ -10,7 +10,6 @@ var serie = 0
 var minVagasAbertTurma = 0
 var vagas = 0
 const contaId = sessionStorage.getItem('contaId');
-
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
@@ -20,28 +19,29 @@ $(document).ready(function() {
 
 	getDados()
 
-	$('.dropdown-toggle-form').click(function() {
-		console.log('TESTE');
-		$(this).siblings('.dropdown-content-form').toggleClass('show');
-	});
+$('.dropdown-toggle-form').click(function() {
+    console.log('TESTE');
+    $(this).siblings('.dropdown-content-form').toggleClass('show');
+});
 
-	$('.searchButton').click(function() {
-		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
-		console.log("Search Input:", searchInput);
+$('.searchButton').click(function() {
+    var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
+    console.log("Search Input:", searchInput);
 
-		var columnToSearch = $(this).closest('.sortable').data('column');
-		console.log("Column to Search:", columnToSearch);
+    var columnToSearch = $(this).closest('.sortable').data('column');
+    console.log("Column to Search:", columnToSearch);
 
-		var filteredData = dadosOriginais.filter(function(item) {
-			return item[columnToSearch].toLowerCase().includes(searchInput);
-		});
+    var filteredData = dadosOriginais.filter(function(item) {
+        var valueToCheck = item[columnToSearch] ? item[columnToSearch].toLowerCase() : '';
+        return valueToCheck.includes(searchInput);
+    });
 
-		console.log("Filtered Data:", filteredData);
-		listarDados(filteredData);
+    console.log("Filtered Data:", filteredData);
+    listarDados(filteredData);
 
-		$(this).siblings('.searchInput').val('');
-		$(this).closest('.dropdown-content-form').removeClass('show');
-	});
+    $(this).siblings('.searchInput').val('');
+    $(this).closest('.dropdown-content-form').removeClass('show');
+});
 
 	$.ajax({
 		url: url_base + '/concursos/conta/' + contaId,
@@ -196,123 +196,15 @@ $(document).ready(function() {
 });
 
 
-function getConcurso(dadosOfertaConcurso, callback) {
-	var concurso = []; // Array para armazenar os resultados dos concursos
-
-	dadosOfertaConcurso.forEach(function(item, index) {
-		$.ajax({
-			url: url_base + "/concursos/" + item.concursoId,
-			type: "GET",
-			async: false,
-		})
-			.done(function(data) {
-				concurso[index] = data.concurso;
-			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-			});
-	});
-
-	// Chamada do callback passando os resultados dos concursos
-	callback(concurso);
-}
-
-function getCurso(dadosOfertaConcurso, callback) {
-	var curso = []; // Array para armazenar os resultados dos cursos
-
-	dadosOfertaConcurso.forEach(function(item, index) {
-		$.ajax({
-			url: url_base + "/cursos/" + item.cursoId,
-			type: "GET",
-			async: false,
-		})
-			.done(function(data) {
-				curso[index] = data.nome;
-			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-			});
-	});
-
-	// Chamada do callback passando os resultados dos cursos
-	callback(curso);
-}
-
-
-
-function getEscola(dadosOfertaConcurso, callback) {
-
-	var escola = []; // Array para armazenar os resultados dos cursos
-
-	dadosOfertaConcurso.forEach(function(item, index) {
-		$.ajax({
-			url: url_base + "/escolas/" + item.escolaId,
-			type: "GET",
-			async: false,
-		})
-			.done(function(data) {
-				escola[index] = data.nomeEscola;
-			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-			});
-	});
-
-	// Chamada do callback passando os resultados dos cursos
-	callback(escola);
-}
-
-
-function getTurno(dadosOfertaConcurso, callback) {
-	var turno = []; // Array para armazenar os resultados dos cursos
-
-	dadosOfertaConcurso.forEach(function(item, index) {
-		$.ajax({
-			url: url_base + "/turno/" + item.turnoId,
-			type: "GET",
-			async: false,
-		})
-			.done(function(data) {
-				turno[index] = data.turno;
-			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-			});
-	});
-
-	// Chamada do callback passando os resultados dos cursos
-	callback(turno);
-}
 function getDados() {
 	$.ajax({
-		url: url_base + "/ofertasConcurso/",
+		url: url_base + "/ofertasConcurso/cursoUsuario/" + usuarioId,
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
-
-			getEscola(data, function(escolaData) {
-				getTurno(data, function(turnoData) {
-					getConcurso(data, function(concursoData) {
-						getCurso(data, function(cursoData) {
-							/*Esse exemplo será usado em cada get
-							
-							cursosOfertados.forEach((curso) => {
-							const escolaCorrespondente = escolaData.find((escola) => escola.escolaId === curso.idEscola);
-							if (escolaCorrespondente) {
-								curso.nomeEscola = escolaCorrespondente.nome;
-							}
-						});*/
-							listarDados(data, concursoData, cursoData, escolaData, turnoData);
-						});
-					});
-				});
-			});
-			/* getConcurso(data, function(concursoData) {
-				 getCurso(data, function(cursoData) {
-					 listarDados(data, concursoData, cursoData);
-				 });
-			 });*/
+			dadosOriginais = data;
+			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -320,8 +212,8 @@ function getDados() {
 }
 
 
-function listarDados(dados, concurso, curso, escola, turno) {
-	var html = dados.map(function(item, index) {
+function listarDados(dados) {
+	var html = dados.map(function(item) {
 		var ativo;
 
 		if (item.ativo == "N") {
@@ -332,10 +224,10 @@ function listarDados(dados, concurso, curso, escola, turno) {
 
 		return (
 			"<tr>" +
-			"<td>" + concurso[index] + "</td>" +
-			"<td>" + curso[index] + "</td>" +
-			"<td>" + escola[index] + "</td>" +
-			"<td>" + turno[index] + "</td>" +
+			"<td>" + item.concurso + "</td>" +
+			"<td>" + item.nomeCurso + "</td>" +
+			"<td>" + item.nomeEscola + "</td>" +
+			"<td>" + item.turno + "</td>" +
 			"<td>" + item.serie + "</td>" +
 			"<td>" + item.descricaoOferta + "</td>" +
 			"<td>" + item.vagas + "</td>" +
@@ -343,7 +235,7 @@ function listarDados(dados, concurso, curso, escola, turno) {
 			"<td><div class='d-flex align-items-center gap-1'>" +
 			'<input type="checkbox" data-status="' + item.ativo + '" data-id="' + item.idOfertaConcurso + ' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
-			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-concursoId="' + item.concursoId + '" data-cursoId="' + item.cursoId + '" data-escolaId="' + item.escolaId + '" data-turnoId="' + item.turnoId + '" data-serie="' + item.serie + '" data-descricaoOferta="' + item.descricaoOferta + '" data-vagas="' + item.vagas + '" data-minVagasAbertTurma="' + item.minVagasAbertTurma + '" data-id="' + item.idOfertaConcurso + '" data-ativo="' + item.ativo + '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-concursoId="' + item.idConcurso + '" data-cursoId="' + item.idCurso + '" data-escolaId="' + item.idEscola + '" data-turnoId="' + item.idTurno + '" data-serie="' + item.serie + '" data-descricaoOferta="' + item.descricaoOferta + '" data-vagas="' + item.vagas + '" data-minVagasAbertTurma="' + item.minVagasAbertTurma + '" data-id="' + item.idOfertaConcurso + '" data-ativo="' + item.ativo + '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -370,7 +262,7 @@ function alteraStatus(element) {
 
 	$.ajax({
 		url: url_base + `/ofertasConcurso/${id}${status === "S" ? '/desativar' : '/ativar'}`,
-		type: "put",
+		type: "PUT",
 		error: function(e) {
 			Swal.close();
 			console.log(e.responseJSON);
@@ -462,12 +354,12 @@ function editar() {
 			$("#vagasMinEdit").val('');
 			$("#vagasEdit").val('');
 			getDados();
-			showPage(currentPage);
-			updatePagination();
+			
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
 			})
+			window.location.href = 'oferta-concurso'
 		})
 	return false;
 }
