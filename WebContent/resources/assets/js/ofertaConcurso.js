@@ -33,8 +33,9 @@ $(document).ready(function() {
 
 		var filteredData = dadosOriginais.filter(function(item) {
 			var valueToCheck = item[columnToSearch] ? item[columnToSearch].toLowerCase() : '';
-			return valueToCheck.includes(searchInput);
+			return valueToCheck.includes(searchInput.toLowerCase());
 		});
+
 
 		console.log("Filtered Data:", filteredData);
 		listarDados(filteredData);

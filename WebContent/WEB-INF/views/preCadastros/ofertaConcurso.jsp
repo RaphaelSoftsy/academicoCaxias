@@ -54,7 +54,8 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
@@ -102,8 +103,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col" class="sortable border-end"
-							data-column="concurso">
+						<th scope="col" class="sortable border-end" data-column="concurso">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
@@ -121,13 +121,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										<input type="text" class='form-control mb-3 searchInput'
 											placeholder="Digite o nome">
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
-											escola</button>
+											concurso</button>
 									</div>
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end"
-							data-column=curso style="width: 18%">
+						<th scope="col" class="sortable border-end" data-column=curso
+							style="width: 18%">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
@@ -145,12 +145,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										<input type="text" class='form-control mb-3 searchInput'
 											placeholder="Digite o nome">
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
-											escola</button>
+											curso</button>
 									</div>
 								</div>
 							</div>
 						</th>
-							<th scope="col" class="sortable border-end"
+						<th scope="col" class="sortable border-end"
 							data-column="nomeEscola" style="width: 40%">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
@@ -174,8 +174,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-							<th scope="col" class="sortable border-end"
-							data-column="turno">
+						<th scope="col" class="sortable border-end" data-column="turno">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
@@ -193,13 +192,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										<input type="text" class='form-control mb-3 searchInput'
 											placeholder="Digite o nome">
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
-											escola</button>
+											turno</button>
 									</div>
 								</div>
 							</div>
 						</th>
-							<th scope="col" class="sortable border-end"
-							data-column="serie">
+						<th scope="col" class="sortable border-end" data-column="serie">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
@@ -217,12 +215,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										<input type="text" class='form-control mb-3 searchInput'
 											placeholder="Digite o nome">
 										<button class='btn btn-sm col-12 btn-success searchButton'>Buscar
-											escola</button>
+											série</button>
 									</div>
 								</div>
 							</div>
 						</th>
-							<th scope="col" class="sortable border-end"
+						<th scope="col" class="sortable border-end"
 							data-column="descricao" style="width: 30%">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
@@ -246,7 +244,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" >Vagas</th>
+						<th scope="col">Vagas</th>
 						<th scope="col" style="width: 10%">Min Vagas</th>
 						<th scope="col">Ativo</th>
 						<th class='text-center' scope="col" width="10%" height="100%">Ações</th>
@@ -290,16 +288,16 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="curso" class="form-label">Curso:<span
 									class="red">*</span>
-								</label><select class="form-select" aria-label="curso"
-									id="cursoSelect" required name="curso">
+								</label><select class="form-select" aria-label="curso" id="cursoSelect"
+									required name="curso">
 									<option selected disabled value="">Selecione o Curso</option>
 								</select>
 							</div>
 							<div class="mb-4">
 								<label for="escola" class="form-label">Escola<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="escola"
-									id="escola" required name="escola">
+								</label> <select class="form-select" aria-label="escola" id="escola"
+									required name="escola">
 									<option selected disabled value="">Selecione a Escola</option>
 								</select>
 							</div>
@@ -307,22 +305,22 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="col-6 mb-3">
 								<label for="turno" class="form-label">Turno:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="turno"
-									id="turno" required name="turno">
+								</label> <select class="form-select" aria-label="turno" id="turno"
+									required name="turno">
 									<option selected disabled value="">Selecione o Turno</option>
 								</select>
 							</div>
 
 							<div class="mb-4">
 								<label for="serie" class="form-label">Série:</label> <input
-									type="number" class="form-control" id="serie" 
+									type="number" class="form-control" id="serie"
 									aria-describedby="Descricao" autocomplete="off">
 							</div>
 
 							<div class="mb-4">
-								<label for="descricao" class="form-label">Descrição:</label>
-								<input type="text" class="form-control" id="descricao"
-									required aria-describedby="Descricao" autocomplete="off">
+								<label for="descricao" class="form-label">Descrição:</label> <input
+									type="text" class="form-control" id="descricao" required
+									aria-describedby="Descricao" autocomplete="off">
 							</div>
 
 							<div class="mb-4">
@@ -330,11 +328,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									type="number" class="form-control" id="vagas" required
 									aria-describedby="vagas" autocomplete="off">
 							</div>
-							
-								<div class="mb-4">
-								<label for="vagasMin" class="form-label">Vagas Mínimas para Abertura:</label> <input
-									type="text" class="form-control" id="vagasMin" required
-									aria-describedby="vagasMin" autocomplete="off">
+
+							<div class="mb-4">
+								<label for="vagasMin" class="form-label">Vagas Mínimas
+									para Abertura:</label> <input type="text" class="form-control"
+									id="vagasMin" required aria-describedby="vagasMin"
+									autocomplete="off">
 							</div>
 
 							<div class="d-flex justify-content-end gap-2">
@@ -412,11 +411,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									type="number" class="form-control" id="vagasEdit" required
 									aria-describedby="Vagas" autocomplete="off">
 							</div>
-							
-								<div class="mb-4">
-								<label for="vagasMinEdit" class="form-label">Vagas Mínimas para Abertura:</label> <input
-									type="text" class="form-control" id="vagasMinEdit" required
-									aria-describedby="VagasMin" autocomplete="off">
+
+							<div class="mb-4">
+								<label for="vagasMinEdit" class="form-label">Vagas
+									Mínimas para Abertura:</label> <input type="text" class="form-control"
+									id="vagasMinEdit" required aria-describedby="VagasMin"
+									autocomplete="off">
 							</div>
 
 
@@ -453,11 +453,11 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/ofertaConcurso.js"></script>
+	
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/ofertaConcurso.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
