@@ -1,4 +1,4 @@
-const contaId = sessionStorage.getItem('contaId');
+const contaId = localStorage.getItem('contaId');
 const id = getSearchParams("idPessoaFichaMedica");
 const idFicha = getSearchParams("idFichaMedica");
 var url_base = "http://10.40.110.2:8080/api-educacional";

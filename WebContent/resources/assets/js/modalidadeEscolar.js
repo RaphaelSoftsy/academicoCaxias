@@ -6,7 +6,7 @@ var currentPage = 1;
 var pagesToShow = 5;
 var idSelect = ''
 var isAtivo = '';
-const contaId = Number(sessionStorage.getItem('contaId'))
+const contaId = Number(localStorage.getItem('contaId'))
 
 
 $(document).ready(function() {

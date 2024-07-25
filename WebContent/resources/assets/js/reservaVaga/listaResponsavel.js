@@ -8,7 +8,7 @@ var escolas = [];
 var id = "";
 var idEscola = "";
 var ativo = "";
-const contaId = sessionStorage.getItem('contaId');
+const contaId = localStorage.getItem('contaId');
 const candidatoId = localStorage.getItem("idCandidato");
 
 $(document).ready(function() {

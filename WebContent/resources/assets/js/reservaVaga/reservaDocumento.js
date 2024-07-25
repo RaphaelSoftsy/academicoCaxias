@@ -1,4 +1,4 @@
-const contaId = sessionStorage.getItem('contaId');
+const contaId = localStorage.getItem('contaId');
 const candidatoId = localStorage.getItem('idCandidato');
 var status = false
 

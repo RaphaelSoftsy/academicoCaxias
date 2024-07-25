@@ -1,6 +1,6 @@
 var id = '';
 var areaConhecimento = ''
-const contaId = sessionStorage.getItem('contaId')
+const contaId = localStorage.getItem('contaId')
 
 var idEscola = ''
 $(document).ready(function() {

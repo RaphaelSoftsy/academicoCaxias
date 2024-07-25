@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	const contaId = sessionStorage.getItem('contaId');
+	const contaId = localStorage.getItem('contaId');
 	const id = getSearchParams("id");
 	console.log(id)
 

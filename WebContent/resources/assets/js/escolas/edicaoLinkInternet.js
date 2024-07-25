@@ -1,6 +1,6 @@
 var id = '';
 var idItem = ''
-const contaId = Number(sessionStorage.getItem('contaId'))
+const contaId = Number(localStorage.getItem('contaId'))
 var idEscola = localStorage.getItem("escolaId");
 var pefilEscola = localStorage.getItem("perfil")
 var escola = JSON.parse(pefilEscola)

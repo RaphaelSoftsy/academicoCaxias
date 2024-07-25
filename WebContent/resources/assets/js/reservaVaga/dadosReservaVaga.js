@@ -1,4 +1,4 @@
-const contaId = sessionStorage.getItem('contaId')
+const contaId = localStorage.getItem('contaId')
 const escolaId = sessionStorage.getItem('escolaId')
 let idCandidato = params.get("id");
 let listaDocumentos = []

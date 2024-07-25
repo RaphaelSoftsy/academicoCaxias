@@ -6,7 +6,7 @@ var currentPage = 1;
 var pagesToShow = 5;
 var isAtivo = '';
 var idSelect = '';
-const contaId = sessionStorage.getItem('contaId')
+const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
 	$.ajax({

@@ -1,4 +1,4 @@
-const contaId = sessionStorage.getItem('contaId')
+const contaId = localStorage.getItem('contaId')
 const idCandidato = sessionStorage.getItem('idCandidato')
 let id = getSearchParams("id");
 const candidatoId = getSearchParams("idCandidato");

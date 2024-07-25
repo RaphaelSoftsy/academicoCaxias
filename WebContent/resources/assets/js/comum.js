@@ -3,13 +3,16 @@ var url_base = "http://10.40.110.2:8080/api-educacional-dev";
 
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
-const path_base = $(location).attr("origin")+"/"+$(location).attr("pathname").split("/")[1]+ "/resources/menu";
-const nomeConta = sessionStorage.getItem("nomeConta")
-const usuarioId = sessionStorage.getItem("usuarioId");
+const path_base = $(location).attr("origin") + "/" + $(location).attr("pathname").split("/")[1] + "/resources/menu";
+const nomeConta = localStorage.getItem("nomeConta")
+const usuarioId = localStorage.getItem("usuarioId");
 
 $('#escolaIdStyle').css('display', 'none')
-$('#escolaIdStyleEdit').css('display', 'none')  
+$('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
+
+	sessionStorage.setItem('nomeConta', nomeConta)
+	sessionStorage.setItem('usuarioId', usuarioId)
 
 	/*// Função para adicionar ou atualizar um segmento na URL
 	function atualizarSegmentoURL(novoSegmento) {
@@ -27,21 +30,16 @@ $(document).ready(function() {
 
 	const url = window.location.pathname
 	if (url.includes('login') == false && url.includes('cadastroConta') == false) {
-		const contaIdStorage = localStorage.getItem('contaId')
-		const contaId = sessionStorage.getItem('contaId')
-		if (contaIdStorage != undefined && contaId == undefined) {
-			sessionStorage.setItem('contaId', contaIdStorage)
-			contaId = sessionStorage.getItem('contaId')
-		}
+		const contaId = localStorage.getItem('contaId')
+		sessionStorage.setItem('contaId', contaId)
 
-		
-		const transacao = "/"+ $(location).attr('href').split("/")[$(location).attr('href').split("/").length-1];
+		const transacao = "/" + $(location).attr('href').split("/")[$(location).attr('href').split("/").length - 1];
 		console.log(transacao);
 		$.ajax({
 			url: url_base + `/transacoes/acessos/${usuarioId}?url=${transacao}`,
 			type: "get",
 			error: function(e) {
-				console.log();
+				console.log(e);
 				if (e.responseText == "Nenhum acesso encontrado para o usuário ou transação informado.") {
 					console.log(e.responseText)
 					console.log(url)
@@ -91,7 +89,7 @@ $(document).ready(function() {
 
 })
 
-var str = sessionStorage.getItem('nomeConta').toLowerCase();
+var str = localStorage.getItem('nomeConta').toLowerCase();
 str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
 	return letter.toUpperCase();
 });
@@ -108,7 +106,7 @@ window.addEventListener("load", function() {
 
 
 function getValorSelects() {
-	const contaId = sessionStorage.getItem('contaId')
+	const contaId = localStorage.getItem('contaId')
 	$.ajax({
 		url: url_base + '/dependenciaAdministrativa',
 		type: "get",

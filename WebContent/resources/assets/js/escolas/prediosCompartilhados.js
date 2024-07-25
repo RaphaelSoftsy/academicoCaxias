@@ -10,7 +10,7 @@ var idEscola = '';
 var idSelect2 = '';
 var quantidade = '';
 var ativo = '';
-const contaId = Number(sessionStorage.getItem('contaId'))
+const contaId = Number(localStorage.getItem('contaId'))
 
 $(document).ready(function() {
 	getDados()

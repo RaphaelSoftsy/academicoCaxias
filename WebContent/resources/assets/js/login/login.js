@@ -48,6 +48,8 @@ $('#btnLogin').click(function() {
 			}
 		}).done(function(data) {
 
+			localStorage.setItem('nomeConta', data.usuarioLogado.nomeCompleto)
+			localStorage.setItem('usuarioId', data.usuarioLogado.idUsuario)
 			sessionStorage.setItem('nomeConta', data.usuarioLogado.nomeCompleto)
 			sessionStorage.setItem('usuarioId', data.usuarioLogado.idUsuario)
 			localStorage.setItem("idContaAcesso", data.usuarioConta[0].contaPadraoAcessoId)
@@ -74,7 +76,7 @@ $('#btnLogin').click(function() {
 				if ($("#remeberMeCheck").checked) {
 					localStorage.setItem('contaId', responseData.contaId)
 				} else {
-					sessionStorage.setItem('contaId', responseData.contaId)
+					localStorage.setItem('contaId', responseData.contaId)
 				}
 
 				Swal.fire({

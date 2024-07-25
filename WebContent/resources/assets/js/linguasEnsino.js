@@ -5,7 +5,7 @@ var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 var valorIndigena = '';
-const contaId = sessionStorage.getItem('contaId')
+const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
 

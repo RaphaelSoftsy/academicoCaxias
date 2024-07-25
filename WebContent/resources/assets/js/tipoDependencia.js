@@ -1,5 +1,5 @@
 var dados = [];
-const contaId = sessionStorage.getItem('contaId');;
+const contaId = localStorage.getItem('contaId');;
 var nome = '';
 var rows = 8;
 var currentPage = 1;

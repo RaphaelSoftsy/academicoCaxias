@@ -1,7 +1,7 @@
 var id = '';
 var logo = '';
 var cnpj = '';
-const contaId = sessionStorage.getItem('contaId')
+const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
 	id = getSearchParams("id");

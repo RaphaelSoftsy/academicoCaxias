@@ -1,4 +1,4 @@
-const contaId = sessionStorage.getItem('contaId')
+const contaId = localStorage.getItem('contaId')
 const idCurso = params.get("id");
 
 $(document).ready(function() {

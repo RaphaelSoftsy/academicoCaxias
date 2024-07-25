@@ -1,6 +1,6 @@
 var dados = [];
 var ufs = [];
-const contaId = sessionStorage.getItem('contaId');
+const contaId = localStorage.getItem('contaId');
 var nome = '';
 var nome2 = '';
 var dataIni = '';
