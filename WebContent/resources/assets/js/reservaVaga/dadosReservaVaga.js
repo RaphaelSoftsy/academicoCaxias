@@ -282,7 +282,7 @@ const listarDados = (dadosTabela) => {
 			"<td>" + estadoCivil + "</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" data-id="' +
 			item.idResponsavel +
-			'" onclick="show(this)"><i class="fa-solid fa-floppy-disk"></i></span></td>' +
+			'" onclick="show(this)"><i class="fa-solid fa-file-lines"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
