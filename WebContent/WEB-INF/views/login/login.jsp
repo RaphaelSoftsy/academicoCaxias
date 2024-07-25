@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex" />
 
-<title>POC - Login</title>
+<title>Softsy - Educacional</title>
 <!-- Bootstrap -->
 <!-- Bootstrap -->
 <link
