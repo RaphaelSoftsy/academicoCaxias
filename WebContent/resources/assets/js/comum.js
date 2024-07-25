@@ -10,6 +10,8 @@ const usuarioId = localStorage.getItem("usuarioId");
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
+	$('.edit-val').attr('disabled', true);
+	$('#seuBotao').attr('title', 'Seu usuário não tem autorização');
 
 	sessionStorage.setItem('nomeConta', nomeConta)
 	sessionStorage.setItem('usuarioId', usuarioId)
@@ -57,6 +59,10 @@ $(document).ready(function() {
 						window.location.href = "acessar-escolas"
 					}
 				})
+			}
+
+			if (data[0].altera == 'N') {
+				$('.edit-val').hide()
 			}
 		})
 

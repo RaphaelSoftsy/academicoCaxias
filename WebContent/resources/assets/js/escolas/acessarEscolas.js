@@ -189,7 +189,7 @@ function listarDados(dados) {
 			item.idEscola +
 			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
-			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm edit-val" data-id="' +
 			item.idEscola +
 			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"

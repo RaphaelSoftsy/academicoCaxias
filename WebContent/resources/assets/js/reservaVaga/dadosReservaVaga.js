@@ -349,8 +349,8 @@ const getResponsavel = (id) => {
 		// Preenchendo campos de input
 		$('#nomeCompletoResponsavel').val(data.pessoa.nomeCompleto);
 		$('#nomeSocialResponsavel').val(data.pessoa.nomeSocial);
-		$('#cpfResponsavel').val(data.pessoa.cpf);
-		$('#rgNumeroResponsavel').val(data.pessoa.rgNumero);
+		$('#cpfResponsavel').val(data.pessoa.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
+		$('#rgNumeroResponsavel').val(data.pessoa.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"))
 		$('#rgOrgaoExpedidorResponsavel').val(data.pessoa.rgOrgaoExpedidor);
 		$('#rgDataExpedicaoResponsavel').val(data.pessoa.rgDataExpedicao);
 		$('#dtNascimentoResponsavel').val(data.pessoa.dtNascimento);
@@ -364,12 +364,12 @@ const getResponsavel = (id) => {
 		$('#municipioResponsavel').val(data.pessoa.municipio);
 		$('#distritoResponsavel').val(data.pessoa.distrito);
 		$('#ufResponsavel').val(data.pessoa.uf);
-		$('#telefoneResponsavel').val(data.pessoa.telefone);
-		$('#celularResponsavel').val(data.pessoa.celular);
+		$('#telefoneResponsavel').val(data.pessoa.telefone.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3"));
+		$('#celularResponsavel').val(data.pessoa.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"));
 		$('#emailResponsavel').val(data.pessoa.email);
 		$('#empresaResponsavel').val(data.pessoa.empresa);
 		$('#ocupacaoResponsavel').val(data.pessoa.ocupacao);
-		$('#telefoneComercialResponsavel').val(data.pessoa.telefoneComercial);
+		$('#telefoneComercialResponsavel').val(data.pessoa.telefoneComercial.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"));
 
 		// Preenchendo campos de select (exemplo com raca, nacionalidade, paisNascimento, paisResidencia)
 		$('#racaIdResponsavel').val(data.pessoa.raca.idRaca);
@@ -481,7 +481,7 @@ const getFicha = (id) => {
 		$('#bairroFichaMedica').val(data.psEmergenciaBairro);
 		$('#municipioFichaMedica').val(data.psEmergenciaMunicipio);
 		$('#ufFichaMedica').val(data.psEmergenciaUf);
-		$('#telefoneFichaMedica').val(data.psEmergenciaTelefone);
+		$('#telefoneFichaMedica').val(data.psEmergenciaTelefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"));
 		$('#isAlergicoFichaMedica').prop('checked', data.alergia === 'S');
 		$('#descIsAlergicoFichaMedica').val(data.descricaoAlergia);
 		$('#tratamentoMedicoFichaMedica').prop('checked', data.tratamentoMedico === 'S');
@@ -685,8 +685,8 @@ const getDadosCandidato = () => {
 			$('#nomeMae').val(data.nomeMae);
 			$('#nomePai').val(data.nomePai);
 			$('#nomeSocial').val(data.nomeSocial);
-			$('#cpf').val(data.cpf);
-			$('#rgNumero').val(data.rgNumero);
+			$('#cpf').val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
+			$('#rgNumero').val(data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"))
 			$('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
 			$('#rgDataExpedicao').val(data.rgDataExpedicao);
 			$('#dtNascimento').val(data.dtNascimento);
@@ -705,12 +705,12 @@ const getDadosCandidato = () => {
 			$('#municipio').val(data.municipio);
 			$('#distrito').val(data.distrito);
 			$('#uf').val(data.uf);
-			$('#telefone').val(data.telefone);
-			$('#celular').val(data.celular);
+			$('#telefone').val(data.telefone != null && data.telefone != '' ? data.telefone.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3") : '')
+			$('#celular').val(data.celular != null && data.celular != '' ? data.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3") : '')
 			$('#email').val(data.email);
 			$('#empresa').val(data.empresa);
 			$('#ocupacao').val(data.ocupacao);
-			$('#telefoneComercial').val(data.telefoneComercial);
+			$('#telefoneComercial').val(data.telefoneComercial != null && data.telefoneComercial != '' ? data.telefoneComercial.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3") : '')
 
 			// Preenchendo campos de select (exemplo com raca, nacionalidade, paisNascimento, paisResidencia)
 			$('#racaId').val(data.raca.idRaca);
