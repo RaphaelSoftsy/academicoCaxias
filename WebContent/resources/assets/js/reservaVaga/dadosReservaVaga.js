@@ -6,7 +6,8 @@ let idDoc = ''
 let idPessoa = ''
 let idResponsavel = ''
 let idFichaMedica = ''
-
+let nomeCandidato = ""
+ 
 $(document).ready(function() {
 	var triggerTabList = [].slice.call(document.querySelectorAll('#nav-tab button'))
 	triggerTabList.forEach(function(triggerEl) {
@@ -407,20 +408,32 @@ function formatarDataParaBR(data) {
 
 const listarFichaMedica = (dadosTabela) => {
 	var html = dadosTabela.map(function(item) {
+
+		var parentesco = ""
+
+		$.ajax({
+			url: url_base + '/responsavel/' + item.responsavelPessoaId,
+			type: "get",
+			async: false,
+			error: function(e) {
+				console.log(e);
+			}
+		}).done(function(data) {
+			parentesco = data.pessoa.nomeCompleto
+		})
 		console.log(item);
+
 
 		let data = formatarDataParaBR(item.dtCadastro)
 
 		return (
 			"<tr>" +
-			"<td>" + item.responsavelPessoaId + "</td>" +
+			"<td>" + nomeCandidato + "</td>" +
+			"<td>" + parentesco + "</td>" +
 			"<td>" + data + "</td>" +
-			"<td>" + item.peso + "</td>" +
-			"<td>" + item.altura + "</td>" +
-			"<td>" + item.planoSaude + "</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" data-id="' +
 			item.idPessoaFichaMedica +
-			'" onclick="fichaMedica(this)"><i class="fa-solid fa-floppy-disk"></i></span></td>' +
+			'" onclick="fichaMedica(this)"><i class="fa-solid fa-file-lines"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -666,6 +679,7 @@ const getDadosCandidato = () => {
 				});
 			}
 		}).done(function(data) {
+			nomeCandidato = data.nomeCompleto
 			// Preenchendo campos de input
 			$('#nomeCompleto').val(data.nomeCompleto);
 			$('#nomeMae').val(data.nomeMae);

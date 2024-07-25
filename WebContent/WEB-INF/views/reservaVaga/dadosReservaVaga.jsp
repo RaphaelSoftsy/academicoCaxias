@@ -1360,11 +1360,9 @@ String contextPath = request.getContextPath();
 							class="table-ficha tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
 							<thead>
 								<tr>
+									<th scope="col">Nome do candidato</th>
 									<th scope="col">Responsável</th>
 									<th scope="col">Data de preenchimento</th>
-									<th scope="col">Peso</th>
-									<th scope="col">Altura</th>
-									<th scope="col">Plano de saúde</th>
 									<th class='text-center' scope="col" width="10%">Ações</th>
 								</tr>
 							</thead>

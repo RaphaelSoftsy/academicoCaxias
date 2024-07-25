@@ -1,5 +1,5 @@
 const contaId = sessionStorage.getItem('contaId')
-var url_base = "http://10.40.110.2:8080/api-educacional";
+var url_base = "http://10.40.110.2:8080/api-educacional-dev";
 const idCandidadto = localStorage.getItem("idCandidato")
 let id = getSearchParams("id");
 let responsavelIdParams = getSearchParams("idResponsavel");
