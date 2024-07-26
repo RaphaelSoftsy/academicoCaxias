@@ -182,7 +182,9 @@ function editar() {
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
-			})
+			}).then(data => {
+			window.location.href = 'raca'
+		})
 		})
 	return false;
 }
@@ -230,7 +232,9 @@ function cadastrar() {
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
-			})
+			}).then(data => {
+			window.location.href = 'raca'
+		})
 		})
 	return false;
 }

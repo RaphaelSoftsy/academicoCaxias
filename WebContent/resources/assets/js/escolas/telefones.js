@@ -67,6 +67,8 @@ $(document).ready(function() {
 	})
 
 	getDados()
+	
+	$(".telefone").mask("(99) 99999-9999")
 
 	// Dropdown de Pesquisa
 	$('.dropdown-toggle-form').click(function() {
@@ -219,7 +221,7 @@ function listarDados(dados) {
 
 		return (
 			"<tr>" +
-			"<td>" +
+			"<td class='telefone'>" +
 			item.telefone +
 			"</td>" +
 			"<td>" +

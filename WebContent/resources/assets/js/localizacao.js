@@ -185,7 +185,9 @@ function editar() {
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
-			})
+			}).then(data => {
+			window.location.href = 'tipoLocalizacao'
+		})
 		})
 	return false;
 }
@@ -232,7 +234,9 @@ function cadastrar() {
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
-			})
+			}).then(data => {
+			window.location.href = 'tipoLocalizacao'
+		})
 		})
 	return false;
 }

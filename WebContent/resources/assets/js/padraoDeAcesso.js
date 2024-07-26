@@ -3,6 +3,10 @@ $(document).ready(function() {
 	const id = getSearchParams("id");
 	console.log(id)
 
+
+
+
+
 	$.ajax({
 		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
 		type: "get",
@@ -20,35 +24,41 @@ $(document).ready(function() {
 	});
 
 	$.ajax({
-		url: url_base + '/transacoes',
+		url: url_base + `/modulo`,
 		type: "get",
 		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			if (item.moduloId == 1) {
-				$('.hr-escolas').after(criarCards(item.nome, item.idCodHtml, item.idTransacao));
-			} else if (item.moduloId == 2) {
-				$('.hr-config').after(criarCards(item.nome, item.idCodHtml, item.idTransacao));
-			} else if (item.moduloId == 3) {
-				$('.hr-matriz').after(criarCards(item.nome, item.idCodHtml, item.idTransacao));
-			} else if (item.moduloId == 4) {
-				$('.hr-acesso').after(criarCards(item.nome, item.idCodHtml, item.idTransacao));
-			}
+	}).done(function(modulos) {
+		criarModulos(modulos); // Cria os módulos
+
+		// Itera sobre os módulos para adicionar os cartões
+		$.each(modulos, function(index, modulo) {
+			$.ajax({
+				url: url_base + '/transacoes/modulo/' + modulo.idModulo,
+				type: "get",
+				async: false,
+			}).done(function(transacoes) {
+				// Adiciona os cartões ao módulo específico
+				$.each(transacoes, function(index, transacao) {
+
+
+					let card = criarCards(transacao.nome, transacao.idCodHtml, transacao.idTransacao);
+					$(`#collapse${modulo.idModulo} .accordion-body`).append(card);
+				});
+			});
 		});
 	});
-	
-	if(id != undefined){
-		
-		$("#padroesAcessoId").val(id)
-		$("#padroesAcessoId").attr('select', true)
-		getDados(id)
+
+	if (id != undefined) {
+		$("#padroesAcessoId").val(id);
+		$("#padroesAcessoId").attr('select', true);
+		getDados(id);
 	}
-	
+
 	$("#padroesAcessoId").on("blur", function() {
-		getDados($("#padroesAcessoId").val())
+		getDados($("#padroesAcessoId").val());
 	});
-	
-	function getDados(idPadraoAcesso){
+
+	function getDados(idPadraoAcesso) {
 		$.ajax({
 			url: url_base + `/contaPadraoAcessoTransacoes/contaPadraoAcesso/${idPadraoAcesso}`,
 			type: "get",
@@ -81,28 +91,9 @@ $(document).ready(function() {
 				});
 			}
 		});
-		
-		return false
+		return false;
 	}
 
-
-
-	var accordionItems = document.querySelectorAll('.accordion-item');
-
-	accordionItems.forEach(function(item) {
-		var button = item.querySelector('.accordion-button');
-
-		button.addEventListener('click', function() {
-			var isCollapsed = button.getAttribute('aria-expanded') === 'false';
-			button.setAttribute('aria-expanded', String(!isCollapsed));
-			var collapseId = button.getAttribute('aria-controls');
-			var collapse = document.getElementById(collapseId);
-			if (collapse) {
-				// Toggle class 'show' for smooth transition
-				collapse.classList.toggle('show');
-			}
-		});
-	});
 	$(document).on('click', '#formSubmit', function(event) {
 		event.preventDefault();
 
@@ -130,7 +121,6 @@ $(document).ready(function() {
 
 			jsonArray.push(obj);
 		});
-
 
 		if (allNoSelected) {
 			Swal.fire({
@@ -169,53 +159,66 @@ $(document).ready(function() {
 			});
 		});
 	});
-});
-
-$(document).ready(function() {
-	/*let isDirty = true;
-
-	$('input, textarea').on('input', function() {
-		isDirty = true;
-	});
-
-	function showExitConfirmation() {
-		Swal.fire({
-			title: 'Você tem alterações não salvas.',
-			text: "Deseja sair sem salvar?",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonText: 'Sair sem salvar',
-			cancelButtonText: 'Salvar e sair',
-			allowOutsideClick: false
-		}).then((result) => {
-			if (result.isConfirmed) {
-				isDirty = false;
-				alert('Alterações salvas222!');
-			} else if (result.dismiss === Swal.DismissReason.cancel) {
-				// Lógica para salvar
-				alert('Alterações salvas!');
-				isDirty = false;
-			}
-		});
-	}
-
-	$(window).on('beforeunload', function(e) {
-		if (isDirty) {
-			e.preventDefault();
-			showExitConfirmation(null);
-			e.returnValue = 'teste'; // Requerido para navegadores modernos
-			return 'teste'; // Requerido para navegadores mais antigos
-		}
-	});*/
 
 	// Registrar o evento beforeunload
 	$(window).on('beforeunload', function(e) {
 		e.preventDefault();
-		alert('teste')
+		alert('teste');
 		e.returnValue = undefined;
 		return undefined;
 	});
 });
+
+function criarModulos(response) {
+	var $accordionContainer = $('#accordionExample'); // O contêiner onde os módulos serão adicionados
+
+	// Limpar o contêiner antes de adicionar novos módulos
+	$accordionContainer.empty();
+
+	// Iterar sobre cada módulo no array de resposta
+	$.each(response, function(index, item) {
+		// Criação do módulo
+		var $modulo = $('<div>', { class: 'accordion-item' });
+
+		// Criação do cabeçalho do acordeão
+		var headerId = 'heading' + item.idModulo;
+		var collapseId = 'collapse' + item.idModulo;
+		var $header = $('<h2>', { class: 'accordion-header', id: headerId });
+		var $button = $('<button>', {
+			class: 'accordion-button collapsed',
+			type: 'button',
+			'data-bs-toggle': 'collapse',
+			'data-bs-target': '#' + collapseId,
+			ariaControls: collapseId
+		}).html(item.icone + ' ' + item.modulo).css("gap", "1%"); // Adiciona ícone e nome do módulo
+
+		$header.append($button);
+
+		// Criação do corpo do acordeão
+		var $collapse = $('<div>', {
+			id: collapseId,
+			class: 'collapse',
+			ariaLabelledby: headerId,
+			dataBsParent: '#accordionExample'
+		});
+		var $body = $('<div>', { class: 'accordion-body' });
+		var $span = $('<span>', { class: 'infra-title' }).text(item.modulo);
+		var $hr = $('<hr>', { class: 'hr-acesso' });
+
+		$body.append($span).append($hr);
+		$collapse.append($body);
+
+		// Adicionando cabeçalho e corpo ao módulo
+		$modulo.append($header).append($collapse);
+
+		// Adicionar o módulo ao contêiner
+		$accordionContainer.append($modulo);
+
+
+	});
+}
+
+
 
 function criarCards(textCard, idCodHtml, idTransacao) {
 	var card = $('<div>').addClass('card card-check');
@@ -230,7 +233,6 @@ function criarCards(textCard, idCodHtml, idTransacao) {
 	var row = $('<div>').addClass('row mb-3');
 	var colLeitura = $('<div>').addClass('col-md-6 small-inputs');
 	var colEscrita = $('<div>').addClass('col-md-6 small-inputs').attr("id", idCodHtml + 'EscritaNao');
-
 
 	var labelLeitura = $('<label>').addClass('form-label').attr('for', idCodHtml + 'Leitura').text('Leitura:');
 	var divLeitura = $('<div>').addClass('form-control');
@@ -279,7 +281,7 @@ function criarCards(textCard, idCodHtml, idTransacao) {
 
 	radioLeituraNao.click(() => {
 		colEscrita.hide();
-		radioEscritaNao.prop('checked', true)
+		radioEscritaNao.prop('checked', true);
 	});
 
 	radioLeituraSim.click(() => {
@@ -288,7 +290,7 @@ function criarCards(textCard, idCodHtml, idTransacao) {
 
 	if (radioLeituraNao.is(":checked")) {
 		colEscrita.hide();
-		radioEscritaNao.prop('checked', true)
+		radioEscritaNao.prop('checked', true);
 	}
 
 	colLeitura.append(labelLeitura, divLeitura);

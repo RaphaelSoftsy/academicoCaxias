@@ -43,7 +43,7 @@ $(document).ready(function() {
 			$(this).prop('checked', false);
 		}
 	});
-	
+
 	showPage(currentPage);
 	updatePagination();
 
@@ -187,6 +187,8 @@ function editar() {
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
+			}).then(data => {
+				window.location.href = 'tipo-ingresso'
 			})
 		})
 	return false;
@@ -235,6 +237,8 @@ function cadastrar() {
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
+			}).then(data => {
+				window.location.href = 'tipo-ingresso'
 			})
 		})
 	return false;

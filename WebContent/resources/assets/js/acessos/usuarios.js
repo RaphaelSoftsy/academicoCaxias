@@ -13,6 +13,8 @@ let dadosUser = ''
 
 $(document).ready(function() {
 	getDados();
+	
+	$(".telefone").mask("(99) 99999-9999")
 
 	$(".reveal").on('click', function() {
 		let pwd = $(this).siblings("input");
@@ -253,7 +255,7 @@ function listarDados(dados) {
 				"<td>" +
 				item.email +
 				"</td>" +
-				"<td>" +
+				"<td class='telefone'>" +
 				item.celular +
 				"</td>" +
 				"<td>" +
@@ -295,6 +297,9 @@ function listarDados(dados) {
 
 	$("#cola-tabela").html(html);
 }
+
+
+
 
 function showModal(ref) {
 	$('#novaSenha').val('')
