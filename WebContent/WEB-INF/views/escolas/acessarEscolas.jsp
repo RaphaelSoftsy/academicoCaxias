@@ -213,8 +213,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable  border-end pe-2 th-sem-filtro" data-column="ativo">Ativo</th>
-						<th class='text-center edit-val' scope="col" width="10%">Ações</th>
+						<th scope="col" class="sortable  border-end pe-2 th-sem-filtro" data-column="ativo" width="6%">Ativo</th>
+						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">

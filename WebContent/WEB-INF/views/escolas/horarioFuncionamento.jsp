@@ -170,8 +170,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro"
-							data-column="ativo">Ativo</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
+							data-column="ativo" width="6%">Ativo</th>
+						<th class="text-center" scope="col" class="border-end pe-2 th-sem-filtro" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider"></tbody>

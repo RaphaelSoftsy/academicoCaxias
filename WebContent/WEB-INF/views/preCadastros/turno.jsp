@@ -105,7 +105,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<th scope="col">Mnemonico</th>
 						<th scope="col">Horário de Início</th>
 						<th scope="col">Horário de Fim</th>
-						<th scope="col">Ativo</th>
+						<th scope="col" width="6%">Ativo</th>
 						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>

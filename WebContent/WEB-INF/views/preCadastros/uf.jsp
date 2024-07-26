@@ -103,7 +103,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<tr>
 						<th scope="col">UF</th>
 						<th scope="col">Unidade da Federação</th>
-						<th scope="col" width="10%">Ações</th>
+						<th class="text-center" scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">

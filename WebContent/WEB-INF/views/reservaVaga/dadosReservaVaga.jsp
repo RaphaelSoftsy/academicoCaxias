@@ -137,7 +137,7 @@ String contextPath = request.getContextPath();
 					<div class="d-flex align-items-center justify-content-between">
 						<h2 id="tituloDados" class="mb-3">Dados Pessoais</h2>
 						<button type="submit" id='editarCandidato'
-							class="btn btn-primary d-flex gap-2 h-50 align-items-center"
+							class="btn btn-primary d-flex gap-2 h-50 align-items-center edit-val"
 							onclick='editarCandidato()'>
 							<i class="fa-solid fa-pen"></i> <span>Editar Candidato</span>
 						</button>
@@ -545,7 +545,7 @@ String contextPath = request.getContextPath();
 					<div class="d-flex align-items-center justify-content-between">
 						<h2 id="tituloDados" class="mb-3">Dados Pessoais</h2>
 						<button type="submit" id='editarCandidato'
-							class="btn btn-primary d-flex gap-2 h-50 align-items-center"
+							class="btn btn-primary d-flex gap-2 h-50 align-items-center edit-val"
 							onclick='showResponsavel()'>
 							<i class="fa-solid fa-pen"></i> <span>Editar Responsavel</span>
 						</button>
@@ -1113,7 +1113,7 @@ String contextPath = request.getContextPath();
 					<div class="d-flex align-items-center justify-content-between">
 						<h2 id="tituloDados" class="mb-3">Ficha</h2>
 						<button type="submit" id='editarCandidato'
-							class="btn btn-primary d-flex gap-2 h-50 align-items-center"
+							class="btn btn-primary d-flex gap-2 h-50 align-items-center edit-val"
 							onclick='showFichaMedica()'>
 							<i class="fa-solid fa-pen"></i> <span>Editar</span>
 						</button>

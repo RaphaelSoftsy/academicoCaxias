@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+.box-edit-val{
+	cursor: pointer;
+}
+
 /* Transição suave para o accordion */
 .accordion-collapse {
     transition: height 1000ms ease-in-out; /* Define a transição suave */

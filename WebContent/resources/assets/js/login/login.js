@@ -87,7 +87,7 @@ $('#btnLogin').click(function() {
 					timer: 1500
 				})
 
-				window.location.href = "acessar-escolas"
+				window.location.href = "acessarEscolas"
 
 			})
 		});

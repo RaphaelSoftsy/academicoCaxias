@@ -10,9 +10,6 @@ const usuarioId = localStorage.getItem("usuarioId");
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
-	$('.edit-val').attr('disabled', true);
-	$('#seuBotao').attr('title', 'Seu usuário não tem autorização');
-
 	sessionStorage.setItem('nomeConta', nomeConta)
 	sessionStorage.setItem('usuarioId', usuarioId)
 
@@ -62,7 +59,38 @@ $(document).ready(function() {
 			}
 
 			if (data[0].altera == 'N') {
-				$('.edit-val').hide()
+				$('.edit-val').css('cursor', 'pointer').attr('disabled', true);
+				$('.edit-val').wrap('<div class="box-edit-val" title="Seu usuário não tem autorização"></div>');
+
+				$('span:has(i.fa-pen)').each(function() {
+					var $span = $(this);
+
+					var $button = $('<button>', {
+						html: $span.html(),
+						class: $span.attr('class') + ' edit-table',
+						id: $span.attr('id'),
+						style: $span.attr('style')
+					});
+
+					$.each($span.data(), function(name, value) {
+						$button.attr('data-' + name, value);
+					});
+
+					$button.on('click', function() {
+						$span.trigger('click');
+					});
+
+					$span.replaceWith($button);
+				});
+
+				$('.edit-table').css('width', '100%').attr('disabled', true);
+				$('.edit-table').wrap('<div class="box-edit-val" style="width:50%; display: flex; align-items:center; justify-content:center" title="Seu usuário não tem autorização"></div>');
+
+				// Inicializar tooltips
+				var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+				var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+					return new bootstrap.Tooltip(tooltipTriggerEl);
+				});
 			}
 		})
 
@@ -92,7 +120,6 @@ $(document).ready(function() {
 			})
 		}
 	}
-
 })
 
 var str = localStorage.getItem('nomeConta').toLowerCase();

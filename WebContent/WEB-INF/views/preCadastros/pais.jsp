@@ -104,7 +104,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<th scope="col">Código DDI</th>
 						<th scope="col">País/Localidade</th>
 						<th scope="col">Código ISO</th>
-						<th scope="col" width="10%">Ações</th>
+						<th class="text-center" scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">

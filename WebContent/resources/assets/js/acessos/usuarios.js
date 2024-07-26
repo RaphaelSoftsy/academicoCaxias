@@ -276,7 +276,7 @@ function listarDados(dados) {
 				'" data-ativo="' +
 				item.ativo +
 				'"  onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span>' +
-				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
+				'<button style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm edit-table"' +
 				'" data-id="' + item.idUsuario +
 				'" data-usuario="' + item.usuario +
 				'" data-nome-completo="' + item.nomeCompleto +
@@ -286,7 +286,7 @@ function listarDados(dados) {
 				'" data-data-nascimento="' + item.dataNascimento +
 				'" data-celular="' + item.celular +
 				'" data-celular-verificado="' + item.celularVerificado +
-				'"data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editPassword"><i class="fa-solid fa-key"></i></span>' +
+				'"data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editPassword"><i class="fa-solid fa-key"></i></button>' +
 				'</td>' +
 				"</tr>"
 			);

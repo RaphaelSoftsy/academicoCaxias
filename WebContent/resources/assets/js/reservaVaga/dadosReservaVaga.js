@@ -369,7 +369,7 @@ const getResponsavel = (id) => {
 		$('#emailResponsavel').val(data.pessoa.email);
 		$('#empresaResponsavel').val(data.pessoa.empresa);
 		$('#ocupacaoResponsavel').val(data.pessoa.ocupacao);
-		$('#telefoneComercialResponsavel').val(data.pessoa.telefoneComercial.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"));
+		$('#telefoneComercialResponsavel').val(data.pessoa.telefoneComercial != null ? data.pessoa.telefoneComercial.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3") : '');
 
 		// Preenchendo campos de select (exemplo com raca, nacionalidade, paisNascimento, paisResidencia)
 		$('#racaIdResponsavel').val(data.pessoa.raca.idRaca);
