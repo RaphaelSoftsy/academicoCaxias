@@ -237,7 +237,7 @@ function listarDados(dados) {
 			'" data-idSelect2="' +
 			item.tipoTelefone.idTipoTelefone +
 			'" data-tel="' +
-			item.telefone +
+			item.telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3") +
 			'" data-desc="' +
 			item.descricao +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +

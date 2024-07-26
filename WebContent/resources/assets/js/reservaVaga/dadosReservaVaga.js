@@ -409,27 +409,13 @@ function formatarDataParaBR(data) {
 const listarFichaMedica = (dadosTabela) => {
 	var html = dadosTabela.map(function(item) {
 
-		var parentesco = ""
 
-		$.ajax({
-			url: url_base + '/responsavel/' + item.responsavelPessoaId,
-			type: "get",
-			async: false,
-			error: function(e) {
-				console.log(e);
-			}
-		}).done(function(data) {
-			parentesco = data.pessoa.nomeCompleto
-		})
-		console.log(item);
-
-
-		let data = formatarDataParaBR(item.dtCadastro)
+		let data = formatarDataParaBR(item.dataCadastro.split('.')[0])
 
 		return (
 			"<tr>" +
 			"<td>" + nomeCandidato + "</td>" +
-			"<td>" + parentesco + "</td>" +
+			"<td>" + item.nomeCompleto + "</td>" +
 			"<td>" + data + "</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" data-id="' +
 			item.idPessoaFichaMedica +

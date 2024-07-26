@@ -60,8 +60,12 @@ $(document).ready(function() {
 
 			if (data[0].altera == 'N') {
 				$('.edit-val').css('cursor', 'pointer').attr('disabled', true);
+				$('.checkbox-toggle').css('cursor', 'pointer').attr('disabled', true);
 				$('.edit-val').wrap('<div class="box-edit-val" title="Seu usuário não tem autorização"></div>');
-
+				$('.checkbox-toggle').wrap('<div class="box-edit-val" onclick="notAccess()" title="Seu usuário não tem autorização"></div>');
+				
+				$('.toggle-group').click(() => notAccess())
+				
 				$('span:has(i.fa-pen)').each(function() {
 					var $span = $(this);
 
@@ -127,6 +131,15 @@ str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
 	return letter.toUpperCase();
 });
 
+const notAccess = () => {
+	Swal.fire({
+		title: "Seu usuário não tem permissão para essa ação",
+		icon: "info",
+	}).then(result => {
+		if (result) {
+		}
+	})
+}
 
 window.addEventListener("load", function() {
 	$("#menu").load(path_base + "/menu.html");

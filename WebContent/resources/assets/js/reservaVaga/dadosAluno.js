@@ -498,8 +498,8 @@ function carregarDados(id) {
 				$('#nomeMae').val(data.nomeMae);
 				$('#nomePai').val(data.nomePai);
 				$('#nomeSocial').val(data.nomeSocial);
-				$('#cpf').val(data.cpf);
-				$('#rgNumero').val(data.rgNumero);
+				$('#cpf').val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
+				$('#rgNumero').val(data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"));
 				$('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
 				$('#rgDataExpedicao').val(data.rgDataExpedicao);
 				$('#dtNascimento').val(data.dtNascimento);
