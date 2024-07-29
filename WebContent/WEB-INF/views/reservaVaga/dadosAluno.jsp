@@ -14,11 +14,11 @@ String contextPath = request.getContextPath();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex" />
 
-<title>POC - Contas</title>
+<title>Softsy - Educacional</title>
 <!-- Bootstrap -->
 <!-- Bootstrap -->
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	href="https://cdnjsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
