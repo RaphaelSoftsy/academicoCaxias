@@ -121,7 +121,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							name="nomeCompleto" class="form-control" />
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-6" id="cardEmail">
 						<label for="email" class="form-label">Email:<span
 							class="red">*</span>
 						</label> <input type="email" id="email" required autocomplete="off"
@@ -144,7 +144,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
 				<div class="row mb-3">
-					<div class="col-md-6">
+					<div class="col-md-6" id="cardUsuario">
 						<label for="usuario" class="form-label">Nome de Usuário:<span
 							class="red">*</span>
 						</label> <input type="text" id="usuario" required autocomplete="off"

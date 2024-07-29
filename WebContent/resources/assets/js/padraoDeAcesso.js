@@ -28,7 +28,8 @@ $(document).ready(function() {
 		type: "get",
 		async: false,
 	}).done(function(modulos) {
-		criarModulos(modulos); // Cria os módulos
+		const modulosOrdenados = modulos.sort((a, b) => a.modulo.localeCompare(b.modulo));
+		criarModulos(modulosOrdenados); // Cria os módulos
 
 		// Itera sobre os módulos para adicionar os cartões
 		$.each(modulos, function(index, modulo) {
@@ -39,6 +40,8 @@ $(document).ready(function() {
 			}).done(function(transacoes) {
 				// Adiciona os cartões ao módulo específico
 				$.each(transacoes, function(index, transacao) {
+					
+					
 
 
 					let card = criarCards(transacao.nome, transacao.idCodHtml, transacao.idTransacao);

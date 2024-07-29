@@ -379,25 +379,103 @@ function cpfValido(cpf) {
 
 function ValidarCpf() {
 	const cpf = $('#cpf');
-	const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
-	if (cpfValido(cpf.val())) {
-		$("#btn-submit").removeAttr('disabled');
-		cpf.removeClass('err-message')
-		$('#errMessage').css('display', 'none')
-	} else {
-		if ($("#cardCpf").find('#errMessage').length > 0) {
-			$('#errMessage').remove()
+	$.ajax({
+		url: url_base + '/usuario/verificar-cpf?cpf=' + cpf.val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		type: "get",
+		complete: function(jqXHR, textStatus) {
+			console.log('Status da requisição:', textStatus);
+			console.log('Código de status HTTP:', jqXHR.status);
+			if (jqXHR.status == 400) {
+				const message = $("<p id='errMessage'></p>").text("CPF já utilizado por outro usuário").css('color', '#FF0000');
+				if ($("#cardCpf").find('#errMessage').length > 0) {
+					$('#errMessage').remove()
+				}
+				$("#btn-adicionar").attr("disabled", "disabled");
+				cpf.addClass('err-message')
+				$("#cardCpf").append(message)
+				message.show()
+			} else {
+				$("#btn-adicionar").removeAttr('disabled');
+				cpf.removeClass('err-message')
+				$('#errMessage').css('display', 'none')
+			}
 		}
-		$("#btn-submit").attr("disabled", "disabled");
+	})
+	
+	const messageCpf = $("<p id='errMessageCPF'></p>").text("CPF Inválido").css('color', '#FF0000');
+	if (cpfValido(cpf.val())) {
+		$("#btn-adicionar").removeAttr('disabled');
+		cpf.removeClass('err-message')
+		$('#errMessageCPF').css('display', 'none')
+	} else {
+		if ($("#cardCpf").find('#errMessageCPF').length > 0) {
+			$('#errMessageCPF').remove()
+		}
+		$("#btn-adicionar").attr("disabled", "disabled");
 		cpf.addClass('err-message')
-		$("#cardCpf").append(message)
-		message.show()
+		$("#cardCpf").append(messageCpf)
+		messageCpf.show()
 	}
-
 }
+
 $("#cpf").blur(function() {
 	ValidarCpf()
 });
+
+$("#email").blur(()=>{
+	
+	const email = $("#email")
+	$.ajax({
+		url: url_base + '/usuario/verificar-email?email=' + email.val(),
+		type: "get",
+		complete: function(jqXHR, textStatus) {
+			console.log('Status da requisição:', textStatus);
+			console.log('Código de status HTTP:', jqXHR.status);
+			if (jqXHR.status == 400) {
+				const message = $("<p id='errMessageEmail'></p>").text("email já utilizado por outro usuário").css('color', '#FF0000');
+				if ($("#cardEmail").find('#errMessageEmail').length > 0) {
+					$('#errMessageEmail').remove()
+				}
+				$("#btn-adicionar").attr("disabled", "disabled");
+				email.addClass('err-message')
+				$("#cardEmail").append(message)
+				message.show()
+			} else {
+				$("#btn-adicionar").removeAttr('disabled');
+				email.removeClass('err-message')
+				$('#errMessageEmail').css('display', 'none')
+			}
+		}
+	})
+})
+
+
+$("#usuario").blur(()=>{
+	
+	const usuario = $("#usuario")
+	$.ajax({
+		url: url_base + '/usuario/verificar-usuario?usuario=' + usuario.val(),
+		type: "get",
+		complete: function(jqXHR, textStatus) {
+			console.log('Status da requisição:', textStatus);
+			console.log('Código de status HTTP:', jqXHR.status);
+			if (jqXHR.status == 400) {
+				const messageEmail = $("<p id='errMessageUsuario'></p>").text("usuario já utilizado").css('color', '#FF0000');
+				if ($("#cardUsuario").find('#errMessageUsuario').length > 0) {
+					$('#errMessageUsuario').remove()
+				}
+				$("#btn-adicionar").attr("disabled", "disabled");
+				usuario.addClass('err-message')
+				$("#cardUsuario").append(messageEmail)
+				messageEmail.show()
+			} else {
+				$("#btn-adicionar").removeAttr('disabled');
+				usuario.removeClass('err-message')
+				$('#errMessageUsuario').css('display', 'none')
+			}
+		}
+	})
+})
 
 
 const cadastrar = () => {
@@ -434,7 +512,7 @@ const cadastrar = () => {
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
-					text: "Não foi possível cadastar nesse momento!",
+					text: "Não foi possível cadastrar nesse momento!",
 				});
 			}
 		}).done(function(data) {
@@ -564,6 +642,8 @@ const editar = () => {
 		});
 	}
 }
+
+
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
