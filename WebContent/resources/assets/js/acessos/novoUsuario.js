@@ -101,9 +101,9 @@ $(document).ready(function() {
 			$('#usuario').val(data.usuario.usuario);
 			$('#nomeCompleto').val(data.usuario.nomeCompleto);
 			$('#email').val(data.usuario.email);
-			$('#cpf').val(data.usuario.cpf);
+			$('#cpf').val(data.usuario.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
 			$('#dataNascimento').val(formatarDataParaISO(data.usuario.dataNascimento)); // Aqui colocamos no formato yyyy-MM-dd
-			$('#celular').val(data.usuario.celular);
+			$('#celular').val(data.usuario.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"));
 
 
 			$.each(data.usuarioConta, function(index, item) {
