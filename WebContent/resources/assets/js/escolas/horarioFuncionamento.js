@@ -396,6 +396,8 @@ function editar() {
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
+			}).then(()=>{
+				window.location.href = "escola-horario-funcionamento"
 			})
 		});
 
@@ -450,6 +452,8 @@ function cadastrar() {
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
+			}).then(()=>{
+				window.location.href = "coescola-horario-funcionamento"
 			})
 		});
 	return false;

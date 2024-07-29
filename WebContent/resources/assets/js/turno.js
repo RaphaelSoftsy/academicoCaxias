@@ -225,6 +225,8 @@ function editar() {
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
+			}).then(()=>{
+				window.location.href = "turnos"
 			})
 		})
 	return false;
@@ -278,6 +280,8 @@ function cadastrar() {
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
+			}).then(()=>{
+				window.location.href = "turnos"
 			})
 		})
 	return false;
