@@ -432,7 +432,7 @@ $("#email").blur(()=>{
 			console.log('Status da requisição:', textStatus);
 			console.log('Código de status HTTP:', jqXHR.status);
 			if (jqXHR.status == 400) {
-				const message = $("<p id='errMessageEmail'></p>").text("email já utilizado por outro usuário").css('color', '#FF0000');
+				const message = $("<p id='errMessageEmail'></p>").text("Email já utilizado por outro usuário").css('color', '#FF0000');
 				if ($("#cardEmail").find('#errMessageEmail').length > 0) {
 					$('#errMessageEmail').remove()
 				}
@@ -460,7 +460,7 @@ $("#usuario").blur(()=>{
 			console.log('Status da requisição:', textStatus);
 			console.log('Código de status HTTP:', jqXHR.status);
 			if (jqXHR.status == 400) {
-				const messageEmail = $("<p id='errMessageUsuario'></p>").text("usuario já utilizado").css('color', '#FF0000');
+				const messageEmail = $("<p id='errMessageUsuario'></p>").text("Usuário já utilizado").css('color', '#FF0000');
 				if ($("#cardUsuario").find('#errMessageUsuario').length > 0) {
 					$('#errMessageUsuario').remove()
 				}
