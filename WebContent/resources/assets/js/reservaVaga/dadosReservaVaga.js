@@ -308,6 +308,7 @@ const getResponsavel = (id) => {
 			console.log(e);
 		}
 	}).done(function(data) {
+		console.log(data)
 		if (data.certidaoNascimentoNumero !== null ||
 			data.pessoa.certidaoNascimentoDataEmissao !== null ||
 			data.pessoa.certidaoNascimentoFolha !== null ||
@@ -345,12 +346,14 @@ const getResponsavel = (id) => {
 			$('#certidaoCasamentoFolhaResponsavel').val(data.pessoa.certidaoCasamentoFolha);
 			$('#certidaoCasamentoLivroResponsavel').val(data.pessoa.certidaoCasamentoLivro);
 		}
+		
+		let numRg = data.pessoa.rgNumero
 
 		// Preenchendo campos de input
 		$('#nomeCompletoResponsavel').val(data.pessoa.nomeCompleto);
 		$('#nomeSocialResponsavel').val(data.pessoa.nomeSocial);
 		$('#cpfResponsavel').val(data.pessoa.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
-		$('#rgNumeroResponsavel').val(data.pessoa.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"))
+		$('#rgNumeroResponsavel').val(numRg.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"))
 		$('#rgOrgaoExpedidorResponsavel').val(data.pessoa.rgOrgaoExpedidor);
 		$('#rgDataExpedicaoResponsavel').val(data.pessoa.rgDataExpedicao);
 		$('#dtNascimentoResponsavel').val(data.pessoa.dtNascimento);
@@ -388,6 +391,8 @@ const getResponsavel = (id) => {
 		$('#municipioNascimentoIdResponsavel').val(data.pessoa.municipioNascimento.idMunicipio);
 		$('#ufNascimentoIdResponsavel').val(data.pessoa.municipioNascimento.uf.idUf);
 		$('#rgUfEmissorIdResponsavel').val(data.pessoa.rgUfEmissor != null ? data.pessoa.rgUfEmissor.idUf : '');
+		$('#rgNumeroResponsavel').val(numRg.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"))
+
 
 		// Exemplo para estado civil usando radio button
 		$('input[name="estadoCivilResponsavel"][value="' + data.pessoa.estadoCivil + '"]').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'

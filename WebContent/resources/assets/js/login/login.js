@@ -11,7 +11,11 @@ $(document).ready(function() {
 		}
 	});
 });
-
+$(document).keypress(function(event) {
+	if (event.which === 13) { // 13 é o código da tecla Enter
+		$('#btnLogin').click(); // Dispara o clique do botão de login
+	}
+});
 
 $('#btnLogin').click(function() {
 

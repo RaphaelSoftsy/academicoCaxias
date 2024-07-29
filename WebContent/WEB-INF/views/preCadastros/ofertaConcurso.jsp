@@ -126,7 +126,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column=curso
+						<th scope="col" class="sortable border-end" data-column=nomeCurso
 							style="width: 18%">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
@@ -221,7 +221,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="descricao" style="width: 30%">
+							data-column="descricaoOferta" style="width: 30%">
 							<div
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
