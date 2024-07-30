@@ -77,7 +77,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Serie</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Grade
+						Curricular</span>
 				</div>
 			</div>
 		</section>
@@ -104,7 +105,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<thead>
 					<tr>
 						<th scope="col">Série</th>
-						<th scope="col">Descrição</th>
+						<th scope="col">Disciplina</th>
+						<th scope="col">Obrigatória</th>
+						<th scope="col">Aulas Previstas</th>
 						<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
 						<th class="text-center" scope="col" width="10%">Ações</th>
 					</tr>
@@ -136,14 +139,53 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nomeSerie" class="form-label">Nome série:</label> <input
-									type="text" class="form-control" id="nomeSerie" required
-									aria-describedby="Descricao" autocomplete="off">
+								<label for="serieId" class="form-label">Série:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Serie" id="serieId"
+									required name="serieId">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
 							</div>
 							<div class="mb-4">
-								<label for="descricao" class="form-label">Descricao:</label> <input
-									type="text" class="form-control" id="descricao" required
-									aria-describedby="Descricao 2" autocomplete="off">
+								<label for="curriculoId" class="form-label">Curriculo:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Curriculo"
+									id="curriculoId" required name="curriculoId">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="disciplinaId" class="form-label">Disciplina:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Disciplina"
+									id="disciplinaId" required name="disciplinaId">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="obrigatoria" class="form-label">Obrigatoria:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Obrigatoria"
+									id="obrigatoria" required name="obrigatoria">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="retemSerie" class="form-label">Pode reter o
+									aluno:<span class="red">*</span>
+								</label> <select class="form-select" aria-label="retemSerie"
+									id="retemSerie" required name="retemSerie">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 
@@ -169,15 +211,53 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="nomeSerieEdit" class="form-label">Nome
-									série:</label> <input type="text" class="form-control"
-									id="nomeSerieEdit" required aria-describedby="Descricao"
-									autocomplete="off">
+								<label for="serieIdEdit" class="form-label">Série:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Serie" id="serieIdEdit"
+									required name="serieIdEdit">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
 							</div>
 							<div class="mb-4">
-								<label for="descricaoEdit" class="form-label">Descricao:</label>
-								<input type="text" class="form-control" id="descricaoEdit"
-									required aria-describedby="Descricao 2" autocomplete="off">
+								<label for="curriculoIdEdit" class="form-label">Curriculo:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Curriculo"
+									id="curriculoIdEdit" required name="curriculoIdEdit">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="disciplinaIdEdit" class="form-label">Disciplina:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Disciplina"
+									id="disciplinaIdEdit" required name="disciplinaIdEdit">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="obrigatoriaEdit" class="form-label">Obrigatoria:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Obrigatoria"
+									id="obrigatoriaEdit" required name="obrigatoriaEdit">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="retemSerieEdit" class="form-label">Pode reter o
+									aluno:<span class="red">*</span>
+								</label> <select class="form-select" aria-label="retemSerie"
+									id="retemSerieEdit" required name="retemSerieEdit">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
@@ -207,7 +287,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/matrizCurricular/serie.js"></script>
+		src="<%=contextPath%>/resources/assets/js/matrizCurricular/gradeCurricular	.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"

@@ -77,7 +77,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Serie</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Turma</span>
 				</div>
 			</div>
 		</section>
@@ -92,9 +92,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<button class="btn btn-primary btn-lg px-3 py-1 ms-auto"
-					data-bs-toggle="modal" onclick="limpaCampo()"
-					data-bs-target="#newCadastro">Novo Cadastro</button>
+				<a class="btn btn-primary btn-lg px-3 py-1 ms-auto"
+					href="nova-turma-matriz-curricular">Novo Cadastro</a>
 
 			</div>
 
@@ -103,8 +102,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Série</th>
-						<th scope="col">Descrição</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Código INEP</th>
+						<th scope="col">Vagas</th>
+						<th scope="col">Turno</th>
+						<th scope="col">Ano letivo</th>
+						<th scope="col">Semestre</th>
+						<th scope="col">Libras</th>
 						<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
 						<th class="text-center" scope="col" width="10%">Ações</th>
 					</tr>
@@ -136,14 +140,78 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="nomeSerie" class="form-label">Nome série:</label> <input
-									type="text" class="form-control" id="nomeSerie" required
-									aria-describedby="Descricao" autocomplete="off">
+								<label for="nomeTurma" class="form-label">Nome turma:</label> <input
+									type="text" class="form-control" id="nomeTurma" required
+									aria-describedby="NomeTurma" autocomplete="off">
 							</div>
 							<div class="mb-4">
-								<label for="descricao" class="form-label">Descricao:</label> <input
-									type="text" class="form-control" id="descricao" required
-									aria-describedby="Descricao 2" autocomplete="off">
+								<label for="codTurmaInep" class="form-label">Codigo inep da turma:</label> <input
+									type="text" class="form-control" id="codTurmaInep" required
+									aria-describedby="CodTurmaInep" autocomplete="off">
+							</div>
+							<div class="mb-4">
+								<label for="vagas" class="form-label">Vagas:</label> <input
+									type="text" class="form-control" id="vagas" required
+									aria-describedby="Vagas" autocomplete="off">
+							</div>
+							<div class="mb-4">
+								<label for="escolaId" class="form-label">Escola:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Escola" id="escolaId"
+									required name="escolaId">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="turnoId" class="form-label">Turno:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Turno" id="turnoId"
+									required name="turnoId">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="periodoLetivoId" class="form-label">Periodo Letivo:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="PeriodoLetivo" id="periodoLetivoId"
+									required name="periodoLetivoId">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							
+							<div class="mb-4">
+								<label for="gradeCurricularId" class="form-label">Grade Curricular:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="GradeCurricular" id="gradeCurricularId"
+									required name="gradeCurricularId">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="libras" class="form-label">Libras:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Libras"
+									id="libras" required name="libras">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="controlaVagas" class="form-label">Controla Vagas:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="ControlaVagas"
+									id="controlaVagas" required name="controlaVagas">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 
@@ -207,7 +275,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/matrizCurricular/serie.js"></script>
+		src="<%=contextPath%>/resources/assets/js/matrizCurricular/turma.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"

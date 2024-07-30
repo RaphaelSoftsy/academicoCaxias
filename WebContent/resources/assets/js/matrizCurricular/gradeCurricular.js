@@ -11,6 +11,118 @@ let id = ''
 
 $(document).ready(function() {
 
+	$.ajax({
+		url: url_base + "/serie",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#serieId").append(
+				$("<option>", {
+					value: item.idSerie,
+					text: item.serie,
+					name: item.serie,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/curriculo",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#curriculoId").append(
+				$("<option>", {
+					value: item.idCurriculo,
+					text: item.curriculo,
+					name: item.curriculo,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/disciplina",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#disciplinaId").append(
+				$("<option>", {
+					value: item.idDisciplina,
+					text: item.nome,
+					name: item.nome,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+	
+	$.ajax({
+			url: url_base + "/serie",
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			$.each(data, function(index, item) {
+				$("#serieIdEdit").append(
+					$("<option>", {
+						value: item.idSerie,
+						text: item.serie,
+						name: item.serie,
+					})
+				);
+			});
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+
+		$.ajax({
+			url: url_base + "/curriculo",
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			$.each(data, function(index, item) {
+				$("#curriculoIdEdit").append(
+					$("<option>", {
+						value: item.idCurriculo,
+						text: item.curriculo,
+						name: item.curriculo,
+					})
+				);
+			});
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+
+		$.ajax({
+			url: url_base + "/disciplina",
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			$.each(data, function(index, item) {
+				$("#disciplinaIdEdit").append(
+					$("<option>", {
+						value: item.idDisciplina,
+						text: item.nome,
+						name: item.nome,
+					})
+				);
+			});
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+	
+	
+
+
+
 	getDados()
 
 	$('.checkbox-toggle').each(function() {
@@ -57,16 +169,14 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/serie",
+		url: url_base + "/gradeCurricular",
 		type: "GET",
 		async: false,
-	})
-		.done(function(data) {
-			listarDados(data);
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+	}).done(function(data) {
+		listarDados(data);
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 }
 
 function listarDados(dados) {
@@ -81,25 +191,32 @@ function listarDados(dados) {
 
 		return (
 			"<tr>" +
+
 			"<td>" +
-			item.serie +
+			item.serie.serie +
 			"</td>" +
+
 			"<td>" +
-			item.descricao +
+			item.disciplina.nome +
 			"</td>" +
+
+			"<td>" +
+			item.obrigatoria +
+			"</td>" +
+
+			"<td>" +
+			item.curriculo.aulasPrevistas +
+			"</td>" +
+
 			"<td>" +
 			'<input type="checkbox" data-status="' +
 			item.ativo +
 			'" data-id="' +
-			item.idSerie +
+			item.idGradeCurricular +
 			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idSerie +
-			'" data-nomeSerie="' +
-			item.serie +
-			'" data-descricao="' +
-			item.descricao +
+			item.idGradeCurricular +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -126,7 +243,7 @@ function alteraStatus(element) {
 	console.log(id)
 
 	$.ajax({
-		url: url_base + `/serie/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		url: url_base + `/gradeCurricular/${id}${status === "S" ? '/desativar' : '/ativar'}`,
 		type: "put",
 		error: function(e) {
 			Swal.close();
@@ -138,31 +255,40 @@ function alteraStatus(element) {
 			});
 		}
 	}).then(data => {
-		window.location.href = 'serie-matriz-curricular'
+		window.location.href = 'grade-curricular-matriz-curricular'
 	})
 }
 
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
-	descricao = ref.getAttribute("data-descricao");
 
-	console.log(ref.getAttribute("data-nomeSerie"))
-	console.log(descricao)
-
-	$('#nomeSerieEdit').val(ref.getAttribute("data-nomeSerie"));
-	$('#descricaoEdit').val(descricao);
+	$.ajax({
+		url: url_base + "/gradeCurricular/" + id,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$('#serieIdEdit').val(data.serie.idSerie)
+		$('#disciplinaIdEdit').val(data.disciplina.idDisciplina)
+		$('#curriculoIdEdit').val(data.curriculo.idCurriculo)
+		$('#obrigatoriaEdit').val(data.obrigatoria)
+		$('#retemSerieEdit').val(data.retemSerie)
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 }
 
 function editar() {
 	var objeto = {
-		idSerie: Number(id),
-		serie: $('#nomeSerieEdit').val(),
-		descricao: $('#descricaoEdit').val(),
-		contaId: contaId
+		idGradeCurricular: id,
+		serieId: $('#serieIdEdit').val(),
+		disciplinaId: $('#disciplinaIdEdit').val(),
+		curriculoId: $('#curriculoIdEdit').val(),
+		obrigatoria: $('#obrigatoriaEdit').val(),
+		retemSerie: $('#retemSerieEdit').val(),
 	}
 
 	$.ajax({
-		url: url_base + "/serie",
+		url: url_base + "/gradeCurricular",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -184,7 +310,7 @@ function editar() {
 				title: "Editado com sucesso",
 				icon: "success",
 			}).then(result => {
-				window.location.href = 'serie-matriz-curricular'
+				window.location.href = 'grade-curricular-matriz-curricular'
 			})
 		})
 	return false;
@@ -203,13 +329,15 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		serie: $('#nomeSerie').val(),
-		descricao: $('#descricao').val(),
-		contaId: contaId
+		serieId: $('#serieId').val(),
+		disciplinaId: $('#disciplinaId').val(),
+		curriculoId: $('#curriculoId').val(),
+		obrigatoria: $('#obrigatoria').val(),
+		retemSerie: $('#retemSerie').val(),
 	}
 
 	$.ajax({
-		url: url_base + "/serie",
+		url: url_base + "/gradeCurricular",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -235,7 +363,7 @@ function cadastrar() {
 				title: "Cadastrado com sucesso",
 				icon: "success",
 			}).then(result => {
-				window.location.href = 'serie-matriz-curricular'
+				window.location.href = 'grade-curricular-matriz-curricular'
 			})
 		})
 	return false;

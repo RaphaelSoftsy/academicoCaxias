@@ -10,15 +10,79 @@ let descricao = ''
 let id = ''
 
 $(document).ready(function() {
+	$.ajax({
+		url: url_base + "/escolas/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#escolaId").append(
+				$("<option>", {
+					value: item.idEscola,
+					text: item.nomeEscola,
+					name: item.nomeEscola,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/turno/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#turnoId").append(
+				$("<option>", {
+					value: item.idTurno,
+					text: item.turno,
+					name: item.turno,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/periodoletivo/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#periodoletivoId").append(
+				$("<option>", {
+					value: item.idPeriodoLetivo,
+					text: `Ano: ${item.ano} - Semestre: ${item.periodo}`,
+					name: item.periodo,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/gradeCurricular",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#gradeCurricularId").append(
+				$("<option>", {
+					value: item.idGradeCurricular,
+					text: item.idGradeCurricular,
+					name: item.idGradeCurricular,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 
 	getDados()
-
-	$('.checkbox-toggle').each(function() {
-		var status = $(this).data('status');
-		if (status !== 'S') {
-			$(this).prop('checked', false);
-		}
-	});
 
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
@@ -57,7 +121,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/serie",
+		url: url_base + "/turma",
 		type: "GET",
 		async: false,
 	})
@@ -81,25 +145,44 @@ function listarDados(dados) {
 
 		return (
 			"<tr>" +
+
 			"<td>" +
-			item.serie +
+			item.nomeTurma +
 			"</td>" +
+
 			"<td>" +
-			item.descricao +
+			item.codTurmaInep +
 			"</td>" +
+
 			"<td>" +
+			item.vagas +
+			"</td>" +
+
+			"<td>" +
+			item.turno.turno +
+			"</td>" +
+
+			"<td>" +
+			item.periodoLetivo.ano +
+			"</td>" +
+
+			"<td>" +
+			item.periodoLetivo.periodo +
+			"</td>" +
+
+			"<td>" +
+			item.libras +
+			"</td>" +
+
+			"<td><div class='d-flex align-items-center gap-1'>" +
 			'<input type="checkbox" data-status="' +
 			item.ativo +
 			'" data-id="' +
-			item.idSerie +
+			item.idTurma +
 			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-			"</td>" +
+			"</div></td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idSerie +
-			'" data-nomeSerie="' +
-			item.serie +
-			'" data-descricao="' +
-			item.descricao +
+			item.idTurma +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -124,6 +207,7 @@ function alteraStatus(element) {
 	}
 
 	console.log(id)
+	alert(status)
 
 	$.ajax({
 		url: url_base + `/serie/${id}${status === "S" ? '/desativar' : '/ativar'}`,
@@ -143,14 +227,28 @@ function alteraStatus(element) {
 }
 
 function showModal(ref) {
+	limpaCampo()
 	id = ref.getAttribute("data-id");
-	descricao = ref.getAttribute("data-descricao");
+	
+	window.location.href = "nova-turma-matriz-curricular?id=" + id
 
-	console.log(ref.getAttribute("data-nomeSerie"))
-	console.log(descricao)
-
-	$('#nomeSerieEdit').val(ref.getAttribute("data-nomeSerie"));
-	$('#descricaoEdit').val(descricao);
+	/*$.ajax({
+		url: url_base + "/turma/" + id,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$('#escolaId').val(data.escolaId)
+		$('#turnoId').val(data.turno.idTurno)
+		$('#periodoLetivoId').val(data.periodoLetivo.idPeriodoLetivo)
+		$('#gradeCurricularId').val(data.gradeCurricularId)
+		$('#nomeTurma').val(data.nomeTurma)
+		$('#codTurmaInep').val(data.codTurmaInep)
+		$('#vagas').val(data.vagas)
+		$('#libras').val(data.libras)
+		$('#controlaVagas').val(data.controlaVagas)
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});*/
 }
 
 function editar() {
@@ -189,23 +287,33 @@ function editar() {
 		})
 	return false;
 }
-$('#formEdit').on('submit', function(e) {
+/*$('#formEdit').on('submit', function(e) {
 	e.preventDefault();
 	editar();
 	return false;
-});
+});*/
 $('#formCadastro').on('submit', function(e) {
 	e.preventDefault();
-	cadastrar();
+	if (id != '') {
+		editar()
+	} else {
+		cadastrar();
+	}
 	return false;
 });
 
 function cadastrar() {
 
 	var objeto = {
-		serie: $('#nomeSerie').val(),
-		descricao: $('#descricao').val(),
-		contaId: contaId
+		escolaId: $('#escolaId').val(),
+		turnoId: $('#turnoId').val(),
+		periodoLetivoId: $('#periodoLetivoId').val(),
+		gradeCurricularId: $('#gradeCurricularId').val(),
+		nomeTurma: $('#nomeTurma').val(),
+		codTurmaInep: $('#codTurmaInep').val(),
+		vagas: $('#vagas').val(),
+		libras: $('#libras').val(),
+		controlaVagas: $('#controlaVagas').val(),
 	}
 
 	$.ajax({
@@ -242,6 +350,13 @@ function cadastrar() {
 }
 
 function limpaCampo() {
-	$('#nomeSerie').val('');
-	$('#descricao').val('');
+	$('#escolaId').val('')
+	$('#turnoId').val('')
+	$('#periodoLetivoId').val('')
+	$('#gradeCurricularId').val('')
+	$('#nomeTurma').val('')
+	$('#codTurmaInep').val('')
+	$('#vagas').val('')
+	$('#libras').val('')
+	$('#controlaVagas').val('')
 }
