@@ -39,6 +39,13 @@ $(document).ready(function() {
 	});
 
 	getDados();
+	
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
 
 	// Dropdown de Pesquisa
 	$(".dropdown-toggle-form").click(function() {
@@ -197,6 +204,39 @@ function formatarDataParaBR(data) {
 	return dia + "/" + mes + "/" + ano;
 }
 
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+	console.log(status)
+	$.ajax({
+		url: url_base + `/curriculo/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'curriculo'
+	})
+}
+
 function listarDados(dados) {
 	var html = dados
 		.map(function(item) {
@@ -250,38 +290,7 @@ function listarDados(dados) {
 }
 
 
-function alteraStatus(element) {
-	var id = element.getAttribute("data-id");
-	var status = element.getAttribute("data-status");
 
-	const button = $(element).closest("tr").find(".btn-status");
-	if (status === "S") {
-		button.removeClass("btn-success").addClass("btn-danger");
-		button.find("i").removeClass("fa-check").addClass("fa-xmark");
-		element.setAttribute("data-status", "N");
-	} else {
-		button.removeClass("btn-danger").addClass("btn-success");
-		button.find("i").removeClass("fa-xmark").addClass("fa-check");
-		element.setAttribute("data-status", "S");
-	}
-
-	console.log(id)
-	console.log(status)
-	$.ajax({
-		url: url_base + `/curriculo/${id}${status === "S" ? '/desativar' : '/ativar'}`,
-		type: "put",
-		error: function(e) {
-			Swal.close();
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: e.responseJSON.message
-			});
-		}
-	}).then(data => {
-		window.location.href = 'curriculo'
-	})
-}
 
 // Exportar Dados
 

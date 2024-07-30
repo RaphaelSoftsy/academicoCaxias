@@ -262,7 +262,7 @@ $(document).ready(function() {
 				$("#certidaoCasamento").hide()
 				$("#certidaoNascimento").show()
 
-
+				$('#certidaoNascimentoNumero').mask('AAA-000000-BBBBB0-CC-00-DD-EE');
 				$('#certidaoNascimentoNumero').val(data.pessoa.certidaoNascimentoNumero);
 				$('#certidaoNascimentoCartorio').val(data.pessoa.certidaoNascimentoCartorio);
 				$('#certidaoNascimentoUfCartorioId').val(data.pessoa.certidaoNascimentoMunicipioCartorio.uf.idUf);
