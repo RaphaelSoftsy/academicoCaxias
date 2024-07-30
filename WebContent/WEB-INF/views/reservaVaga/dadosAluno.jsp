@@ -18,7 +18,7 @@ String contextPath = request.getContextPath();
 <!-- Bootstrap -->
 <!-- Bootstrap -->
 <link
-	href="https://cdnjsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
@@ -59,7 +59,8 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous">
 	
@@ -137,7 +138,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 
 				<div class="row mb-3">
-				
+
 					<div class="col-md-6">
 						<label for="sexo" class="form-label">Sexo:<span
 							class="red">*</span></label>
@@ -154,8 +155,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</div>
 					</div>
-					
-					
+
+
 
 
 					<div class="col-md-6">
@@ -393,9 +394,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				</div>
 
-					<div class="row mb-3">
+				<div class="row mb-3">
 
-					<div class="col-md-6" style="display: flex; flex-direction: column;">
+					<div class="col-md-6"
+						style="display: flex; flex-direction: column;">
 						<label for="certidaoNascimentoUfCartorioId" class="form-label">UF
 							do cartório:</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
@@ -405,7 +407,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</select>
 					</div>
 
-					<div class="col-md-6" style="display: flex; flex-direction: column;">
+					<div class="col-md-6"
+						style="display: flex; flex-direction: column;">
 						<label for="certidaoNascimentoCidadeCartorio" class="form-label">Cidade
 							do cartório:</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
@@ -540,7 +543,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-	
+
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/reservaVaga/dadosAluno.js"></script>
 	<script charset="UTF-8"

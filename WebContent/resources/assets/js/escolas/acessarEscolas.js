@@ -12,31 +12,31 @@ $(document).ready(function() {
 	getDados()
 
 	// Dropdown de Pesquisa
-    $('.dropdown-toggle-form').click(function() {
+	$('.dropdown-toggle-form').click(function() {
 		console.log('TESTE')
-        $(this).siblings('.dropdown-content-form').toggleClass('show');
-    });
+		$(this).siblings('.dropdown-content-form').toggleClass('show');
+	});
 
-    $('.searchButton').click(function() {
-        var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
+	$('.searchButton').click(function() {
+		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
 
-        var columnToSearch = $(this).closest('.sortable').data('column');
+		var columnToSearch = $(this).closest('.sortable').data('column');
 
-        var filteredData = dadosOriginais.filter(function(item) {
-            return item[columnToSearch].toLowerCase().includes(searchInput);
-        });
+		var filteredData = dadosOriginais.filter(function(item) {
+			return item[columnToSearch].toLowerCase().includes(searchInput);
+		});
 
-        listarDados(filteredData);
+		listarDados(filteredData);
 
-        $(this).siblings('.searchInput').val('');
-        $(this).closest('.dropdown-content-form').removeClass('show');
-    });
+		$(this).siblings('.searchInput').val('');
+		$(this).closest('.dropdown-content-form').removeClass('show');
+	});
 
-    $(document).click(function(event) {
-        if (!$(event.target).closest('.dropdown-form').length) {
-            $('.dropdown-content-form').removeClass('show');
-        }
-    });
+	$(document).click(function(event) {
+		if (!$(event.target).closest('.dropdown-form').length) {
+			$('.dropdown-content-form').removeClass('show');
+		}
+	});
 
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
@@ -65,7 +65,7 @@ $(document).ready(function() {
 			}).show();
 		}
 	}
-	
+
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
 		if (status !== 'S') {
@@ -93,49 +93,49 @@ $(document).ready(function() {
 	}
 
 	$(document).on('click', '.sortable .col', function() {
-    var column = $(this).closest('th').data("column");
-    var currentOrder = sortOrder[column] || 'vazio';
-    var newOrder;
+		var column = $(this).closest('th').data("column");
+		var currentOrder = sortOrder[column] || 'vazio';
+		var newOrder;
 
-    if (currentOrder === 'vazio') {
-        newOrder = 'asc';
-    } else if (currentOrder === 'asc') {
-        newOrder = 'desc';
-    } else {
-        newOrder = 'vazio';
-    }
+		if (currentOrder === 'vazio') {
+			newOrder = 'asc';
+		} else if (currentOrder === 'asc') {
+			newOrder = 'desc';
+		} else {
+			newOrder = 'vazio';
+		}
 
-    $(".sortable span").removeClass("asc desc");
-    $(this).find('span').addClass(newOrder);
+		$(".sortable span").removeClass("asc desc");
+		$(this).find('span').addClass(newOrder);
 
-    var icon = $(this).find("i");
-    icon.removeClass("fa-sort-up fa-sort-down fa-sort");
+		var icon = $(this).find("i");
+		icon.removeClass("fa-sort-up fa-sort-down fa-sort");
 
-    if (newOrder === 'asc') {
-        icon.addClass("fa-sort-up");
-        sortData(column, newOrder);
-    } else if (newOrder === 'desc') {
-        icon.addClass("fa-sort-down");
-        sortData(column, newOrder);
-    } else {
-        icon.addClass("fa-sort");
-        listarDados(dadosOriginais);
-    }
+		if (newOrder === 'asc') {
+			icon.addClass("fa-sort-up");
+			sortData(column, newOrder);
+		} else if (newOrder === 'desc') {
+			icon.addClass("fa-sort-down");
+			sortData(column, newOrder);
+		} else {
+			icon.addClass("fa-sort");
+			listarDados(dadosOriginais);
+		}
 
-    sortOrder[column] = newOrder;
-});
+		sortOrder[column] = newOrder;
+	});
 
 });
 
 $('#limpa-filtros').click(function() {
-        listarDados(dadosOriginais);
-        $('.searchInput').val('');
-        });
+	listarDados(dadosOriginais);
+	$('.searchInput').val('');
+});
 
 function getDados() {
 	const usuarioId = sessionStorage.getItem("usuarioId");
 	$.ajax({
-		url: url_base + "/escolas/usuario/" + contaId+ "/" + usuarioId,
+		url: url_base + "/escolas/usuario/" + contaId + "/" + usuarioId,
 		type: "GET",
 		async: false,
 	})
@@ -169,7 +169,7 @@ function listarDados(dados) {
 			item.nomeEscola +
 			'" data-logo="' +
 			item.logoEscola +
-			'" onclick="acessar(this)"><i class="fa-solid fa-right-to-bracket fa-lg"></i></span></td>'+
+			'" onclick="acessar(this)"><i class="fa-solid fa-right-to-bracket fa-lg"></i></span></td>' +
 			"<td>" +
 			item.nomeEscola +
 			"</td>" +
@@ -231,9 +231,9 @@ function alteraStatus(element) {
 		window.location.href = 'acessar-escolas'
 	})
 }
-function editar(ref){
+function editar(ref) {
 	id = ref.getAttribute("data-id");
-	 window.location.href="editar-escola?id="+id;
+	window.location.href = "editar-escola?id=" + id;
 }
 
 
@@ -253,14 +253,14 @@ $('#exportar-excel').click(function() {
 // Acessar perfil
 
 function acessar(element) {
-    var id = $(element).data('id');
-    var nome = $(element).data('nome');
-    var logo = $(element).data('logo');
-    
-    console.log(logo)
+	var id = $(element).data('id');
+	var nome = $(element).data('nome');
+	var logo = $(element).data('logo');
 
-    sessionStorage.setItem('perfil', JSON.stringify({perfil: 'escola', id, nome, logo}));
-    sessionStorage.setItem('escolaId', id)
+	console.log(logo)
 
-    window.location.href = 'acessar-escolas';
+	sessionStorage.setItem('perfil', JSON.stringify({ perfil: 'escola', id, nome, logo }));
+	sessionStorage.setItem('escolaId', id)
+
+	window.location.href = 'acessar-escolas';
 }
