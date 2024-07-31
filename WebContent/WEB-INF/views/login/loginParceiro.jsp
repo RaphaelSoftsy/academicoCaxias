@@ -46,7 +46,7 @@
 
     <!-- FontAwesome -->
     <script charset="UTF-8" 
-      src="https://kit.fontawesome.com/2476720ce5.js"
+      src="https://kit.fontawesome.com/3ce21ff22c.js"
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
