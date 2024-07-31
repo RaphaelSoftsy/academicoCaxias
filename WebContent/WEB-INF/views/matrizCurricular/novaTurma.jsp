@@ -26,6 +26,16 @@ String contextPath = request.getContextPath();
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
+	
+	
+<!-- Select 2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -102,8 +112,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="vagas" class="form-label">Vagas:</label> <input
-							type="text" class="form-control" id="vagas" required
-							aria-describedby="Vagas" autocomplete="off">
+							type="number" class="form-control" id="vagas" required
+							aria-describedby="Vagas" autocomplete="off" min='0'
+							oninput="this.value = Math.abs(this.value)">
 					</div>
 					<div class="col-md-6">
 						<label for="escolaId" class="form-label">Escola:<span
@@ -195,5 +206,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 </html>

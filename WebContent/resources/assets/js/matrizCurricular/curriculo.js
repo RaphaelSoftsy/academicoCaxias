@@ -342,7 +342,7 @@ function showModal(ref) {
 			$(".desativar").hide();
 			$(".ativar").show();
 		}
-		
+
 		$("#cursoIdEdit").val(data.cursoId).attr("selected", true);
 
 		var dtHomologacao = data.dtHomologacao.split("T")[0];
@@ -411,13 +411,14 @@ function editar() {
 		$("#prazoMaxEdit").val("");
 		$("#creditosEdit").val("");
 		$("#aulasPrevistasEdit").val("");
+		$("#descricaoEdit").val();
 		getDados();
 		showPage(currentPage);
 		updatePagination();
 		Swal.fire({
 			title: "Editado com sucesso",
 			icon: "success"
-		}).then(()=>{
+		}).then(() => {
 			window.location.href = "curriculo"
 		})
 	});
@@ -430,6 +431,51 @@ $("#formEdit").on("submit", function(e) {
 	editar();
 	return false;
 });
+
+$("#curriculoNew").on("blur", () => {
+	
+	const curriculoNew = $("#curriculoNew")
+
+	if (curriculoNew.val().length > 10) {
+		const message = $("<p id='errMessageCharacter'></p>").text("Apenas digite no máximo 10 caracteres").css('color', '#FF0000');
+		if ($("#cardCurriculo").find('#errMessageCharacter').length > 0) {
+			$('#errMessageCharacter').remove()
+		}
+		$("#btn-submit").attr("disabled", "disabled");
+		curriculoNew.addClass('err-message')
+		$("#cardCurriculo").append(message)
+		message.show()
+	} else {
+		$("#btn-submit").removeAttr('disabled');
+		curriculoNew.removeClass('err-message')
+		$('#errMessageCharacter').css('display', 'none')
+	}
+
+
+})
+
+$("#curriculoEdit").on("blur", () => {
+	
+	const curriculoNew = $("#curriculoEdit")
+
+	if (curriculoNew.val().length > 10) {
+		const message = $("<p id='errMessageCharacterEdit'></p>").text("Apenas digite no máximo 10 caracteres").css('color', '#FF0000');
+		if ($("#cardCurriculoEdit").find('#errMessageCharacterEdit').length > 0) {
+			$('#errMessageCharacterEdit').remove()
+		}
+		$("#btn-editar").attr("disabled", "disabled");
+		curriculoNew.addClass('err-message')
+		$("#cardCurriculoEdit").append(message)
+		message.show()
+	} else {
+		$("#btn-editar").removeAttr('disabled');
+		curriculoNew.removeClass('err-message')
+		$('#errMessageCharacterEdit').css('display', 'none')
+	}
+
+
+})
+
 
 // Cadastrar
 
@@ -447,11 +493,10 @@ function cadastrar() {
 	var data2Formatada = formatarDataParaAPI(data2);
 
 	var objeto = {
-		idCurriculo: id,
 		contaId: contaId,
 		descricao: $("#descricao").val(),
 		cursoId: Number($("#cursoId").val()),
-		curriculo: $("#curriculo").val(),
+		curriculo: $("#curriculoNew").val(),
 		dtHomologacao: data1Formatada,
 		dtExtincao: data2Formatada,
 		prazoIdeal: Number($("#prazoIdeal").val()),
@@ -489,7 +534,7 @@ function cadastrar() {
 		Swal.fire({
 			title: "Cadastrado com sucesso",
 			icon: "success",
-		}).then(()=>{
+		}).then(() => {
 			window.location.href = "curriculo"
 		})
 	});

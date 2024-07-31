@@ -1,5 +1,5 @@
 var dados = [];
-const contaId = localStorage.getItem('contaId');;
+const contaId = localStorage.getItem('contaId');
 var nome = '';
 var nome2 = '';
 var nome3 = '';
@@ -12,11 +12,15 @@ const idTurma = params.get("id");
 
 $(document).ready(function() {
 
+	
+	
 	$.ajax({
-		url: url_base + "/escolas/conta/" + contaId,
+		url: url_base + "/escolas/usuario/" + contaId + "/" + usuarioId,
 		type: "GET",
 		async: false,
 	}).done(function(data) {
+		console.log(data)
+
 		$.each(data, function(index, item) {
 			$("#escolaId").append(
 				$("<option>", {
@@ -35,6 +39,7 @@ $(document).ready(function() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
+
 		$.each(data, function(index, item) {
 			$("#turnoId").append(
 				$("<option>", {

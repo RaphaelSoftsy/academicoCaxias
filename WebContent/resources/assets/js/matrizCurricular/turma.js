@@ -136,11 +136,19 @@ function getDados() {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 		var ativo;
+		
+		var libras;
 
 		if (item.ativo == "N") {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
 		} else {
 			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
+		
+		if(item.libras == "N"){
+			libras = "Não"
+		}else{
+			libras = "Sim"
 		}
 
 		return (
@@ -171,7 +179,7 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
-			item.libras +
+			libras +
 			"</td>" +
 
 			"<td><div class='d-flex align-items-center gap-1'>" +

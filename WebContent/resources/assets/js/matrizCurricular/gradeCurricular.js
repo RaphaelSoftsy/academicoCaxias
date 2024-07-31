@@ -64,62 +64,62 @@ $(document).ready(function() {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
-	
+
 	$.ajax({
-			url: url_base + "/serie",
-			type: "GET",
-			async: false,
-		}).done(function(data) {
-			$.each(data, function(index, item) {
-				$("#serieIdEdit").append(
-					$("<option>", {
-						value: item.idSerie,
-						text: item.serie,
-						name: item.serie,
-					})
-				);
-			});
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		url: url_base + "/serie",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#serieIdEdit").append(
+				$("<option>", {
+					value: item.idSerie,
+					text: item.serie,
+					name: item.serie,
+				})
+			);
 		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 
-		$.ajax({
-			url: url_base + "/curriculo",
-			type: "GET",
-			async: false,
-		}).done(function(data) {
-			$.each(data, function(index, item) {
-				$("#curriculoIdEdit").append(
-					$("<option>", {
-						value: item.idCurriculo,
-						text: item.curriculo,
-						name: item.curriculo,
-					})
-				);
-			});
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	$.ajax({
+		url: url_base + "/curriculo",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#curriculoIdEdit").append(
+				$("<option>", {
+					value: item.idCurriculo,
+					text: item.curriculo,
+					name: item.curriculo,
+				})
+			);
 		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 
-		$.ajax({
-			url: url_base + "/disciplina",
-			type: "GET",
-			async: false,
-		}).done(function(data) {
-			$.each(data, function(index, item) {
-				$("#disciplinaIdEdit").append(
-					$("<option>", {
-						value: item.idDisciplina,
-						text: item.nome,
-						name: item.nome,
-					})
-				);
-			});
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	$.ajax({
+		url: url_base + "/disciplina",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#disciplinaIdEdit").append(
+				$("<option>", {
+					value: item.idDisciplina,
+					text: item.nome,
+					name: item.nome,
+				})
+			);
 		});
-	
-	
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+
 
 
 
@@ -182,11 +182,18 @@ function getDados() {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 		var ativo;
+		var obrigatorio;
 
 		if (item.ativo == "N") {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
 		} else {
 			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
+
+		if (item.obrigatoria == "N") {
+			obrigatorio = "Não"
+		} else {
+			obrigatorio = "Sim"
 		}
 
 		return (
@@ -201,7 +208,7 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
-			item.obrigatoria +
+			obrigatorio +
 			"</td>" +
 
 			"<td>" +

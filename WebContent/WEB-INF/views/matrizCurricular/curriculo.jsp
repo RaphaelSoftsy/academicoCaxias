@@ -275,10 +275,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</select>
 							</div>
 
-							<div class="mb-4">
+							<div class="mb-4" id="cardCurriculo">
 								<label for="curriculo" class="form-label">Currículo:<span
 									class="red">*</span>
-								</label> <input type="text" class="form-control" id="curriculo"
+								</label> <input type="text" class="form-control" id="curriculoNew"
 									name="curriculo" required aria-describedby="Currículo"
 									autocomplete="off" />
 							</div>
@@ -342,7 +342,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary px-4">
+									class="btn btn-primary px-4" id="btn-submit">
 									Salvar</button>
 							</div>
 						</form>
@@ -371,7 +371,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</select>
 							</div>
 
-							<div class="mb-4">
+							<div class="mb-4" id="cardCurriculoEdit">
 								<label for="curriculoEdit" class="form-label">Currículo:<span
 									class="red">*</span>
 								</label> <input type="text" class="form-control" id="curriculoEdit"
@@ -446,7 +446,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary px-4">
+									class="btn btn-primary px-4" id="btn-editar">
 									Salvar</button>
 							</div>
 						</form>

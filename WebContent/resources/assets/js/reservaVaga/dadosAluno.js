@@ -35,7 +35,7 @@ $(document).ready(function() {
 
 
 
-	$('select ').select2();
+	$('select').select2();
 
 	if ($('input[id="qualPreencher"]').is(':checked')) {
 		$("#certidaoCasamento").hide()
