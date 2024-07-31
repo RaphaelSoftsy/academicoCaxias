@@ -6,6 +6,7 @@ var currentPage = 1;
 var pagesToShow = 5;
 var id = "";
 var cursos = [];
+const contaId = localStorage.getItem("contaId")
 
 $(document).ready(function() {
 	$.ajax({
@@ -15,31 +16,31 @@ $(document).ready(function() {
 	}).done(function(data) {
 		cursos = data;
 		$.each(data, function(index, item) {
-			
-			if(item.ativo == "S"){
-					$("#cursoIdEdit").append(
-				$("<option>", {
-					value: item.idCurso,
-					text: item.nome,
-					name: item.nome,
-				})
-			);
-			
-			$("#cursoId").append(
-				$("<option>", {
-					value: item.idCurso,
-					text: item.nome,
-					name: item.nome,
-				})
-			);
+
+			if (item.ativo == "S") {
+				$("#cursoIdEdit").append(
+					$("<option>", {
+						value: item.idCurso,
+						text: item.nome,
+						name: item.nome,
+					})
+				);
+
+				$("#cursoId").append(
+					$("<option>", {
+						value: item.idCurso,
+						text: item.nome,
+						name: item.nome,
+					})
+				);
 			}
-		
+
 		});
-		
+
 	});
 
 	getDados();
-	
+
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
 		if (status !== 'S') {
@@ -263,6 +264,9 @@ function listarDados(dados) {
 				item.curriculo +
 				"</td>" +
 				"<td>" +
+				item.descricao +
+				"</td>" +
+				"<td>" +
 				formatarDataParaBR(item.dtHomologacao) +
 				"</td>" +
 				"<td>" +
@@ -338,6 +342,7 @@ function showModal(ref) {
 			$(".desativar").hide();
 			$(".ativar").show();
 		}
+		
 		$("#cursoIdEdit").val(data.cursoId).attr("selected", true);
 
 		var dtHomologacao = data.dtHomologacao.split("T")[0];
@@ -350,6 +355,7 @@ function showModal(ref) {
 		$("#prazoMaxEdit").val(data.prazoMax);
 		$("#creditosEdit").val(data.creditos);
 		$("#aulasPrevistasEdit").val(data.aulasPrevistas);
+		$("#descricaoEdit").val(data.descricao);
 	});
 }
 
@@ -370,6 +376,8 @@ function editar() {
 
 	var objeto = {
 		idCurriculo: id,
+		contaId: contaId,
+		descricao: $("#descricaoEdit").val(),
 		cursoId: Number($("#cursoIdEdit").val()),
 		curriculo: $("#curriculoEdit").val(),
 		dtHomologacao: data1Formatada,
@@ -409,6 +417,8 @@ function editar() {
 		Swal.fire({
 			title: "Editado com sucesso",
 			icon: "success"
+		}).then(()=>{
+			window.location.href = "curriculo"
 		})
 	});
 
@@ -438,6 +448,8 @@ function cadastrar() {
 
 	var objeto = {
 		idCurriculo: id,
+		contaId: contaId,
+		descricao: $("#descricao").val(),
 		cursoId: Number($("#cursoId").val()),
 		curriculo: $("#curriculo").val(),
 		dtHomologacao: data1Formatada,
@@ -477,6 +489,8 @@ function cadastrar() {
 		Swal.fire({
 			title: "Cadastrado com sucesso",
 			icon: "success",
+		}).then(()=>{
+			window.location.href = "curriculo"
 		})
 	});
 

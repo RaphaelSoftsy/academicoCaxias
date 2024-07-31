@@ -95,13 +95,15 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:</label> <input type="tel"
-							class="form-control" id="cep" data-mask="00000-000" name="cep" />
+						<label for="cep" class="form-label">CEP:<span
+							class="red">*</span></label> <input type="tel"
+							class="form-control" id="cep" data-mask="00000-000" name="cep" required/>
 					</div>
 					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:</label> <input
+						<label for="endereco" class="form-label">Endereço:<span
+							class="red">*</span></label> <input
 							type="text" id="endereco" autocomplete="off" name="endereco"
-							class="form-control" />
+							class="form-control" required />
 					</div>
 				</div>
 
@@ -120,14 +122,16 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:</label> <input
+						<label for="bairro" class="form-label">Bairro:<span
+							class="red">*</span></label><input
 							type="text" id="bairro" autocomplete="off" name="bairro"
-							class="form-control" />
+							class="form-control" required/>
 					</div>
 					<div class="col-md-6">
-						<label for="municipio" class="form-label">Município:</label> <input
+						<label for="municipio" class="form-label">Município:<span
+							class="red">*</span></label> <input
 							type="text" id="municipio" autocomplete="off" name="municipio"
-							class="form-control" />
+							class="form-control" required />
 					</div>
 				</div>
 
@@ -138,8 +142,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="uf" class="form-label">UF:</label> <input type="text"
-							id="uf" autocomplete="off" name="uf" class="form-control" />
+						<label for="uf" class="form-label">UF:<span
+							class="red">*</span></label> <input type="text"
+							id="uf" autocomplete="off" name="uf" class="form-control" required/>
 					</div>
 				</div>
 
