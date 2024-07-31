@@ -85,6 +85,9 @@ $(document).ready(function() {
 	});
 
 	if (idTurma != undefined) {
+		$('#span-title').text('Editar Cadastro')
+		$('#tituloForm').text('Atualizar Turma')
+		$('#btn-submit').text('Atualizar')
 		$.ajax({
 			url: url_base + "/turma/" + idTurma,
 			type: "GET",
