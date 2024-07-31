@@ -115,18 +115,20 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 					<div class="col-md-6">
 						<label for="tipoIngressoId" class="form-label">Tipo
-							Ingresso: </label> <select class="form-select" aria-label="Tipo Ingresso"
-							id="tipoIngressoId" name="tipoIngressoId">
-							<option selected disabled>Selecione uma opção</option>
+							Ingresso:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Tipo Ingresso"
+							id="tipoIngressoId" name="tipoIngressoId" required>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="nomeMae" class="form-label">Nome da Mãe: </label> <input
+						<label for="nomeMae" class="form-label">Nome da Mãe:<span
+							class="red">*</span> </label> <input
 							type="text" id="nomeMae" autocomplete="off" name="nomeMae"
-							class="form-control" />
+							class="form-control" required />
 					</div>
 					<div class="col-md-6">
 						<label for="nomePai" class="form-label">Nome do Pai: </label> <input
@@ -182,9 +184,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div> -->
 
 					<div class="col-md-6">
-						<label for="racaId" class="form-label">Raça:</label> <select
-							class="form-select" aria-label="Raça" id="racaId" name="racaId">
-							<option selected disabled>Selecione uma opção</option>
+						<label for="racaId" class="form-label">Raça: <span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="Raça" id="racaId" name="racaId" required>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -192,19 +195,19 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="paisNascimentoId" class="form-label">País de
-							Nascimento:</label> <select class="form-select"
-							aria-label="País de Nascimento" id="paisNascimentoId" required
-							name="paisNascimentoId">
-							<option selected disabled>Selecione uma opção</option>
+							Nascimento:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="País de Nascimento"
+							id="paisNascimentoId" required name="paisNascimentoId">
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
 					<div class="col-md-6">
 						<label for="ufNascimentoIdLabel" class="form-label">UF de
-							Nascimento: </label> <select class="form-select"
-							aria-label="UF de Nascimento" id="ufNascimentoId" required
-							name="ufNascimentoId">
-							<option selected disabled>Selecione uma opção</option>
+							Nascimento: <span class="red">*</span>
+						</label> <select class="form-select" aria-label="UF de Nascimento"
+							id="ufNascimentoId" required name="ufNascimentoId">
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -214,41 +217,44 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="col-md-6"
 						style="display: flex; flex-direction: column;">
 						<label for="municipioNascimentoId" class="form-label">Município
-							de Nascimento: </label> <select class="form-select"
-							aria-label="Município de Nascimento" id="municipioNascimentoId"
-							required disabled name="municipioNascimentoId">
-							<option selected disabled>Selecione uma opção</option>
+							de Nascimento: <span class="red">*</span>
+						</label> <select class="form-select" aria-label="Município de Nascimento"
+							id="municipioNascimentoId" required disabled
+							name="municipioNascimentoId">
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="nacionalidadeId" class="form-label">Nacionalidade:</label>
-						<select class="form-select" aria-label="Município de Nascimento"
-							id="nacionalidadeId" required name="nacionalidadeId">
-							<option selected disabled>Selecione uma opção</option>
+						<label for="nacionalidadeId" class="form-label">Nacionalidade:<span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="Município de Nascimento" id="nacionalidadeId"
+							required name="nacionalidadeId">
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<label for="estadoCivil" class="form-label">Estado Civil:</label>
+					<label for="estadoCivil" class="form-label">Estado Civil:<span
+						class="red">*</span></label>
 					<div class="form-control">
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_co" value="so" /> <label
+								id="estadoCivil_co" value="so" required/> <label
 								class="form-check-label" for="solteiro">Solteiro(a)</label>
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_ca" value="ca" /> <label
+								id="estadoCivil_ca" value="ca" required/> <label
 								class="form-check-label" for="casado">Casado(a)</label>
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_vi" value="vi" /> <label
+								id="estadoCivil_vi" value="vi" required/> <label
 								class="form-check-label" for="viuvo">Viúvo(a)</label>
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_di" value="di" /> <label
+								id="estadoCivil_di" value="di" required/> <label
 								class="form-check-label" for="divorciado">Divorciado(a)</label>
 						</div>
 					</div>

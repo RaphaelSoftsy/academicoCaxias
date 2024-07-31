@@ -55,7 +55,8 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous">
 	
@@ -119,7 +120,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<label for="relacionamentoId" class="form-label">Relacionamento:<span
 							class="red">*</span></label> <select class="form-select" required
 							aria-label="Relacionamento" id="relacionamentoId" name="racaId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
@@ -207,7 +208,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<label for="racaId" class="form-label">Raça:<span
 							class="red">*</span></label> <select required class="form-select"
 							aria-label="Raça" id="racaId" name="racaId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -217,7 +218,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="País de Nascimento"
 							id="paisNascimentoId" required name="paisNascimentoId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -226,7 +227,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Residencia:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="País de Residencia"
 							id="paisResidenciaId" required name="paisResidenciaId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -241,7 +242,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="UF de Nascimento"
 							id="ufNascimentoId" required name="ufNascimentoId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -251,7 +252,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</label> <select class="form-select" aria-label="Município de Nascimento"
 							id="municipioNascimentoId" required name="municipioNascimentoId"
 							disabled>
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -262,31 +263,32 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="red">*</span></label> <select class="form-select"
 							aria-label="Município de Nascimento" id="nacionalidadeId"
 							required name="nacionalidadeId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="0">Selecione uma opção</option>
 						</select>
 					</div>
 
 					<div class="col-md-6">
-						<label for="estadoCivil" class="form-label">Estado Civil:</label>
+						<label for="estadoCivil" class="form-label">Estado Civil:<span
+							class="red">*</span></label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil_co" value="so" /> <label
+									id="estadoCivil_co" value="so" required /> <label
 									class="form-check-label" for="solteiro">Solteiro(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil_ca" value="ca" /> <label
+									id="estadoCivil_ca" value="ca" required /> <label
 									class="form-check-label" for="casado">Casado(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil_vi" value="vi" /> <label
+									id="estadoCivil_vi" value="vi" required /> <label
 									class="form-check-label" for="viuvo">Viúvo(a)</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="estadoCivil"
-									id="estadoCivil_di" value="di" /> <label
+									id="estadoCivil_di" value="di" required /> <label
 									class="form-check-label" for="divorciado">Divorciado(a)</label>
 							</div>
 						</div>
@@ -533,13 +535,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:</label> <input type="tel"
-							class="form-control" id="cep" data-mask="00000-000" name="cep" />
+						<label for="cep" class="form-label">CEP: <span class="red">*</span></label>
+						<input type="tel" class="form-control" id="cep"
+							data-mask="00000-000" name="cep" required />
 					</div>
 					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:</label> <input
-							type="text" id="endereco" autocomplete="off" name="endereco"
-							class="form-control" />
+						<label for="endereco" class="form-label">Endereço:<span
+							class="red">*</span></label> <input type="text" id="endereco"
+							autocomplete="off" name="endereco" class="form-control" required />
 					</div>
 				</div>
 
@@ -558,14 +561,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:</label> <input
-							type="text" id="bairro" autocomplete="off" name="bairro"
-							class="form-control" />
+						<label for="bairro" class="form-label">Bairro:<span
+							class="red">*</span></label> <input type="text" id="bairro"
+							autocomplete="off" name="bairro" class="form-control" required />
 					</div>
 					<div class="col-md-6">
-						<label for="municipio" class="form-label">Município:</label> <input
-							type="text" id="municipio" autocomplete="off" name="municipio"
-							class="form-control" />
+						<label for="municipio" class="form-label">Município:<span
+							class="red">*</span></label> <input type="text" id="municipio"
+							autocomplete="off" name="municipio" class="form-control" required />
 					</div>
 				</div>
 
@@ -576,8 +579,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="uf" class="form-label">UF:</label> <input type="text"
-							id="uf" autocomplete="off" name="uf" class="form-control" />
+						<label for="uf" class="form-label">UF:<span class="red">*</span></label>
+						<input type="text" id="uf" autocomplete="off" name="uf"
+							class="form-control" required />
 					</div>
 				</div>
 			</section>
