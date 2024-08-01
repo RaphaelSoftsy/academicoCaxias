@@ -294,16 +294,16 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="row mb-4">
 								<div class="col-6">
 									<label for="dtHomologacao" class="form-label">Data
-										de homologação:<span class="red">*</span>
+										de homologação:
 									</label> <input max="2999-01-01" autocomplete="off" type="date"
-										id="dtHomologacao" required name="dtHomologacao"
+										id="dtHomologacao"  name="dtHomologacao"
 										class="form-control" />
 								</div>
 								<div class="col-6">
 									<label for="dtExtincao" class="form-label">Data
-										de extinção:<span class="red">*</span>
+										de extinção:
 									</label> <input max="2999-01-01" autocomplete="off" type="date"
-										id="dtExtincao" required name="dtExtincao"
+										id="dtExtincao"  name="dtExtincao"
 										class="form-control" />
 								</div>
 							</div>
@@ -311,30 +311,29 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="row mb-4">
 								<div class="col-6">
 									<label for="prazoIdeal" class="form-label">Prazo
-										ideal:<span class="red">*</span>
+										ideal:
 									</label> <input autocomplete="off" type="number" id="prazoIdeal"
-										required name="prazoIdeal" class="form-control" />
+										 name="prazoIdeal" class="form-control" />
 								</div>
 								<div class="col-6">
 									<label for="prazoMax" class="form-label">Prazo
-										máximo:<span class="red">*</span>
-									</label> <input autocomplete="off" type="number" id="prazoMax" required
+										máximo:
+									</label> <input autocomplete="off" type="number" id="prazoMax" 
 										name="prazoMax" class="form-control" />
 								</div>
 							</div>
 
 							<div class="row mb-4">
 								<div class="col-6">
-									<label for="creditos" class="form-label">Créditos:<span
-										class="red">*</span>
-									</label> <input autocomplete="off" type="number" id="creditos" required
+									<label for="creditos" class="form-label">Créditos:
+									</label> <input autocomplete="off" type="number" id="creditos" 
 										name="creditos" class="form-control" />
 								</div>
 								<div class="col-6">
 									<label for="aulasPrevistas" class="form-label">Aulas
-										previstas:<span class="red">*</span>
+										previstas:
 									</label> <input autocomplete="off" type="number" id="aulasPrevistas"
-										required name="aulasPrevistas" class="form-control" />
+										 name="aulasPrevistas" class="form-control" />
 								</div>
 							</div>
 
@@ -391,16 +390,16 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="row mb-4">
 								<div class="col-6">
 									<label for="dtHomologacaoEdit" class="form-label">Data
-										de homologação:<span class="red">*</span>
+										de homologação:
 									</label> <input max="2999-01-01" autocomplete="off" type="date"
-										id="dtHomologacaoEdit" required name="dtHomologacaoEdit"
+										id="dtHomologacaoEdit"  name="dtHomologacaoEdit"
 										class="form-control" />
 								</div>
 								<div class="col-6">
 									<label for="dtExtincaoEdit" class="form-label">Data
-										de extinção:<span class="red">*</span>
+										de extinção:
 									</label> <input max="2999-01-01" autocomplete="off" type="date"
-										id="dtExtincaoEdit" required name="dtExtincaoEdit"
+										id="dtExtincaoEdit"  name="dtExtincaoEdit"
 										class="form-control" />
 								</div>
 							</div>
@@ -408,30 +407,29 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="row mb-4">
 								<div class="col-6">
 									<label for="prazoIdealEdit" class="form-label">Prazo
-										ideal:<span class="red">*</span>
+										ideal:
 									</label> <input autocomplete="off" type="number" id="prazoIdealEdit"
-										required name="prazoIdealEdit" class="form-control" />
+										 name="prazoIdealEdit" class="form-control" />
 								</div>
 								<div class="col-6">
 									<label for="prazoMaxEdit" class="form-label">Prazo
-										máximo:<span class="red">*</span>
+										máximo:
 									</label> <input autocomplete="off" type="number" id="prazoMaxEdit"
-										required name="prazoMaxEdit" class="form-control" />
+										 name="prazoMaxEdit" class="form-control" />
 								</div>
 							</div>
 
 							<div class="row mb-4">
 								<div class="col-6">
-									<label for="creditosEdit" class="form-label">Créditos:<span
-										class="red">*</span>
+									<label for="creditosEdit" class="form-label">Créditos:
 									</label> <input autocomplete="off" type="number" id="creditosEdit"
-										required name="creditosEdit" class="form-control" />
+										 name="creditosEdit" class="form-control" />
 								</div>
 								<div class="col-6">
 									<label for="aulasPrevistasEdit" class="form-label">Aulas
-										previstas:<span class="red">*</span>
+										previstas:
 									</label> <input autocomplete="off" type="number"
-										id="aulasPrevistasEdit" required name="aulasPrevistasEdit"
+										id="aulasPrevistasEdit"  name="aulasPrevistasEdit"
 										class="form-control" />
 								</div>
 							</div>
