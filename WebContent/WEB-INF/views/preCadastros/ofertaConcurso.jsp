@@ -82,20 +82,20 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3" style="display: flex; align-items: center;">
-
-				<div class='col-6'>
-					<div class="input-group">
-						<input id="inputBusca" type="text" class="form-control inputForm"
-							placeholder="Buscar" /> <span
-							class="input-group-text icone-pesquisa"><i
-							class="fas fa-search"></i></span>
-					</div>
+			<div class="mt-3 mb-3"
+				style="display: flex; align-items: center; justify-content: end">
+				<div class="d-flex align-items-center gap-2">
+					<button id="limpa-filtros" class="btn btn-sm btn-danger">
+						Limpar Filtros</button>
+					<button id="exportar-excel"
+						class="btn btn-sm btn-success d-flex align-items-center gap-2">
+						<i class="fa-solid fa-file-export"></i>Exportar
+					</button>
+					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
+						data-bs-toggle="modal" onclick="limpaCampo()"
+						data-bs-target="#newCadastro">Novo Cadastro
+					</button>
 				</div>
-				<button class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
-					data-bs-toggle="modal" onclick="limpaCampo()"
-					data-bs-target="#newCadastro">Novo Cadastro</button>
-
 			</div>
 
 			<table
