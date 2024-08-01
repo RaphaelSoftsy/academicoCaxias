@@ -159,11 +159,7 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
-			item.codTurmaInep +
-			"</td>" +
-
-			"<td>" +
-			item.vagas +
+			item.periodoLetivo.ano + '/' + item.periodoLetivo.periodo +
 			"</td>" +
 
 			"<td>" +
@@ -171,11 +167,7 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
-			item.periodoLetivo.ano +
-			"</td>" +
-
-			"<td>" +
-			item.periodoLetivo.periodo +
+			item.vagas +
 			"</td>" +
 
 			"<td>" +

@@ -11,11 +11,71 @@ let id = ''
 const idTurma = params.get("id");
 
 $(document).ready(function() {
+	$('.container-table').hide()
+	$('.row-hidden').hide()
 
-	
-	
 	$.ajax({
-		url: url_base + "/escolas/usuario/" + contaId + "/" + usuarioId,
+		url: url_base + "/cursos/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+
+		$.each(data, function(index, item) {
+			$("#cursoId").append(
+				$("<option>", {
+					value: item.idCurso,
+					text: item.nome,
+					name: item.nome,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/curriculo",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+
+		$.each(data, function(index, item) {
+			$("#curriculoId").append(
+				$("<option>", {
+					value: item.idCurriculo,
+					text: item.curriculo,
+					name: item.curriculo,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/serie/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+
+		$.each(data, function(index, item) {
+			$("#serieId").append(
+				$("<option>", {
+					value: item.idSerie,
+					text: item.serie,
+					name: item.serie,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/escolas/conta/" + contaId,
 		type: "GET",
 		async: false,
 	}).done(function(data) {
@@ -35,10 +95,31 @@ $(document).ready(function() {
 	});
 
 	$.ajax({
+		url: url_base + "/periodoletivo/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+
+		$.each(data, function(index, item) {
+			$("#periodoLetivoId").append(
+				$("<option>", {
+					value: item.idPeriodoLetivo,
+					text: `${item.ano}/${item.periodo}`,
+					name: `${item.ano}/${item.periodo}`,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
 		url: url_base + "/turno/conta/" + contaId,
 		type: "GET",
 		async: false,
 	}).done(function(data) {
+		console.log(data)
 
 		$.each(data, function(index, item) {
 			$("#turnoId").append(
@@ -53,25 +134,66 @@ $(document).ready(function() {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 
-	$.ajax({
-		url: url_base + "/periodoletivo/conta/" + contaId,
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#periodoLetivoId").append(
-				$("<option>", {
-					value: item.idPeriodoLetivo,
-					text: `Ano: ${item.ano} - Semestre: ${item.periodo}`,
-					name: item.periodo,
-				})
-			);
-		});
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
 
-	$.ajax({
+	/*
+		$.ajax({
+			url: url_base + "/escolas/usuario/" + contaId + "/" + usuarioId,
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			console.log(data)
+	
+			$.each(data, function(index, item) {
+				$("#escolaId").append(
+					$("<option>", {
+						value: item.idEscola,
+						text: item.nomeEscola,
+						name: item.nomeEscola,
+					})
+				);
+			});
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+	
+		$.ajax({
+			url: url_base + "/turno/conta/" + contaId,
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+	
+			$.each(data, function(index, item) {
+				$("#turnoId").append(
+					$("<option>", {
+						value: item.idTurno,
+						text: item.turno,
+						name: item.turno,
+					})
+				);
+			});
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+	
+		$.ajax({
+			url: url_base + "/periodoletivo/conta/" + contaId,
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			$.each(data, function(index, item) {
+				$("#periodoLetivoId").append(
+					$("<option>", {
+						value: item.idPeriodoLetivo,
+						text: `Ano: ${item.ano} - Semestre: ${item.periodo}`,
+						name: item.periodo,
+					})
+				);
+			});
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});*/
+
+	/*$.ajax({
 		url: url_base + "/gradeCurricular",
 		type: "GET",
 		async: false,
@@ -110,10 +232,15 @@ $(document).ready(function() {
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
-	}
+	}*/
 })
 
-function cadastrar() {
+$('#btn-buscar').click(() => {
+	$('.container-table').show()
+	$('.row-hidden').show()
+})
+
+/*function cadastrar() {
 
 	var objeto = {
 		escolaId: $('#escolaId').val(),
@@ -211,4 +338,4 @@ $('#formNovoCadastro').on('submit', function(e) {
 		cadastrar();
 	}
 	return false;
-});
+});*/

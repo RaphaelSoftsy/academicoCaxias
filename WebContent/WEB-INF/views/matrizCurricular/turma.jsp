@@ -102,12 +102,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Nome</th>
-						<th scope="col">Código INEP</th>
-						<th scope="col">Vagas</th>
+						<th scope="col">Turma</th>
+						<th scope="col">Ano/Periodo</th>
 						<th scope="col">Turno</th>
-						<th scope="col">Ano letivo</th>
-						<th scope="col">Semestre</th>
+						<th scope="col">Vagas</th>
 						<th scope="col">Libras</th>
 						<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
 						<th class="text-center" scope="col" width="10%">Ações</th>
