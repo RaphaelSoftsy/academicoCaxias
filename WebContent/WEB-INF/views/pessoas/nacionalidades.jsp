@@ -96,7 +96,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
           </div>
           <button
-            class="btn btn-primary btn-lg px-3 py-1 ms-auto"
+            class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
             data-bs-toggle="modal"
             onclick="limpaCampo()"
             data-bs-target="#newCadastro"

@@ -92,7 +92,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<a class="btn btn-primary btn-lg px-3 py-1 ms-auto"
+				<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
 					href="nova-turma-matriz-curricular">Novo Cadastro</a>
 
 			</div>

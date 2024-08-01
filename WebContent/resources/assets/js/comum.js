@@ -60,12 +60,16 @@ $(document).ready(function() {
 
 			if (data[0].altera == 'N') {
 				$('.edit-val').css('cursor', 'pointer').attr('disabled', true);
-				$('.checkbox-toggle').css('cursor', 'pointer').attr('disabled', true);
 				$('.edit-val').wrap('<div class="box-edit-val" title="Seu usuário não tem autorização"></div>');
+
+				$('.btn-new-alter').css('cursor', 'pointer').attr('disabled', true);
+				$('.btn-new-alter').wrap('<div class="box-edit-val px-3 py-1 ms-auto" title="Seu usuário não tem autorização"></div>');
+
+				$('.checkbox-toggle').css('cursor', 'pointer').attr('disabled', true);
 				$('.checkbox-toggle').wrap('<div class="box-edit-val" onclick="notAccess()" title="Seu usuário não tem autorização"></div>');
-				
+
 				$('.toggle-group').click(() => notAccess())
-				
+
 				$('span:has(i.fa-pen)').each(function() {
 					var $span = $(this);
 

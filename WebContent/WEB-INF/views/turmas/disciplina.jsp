@@ -100,7 +100,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </button>
             <a
               href="turmas-nova-disciplina"
-              class="btn btn-primary btn-sm px-3 py-1 ms-auto"
+              class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto"
               >Novo Cadastro</a
             >
           </div>

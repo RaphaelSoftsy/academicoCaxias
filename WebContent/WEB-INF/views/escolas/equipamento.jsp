@@ -99,7 +99,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <i class="fa-solid fa-file-export"></i> Exportar
             </button>
             <button
-              class="btn btn-primary btn-sm px-3 py-1 ms-auto"
+              class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto"
               data-bs-toggle="modal"
               onclick="limpaCampo()"
               data-bs-target="#newCadastro"

@@ -89,7 +89,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
-					<a href="novo-curso" class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
+					<a href="novo-curso" class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Novo Cadastro</a>
 				</div>
 			</div>
 

@@ -101,7 +101,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<button class="btn btn-primary btn-lg px-3 py-1 ms-auto"
+				<button class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
 					data-bs-toggle="modal" onclick="limpaCampo()"
 					data-bs-target="#newCadastro">Novo Cadastro</button>
 

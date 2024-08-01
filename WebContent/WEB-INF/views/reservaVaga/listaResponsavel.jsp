@@ -225,9 +225,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				style="display: flex; align-items: center; justify-content: end">
 				<div class="d-flex align-items-center gap-2">
 					<a href="dadosResponsavel"
-						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Adicionar
+						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Adicionar
 						responsável</a> <a href="#" id="btnNext"
-						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Próximo</a>
+						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Próximo</a>
 				</div>
 			</div>
 		</section>

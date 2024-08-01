@@ -93,7 +93,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
 					<a href="dados-aluno"
-						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
+						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Novo Cadastro</a>
 				</div>
 			</div>
 

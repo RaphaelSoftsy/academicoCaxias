@@ -98,7 +98,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="d-flex align-items-center gap-2">
 
 					<a href="nova-escola"
-						class="btn btn-primary btn-sm px-3 py-1 ms-auto">Novo Cadastro</a>
+						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Novo Cadastro</a>
 
 					<button id="limpa-filtros" class="btn btn-sm btn-danger">Limpar
 						Filtros</button>

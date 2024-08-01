@@ -95,7 +95,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
-					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
+					<button class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto"
 						data-bs-toggle="modal" onclick="limpaCampo()"
 						data-bs-target="#newCadastro">Novo Cadastro</button>
 				</div>

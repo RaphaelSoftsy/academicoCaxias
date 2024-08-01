@@ -100,7 +100,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
 				<a href="novaDependenciasAdm"
-					class="btn btn-primary btn-lg px-3 py-1 ms-auto">Novo Cadastro</a>
+					class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto">Novo Cadastro</a>
 
 			</div>
 
