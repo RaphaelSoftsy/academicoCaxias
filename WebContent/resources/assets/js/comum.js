@@ -423,7 +423,7 @@ function goToPage(page) {
 function containerResponsivo() {
 	let container = $('<div>')
 	container.addClass('container-table')
-	container.append($('.table'))
+	container.append($('.table').not('.tableNot'))
 	$('#pagination').before(container)
 }
 
