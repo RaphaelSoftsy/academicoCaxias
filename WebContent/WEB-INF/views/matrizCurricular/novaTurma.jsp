@@ -139,7 +139,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<th scope="col" width="15%">Retém Aluno</th>
 						</tr>
 					</thead>
-					<tbody id="cola-tabela" class="table-group-divider">
+					<tbody id="cola-tabela-grade" class="table-group-divider">
 
 					</tbody>
 				</table>
@@ -204,23 +204,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</div>
 
 				<div class="row mb-3 mt-3 row-hidden">
-					<div class="col-md-6">
-						<label for="codTurmaInep" class="form-label">Código INEP:</label>
-						<input type="text" class="form-control" id="codTurmaInep" required
-							aria-describedby="CodTurmaInep" autocomplete="off"
-							name="codTurmaInep">
-					</div>
-					<div class="col-md-6">
-						<label for="vagas" class="form-label">Vagas:</label> <input
-							type="number" class="form-control" id="vagas" required
-							aria-describedby="Vagas" autocomplete="off" min='0'
-							oninput="this.value = Math.abs(this.value)">
-					</div>
-				</div>
-
-				<div class="row mb-3 mt-3 row-hidden">
 					<div class="col-md-6" id="librasSwitch">
-						<label for="isLibra" class="form-label">Possui Libras?<span class="red">*</span>
+						<label for="isLibra" class="form-label">Possui Libras?<span
+							class="red">*</span>
 						</label>
 						<div class="card-form form-control">
 							<label for="isLibra">Sim</label> <label class="switch"> <input
@@ -230,12 +216,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</div>
 					</div>
 					<div class="col-md-6" id="controlaVagasSwitch">
-						<label for="isControlaVagas" class="form-label">Controla vagas?<span class="red">*</span>
+						<label for="isControlaVagas" class="form-label">Controla
+							vagas?<span class="red">*</span>
 						</label>
 						<div class="card-form form-control">
-							<label for="isControlaVagas">Sim</label> <label class="switch"> <input
-								type="checkbox" name="isLibra" id="isControlaVagas" name="isControlaVagas">
-								<span class="slider"></span>
+							<label for="isControlaVagas">Sim</label> <label class="switch">
+								<input type="checkbox" name="isLibra" id="isControlaVagas"
+								name="isControlaVagas"> <span class="slider"></span>
 							</label> <label for="isControlaVagas">Não</label>
 						</div>
 					</div>
@@ -313,10 +300,41 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div> -->
 
-				<div class="col-md-12 text-center mt-3">
+				<div class="col-md-12 text-center mt-3 mb-5">
 					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Cadastrar</button>
 				</div>
+				<div class="container-table contTable">
+					<table
+						class="table tableNot tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+						<thead>
+							<tr>
+								<th scope="col">Turma</th>
+								<th scope="col">Escola</th>
+								<th scope="col">Ano/Período</th>
+								<th scope="col">Turno</th>
+								<th scope="col" width="10%">Série</th>
+								<th scope="col">Disciplina</th>
+								<th scope="col" width="10%">Obrigatória</th>
+								<th scope="col" width="10%">Retém Aluno</th>
+							</tr>
+						</thead>
+						<tbody id="cola-tabela-turma" class="table-group-divider">
+
+						</tbody>
+					</table>
+					<div id="pagination" class="mx-auto mt-auto">
+						<!-- <button id="prev" class="btn btn-sm">
+						<i class="fa-solid fa-angle-left fa-xl"></i>
+					</button>
+					<div id="page-numbers" class="btn-group"></div>
+					<button id="next" class="btn btn-sm">
+						<i class="fa-solid fa-angle-right fa-xl"></i>
+					</button> -->
+					</div>
+				</div>
 			</form>
+
+
 		</section>
 	</main>
 

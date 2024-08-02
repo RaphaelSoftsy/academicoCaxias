@@ -9,10 +9,14 @@ var pagesToShow = 5;
 let descricao = ''
 let id = ''
 const idTurma = params.get("id");
+let grades = []
+let turmas = []
 
 $(document).ready(function() {
 	$('.container-table').hide()
 	$('.row-hidden').hide()
+	$('#serieId').prop('disabled', true);
+	$('#curriculoId').prop('disabled', true);
 
 	$.ajax({
 		url: url_base + "/cursos/conta/" + contaId,
@@ -27,26 +31,6 @@ $(document).ready(function() {
 					value: item.idCurso,
 					text: item.nome,
 					name: item.nome,
-				})
-			);
-		});
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
-
-	$.ajax({
-		url: url_base + "/curriculo",
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		console.log(data)
-
-		$.each(data, function(index, item) {
-			$("#curriculoId").append(
-				$("<option>", {
-					value: item.idCurriculo,
-					text: item.curriculo,
-					name: item.curriculo,
 				})
 			);
 		});
@@ -235,26 +219,212 @@ $(document).ready(function() {
 	}*/
 })
 
-$('#btn-buscar').click(() => {
-	$('.container-table').show()
-	$('.row-hidden').show()
+$('#cursoId').change(() => {
+	$('#serieId').removeAttr('disabled');
+	$('#curriculoId').removeAttr('disabled');
+
+	let cursoId = $('#cursoId').val()
+
+	$.ajax({
+		url: url_base + "/curriculo/curso/" + cursoId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+		$('#curriculoId').empty()
+
+		$("#curriculoId").append(
+			$("<option>", {
+				value: 0,
+				text: 'Selecione uma opção',
+				name: 'Selecione uma opção'
+			}).prop('disabled', true).prop('selected', true)
+		);
+
+		$.each(data, function(index, item) {
+			$("#curriculoId").append(
+				$("<option>", {
+					value: item.idCurriculo,
+					text: item.curriculo,
+					name: item.curriculo,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 })
 
-/*function cadastrar() {
+$('#btn-buscar').click(() => {
+	if ($('#curriculoId').val() == null ||
+		$('#serieId').val() == null ||
+		$('#cursoId').val() == null
+	) {
+		Swal.fire({
+			icon: "info",
+			title: "Informe os tres valores",
+		});
+	} else {
+		let curriculoId = $('#curriculoId').val()
+		let serieId = $('#serieId').val()
+		$.ajax({
+			url: url_base + "/gradeCurricular/curriculo/" + curriculoId + '/serie/' + serieId,
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			grades = data
+			listarGradeCurricular(data);
+			$('.container-table').not('.contTable').show()
+			$('.row-hidden').show()
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+	}
+})
+
+function listarGradeCurricular(dados) {
+	var html = dados.map(function(item) {
+		var ativo;
+
+		var obrigatoria;
+		var retemSerie;
+
+
+		if (item.ativo == "N") {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+		} else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
+
+		if (item.obrigatoria == "N") {
+			obrigatoria = "Não"
+		} else {
+			obrigatoria = "Sim"
+		}
+
+		if (item.retemSerie == "N") {
+			retemSerie = "Não"
+		} else {
+			retemSerie = "Sim"
+		}
+
+		return (
+			"<tr>" +
+
+			"<td>" +
+			item.serie.serie +
+			"</td>" +
+
+			"<td>" +
+			item.disciplina.nome +
+			"</td>" +
+
+			"<td>" +
+			obrigatoria +
+			"</td>" +
+
+			"<td>" +
+			retemSerie +
+			"</td>" +
+
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela-grade").html(html);
+}
+
+function cadastrar() {
+	$('.contTable').show()
 
 	var objeto = {
 		escolaId: $('#escolaId').val(),
+		nomeEscola: $('#escolaId option:selected').text(),
 		turnoId: $('#turnoId').val(),
+		nomeTurno: $('#turnoId option:selected').text(),
 		periodoLetivoId: $('#periodoLetivoId').val(),
-		gradeCurricularId: $('#gradeCurricularId').val(),
+		anoPeriodo: $('#periodoLetivoId option:selected').text(),
+		gradeCurricularId:'',
 		nomeTurma: $('#nomeTurma').val(),
 		codTurmaInep: $('#codTurmaInep').val(),
 		vagas: $('#vagas').val(),
-		libras: $('#libras').val(),
-		controlaVagas: $('#controlaVagas').val(),
+		libras: $('input[name="isLibra"]:checked').val(),
+		controlaVagas: $('input[name="isControlaVagas"]:checked').val(),
+		disciplinaId: '',
+		nomeDisciplina: '',
+		obrigatoria: '',
+		retemSerie: ''
 	}
+	
+	console.log(grades)
 
-	$.ajax({
+	$.each(grades, function(index, item) {
+		console.log(item)
+		objeto.serie = item.serie.serie
+		objeto.disciplinaId = item.disciplina.idDisciplina
+		objeto.nomeDisciplina = item.disciplina.nome
+		objeto.gradeCurricularId = item.idGradeCurricular
+		if (item.obrigatoria == "N") {
+			objeto.obrigatoria = "Não"
+		} else {
+			objeto.obrigatoria = "Sim"
+		}
+		if (item.retemSerie == "N") {
+			objeto.retemSerie = "Não"
+		} else {
+			objeto.retemSerie = "Sim"
+		}
+		
+		console.log(objeto)
+		
+		turmas.push(objeto)
+	});
+
+	var html = turmas.map(function(item) {
+
+		return (
+			"<tr>" +
+
+			"<td>" +
+			item.nomeTurma +
+			"</td>" +
+
+			"<td>" +
+			item.nomeEscola +
+			"</td>" +
+
+			"<td>" +
+			item.anoPeriodo +
+			"</td>" +
+
+			"<td>" +
+			item.nomeTurno +
+			"</td>" +
+
+			"<td>" +
+			item.serie +
+			"</td>" +
+
+			"<td>" +
+			item.nomeDisciplina +
+			"</td>" +
+
+
+			"<td>" +
+			item.obrigatoria +
+			"</td>" +
+
+			"<td>" +
+			item.retemSerie +
+			"</td>" +
+
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela-turma").html(html);
+
+	/*$.ajax({
 		url: url_base + "/turma",
 		type: "POST",
 		data: JSON.stringify(objeto),
@@ -281,13 +451,15 @@ $('#btn-buscar').click(() => {
 				title: "Cadastrado com sucesso",
 				icon: "success",
 			}).then(result => {
-				window.location.href = 'turma-matriz-curricular'
+				
+				
+				
 			})
 		})
-	return false;
+	return false;*/
 }
 
-function editar() {
+/*function editar() {
 	var objeto = {
 		idTurma: idTurma,
 		escolaId: $('#escolaId').val(),
@@ -329,7 +501,7 @@ function editar() {
 		})
 	return false;
 }
-
+*/
 $('#formNovoCadastro').on('submit', function(e) {
 	e.preventDefault();
 	if (idTurma != undefined) {
@@ -338,4 +510,4 @@ $('#formNovoCadastro').on('submit', function(e) {
 		cadastrar();
 	}
 	return false;
-});*/
+});
