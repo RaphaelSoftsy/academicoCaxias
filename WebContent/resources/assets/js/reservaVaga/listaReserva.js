@@ -16,6 +16,7 @@ $(document).ready(function() {
 
 
 	getDados();
+	
 
 	// Dropdown de Pesquisa
 	$(".dropdown-toggle-form").click(function() {
@@ -226,6 +227,9 @@ function listarDados(dados) {
 		$("#cola-tabela").html(linhas.join(""));
 	});
 }
+
+
+
 
 function showModal(ref) {
 	idCandidato = ref.getAttribute("data-id");

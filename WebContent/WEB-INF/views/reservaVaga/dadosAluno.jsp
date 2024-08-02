@@ -95,7 +95,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="card">
 					<div class="card-body title d-flex align-items-center gap-2">
 						<i class="fa-solid fa-clipboard" style="font-size: 26px"></i>
-						<h3 class="pt-2" id="tituloForm">Dados do(a) Aluno</h3>
+						<h3 class="pt-2" id="tituloForm">Dados do(a) Aluno(a)</h3>
 					</div>
 				</div>
 			</section>
@@ -118,7 +118,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Ingresso:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="Tipo Ingresso"
 							id="tipoIngressoId" name="tipoIngressoId" required>
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -126,8 +126,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="nomeMae" class="form-label">Nome da Mãe:<span
-							class="red">*</span> </label> <input
-							type="text" id="nomeMae" autocomplete="off" name="nomeMae"
+							class="red">*</span>
+						</label> <input type="text" id="nomeMae" autocomplete="off" name="nomeMae"
 							class="form-control" required />
 					</div>
 					<div class="col-md-6">
@@ -187,7 +187,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<label for="racaId" class="form-label">Raça: <span
 							class="red">*</span></label> <select class="form-select"
 							aria-label="Raça" id="racaId" name="racaId" required>
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -198,7 +198,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="País de Nascimento"
 							id="paisNascimentoId" required name="paisNascimentoId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -207,7 +207,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Nascimento: <span class="red">*</span>
 						</label> <select class="form-select" aria-label="UF de Nascimento"
 							id="ufNascimentoId" required name="ufNascimentoId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -221,7 +221,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</label> <select class="form-select" aria-label="Município de Nascimento"
 							id="municipioNascimentoId" required disabled
 							name="municipioNascimentoId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
@@ -229,7 +229,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="red">*</span></label> <select class="form-select"
 							aria-label="Município de Nascimento" id="nacionalidadeId"
 							required name="nacionalidadeId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -239,22 +239,22 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="form-control">
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_co" value="so" required/> <label
+								id="estadoCivil_co" value="so" required /> <label
 								class="form-check-label" for="solteiro">Solteiro(a)</label>
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_ca" value="ca" required/> <label
+								id="estadoCivil_ca" value="ca" required /> <label
 								class="form-check-label" for="casado">Casado(a)</label>
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_vi" value="vi" required/> <label
+								id="estadoCivil_vi" value="vi" required /> <label
 								class="form-check-label" for="viuvo">Viúvo(a)</label>
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_di" value="di" required/> <label
+								id="estadoCivil_di" value="di" required /> <label
 								class="form-check-label" for="divorciado">Divorciado(a)</label>
 						</div>
 					</div>
@@ -320,7 +320,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="form-control card-form qualPreencherSwitch">
 						<label for="qualPreencher">Certidão de Nascimento</label> <label
 							class="switch"> <input type="checkbox" id="qualPreencher"
-							name="qualPreencher"> <span
+							name="qualPreencher" > <span
 							class="slider slider-certidao"></span>
 						</label> <label for="qualPreencher">Certidão de Casamento</label>
 					</div>
@@ -385,15 +385,17 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="certidaoNascimentoNumero" class="form-label">Número:</label>
-						<input type="text" id="certidaoNascimentoNumero"
+						<label for="certidaoNascimentoNumero" class="form-label">Número:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoNascimentoNumero"
 							autocomplete="off" name="certidaoNascimentoNumero"
 							class="form-control" />
 					</div>
 
 					<div class="col-md-6">
 						<label for="certidaoNascimentoCartorio" class="form-label">Cartório
-							de registro:</label> <input type="text" id="certidaoNascimentoCartorio"
+							de registro: <span class="red">*</span>
+						</label> <input type="text" id="certidaoNascimentoCartorio"
 							autocomplete="off" name="certidaoNascimentoCartorio"
 							class="form-control" />
 					</div>
@@ -405,18 +407,20 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="col-md-6"
 						style="display: flex; flex-direction: column;">
 						<label for="certidaoNascimentoUfCartorioId" class="form-label">UF
-							do cartório:</label> <select class="form-control"
+							do cartório: <span class="red">*</span>
+						</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoUfCartorioId"
 							name="certidaoNascimentoUfCartorioId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 
 					<div class="col-md-6"
 						style="display: flex; flex-direction: column;">
 						<label for="certidaoNascimentoCidadeCartorio" class="form-label">Cidade
-							do cartório:</label> <select class="form-control"
+							do cartório: <span class="red">*</span>
+						</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoMunicipioCartorioId"
 							name="certidaoNascimentoMunicipioCartorioId" disabled>
@@ -428,12 +432,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row mb-3">
 					<div class="col-md-6" id='certidaoNascimentoDataEmissaoDiv'>
 						<label for="certidaoNascimentoDataEmissao" class="form-label">Data
-							de emissão:</label> <input type="date" id="certidaoNascimentoDataEmissao"
+							de emissão: <span class="red">*</span>
+						</label> <input type="date" id="certidaoNascimentoDataEmissao"
 							autocomplete="off" name="certidaoNascimentoDataEmissao"
 							class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoNascimentoFolha" class="form-label">Folha:</label>
+						<label for="certidaoNascimentoFolha" class="form-label">Folha: <span
+						class="red">*</span></label>
 						<input type="text" id="certidaoNascimentoFolha" autocomplete="off"
 							name="certidaoNascimentoFolha" class="form-control" />
 					</div>
@@ -441,12 +447,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="certidaoNascimentoLivro" class="form-label">Livro:</label>
+						<label for="certidaoNascimentoLivro" class="form-label">Livro: <span
+						class="red">*</span></label>
 						<input type="text" id="certidaoNascimentoLivro" autocomplete="off"
 							name="certidaoNascimentoLivro" class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoNascimentoOrdem" class="form-label">Ordem:</label>
+						<label for="certidaoNascimentoOrdem" class="form-label">Ordem: <span
+						class="red">*</span></label>
 						<input type="text" id="certidaoNascimentoOrdem" autocomplete="off"
 							name="certidaoNascimentoOrdem" class="form-control" />
 					</div>
@@ -460,13 +468,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="certidaoCasamentoNumero" class="form-label">Número:</label>
+						<label for="certidaoCasamentoNumero" class="form-label">Número: <span class="red">*</span></label>
 						<input type="text" id="certidaoCasamentoNumero" autocomplete="off"
 							name="certidaoCasamentoNumero" class="form-control" />
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoCasamentoCartorio" class="form-label">Cartório
-							de registro:</label> <input type="text" id="certidaoCasamentoCartorio"
+							de registro: <span class="red">*</span></label> <input type="text" id="certidaoCasamentoCartorio"
 							autocomplete="off" name="certidaoCasamentoCartorio"
 							class="form-control" />
 					</div>
@@ -475,19 +483,19 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="certidaoCasamentoUfCartorioId" class="form-label">UF
-							do cartório:</label> <select class="form-select"
+							do cartório: <span class="red">*</span></label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
-							name="certidaoCasamentoUfCartorioId">
+							name="certidaoCasamentoUfCartorioId" >
 							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">UF
-							do cartório:</label> <select class="form-select"
+							do cartório: <span class="red">*</span></label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoCidadeCartorioId"
-							name="certidaoCasamentoCidadeCartorioId" disabled>
+							name="certidaoCasamentoCidadeCartorioId" disabled >
 							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
@@ -495,12 +503,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="certidaoCasamentoFolha" class="form-label">Folha:</label>
+						<label for="certidaoCasamentoFolha" class="form-label">Folha: <span class="red">*</span></label>
 						<input type="text" id="certidaoCasamentoFolha" autocomplete="off"
 							name="certidaoCasamentoFolha" class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoCasamentoLivro" class="form-label">Livro:</label>
+						<label for="certidaoCasamentoLivro" class="form-label">Livro: <span class="red">*</span></label>
 						<input type="text" id="certidaoCasamentoLivro" autocomplete="off"
 							name="certidaoCasamentoLivro" class="form-control" />
 					</div>
@@ -508,13 +516,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="certidaoCasamentoOrdem" class="form-label">Ordem:</label>
+						<label for="certidaoCasamentoOrdem" class="form-label">Ordem: <span class="red">*</span></label>
 						<input type="text" id="certidaoCasamentoOrdem" autocomplete="off"
 							name="certidaoCasamentoOrdem" class="form-control" />
 					</div>
 					<div class="col-md-6" id='certidaoCasamentoDataEmissaoDiv'>
 						<label for="certidaoCasamentoDataEmissao" class="form-label">Data
-							de emissão:</label> <input type="date" id="certidaoCasamentoDataEmissao"
+							de emissão: <span class="red">*</span></label> <input type="date" id="certidaoCasamentoDataEmissao"
 							autocomplete="off" name="certidaoCasamentoDataEmissao"
 							class="form-control" />
 					</div>

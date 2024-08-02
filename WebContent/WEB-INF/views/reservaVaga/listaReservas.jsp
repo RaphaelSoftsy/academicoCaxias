@@ -54,13 +54,13 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
-<link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/reservaVaga.css" />
+
 </head>
 
 <body>
@@ -93,7 +93,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
 					<a href="dados-aluno"
-						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Novo Cadastro</a>
+						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Novo
+						Cadastro</a>
 				</div>
 			</div>
 
@@ -224,7 +225,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Serie</span> <i class="fas fa-sort me-3"
+									<span>Série</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -302,7 +303,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</button>
 			</div>
 		</section>
-		<div class="modal fade" id="documentos" tabindex="-1"
+		<!-- 		<div class="modal fade" id="documentos" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
@@ -314,7 +315,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="modal-body">
 						<form id="formDoc">
 							<div class="d-flex flex-column align-items-center mb-4 gap-2" id="divSenha">
-								<!-- <label for="novaSenha" class="form-label">Nova senha: </label>
+								<label for="novaSenha" class="form-label">Nova senha: </label>
 								<div class="input-group">
 									<input class="form-control form-control pwd senha"
 										type="password" aria-label=".form-control-lg example"
@@ -322,7 +323,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<button class="btn-default reveal" type="button">
 										<i class="fa-regular fa-eye"></i>
 									</button>
-								</div> -->
+								</div>
 								<a href="" class="w-100 btn btn-primary">Certidão de nascimento</a> <a
 									href="" class="w-100 btn btn-primary">Comprovante de residência no nome
 									do responsável</a>
@@ -339,7 +340,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</main>
 
 	<script charset="UTF-8"

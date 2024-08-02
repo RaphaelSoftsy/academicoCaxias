@@ -152,7 +152,7 @@ $('#formSubmit').submit(function(event) {
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
-					text: "Não foi possível adcionar o aluno nesse momento!",
+					text: "Não foi possível cadastrar o aluno nesse momento!",
 				});
 			}
 		}).done(function(data) {

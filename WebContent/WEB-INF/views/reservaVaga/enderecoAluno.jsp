@@ -82,7 +82,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="card">
 					<div class="card-body title d-flex align-items-center gap-2">
 						<i class="fa-solid fa-clipboard" style="font-size: 26px"></i>
-						<h3 class="pt-2" id="tituloForm">Dados do(a) Aluno</h3>
+						<h3 class="pt-2" id="tituloForm">Dados do(a) Aluno(a)</h3>
 					</div>
 				</div>
 			</section>
