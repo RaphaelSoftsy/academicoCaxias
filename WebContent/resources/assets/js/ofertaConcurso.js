@@ -75,6 +75,8 @@ $(document).ready(function() {
 		});
 	})
 
+
+
 	$.ajax({
 		url: url_base + '/cursos/conta/' + contaId,
 		type: "get",
@@ -221,37 +223,37 @@ function getDados() {
 
 
 function listarDados(dados) {
-    var html = dados.map(function(item) {
-        var ativo;
+	var html = dados.map(function(item) {
+		var ativo;
 
-        if (item.ativo == "N") {
-            ativo = '<i style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-        } else {
-            ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-        }
+		if (item.ativo == "N") {
+			ativo = '<i style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+		} else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
 
-        return (
-            "<tr>" +
-            "<td>" + item.concurso + "</td>" +
-            "<td>" + item.nomeCurso + "</td>" +
-            "<td>" + item.nomeEscola + "</td>" +
-            "<td>" + item.turno + "</td>" +
-            "<td>" + item.serie + "</td>" +
-            "<td>" + item.descricaoOferta + "</td>" +
-            "<td>" + item.vagas + "</td>" +
-            "<td>" + item.minVagasAbertTurma + "</td>" +
-            "<td><div class='d-flex align-items-center gap-1'>" +
-            '<input type="checkbox" data-status="' + item.ativo + '" data-id="' + item.idOfertaConcurso + '" onchange="alteraStatus(this)" ' + (item.ativo == "S" ? "checked" : "") + ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-            "</div></td>" +
-            '<td class="d-flex justify-content-center"><button style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm edit-table" data-concursoId="' + item.idConcurso + '" data-cursoId="' + item.idCurso + '" data-escolaId="' + item.idEscola + '" data-turnoId="' + item.idTurno + '" data-serie="' + item.serie + '" data-descricaoOferta="' + item.descricaoOferta + '" data-vagas="' + item.vagas + '" data-minVagasAbertTurma="' + item.minVagasAbertTurma + '" data-id="' + item.idOfertaConcurso + '" data-ativo="' + item.ativo + '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></button></td>' +
-            "</tr>"
-        );
-    }).join("");
+		return (
+			"<tr>" +
+			"<td>" + item.concurso + "</td>" +
+			"<td>" + item.nomeCurso + "</td>" +
+			"<td>" + item.nomeEscola + "</td>" +
+			"<td>" + item.turno + "</td>" +
+			"<td>" + item.serie + "</td>" +
+			"<td>" + item.descricaoOferta + "</td>" +
+			"<td>" + item.vagas + "</td>" +
+			"<td>" + item.minVagasAbertTurma + "</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" data-status="' + item.ativo + '" data-id="' + item.idOfertaConcurso + '" onchange="alteraStatus(this)" ' + (item.ativo == "S" ? "checked" : "") + ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
+			'<td class="d-flex justify-content-center"><button style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm edit-table" data-concursoId="' + item.idConcurso + '" data-cursoId="' + item.idCurso + '" data-escolaId="' + item.idEscola + '" data-turnoId="' + item.idTurno + '" data-serie="' + item.serie + '" data-descricaoOferta="' + item.descricaoOferta + '" data-vagas="' + item.vagas + '" data-minVagasAbertTurma="' + item.minVagasAbertTurma + '" data-id="' + item.idOfertaConcurso + '" data-ativo="' + item.ativo + '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></button></td>' +
+			"</tr>"
+		);
+	}).join("");
 
-    $("#cola-tabela").html(html);
+	$("#cola-tabela").html(html);
 
-    // Reaplicar a estilização do toggle
-    $('input[data-toggle="toggle"]').bootstrapToggle();
+	// Reaplicar a estilização do toggle
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 }
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");

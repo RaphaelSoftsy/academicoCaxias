@@ -77,38 +77,52 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Grade
-						Curricular</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Grade Curricular</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3" style="display: flex; align-items: center;">
+			<div class="row mt-3 mb-3"
+				style="display: flex; align-items: center;">
+
 
 				<div class="row mb-3 mt-3">
 
-					<div class="col-md-6">
-						<label for="cursoId" class="form-label">Curso:
-						</label> <select class="form-select" aria-label="cursoId"
-							id="cursoId" required name="cursoId">
+					<div class="col-md-4">
+						<label for="cursoIdLista" class="form-label">Curso:</label> <select
+							class="form-select" aria-label="cursoIdLista" id="cursoIdLista"
+							required name="cursoIdLista">
 							<option value='0' selected disabled>Selecione o curso</option>
 						</select>
 					</div>
 
-					<div class="col-md-6">
-						<label for="curriculoId" class="form-label">Currículo:
-						</label> <select class="form-select" aria-label="curriculoId"
-							id="curriculoId" required name="curriculoId" disabled>
-							<option value='0' selected disabled>Selecione a currículo</option>
+					<div class="col-md-4">
+						<label for="curriculoIdLista" class="form-label">Currículo:</label>
+						<select class="form-select" aria-label="curriculoIdLista"
+							id="curriculoIdLista" required name="curriculoIdLista" disabled>
+							<option value='0' selected disabled>Selecione o
+								currículo</option>
 						</select>
 					</div>
-					
 
+					<div class="col-md-4 d-flex align-items-end">
+						<button
+							class="btn btn-primary btn btn-new-alter px-3 py-1 ms-auto"
+							onclick="listarGrade()">Listar</button>
+					</div>
 				</div>
-				<button class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
-					data-bs-toggle="modal" onclick="limpaCampo()"
-					data-bs-target="#newCadastro">Novo Cadastro</button>
 
+			</div>
+
+			<hr>
+
+			<div class="row d-flex justify-content-end">
+				<div class="d-flex justify-content-end">
+					<button
+						class="btn btn-primary btn-lg btn-new-alter px-3 py-1  ms-auto"
+						data-bs-toggle="modal" 
+						data-bs-target="#newCadastro" id="btnModalCadastrar">Novo Cadastro</button>
+				</div>
 			</div>
 
 			<table
@@ -120,6 +134,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<th scope="col">Disciplina</th>
 						<th scope="col">Obrigatória</th>
 						<th scope="col">Aulas Previstas</th>
+						<th scope="col">Retém Aluno</th>
 						<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
 						<th class="text-center" scope="col" width="10%">Ações</th>
 					</tr>
@@ -150,20 +165,21 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 					<div class="modal-body">
 						<form id="formCadastro">
-							<div class="mb-4">
-								<label for="serieId" class="form-label">Série:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Serie" id="serieId"
-									required name="serieId">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-								</select>
-							</div>
+
 							<div class="mb-4">
 								<label for="curriculoId" class="form-label">Curriculo:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Curriculo"
 									id="curriculoId" required name="curriculoId">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="serieId" class="form-label">Série:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Serie" id="serieId"
+									required name="serieId">
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
@@ -261,8 +277,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="retemSerieEdit" class="form-label">Pode reter o
-									aluno:<span class="red">*</span>
+								<label for="retemSerieEdit" class="form-label">Pode
+									reter o aluno:<span class="red">*</span>
 								</label> <select class="form-select" aria-label="retemSerie"
 									id="retemSerieEdit" required name="retemSerieEdit">
 									<option selected disabled value="">Selecione uma opção

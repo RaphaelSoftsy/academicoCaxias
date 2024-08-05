@@ -120,7 +120,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<label for="relacionamentoId" class="form-label">Relacionamento:<span
 							class="red">*</span></label> <select class="form-select" required
 							aria-label="Relacionamento" id="relacionamentoId" name="racaId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
@@ -208,7 +208,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<label for="racaId" class="form-label">Raça:<span
 							class="red">*</span></label> <select required class="form-select"
 							aria-label="Raça" id="racaId" name="racaId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 				</div>
@@ -218,7 +218,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="País de Nascimento"
 							id="paisNascimentoId" required name="paisNascimentoId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -227,7 +227,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Residencia:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="País de Residencia"
 							id="paisResidenciaId" required name="paisResidenciaId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -242,7 +242,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							Nascimento:<span class="red">*</span>
 						</label> <select class="form-select" aria-label="UF de Nascimento"
 							id="ufNascimentoId" required name="ufNascimentoId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -252,7 +252,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</label> <select class="form-select" aria-label="Município de Nascimento"
 							id="municipioNascimentoId" required name="municipioNascimentoId"
 							disabled>
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -263,7 +263,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="red">*</span></label> <select class="form-select"
 							aria-label="Município de Nascimento" id="nacionalidadeId"
 							required name="nacionalidadeId">
-							<option selected disabled value="0">Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 

@@ -1,5 +1,7 @@
 var dados = [];
 const contaId = localStorage.getItem('contaId');;
+const curriculoIdSession = sessionStorage.getItem("curriculoId")
+const cursoIdSession = sessionStorage.getItem("cursoId")
 var nome = '';
 var nome2 = '';
 var nome3 = '';
@@ -10,6 +12,74 @@ let descricao = ''
 let id = ''
 
 $(document).ready(function() {
+
+	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
+    $('#curriculoIdLista').removeAttr('disabled');
+
+    $.ajax({
+        url: url_base + `/curriculo/curso/${cursoIdSession}`,
+        type: "get",
+        async: false,
+    }).done(function(data) {
+        console.log(data)
+        $.each(data, function(index, item) {
+            $('#curriculoIdLista').append($('<option>', {
+                value: item.idCurriculo,
+                text: item.curriculo,
+                name: item.curriculo
+            }));
+        });
+    });
+
+    $('#curriculoIdLista').val(curriculoIdSession);
+    $('#cursoIdLista').val(cursoIdSession);
+    getDados(curriculoIdSession);
+}
+
+
+
+	$.ajax({
+		url: url_base + "/cursos/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#cursoIdLista").append(
+				$("<option>", {
+					value: item.idCurso,
+					text: item.nome,
+					name: item.nome,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+
+
+	$('#cursoIdLista').change(() => {
+
+		$('#curriculoIdLista').empty()
+		$('#curriculoIdLista').removeAttr('disabled');
+		$('#curriculoIdLista').append(`<option value='0' selected disabled>Selecione o currículo</option>`)
+
+		let curso = $('#cursoIdLista').val()
+		$.ajax({
+			url: url_base + `/curriculo/curso/${curso}`,
+			type: "get",
+			async: false,
+		}).done(function(data) {
+			console.log(data)
+			$.each(data, function(index, item) {
+				$('#curriculoIdLista').append($('<option>', {
+					value: item.idCurriculo,
+					text: item.curriculo,
+					name: item.curriculo
+				}));
+			});
+		})
+	});
 
 	$.ajax({
 		url: url_base + "/serie",
@@ -119,19 +189,6 @@ $(document).ready(function() {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 
-
-
-
-
-	getDados()
-
-	$('.checkbox-toggle').each(function() {
-		var status = $(this).data('status');
-		if (status !== 'S') {
-			$(this).prop('checked', false);
-		}
-	});
-
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
 
@@ -160,20 +217,30 @@ $(document).ready(function() {
 		}
 	}
 
-
 	showPage(currentPage);
 	updatePagination();
 
 });
 
 
-function getDados() {
+function getDados(idCurriculo) {
 	$.ajax({
-		url: url_base + "/gradeCurricular",
+		url: url_base + "/gradeCurricular/curriculo/" + idCurriculo,
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		listarDados(data);
+		if (data.length > 0) {
+			console.log(data)
+			listarDados(data)
+		} else {
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não existe nenhuma grade vinculada a este currículo!"
+			}).then();
+			$("#cola-tabela tbody").empty()
+		}
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -183,17 +250,18 @@ function listarDados(dados) {
 	var html = dados.map(function(item) {
 		var ativo;
 		var obrigatorio;
-
-		if (item.ativo == "N") {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-		} else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-		}
+		var retemAluno
 
 		if (item.obrigatoria == "N") {
 			obrigatorio = "Não"
 		} else {
 			obrigatorio = "Sim"
+		}
+
+		if (item.retemSerie == "N") {
+			retemAluno = "Não"
+		} else {
+			retemAluno = "Sim"
 		}
 
 		return (
@@ -216,6 +284,10 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
+			retemAluno +
+			"</td>" +
+
+			"<td>" +
 			'<input type="checkbox" data-status="' +
 			item.ativo +
 			'" data-id="' +
@@ -230,8 +302,19 @@ function listarDados(dados) {
 	}).join("");
 
 	$("#cola-tabela").html(html);
-}
 
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
+
+	$('input[data-toggle="toggle"]').bootstrapToggle();
+}
+$("#btnModalCadastrar").click(() => {
+	$("#curriculoId").val($("#curriculoIdLista").val())
+})
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");
 	var status = element.getAttribute("data-status");
@@ -282,6 +365,23 @@ function showModal(ref) {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
+}
+
+function listarGrade() {
+	const idCurriculo = $("#curriculoIdLista").val()
+	console.log(idCurriculo)
+
+	if (idCurriculo != null || idCurriculo != undefined || idCurriculo != 0) {
+		getDados(idCurriculo)
+	} else {
+		Swal.fire({
+			icon: "error",
+			title: "Oops...",
+			text: "Você deve preencher os dois campos antes de listar as grades!",
+
+		});
+	}
+
 }
 
 function editar() {
@@ -370,6 +470,8 @@ function cadastrar() {
 				title: "Cadastrado com sucesso",
 				icon: "success",
 			}).then(result => {
+				sessionStorage.setItem("cursoId", $("#cursoIdLista").val())
+				sessionStorage.setItem("curriculoId", $("#curriculoIdLista").val())
 				window.location.href = 'grade-curricular-matriz-curricular'
 			})
 		})
