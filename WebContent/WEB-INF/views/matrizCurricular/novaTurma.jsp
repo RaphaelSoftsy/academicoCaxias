@@ -221,7 +221,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</label>
 						<div class="card-form form-control">
 							<label for="isControlaVagas">Sim</label> <label class="switch">
-								<input type="checkbox" name="isLibra" id="isControlaVagas"
+								<input type="checkbox" name="isControlaVagas" id="isControlaVagas"
 								name="isControlaVagas"> <span class="slider"></span>
 							</label> <label for="isControlaVagas">Não</label>
 						</div>
@@ -301,7 +301,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</div> -->
 
 				<div class="col-md-12 text-center mt-3 mb-5">
-					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Cadastrar</button>
+					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Adicionar</button>
 				</div>
 				<div class="container-table contTable">
 					<table
@@ -316,6 +316,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								<th scope="col">Disciplina</th>
 								<th scope="col" width="10%">Obrigatória</th>
 								<th scope="col" width="10%">Retém Aluno</th>
+								<th scope="col" width="10%">Ações</th>
 							</tr>
 						</thead>
 						<tbody id="cola-tabela-turma" class="table-group-divider">
@@ -331,6 +332,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<i class="fa-solid fa-angle-right fa-xl"></i>
 					</button> -->
 					</div>
+				</div>
+				
+				<div class="col-md-12 text-center mt-3 mb-5">
+					<button type="submit" class="btn btn-primary px-5" id="btn-save">Cadastrar</button>
 				</div>
 			</form>
 

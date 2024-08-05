@@ -15,6 +15,8 @@ let turmas = []
 $(document).ready(function() {
 	$('.container-table').hide()
 	$('.row-hidden').hide()
+	$('#btn-submit').hide()
+	$('#btn-save').hide()
 	$('#serieId').prop('disabled', true);
 	$('#curriculoId').prop('disabled', true);
 
@@ -119,81 +121,6 @@ $(document).ready(function() {
 	});
 
 
-	/*
-		$.ajax({
-			url: url_base + "/escolas/usuario/" + contaId + "/" + usuarioId,
-			type: "GET",
-			async: false,
-		}).done(function(data) {
-			console.log(data)
-	
-			$.each(data, function(index, item) {
-				$("#escolaId").append(
-					$("<option>", {
-						value: item.idEscola,
-						text: item.nomeEscola,
-						name: item.nomeEscola,
-					})
-				);
-			});
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-	
-		$.ajax({
-			url: url_base + "/turno/conta/" + contaId,
-			type: "GET",
-			async: false,
-		}).done(function(data) {
-	
-			$.each(data, function(index, item) {
-				$("#turnoId").append(
-					$("<option>", {
-						value: item.idTurno,
-						text: item.turno,
-						name: item.turno,
-					})
-				);
-			});
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-	
-		$.ajax({
-			url: url_base + "/periodoletivo/conta/" + contaId,
-			type: "GET",
-			async: false,
-		}).done(function(data) {
-			$.each(data, function(index, item) {
-				$("#periodoLetivoId").append(
-					$("<option>", {
-						value: item.idPeriodoLetivo,
-						text: `Ano: ${item.ano} - Semestre: ${item.periodo}`,
-						name: item.periodo,
-					})
-				);
-			});
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});*/
-
-	/*$.ajax({
-		url: url_base + "/gradeCurricular",
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#gradeCurricularId").append(
-				$("<option>", {
-					value: item.idGradeCurricular,
-					text: item.idGradeCurricular,
-					name: item.idGradeCurricular,
-				})
-			);
-		});
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
 
 	if (idTurma != undefined) {
 		$('#span-title').text('Editar Cadastro')
@@ -204,7 +131,7 @@ $(document).ready(function() {
 			type: "GET",
 			async: false,
 		}).done(function(data) {
-			$('#escolaId').val(data.escolaId)
+			/*$('#escolaId').val(data.escolaId)
 			$('#turnoId').val(data.turno.idTurno)
 			$('#periodoLetivoId').val(data.periodoLetivo.idPeriodoLetivo)
 			$('#gradeCurricularId').val(data.gradeCurricularId)
@@ -212,11 +139,21 @@ $(document).ready(function() {
 			$('#codTurmaInep').val(data.codTurmaInep)
 			$('#vagas').val(data.vagas)
 			$('#libras').val(data.libras)
-			$('#controlaVagas').val(data.controlaVagas)
+			$('#controlaVagas').val(data.controlaVagas)*/
+			$('.container-table').show()
+			$('.row-hidden').show()
+			$('#btn-submit').show()
+			$('#btn-save').show()
+			$('#serieId').prop('disabled', false);
+			$('#curriculoId').prop('disabled', false);
+
+			let lista = [data]
+			listarTurmas(lista)
+
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
-	}*/
+	}
 })
 
 $('#cursoId').change(() => {
@@ -276,6 +213,8 @@ $('#btn-buscar').click(() => {
 			listarGradeCurricular(data);
 			$('.container-table').not('.contTable').show()
 			$('.row-hidden').show()
+			$('#btn-submit').show()
+
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
@@ -334,53 +273,11 @@ function listarGradeCurricular(dados) {
 	$("#cola-tabela-grade").html(html);
 }
 
-function cadastrar() {
-	$('.contTable').show()
-
-	var objeto = {
-		escolaId: $('#escolaId').val(),
-		nomeEscola: $('#escolaId option:selected').text(),
-		turnoId: $('#turnoId').val(),
-		nomeTurno: $('#turnoId option:selected').text(),
-		periodoLetivoId: $('#periodoLetivoId').val(),
-		anoPeriodo: $('#periodoLetivoId option:selected').text(),
-		gradeCurricularId:'',
-		nomeTurma: $('#nomeTurma').val(),
-		codTurmaInep: $('#codTurmaInep').val(),
-		vagas: $('#vagas').val(),
-		libras: $('input[name="isLibra"]:checked').val(),
-		controlaVagas: $('input[name="isControlaVagas"]:checked').val(),
-		disciplinaId: '',
-		nomeDisciplina: '',
-		obrigatoria: '',
-		retemSerie: ''
-	}
-	
-	console.log(grades)
-
-	$.each(grades, function(index, item) {
-		console.log(item)
-		objeto.serie = item.serie.serie
-		objeto.disciplinaId = item.disciplina.idDisciplina
-		objeto.nomeDisciplina = item.disciplina.nome
-		objeto.gradeCurricularId = item.idGradeCurricular
-		if (item.obrigatoria == "N") {
-			objeto.obrigatoria = "Não"
-		} else {
-			objeto.obrigatoria = "Sim"
-		}
-		if (item.retemSerie == "N") {
-			objeto.retemSerie = "Não"
-		} else {
-			objeto.retemSerie = "Sim"
-		}
-		
-		console.log(objeto)
-		
-		turmas.push(objeto)
-	});
-
+function listarTurmas(dados) {
+	let index = 0
 	var html = turmas.map(function(item) {
+		let indexItem = index
+		index += 1
 
 		return (
 			"<tr>" +
@@ -418,46 +315,120 @@ function cadastrar() {
 			item.retemSerie +
 			"</td>" +
 
+			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-id="' +
+			indexItem +
+			'" onclick="removerTurma(this)"><i class="fa-solid fa-xmark"></i></span></td>' +
+
 			"</tr>"
-		);
+		)
 	}).join("");
 
+
+
 	$("#cola-tabela-turma").html(html);
-
-	/*$.ajax({
-		url: url_base + "/turma",
-		type: "POST",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
-			Swal.close()
-			console.log(e)
-			console.log(e.responseJSON.message)
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-
-			});
-		}
-	})
-		.done(function(data) {
-			Swal.close()
-			Swal.fire({
-				title: "Cadastrado com sucesso",
-				icon: "success",
-			}).then(result => {
-				
-				
-				
-			})
-		})
-	return false;*/
 }
+
+const removerTurma = (element) => {
+	var index = element.getAttribute("data-id")
+
+	turmas.splice(index, 1)
+	listarTurmas(turmas)
+}
+
+function getAswer(input) {
+
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
+	}
+
+}
+
+function adicionar() {
+	$('.contTable').show()
+	$('#btn-save').show()
+	console.log(grades)
+
+	$.each(grades, function(index, item) {
+		console.log(item)
+		var objeto = {
+			escolaId: $('#escolaId').val(),
+			nomeEscola: $('#escolaId option:selected').text(),
+			turnoId: $('#turnoId').val(),
+			nomeTurno: $('#turnoId option:selected').text(),
+			periodoLetivoId: $('#periodoLetivoId').val(),
+			anoPeriodo: $('#periodoLetivoId option:selected').text(),
+			gradeCurricularId: item.idGradeCurricular,
+			nomeTurma: $('#nomeTurma').val(),
+			codTurmaInep: $('#codTurmaInep').val(),
+			vagas: $('#vagas').val(),
+			libras: getAswer($("#isLibra")),
+			controlaVagas: getAswer($("#isControlaVagas")),
+			disciplinaId: item.disciplina.idDisciplina,
+			nomeDisciplina: item.disciplina.nome,
+			obrigatoria: '',
+			retemSerie: ''
+		}
+		objeto.serie = item.serie.serie
+		if (item.obrigatoria == "N") {
+			objeto.obrigatoria = "Não"
+		} else {
+			objeto.obrigatoria = "Sim"
+		}
+		if (item.retemSerie == "N") {
+			objeto.retemSerie = "Não"
+		} else {
+			objeto.retemSerie = "Sim"
+		}
+
+		console.log(objeto)
+
+		turmas.push(objeto)
+	});
+
+	listarTurmas(turmas)
+}
+
+const cadastrar = () => {
+	$.each(turmas, function(index, objeto) {
+
+		$.ajax({
+			url: url_base + "/turma",
+			type: "POST",
+			data: JSON.stringify(objeto),
+			contentType: "application/json; charset=utf-8",
+			async: false,
+			beforeSend: function() {
+				Swal.showLoading()
+			},
+			error: function(e) {
+				Swal.close()
+				console.log(e)
+				console.log(e.responseJSON.message)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+
+				});
+			}
+		}).done(function(data) {
+			const len = turmas.length - 1
+
+			if (index == len) {
+				Swal.close()
+				Swal.fire({
+					title: "Cadastrado com sucesso",
+					icon: "success",
+				}).then(result => {
+					window.location.href = "turma-matriz-curricular"
+				})
+			}
+		})
+	});
+}
+
 
 /*function editar() {
 	var objeto = {
@@ -504,10 +475,17 @@ function cadastrar() {
 */
 $('#formNovoCadastro').on('submit', function(e) {
 	e.preventDefault();
-	if (idTurma != undefined) {
-		editar()
-	} else {
-		cadastrar();
-	}
+	cadastrar()
+	/*	if (idTurma != undefined) {
+			editar()
+		} else {
+			cadastrar();
+		}*/
+	return false;
+});
+
+$('#btn-submit').on('click', function(e) {
+	e.preventDefault();
+	adicionar();
 	return false;
 });
