@@ -11,6 +11,7 @@ let id = ''
 const idTurma = params.get("id");
 let grades = []
 let turmas = []
+let lista
 
 $(document).ready(function() {
 	$('.container-table').hide()
@@ -125,34 +126,80 @@ $(document).ready(function() {
 	if (idTurma != undefined) {
 		$('#span-title').text('Editar Cadastro')
 		$('#tituloForm').text('Atualizar Turma')
-		$('#btn-submit').text('Atualizar')
+		$('#btn-save').text('Atualizar')
+		$('#btn-submit').hide()
+		$('#btn-save').show()
+
 		$.ajax({
 			url: url_base + "/turma/" + idTurma,
 			type: "GET",
 			async: false,
 		}).done(function(data) {
-			/*$('#escolaId').val(data.escolaId)
+			$('#escolaId').val(data.escola.idEscola)
 			$('#turnoId').val(data.turno.idTurno)
 			$('#periodoLetivoId').val(data.periodoLetivo.idPeriodoLetivo)
-			$('#gradeCurricularId').val(data.gradeCurricularId)
+			$('#gradeCurricularId').val(data.gradeCurricular.gradeCurricularId)
 			$('#nomeTurma').val(data.nomeTurma)
 			$('#codTurmaInep').val(data.codTurmaInep)
 			$('#vagas').val(data.vagas)
-			$('#libras').val(data.libras)
-			$('#controlaVagas').val(data.controlaVagas)*/
-			$('.container-table').show()
 			$('.row-hidden').show()
-			$('#btn-submit').show()
-			$('#btn-save').show()
-			$('#serieId').prop('disabled', false);
-			$('#curriculoId').prop('disabled', false);
+			$('.container-table').hide()
+			$('.container-table').not('.contTable').show()
+			$('#cursoId').prop('disabled', true);
+			$('#btn-buscar').hide()
+			$('#cursoId').val(data.gradeCurricular.curriculo.cursoId)
+			$('#serieId').val(data.gradeCurricular.serie.idSerie)
 
-			let lista = [data]
-			listarTurmas(lista)
+			$.ajax({
+				url: url_base + "/curriculo/curso/" + data.gradeCurricular.curriculo.cursoId,
+				type: "GET",
+				async: false,
+			}).done(function(data) {
+				console.log(data)
+				$('#curriculoId').empty()
+
+				$("#curriculoId").append(
+					$("<option>", {
+						value: 0,
+						text: 'Selecione uma opção',
+						name: 'Selecione uma opção'
+					}).prop('disabled', true).prop('selected', true)
+				);
+
+				$.each(data, function(index, item) {
+					$("#curriculoId").append(
+						$("<option>", {
+							value: item.idCurriculo,
+							text: item.curriculo,
+							name: item.curriculo,
+						})
+					);
+				})
+			}).fail(function(jqXHR, textStatus, errorThrown) {
+				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+			});
+
+			if (data.libras == "S") {
+				/*$('#libras').val(data.libras)
+							$('#controlaVagas').val(data.controlaVagas)*/
+				$('#isLibra').attr('checked', true);
+			} else {
+				$('#isLibra').attr('checked', false);
+			}
+
+			if (data.controlaVagas == "S") {
+				$('#isControlaVagas').attr('checked', true);
+			} else {
+				$('#isControlaVagas').attr('checked', false);
+			}
+
+			lista = [data.gradeCurricular]
+			listarGradeCurricular(lista)
+			$('#curriculoId').val(data.gradeCurricular.curriculo.idCurriculo)
 
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+		})
 	}
 })
 
@@ -255,7 +302,7 @@ function listarGradeCurricular(dados) {
 			"</td>" +
 
 			"<td>" +
-			item.disciplina.nome +
+			item.disciplina.codDiscip + ' - ' + item.disciplina.nome +
 			"</td>" +
 
 			"<td>" +
@@ -429,19 +476,18 @@ const cadastrar = () => {
 	});
 }
 
-
-/*function editar() {
+function editar() {
 	var objeto = {
 		idTurma: idTurma,
 		escolaId: $('#escolaId').val(),
 		turnoId: $('#turnoId').val(),
 		periodoLetivoId: $('#periodoLetivoId').val(),
-		gradeCurricularId: $('#gradeCurricularId').val(),
+		gradeCurricularId: lista[0].idGradeCurricular,
 		nomeTurma: $('#nomeTurma').val(),
 		codTurmaInep: $('#codTurmaInep').val(),
 		vagas: $('#vagas').val(),
-		libras: $('#libras').val(),
-		controlaVagas: $('#controlaVagas').val(),
+		libras: getAswer($("#isLibra")),
+		controlaVagas: getAswer($("#isControlaVagas"))
 	}
 
 	$.ajax({
@@ -460,22 +506,20 @@ const cadastrar = () => {
 
 			});
 		}
-	})
-		.done(function(data) {
-			Swal.close()
-			Swal.fire({
-				title: "Editado com sucesso",
-				icon: "success",
-			}).then(result => {
-				window.location.href = 'turma-matriz-curricular'
-			})
+	}).done(function(data) {
+		Swal.close()
+		Swal.fire({
+			title: "Editado com sucesso",
+			icon: "success",
+		}).then(result => {
+			window.location.href = 'turma-matriz-curricular'
 		})
-	return false;
+	})
 }
-*/
+
 $('#formNovoCadastro').on('submit', function(e) {
 	e.preventDefault();
-	cadastrar()
+	adicionar()
 	/*	if (idTurma != undefined) {
 			editar()
 		} else {
@@ -484,8 +528,12 @@ $('#formNovoCadastro').on('submit', function(e) {
 	return false;
 });
 
-$('#btn-submit').on('click', function(e) {
+$('#btn-save').on('click', function(e) {
 	e.preventDefault();
-	adicionar();
+	if (idTurma != undefined) {
+		editar()
+	} else {
+		cadastrar()
+	}
 	return false;
 });

@@ -301,7 +301,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</div> -->
 
 				<div class="col-md-12 text-center mt-3 mb-5">
-					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Adicionar</button>
+					<button type="submit" class="btn btn-primary px-5" id="btn-submit">Gerar turmas</button>
 				</div>
 				<div class="container-table contTable">
 					<table
