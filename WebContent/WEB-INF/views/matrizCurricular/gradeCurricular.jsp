@@ -194,7 +194,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="obrigatoria" class="form-label">Obrigatoria:<span
+								<label for="obrigatoria" class="form-label">Obrigatória:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Obrigatoria"
 									id="obrigatoria" required name="obrigatoria">
@@ -266,7 +266,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="obrigatoriaEdit" class="form-label">Obrigatoria:<span
+								<label for="obrigatoriaEdit" class="form-label">Obrigatória:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Obrigatoria"
 									id="obrigatoriaEdit" required name="obrigatoriaEdit">

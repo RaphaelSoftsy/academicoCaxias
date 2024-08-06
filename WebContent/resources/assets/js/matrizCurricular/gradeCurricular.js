@@ -14,27 +14,27 @@ let id = ''
 $(document).ready(function() {
 
 	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
-    $('#curriculoIdLista').removeAttr('disabled');
+		$('#curriculoIdLista').removeAttr('disabled');
 
-    $.ajax({
-        url: url_base + `/curriculo/curso/${cursoIdSession}`,
-        type: "get",
-        async: false,
-    }).done(function(data) {
-        console.log(data)
-        $.each(data, function(index, item) {
-            $('#curriculoIdLista').append($('<option>', {
-                value: item.idCurriculo,
-                text: item.curriculo,
-                name: item.curriculo
-            }));
-        });
-    });
+		$.ajax({
+			url: url_base + `/curriculo/curso/${cursoIdSession}`,
+			type: "get",
+			async: false,
+		}).done(function(data) {
+			console.log(data)
+			$.each(data, function(index, item) {
+				$('#curriculoIdLista').append($('<option>', {
+					value: item.idCurriculo,
+					text: item.curriculo,
+					name: item.curriculo
+				}));
+			});
+		});
 
-    $('#curriculoIdLista').val(curriculoIdSession);
-    $('#cursoIdLista').val(cursoIdSession);
-    getDados(curriculoIdSession);
-}
+		$('#curriculoIdLista').val(curriculoIdSession);
+		$('#cursoIdLista').val(cursoIdSession);
+		getDados(curriculoIdSession);
+	}
 
 
 
@@ -126,7 +126,15 @@ $(document).ready(function() {
 			$("#disciplinaId").append(
 				$("<option>", {
 					value: item.idDisciplina,
-					text: item.nome,
+					text: item.codDiscip + " - " + item.nome,
+					name: item.nome,
+				})
+			);
+
+			$("#disciplinaIdEdit").append(
+				$("<option>", {
+					value: item.idDisciplina,
+					text: item.codDiscip + " - " + item.nome,
 					name: item.nome,
 				})
 			);
@@ -171,23 +179,6 @@ $(document).ready(function() {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 
-	$.ajax({
-		url: url_base + "/disciplina",
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#disciplinaIdEdit").append(
-				$("<option>", {
-					value: item.idDisciplina,
-					text: item.nome,
-					name: item.nome,
-				})
-			);
-		});
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
 
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
@@ -272,7 +263,7 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
-			item.disciplina.nome +
+			`${item.disciplina.codDiscip} - ${item.disciplina.nome}` +
 			"</td>" +
 
 			"<td>" +
