@@ -92,5 +92,11 @@ public class matrizCurricular {
 
 		return "matrizCurricular/gradeCurricular";
 	}
+	
+	@RequestMapping(value = { "professores" }, method = RequestMethod.GET)
+	public String professores(HttpSession session, Model model) throws Exception {
+
+		return "matrizCurricular/professores";
+	}
 
 }
