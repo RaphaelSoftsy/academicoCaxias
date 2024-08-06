@@ -405,7 +405,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoUfCartorioId"
 							name="certidaoNascimentoUfCartorioId">
-							<option selected disabled>Selecione uma opção</option>
+							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 
@@ -455,13 +455,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="certidaoCasamentoNumero" class="form-label">Número:</label>
+						<label for="certidaoCasamentoNumero" class="form-label">Número: <span class="red">*</span></label>
 						<input type="text" id="certidaoCasamentoNumero" autocomplete="off"
 							name="certidaoCasamentoNumero" class="form-control" />
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoCasamentoCartorio" class="form-label">Cartório
-							de registro:</label> <input type="text" id="certidaoCasamentoCartorio"
+							de registro:<span class="red">*</span></label> <input type="text" id="certidaoCasamentoCartorio"
 							autocomplete="off" name="certidaoCasamentoCartorio"
 							class="form-control" />
 					</div>
@@ -470,7 +470,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="certidaoCasamentoUfCartorioId" class="form-label">UF
-							do cartório:</label> <select class="form-select"
+							do cartório:<span class="red">*</span></label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
 							name="certidaoCasamentoUfCartorioId">
@@ -479,7 +479,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">Município
-							do Cartório</label> <select class="form-select"
+							do Cartório <span class="red">*</span></label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoCidadeCartorioId"
 							name="certidaoCasamentoCidadeCartorioId" disabled>
@@ -490,12 +490,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="certidaoCasamentoFolha" class="form-label">Folha:</label>
+						<label for="certidaoCasamentoFolha" class="form-label">Folha: <span class="red">*</span></label>
 						<input type="text" id="certidaoCasamentoFolha" autocomplete="off"
 							name="certidaoCasamentoFolha" class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoCasamentoLivro" class="form-label">Livro:</label>
+						<label for="certidaoCasamentoLivro" class="form-label">Livro: <span class="red">*</span></label>
 						<input type="text" id="certidaoCasamentoLivro" autocomplete="off"
 							name="certidaoCasamentoLivro" class="form-control" />
 					</div>
@@ -503,13 +503,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="certidaoCasamentoOrdem" class="form-label">Ordem:</label>
+						<label for="certidaoCasamentoOrdem" class="form-label">Ordem:<span class="red">*</span></label>
 						<input type="text" id="certidaoCasamentoOrdem" autocomplete="off"
 							name="certidaoCasamentoOrdem" class="form-control" />
 					</div>
 					<div class="col-md-6" id='certidaoCasamentoDataEmissaoDiv'>
 						<label for="certidaoCasamentoDataEmissao" class="form-label">Data
-							de emissão:</label> <input type="date" id="certidaoCasamentoDataEmissao"
+							de emissão:<span class="red">*</span></label> <input type="date" id="certidaoCasamentoDataEmissao"
 							autocomplete="off" name="certidaoCasamentoDataEmissao"
 							class="form-control" />
 					</div>
