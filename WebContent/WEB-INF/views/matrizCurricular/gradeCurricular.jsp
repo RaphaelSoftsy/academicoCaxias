@@ -61,6 +61,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 
+
+
 </head>
 
 <body>
@@ -77,7 +79,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Grade Curricular</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Grade
+						Curricular</span>
 				</div>
 			</div>
 		</section>
@@ -120,8 +123,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="d-flex justify-content-end">
 					<button
 						class="btn btn-primary btn-lg btn-new-alter px-3 py-1  ms-auto"
-						data-bs-toggle="modal" 
-						data-bs-target="#newCadastro" id="btnModalCadastrar">Novo Cadastro</button>
+						data-bs-toggle="modal" data-bs-target="#newCadastro"
+						id="btnModalCadastrar">Novo Cadastro</button>
 				</div>
 			</div>
 

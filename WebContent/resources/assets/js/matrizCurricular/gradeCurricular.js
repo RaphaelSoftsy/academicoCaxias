@@ -236,64 +236,39 @@ function getDados(idCurriculo) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 }
-
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-		var ativo;
-		var obrigatorio;
-		var retemAluno
-
-		if (item.obrigatoria == "N") {
-			obrigatorio = "Não"
-		} else {
-			obrigatorio = "Sim"
-		}
-
-		if (item.retemSerie == "N") {
-			retemAluno = "Não"
-		} else {
-			retemAluno = "Sim"
-		}
+		var obrigatorio = item.obrigatoria == "N" ? "Não" : "Sim";
+		var retemAluno = item.retemSerie == "N" ? "Não" : "Sim";
 
 		return (
 			"<tr>" +
-
+			"<td>" + item.serie.serie + "</td>" +
+			"<td>" + `${item.disciplina.codDiscip} - ${item.disciplina.nome}` + "</td>" +
+			"<td>" + obrigatorio + "</td>" +
+			"<td>" + item.curriculo.aulasPrevistas + "</td>" +
+			"<td>" + retemAluno + "</td>" +
 			"<td>" +
-			item.serie.serie +
+			'<input type="checkbox" data-status="' + item.ativo + '" data-id="' + item.idGradeCurricular + '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</td>" +
-
-			"<td>" +
-			`${item.disciplina.codDiscip} - ${item.disciplina.nome}` +
-			"</td>" +
-
-			"<td>" +
-			obrigatorio +
-			"</td>" +
-
-			"<td>" +
-			item.curriculo.aulasPrevistas +
-			"</td>" +
-
-			"<td>" +
-			retemAluno +
-			"</td>" +
-
-			"<td>" +
-			'<input type="checkbox" data-status="' +
-			item.ativo +
-			'" data-id="' +
-			item.idGradeCurricular +
-			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-			"</td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idGradeCurricular +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' + item.idGradeCurricular + '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
 
 	$("#cola-tabela").html(html);
 
+	// Limitar o número de linhas exibidas
+	var maxRows = 5;
+
+	// Mostrar apenas as linhas que estão dentro do limite
+	$('.myTable tbody tr').each(function(index) {
+		if (index >= maxRows) {
+			$(this).addClass('hidden-row');
+		}
+	});
+
+	// Inicializar o toggle
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
 		if (status !== 'S') {
@@ -301,8 +276,12 @@ function listarDados(dados) {
 		}
 	});
 
+	// Certifique-se de que o Bootstrap Toggle esteja inicializado corretamente
 	$('input[data-toggle="toggle"]').bootstrapToggle();
 }
+
+
+
 $("#btnModalCadastrar").click(() => {
 	$("#curriculoId").val($("#curriculoIdLista").val())
 })
