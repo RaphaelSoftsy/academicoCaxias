@@ -128,7 +128,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</div>
 			</div>
 
-			<table
+			<table id="myTable"
 				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Itens Cadastrados</caption>
 				<thead>

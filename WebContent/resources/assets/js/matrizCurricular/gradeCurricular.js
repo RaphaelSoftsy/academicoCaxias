@@ -5,7 +5,7 @@ const cursoIdSession = sessionStorage.getItem("cursoId")
 var nome = '';
 var nome2 = '';
 var nome3 = '';
-var rows = 8;
+var rows = 5;
 var currentPage = 1;
 var pagesToShow = 5;
 let descricao = ''
@@ -257,16 +257,16 @@ function listarDados(dados) {
 	}).join("");
 
 	$("#cola-tabela").html(html);
-
+/*
 	// Limitar o número de linhas exibidas
-	var maxRows = 5;
+	var maxRows = 6;
 
 	// Mostrar apenas as linhas que estão dentro do limite
-	$('.myTable tbody tr').each(function(index) {
+	$('#myTable tbody tr').each(function(index) {
 		if (index >= maxRows) {
 			$(this).addClass('hidden-row');
 		}
-	});
+	});*/
 
 	// Inicializar o toggle
 	$('.checkbox-toggle').each(function() {
