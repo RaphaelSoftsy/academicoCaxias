@@ -151,12 +151,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<thead>
 							<tr>
 								<th scope="col">Nome</th>
-								<th scope="col">Código Disciplina</th>
-								<th scope="col">Horas Ano</th>
-								<th scope="col">Horas Semanal</th>
+								<th scope="col">Tipo escola</th>
+								<th scope="col">Email</th>
+								<th scope="col">CNPJ</th>
 							</tr>
 						</thead>
-						<tbody id="cola-tabela-disciplina" class="table-group-divider">
+						<tbody id="cola-tabela-escola" class="table-group-divider">
 
 						</tbody>
 					</table>

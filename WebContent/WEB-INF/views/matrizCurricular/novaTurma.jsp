@@ -163,7 +163,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="nomeTurma" class="form-label">Nome da turma:</label> <input
+						<label for="nomeTurma" class="form-label">Nome da turma:<span class="red">*</span></label> <input
 							type="text" class="form-control" id="nomeTurma" required
 							aria-describedby="NomeTurma" autocomplete="off">
 					</div>
@@ -196,7 +196,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							name="codTurmaInep">
 					</div>
 					<div class="col-md-6">
-						<label for="vagas" class="form-label">Vagas:</label> <input
+						<label for="vagas" class="form-label">Vagas:<span class="red">*</span></label> <input
 							type="number" class="form-control" id="vagas" required
 							aria-describedby="Vagas" autocomplete="off" min='0'
 							oninput="this.value = Math.abs(this.value)">

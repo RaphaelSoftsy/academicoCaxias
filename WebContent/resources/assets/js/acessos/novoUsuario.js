@@ -7,8 +7,11 @@ var pagesToShow = 5;
 const contaId = localStorage.getItem('contaId')
 const idUsuario = params.get("id");
 let idArray = 0
+let cpfFixed
+let emailFixed
 
 $(document).ready(function() {
+	$('#usuario').prop('disabled', true);
 	getDados()
 
 	$(".reveal").on('click', function() {
@@ -105,6 +108,8 @@ $(document).ready(function() {
 			$('#dataNascimento').val(formatarDataParaISO(data.usuario.dataNascimento)); // Aqui colocamos no formato yyyy-MM-dd
 			$('#celular').val(data.usuario.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"));
 
+			cpfFixed = data.usuario.cpf
+			emailFixed = data.usuario.email
 
 			$.each(data.usuarioConta, function(index, item) {
 				let nomeEscola = ''
@@ -385,7 +390,7 @@ function ValidarCpf() {
 		complete: function(jqXHR, textStatus) {
 			console.log('Status da requisição:', textStatus);
 			console.log('Código de status HTTP:', jqXHR.status);
-			if (jqXHR.status == 400) {
+			if (jqXHR.status == 400 && cpf.val().replace(/[^a-zA-Z0-9 ]/g, "") != cpfFixed) {
 				const message = $("<p id='errMessage'></p>").text("CPF já utilizado por outro usuário").css('color', '#FF0000');
 				if ($("#cardCpf").find('#errMessage').length > 0) {
 					$('#errMessage').remove()
@@ -431,7 +436,7 @@ $("#email").blur(()=>{
 		complete: function(jqXHR, textStatus) {
 			console.log('Status da requisição:', textStatus);
 			console.log('Código de status HTTP:', jqXHR.status);
-			if (jqXHR.status == 400) {
+			if (jqXHR.status == 400 && email.val() != emailFixed) {
 				const message = $("<p id='errMessageEmail'></p>").text("Email já utilizado por outro usuário").css('color', '#FF0000');
 				if ($("#cardEmail").find('#errMessageEmail').length > 0) {
 					$('#errMessageEmail').remove()

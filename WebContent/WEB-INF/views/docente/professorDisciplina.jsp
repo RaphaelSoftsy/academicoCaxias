@@ -157,7 +157,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</tr>
 						</thead>
 						<tbody id="cola-tabela-disciplina" class="table-group-divider">
-
+								
 						</tbody>
 					</table>
 					<div id="pagination" class="mx-auto mt-auto">

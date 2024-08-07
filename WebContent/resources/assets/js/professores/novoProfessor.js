@@ -399,3 +399,23 @@ $('input[name="qualPreencher"]').click(function() {
     }
 });
 
+$('#ufNascimentoId').change(() => {
+	$("#municipioNascimentoId").attr("disabled", false)
+	$("#municipioNascimentoId").empty()
+	$("#municipioNascimentoId").append("<option selected disabled>Selecione uma opção</option>")
+	$.ajax({
+		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#municipioNascimentoId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+		});
+
+
+	})
+})

@@ -51,7 +51,7 @@ String contextPath = request.getContextPath();
 
 <script
 	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-	
+
 <!-- CSS -->
 
 <!-- Google Fonts -->
@@ -59,7 +59,7 @@ String contextPath = request.getContextPath();
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
 	href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-	rel="stylesheet" /> 
+	rel="stylesheet" />
 
 <!-- FontAwesome -->
 <script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
@@ -81,13 +81,14 @@ String contextPath = request.getContextPath();
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
-				<div class="card-body title">	
+				<div class="card-body title">
 					<i class="fa-solid fa-plus fa-lg"></i><span>Novo Cadastro</span>
 				</div>
 			</div>
 		</section>
-		<section class="pt-4">
-			<form id="formNovoCadastro" class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+		<form id="formNovoCadastro" class="pt-4">
+			<section
+				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h1 id="tituloForm" class="text-center mb-5">Cadastrar
 					Professor</h1>
 				<input type="text" id="usuarioCadastro" hidden
@@ -238,274 +239,324 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-		</section>
+			</section>
 
-		<section
-			class=" mt-5 mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-			<h2 id="tituloCasamento" class="mb-5">RG</h2>
+			<section
+				class=" mt-5 mb-5 p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+				<h2 id="tituloCasamento" class="mb-5">RG</h2>
 
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="rgNumero" class="form-label">RG:</label> <input
-						type="text" id="rgNumero" autocomplete="off"
-						data-mask="00.000.000-0" name="rgNumero" class="form-control" />
-				</div>
-
-				<div class="col-md-6" id="rgDataExpedicaoDiv">
-					<label for="rgDataExpedicao" class="form-label">RG Data de
-						Expedição:</label> <input type="date" id="rgDataExpedicao"
-						autocomplete="off" name="rgDataExpedicao" class="form-control" />
-				</div>
-			</div>
-
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="rgOrgaoExpedidor" class="form-label">Órgão
-						Expedidor-RG:</label> <input type="text" id="rgOrgaoExpedidor"
-						autocomplete="off" name="rgOrgaoExpedidor" class="form-control" />
-				</div>
-				<div class="col-md-6">
-					<label for="rgUfEmissorId" class="form-label">UF Emissor -
-						RG:</label> <select class="form-select" aria-label="RG UF Emissor"
-						id="rgUfEmissorId" name="rgUfEmissorId">
-						<option selected disabled>Selecione uma opção</option>
-					</select>
-				</div>
-			</div>
-		</section>
-
-		<section
-			class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
-			<div class="row mb-3">
-				<label for="qualPreencher" class="form-label">Qual deseja
-					preencher?<span class="red">*</span>
-				</label>
-				<div class="form-control card-form qualPreencherSwitch">
-					<label for="qualPreencher">Certidão de Nascimento</label> <label
-						class="switch"> <input type="checkbox" id="qualPreencher"
-						name="qualPreencher"> <span
-						class="slider slider-certidao"></span>
-					</label> <label for="qualPreencher">Certidão de Casamento</label>
-				</div>
-
-				<div class="form-control qualPreencher">
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio"
-							name="qualPreencherCheck" id="isCertidaoNascimento" value="s" />
-						<label class="form-check-label" for="qualPreencherCheck">Certidão
-							de Nascimento</label>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="rgNumero" class="form-label">RG:</label> <input
+							type="text" id="rgNumero" autocomplete="off"
+							data-mask="00.000.000-0" name="rgNumero" class="form-control" />
 					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio"
-							name="qualPreencherCheck" id="isCertidaoCasamento" value="c" />
-						<label class="form-check-label" for="qualPreencherCheck">Certidão
-							de Casamento</label>
+
+					<div class="col-md-6" id="rgDataExpedicaoDiv">
+						<label for="rgDataExpedicao" class="form-label">RG Data de
+							Expedição:</label> <input type="date" id="rgDataExpedicao"
+							autocomplete="off" name="rgDataExpedicao" class="form-control" />
 					</div>
 				</div>
-			</div>
-		</section>
 
-		<section
-			class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center"
-			style="display: none" id="rneSec">
-			<h2 class="mb-5">RNE</h2>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="rgOrgaoExpedidor" class="form-label">Órgão
+							Expedidor-RG:</label> <input type="text" id="rgOrgaoExpedidor"
+							autocomplete="off" name="rgOrgaoExpedidor" class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="rgUfEmissorId" class="form-label">UF Emissor -
+							RG:</label> <select class="form-select" aria-label="RG UF Emissor"
+							id="rgUfEmissorId" name="rgUfEmissorId">
+							<option selected disabled>Selecione uma opção</option>
+						</select>
+					</div>
+				</div>
+			</section>
+
+			<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
+				<div class="row mb-3">
+					<label for="qualPreencher" class="form-label">Qual deseja
+						preencher?<span class="red">*</span>
+					</label>
+					<div class="form-control card-form qualPreencherSwitch">
+						<label for="qualPreencher">Certidão de Nascimento</label> <label
+							class="switch"> <input type="checkbox" id="qualPreencher"
+							name="qualPreencher"> <span
+							class="slider slider-certidao"></span>
+						</label> <label for="qualPreencher">Certidão de Casamento</label>
+					</div>
+
+					<div class="form-control qualPreencher">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="qualPreencherCheck" id="isCertidaoNascimento" value="s" />
+							<label class="form-check-label" for="qualPreencherCheck">Certidão
+								de Nascimento</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="qualPreencherCheck" id="isCertidaoCasamento" value="c" />
+							<label class="form-check-label" for="qualPreencherCheck">Certidão
+								de Casamento</label>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center"
+				style="display: none" id="rneSec">
+				<h2 class="mb-5">RNE</h2>
 
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="rneNumero" class="form-label">Rne:</label> <input
-						type="text" id="rneNumero" autocomplete="off"
-						data-mask="00000000-0" name="rneNumero" class="form-control" />
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="rneNumero" class="form-label">Rne:</label> <input
+							type="text" id="rneNumero" autocomplete="off"
+							data-mask="00000000-0" name="rneNumero" class="form-control" />
+					</div>
+
+					<div class="col-md-6">
+						<label for="rneDataExpedicao" class="form-label">Rne Data
+							de Expedição:</label> <input type="date" id="rneDataExpedicao"
+							autocomplete="off" name="rneDataExpedicao" class="form-control" />
+					</div>
 				</div>
 
-				<div class="col-md-6">
-					<label for="rneDataExpedicao" class="form-label">Rne Data
-						de Expedição:</label> <input type="date" id="rneDataExpedicao"
-						autocomplete="off" name="rneDataExpedicao" class="form-control" />
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="rneOrgaoExpedidor" class="form-label">Órgão
+							Expedidor-Rne:</label> <input type="text" id="rneOrgaoExpedidor"
+							autocomplete="off" name="rneOrgaoExpedidor" class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="rneUfEmissorId" class="form-label">UF Emissor
+							- rne:</label> <select class="form-select" aria-label="RG UF Emissor"
+							id="rneUfEmissorId" name="rneUfEmissorId">
+							<option selected disabled>Selecione uma opção</option>
+						</select>
+					</div>
 				</div>
-			</div>
+			</section>
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="rneOrgaoExpedidor" class="form-label">Órgão
-						Expedidor-Rne:</label> <input type="text" id="rneOrgaoExpedidor"
-						autocomplete="off" name="rneOrgaoExpedidor" class="form-control" />
-				</div>
-				<div class="col-md-6">
-					<label for="rneUfEmissorId" class="form-label">UF Emissor -
-						rne:</label> <select class="form-select" aria-label="RG UF Emissor"
-						id="rneUfEmissorId" name="rneUfEmissorId">
-						<option selected disabled>Selecione uma opção</option>
-					</select>
-				</div>
-			</div>
-		</section>
+			<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center"
+				id="certidaoNascimento">
+				<h2 id="titulonNascimento" class="mb-5">Certidão de Nascimento</h2>
 
-		<section
-			class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center"
-			id="certidaoNascimento">
-			<h2 id="titulonNascimento" class="mb-5">Certidão de Nascimento</h2>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="certidaoNascimentoNumero" class="form-label">Número:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoNascimentoNumero"
+							autocomplete="off" name="certidaoNascimentoNumero"
+							class="form-control" />
+					</div>
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="certidaoNascimentoNumero" class="form-label">Número:
-						<span class="red">*</span>
-					</label> <input type="text" id="certidaoNascimentoNumero"
-						autocomplete="off" name="certidaoNascimentoNumero"
-						class="form-control" />
-				</div>
+					<div class="col-md-6">
+						<label for="certidaoNascimentoCartorio" class="form-label">Cartório
+							de registro: <span class="red">*</span>
+						</label> <input type="text" id="certidaoNascimentoCartorio"
+							autocomplete="off" name="certidaoNascimentoCartorio"
+							class="form-control" />
+					</div>
 
-				<div class="col-md-6">
-					<label for="certidaoNascimentoCartorio" class="form-label">Cartório
-						de registro: <span class="red">*</span>
-					</label> <input type="text" id="certidaoNascimentoCartorio"
-						autocomplete="off" name="certidaoNascimentoCartorio"
-						class="form-control" />
 				</div>
 
-			</div>
+				<div class="row mb-3">
 
-			<div class="row mb-3">
+					<div class="col-md-6"
+						style="display: flex; flex-direction: column;">
+						<label for="certidaoNascimentoUfCartorioId" class="form-label">UF
+							do cartório: <span class="red">*</span>
+						</label> <select class="form-control"
+							aria-label="Certidão de Nascimento UF Cartório"
+							id="certidaoNascimentoUfCartorioId"
+							name="certidaoNascimentoUfCartorioId">
+							<option selected disabled value="">Selecione uma opção</option>
+						</select>
+					</div>
 
-				<div class="col-md-6" style="display: flex; flex-direction: column;">
-					<label for="certidaoNascimentoUfCartorioId" class="form-label">UF
-						do cartório: <span class="red">*</span>
-					</label> <select class="form-control"
-						aria-label="Certidão de Nascimento UF Cartório"
-						id="certidaoNascimentoUfCartorioId"
-						name="certidaoNascimentoUfCartorioId">
-						<option selected disabled value="">Selecione uma opção</option>
-					</select>
+					<div class="col-md-6"
+						style="display: flex; flex-direction: column;">
+						<label for="certidaoNascimentoCidadeCartorio" class="form-label">Cidade
+							do cartório: <span class="red">*</span>
+						</label> <select class="form-control"
+							aria-label="Certidão de Nascimento UF Cartório"
+							id="certidaoNascimentoMunicipioCartorioId"
+							name="certidaoNascimentoMunicipioCartorioId" disabled>
+							<option selected value="" disabled>Selecione uma opção</option>
+						</select>
+					</div>
 				</div>
 
-				<div class="col-md-6" style="display: flex; flex-direction: column;">
-					<label for="certidaoNascimentoCidadeCartorio" class="form-label">Cidade
-						do cartório: <span class="red">*</span>
-					</label> <select class="form-control"
-						aria-label="Certidão de Nascimento UF Cartório"
-						id="certidaoNascimentoMunicipioCartorioId"
-						name="certidaoNascimentoMunicipioCartorioId" disabled>
-						<option selected value="" disabled>Selecione uma opção</option>
-					</select>
+				<div class="row mb-3">
+					<div class="col-md-6" id='certidaoNascimentoDataEmissaoDiv'>
+						<label for="certidaoNascimentoDataEmissao" class="form-label">Data
+							de emissão: <span class="red">*</span>
+						</label> <input type="date" id="certidaoNascimentoDataEmissao"
+							autocomplete="off" name="certidaoNascimentoDataEmissao"
+							class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="certidaoNascimentoFolha" class="form-label">Folha:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoNascimentoFolha"
+							autocomplete="off" name="certidaoNascimentoFolha"
+							class="form-control" />
+					</div>
 				</div>
-			</div>
 
-			<div class="row mb-3">
-				<div class="col-md-6" id='certidaoNascimentoDataEmissaoDiv'>
-					<label for="certidaoNascimentoDataEmissao" class="form-label">Data
-						de emissão: <span class="red">*</span>
-					</label> <input type="date" id="certidaoNascimentoDataEmissao"
-						autocomplete="off" name="certidaoNascimentoDataEmissao"
-						class="form-control" />
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="certidaoNascimentoLivro" class="form-label">Livro:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoNascimentoLivro"
+							autocomplete="off" name="certidaoNascimentoLivro"
+							class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="certidaoNascimentoOrdem" class="form-label">Ordem:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoNascimentoOrdem"
+							autocomplete="off" name="certidaoNascimentoOrdem"
+							class="form-control" />
+					</div>
 				</div>
-				<div class="col-md-6">
-					<label for="certidaoNascimentoFolha" class="form-label">Folha:
-						<span class="red">*</span>
-					</label> <input type="text" id="certidaoNascimentoFolha" autocomplete="off"
-						name="certidaoNascimentoFolha" class="form-control" />
-				</div>
-			</div>
+			</section>
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="certidaoNascimentoLivro" class="form-label">Livro:
-						<span class="red">*</span>
-					</label> <input type="text" id="certidaoNascimentoLivro" autocomplete="off"
-						name="certidaoNascimentoLivro" class="form-control" />
-				</div>
-				<div class="col-md-6">
-					<label for="certidaoNascimentoOrdem" class="form-label">Ordem:
-						<span class="red">*</span>
-					</label> <input type="text" id="certidaoNascimentoOrdem" autocomplete="off"
-						name="certidaoNascimentoOrdem" class="form-control" />
-				</div>
-			</div>
-		</section>
+			<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center"
+				id="certidaoCasamento">
+				<h2 id="tituloCasamento" class="mb-5">Certidão de Casamento</h2>
 
-		<section
-			class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center"
-			id="certidaoCasamento">
-			<h2 id="tituloCasamento" class="mb-5">Certidão de Casamento</h2>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="certidaoCasamentoNumero" class="form-label">Número:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoCasamentoNumero"
+							autocomplete="off" name="certidaoCasamentoNumero"
+							class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="certidaoCasamentoCartorio" class="form-label">Cartório
+							de registro: <span class="red">*</span>
+						</label> <input type="text" id="certidaoCasamentoCartorio"
+							autocomplete="off" name="certidaoCasamentoCartorio"
+							class="form-control" />
+					</div>
+				</div>
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="certidaoCasamentoNumero" class="form-label">Número:
-						<span class="red">*</span>
-					</label> <input type="text" id="certidaoCasamentoNumero" autocomplete="off"
-						name="certidaoCasamentoNumero" class="form-control" />
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="certidaoCasamentoUfCartorioId" class="form-label">UF
+							do cartório: <span class="red">*</span>
+						</label> <select class="form-select"
+							aria-label="Certidão de Casamento UF Cartório"
+							id="certidaoCasamentoUfCartorioId"
+							name="certidaoCasamentoUfCartorioId">
+							<option selected disabled value="">Selecione uma opção</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">UF
+							do cartório: <span class="red">*</span>
+						</label> <select class="form-select"
+							aria-label="Certidão de Casamento UF Cartório"
+							id="certidaoCasamentoCidadeCartorioId"
+							name="certidaoCasamentoCidadeCartorioId" disabled>
+							<option selected disabled value="">Selecione uma opção</option>
+						</select>
+					</div>
 				</div>
-				<div class="col-md-6">
-					<label for="certidaoCasamentoCartorio" class="form-label">Cartório
-						de registro: <span class="red">*</span>
-					</label> <input type="text" id="certidaoCasamentoCartorio"
-						autocomplete="off" name="certidaoCasamentoCartorio"
-						class="form-control" />
-				</div>
-			</div>
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="certidaoCasamentoUfCartorioId" class="form-label">UF
-						do cartório: <span class="red">*</span>
-					</label> <select class="form-select"
-						aria-label="Certidão de Casamento UF Cartório"
-						id="certidaoCasamentoUfCartorioId"
-						name="certidaoCasamentoUfCartorioId">
-						<option selected disabled value="">Selecione uma opção</option>
-					</select>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="certidaoCasamentoFolha" class="form-label">Folha:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoCasamentoFolha" autocomplete="off"
+							name="certidaoCasamentoFolha" class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="certidaoCasamentoLivro" class="form-label">Livro:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoCasamentoLivro" autocomplete="off"
+							name="certidaoCasamentoLivro" class="form-control" />
+					</div>
 				</div>
-				<div class="col-md-6">
-					<label for="certidaoCasamentoCidadeCartorioId" class="form-label">UF
-						do cartório: <span class="red">*</span>
-					</label> <select class="form-select"
-						aria-label="Certidão de Casamento UF Cartório"
-						id="certidaoCasamentoCidadeCartorioId"
-						name="certidaoCasamentoCidadeCartorioId" disabled>
-						<option selected disabled value="">Selecione uma opção</option>
-					</select>
-				</div>
-			</div>
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="certidaoCasamentoFolha" class="form-label">Folha:
-						<span class="red">*</span>
-					</label> <input type="text" id="certidaoCasamentoFolha" autocomplete="off"
-						name="certidaoCasamentoFolha" class="form-control" />
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="certidaoCasamentoOrdem" class="form-label">Ordem:
+							<span class="red">*</span>
+						</label> <input type="text" id="certidaoCasamentoOrdem" autocomplete="off"
+							name="certidaoCasamentoOrdem" class="form-control" />
+					</div>
+					<div class="col-md-6" id='certidaoCasamentoDataEmissaoDiv'>
+						<label for="certidaoCasamentoDataEmissao" class="form-label">Data
+							de emissão: <span class="red">*</span>
+						</label> <input type="date" id="certidaoCasamentoDataEmissao"
+							autocomplete="off" name="certidaoCasamentoDataEmissao"
+							class="form-control" />
+					</div>
 				</div>
-				<div class="col-md-6">
-					<label for="certidaoCasamentoLivro" class="form-label">Livro:
-						<span class="red">*</span>
-					</label> <input type="text" id="certidaoCasamentoLivro" autocomplete="off"
-						name="certidaoCasamentoLivro" class="form-control" />
+			</section>
+			<section
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp  flex-column justify-content-center"
+				id="certidaoCasamento">
+				<h2 id="tituloCasamento" class="mb-5">Dados Profissionais</h2>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="codigoInep" class="form-label">Código INEP: <span
+							class="red">*</span>
+						</label> <input type="text" id="codigoInep" autocomplete="off"
+							name="codigoInep" class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="matricula" class="form-label">Matricula: <span
+							class="red">*</span>
+						</label> <input type="text" id="matricula" autocomplete="off"
+							name="matricula" class="form-control" />
+					</div>
 				</div>
-			</div>
 
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label for="certidaoCasamentoOrdem" class="form-label">Ordem:
-						<span class="red">*</span>
-					</label> <input type="text" id="certidaoCasamentoOrdem" autocomplete="off"
-						name="certidaoCasamentoOrdem" class="form-control" />
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="dataContratacao" class="form-label">Data de
+							Contratação:<span class="red">*</span>
+						</label> <input type="date" id="dataContratacao" required
+							autocomplete="off" name="dataContratacao" class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="dataDemissao" class="form-label">Data de
+							Demissão:<span class="red">*</span>
+						</label> <input type="date" id="dataDemissao" required autocomplete="off"
+							name="dataDemissao" class="form-control" />
+					</div>
 				</div>
-				<div class="col-md-6" id='certidaoCasamentoDataEmissaoDiv'>
-					<label for="certidaoCasamentoDataEmissao" class="form-label">Data
-						de emissão: <span class="red">*</span>
-					</label> <input type="date" id="certidaoCasamentoDataEmissao"
-						autocomplete="off" name="certidaoCasamentoDataEmissao"
-						class="form-control" />
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="usuario" class="form-label">Usuário: <span
+							class="red">*</span>
+						</label> <input type="text" id="usuario" autocomplete="off" name="usuario"
+							class="form-control" />
+					</div>
 				</div>
-			</div>
 
 
+				<div class="col-md-12 text-center mt-3">
+					<button type="submit" class="btn btn-primary px-5" id="btn-submit">
+						Cadastrar</button>
+				</div>
+			</section>
+		</form>
 
-			<div class="col-md-12 text-center mt-3">
-				<button type="submit" class="btn btn-primary px-5" id="btn-submit">
-					Cadastrar</button>
-			</div>
-			</form>
-		</section>
 	</main>
 
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
