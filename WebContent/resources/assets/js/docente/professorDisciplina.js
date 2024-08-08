@@ -12,6 +12,7 @@ let idProfessor = null
 let idProfessorSelecionado = ''
 let url = ''
 var listaProfessores
+let idDisciplina
 
 $(document).ready(function() {
 	$('.container-table').hide()
@@ -46,10 +47,16 @@ function listarProfessores(dados) {
 			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
 		}
 
+		let colorBtn = 'btn-warning'
+
+		if (idProfessorSelecionado == item.idProfessor) {
+			colorBtn = 'btn-primary'
+		}
+
 		return (
 			"<tr>" +
 
-			'<td class="d-flex justify-content-center"><span style="width: 50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			'<td class="d-flex justify-content-center"><span style="width: 50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn ' + colorBtn + ' btn-sm" data-id="' +
 			item.idProfessor +
 			'" data-nome="' +
 			item.nomeCompleto +
@@ -79,52 +86,135 @@ function listarProfessores(dados) {
 }
 
 function listarDisciplinas(dados) {
-	var html
-	if (dados.length > 0) {
-		html = dados.map(function(item) {
-			var ativo;
+	var html = dados.map(function(item) {
+		var ativo;
 
-			if (item.ativo == "N") {
-				ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-			} else {
-				ativo = "<i  style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-			}
+		if (item.ativo == "N") {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+		} else {
+			ativo = "<i  style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
 
-			return (
-				"<tr>" +
+		return (
+			"<tr>" +
 
-				"<td>" +
-				item.nome +
-				"</td>" +
+			"<td>" +
+			item.nome +
+			"</td>" +
 
-				"<td>" +
-				item.codDiscip +
-				"</td>" +
+			"<td>" +
+			item.codDiscip + ' - ' + item.nome +
+			"</td>" +
 
-				"<td>" +
-				item.horasAno +
-				"</td>" +
+			"<td>" +
+			item.horasAno +
+			"</td>" +
 
-				"<td>" +
-				item.horasSemanal +
-				"</td>" +
+			"<td>" +
+			item.horasSemanal +
+			"</td>" +
 
-				"</tr>"
-			);
-		}).join("");
-	} else {
-		html = "<tr>"+"</tr>"
-	}
-
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" data-status="' +
+			item.ativoProfessorDisciplina +
+			'" data-id="' +
+			item.idProfessorDisciplina +
+			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
+			"</tr>"
+		);
+	}).join("");
 
 	$("#cola-tabela-disciplina").html(html);
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 }
 
-const selecionar = (element) => {
-	listarProfessores(listaProfessores)
-	$(element).css('background-color', 'red')
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+	
+	console.log(id)
+	console.log(status)
 
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+
+	$.ajax({
+		url: url_base + `/professorDisciplina/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e);
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: "Não foi possivel desativar no momento! Tente novamente após alguns instantes."
+			});
+		}
+	}).then(data => {
+		console.log('Funfou')
+		console.log(data)
+		getDisciplinas()
+	})
+}
+
+/*const removerDisciplina = (element) => {
+	idDisciplina = element.getAttribute("data-id")
+	Swal.fire({
+		title: "Deseja tirar essa disciplina do professor?",
+		icon: "warning",
+		showCancelButton: true,
+		showConfirmButton: false,
+		showDenyButton: true,
+		denyButtonText: 'Retirar',
+		cancelButtonText: 'Cancelar'
+	}).then(result => {
+		if (result.isDenied) {
+			$.ajax({
+				url: url_base + "/contaPadraoAcessos/" + Number(id),
+				type: "delete",
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!"
+
+					});
+				}
+			}).done(function(data) {
+				Swal.fire({
+					title: "Deletado com sucesso",
+					icon: "success",
+				}).then((data) => {
+					window.location.href = 'padraoAcesso'
+				})
+			})
+		} else if (result.isCanceled) { }
+	})
+}*/
+
+const selecionar = (element) => {
 	idProfessorSelecionado = element.getAttribute("data-id")
+	listarProfessores(listaProfessores)
 	getDisciplinas()
 }
 
@@ -140,7 +230,7 @@ const getDisciplinas = () => {
 	}).done(function(data) {
 		console.log(data)
 
-		listarDisciplinas(data)
+		listarDisciplinas(data.data)
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -170,8 +260,8 @@ $('#btn-buscar').click(() => {
 	}).done(function(data) {
 		$('.container-table').show()
 		console.log(data)
-		listaProfessores = data
-		listarProfessores(data)
+		listaProfessores = data.data
+		listarProfessores(data.data)
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

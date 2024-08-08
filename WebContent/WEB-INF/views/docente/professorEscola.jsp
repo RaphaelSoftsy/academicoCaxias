@@ -154,6 +154,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								<th scope="col">Tipo escola</th>
 								<th scope="col">Email</th>
 								<th scope="col">CNPJ</th>
+								<th scope="col" width="10%">Ativo</th>
 							</tr>
 						</thead>
 						<tbody id="cola-tabela-escola" class="table-group-divider">

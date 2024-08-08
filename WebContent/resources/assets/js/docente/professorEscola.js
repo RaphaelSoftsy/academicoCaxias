@@ -46,10 +46,16 @@ function listarProfessores(dados) {
 			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
 		}
 
+		let colorBtn = 'btn-warning'
+
+		if (idProfessorSelecionado == item.idProfessor) {
+			colorBtn = 'btn-primary'
+		}
+
 		return (
 			"<tr>" +
 
-			'<td class="d-flex justify-content-center"><span style="width: 50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			'<td class="d-flex justify-content-center"><span style="width: 50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn ' + colorBtn + ' btn-sm" data-id="' +
 			item.idProfessor +
 			'" data-nome="' +
 			item.nomeCompleto +
@@ -79,10 +85,8 @@ function listarProfessores(dados) {
 }
 
 const selecionar = (element) => {
-	listarProfessores(listaProfessores)
-	$(element).css('background-color', 'red')
-
 	idProfessorSelecionado = element.getAttribute("data-id")
+	listarProfessores(listaProfessores)
 	getEscolas()
 }
 
@@ -96,9 +100,9 @@ const getEscolas = () => {
 			console.log(e)
 		}
 	}).done(function(data) {
-		console.log(data)
+		console.log(data.data)
 
-		listarEscolas(data)
+		listarEscolas(data.data)
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -110,13 +114,13 @@ function listarEscolas(dados) {
 	if (dados.length > 0) {
 		html = dados.map(function(item) {
 			var tipoEscola
-			
-			if(item.tipoEscola = "PV"){
+
+			if (item.tipoEscola = "PV") {
 				tipoEscola = 'Privada'
-			}else{
+			} else {
 				tipoEscola = 'Publica'
 			}
-			
+
 
 			return (
 				"<tr>" +
@@ -137,15 +141,69 @@ function listarEscolas(dados) {
 				item.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5") +
 				"</td>" +
 
+				"<td><div class='d-flex align-items-center gap-1'>" +
+				'<input type="checkbox" data-status="' +
+				item.ativoProfessorEscola +
+				'" data-id="' +
+				item.idProfessorEscola +
+				' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+				"</div></td>" +
+
 				"</tr>"
 			);
 		}).join("");
 	} else {
-		html = "<tr>"+"</tr>"
+		html = "<tr>" + "</tr>"
 	}
 
 
 	$("#cola-tabela-escola").html(html);
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
+	$('input[data-toggle="toggle"]').bootstrapToggle();
+}
+
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+	
+	console.log(id)
+	console.log(status)
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+
+	$.ajax({
+		url: url_base + `/professorEscola/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e);
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: "Não foi possivel desativar no momento! Tente novamente após alguns instantes."
+			});
+		}
+	}).then(data => {
+		console.log('Funfou')
+		console.log(data)
+		getDisciplinas()
+	})
 }
 
 $('#btn-buscar').click(() => {
@@ -171,8 +229,8 @@ $('#btn-buscar').click(() => {
 	}).done(function(data) {
 		console.log(data)
 		$('.container-table').show()
-		listaProfessores = data
-		listarProfessores(data)
+		listaProfessores = data.data
+		listarProfessores(data.data)
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

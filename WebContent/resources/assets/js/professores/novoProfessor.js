@@ -271,8 +271,7 @@ $(document).ready(function() {
 	});*/
 });
 
-$('#formSubmit').submit(function(event) {
-
+$('#formNovoCadastro').submit(function(event) {
 	event.preventDefault();
 
 	let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
@@ -296,6 +295,7 @@ $('#formSubmit').submit(function(event) {
 			cpf: cpf,
 			racaId: $('#racaId').val(),
 			paisNascimentoId: $('#paisNascimentoId').val(),
+			paisResidenciaId: $('#paisResidenciaId').val(),
 			ufNascimentoId: $('#ufNascimentoId').val(),
 			municipioNascimentoId: $('#municipioNascimentoId').val(),
 			nacionalidadeId: $('#nacionalidadeId').val(),
@@ -306,7 +306,6 @@ $('#formSubmit').submit(function(event) {
 			rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
 			rgUfEmissorId: $('#rgUfEmissorId').val(),
 			certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
-			certidaoNascimentoCidadeCartorio: $('#certidaoNascimentoCidadeCartorio').val(),
 			certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
 			certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
 			certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
@@ -326,20 +325,50 @@ $('#formSubmit').submit(function(event) {
 			rneUfEmissorId: $("#rneUfEmissorId").val(),
 			rneDataExpedicao: $("#rneDataExpedicao").val(),
 			"certidaoNascimentoMunicipioCartorioId": $('#certidaoNascimentoMunicipioCartorioId').val(),
-			"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoCidadeCartorioId').val()
+			"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoCidadeCartorioId').val(),
+			"pessoaId": 2,
 		},
 		professorDTO: {
 			"pessoaId": 2,
 			"contaId": contaId,
 			"codigoInep": $("#codigoInep").val(),
-			"matricula": $("#codigoInep").val(),
-			"usuario": $("#usua").val(),
+			"matricula": $("#matricula").val(),
+			"usuario": $("#usuario").val(),
 			"senha": $("#senha").val(),
+<<<<<<< Updated upstream
 			"emailInstitucional": $("#emailInstucional").val(),
+=======
+			"emailInstitucional": $("#emailInstitucional").val(),
+>>>>>>> Stashed changes
 			"dataContratacao": $("#dataContratacao").val(),
 			"dataDemissao": $("#dataDemissao").val()
 		}
 	}
+<<<<<<< Updated upstream
+=======
+
+	$.ajax({
+		url: url_base + "/professores/pessoa-professor",
+		type: "POST",
+		data: JSON.stringify(dadosFormulario),
+		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			console.log(e);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
+		},
+	}).done(function(data) {
+		Swal.fire({
+			title: "Cadastrado com sucesso",
+			icon: "success",
+		})
+		window.location.href = "professores";
+	});
+});
+>>>>>>> Stashed changes
 
 	for (const key in dadosFormulario.pessoaDTO) {
 		if (Object.hasOwnProperty.call(dadosFormulario.pessoaDTO, key)) {

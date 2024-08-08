@@ -283,15 +283,15 @@ function listarGradeCurricular(dados) {
 		}
 
 		if (item.obrigatoria == "N") {
-			obrigatoria = "Não"
+			obrigatoria = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
 		} else {
-			obrigatoria = "Sim"
+			obrigatoria = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
 		}
 
 		if (item.retemSerie == "N") {
-			retemSerie = "Não"
+			retemSerie = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
 		} else {
-			retemSerie = "Sim"
+			retemSerie = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
 		}
 
 		return (
@@ -413,7 +413,7 @@ function adicionar() {
 			libras: getAswer($("#isLibra")),
 			controlaVagas: getAswer($("#isControlaVagas")),
 			disciplinaId: item.disciplina.idDisciplina,
-			nomeDisciplina: item.disciplina.nome,
+			nomeDisciplina: `${item.disciplina.codDiscip} - ${item.disciplina.nome}`,
 			obrigatoria: '',
 			retemSerie: ''
 		}
