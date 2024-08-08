@@ -285,6 +285,7 @@ function listarDados(dados) {
 $("#btnModalCadastrar").click(() => {
 	$("#curriculoId").val($("#curriculoIdLista").val())
 })
+
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");
 	var status = element.getAttribute("data-status");

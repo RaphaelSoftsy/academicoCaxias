@@ -280,6 +280,9 @@ $('#formSubmit').submit(function(event) {
 	if (cpf == "") {
 		cpf = null
 	}
+	
+	const formDataLimpoPessoaDTO = {};
+	const formDataLimpoProfessorDTO = {};
 
 
 	var dadosFormulario = {
@@ -325,23 +328,42 @@ $('#formSubmit').submit(function(event) {
 			"certidaoNascimentoMunicipioCartorioId": $('#certidaoNascimentoMunicipioCartorioId').val(),
 			"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoCidadeCartorioId').val()
 		},
-		candidatoDTO: {
+		professorDTO: {
 			"pessoaId": 2,
 			"contaId": contaId,
 			"codigoInep": $("#codigoInep").val(),
 			"matricula": $("#codigoInep").val(),
 			"usuario": $("#usua").val(),
 			"senha": $("#senha").val(),
-			"emailInstitucional": $("#codigoInep").val(),
-			"dataContratacao": $("#codigoInep").val(),
-			"dataDemissao": $("#codigoInep").val()
+			"emailInstitucional": $("#emailInstucional").val(),
+			"dataContratacao": $("#dataContratacao").val(),
+			"dataDemissao": $("#dataDemissao").val()
 		}
 	}
-});
 
+	for (const key in dadosFormulario.pessoaDTO) {
+		if (Object.hasOwnProperty.call(dadosFormulario.pessoaDTO, key)) {
+			if (dadosFormulario.pessoaDTO[key] == 0) {
+				dadosFormulario.pessoaDTO[key] = null
+			}
+			formDataLimpoPessoaDTO[key] = dadosFormulario.pessoaDTO[key]
+		}
+	}
 
-/*
-$.ajax({
+	for (const key in dadosFormulario.professorDTO) {
+		if (Object.hasOwnProperty.call(dadosFormulario.professorDTO, key)) {
+			if (dadosFormulario.professorDTO[key] == 0) {
+				dadosFormulario.professorDTO[key] = null
+			}
+			formDataLimpoProfessorDTO[key] = dadosFormulario.professorDTO[key]
+		}
+	}
+
+	dadosFormulario.pessoaDTO = formDataLimpoPessoaDTO
+	dadosFormulario.professorDTO = formDataLimpoProfessorDTO
+	
+	
+	$.ajax({
 		url: url_base + "/professores",
 		type: "POST",
 		data: JSON.stringify(dadosFormulario),
@@ -360,7 +382,13 @@ $.ajax({
 			icon: "success",
 		})
 		window.location.href = "professores";
-	});*/
+	});
+	
+});
+
+
+
+
 
 
 $('#certidaoCasamentoUfCartorioId').change(() => {
