@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 
 	getDados();
-	
+
 
 	// Dropdown de Pesquisa
 	$(".dropdown-toggle-form").click(function() {
@@ -178,7 +178,7 @@ function getTipoIngresso(idTipoIngresso) {
 	});
 }
 
-function listarDados(dados) {
+/*function listarDados(dados) {
 	// Converte a lista de dados em uma lista de promessas
 	var promessas = dados.map(function(item) {
 		return getTipoIngresso(item.idTipoIngresso).then(function(tipoIngresso) {
@@ -226,6 +226,46 @@ function listarDados(dados) {
 	Promise.all(promessas).then(function(linhas) {
 		$("#cola-tabela").html(linhas.join(""));
 	});
+}*/
+
+
+function listarDados(dados) {
+	var html = dados.map(function(item) {
+
+
+		if (item.aprovado == null) {
+			status = "Aguardando"
+		} else if (item.aprovado == "N") {
+			status = "Reprovado"
+		} else {
+			status = "Aprovado"
+		}
+
+		let escolaNome = item.nomeEscola ? item.nomeEscola : 'Não possui escola'
+		let turno = item.turno ? item.turno : 'Não possui turno'
+		let serie = item.serie ? item.serie : 'Não possui serie'
+
+
+		return (
+			"<tr>" +
+			"<td>" + item.candidato + "</td>" +
+			"<td>" + item.nomeCompleto + "</td>" +
+			"<td>" + escolaNome + "</td>" +
+			"<td>" + turno + "</td>" +
+			"<td>" + serie + "</td>" +
+			"<td>" + item.tipoIngresso + "</td>" +
+			"<td>" + status + "</td>" +
+			"</td>" +
+			'<td class="d-flex justify-content-center">' +
+			'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" ' +
+			'data-id=' + item.idCandidato +
+			' onclick="showModal(this)"><i class="fa-solid fa-file-lines"></i></span>' +
+			'</td>' +
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela").html(html);
 }
 
 

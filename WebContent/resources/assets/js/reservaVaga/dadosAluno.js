@@ -30,58 +30,58 @@ $(document).ready(function() {
 		$("#qualPreencher").hide()
 		$("#qualPreencherSwitch").show()
 	}
-	
+
 	$('select').select2();
 
-if ($('input[name="qualPreencher"]').is(':checked')) {
-    $("#certidaoNascimento").show();
-    $("#certidaoCasamento").hide();
-    
-    $("input[name='certidaoNascimentoNumero']").attr("required", true);
-    $("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
-    $("input[name='certidaoNascimentoCartorio']").attr("required", true);
-    $("select[name='certidaoNascimentoUfCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
-    $("input[name='certidaoNascimentoDataEmissao']").attr("required", true);
-    $("input[name='certidaoNascimentoFolha']").attr("required", true);
-    $("input[name='certidaoNascimentoLivro']").attr("required", true);
-    $("input[name='certidaoNascimentoOrdem']").attr("required", true);
+	if ($('input[name="qualPreencher"]').is(':checked')) {
+		$("#certidaoNascimento").show();
+		$("#certidaoCasamento").hide();
 
-    $("input[name='certidaoCasamentoNumero']").attr("required", false);
-    $("input[name='certidaoCasamentoCartorio']").attr("required", false);
-    $("select[name='certidaoCasamentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-    $("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-    $("input[name='certidaoCasamentoFolha']").attr("required", false);
-    $("input[name='certidaoCasamentoLivro']").attr("required", false);
-    $("input[name='certidaoCasamentoOrdem']").attr("required", false);
-    $("input[name='certidaoCasamentoDataEmissao']").attr("required", false);
-} else {
-    $("#certidaoNascimento").hide();
-    $("#certidaoCasamento").show();
-    
-    $("input[name='certidaoCasamentoNumero']").attr("required", true);
-    $("input[name='certidaoCasamentoCartorio']").attr("required", true);
-    $("select[name='certidaoCasamentoUfCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
-    $("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
-    $("input[name='certidaoCasamentoFolha']").attr("required", true);
-    $("input[name='certidaoCasamentoLivro']").attr("required", true);
-    $("input[name='certidaoCasamentoOrdem']").attr("required", true);
-    $("input[name='certidaoCasamentoDataEmissao']").attr("required", true);
+		$("input[name='certidaoNascimentoNumero']").attr("required", true);
+		$("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
+		$("input[name='certidaoNascimentoCartorio']").attr("required", true);
+		$("select[name='certidaoNascimentoUfCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
+		$("input[name='certidaoNascimentoDataEmissao']").attr("required", true);
+		$("input[name='certidaoNascimentoFolha']").attr("required", true);
+		$("input[name='certidaoNascimentoLivro']").attr("required", true);
+		$("input[name='certidaoNascimentoOrdem']").attr("required", true);
 
-    $("input[name='certidaoNascimentoNumero']").attr("required", false);
-    $("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-    $("input[name='certidaoNascimentoCartorio']").attr("required", false);
-    $("select[name='certidaoNascimentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-    $("input[name='certidaoNascimentoDataEmissao']").attr("required", false);
-    $("input[name='certidaoNascimentoFolha']").attr("required", false);
-    $("input[name='certidaoNascimentoLivro']").attr("required", false);
-    $("input[name='certidaoNascimentoOrdem']").attr("required", false);
-}
+		$("input[name='certidaoCasamentoNumero']").attr("required", false);
+		$("input[name='certidaoCasamentoCartorio']").attr("required", false);
+		$("select[name='certidaoCasamentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("input[name='certidaoCasamentoFolha']").attr("required", false);
+		$("input[name='certidaoCasamentoLivro']").attr("required", false);
+		$("input[name='certidaoCasamentoOrdem']").attr("required", false);
+		$("input[name='certidaoCasamentoDataEmissao']").attr("required", false);
+	} else {
+		$("#certidaoNascimento").hide();
+		$("#certidaoCasamento").show();
 
+		$("input[name='certidaoCasamentoNumero']").attr("required", true);
+		$("input[name='certidaoCasamentoCartorio']").attr("required", true);
+		$("select[name='certidaoCasamentoUfCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
+		$("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
+		$("input[name='certidaoCasamentoFolha']").attr("required", true);
+		$("input[name='certidaoCasamentoLivro']").attr("required", true);
+		$("input[name='certidaoCasamentoOrdem']").attr("required", true);
+		$("input[name='certidaoCasamentoDataEmissao']").attr("required", true);
 
+		$("input[name='certidaoNascimentoNumero']").attr("required", false);
+		$("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("input[name='certidaoNascimentoCartorio']").attr("required", false);
+		$("select[name='certidaoNascimentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("input[name='certidaoNascimentoDataEmissao']").attr("required", false);
+		$("input[name='certidaoNascimentoFolha']").attr("required", false);
+		$("input[name='certidaoNascimentoLivro']").attr("required", false);
+		$("input[name='certidaoNascimentoOrdem']").attr("required", false);
+	}
 
 
 
-	
+
+
+
 
 
 	$.ajax({
@@ -474,12 +474,14 @@ function carregarDados(id) {
 				type: "get",
 				async: false,
 			}).done(function(data) {
+				
+				console.log(data)
 				// Verificar se os dados de certidão de nascimento estão preenchidos
-				if (data.certidaoNascimentoNumero !== null ||
-					data.certidaoNascimentoDataEmissao !== null ||
-					data.certidaoNascimentoFolha !== null ||
-					data.certidaoNascimentoLivro !== null ||
-					data.certidaoNascimentoOrdem !== null) {
+				if (data.certidaoNascimentoNumero !== null &&
+					data.certidaoNascimentoDataEmissao !== null &&
+					data.certidaoNascimentoFolha !== null &&
+					data.certidaoNascimentoLivro !== null &&
+					data.certidaoNascimentoOrdem !== null ) {
 
 					$('input[id="qualPreencher"]').attr('checked', true)
 
@@ -489,8 +491,9 @@ function carregarDados(id) {
 
 					$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
 					$('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
-					$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio.ufId);
-					$('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio.idMunicipio);
+					$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "")
+					$('#certidaoNascimentoMunicipioCartorioId').val( data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.idMunicipio : "");
+					$('#certidaoNascimentoMunicipioCartorioId').removeAttr("disabled")
 					$('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
 					$('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
 					$('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
@@ -504,19 +507,21 @@ function carregarDados(id) {
 					$("[name='certidaoCasamentoLivro']").attr("required", false);
 					$("[name='certidaoCasamentoOrdem']").attr("required", false);
 					$("[name='certidaoCasamentoDataEmissao']").attr("required", false);
-				} else if (data.certidaoCasamentoCartorio !== null ||
-					data.certidaoCasamentoMunicipioCartorio !== null ||
-					data.certidaoCasamentoDataEmissao !== null ||
-					data.certidaoCasamentoFolha !== null ||
-					data.certidaoCasamentoLivro !== null ||
-					data.certidaoCasamentoOrdem !== null) {
+				} else if (data.certidaoCasamentoCartorio !== null &&
+					data.certidaoCasamentoMunicipioCartorio !== null &&
+					data.certidaoCasamentoDataEmissao !== null &&
+					data.certidaoCasamentoFolha !== null &&
+					data.certidaoCasamentoLivro !== null &&
+					data.certidaoCasamentoOrdem !== null ) {
 					// Verificar se os dados de certidão de casamento estão preenchidos
 					$('input[id="qualPreencher"]').attr('checked', false)
 					$("#certidaoNascimento").hide()
 					$("#certidaoCasamento").show()
 					$('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
 					$('#certidaoCasamentoCartorio').val(data.certidaoCasamentoCartorio);
-					$('#certidaoCasamento').val(data.certidaoCasamentoMunicipioCartorio);
+					$('#certidaoCasamentoUfCartorioId').val(data.certidaoCasamentoMunicipioCartorio.ufId);
+					$('#certidaoCasamentoCidadeCartorioId').val(data.certidaoCasamentoMunicipioCartorio.idMunicipio);
+					$('#certidaoCasamentoCidadeCartorioId').removeAttr("disabled")
 					$('#certidaoCasamentoDataEmissao').val(data.certidaoCasamentoDataEmissao);
 					$('#certidaoCasamentoOrdem').val(data.certidaoCasamentoOrdem);
 					$('#certidaoCasamentoFolha').val(data.certidaoCasamentoFolha);
@@ -537,8 +542,8 @@ function carregarDados(id) {
 				$('#nomeMae').val(data.nomeMae);
 				$('#nomePai').val(data.nomePai);
 				$('#nomeSocial').val(data.nomeSocial);
-				$('#cpf').val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
-				$('#rgNumero').val(data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"));
+				$('#cpf').val(data.cpf !== null ? data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "");
+				$('#rgNumero').val(data.rgNumero !== null ? data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4") : "");
 				$('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
 				$('#rgDataExpedicao').val(data.rgDataExpedicao);
 				$('#dtNascimento').val(data.dtNascimento);
@@ -579,11 +584,10 @@ function carregarDados(id) {
 				$('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
 
 				// Aqui você pode adicionar os demais campos conforme necessário
-
 				// Exemplo para preenchimento de campo select com município de nascimento
 				$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio);
 				$('#ufNascimentoId').val(data.municipioNascimento.ufId);
-				$('#rgUfEmissorId').val(data.rgUfEmissor.idUf);
+				$('#rgUfEmissorId').val(data.rgUfEmissor !== null ? data.rgUfEmissor.idUf : "");
 
 				// Exemplo para estado civil usando radio button
 				$('input[name="estadoCivil"][value="' + data.estadoCivil + '"]').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'
@@ -655,49 +659,49 @@ $('input[name="isRne"]').click(function() {
 
 
 $('input[name="qualPreencher"]').click(function() {
-    if ($(this).is(':checked')) {
-        $("#certidaoNascimento").show();
-        $("#certidaoCasamento").hide();
-        
-        $("input[name='certidaoNascimentoNumero']").attr("required", true);
-        $("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
-        $("input[name='certidaoNascimentoCartorio']").attr("required", true);
-        $("select[name='certidaoNascimentoUfCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
-        $("input[name='certidaoNascimentoDataEmissao']").attr("required", true);
-        $("input[name='certidaoNascimentoFolha']").attr("required", true);
-        $("input[name='certidaoNascimentoLivro']").attr("required", true);
-        $("input[name='certidaoNascimentoOrdem']").attr("required", true);
+	if ($(this).is(':checked')) {
+		$("#certidaoNascimento").show();
+		$("#certidaoCasamento").hide();
 
-        $("input[name='certidaoCasamentoNumero']").attr("required", false);
-        $("input[name='certidaoCasamentoCartorio']").attr("required", false);
-        $("select[name='certidaoCasamentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-        $("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-        $("input[name='certidaoCasamentoFolha']").attr("required", false);
-        $("input[name='certidaoCasamentoLivro']").attr("required", false);
-        $("input[name='certidaoCasamentoOrdem']").attr("required", false);
-        $("input[name='certidaoCasamentoDataEmissao']").attr("required", false);
-    } else {
-        $("#certidaoNascimento").hide();
-        $("#certidaoCasamento").show();
-        
-        $("input[name='certidaoCasamentoNumero']").attr("required", true);
-        $("input[name='certidaoCasamentoCartorio']").attr("required", true);
-        $("select[name='certidaoCasamentoUfCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
-        $("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
-        $("input[name='certidaoCasamentoFolha']").attr("required", true);
-        $("input[name='certidaoCasamentoLivro']").attr("required", true);
-        $("input[name='certidaoCasamentoOrdem']").attr("required", true);
-        $("input[name='certidaoCasamentoDataEmissao']").attr("required", true);
+		$("input[name='certidaoNascimentoNumero']").attr("required", true);
+		$("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
+		$("input[name='certidaoNascimentoCartorio']").attr("required", true);
+		$("select[name='certidaoNascimentoUfCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
+		$("input[name='certidaoNascimentoDataEmissao']").attr("required", true);
+		$("input[name='certidaoNascimentoFolha']").attr("required", true);
+		$("input[name='certidaoNascimentoLivro']").attr("required", true);
+		$("input[name='certidaoNascimentoOrdem']").attr("required", true);
 
-        $("input[name='certidaoNascimentoNumero']").attr("required", false);
-        $("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-        $("input[name='certidaoNascimentoCartorio']").attr("required", false);
-        $("select[name='certidaoNascimentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-        $("input[name='certidaoNascimentoDataEmissao']").attr("required", false);
-        $("input[name='certidaoNascimentoFolha']").attr("required", false);
-        $("input[name='certidaoNascimentoLivro']").attr("required", false);
-        $("input[name='certidaoNascimentoOrdem']").attr("required", false);
-    }
+		$("input[name='certidaoCasamentoNumero']").attr("required", false);
+		$("input[name='certidaoCasamentoCartorio']").attr("required", false);
+		$("select[name='certidaoCasamentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("input[name='certidaoCasamentoFolha']").attr("required", false);
+		$("input[name='certidaoCasamentoLivro']").attr("required", false);
+		$("input[name='certidaoCasamentoOrdem']").attr("required", false);
+		$("input[name='certidaoCasamentoDataEmissao']").attr("required", false);
+	} else {
+		$("#certidaoNascimento").hide();
+		$("#certidaoCasamento").show();
+
+		$("input[name='certidaoCasamentoNumero']").attr("required", true);
+		$("input[name='certidaoCasamentoCartorio']").attr("required", true);
+		$("select[name='certidaoCasamentoUfCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
+		$("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", true).select2(); // Adiciona required e inicializa select2
+		$("input[name='certidaoCasamentoFolha']").attr("required", true);
+		$("input[name='certidaoCasamentoLivro']").attr("required", true);
+		$("input[name='certidaoCasamentoOrdem']").attr("required", true);
+		$("input[name='certidaoCasamentoDataEmissao']").attr("required", true);
+
+		$("input[name='certidaoNascimentoNumero']").attr("required", false);
+		$("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("input[name='certidaoNascimentoCartorio']").attr("required", false);
+		$("select[name='certidaoNascimentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("input[name='certidaoNascimentoDataEmissao']").attr("required", false);
+		$("input[name='certidaoNascimentoFolha']").attr("required", false);
+		$("input[name='certidaoNascimentoLivro']").attr("required", false);
+		$("input[name='certidaoNascimentoOrdem']").attr("required", false);
+	}
 });
 
 

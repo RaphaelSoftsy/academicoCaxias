@@ -101,144 +101,144 @@ String contextPath = request.getContextPath();
 						</label> <input type="text" id="nomeCompleto" required autocomplete="off"
 							name="nomeCompleto" class="form-control" />
 					</div>
-				</div>
+					</di v>
 
 
-				<div class="row mb-3">
+					<div class="row mb-3">
 
-					<div class="col-md-6">
-						<label for="sexo" class="form-label">Sexo:<span
-							class="red">*</span></label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="sexo"
-									id="sexo_F" value="F" required /> <label
-									class="form-check-label" for="feminino">Feminino</label>
+						<div class="col-md-6">
+							<label for="sexo" class="form-label">Sexo:<span
+								class="red">*</span></label>
+							<div class="form-control">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="sexo"
+										id="sexo_F" value="F" required /> <label
+										class="form-check-label" for="feminino">Feminino</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="sexo"
+										id="sexo_M" value="M" required /> <label
+										class="form-check-label" for="masculino">Masculino</label>
+								</div>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="sexo"
-									id="sexo_M" value="M" required /> <label
-									class="form-check-label" for="masculino">Masculino</label>
-							</div>
+						</div>
+
+
+
+
+						<div class="col-md-6">
+							<label for="dtNascimento" class="form-label">Data de
+								Nascimento:<span class="red">*</span>
+							</label> <input type="date" id="dtNascimento" required autocomplete="off"
+								name="dtNascimento" class="form-control" />
 						</div>
 					</div>
 
 
 
-
-					<div class="col-md-6">
-						<label for="dtNascimento" class="form-label">Data de
-							Nascimento:<span class="red">*</span>
-						</label> <input type="date" id="dtNascimento" required autocomplete="off"
-							name="dtNascimento" class="form-control" />
-					</div>
-				</div>
-
-
-
-				<div class="row mb-3">
-					<div class="col-md-6" id="cardCpf">
-						<label for="cpf" class="form-label">CPF:</label> <input
-							type="text" id="cpf" autocomplete="off"
-							data-mask="000.000.000-00" name="cpf" class="form-control" />
-					</div>
-					<!-- <div class="col-md-6">
+					<div class="row mb-3">
+						<div class="col-md-6" id="cardCpf">
+							<label for="cpf" class="form-label">CPF:</label> <input
+								type="text" id="cpf" autocomplete="off"
+								data-mask="000.000.000-00" name="cpf" class="form-control" />
+						</div>
+						<!-- <div class="col-md-6">
 						<label for="rgNumero" class="form-label">RG:</label> <input
 							type="text" id="rgNumero" autocomplete="off"
 							data-mask="00.000.000-0" name="rgNumero" class="form-control" />
 					</div> -->
 
+						<div class="col-md-6">
+							<label for="racaId" class="form-label">Raça: <span
+								class="red">*</span></label> <select class="form-select"
+								aria-label="Raça" id="racaId" name="racaId" required>
+								<option selected disabled value="">Selecione uma opção</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="paisNascimentoId" class="form-label">País de
+								Nascimento:<span class="red">*</span>
+							</label> <select class="form-select" aria-label="País de Nascimento"
+								id="paisNascimentoId" required name="paisNascimentoId">
+								<option selected disabled value="">Selecione uma opção</option>
+							</select>
+						</div>
+
+						<div class="col-md-6">
+							<label for="ufNascimentoIdLabel" class="form-label">UF de
+								Nascimento: <span class="red">*</span>
+							</label> <select class="form-select" aria-label="UF de Nascimento"
+								id="ufNascimentoId" required name="ufNascimentoId">
+								<option selected disabled value="">Selecione uma opção</option>
+							</select>
+						</div>
+
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6"
+							style="display: flex; flex-direction: column;">
+							<label for="municipioNascimentoId" class="form-label">Município
+								de Nascimento: <span class="red">*</span>
+							</label> <select class="form-select" aria-label="Município de Nascimento"
+								id="municipioNascimentoId" required disabled
+								name="municipioNascimentoId">
+								<option selected disabled value="">Selecione uma opção</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label for="nacionalidadeId" class="form-label">Nacionalidade:<span
+								class="red">*</span></label> <select class="form-select"
+								aria-label="Município de Nascimento" id="nacionalidadeId"
+								required name="nacionalidadeId">
+								<option selected disabled value="">Selecione uma opção</option>
+							</select>
+						</div>
+					</div>
 					<div class="col-md-6">
-						<label for="racaId" class="form-label">Raça: <span
-							class="red">*</span></label> <select class="form-select"
-							aria-label="Raça" id="racaId" name="racaId" required>
-							<option selected disabled value="">Selecione uma opção</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="paisNascimentoId" class="form-label">País de
-							Nascimento:<span class="red">*</span>
-						</label> <select class="form-select" aria-label="País de Nascimento"
-							id="paisNascimentoId" required name="paisNascimentoId">
-							<option selected disabled value="">Selecione uma opção</option>
-						</select>
-					</div>
-
-					<div class="col-md-6">
-						<label for="ufNascimentoIdLabel" class="form-label">UF de
-							Nascimento: <span class="red">*</span>
-						</label> <select class="form-select" aria-label="UF de Nascimento"
-							id="ufNascimentoId" required name="ufNascimentoId">
-							<option selected disabled value="">Selecione uma opção</option>
-						</select>
-					</div>
-
-				</div>
-
-				<div class="row mb-3">
-					<div class="col-md-6"
-						style="display: flex; flex-direction: column;">
-						<label for="municipioNascimentoId" class="form-label">Município
-							de Nascimento: <span class="red">*</span>
-						</label> <select class="form-select" aria-label="Município de Nascimento"
-							id="municipioNascimentoId" required disabled
-							name="municipioNascimentoId">
-							<option selected disabled value="">Selecione uma opção</option>
-						</select>
-					</div>
-					<div class="col-md-6">
-						<label for="nacionalidadeId" class="form-label">Nacionalidade:<span
-							class="red">*</span></label> <select class="form-select"
-							aria-label="Município de Nascimento" id="nacionalidadeId"
-							required name="nacionalidadeId">
-							<option selected disabled value="">Selecione uma opção</option>
-						</select>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<label for="estadoCivil" class="form-label">Estado Civil:<span
-						class="red">*</span></label>
-					<div class="form-control">
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_co" value="so" required /> <label
-								class="form-check-label" for="solteiro">Solteiro(a)</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_ca" value="ca" required /> <label
-								class="form-check-label" for="casado">Casado(a)</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_vi" value="vi" required /> <label
-								class="form-check-label" for="viuvo">Viúvo(a)</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_di" value="di" required /> <label
-								class="form-check-label" for="divorciado">Divorciado(a)</label>
+						<label for="estadoCivil" class="form-label">Estado Civil:<span
+							class="red">*</span></label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="estadoCivil"
+									id="estadoCivil_co" value="so" required /> <label
+									class="form-check-label" for="solteiro">Solteiro(a)</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="estadoCivil"
+									id="estadoCivil_ca" value="ca" required /> <label
+									class="form-check-label" for="casado">Casado(a)</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="estadoCivil"
+									id="estadoCivil_vi" value="vi" required /> <label
+									class="form-check-label" for="viuvo">Viúvo(a)</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="estadoCivil"
+									id="estadoCivil_di" value="di" required /> <label
+									class="form-check-label" for="divorciado">Divorciado(a)</label>
+							</div>
 						</div>
 					</div>
-				</div>
 
 
-				<div class="row">
-					<div class="col-md-6" style="display: none" id="rne">
-						<label for="isRne" class="form-label">Possui Rne?<span
-							class="red">*</span>
-						</label>
-						<div class="form-control card-form">
-							<label for="isRne">Sim</label> <label class="switch"> <input
-								type="checkbox" id="isRne" name="isRne"> <span
-								class="slider"></span>
-							</label> <label for="isRne">Não</label>
+					<div class="row">
+						<div class="col-md-6" style="display: none" id="rne">
+							<label for="isRne" class="form-label">Possui Rne?<span
+								class="red">*</span>
+							</label>
+							<div class="form-control card-form">
+								<label for="isRne">Sim</label> <label class="switch"> <input
+									type="checkbox" id="isRne" name="isRne"> <span
+									class="slider"></span>
+								</label> <label for="isRne">Não</label>
+							</div>
 						</div>
 					</div>
-				</div>
 			</section>
 
 			<section
@@ -512,41 +512,64 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="codigoInep" class="form-label">Código INEP: <span
-							class="red">*</span>
-						</label> <input type="text" id="codigoInep" autocomplete="off"
-							name="codigoInep" class="form-control" />
+						<label for="codigoInep" class="form-label">Código INEP: </label> <input
+							type="text" id="codigoInep" autocomplete="off" name="codigoInep"
+							class="form-control" />
 					</div>
 					<div class="col-md-6">
-						<label for="matricula" class="form-label">Matricula: <span
-							class="red">*</span>
-						</label> <input type="text" id="matricula" autocomplete="off"
-							name="matricula" class="form-control" />
+						<label for="matricula" class="form-label">Matricula: </label> <input
+							type="text" id="matricula" autocomplete="off" name="matricula"
+							class="form-control" />
 					</div>
 				</div>
+
 
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="dataContratacao" class="form-label">Data de
-							Contratação:<span class="red">*</span>
-						</label> <input type="date" id="dataContratacao" required
+							Contratação: </label> <input type="date" id="dataContratacao"
 							autocomplete="off" name="dataContratacao" class="form-control" />
 					</div>
 					<div class="col-md-6">
 						<label for="dataDemissao" class="form-label">Data de
-							Demissão:<span class="red">*</span>
-						</label> <input type="date" id="dataDemissao" required autocomplete="off"
-							name="dataDemissao" class="form-control" />
+							Demissão: </label> <input type="date" id="dataDemissao"
+							autocomplete="off" name="dataDemissao" class="form-control" />
 					</div>
 				</div>
 
 				<div class="row mb-3">
+
+					<div class="col-md-6">
+						<label for="codigoInep" class="form-label">Email Institucional: </label> <input
+							type="text" id="codigoInep" autocomplete="off" name="codigoInep"
+							class="form-control" />
+					</div>
+					
 					<div class="col-md-6">
 						<label for="usuario" class="form-label">Usuário: <span
 							class="red">*</span>
 						</label> <input type="text" id="usuario" autocomplete="off" name="usuario"
 							class="form-control" />
 					</div>
+				</div>
+				
+				<div class="row mb-3">
+
+					<div class="col-md-6">
+						<label for="usuario" class="form-label">Usuário: <span
+							class="red">*</span>
+						</label> <input type="text" id="usuario" autocomplete="off" name="usuario"
+							class="form-control" />
+					</div>
+					
+					<div class="col-md-6">
+						<label for="senha" class="form-label">Senha: <span
+							class="red">*</span>
+						</label> <input type="text" id="senha" autocomplete="off" name="senha" required
+							class="form-control" />
+					</div>
+					
+					
 				</div>
 
 

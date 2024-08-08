@@ -690,7 +690,6 @@ $('#formSubmit').submit(function(event) {
 
 			window.location.href = "listaResponsavel";
 
-
 		});
 	}
 

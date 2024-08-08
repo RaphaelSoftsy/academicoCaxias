@@ -491,8 +491,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">UF
-							do cartório: <span class="red">*</span></label> <select class="form-select"
+						<label for="certidaoCasamentoCidadeCartorioId" class="form-label">Município do Cartório: <span class="red">*</span></label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoCidadeCartorioId"
 							name="certidaoCasamentoCidadeCartorioId" disabled >

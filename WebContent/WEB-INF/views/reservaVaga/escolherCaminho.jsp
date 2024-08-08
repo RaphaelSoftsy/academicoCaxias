@@ -151,8 +151,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/reservaVaga/selecionarCaminho.js"></script>
 
-<%-- 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js"></script> --%>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script> 
 	
 
 	<script charset="UTF-8"

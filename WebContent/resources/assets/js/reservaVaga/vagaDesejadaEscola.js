@@ -46,8 +46,8 @@ $('#escola').change(() => {
 	$('#serie').removeAttr('disabled');
 	$('#serie').val(0);
 	$('#turno').val(0);
-	$('#serie').empty();
-	$('#turno').empty();
+	
+
 
 	let curso = $('#curso').val()
 	let escola = $('#escola').val()
@@ -135,12 +135,7 @@ $('#formSubmit').submit(function(event) {
 			}
 		}).done(function(data) {
 			Swal.close()
-			Swal.fire({
-				icon: 'success',
-				title: 'Oferta concluida'
-			}).then(() => {
-				window.location.href = 'reserva'
-			})
+			window.location.href = 'reserva'
 		})
 	})
 })

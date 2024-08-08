@@ -7,7 +7,7 @@ let idPessoa = ''
 let idResponsavel = ''
 let idFichaMedica = ''
 let nomeCandidato = ""
- 
+
 $(document).ready(function() {
 	var triggerTabList = [].slice.call(document.querySelectorAll('#nav-tab button'))
 	triggerTabList.forEach(function(triggerEl) {
@@ -18,7 +18,7 @@ $(document).ready(function() {
 		})
 	})
 
-	$.ajax({
+	/*$.ajax({
 		url: url_base + "/responsavel/candidato/" + idCandidato,
 		type: "GET",
 		contentType: "application/json; charset=utf-8",
@@ -27,7 +27,7 @@ $(document).ready(function() {
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
+				text: "Não foi possível encontrar os responsáveis do candidato!",
 			});
 		}
 	}).done(function(data) {
@@ -39,7 +39,7 @@ $(document).ready(function() {
 				name: item.pessoa.nomeCompleto
 			}));
 		});
-	});
+	});*/
 
 	var buttonId;
 	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
@@ -63,10 +63,10 @@ $(document).ready(function() {
 		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
 	});
 
-	getDocumentos()
+	/*	getDocumentos()*/
 	loadSelects()
 	getDadosCandidato()
-	getDadosResponsavel()
+	/*getDadosResponsavel()*/
 
 
 	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
@@ -74,7 +74,7 @@ $(document).ready(function() {
 	$('#nav-disabled input, #nav-disabled select').attr('disabled', true);
 })
 
-const getDadosResponsavel = () => {
+/*const getDadosResponsavel = () => {
 	$.ajax({
 		url: url_base + '/papelPessoa/conta/' + contaId,
 		type: "get",
@@ -253,11 +253,13 @@ const getDadosResponsavel = () => {
 			console.log(e);
 		}
 	}).done(function(data) {
-		listarFichaMedica(data)
+		
+		if(data != "Nenhum resultado encontrado para os parâmetros informados.")
+			listarFichaMedica(data)
 	});
-}
+}*/
 
-const listarDados = (dadosTabela) => {
+/*const listarDados = (dadosTabela) => {
 	var html = dadosTabela.map(function(item) {
 		console.log(item);
 
@@ -308,6 +310,12 @@ const getResponsavel = (id) => {
 			console.log(e);
 		}
 	}).done(function(data) {
+
+		var cpf = data.pessoa.cpf
+			? data.pessoa.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")
+			: "";
+
+
 		console.log(data)
 		if (data.certidaoNascimentoNumero !== null ||
 			data.pessoa.certidaoNascimentoDataEmissao !== null ||
@@ -346,14 +354,14 @@ const getResponsavel = (id) => {
 			$('#certidaoCasamentoFolhaResponsavel').val(data.pessoa.certidaoCasamentoFolha);
 			$('#certidaoCasamentoLivroResponsavel').val(data.pessoa.certidaoCasamentoLivro);
 		}
-		
+
 		let numRg = data.pessoa.rgNumero
 
 		// Preenchendo campos de input
 		$('#nomeCompletoResponsavel').val(data.pessoa.nomeCompleto);
 		$('#nomeSocialResponsavel').val(data.pessoa.nomeSocial);
-		$('#cpfResponsavel').val(data.pessoa.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
-		$('#rgNumeroResponsavel').val(numRg.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"))
+		$('#cpfResponsavel').val(cpf)
+		$('#rgNumeroResponsavel').val(numRg ? numRg.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4") : "");
 		$('#rgOrgaoExpedidorResponsavel').val(data.pessoa.rgOrgaoExpedidor);
 		$('#rgDataExpedicaoResponsavel').val(data.pessoa.rgDataExpedicao);
 		$('#dtNascimentoResponsavel').val(data.pessoa.dtNascimento);
@@ -400,7 +408,7 @@ const getResponsavel = (id) => {
 		$(".bg-loading").addClass("none");
 		$(".bg-loading").fadeOut();
 	});
-}
+}*/
 
 function formatarDataParaBR(data) {
 	var dataObj = new Date(data);
@@ -411,7 +419,7 @@ function formatarDataParaBR(data) {
 	return dia + "/" + mes + "/" + ano;
 }
 
-const listarFichaMedica = (dadosTabela) => {
+/*const listarFichaMedica = (dadosTabela) => {
 	var html = dadosTabela.map(function(item) {
 
 
@@ -451,7 +459,7 @@ const getFicha = (id) => {
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
+				text: "Não foi possível realizar a busca da Ficha Médica!",
 			});
 		}
 	}).done(function(data) {
@@ -498,7 +506,7 @@ const getFicha = (id) => {
 
 		$('#nav-det-ficha input, #nav-det-ficha select').attr('disabled', true);
 	});
-}
+}*/
 
 const showFichaMedica = (ref) => {
 	window.location.href = "reserva-ficha?idFichaMedica=" + idFichaMedica;
@@ -657,7 +665,7 @@ const getDadosCandidato = () => {
 
 
 		$.ajax({
-			url: url_base + '/pessoas/' + response.pessoa,
+			url: url_base + '/pessoas/' + idPessoa,
 			type: "get",
 			async: false,
 			error: function(e) {
@@ -670,14 +678,29 @@ const getDadosCandidato = () => {
 				});
 			}
 		}).done(function(data) {
+
+			console.log(data)
 			nomeCandidato = data.nomeCompleto
+
+			var cpfCandidato = data.cpf
+				? data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")
+				: '';
+
+
+
+			let numRg = data.rgNumero
+
 			// Preenchendo campos de input
 			$('#nomeCompleto').val(data.nomeCompleto);
 			$('#nomeMae').val(data.nomeMae);
 			$('#nomePai').val(data.nomePai);
 			$('#nomeSocial').val(data.nomeSocial);
-			$('#cpf').val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
-			$('#rgNumero').val(data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4"))
+			$('#cpf').val(cpfCandidato);
+			$('#rgNumero').val(
+				numRg != null
+					? numRg.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4")
+					: ''
+			);
 			$('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
 			$('#rgDataExpedicao').val(data.rgDataExpedicao);
 			$('#dtNascimento').val(data.dtNascimento);
@@ -718,12 +741,12 @@ const getDadosCandidato = () => {
 			// Exemplo para preenchimento de campo select com município de nascimento
 			$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio);
 			$('#ufNascimentoId').val(data.municipioNascimento.ufId);
-			$('#rgUfEmissorId').val(data.rgUfEmissor.idUf);
+			$('#rgUfEmissorId').val(data.rgUfEmissor != null ? data.rgUfEmissor : 0);
 
-			if (data.certidaoNascimentoNumero !== null ||
-				data.certidaoNascimentoDataEmissao !== null ||
-				data.certidaoNascimentoFolha !== null ||
-				data.certidaoNascimentoLivro !== null ||
+			if (data.certidaoNascimentoNumero !== null &&
+				data.certidaoNascimentoDataEmissao !== null &&
+				data.certidaoNascimentoFolha !== null &&
+				data.certidaoNascimentoLivro !== null &&
 				data.certidaoNascimentoOrdem !== null) {
 
 				$('input[id="qualPreencher"]').attr('checked', true)
@@ -734,7 +757,6 @@ const getDadosCandidato = () => {
 
 				$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
 				$('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
-				$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio.idUf);
 				$.ajax({
 					url: url_base + '/municipio/uf/' + $('#certidaoNascimentoUfCartorioId').val(),
 					type: "get",
@@ -747,17 +769,19 @@ const getDadosCandidato = () => {
 							name: item.nomeMunicipio
 						}));
 					});
-					$('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio.idMunicipio);
+
 				})
+				$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "")
+				$('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.idMunicipio : "");
 				$('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
 				$('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
 				$('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
 				$('#certidaoNascimentoOrdem').val(data.certidaoNascimentoOrdem);
-			} else if (data.certidaoCasamentoCartorio !== null ||
-				data.certidaoCasamentoMunicipioCartorio !== null ||
-				data.certidaoCasamentoDataEmissao !== null ||
-				data.certidaoCasamentoFolha !== null ||
-				data.certidaoCasamentoLivro !== null ||
+			} else if (data.certidaoCasamentoCartorio !== null &&
+				data.certidaoCasamentoMunicipioCartorio !== null &&
+				data.certidaoCasamentoDataEmissao !== null &&
+				data.certidaoCasamentoFolha !== null &&
+				data.certidaoCasamentoLivro !== null &&
 				data.certidaoCasamentoOrdem !== null) {
 				$('input[id="qualPreencher"]').attr('checked', false)
 				$("#certidaoNascimento").hide()
@@ -768,8 +792,22 @@ const getDadosCandidato = () => {
 				$('#certidaoCasamentoOrdem').val(data.certidaoCasamentoOrdem);
 				$('#certidaoCasamentoFolha').val(data.certidaoCasamentoFolha);
 				$('#certidaoCasamentoLivro').val(data.certidaoCasamentoLivro);
-				$('#certidaoCasamentoUfCartorioId').val(data.certidaoCasamentoMunicipioCartorio);
-				$('#certidaoCasamento').val(data.certidaoCasamentoMunicipioCartorio);
+				$('#certidaoCasamentoUfCartorioId').val(data.certidaoCasamentoMunicipioCartorio.ufId);
+				$.ajax({
+					url: url_base + '/municipio/uf/' + $('#certidaoCasamentoUfCartorioId').val(),
+					type: "get",
+					async: false,
+				}).done(function(data) {
+					$.each(data, function(index, item) {
+						$('#certidaoCasamentoCidadeCartorioId').append($('<option>', {
+							value: item.idMunicipio,
+							text: item.nomeMunicipio,
+							name: item.nomeMunicipio
+						}));
+					});
+
+				})
+				$('#certidaoCasamentoCidadeCartorioId').val(data.certidaoCasamentoMunicipioCartorio.idMunicipio);
 
 			}
 
@@ -807,7 +845,11 @@ const getDadosCandidato = () => {
 
 }
 
-const getDocumentos = () => {
+const editarCandidato = () => {
+	window.location.href = "dados-aluno?idCandidato=" + idCandidato;
+}
+
+/*const getDocumentos = () => {
 	$.ajax({
 		url: url_base + "/candidatoDocumentoIngresso/candidato/" + idCandidato,
 		type: "GET",
@@ -916,9 +958,7 @@ $('#docCN, #docCR').on('click', function(event) {
 	document.body.removeChild(link);
 });
 
-const editarCandidato = () => {
-	window.location.href = "dados-aluno?idCandidato=" + idCandidato;
-}
+
 
 
 $('#reprovarCR').click(() => {
@@ -1129,7 +1169,7 @@ const reprovarCandidato = () => {
 			})
 		} else if (result.isCanceled) { }
 	})
-}
+}*/
 
 function showPage(page) {
 	var start = (page - 1) * rows;

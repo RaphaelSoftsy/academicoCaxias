@@ -110,17 +110,17 @@ String contextPath = request.getContextPath();
 						data-bs-toggle="tab" data-bs-target="#nav-dados-aluno"
 						type="button" role="tab" aria-controls="nav-dados-aluno"
 						aria-selected="true">Dados do Aluno</button>
-					<button class="nav-link" id="table-responsavel-tab"
+					<!-- <button class="nav-link" id="table-responsavel-tab"
 						data-bs-toggle="tab" data-bs-target="#table-responsavel"
 						type="button" role="tab" aria-controls="table-responsavel"
-						aria-selected="false">Responsáveis</button>
+						aria-selected="false">Responsáveis</button> 
 					<button class="nav-link" id="nav-doc-tab" data-bs-toggle="tab"
 						data-bs-target="#nav-doc" type="button" role="tab"
 						aria-controls="nav-doc" aria-selected="false">Documentos</button>
-					<button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab"
+					 <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab"
 						data-bs-target="#nav-disabled" type="button" role="tab"
 						aria-controls="nav-disabled" aria-selected="false">Ficha
-						Médica</button>
+						Médica</button> -->
 					<button class="nav-link" hidden id="nav-responsavel-tab"
 						data-bs-toggle="tab" data-bs-target="#nav-responsavel"
 						type="button" role="tab" aria-controls="nav-responsavel"
@@ -331,7 +331,7 @@ String contextPath = request.getContextPath();
 							<label for="rgUfEmissorId" class="form-label">UF Emissor
 								- RG:</label> <select class="form-select" aria-label="RG UF Emissor"
 								id="rgUfEmissorId" name="rgUfEmissorId">
-								<option selected disabled>Selecione uma opção</option>
+								<option selected disabled value="0">Selecione uma opção</option>
 							</select>
 						</div>
 					</div>
@@ -393,7 +393,7 @@ String contextPath = request.getContextPath();
 									aria-label="Certidão de Nascimento UF Cartório"
 									id="certidaoNascimentoUfCartorioId"
 									name="certidaoNascimentoUfCartorioId">
-									<option selected value="" disabled>Selecione uma opção</option>
+									<option selected value="0" disabled>Selecione uma opção</option>
 								</select>
 							</div>
 
@@ -403,7 +403,7 @@ String contextPath = request.getContextPath();
 									aria-label="Certidão de Nascimento UF Cartório"
 									id="certidaoNascimentoMunicipioCartorioId"
 									name="certidaoNascimentoMunicipioCartorioId" disabled>
-									<option selected value="" disabled>Selecione uma opção</option>
+									<option selected value="0" disabled>Selecione uma opção</option>
 								</select>
 							</div>
 						</div>
@@ -659,7 +659,7 @@ String contextPath = request.getContextPath();
 								Emissor - RG:</label> <select class="form-select"
 								aria-label="RG UF Emissor" id="rgUfEmissorIdResponsavel"
 								name="rgUfEmissorIdResponsavel">
-								<option selected disabled>Selecione uma opção</option>
+								<option selected disabled value="0">Selecione uma opção</option>
 							</select>
 						</div>
 					</div>
@@ -827,7 +827,7 @@ String contextPath = request.getContextPath();
 									aria-label="Certidão de Nascimento UF Cartório"
 									id="certidaoNascimentoUfCartorioIdResponsavel"
 									name="certidaoNascimentoUfCartorioIdResponsavel">
-									<option selected disabled>Selecione uma opção</option>
+									<option selected disabled value="0">Selecione uma opção</option>
 								</select>
 							</div>
 
@@ -839,7 +839,7 @@ String contextPath = request.getContextPath();
 									id="certidaoNascimentoMunicipioCartorioIdResponsavel"
 									name="certidaoNascimentoMunicipioCartorioIdResponsavel"
 									disabled>
-									<option selected value="" disabled>Selecione uma opção</option>
+									<option selected value="0" disabled>Selecione uma opção</option>
 								</select>
 							</div>
 						</div>

@@ -94,7 +94,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 			<div class="col-md-12 text-center mt-3">
 				<button type="submit" class="btn btn-primary px-5" id="btn-submit"
-					onclick="window.location.href = 'dadosResponsavel' ">Próximo</button>
+					onclick="window.location.href = '' ">Próximo</button>
 			</div>
 
 

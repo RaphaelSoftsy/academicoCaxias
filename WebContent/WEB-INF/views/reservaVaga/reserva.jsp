@@ -47,7 +47,8 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous">
 	
@@ -79,37 +80,27 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</div>
 			</div>
 		</section>
-		<section class="pt-4 card card-table px-5 py-3">
+		<section class="pt-4 card px-5 py-3">
 
 			<div class="row text-center mt-3"
 				style="display: flex; width: 100%; justify-content: center; align-items: center;">
-				<h5 class="card-title" style="width: auto; padding: 0" >Numero da Reserva</h5> <h1 id="reserva"></h1>
+				<h5 class="card-title" style="width: auto; padding: 0">Número
+					da Reserva</h5>
+				<h1 id="reserva"></h1>
 			</div>
 			<div class="row text-center mt-3"
 				style="display: flex; width: 100%; justify-content: center; align-items: center;">
-				<h6 class="card-title" style="width: auto">Muito bem, agora que
-					já sabemos para qual escola e curso você deseja se matrícular,
-					precisamos receber os documentos do(a) aluno(a). Os documentos
-					necessários para envio são:</h6>
+				<h6 class="card-title" style="width: auto">Reserva de vaga
+					concluída com sucesso. Dirija-se a escola selecionada e informe o
+					número acima para finalizar a matrícula. Caso queria preencher a
+					ficha médica do aluno, clique no botão abaixo</h6>
 			</div>
 
-			<div class="col-md-12 mt-3">
-				<ul>
-					<li>Certidão de Nascimento do(a) aluno(a)</li>
-					<li>Comprovante de Endereço em nome do Responsável pelo(a) aluno(a)</li>
-				</ul>
-			</div>
-
-
-			<div class="col-md-12 text-center mt-3">
+		<!-- 	<div class="col-md-12 text-center mt-3">
 				<button type="submit" class="btn btn-primary px-5" id="btn-submit"
-					onclick="window.location.href = 'reserva-documentos' ">Próximo</button>
-			</div>
-
-
-
-
-
+					onclick="window.location.href = 'reserva-ficha' ">Preencher
+					Ficha Médica</button>
+			</div> -->
 
 
 		</section>

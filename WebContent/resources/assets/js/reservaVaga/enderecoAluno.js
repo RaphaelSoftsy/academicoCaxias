@@ -156,17 +156,24 @@ $('#formSubmit').submit(function(event) {
 				});
 			}
 		}).done(function(data) {
-
-			Swal.close()
 			Swal.fire({
-				title: "Cadastrado com sucesso",
+				title: "Informe a vaga desejada:",
+				color: '#1a1a1a',
 				icon: "success",
-			})
-
-			localStorage.setItem("idCandidato", data.idCandidato)
-			window.location.href = "codigo-reserva"
-
-
+				iconColor: '#053872',
+				padding: "2rem",
+				showDenyButton: true,
+				confirmButtonColor: "#053872",
+				denyButtonColor: "#053872",
+				confirmButtonText: "Escolher pela Escola primeiro e depois verificar o horário disponível na escola.",
+				denyButtonText: 'Escolher o horário primeiro e depois verificar as escolas disponíveis.'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = "vagaDesejadaEscola";
+				} else if (result.isDenied) {
+					window.location.href = "vagaDesejadaTurno";
+				}
+			});
 		});
 	}
 
