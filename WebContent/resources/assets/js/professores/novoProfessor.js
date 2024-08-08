@@ -279,7 +279,7 @@ $('#formNovoCadastro').submit(function(event) {
 	if (cpf == "") {
 		cpf = null
 	}
-	
+
 	const formDataLimpoPessoaDTO = {};
 	const formDataLimpoProfessorDTO = {};
 
@@ -335,17 +335,13 @@ $('#formNovoCadastro').submit(function(event) {
 			"matricula": $("#matricula").val(),
 			"usuario": $("#usuario").val(),
 			"senha": $("#senha").val(),
-<<<<<<< Updated upstream
-			"emailInstitucional": $("#emailInstucional").val(),
-=======
+
 			"emailInstitucional": $("#emailInstitucional").val(),
->>>>>>> Stashed changes
 			"dataContratacao": $("#dataContratacao").val(),
 			"dataDemissao": $("#dataDemissao").val()
 		}
 	}
-<<<<<<< Updated upstream
-=======
+
 
 	$.ajax({
 		url: url_base + "/professores/pessoa-professor",
@@ -367,52 +363,7 @@ $('#formNovoCadastro').submit(function(event) {
 		})
 		window.location.href = "professores";
 	});
-});
->>>>>>> Stashed changes
 
-	for (const key in dadosFormulario.pessoaDTO) {
-		if (Object.hasOwnProperty.call(dadosFormulario.pessoaDTO, key)) {
-			if (dadosFormulario.pessoaDTO[key] == 0) {
-				dadosFormulario.pessoaDTO[key] = null
-			}
-			formDataLimpoPessoaDTO[key] = dadosFormulario.pessoaDTO[key]
-		}
-	}
-
-	for (const key in dadosFormulario.professorDTO) {
-		if (Object.hasOwnProperty.call(dadosFormulario.professorDTO, key)) {
-			if (dadosFormulario.professorDTO[key] == 0) {
-				dadosFormulario.professorDTO[key] = null
-			}
-			formDataLimpoProfessorDTO[key] = dadosFormulario.professorDTO[key]
-		}
-	}
-
-	dadosFormulario.pessoaDTO = formDataLimpoPessoaDTO
-	dadosFormulario.professorDTO = formDataLimpoProfessorDTO
-	
-	
-	$.ajax({
-		url: url_base + "/professores",
-		type: "POST",
-		data: JSON.stringify(dadosFormulario),
-		contentType: "application/json; charset=utf-8",
-		error: function(e) {
-			console.log(e);
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-		},
-	}).done(function(data) {
-		Swal.fire({
-			title: "Cadastrado com sucesso",
-			icon: "success",
-		})
-		window.location.href = "professores";
-	});
-	
 });
 
 
