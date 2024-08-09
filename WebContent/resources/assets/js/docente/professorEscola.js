@@ -170,7 +170,7 @@ function listarEscolas(dados) {
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");
 	var status = element.getAttribute("data-status");
-	
+
 	console.log(id)
 	console.log(status)
 
@@ -255,13 +255,23 @@ const adicionar = () => {
 		error: function(e) {
 			Swal.close()
 			console.log(e)
-			console.log(e.responseJSON.message)
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
+			if (e.responseJSON != undefined) {
+				if (e.responseJSON.error == "Duplicidade de registro") {
+					Swal.fire({
+						icon: "error",
+						title: "Erro de duplicidade",
+						text: "Essa disciplina já foi adicionada para esse professor!",
 
-			});
+					});
+				}
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+
+				});
+			}
 		}
 	}).done(function(data) {
 		Swal.close()

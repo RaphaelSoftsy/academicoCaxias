@@ -103,6 +103,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<thead>
 					<tr>
 						<th scope="col">Turma</th>
+						<th scope="col">Disciplina</th>
 						<th scope="col">Ano/Periodo</th>
 						<th scope="col">Turno</th>
 						<th scope="col">Vagas</th>

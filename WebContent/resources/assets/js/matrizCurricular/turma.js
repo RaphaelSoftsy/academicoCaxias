@@ -136,7 +136,7 @@ function getDados() {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 		var ativo;
-		
+
 		var libras;
 
 		if (item.ativo == "N") {
@@ -144,10 +144,10 @@ function listarDados(dados) {
 		} else {
 			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
 		}
-		
-		if(item.libras == "N"){
+
+		if (item.libras == "N") {
 			libras = "Não"
-		}else{
+		} else {
 			libras = "Sim"
 		}
 
@@ -156,6 +156,10 @@ function listarDados(dados) {
 
 			"<td>" +
 			item.nomeTurma +
+			"</td>" +
+
+			"<td>" +
+			item.gradeCurricular.disciplina.codDiscip + ' - ' + item.gradeCurricular.disciplina.nome +
 			"</td>" +
 
 			"<td>" +
@@ -229,7 +233,7 @@ function alteraStatus(element) {
 function showModal(ref) {
 	limpaCampo()
 	id = ref.getAttribute("data-id");
-	
+
 	window.location.href = "nova-turma-matriz-curricular?id=" + id
 
 	/*$.ajax({
