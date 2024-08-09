@@ -4,6 +4,9 @@ let pessoaId = 0
 let professorId = 0
 
 $(document).ready(function() {
+	
+	
+	$("input").select2()
 
 	id = getSearchParams("id");
 
