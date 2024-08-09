@@ -156,6 +156,11 @@ $('#formSubmit').submit(function(event) {
 				});
 			}
 		}).done(function(data) {
+			console.log(data)
+			
+			localStorage.setItem("idCandidato", data.idCandidato)
+			localStorage.setItem("numeroReserva", data.candidato)
+		
 			Swal.fire({
 				title: "Informe a vaga desejada:",
 				color: '#1a1a1a',

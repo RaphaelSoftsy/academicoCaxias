@@ -771,7 +771,9 @@ function ValidarCpf() {
 	}
 }
 $("#cpf").blur(function() {
-	ValidarCpf()
+	if(this.val() !== '')
+		ValidarCpf()
+	
 });
 
 
