@@ -391,8 +391,8 @@ String contextPath = request.getContextPath();
 
 					<div class="col-md-6"
 						style="display: flex; flex-direction: column;">
-						<label for="certidaoNascimentoMunicipioCartorioId" class="form-label">Cidade
-							do cartório: <span class="red">*</span>
+						<label for="certidaoNascimentoMunicipioCartorioId"
+							class="form-label">Município do cartório: <span class="red">*</span>
 						</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoMunicipioCartorioId"
@@ -466,17 +466,18 @@ String contextPath = request.getContextPath();
 						</label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
-							name="certidaoCasamentoUfCartorioId">
+							name="certidaoCasamentoUfCartorioId" required>
 							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="certidaoCasamentoMunicipioCartorioId" class="form-label">Municipio
-							do cartório: <span class="red">*</span>
+						<label for="certidaoCasamentoMunicipioCartorioId"
+							class="form-label">Municipio do cartório: <span
+							class="red">*</span>
 						</label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoMunicipioCartorioId"
-							name="certidaoCasamentoMunicipioCartorioId" disabled>
+							name="certidaoCasamentoMunicipioCartorioId" required disabled>
 							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
@@ -548,26 +549,26 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 
 					<div class="col-md-6">
-<<<<<<< Updated upstream
-						<label for="emailInstucional" class="form-label">Email Institucional: </label> <input
-							type="text" id="emailInstucional" autocomplete="off" name="emailInstucional"
-							class="form-control" />
-=======
-						<label for="emailInstitucional" class="form-label">Email
-							Institucional: </label> <input type="text" id="emailInstitucional"
-							autocomplete="off" name="emailInstitucional" class="form-control" />
->>>>>>> Stashed changes
+
+						<label for="emailInstucional" class="form-label">Email
+							Institucional: </label> <input type="text" id="emailInstucional"
+							autocomplete="off" name="emailInstucional" class="form-control" />
+
+
 					</div>
+
+
+				</div>
+
+				<div class="row mb-3">
+
 
 					<div class="col-md-6">
 						<label for="usuario" class="form-label">Usuário: <span
 							class="red">*</span>
 						</label> <input type="text" id="usuario" autocomplete="off" name="usuario"
-							class="form-control" />
+							class="form-control" required/>
 					</div>
-				</div>
-
-				<div class="row mb-3">
 
 					<div class="col-md-6">
 						<label for="senha" class="form-label">Senha: <span

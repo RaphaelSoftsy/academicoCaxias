@@ -92,8 +92,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				style="display: flex; width: 100%; justify-content: center; align-items: center;">
 				<h6 class="card-title" style="width: auto">Reserva de vaga
 					concluída com sucesso. Dirija-se a escola selecionada e informe o
-					número acima para finalizar a matrícula. Caso queria preencher a
-					ficha médica do aluno, clique no botão abaixo</h6>
+					número acima para finalizar a matrícula.</h6>
 			</div>
 
 		<!-- 	<div class="col-md-12 text-center mt-3">

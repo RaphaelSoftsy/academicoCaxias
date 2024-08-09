@@ -280,8 +280,6 @@ $('#formNovoCadastro').submit(function(event) {
 		cpf = null
 	}
 
-	const formDataLimpoPessoaDTO = {};
-	const formDataLimpoProfessorDTO = {};
 
 
 	var dadosFormulario = {
@@ -335,7 +333,6 @@ $('#formNovoCadastro').submit(function(event) {
 			"matricula": $("#matricula").val(),
 			"usuario": $("#usuario").val(),
 			"senha": $("#senha").val(),
-
 			"emailInstitucional": $("#emailInstitucional").val(),
 			"dataContratacao": $("#dataContratacao").val(),
 			"dataDemissao": $("#dataDemissao").val()

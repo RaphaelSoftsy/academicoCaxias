@@ -10,7 +10,7 @@ var idEscola = "";
 var ativo = "";
 const contaId = localStorage.getItem('contaId')
 const escolaId = sessionStorage.getItem('escolaId')
-let idCandidato = ''
+let idProfessor = ''
 
 $(document).ready(function() {
 
@@ -215,91 +215,47 @@ function listarDados(dados) {
 }
 
 
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
 
-function showModal(ref) {
-	idCandidato = ref.getAttribute("data-id");
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
 
-	window.location.href = 'editar-professor' + idCandidato
+	console.log(id)
+	console.log(status)
+	$.ajax({
+		url: url_base + `/professores/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'professores'
+	})
 }
 
-$('#formDoc').submit((e) => {
-	e.preventDefault();
 
-	var buttonId = $(document.activeElement).attr('id');
-	console.log(buttonId);
 
-	if (buttonId == 'aprovar') {
-		Swal.fire({
-			title: "Deseja mesmo aprovar esse candidato?",
-			icon: "question",
-			showCancelButton: true,
-			showConfirmButton: true,
-			showDenyButton: false,
-			confirmButtonText: 'Aprovar',
-			cancelButtonText: 'Cancelar'
-		}).then(result => {
-			if (result.isConfirmed) {
-				$.ajax({
-					url: url_base + "/candidatos/" + Number(idCandidato) + '/aprovar',
-					type: "put",
-					contentType: "application/json; charset=utf-8",
-					async: false,
-					error: function(e) {
-						console.log(e)
-						Swal.fire({
-							icon: "error",
-							title: "Oops...",
-							text: "Não foi possível realizar esse comando!"
+function showModal(ref) {
+	idProfessor = ref.getAttribute("data-id");
 
-						});
-					}
-				}).done(function(data) {
-					Swal.fire({
-						title: "Aprovado com sucesso",
-						icon: "success",
-					}).then((data) => {
-						window.location.href = 'reservas'
-					})
-				})
-			} else if (result.isCanceled) { }
-		})
-	} else {
-		Swal.fire({
-			title: "Deseja mesmo reprovar esse candidato?",
-			icon: "question",
-			showCancelButton: true,
-			showConfirmButton: false,
-			showDenyButton: true,
-			denyButtonText: 'Reprovar',
-			cancelButtonText: 'Cancelar'
-		}).then(result => {
-			if (result.isDenied) {
-				$.ajax({
-					url: url_base + "/candidatos/" + Number(idCandidato) + '/reprovar',
-					type: "put",
-					contentType: "application/json; charset=utf-8",
-					async: false,
-					error: function(e) {
-						console.log(e)
-						Swal.fire({
-							icon: "error",
-							title: "Oops...",
-							text: "Não foi possível realizar esse comando!"
+	window.location.href = 'editar-professor?id=' + idProfessor
+}
 
-						});
-					}
-				}).done(function(data) {
-					Swal.fire({
-						title: "Reprovado com sucesso",
-						icon: "success",
-					}).then((data) => {
-						window.location.href = 'reservas'
-					})
-				})
-			} else if (result.isCanceled) { }
-		})
-	}
-})
 
 // Exportar Dados
 $("#exportar-excel").click(function() {
