@@ -53,6 +53,7 @@ String contextPath = request.getContextPath();
 	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 <!-- CSS -->
+<link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -62,10 +63,8 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+<script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>

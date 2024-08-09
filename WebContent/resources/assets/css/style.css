@@ -139,6 +139,10 @@ th, tr {
 	padding-left: 30px !important;
 } */
 
+.select2-container{
+	width: 100% !important;
+}
+
 .select2-dropdown.select2-dropdown--below {
 	width: 250px !important;
 }

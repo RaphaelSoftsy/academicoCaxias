@@ -16,6 +16,13 @@ String contextPath = request.getContextPath();
 
 <title>Softsy - Educacional</title>
 
+<!-- jQuery deve vir primeiro -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
+<!-- Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <!-- Bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -58,18 +65,10 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
+
+
+
 </head>
-
-
-<!-- Select 2 -->
-<link
-	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-	rel="stylesheet" />
-
-<script
-	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
-
 <body>
 	<div class="bg-loading">
 		<div class="spinner">
@@ -92,8 +91,7 @@ String contextPath = request.getContextPath();
 			<form id="formNovoCadastro" class="pt-4">
 				<section
 					class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-					<h1 id="tituloForm" class="text-center mb-5">Cadastrar
-						Professor</h1>
+					<h1 id="tituloForm" class="text-center mb-5">Editar Professor</h1>
 					<input type="text" id="usuarioCadastro" hidden
 						value="${funcionario.idUsuario}" />
 
@@ -289,11 +287,11 @@ String contextPath = request.getContextPath();
 
 				<section
 					class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
-					<div class="row mb-3">
+					<div class="row mb-3 d-flex align-itens-center justify-content-center">
 						<label for="qualPreencher" class="form-label">Qual deseja
 							preencher?<span class="red">*</span>
 						</label>
-						<div class="form-control card-form qualPreencherSwitch">
+						<div class="form-control card-form qualPreencherSwitch" style="width: 100%;">
 							<label for="qualPreencher">Certidão de Nascimento</label> <label
 								class="switch"> <input type="checkbox"
 								id="qualPreencher" name="qualPreencher"> <span
@@ -395,7 +393,8 @@ String contextPath = request.getContextPath();
 						<div class="col-md-6"
 							style="display: flex; flex-direction: column;">
 							<label for="certidaoNascimentoMunicipioCartorioId"
-								class="form-label">Município do cartório: <span class="red">*</span>
+								class="form-label">Município do cartório: <span
+								class="red">*</span>
 							</label> <select class="form-control"
 								aria-label="Certidão de Nascimento UF Cartório"
 								id="certidaoNascimentoMunicipioCartorioId"
@@ -598,8 +597,8 @@ String contextPath = request.getContextPath();
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-		
-		
+
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>

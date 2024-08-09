@@ -6,7 +6,7 @@ let professorId = 0
 $(document).ready(function() {
 	
 	
-	$("input").select2()
+	
 
 	id = getSearchParams("id");
 
@@ -208,6 +208,7 @@ $(document).ready(function() {
 
 
 	getDados2();
+	$("select").select2();	
 });
 
 function getDados2() {
