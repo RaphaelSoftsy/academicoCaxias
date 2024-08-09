@@ -8,11 +8,11 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-				$('#curso').append($('<option>', {
-					value: item.idCurso,
-					text: item.nome,
-					name: item.nome
-				}));
+			$('#curso').append($('<option>', {
+				value: item.idCurso,
+				text: item.nome,
+				name: item.nome
+			}));
 		});
 	})
 })
@@ -24,14 +24,15 @@ $('#curso').change(() => {
 		type: "get",
 		async: false,
 	}).done(function(data) {
+		$('#turno').empty()
+		$("#turno").append("<option selected disabled>Selecione uma opção</option>")
 		$.each(data, function(index, item) {
-	
-				$('#turno').append($('<option>', {
-					value: item.idTurno,
-					text: item.turno,
-					name: item.turno
-				}));
-			
+			$('#turno').append($('<option>', {
+				value: item.idTurno,
+				text: item.turno,
+				name: item.turno
+			}));
+
 		});
 	})
 })
@@ -45,14 +46,15 @@ $('#turno').change(() => {
 		type: "get",
 		async: false,
 	}).done(function(data) {
+		$('#serie').empty()
+		$("#serie").append("<option selected disabled>Selecione uma opção</option>")
 		$.each(data, function(index, item) {
-	
-				$('#serie').append($('<option>', {
-					value: item.serie,
-					text: item.serie,
-					name: item.serie
-				}));
-			
+			$('#serie').append($('<option>', {
+				value: item.serie,
+				text: item.serie,
+				name: item.serie
+			}));
+
 		});
 	})
 })
@@ -67,14 +69,15 @@ $('#serie').change(() => {
 		type: "get",
 		async: false,
 	}).done(function(data) {
+		$('#escola').empty()
+		$("#escola").append("<option selected disabled>Selecione uma opção</option>")
 		$.each(data, function(index, item) {
-			
 			$('#escola').append($('<option>', {
 				value: item.idEscola,
 				text: item.nomeEscola,
 				name: item.nomeEscola
 			}));
-			
+
 		});
 	})
 })

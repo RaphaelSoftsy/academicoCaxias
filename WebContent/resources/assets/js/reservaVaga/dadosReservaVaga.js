@@ -68,6 +68,80 @@ const showResponsavel = () => {
 	window.location.href = "dadosResponsavel?idResponsavel=" + idResponsavel;
 }
 
+const aprovarCandidato = () => {
+	Swal.fire({
+		title: "Deseja mesmo aprovar esse candidato?",
+		icon: "question",
+		showCancelButton: true,
+		showConfirmButton: true,
+		showDenyButton: false,
+		confirmButtonText: 'Aprovar',
+		cancelButtonText: 'Cancelar'
+	}).then(result => {
+		if (result.isConfirmed) {
+			$.ajax({
+				url: url_base + "/candidatos/" + Number(idCandidato) + '/aprovar',
+				type: "put",
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!"
+
+					});
+				}
+			}).done(function(data) {
+				Swal.fire({
+					title: "Aprovado com sucesso",
+					icon: "success",
+				}).then((data) => {
+					window.location.href = 'reservas'
+				})
+			})
+		} else if (result.isCanceled) { }
+	})
+}
+
+const reprovarCandidato = () => {
+	Swal.fire({
+		title: "Deseja mesmo reprovar esse candidato?",
+		icon: "question",
+		showCancelButton: true,
+		showConfirmButton: false,
+		showDenyButton: true,
+		denyButtonText: 'Reprovar',
+		cancelButtonText: 'Cancelar'
+	}).then(result => {
+		if (result.isDenied) {
+			$.ajax({
+				url: url_base + "/candidatos/" + Number(idCandidato) + '/reprovar',
+				type: "put",
+				contentType: "application/json; charset=utf-8",
+				async: false,
+				error: function(e) {
+					console.log(e)
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!"
+
+					});
+				}
+			}).done(function(data) {
+				Swal.fire({
+					title: "Reprovado com sucesso",
+					icon: "success",
+				}).then((data) => {
+					window.location.href = 'reservas'
+				})
+			})
+		} else if (result.isCanceled) { }
+	})
+}
+
 const loadSelects = () => {
 	$.ajax({
 		url: url_base + '/tiposIngresso/conta/' + contaId,
