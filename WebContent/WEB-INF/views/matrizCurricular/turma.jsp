@@ -93,7 +93,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
 				<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
-					href="nova-turma-matriz-curricular">Novo Cadastro</a>
+					href="cadastro-turma	">Novo Cadastro</a>
 
 			</div>
 

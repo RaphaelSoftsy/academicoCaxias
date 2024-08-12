@@ -369,16 +369,16 @@ $('#formNovoCadastro').submit(function(event) {
 
 
 $('#certidaoCasamentoUfCartorioId').change(() => {
-	$("#certidaoCasamentoCidadeCartorioId").attr("disabled", false)
-	$("#certidaoCasamentoCidadeCartorioId").empty()
-	$("#certidaoCasamentoCidadeCartorioId").append("<option selected disabled>Selecione uma opção</option>")
+	$("#certidaoCasamentoMunicipioCartorioId").attr("disabled", false)
+	$("#certidaoCasamentoMunicipioCartorioId").empty()
+	$("#certidaoCasamentoMunicipioCartorioId").append("<option selected disabled>Selecione uma opção</option>")
 	$.ajax({
 		url: url_base + '/municipio/uf/' + $('#certidaoCasamentoUfCartorioId').val(),
 		type: "get",
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			$('#certidaoCasamentoCidadeCartorioId').append($('<option>', {
+			$('#certidaoCasamentoMunicipioCartorioId').append($('<option>', {
 				value: item.idMunicipio,
 				text: item.nomeMunicipio,
 				name: item.nomeMunicipio

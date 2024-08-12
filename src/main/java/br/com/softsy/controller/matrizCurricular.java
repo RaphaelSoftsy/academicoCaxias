@@ -75,19 +75,19 @@ public class matrizCurricular {
 		return "matrizCurricular/serie";
 	}
 	
-	@RequestMapping(value = { "turma-matriz-curricular" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "turma" }, method = RequestMethod.GET)
 	public String turmaMatrizCurricular(HttpSession session, Model model) throws Exception {
 
 		return "matrizCurricular/turma";
 	}
 	
-	@RequestMapping(value = { "nova-turma-matriz-curricular" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "cadastro-turma" }, method = RequestMethod.GET)
 	public String novaTurmaMatrizCurricular(HttpSession session, Model model) throws Exception {
 
 		return "matrizCurricular/novaTurma";
 	}
 	
-	@RequestMapping(value = { "grade-curricular-matriz-curricular" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "grade-curricular" }, method = RequestMethod.GET)
 	public String gradeCurricularMatrizCurricular(HttpSession session, Model model) throws Exception {
 
 		return "matrizCurricular/gradeCurricular";

@@ -44,19 +44,20 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			$("#cursoIdLista").append(
+			if(item.ativo == "S"){
+				$("#cursoIdLista").append(
 				$("<option>", {
 					value: item.idCurso,
 					text: item.nome,
 					name: item.nome,
 				})
 			);
+			}
+			
 		});
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
-
-
 
 	$('#cursoIdLista').change(() => {
 
