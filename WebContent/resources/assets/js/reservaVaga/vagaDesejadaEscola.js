@@ -34,6 +34,10 @@ $('#curso').change(() => {
 	}).done(function(data) {
 		$('#escola').empty()
 		$("#escola").append("<option selected disabled>Selecione uma opção</option>")
+		$('#serie').empty()
+		$("#serie").append("<option selected disabled>Selecione uma opção</option>")
+		$('#turno').empty()
+		$("#turno").append("<option selected disabled>Selecione uma opção</option>")
 		$.each(data, function(index, item) {
 			$('#escola').append($('<option>', {
 				value: item.idEscola,
@@ -48,8 +52,6 @@ $('#escola').change(() => {
 	$('#serie').removeAttr('disabled');
 	$('#serie').val(0);
 	$('#turno').val(0);
-	
-
 
 	let curso = $('#curso').val()
 	let escola = $('#escola').val()
@@ -60,6 +62,8 @@ $('#escola').change(() => {
 	}).done(function(data) {
 		$('#serie').empty()
 		$("#serie").append("<option selected disabled>Selecione uma opção</option>")
+		$('#turno').empty()
+		$("#turno").append("<option selected disabled>Selecione uma opção</option>")
 		$.each(data, function(index, item) {
 			$('#serie').append($('<option>', {
 				value: item.serie,

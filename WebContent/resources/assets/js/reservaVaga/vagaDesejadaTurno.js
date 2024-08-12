@@ -26,6 +26,11 @@ $('#curso').change(() => {
 	}).done(function(data) {
 		$('#turno').empty()
 		$("#turno").append("<option selected disabled>Selecione uma opção</option>")
+		$('#serie').empty()
+		$("#serie").append("<option selected disabled>Selecione uma opção</option>")
+		$('#escola').empty()
+		$("#escola").append("<option selected disabled>Selecione uma opção</option>")
+		
 		$.each(data, function(index, item) {
 			$('#turno').append($('<option>', {
 				value: item.idTurno,
@@ -48,6 +53,8 @@ $('#turno').change(() => {
 	}).done(function(data) {
 		$('#serie').empty()
 		$("#serie").append("<option selected disabled>Selecione uma opção</option>")
+		$('#escola').empty()
+		$("#escola").append("<option selected disabled>Selecione uma opção</option>")
 		$.each(data, function(index, item) {
 			$('#serie').append($('<option>', {
 				value: item.serie,
