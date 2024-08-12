@@ -96,21 +96,27 @@ String contextPath = request.getContextPath();
 						value="${funcionario.idUsuario}" />
 
 					<div class="row mb-3">
-						<div class="col-md-6">
-							<label for="nomeCompleto" class="form-label">Nome
-								Completo:<span class="red">*</span>
-							</label> <input type="text" id="nomeCompleto" required autocomplete="off"
-								name="nomeCompleto" class="form-control" />
-						</div>
-						<div class="col-md-6">
-							<label for="paisResidenciaId" class="form-label">País de
-								Residência:<span class="red">*</span>
-							</label> <select class="form-select" aria-label="País de Nascimento"
-								id="paisResidenciaId" required name="paisResidenciaId">
-								<option selected disabled value="">Selecione uma opção</option>
-							</select>
-						</div>
+					<div class="col-md-6" id="cardCpf">
+						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label> <input
+							type="text" id="cpf" autocomplete="off"
+							data-mask="000.000.000-00" name="cpf" class="form-control" required/>
 					</div>
+					<!-- <div class="col-md-6">
+						<label for="rgNumero" class="form-label">RG:</label> <input
+							type="text" id="rgNumero" autocomplete="off"
+							data-mask="00.000.000-0" name="rgNumero" class="form-control" />
+					</div> -->
+
+
+					<div class="col-md-6">
+						<label for="nomeCompleto" class="form-label">Nome
+							Completo:<span class="red">*</span>
+						</label> <input type="text" id="nomeCompleto" required autocomplete="off"
+							name="nomeCompleto" class="form-control" />
+					</div>
+
+
+				</div>
 
 
 					<div class="row mb-3">
@@ -146,10 +152,13 @@ String contextPath = request.getContextPath();
 
 
 					<div class="row mb-3">
-						<div class="col-md-6" id="cardCpf">
-							<label for="cpf" class="form-label">CPF:</label> <input
-								type="text" id="cpf" autocomplete="off"
-								data-mask="000.000.000-00" name="cpf" class="form-control" />
+						<div class="col-md-6">
+							<label for="paisResidenciaId" class="form-label">País de
+								Residência:<span class="red">*</span>
+							</label> <select class="form-select" aria-label="País de Nascimento"
+								id="paisResidenciaId" required name="paisResidenciaId">
+								<option selected disabled value="">Selecione uma opção</option>
+							</select>
 						</div>
 						<!-- <div class="col-md-6">
 						<label for="rgNumero" class="form-label">RG:</label> <input

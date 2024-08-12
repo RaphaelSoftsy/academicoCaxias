@@ -8,6 +8,10 @@
 	cursor: pointer;
 }
 
+body{
+	overflow-x: hidden;
+}
+
 .hidden-row {
             display: none;
         }

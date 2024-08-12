@@ -119,7 +119,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 			<hr>
 
-			<div class="row d-flex justify-content-end">
+			<div class="row d-flex justify-content-end none" id="cotainerNewCadastro">
 				<div class="d-flex justify-content-end">
 					<button
 						class="btn btn-primary btn-lg btn-new-alter px-3 py-1  ms-auto"
@@ -129,7 +129,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			</div>
 
 			<table id="myTable"
-				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto none">
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>

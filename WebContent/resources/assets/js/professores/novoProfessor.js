@@ -64,6 +64,9 @@ $(document).ready(function() {
 	}
 
 
+
+
+
 	$.ajax({
 		url: url_base + '/tiposIngresso/conta/' + contaId,
 		type: "get",
@@ -269,97 +272,115 @@ $(document).ready(function() {
 			);
 		});
 	});*/
+
+	$("select").select2();
 });
 
 $('#formNovoCadastro').submit(function(event) {
 	event.preventDefault();
 
-	let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
-
-	if (cpf == "") {
-		cpf = null
-	}
-
-
-
-	var dadosFormulario = {
-		pessoaDTO: {
-			contaId: contaId,
-			nomeCompleto: $('#nomeCompleto').val(),
-			nomeMae: null,
-			nomePai: null,
-			sexo: $('input[name="sexo"]:checked').val(),
-			dtNascimento: $('#dtNascimento').val(),
-			cpf: cpf,
-			racaId: $('#racaId').val(),
-			paisNascimentoId: $('#paisNascimentoId').val(),
-			paisResidenciaId: $('#paisResidenciaId').val(),
-			ufNascimentoId: $('#ufNascimentoId').val(),
-			municipioNascimentoId: $('#municipioNascimentoId').val(),
-			nacionalidadeId: $('#nacionalidadeId').val(),
-			"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 3),
-			estadoCivil: $('input[name="estadoCivil"]:checked').val(),
-			rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
-			rgDataExpedicao: $('#rgDataExpedicao').val(),
-			rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
-			rgUfEmissorId: $('#rgUfEmissorId').val(),
-			certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
-			certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-			certidaoNascimentoUfCartorioId: $('#certidaoNascimentoUfCartorioId').val(),
-			certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
-			certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
-			certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
-			certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
-			certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
-			certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-			certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val(),
-			certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
-			certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
-			certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
-			certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
-			certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
-			rneNumero: $("#rneNumero").val(),
-			rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
-			rneUfEmissorId: $("#rneUfEmissorId").val(),
-			rneDataExpedicao: $("#rneDataExpedicao").val(),
-			"certidaoNascimentoMunicipioCartorioId": $('#certidaoNascimentoMunicipioCartorioId').val(),
-			"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoCidadeCartorioId').val(),
-			"pessoaId": 2,
-		},
-		professorDTO: {
-			"pessoaId": 2,
-			"contaId": contaId,
-			"codigoInep": $("#codigoInep").val(),
-			"matricula": $("#matricula").val(),
-			"usuario": $("#usuario").val(),
-			"senha": $("#senha").val(),
-			"emailInstitucional": $("#emailInstitucional").val(),
-			"dataContratacao": $("#dataContratacao").val(),
-			"dataDemissao": $("#dataDemissao").val()
-		}
-	}
-
-
-	$.ajax({
-		url: url_base + "/professores/pessoa-professor",
-		type: "POST",
-		data: JSON.stringify(dadosFormulario),
-		contentType: "application/json; charset=utf-8",
-		error: function(e) {
-			console.log(e);
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-		},
-	}).done(function(data) {
+	if ($("#senhaConfirmacao").val() != $("#senha").val()) {
 		Swal.fire({
-			title: "Cadastrado com sucesso",
-			icon: "success",
-		})
-		window.location.href = "professores";
-	});
+			icon: "error",
+			title: "A duas senhas devem ser iguais!",
+			text: "Verifique as senha novamente!",
+		});
+	} else {
+
+
+
+		let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
+
+		if (cpf == "") {
+			cpf = null
+		}
+
+
+
+
+		var dadosFormulario = {
+			pessoaDTO: {
+				contaId: contaId,
+				nomeCompleto: $('#nomeCompleto').val(),
+				nomeMae: null,
+				nomePai: null,
+				sexo: $('input[name="sexo"]:checked').val(),
+				dtNascimento: $('#dtNascimento').val(),
+				cpf: cpf,
+				racaId: $('#racaId').val(),
+				paisNascimentoId: $('#paisNascimentoId').val(),
+				paisResidenciaId: $('#paisResidenciaId').val(),
+				ufNascimentoId: $('#ufNascimentoId').val(),
+				municipioNascimentoId: $('#municipioNascimentoId').val(),
+				nacionalidadeId: $('#nacionalidadeId').val(),
+				"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 3),
+				estadoCivil: $('input[name="estadoCivil"]:checked').val(),
+				rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
+				rgDataExpedicao: $('#rgDataExpedicao').val(),
+				rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
+				rgUfEmissorId: $('#rgUfEmissorId').val(),
+				certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
+				certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
+				certidaoNascimentoUfCartorioId: Number($('#certidaoNascimentoUfCartorioId').val()),
+				certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
+				certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
+				certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
+				certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
+				certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
+				certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
+				certidaoCasamentoUfCartorioId: Number($('#certidaoCasamentoUfCartorioId').val()),
+				certidaoCasamentoCidadeCartorio: $('#certidaoCasamentoCidadeCartorio').val(),
+				certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
+				certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
+				certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
+				certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
+				rneNumero: $("#rneNumero").val(),
+				rneOrgaoExpedidor: $("#rneOrgaoExpedidor").val(),
+				rneUfEmissorId: $("#rneUfEmissorId").val(),
+				rneDataExpedicao: $("#rneDataExpedicao").val(),
+				"certidaoNascimentoMunicipioCartorioId": $('#certidaoNascimentoMunicipioCartorioId').val(),
+				"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoMunicipioCartorioId').val(),
+				"pessoaId": 2,
+			},
+			professorDTO: {
+				"pessoaId": 2,
+				"contaId": contaId,
+				"codigoInep": $("#codigoInep").val(),
+				"matricula": $("#matricula").val(),
+				"usuario": $("#usuario").val(),
+				"senha": $("#senha").val(),
+				"emailInstitucional": $("#emailInstucional").val(),
+				"dataContratacao": $("#dataContratacao").val(),
+				"dataDemissao": $("#dataDemissao").val()
+			}
+
+		}
+
+		console.log(dadosFormulario)
+
+
+		$.ajax({
+			url: url_base + "/professores/pessoa-professor",
+			type: "POST",
+			data: JSON.stringify(dadosFormulario),
+			contentType: "application/json; charset=utf-8",
+			error: function(e) {
+				console.log(e);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+				});
+			},
+		}).done(function(data) {
+			Swal.fire({
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			})
+			window.location.href = "professores";
+		});
+
+	}
 
 });
 
@@ -478,3 +499,50 @@ $('#ufNascimentoId').change(() => {
 
 	})
 })
+
+
+
+$('#paisNascimentoId').change(() => {
+	$("#municipioNascimentoId").attr("disabled", false)
+	$("#municipioNascimentoId").empty()
+	$("#municipioNascimentoId").append("<option selected disabled>Selecione uma opção</option>")
+	$.ajax({
+		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#municipioNascimentoId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+		});
+
+
+	})
+})
+
+$(".reveal").on('click', function() {
+	let pwd = $(this).siblings("input");
+	let icon = $(this).find("i");
+	if (pwd.attr('type') === 'password') {
+		pwd.attr('type', 'text');
+		icon.removeClass("fa-eye").addClass("fa-eye-slash");
+	} else {
+		pwd.attr('type', 'password');
+		icon.removeClass("fa-eye-slash").addClass("fa-eye");
+	}
+});
+
+$(".reveal-pwd").on('click', function() {
+	let pwd = $(this).siblings("input");
+	let icon = $(this).find("i");
+	if (pwd.attr('type') === 'password') {
+		pwd.attr('type', 'text');
+		icon.removeClass("fa-eye").addClass("fa-eye-slash");
+	} else {
+		pwd.attr('type', 'password');
+		icon.removeClass("fa-eye-slash").addClass("fa-eye");
+	}
+});

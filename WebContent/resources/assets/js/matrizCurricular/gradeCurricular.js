@@ -12,9 +12,13 @@ let descricao = ''
 let id = ''
 
 $(document).ready(function() {
+	
 
 	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
 		$('#curriculoIdLista').removeAttr('disabled');
+		$("#cotainerNewCadastro").removeClass("none");
+		$("#myTable").removeClass("none");
+		$(".container-table").show();
 
 		$.ajax({
 			url: url_base + `/curriculo/curso/${cursoIdSession}`,
@@ -211,6 +215,7 @@ $(document).ready(function() {
 
 	showPage(currentPage);
 	updatePagination();
+	
 
 });
 
@@ -317,7 +322,7 @@ function alteraStatus(element) {
 			});
 		}
 	}).then(data => {
-		window.location.href = 'grade-curricular-matriz-curricular'
+		window.location.href = 'grade-curricular'
 	})
 }
 
@@ -343,14 +348,16 @@ function listarGrade() {
 	const idCurriculo = $("#curriculoIdLista").val()
 	console.log(idCurriculo)
 
-	if (idCurriculo != null || idCurriculo != undefined || idCurriculo != 0) {
+	if (idCurriculo != null && idCurriculo != undefined && idCurriculo != 0) {
+		$("#cotainerNewCadastro").removeClass("none");
+		$("#myTable").removeClass("none");
+		$(".container-table").show();
 		getDados(idCurriculo)
 	} else {
 		Swal.fire({
 			icon: "error",
 			title: "Oops...",
 			text: "Você deve preencher os dois campos antes de listar as grades!",
-
 		});
 	}
 
