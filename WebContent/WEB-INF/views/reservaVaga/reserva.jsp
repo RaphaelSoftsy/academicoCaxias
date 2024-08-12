@@ -95,7 +95,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					número acima para finalizar a matrícula.</h6>
 			</div>
 
-		<!-- 	<div class="col-md-12 text-center mt-3">
+			<div class="col-md-12 text-center mt-3">
+				<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
+					style="width: 180px" href="reservas"><i
+					class="fa-solid fa-right-from-bracket me-2"></i>Voltar</a>
+			</div>
+
+			<!-- 	<div class="col-md-12 text-center mt-3">
 				<button type="submit" class="btn btn-primary px-5" id="btn-submit"
 					onclick="window.location.href = 'reserva-ficha' ">Preencher
 					Ficha Médica</button>

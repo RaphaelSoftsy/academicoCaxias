@@ -32,8 +32,16 @@ $(document).ready(function() {
 		const contaId = localStorage.getItem('contaId')
 		sessionStorage.setItem('contaId', contaId)
 
-		const transacao = "/" + $(location).attr('href').split("/")[$(location).attr('href').split("/").length - 1];
+		let transacao = "/" + $(location).attr('href').split("/")[$(location).attr('href').split("/").length - 1];
 		console.log(transacao);
+		
+		if(transacao.includes('?')){
+			let pathUrl = transacao
+			console.log(pathUrl)
+			transacao = pathUrl.split('?')[0]
+			console.log(transacao)
+		}
+		
 		$.ajax({
 			url: url_base + `/transacoes/acessos/${usuarioId}?url=${transacao}`,
 			type: "get",
@@ -67,6 +75,9 @@ $(document).ready(function() {
 
 				$('.checkbox-toggle').css('cursor', 'pointer').attr('disabled', true);
 				$('.checkbox-toggle').wrap('<div class="box-edit-val" onclick="notAccess()" title="Seu usuário não tem autorização"></div>');
+
+				$('.statusAprovacao').css('cursor', 'pointer').attr('disabled', true);
+				$('.statusAprovacao').wrap('<div class="box-edit-val" title="Seu usuário não tem autorização"></div>');
 
 				$('.toggle-group').click(() => notAccess())
 

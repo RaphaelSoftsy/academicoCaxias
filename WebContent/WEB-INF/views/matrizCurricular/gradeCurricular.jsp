@@ -107,19 +107,28 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								currículo</option>
 						</select>
 					</div>
+					<div class="col-md-3 align-self-end">
+						<button class="btn btn-warning px-5 btn-new-alter" id="btn-buscar"
+							style="font-weight: 500" onclick="listarGrade()">Buscar</button>
 
-					<div class="col-md-4 d-flex align-items-end">
+						<!-- <button
+							class="btn btn-primary btn btn-new-alter px-3 py-1 ms-auto"
+							onclick="listarGrade()">Listar</button> -->
+					</div>
+
+					<!-- <div class="col-md-4 d-flex align-items-end">
 						<button
 							class="btn btn-primary btn btn-new-alter px-3 py-1 ms-auto"
 							onclick="listarGrade()">Listar</button>
-					</div>
+					</div> -->
 				</div>
 
 			</div>
 
 			<hr>
 
-			<div class="row d-flex justify-content-end none" id="cotainerNewCadastro">
+			<div class="row d-flex justify-content-end none"
+				id="cotainerNewCadastro">
 				<div class="d-flex justify-content-end">
 					<button
 						class="btn btn-primary btn-lg btn-new-alter px-3 py-1  ms-auto"

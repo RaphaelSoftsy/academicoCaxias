@@ -15,6 +15,7 @@ var listaProfessores
 
 $(document).ready(function() {
 	$('.container-table').hide()
+	$('#btn-save').hide()
 	$.ajax({
 		url: url_base + "/escolas/conta/" + contaId,
 		type: "GET",
@@ -229,6 +230,7 @@ $('#btn-buscar').click(() => {
 	}).done(function(data) {
 		console.log(data)
 		$('.container-table').show()
+		$('#btn-save').show()
 		listaProfessores = data.data
 		listarProfessores(data.data)
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -279,6 +281,7 @@ const adicionar = () => {
 			title: "Adicionado com sucesso",
 			icon: "success",
 		}).then(result => {
+			$('#escolaId').val('')
 			getEscolas()
 		})
 	})

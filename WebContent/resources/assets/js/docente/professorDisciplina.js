@@ -16,6 +16,7 @@ let idDisciplina
 
 $(document).ready(function() {
 	$('.container-table').hide()
+	$('#btn-save').hide()
 	$.ajax({
 		url: url_base + "/disciplina/conta/" + contaId,
 		type: "GET",
@@ -259,6 +260,7 @@ $('#btn-buscar').click(() => {
 		}
 	}).done(function(data) {
 		$('.container-table').show()
+		$('#btn-save').show()
 		console.log(data)
 		listaProfessores = data.data
 		listarProfessores(data.data)
@@ -274,45 +276,50 @@ const adicionar = () => {
 		"disciplinaId": $('#disciplinaId').val()
 	}
 
-	$.ajax({
-		url: url_base + "/professorDisciplina",
-		type: "POST",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
-			Swal.close()
-			console.log(e)
-			if (e.responseJSON != undefined) {
-				if (e.responseJSON.error == "Duplicidade de registro") {
+	if (idProfessorSelecionado == '') {
+
+	} else {
+		$.ajax({
+			url: url_base + "/professorDisciplina",
+			type: "POST",
+			data: JSON.stringify(objeto),
+			contentType: "application/json; charset=utf-8",
+			async: false,
+			beforeSend: function() {
+				Swal.showLoading()
+			},
+			error: function(e) {
+				Swal.close()
+				console.log(e)
+				if (e.responseJSON != undefined) {
+					if (e.responseJSON.error == "Duplicidade de registro") {
+						Swal.fire({
+							icon: "error",
+							title: "Erro de duplicidade",
+							text: "Essa disciplina já foi adicionada para esse professor!",
+
+						});
+					}
+				} else {
 					Swal.fire({
 						icon: "error",
-						title: "Erro de duplicidade",
-						text: "Essa disciplina já foi adicionada para esse professor!",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!",
 
 					});
 				}
-			} else {
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível realizar esse comando!",
-
-				});
 			}
-		}
-	}).done(function(data) {
-		Swal.close()
-		Swal.fire({
-			title: "Adicionado com sucesso",
-			icon: "success",
-		}).then(result => {
-			getDisciplinas()
+		}).done(function(data) {
+			Swal.close()
+			Swal.fire({
+				title: "Adicionado com sucesso",
+				icon: "success",
+			}).then(result => {
+				$('#disciplinaId').val('')
+				getDisciplinas()
+			})
 		})
-	})
+	}
 }
 
 $("#editItem").on("submit", function(e) {

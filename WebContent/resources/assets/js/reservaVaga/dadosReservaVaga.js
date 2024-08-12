@@ -49,6 +49,23 @@ $(document).ready(function() {
 	$('#nav-dados-aluno input, #nav-dados-aluno select').attr('disabled', true);
 	$('#nav-responsavel input, #nav-responsavel select').attr('disabled', true);
 	$('#nav-disabled input, #nav-disabled select').attr('disabled', true);
+
+	$.ajax({
+		url: url_base + "/motivoReprovacaoCandidato/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#motivoReprovacaoCandidatoId').append($('<option>', {
+				value: item.idMotivoReprovacaoCandidato,
+				text: item.motivoReprovacaoCandidato,
+				name: item.motivoReprovacaoCandidato
+			}));
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
+	})
+
 })
 
 function formatarDataParaBR(data) {
@@ -546,6 +563,32 @@ $('#prevFicha').click(function() {
 $('#nextFicha').click(function() {
 	goToPage(currentPage + 1);
 });
+
+$('#formReprovCand').submit(function(event) {
+	event.preventDefault();
+	$.ajax({
+		url: url_base + "/candidatos/" + Number(idCandidato) + '/reprovar',
+		type: "put",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!"
+
+			});
+		}
+	}).done(function(data) {
+		Swal.fire({
+			title: "Reprovado com sucesso",
+			icon: "success",
+		}).then((data) => {
+			window.location.href = 'reservas'
+		})
+	})
+})
 
 
 

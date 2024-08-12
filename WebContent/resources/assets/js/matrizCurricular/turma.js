@@ -8,8 +8,50 @@ var currentPage = 1;
 var pagesToShow = 5;
 let descricao = ''
 let id = ''
+var sortOrder = {};
+var dadosOriginais = [];
 
 $(document).ready(function() {
+
+	$('.dropdown-toggle-form').click(function() {
+		console.log('TESTE');
+		$(this).siblings('.dropdown-content-form').toggleClass('show');
+	});
+
+	$('.searchButton').click(function() {
+		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
+		console.log("Search Input:", searchInput);
+
+		var columnToSearch = $(this).closest('.sortable').data('column');
+		console.log("Column to Search:", columnToSearch);
+
+		var filteredData = dadosOriginais.filter(function(item) {
+			item.turnoPes = item.turno.turno
+			item.anoPeriodoPes = item.periodoLetivo.ano + '/' + item.periodoLetivo.periodo
+			item.disciplinaPes = item.gradeCurricular.disciplina.codDiscip + ' - ' + item.gradeCurricular.disciplina.nome
+			item.librasPes = item.libras == 'S' ? 'Sim' : 'Não'
+			console.log(item)
+			var valueToCheck = item[columnToSearch] ? item[columnToSearch].toString().toLowerCase() : '';
+			console.log(searchInput.toLowerCase())
+			return valueToCheck.toString().includes(searchInput.toLowerCase());
+		});
+
+		console.log("Filtered Data:", filteredData);
+		listarDados(filteredData);
+
+		$(this).siblings('.searchInput').val('');
+		$(this).closest('.dropdown-content-form').removeClass('show')
+		$('.checkbox-toggle').each(function() {
+			var status = $(this).data('status');
+			if (status !== 'S') {
+				$(this).prop('checked', false);
+			}
+		})
+
+		$('input[data-toggle="toggle"]').bootstrapToggle()
+	});
+
+
 	$.ajax({
 		url: url_base + "/escolas/conta/" + contaId,
 		type: "GET",
@@ -84,38 +126,15 @@ $(document).ready(function() {
 
 	getDados()
 
-	$("#inputBusca").on("keyup", function() {
-		var valorBusca = $(this).val().toLowerCase();
-
-		if (valorBusca === '') {
-			busca()
-			$("#cola-tabela tr").show();
-		} else {
-			$("#cola-tabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
-			}).show();
-		}
-	});
-
-	$("#inputBusca").on("input", function() {
-		var valorBusca = $(this).val().toLowerCase();
-		realizarBusca(valorBusca);
-	});
-
-	function realizarBusca(valorInput) {
-		if (valorInput === '') {
-			showPage(currentPage);
-		} else {
-			$("#cola-tabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorInput) > -1;
-			}).show();
-		}
-	}
-
-
 	showPage(currentPage);
 	updatePagination();
 
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
 });
 
 
@@ -126,12 +145,26 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
+			dadosOriginais = data
 			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 }
+
+$('#limpa-filtros').click(function() {
+	listarDados(dadosOriginais);
+	$('.searchInput').val('');
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	})
+
+	$('input[data-toggle="toggle"]').bootstrapToggle()
+});
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {

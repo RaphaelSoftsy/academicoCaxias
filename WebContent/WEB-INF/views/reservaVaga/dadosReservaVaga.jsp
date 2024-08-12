@@ -93,13 +93,13 @@ String contextPath = request.getContextPath();
 		<section
 			class="p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 			<div class="d-flex justify-content-end gap-2">
-				<button type="submit" id='reprovarCandidato' class="btn btn-danger"
-					onclick='reprovarCandidato()'>
+				<button type="submit" id='reprovarCandidato' class="btn btn-danger statusAprovacao"
+					data-bs-toggle="modal" data-bs-target="#reprovarCand">
 					<i class="fa-regular fa-circle-xmark"></i> <span>Reprovar
 						Candidato</span>
 				</button>
 				<button type="submit" id='aprovarCandidato'
-					onclick='aprovarCandidato()' class="btn btn-success">
+					onclick='aprovarCandidato()' class="btn btn-success statusAprovacao">
 					<i class="fa-regular fa-circle-check"></i> <span>Aprovar
 						Candidato</span>
 				</button>
@@ -393,7 +393,8 @@ String contextPath = request.getContextPath();
 									aria-label="Certidão de Nascimento UF Cartório"
 									id="certidaoNascimentoUfCartorioId"
 									name="certidaoNascimentoUfCartorioId">
-									<option selected value="0" disabled>Selecione uma opção</option>
+									<option selected value="0" disabled>Selecione uma
+										opção</option>
 								</select>
 							</div>
 
@@ -403,7 +404,8 @@ String contextPath = request.getContextPath();
 									aria-label="Certidão de Nascimento UF Cartório"
 									id="certidaoNascimentoMunicipioCartorioId"
 									name="certidaoNascimentoMunicipioCartorioId" disabled>
-									<option selected value="0" disabled>Selecione uma opção</option>
+									<option selected value="0" disabled>Selecione uma
+										opção</option>
 								</select>
 							</div>
 						</div>
@@ -827,7 +829,8 @@ String contextPath = request.getContextPath();
 									aria-label="Certidão de Nascimento UF Cartório"
 									id="certidaoNascimentoUfCartorioIdResponsavel"
 									name="certidaoNascimentoUfCartorioIdResponsavel">
-									<option selected disabled value="0">Selecione uma opção</option>
+									<option selected disabled value="0">Selecione uma
+										opção</option>
 								</select>
 							</div>
 
@@ -839,7 +842,8 @@ String contextPath = request.getContextPath();
 									id="certidaoNascimentoMunicipioCartorioIdResponsavel"
 									name="certidaoNascimentoMunicipioCartorioIdResponsavel"
 									disabled>
-									<option selected value="0" disabled>Selecione uma opção</option>
+									<option selected value="0" disabled>Selecione uma
+										opção</option>
 								</select>
 							</div>
 						</div>
@@ -1425,6 +1429,49 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id="reprovarCand" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="title-edit">Reprovação candidato</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form id="formReprovCand">
+							<!--  <div class="d-flex flex-column align-items-center mb-4 gap-2"
+								id="divSenha">
+							</div> -->
+							<div class="mb-4">
+								<label for="motivoReprovacaoCandidatoId" class="form-label">Motivo
+									reprovação:<span class="red">*</span>
+								</label> <select class="form-select"
+									aria-label="motivoReprovacaoCandidatoId"
+									id="motivoReprovacaoCandidatoId" required
+									name="motivoReprovacaoCandidatoId">
+									<option value='0' selected disabled>Selecione um
+										motivo:</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="obsReprovacaoCandidato" class="form-label">Observação:
+								</label> <input type="text" id="obsReprovacaoCandidato"
+									autocomplete="off" name="obsReprovacaoCandidato"
+									class="form-control" />
+							</div>
+							<div class="d-flex justify-content-end gap-2">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Fechar</button>
+								<button type="submit" id='btnReprovarCandidato' class="btn btn-danger"
+									data-bs-dismiss="modal">Reprovar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="modal fade" id="aprovarDoc" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">

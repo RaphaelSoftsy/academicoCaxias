@@ -82,8 +82,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3" style="display: flex; align-items: center;">
-
+			<div class="mt-3 mb-3"
+				style="display: flex; align-items: center; justify-content: space-between;">
 				<div class='col-6'>
 					<div class="input-group">
 						<input id="inputBusca" type="text" class="form-control inputForm"
@@ -92,9 +92,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
-					href="cadastro-turma	">Novo Cadastro</a>
+				<div class="d-flex align-items-center gap-2 ">
+					<button id="limpa-filtros" class="btn btn-danger btn-lg btn-new-alter px-3 py-1 ms-auto">
+						Limpar Filtros</button>
 
+					<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
+						href="cadastro-turma">Novo Cadastro</a>
+				</div>
 			</div>
 
 			<table
@@ -102,12 +106,146 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col">Turma</th>
-						<th scope="col">Disciplina</th>
-						<th scope="col">Ano/Periodo</th>
-						<th scope="col">Turno</th>
-						<th scope="col">Vagas</th>
-						<th scope="col">Libras</th>
+						<th scope="col" class="sortable border-end"
+							data-column="nomeTurma">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Turma</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="disciplinaPes">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Disciplina</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="anoPeriodoPes">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Ano/Periodo</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="turnoPes">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Turno</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="vagas">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Vagas</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="librasPes">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Libras</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
 						<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
 						<th class="text-center" scope="col" width="10%">Ações</th>
 					</tr>
@@ -144,9 +282,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									aria-describedby="NomeTurma" autocomplete="off">
 							</div>
 							<div class="mb-4">
-								<label for="codTurmaInep" class="form-label">Codigo inep da turma:</label> <input
-									type="text" class="form-control" id="codTurmaInep" required
-									aria-describedby="CodTurmaInep" autocomplete="off">
+								<label for="codTurmaInep" class="form-label">Codigo inep
+									da turma:</label> <input type="text" class="form-control"
+									id="codTurmaInep" required aria-describedby="CodTurmaInep"
+									autocomplete="off">
 							</div>
 							<div class="mb-4">
 								<label for="vagas" class="form-label">Vagas:</label> <input
@@ -172,20 +311,20 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="periodoLetivoId" class="form-label">Periodo Letivo:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="PeriodoLetivo" id="periodoLetivoId"
-									required name="periodoLetivoId">
+								<label for="periodoLetivoId" class="form-label">Periodo
+									Letivo:<span class="red">*</span>
+								</label> <select class="form-select" aria-label="PeriodoLetivo"
+									id="periodoLetivoId" required name="periodoLetivoId">
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
 							</div>
-							
+
 							<div class="mb-4">
-								<label for="gradeCurricularId" class="form-label">Grade Curricular:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="GradeCurricular" id="gradeCurricularId"
-									required name="gradeCurricularId">
+								<label for="gradeCurricularId" class="form-label">Grade
+									Curricular:<span class="red">*</span>
+								</label> <select class="form-select" aria-label="GradeCurricular"
+									id="gradeCurricularId" required name="gradeCurricularId">
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
@@ -193,8 +332,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="libras" class="form-label">Libras:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Libras"
-									id="libras" required name="libras">
+								</label> <select class="form-select" aria-label="Libras" id="libras"
+									required name="libras">
 									<option selected disabled value="">Selecione uma opção
 									</option>
 									<option value="S">Sim</option>
@@ -202,8 +341,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="controlaVagas" class="form-label">Controla Vagas:<span
-									class="red">*</span>
+								<label for="controlaVagas" class="form-label">Controla
+									Vagas:<span class="red">*</span>
 								</label> <select class="form-select" aria-label="ControlaVagas"
 									id="controlaVagas" required name="controlaVagas">
 									<option selected disabled value="">Selecione uma opção
