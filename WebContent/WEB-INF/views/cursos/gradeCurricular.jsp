@@ -118,23 +118,18 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </caption>
           <thead>
             <tr>
-              <th
-                scope="col"
-                class="sortable border-end"
-                data-column="cursoSerie"
-              >
-                <div
-                  class="d-flex align-items-center justify-content-between pe-2"
-                >
-                  <div
-                    class="col d-flex align-items-center justify-content-between"
-                  >
-                    <span>Série</span>
-                    <i class="fas fa-sort me-3" style="color: #dddddd"></i>
-                  </div>
-                </div>
-              </th>
-              <th scope="col" class="sortable border-end" data-column="turno">
+						<th scope="col" class="sortable border-end"
+							data-column="cursoSerie">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Série</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="turno">
                 <div
                   class="d-flex align-items-center justify-content-between pe-2"
                 >

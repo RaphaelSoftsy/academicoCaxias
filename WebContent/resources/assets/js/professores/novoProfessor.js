@@ -287,14 +287,11 @@ $('#formNovoCadastro').submit(function(event) {
 		});
 	} else {
 
-
-
 		let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
 
 		if (cpf == "") {
 			cpf = null
 		}
-
 
 
 
@@ -522,6 +519,153 @@ $('#paisNascimentoId').change(() => {
 
 	})
 })
+
+function ValidarCpf() {
+    const cpf = $('#cpf');
+
+    $.ajax({
+        url: url_base + '/pessoas/cpf/' + cpf.val().replace(/[^a-zA-Z0-9 ]/g, ""),
+        type: "get",
+        async: false
+    }).done(function(data){
+        console.log(data)
+
+        if (data.certidaoNascimentoNumero !== null &&
+            data.certidaoNascimentoDataEmissao !== null &&
+            data.certidaoNascimentoFolha !== null &&
+            data.certidaoNascimentoLivro !== null &&
+            data.certidaoNascimentoOrdem !== null) {
+
+            $('input[id="qualPreencher"]').attr('checked', true);
+
+            $("#certidaoCasamento").hide();
+            $("#certidaoNascimento").show();
+
+            $('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
+            $('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
+            $('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "").trigger('change');
+            $('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.idMunicipio : "").trigger('change');
+            $('#certidaoNascimentoMunicipioCartorioId').removeAttr("disabled");
+            $('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
+            $('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
+            $('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
+            $('#certidaoNascimentoOrdem').val(data.certidaoNascimentoOrdem);
+
+            // Restante do código...
+        } else if (data.certidaoCasamentoCartorio !== null &&
+            data.certidaoCasamentoMunicipioCartorio !== null &&
+            data.certidaoCasamentoDataEmissao !== null &&
+            data.certidaoCasamentoFolha !== null &&
+            data.certidaoCasamentoLivro !== null &&
+            data.certidaoCasamentoOrdem !== null) {
+            
+            $('input[id="qualPreencher"]').attr('checked', false);
+            $("#certidaoNascimento").hide();
+            $("#certidaoCasamento").show();
+
+            $('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
+            $('#certidaoCasamentoCartorio').val(data.certidaoCasamentoCartorio);
+            $('#certidaoCasamentoUfCartorioId').val(data.certidaoCasamentoMunicipioCartorio.ufId).trigger('change');
+            $('#certidaoCasamentoCidadeCartorioId').val(data.certidaoCasamentoMunicipioCartorio.idMunicipio).trigger('change');
+            $('#certidaoCasamentoCidadeCartorioId').removeAttr("disabled");
+            $('#certidaoCasamentoDataEmissao').val(data.certidaoCasamentoDataEmissao);
+            $('#certidaoCasamentoOrdem').val(data.certidaoCasamentoOrdem);
+            $('#certidaoCasamentoFolha').val(data.certidaoCasamentoFolha);
+            $('#certidaoCasamentoLivro').val(data.certidaoCasamentoLivro);
+
+            // Restante do código...
+        }
+
+        // Preenchendo outros campos de select
+        $('#racaId').val(data.raca.idRaca).trigger('change');
+        $('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade).trigger('change');
+        $('#paisNascimentoId').val(data.paisNascimento.idPais).trigger('change');
+        $('#paisResidenciaId').val(data.paisResidencia.idPais).trigger('change');
+        $('#ufNascimentoId').val(data.municipioNascimento.ufId).trigger('change');
+        $('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio).trigger('change');
+        $('#rgUfEmissorId').val(data.rgUfEmissor !== null ? data.rgUfEmissor.idUf : "").trigger('change');
+
+        // Preenchendo campos de input
+        $('#nomeCompleto').val(data.nomeCompleto);
+        $('#cpf').val(data.cpf !== null ? data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "");
+        $('#rgNumero').val(data.rgNumero !== null ? data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4") : "");
+        $('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
+        $('#rgDataExpedicao').val(data.rgDataExpedicao);
+        $('#dtNascimento').val(data.dtNascimento);
+        $('#sexo_' + data.sexo).prop('checked', true);
+        $('#estadoCivil_' + data.estadoCivil).prop('checked', true);
+        $('#telefone').val(data.telefone);
+        $('#celular').val(data.celular);
+        $('#email').val(data.email);
+        $('#empresa').val(data.empresa);
+        $('#ocupacao').val(data.ocupacao);
+        $('#telefoneComercial').val(data.telefoneComercial);
+
+        // Restante do código...
+    });
+
+    // Validação do CPF
+    const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
+    if (cpfValido(cpf.val())) {
+        $("#btn-submit").removeAttr('disabled');
+        cpf.removeClass('err-message');
+        $('#errMessage').css('display', 'none');
+    } else {
+        if ($("#cardCpf").find('#errMessage').length > 0) {
+            $('#errMessage').remove();
+        }
+        $("#btn-submit").attr("disabled", "disabled");
+        cpf.addClass('err-message');
+        $("#cardCpf").append(message);
+        message.show();
+    }
+}
+
+
+
+function cpfValido(cpf) {
+	cpf = cpf.replace(/[^\d]+/g, '');
+
+	if (cpf.length != 11)
+		return false;
+
+	var soma = 0;
+	var resto;
+	for (var i = 1; i <= 9; i++) {
+		soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+	}
+	resto = (soma * 10) % 11;
+
+	if ((resto == 10) || (resto == 11)) {
+		resto = 0;
+	}
+
+	if (resto != parseInt(cpf.substring(9, 10))) {
+		return false;
+	}
+
+	soma = 0;
+	for (var i = 1; i <= 10; i++) {
+		soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+	}
+	resto = (soma * 10) % 11;
+
+	if ((resto == 10) || (resto == 11)) {
+		resto = 0;
+	}
+
+	if (resto != parseInt(cpf.substring(10, 11))) {
+		return false;
+	}
+
+	return true;
+}
+
+$("#cpf").blur(function() {
+	if($("#cpf").val() !== '')
+		ValidarCpf()
+});
+
 
 $(".reveal").on('click', function() {
 	let pwd = $(this).siblings("input");

@@ -352,6 +352,7 @@ function listarGrade() {
 		$("#cotainerNewCadastro").removeClass("none");
 		$("#myTable").removeClass("none");
 		$(".container-table").show();
+		$("#messageInfo").addClass("none")
 		getDados(idCurriculo)
 	} else {
 		Swal.fire({

@@ -232,7 +232,7 @@ String contextPath = request.getContextPath();
 					<div class="form-control">
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="estadoCivil"
-								id="estadoCivil_co" value="so" required /> <label
+								id="estadoCivil_so" value="so" required /> <label
 								class="form-check-label" for="solteiro">Solteiro(a)</label>
 						</div>
 						<div class="form-check form-check-inline">

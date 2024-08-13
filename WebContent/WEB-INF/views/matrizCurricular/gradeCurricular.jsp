@@ -126,6 +126,11 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			</div>
 
 			<hr>
+			
+			
+			<div id="messageInfo" class="d-flex justify-content-center">
+				<h3>Selecione os filtros para a realizar a busca</h3>
+			</div>
 
 			<div class="row d-flex justify-content-end none"
 				id="cotainerNewCadastro">
