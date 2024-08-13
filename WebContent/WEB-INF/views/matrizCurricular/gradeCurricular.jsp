@@ -142,33 +142,36 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</div>
 			</div>
 
-			<table id="myTable"
-				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto none">
-				<caption>Itens Cadastrados</caption>
-				<thead>
-					<tr>
-						<th scope="col">Série</th>
-						<th scope="col">Disciplina</th>
-						<th scope="col">Obrigatória</th>
-						<th scope="col">Aulas Previstas</th>
-						<th scope="col">Retém Aluno</th>
-						<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
-						<th class="text-center" scope="col" width="10%">Ações</th>
-					</tr>
-				</thead>
-				<tbody id="cola-tabela" class="table-group-divider">
+			<div class="container-table contTable">
+				<table
+					class="table tableNot tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+					<caption>Itens Cadastrados</caption>
+					<thead>
+						<tr>
+							<th scope="col">Série</th>
+							<th scope="col">Disciplina</th>
+							<th scope="col">Obrigatória</th>
+							<th scope="col">Aulas Previstas</th>
+							<th scope="col">Retém Aluno</th>
+							<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
+							<th class="text-center" scope="col" width="10%">Ações</th>
+						</tr>
+					</thead>
+					<tbody id="cola-tabela" class="table-group-divider">
 
-				</tbody>
-			</table>
-			<div id="pagination" class="mx-auto mt-auto">
-				<button id="prev" class="btn btn-sm">
-					<i class="fa-solid fa-angle-left fa-xl"></i>
-				</button>
-				<div id="page-numbers" class="btn-group"></div>
-				<button id="next" class="btn btn-sm">
-					<i class="fa-solid fa-angle-right fa-xl"></i>
-				</button>
+					</tbody>
+				</table>
+				<div id="pagination" class="mx-auto mt-auto">
+					<button id="prev" class="btn btn-sm">
+						<i class="fa-solid fa-angle-left fa-xl"></i>
+					</button>
+					<div id="page-numbers" class="btn-group"></div>
+					<button id="next" class="btn btn-sm">
+						<i class="fa-solid fa-angle-right fa-xl"></i>
+					</button>
+				</div>
 			</div>
+
 		</section>
 		<div class="modal fade" id="newCadastro" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">

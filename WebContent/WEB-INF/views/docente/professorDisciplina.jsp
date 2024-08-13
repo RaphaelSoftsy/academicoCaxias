@@ -120,6 +120,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<hr>
 
+				<div id="messageInfo" class="d-flex justify-content-center">
+					<h3>Selecione os filtros para a realizar a busca</h3>
+				</div>
+
 				<table
 					class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
 					<thead>
@@ -158,7 +162,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</tr>
 						</thead>
 						<tbody id="cola-tabela-disciplina" class="table-group-divider">
-								
+
 						</tbody>
 					</table>
 					<div id="pagination" class="mx-auto mt-auto">
@@ -187,7 +191,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Adicione disciplina ao professor:</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Adicione
+							disciplina ao professor:</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>

@@ -261,6 +261,7 @@ $('#btn-buscar').click(() => {
 	}).done(function(data) {
 		$('.container-table').show()
 		$('#btn-save').show()
+		$("#messageInfo").addClass("none")
 		console.log(data)
 		listaProfessores = data.data
 		listarProfessores(data.data)

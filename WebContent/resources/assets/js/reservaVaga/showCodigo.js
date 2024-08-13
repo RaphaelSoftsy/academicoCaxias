@@ -8,22 +8,10 @@ const contaId = localStorage.getItem('contaId')
 const reserva = localStorage.getItem('numeroReserva')
 
 $(document).ready(function() {
-	
-	
+
+
 	$("#reserva").text(reserva)
 
-/*	if (isNaN(contaId)) {
-		Swal.fire({
-			title: "Nenhum usuário localizado, logue novamente",
-			icon: "info",
-		}).then(result => {
-			if (result) {
-				window.location.href = "login"
-			}
-		})
-	}
-*/
-/*
 	console.log(contaId)
 
 	$("#inputBusca").on("keyup", function() {
@@ -54,8 +42,52 @@ $(document).ready(function() {
 		}
 	}
 
+	$.ajax({
+		url: url_base + "/candidatos/reservaFinal?candidato=" + reserva,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		listarDados(data);
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	})
+
 
 	showPage(currentPage);
 	updatePagination();
-*/
+
 });
+
+
+function listarDados(dados) {
+	var html = dados.map(function(item) {
+
+		return (
+			"<tr>" +
+
+			"<td>" +
+			item.nomeEscola +
+			"</td>" +
+
+			"<td>" +
+			item.codCurso +
+			"</td>" +
+
+			"<td>" +
+			item.nomeCurso +
+			"</td>" +
+
+			"<td>" +
+			item.serie +
+			"</td>" +
+
+			"<td>" +
+			item.turno +
+			"</td>" +
+
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela").html(html);
+}
