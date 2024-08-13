@@ -546,7 +546,7 @@ String contextPath = request.getContextPath();
 							type="text" id="codigoInep" autocomplete="off" name="codigoInep"
 							class="form-control" />
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6" id="cardMatricula">
 						<label for="matricula" class="form-label">Matricula: </label> <input
 							type="text" id="matricula" autocomplete="off" name="matricula"
 							class="form-control" />
@@ -578,7 +578,7 @@ String contextPath = request.getContextPath();
 
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-6" id="cardUsuario">
 						<label for="usuario" class="form-label">Usuário: <span
 							class="red">*</span>
 						</label> <input type="text" id="usuario" autocomplete="off" name="usuario"

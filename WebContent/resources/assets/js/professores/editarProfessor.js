@@ -273,9 +273,9 @@ function getDados2() {
 				$("#certidaoCasamento").show()
 				$('#certidaoCasamentoNumero').val(data.pessoa.certidaoCasamentoNumero);
 				$('#certidaoCasamentoCartorio').val(data.pessoa.certidaoCasamentoCartorio);
-				$('#certidaoCasamentoUfCartorioId').val(data.pessoa.certidaoCasamentoMunicipioCartorio.ufId);
-				$('#certidaoCasamentoCidadeCartorioId').val(data.peesoa.certidaoCasamentoMunicipioCartorio.idMunicipio);
-				$('#certidaoCasamentoCidadeCartorioId').removeAttr("disabled")
+				$('#certidaoCasamentoUfCartorioId').val(data.pessoa.certidaoCasamentoMunicipioCartorio !== null ? data.pessoa.certidaoCasamentoMunicipioCartorio.ufId : "");
+				$('#certidaoCasamentoMunicipioCartorioId').removeAttr("disabled")
+				$('#certidaoCasamentoMunicipioCartorioId').val(data.pessoa.certidaoCasamentoMunicipioCartorio !== null ? data.pessoa.certidaoCasamentoMunicipioCartorio.idMunicipio : "");
 				$('#certidaoCasamentoDataEmissao').val(data.pessoa.certidaoCasamentoDataEmissao);
 				$('#certidaoCasamentoOrdem').val(data.pessoa.certidaoCasamentoOrdem);
 				$('#certidaoCasamentoFolha').val(data.pessoa.certidaoCasamentoFolha);
@@ -485,6 +485,94 @@ $('#certidaoNascimentoUfCartorioId').change(() => {
 
 
 	})
+})
+
+
+$("#usuario").blur(() => {
+
+	const usuario = $("#usuario")
+	$.ajax({
+		url: url_base + '/professores/verificar-usuario?usuario=' + usuario.val(),
+		type: "get"
+	}).done(function(data) {
+		if (data.data.length != 0) {
+			const messageUsuario = $("<p id='errMessageUsuario'></p>").text("Usuário já utilizado").css('color', '#FF0000');
+			if ($("#cardMatricula").find('#errMessageUsuario').length > 0) {
+				$('#errMessageUsuario').remove()
+			}
+			$("#btn-adicionar").attr("disabled", "disabled");
+			usuario.addClass('err-message')
+			$("#cardUsuario").append(messageUsuario)
+			messageUsuario.show()
+		} else {
+			$("#btn-adicionar").removeAttr('disabled');
+			usuario.removeClass('err-message')
+			$('#errMessageUsuario').css('display', 'none')
+
+
+		}
+	});
+})
+
+
+$("#matricula").blur(() => {
+
+	const matricula = $("#matricula")
+	$.ajax({
+		url: url_base + '/professores/verificar-matricula?matricula=' + matricula.val(),
+		type: "get",
+	}).done(function(data) {
+		if (data.data.length != 0) {
+			const messageEmail = $("<p id='errMessageMatricula'></p>").text("Matrícula já utilizada").css('color', '#FF0000');
+			if ($("#cardMatricula").find('#errMessageMatricula').length > 0) {
+				$('#errMessageMatricula').remove()
+			}
+			$("#btn-adicionar").attr("disabled", "disabled");
+			matricula.addClass('err-message')
+			$("#cardMatricula").append(messageEmail)
+			messageEmail.show()
+		} else {
+			$("#btn-adicionar").removeAttr('disabled');
+			matricula.removeClass('err-message')
+			$('#errMessageMatricula').css('display', 'none')
+
+
+		}
+	});
+})
+
+$("#cnpj").blur(function() {
+	let cnpj = $('#cnpj')
+	const message = $("<p id='errMessageCnpj'></p>").text("CNPJ Inválido").css('color', '#FF0000');
+ 
+	if (cnpjValido(cnpj.val())) {
+		$("#btn-submit").removeAttr('disabled');
+		cnpj.removeClass('err-message')
+		$('#errMessageCnpj').css('display', 'none')
+	} else {
+		if ($("#cardCNPJ").find('#errMessageCnpj').length == 1) {
+			$("#cardCNPJ").find('#errMessageCnpj' + this.value).remove()
+		}
+		$("#btn-submit").attr("disabled", "disabled");
+		cnpj.addClass('err-message')
+		$("#cardCNPJ").append(message)
+		message.show()
+	}
+});
+
+
+
+$('#paisNascimentoId').change(() => {
+	if($('#paisNascimentoId').val() != 31){
+		
+		$('#ufNascimentoId').val(28).trigger('change')
+		$("#municipioNascimentoId").val(5571).trigger('change')
+		$("#ufNascimentoId").attr("disabled", "disabled");
+		$("#municipioNascimentoId").attr("disabled", "disabled");
+	}else{
+		$("#ufNascimentoId").removeAttr( "disabled");
+		$("#municipioNascimentoId").removeAttr("disabled");
+	}
 })
 
 

@@ -500,125 +500,142 @@ $('#ufNascimentoId').change(() => {
 
 
 $('#paisNascimentoId').change(() => {
-	$("#municipioNascimentoId").attr("disabled", false)
-	$("#municipioNascimentoId").empty()
-	$("#municipioNascimentoId").append("<option selected disabled>Selecione uma opção</option>")
-	$.ajax({
-		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$('#municipioNascimentoId').append($('<option>', {
-				value: item.idMunicipio,
-				text: item.nomeMunicipio,
-				name: item.nomeMunicipio
-			}));
-		});
-
-
-	})
+	if($('#paisNascimentoId').val() != 31){
+		
+		$('#ufNascimentoId').val(28).trigger('change')
+		$("#municipioNascimentoId").val(5571).trigger('change')
+		$("#ufNascimentoId").attr("disabled", "disabled");
+		$("#municipioNascimentoId").attr("disabled", "disabled");
+	}else{
+		$("#ufNascimentoId").removeAttr( "disabled");
+		$("#municipioNascimentoId").removeAttr("disabled");
+	}
 })
 
 function ValidarCpf() {
-    const cpf = $('#cpf');
+	const cpf = $('#cpf');
 
-    $.ajax({
-        url: url_base + '/pessoas/cpf/' + cpf.val().replace(/[^a-zA-Z0-9 ]/g, ""),
-        type: "get",
-        async: false
-    }).done(function(data){
-        console.log(data)
+	$.ajax({
+		url: url_base + '/pessoas/cpf/' + cpf.val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		type: "get",
+		async: false,
+		error: function(e) {
+			console.log(e);
+			/*Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});*/
+			const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
+			if (cpfValido(cpf.val())) {
+				$("#btn-submit").removeAttr('disabled');
+				cpf.removeClass('err-message');
+				$('#errMessage').css('display', 'none');
+			} else {
+				if ($("#cardCpf").find('#errMessage').length > 0) {
+					$('#errMessage').remove();
+				}
+				$("#btn-submit").attr("disabled", "disabled");
+				cpf.addClass('err-message');
+				$("#cardCpf").append(message);
+				message.show();
+			}
 
-        if (data.certidaoNascimentoNumero !== null &&
-            data.certidaoNascimentoDataEmissao !== null &&
-            data.certidaoNascimentoFolha !== null &&
-            data.certidaoNascimentoLivro !== null &&
-            data.certidaoNascimentoOrdem !== null) {
+		},
+	}).done(function(data) {
+		const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
+		if (cpfValido(cpf.val())) {
+			$("#btn-submit").removeAttr('disabled');
+			cpf.removeClass('err-message');
+			$('#errMessage').css('display', 'none');
+		} else {
+			if ($("#cardCpf").find('#errMessage').length > 0) {
+				$('#errMessage').remove();
+			}
+			$("#btn-submit").attr("disabled", "disabled");
+			cpf.addClass('err-message');
+			$("#cardCpf").append(message);
+			message.show();
+		}
 
-            $('input[id="qualPreencher"]').attr('checked', true);
+		console.log(data)
 
-            $("#certidaoCasamento").hide();
-            $("#certidaoNascimento").show();
+		if (data.certidaoNascimentoNumero !== null &&
+			data.certidaoNascimentoDataEmissao !== null &&
+			data.certidaoNascimentoFolha !== null &&
+			data.certidaoNascimentoLivro !== null &&
+			data.certidaoNascimentoOrdem !== null) {
 
-            $('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
-            $('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
-            $('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "").trigger('change');
-            $('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.idMunicipio : "").trigger('change');
-            $('#certidaoNascimentoMunicipioCartorioId').removeAttr("disabled");
-            $('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
-            $('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
-            $('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
-            $('#certidaoNascimentoOrdem').val(data.certidaoNascimentoOrdem);
+			$('input[id="qualPreencher"]').attr('checked', true);
 
-            // Restante do código...
-        } else if (data.certidaoCasamentoCartorio !== null &&
-            data.certidaoCasamentoMunicipioCartorio !== null &&
-            data.certidaoCasamentoDataEmissao !== null &&
-            data.certidaoCasamentoFolha !== null &&
-            data.certidaoCasamentoLivro !== null &&
-            data.certidaoCasamentoOrdem !== null) {
-            
-            $('input[id="qualPreencher"]').attr('checked', false);
-            $("#certidaoNascimento").hide();
-            $("#certidaoCasamento").show();
+			$("#certidaoCasamento").hide();
+			$("#certidaoNascimento").show();
 
-            $('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
-            $('#certidaoCasamentoCartorio').val(data.certidaoCasamentoCartorio);
-            $('#certidaoCasamentoUfCartorioId').val(data.certidaoCasamentoMunicipioCartorio.ufId).trigger('change');
-            $('#certidaoCasamentoCidadeCartorioId').val(data.certidaoCasamentoMunicipioCartorio.idMunicipio).trigger('change');
-            $('#certidaoCasamentoCidadeCartorioId').removeAttr("disabled");
-            $('#certidaoCasamentoDataEmissao').val(data.certidaoCasamentoDataEmissao);
-            $('#certidaoCasamentoOrdem').val(data.certidaoCasamentoOrdem);
-            $('#certidaoCasamentoFolha').val(data.certidaoCasamentoFolha);
-            $('#certidaoCasamentoLivro').val(data.certidaoCasamentoLivro);
+			$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
+			$('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
+			$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "").trigger('change');
+			$('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.idMunicipio : "").trigger('change');
+			$('#certidaoNascimentoMunicipioCartorioId').removeAttr("disabled");
+			$('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
+			$('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
+			$('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
+			$('#certidaoNascimentoOrdem').val(data.certidaoNascimentoOrdem);
 
-            // Restante do código...
-        }
+			// Restante do código...
+		} else if (data.certidaoCasamentoCartorio !== null &&
+			data.certidaoCasamentoMunicipioCartorio !== null &&
+			data.certidaoCasamentoDataEmissao !== null &&
+			data.certidaoCasamentoFolha !== null &&
+			data.certidaoCasamentoLivro !== null &&
+			data.certidaoCasamentoOrdem !== null) {
 
-        // Preenchendo outros campos de select
-        $('#racaId').val(data.raca.idRaca).trigger('change');
-        $('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade).trigger('change');
-        $('#paisNascimentoId').val(data.paisNascimento.idPais).trigger('change');
-        $('#paisResidenciaId').val(data.paisResidencia.idPais).trigger('change');
-        $('#ufNascimentoId').val(data.municipioNascimento.ufId).trigger('change');
-        $('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio).trigger('change');
-        $('#rgUfEmissorId').val(data.rgUfEmissor !== null ? data.rgUfEmissor.idUf : "").trigger('change');
+			$('input[id="qualPreencher"]').attr('checked', false);
+			$("#certidaoNascimento").hide();
+			$("#certidaoCasamento").show();
 
-        // Preenchendo campos de input
-        $('#nomeCompleto').val(data.nomeCompleto);
-        $('#cpf').val(data.cpf !== null ? data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "");
-        $('#rgNumero').val(data.rgNumero !== null ? data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4") : "");
-        $('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
-        $('#rgDataExpedicao').val(data.rgDataExpedicao);
-        $('#dtNascimento').val(data.dtNascimento);
-        $('#sexo_' + data.sexo).prop('checked', true);
-        $('#estadoCivil_' + data.estadoCivil).prop('checked', true);
-        $('#telefone').val(data.telefone);
-        $('#celular').val(data.celular);
-        $('#email').val(data.email);
-        $('#empresa').val(data.empresa);
-        $('#ocupacao').val(data.ocupacao);
-        $('#telefoneComercial').val(data.telefoneComercial);
+			$('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
+			$('#certidaoCasamentoCartorio').val(data.certidaoCasamentoCartorio);
+			$('#certidaoCasamentoUfCartorioId').val(data.certidaoCasamentoMunicipioCartorio.ufId).trigger('change');
+			$('#certidaoCasamentoCidadeCartorioId').val(data.certidaoCasamentoMunicipioCartorio.idMunicipio).trigger('change');
+			$('#certidaoCasamentoCidadeCartorioId').removeAttr("disabled");
+			$('#certidaoCasamentoDataEmissao').val(data.certidaoCasamentoDataEmissao);
+			$('#certidaoCasamentoOrdem').val(data.certidaoCasamentoOrdem);
+			$('#certidaoCasamentoFolha').val(data.certidaoCasamentoFolha);
+			$('#certidaoCasamentoLivro').val(data.certidaoCasamentoLivro);
 
-        // Restante do código...
-    });
+			// Restante do código...
+		}
 
-    // Validação do CPF
-    const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
-    if (cpfValido(cpf.val())) {
-        $("#btn-submit").removeAttr('disabled');
-        cpf.removeClass('err-message');
-        $('#errMessage').css('display', 'none');
-    } else {
-        if ($("#cardCpf").find('#errMessage').length > 0) {
-            $('#errMessage').remove();
-        }
-        $("#btn-submit").attr("disabled", "disabled");
-        cpf.addClass('err-message');
-        $("#cardCpf").append(message);
-        message.show();
-    }
+		// Preenchendo outros campos de select
+		$('#racaId').val(data.raca.idRaca).trigger('change');
+		$('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade).trigger('change');
+		$('#paisNascimentoId').val(data.paisNascimento.idPais).trigger('change');
+		$('#paisResidenciaId').val(data.paisResidencia.idPais).trigger('change');
+		$('#ufNascimentoId').val(data.municipioNascimento.ufId).trigger('change');
+		$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio).trigger('change');
+		$('#rgUfEmissorId').val(data.rgUfEmissor !== null ? data.rgUfEmissor.idUf : "").trigger('change');
+
+		// Preenchendo campos de input
+		$('#nomeCompleto').val(data.nomeCompleto);
+		$('#cpf').val(data.cpf !== null ? data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "");
+		$('#rgNumero').val(data.rgNumero !== null ? data.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4") : "");
+		$('#rgOrgaoExpedidor').val(data.rgOrgaoExpedidor);
+		$('#rgDataExpedicao').val(data.rgDataExpedicao);
+		$('#dtNascimento').val(data.dtNascimento);
+		$('#sexo_' + data.sexo).prop('checked', true);
+		$('#estadoCivil_' + data.estadoCivil).prop('checked', true);
+		$('#telefone').val(data.telefone);
+		$('#celular').val(data.celular);
+		$('#email').val(data.email);
+		$('#empresa').val(data.empresa);
+		$('#ocupacao').val(data.ocupacao);
+		$('#telefoneComercial').val(data.telefoneComercial);
+
+		// Restante do código...
+	});
+
+	// Validação do CPF
+
 }
 
 
@@ -662,9 +679,63 @@ function cpfValido(cpf) {
 }
 
 $("#cpf").blur(function() {
-	if($("#cpf").val() !== '')
+	if ($("#cpf").val() !== '')
 		ValidarCpf()
 });
+
+
+$("#usuario").blur(() => {
+
+	const usuario = $("#usuario")
+	$.ajax({
+		url: url_base + '/professores/verificar-usuario?usuario=' + usuario.val(),
+		type: "get"
+	}).done(function(data) {
+		const messageUsuario = $("<p id='errMessageUsuario'></p>").text("Usuário já utilizado").css('color', '#FF0000');
+		if (data.data.length != 0) {
+			if ($("#cardMatricula").find('#errMessageUsuario').length > 0) {
+				$('#errMessageUsuario').remove()
+			}
+			$("#btn-submit").attr("disabled", "disabled");
+			usuario.addClass('err-message')
+			$("#cardUsuario").append(messageUsuario)
+			messageUsuario.show()
+		} else {
+			$("#btn-submit").removeAttr('disabled');
+			usuario.removeClass('err-message')
+			$('#errMessageUsuario').css('display', 'none')
+
+
+		}
+	});
+})
+
+
+$("#matricula").blur(() => {
+
+	const matricula = $("#matricula")
+	$.ajax({
+		url: url_base + '/professores/verificar-matricula?matricula=' + matricula.val(),
+		type: "get",
+	}).done(function(data) {
+		if (data.data.length != 0) {
+			const messageEmail = $("<p id='errMessageMatricula'></p>").text("Matrícula já utilizada").css('color', '#FF0000');
+			if ($("#cardMatricula").find('#errMessageMatricula').length > 0) {
+				$('#errMessageMatricula').remove()
+			}
+			$("#btn-submit").attr("disabled", "disabled");
+			matricula.addClass('err-message')
+			$("#cardMatricula").append(messageEmail)
+			messageEmail.show()
+		} else {
+			$("#btn-submit").removeAttr('disabled');
+			matricula.removeClass('err-message')
+			$('#errMessageMatricula').css('display', 'none')
+
+
+		}
+	});
+})
 
 
 $(".reveal").on('click', function() {
