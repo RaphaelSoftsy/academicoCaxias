@@ -120,6 +120,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<hr>
 
+				<div id="messageInfo" class="d-flex justify-content-center">
+					<h3>Selecione os filtros para a realizar a busca</h3>
+				</div>
+
 				<table
 					class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
 					<thead>
@@ -174,8 +178,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="col-md-12 text-end mt-3 mb-5">
 					<a data-bs-toggle="modal" data-bs-target="#editItem"
-						class="btn btn-primary px-5" id="btn-save">Adicionar
-						escola</a>
+						class="btn btn-primary px-5" id="btn-save">Adicionar escola</a>
 				</div>
 			</form>
 
@@ -187,7 +190,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Adicione o professor a escola:</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Adicione o
+							professor a escola:</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
@@ -196,8 +200,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="escolaId" class="form-label">Escola:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola"
-									id="escolaId" required name="escolaId">
+								</label> <select class="form-select" aria-label="Escola" id="escolaId"
+									required name="escolaId">
 									<option selected disabled value="">Selecione uma opção</option>
 								</select>
 							</div>

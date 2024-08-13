@@ -12,12 +12,10 @@ let descricao = ''
 let id = ''
 
 $(document).ready(function() {
-	
-
+	$(".container-table").hide()
 	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
 		$('#curriculoIdLista').removeAttr('disabled');
 		$("#cotainerNewCadastro").removeClass("none");
-		$("#myTable").removeClass("none");
 		$(".container-table").show();
 
 		$.ajax({
@@ -350,7 +348,6 @@ function listarGrade() {
 
 	if (idCurriculo != null && idCurriculo != undefined && idCurriculo != 0) {
 		$("#cotainerNewCadastro").removeClass("none");
-		$("#myTable").removeClass("none");
 		$(".container-table").show();
 		$("#messageInfo").addClass("none")
 		getDados(idCurriculo)
