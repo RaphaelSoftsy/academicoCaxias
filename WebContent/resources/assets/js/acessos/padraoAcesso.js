@@ -1,4 +1,4 @@
-var dados = [];
+	var dados = [];
 var sortOrder = {};
 var dadosOriginais = [];
 var rows = 7;

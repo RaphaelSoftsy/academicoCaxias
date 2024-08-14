@@ -62,12 +62,9 @@ $(document).ready(function() {
 function listarDados(dados) {
 	console.log(dados)
 	dados.map(function(item) {
-
 		$("#nomeEscola").text(item.nomeEscola)
 		$("#turno").text(item.turno)
 		$("#serie").text(item.serie)
 		$("#curso").text(item.nomeCurso)
 	})
-
-	$("#cola-tabela").html(html);
 }

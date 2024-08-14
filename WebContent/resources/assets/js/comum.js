@@ -10,6 +10,22 @@ const usuarioId = localStorage.getItem("usuarioId");
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
+
+/*	const links = [
+		{ rel: "apple-touch-icon", sizes: "180x180", href: "<%=contextPath%>/resources/assets/img/apple-touch-icon.png" },
+		{ rel: "icon", type: "image/png", sizes: "32x32", href: "<%=contextPath%>/resources/assets/img/favicon-32x32.png" },
+		{ rel: "icon", type: "image/png", sizes: "16x16", href: "<%=contextPath%>/resources/assets/img/favicon-16x16.png" },
+		{ rel: "manifest", href: "<%=contextPath%>/resources/assets/favicon/site.webmanifest" }
+	];
+
+	links.forEach(linkData => {
+		const link = document.createElement('link');
+		Object.keys(linkData).forEach(attr => {
+			link.setAttribute(attr, linkData[attr]);
+		});
+		document.head.appendChild(link);
+	});*/
+	
 	sessionStorage.setItem('nomeConta', nomeConta)
 	sessionStorage.setItem('usuarioId', usuarioId)
 
@@ -34,14 +50,14 @@ $(document).ready(function() {
 
 		let transacao = "/" + $(location).attr('href').split("/")[$(location).attr('href').split("/").length - 1];
 		console.log(transacao);
-		
-		if(transacao.includes('?')){
+
+		if (transacao.includes('?')) {
 			let pathUrl = transacao
 			console.log(pathUrl)
 			transacao = pathUrl.split('?')[0]
 			console.log(transacao)
 		}
-		
+
 		$.ajax({
 			url: url_base + `/transacoes/acessos/${usuarioId}?url=${transacao}`,
 			type: "get",
