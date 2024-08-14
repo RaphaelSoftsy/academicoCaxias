@@ -1,4 +1,5 @@
-                     <%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -109,9 +110,10 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6" id="cardCpf">
-						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label> <input
-							type="text" id="cpf" autocomplete="off"
-							data-mask="000.000.000-00" name="cpf" class="form-control" required/>
+						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label>
+						<input type="text" id="cpf" autocomplete="off"
+							data-mask="000.000.000-00" name="cpf" class="form-control"
+							required />
 					</div>
 					<!-- <div class="col-md-6">
 						<label for="rgNumero" class="form-label">RG:</label> <input
@@ -276,27 +278,31 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="rgNumero" class="form-label">RG: <span class="red">*</span></label> <input
-							type="text" id="rgNumero" autocomplete="off"
-							data-mask="00.000.000-0" name="rgNumero" class="form-control" required/>
+						<label for="rgNumero" class="form-label">RG: <span
+							class="red">*</span></label> <input type="text" id="rgNumero"
+							autocomplete="off" data-mask="00.000.000-0" name="rgNumero"
+							class="form-control" required />
 					</div>
 
 					<div class="col-md-6" id="rgDataExpedicaoDiv">
 						<label for="rgDataExpedicao" class="form-label">RG Data de
-							Expedição: <span class="red">*</span> </label> <input type="date" id="rgDataExpedicao"
-							autocomplete="off" name="rgDataExpedicao" class="form-control"  required/>
+							Expedição: <span class="red">*</span>
+						</label> <input type="date" id="rgDataExpedicao" autocomplete="off"
+							name="rgDataExpedicao" class="form-control" required />
 					</div>
 				</div>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="rgOrgaoExpedidor" class="form-label">Órgão
-							Expedidor-RG: <span class="red">*</span></label> <input type="text" id="rgOrgaoExpedidor"
-							autocomplete="off" name="rgOrgaoExpedidor" class="form-control" required/>
+							Expedidor-RG: <span class="red">*</span>
+						</label> <input type="text" id="rgOrgaoExpedidor" autocomplete="off"
+							name="rgOrgaoExpedidor" class="form-control" required />
 					</div>
 					<div class="col-md-6">
 						<label for="rgUfEmissorId" class="form-label">UF Emissor -
-							RG: <span class="red">*</span> </label> <select class="form-select" aria-label="RG UF Emissor"
+							RG: <span class="red">*</span>
+						</label> <select class="form-select" aria-label="RG UF Emissor"
 							id="rgUfEmissorId" name="rgUfEmissorId" required>
 							<option selected disabled value="">Selecione uma opção</option>
 						</select>
@@ -305,35 +311,37 @@ String contextPath = request.getContextPath();
 			</section>
 
 			<section
-					class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
-					<div class="row mb-3 d-flex align-itens-center justify-content-center">
-						<label for="qualPreencher" class="form-label">Qual deseja
-							preencher?<span class="red">*</span>
-						</label>
-						<div class="form-control card-form qualPreencherSwitch" style="width: 100%;">
-							<label for="qualPreencher">Certidão de Nascimento</label> <label
-								class="switch"> <input type="checkbox"
-								id="qualPreencher" name="qualPreencher"> <span
-								class="slider slider-certidao"></span>
-							</label> <label for="qualPreencher">Certidão de Casamento</label>
-						</div>
+				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
+				<div
+					class="row mb-3 d-flex align-itens-center justify-content-center">
+					<label for="qualPreencher" class="form-label">Qual deseja
+						preencher?<span class="red">*</span>
+					</label>
+					<div class="form-control card-form qualPreencherSwitch"
+						style="width: 100%;">
+						<label for="qualPreencher">Certidão de Nascimento</label> <label
+							class="switch"> <input type="checkbox" id="qualPreencher"
+							name="qualPreencher"> <span
+							class="slider slider-certidao"></span>
+						</label> <label for="qualPreencher">Certidão de Casamento</label>
+					</div>
 
-						<div class="form-control qualPreencher">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="qualPreencherCheck" id="isCertidaoNascimento" value="s" />
-								<label class="form-check-label" for="qualPreencherCheck">Certidão
-									de Nascimento</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="qualPreencherCheck" id="isCertidaoCasamento" value="c" />
-								<label class="form-check-label" for="qualPreencherCheck">Certidão
-									de Casamento</label>
-							</div>
+					<div class="form-control qualPreencher">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="qualPreencherCheck" id="isCertidaoNascimento" value="s" />
+							<label class="form-check-label" for="qualPreencherCheck">Certidão
+								de Nascimento</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="qualPreencherCheck" id="isCertidaoCasamento" value="c" />
+							<label class="form-check-label" for="qualPreencherCheck">Certidão
+								de Casamento</label>
 						</div>
 					</div>
-				</section>
+				</div>
+			</section>
 
 			<section
 				class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center"
@@ -547,9 +555,10 @@ String contextPath = request.getContextPath();
 							class="form-control" />
 					</div>
 					<div class="col-md-6" id="cardMatricula">
-						<label for="matricula" class="form-label">Matricula: </label> <input
-							type="text" id="matricula" autocomplete="off" name="matricula"
-							class="form-control" />
+						<label for="matricula" class="form-label">Matricula: <span
+							class="red">*</span>
+						</label> <input type="text" id="matricula" autocomplete="off"
+							name="matricula" class="form-control" required="required" />
 					</div>
 				</div>
 
@@ -603,7 +612,8 @@ String contextPath = request.getContextPath();
 					</div>
 
 					<div class="col-md-6" id="divSenhaConfirmacao">
-						<label for="senhaConfirmacao" class="form-label">Confirme a Senha:<span class="red">*</span>
+						<label for="senhaConfirmacao" class="form-label">Confirme
+							a Senha:<span class="red">*</span>
 						</label>
 						<div class="input-group">
 							<input class="form-control form-control pwd-conf senha"

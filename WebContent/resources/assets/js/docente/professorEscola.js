@@ -112,9 +112,11 @@ const getEscolas = () => {
 
 function listarEscolas(dados) {
 	var html
+	
 	if (dados.length > 0) {
 		html = dados.map(function(item) {
 			var tipoEscola
+			var cnpj = item.cnpj !== null ? item.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5"	) : "Não possui CNPJ"
 
 			if (item.tipoEscola = "PV") {
 				tipoEscola = 'Privada'
@@ -139,7 +141,7 @@ function listarEscolas(dados) {
 				"</td>" +
 
 				"<td>" +
-				item.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5") +
+				cnpj +
 				"</td>" +
 
 				"<td><div class='d-flex align-items-center gap-1'>" +

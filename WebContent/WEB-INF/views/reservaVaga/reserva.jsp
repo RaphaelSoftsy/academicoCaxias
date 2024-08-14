@@ -95,34 +95,44 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					número acima para finalizar a matrícula.</h6>
 			</div>
 
-			<div class="container-table contTable mt-5">
-				<table
-					class="table tableNot tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
-					<thead>
-						<tr>
-							<th scope="col">Escola</th>
-							<th scope="col">Código Curso</th>
-							<th scope="col">Curso</th>
-							<th scope="col">Série</th>
-							<th scope="col">Turno</th>
-						</tr>
-					</thead>
-					<tbody id="cola-tabela" class="table-group-divider">
 
-					</tbody>
-				</table>
-				<div id="pagination" class="mx-auto mt-auto">
-					<!-- <button id="prev" class="btn btn-sm">
-						<i class="fa-solid fa-angle-left fa-xl"></i>
-					</button>
-					<div id="page-numbers" class="btn-group"></div>
-					<button id="next" class="btn btn-sm">
-						<i class="fa-solid fa-angle-right fa-xl"></i>
-					</button> -->
+
+			<div class="col-md-10 mt-5 mx-auto">
+				<div class="row d-flex justify-content-center align-items-center">
+					<div class="d-flex justify-content-center align-items-center">
+						<span class="title me-2">Escola:</span> <span class="info-dados"
+							id="nomeEscola"></span>
+					</div>
+				</div>
+				<div
+					class="row d-flex justify-content-center align-items-center mt-3">
+					<div class="d-flex justify-content-center align-items-center">
+						<span class="title me-2">Curso:</span> <span class="info-dados"
+							id="curso"></span>
+					</div>
+				</div>
+				<div
+					class="row d-flex justify-content-center align-items-center mt-3">
+					<div class="d-flex justify-content-center align-items-center">
+						<span class="title me-2">Série:</span> <span class="info-dados"
+							id="serie"></span>
+					</div>
+				</div>
+				<div
+					class="row d-flex justify-content-center align-items-center mt-3">
+					<div class="d-flex justify-content-center align-items-center">
+						<span class="title me-2">Turno:</span> <span class="info-dados"
+							id="turno"></span>
+					</div>
 				</div>
 			</div>
 
-			<div class="col-md-12 text-center mt-3">
+
+
+
+
+
+			<div class="col-md-12 text-center mt-5">
 				<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
 					style="width: 180px" href="reservas"><i
 					class="fa-solid fa-right-from-bracket me-2"></i>Voltar</a>
@@ -153,7 +163,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-<script charset="UTF-8"
+	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/reservaVaga/showCodigo.js"></script>

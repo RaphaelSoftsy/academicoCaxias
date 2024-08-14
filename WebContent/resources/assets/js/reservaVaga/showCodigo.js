@@ -60,34 +60,14 @@ $(document).ready(function() {
 
 
 function listarDados(dados) {
-	var html = dados.map(function(item) {
+	console.log(dados)
+	dados.map(function(item) {
 
-		return (
-			"<tr>" +
-
-			"<td>" +
-			item.nomeEscola +
-			"</td>" +
-
-			"<td>" +
-			item.codCurso +
-			"</td>" +
-
-			"<td>" +
-			item.nomeCurso +
-			"</td>" +
-
-			"<td>" +
-			item.serie +
-			"</td>" +
-
-			"<td>" +
-			item.turno +
-			"</td>" +
-
-			"</tr>"
-		);
-	}).join("");
+		$("#nomeEscola").text(item.nomeEscola)
+		$("#turno").text(item.turno)
+		$("#serie").text(item.serie)
+		$("#curso").text(item.nomeCurso)
+	})
 
 	$("#cola-tabela").html(html);
 }

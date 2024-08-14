@@ -500,14 +500,14 @@ $('#ufNascimentoId').change(() => {
 
 
 $('#paisNascimentoId').change(() => {
-	if($('#paisNascimentoId').val() != 31){
-		
+	if ($('#paisNascimentoId').val() != 31) {
+
 		$('#ufNascimentoId').val(28).trigger('change')
 		$("#municipioNascimentoId").val(5571).trigger('change')
 		$("#ufNascimentoId").attr("disabled", "disabled");
 		$("#municipioNascimentoId").attr("disabled", "disabled");
-	}else{
-		$("#ufNascimentoId").removeAttr( "disabled");
+	} else {
+		$("#ufNascimentoId").removeAttr("disabled");
 		$("#municipioNascimentoId").removeAttr("disabled");
 	}
 })
@@ -515,31 +515,33 @@ $('#paisNascimentoId').change(() => {
 function ValidarCpf() {
 	const cpf = $('#cpf');
 
-	$.ajax({
+	const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
+	if (cpfValido(cpf.val())) {
+		$("#btn-submit").removeAttr('disabled');
+		cpf.removeClass('err-message');
+		$('#errMessage').css('display', 'none');
+	} else {
+		if ($("#cardCpf").find('#errMessage').length > 0) {
+			$('#errMessage').remove();
+		}
+		$("#btn-submit").attr("disabled", "disabled");
+		cpf.addClass('err-message');
+		$("#cardCpf").append(message);
+		message.show();
+	}
+
+	/*$.ajax({
 		url: url_base + '/pessoas/cpf/' + cpf.val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		type: "get",
 		async: false,
 		error: function(e) {
 			console.log(e);
-			/*Swal.fire({
+			Swal.fire({
 				icon: "error",
 				title: "Oops...",
 				text: "Não foi possível realizar esse comando!",
-			});*/
-			const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
-			if (cpfValido(cpf.val())) {
-				$("#btn-submit").removeAttr('disabled');
-				cpf.removeClass('err-message');
-				$('#errMessage').css('display', 'none');
-			} else {
-				if ($("#cardCpf").find('#errMessage').length > 0) {
-					$('#errMessage').remove();
-				}
-				$("#btn-submit").attr("disabled", "disabled");
-				cpf.addClass('err-message');
-				$("#cardCpf").append(message);
-				message.show();
-			}
+			});
+			
 
 		},
 	}).done(function(data) {
@@ -632,7 +634,7 @@ function ValidarCpf() {
 		$('#telefoneComercial').val(data.telefoneComercial);
 
 		// Restante do código...
-	});
+	});*/
 
 	// Validação do CPF
 
