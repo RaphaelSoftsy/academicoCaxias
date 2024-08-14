@@ -1,4 +1,3 @@
-
 var url_base = "http://10.40.110.2:8080/api-educacional-dev";
 
 const queryString = window.location.search;
@@ -10,22 +9,48 @@ const usuarioId = localStorage.getItem("usuarioId");
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
-
-/*	const links = [
-		{ rel: "apple-touch-icon", sizes: "180x180", href: "<%=contextPath%>/resources/assets/img/apple-touch-icon.png" },
-		{ rel: "icon", type: "image/png", sizes: "32x32", href: "<%=contextPath%>/resources/assets/img/favicon-32x32.png" },
-		{ rel: "icon", type: "image/png", sizes: "16x16", href: "<%=contextPath%>/resources/assets/img/favicon-16x16.png" },
-		{ rel: "manifest", href: "<%=contextPath%>/resources/assets/favicon/site.webmanifest" }
+	// Caminho base para os favicons
+	var contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf('/', 1));
+	
+	// Array de favicons para adicionar
+	var favicons = [
+		{ rel: 'apple-touch-icon', sizes: '180x180', href: `${contextPath}/resources/assets/img/apple-touch-icon.png`},
+		{ rel: 'icon', type: 'image/png', sizes: '32x32', href: `${contextPath}/resources/assets/img/favicon-32x32.png`},
+		{ rel: 'icon', type: 'image/png', sizes: '16x16', href: `${contextPath}/resources/assets/img/favicon-16x16.png` }
 	];
 
-	links.forEach(linkData => {
-		const link = document.createElement('link');
-		Object.keys(linkData).forEach(attr => {
-			link.setAttribute(attr, linkData[attr]);
+	// Loop para criar e adicionar cada favicon
+	$.each(favicons, function(index, favicon) {
+		var link = $('<link>', {
+			rel: favicon.rel,
+			sizes: favicon.sizes,
+			href: favicon.href
 		});
-		document.head.appendChild(link);
-	});*/
+
+		// Se o favicon tiver um tipo, adiciona ao link
+		if (favicon.type) {
+			link.attr('type', favicon.type);
+		}
+
+		// Adiciona o link ao <head> do documento
+		$('head').append(link);
+	})
+
+	/*	const links = [
+			{ rel: "apple-touch-icon", sizes: "180x180", href: "<%=contextPath%>/resources/assets/img/apple-touch-icon.png" },
+			{ rel: "icon", type: "image/png", sizes: "32x32", href: "<%=contextPath%>/resources/assets/img/favicon-32x32.png" },
+			{ rel: "icon", type: "image/png", sizes: "16x16", href: "<%=contextPath%>/resources/assets/img/favicon-16x16.png" },
+			{ rel: "manifest", href: "<%=contextPath%>/resources/assets/favicon/site.webmanifest" }
+		];
 	
+		links.forEach(linkData => {
+			const link = document.createElement('link');
+			Object.keys(linkData).forEach(attr => {
+				link.setAttribute(attr, linkData[attr]);
+			});
+			document.head.appendChild(link);
+		});*/
+
 	sessionStorage.setItem('nomeConta', nomeConta)
 	sessionStorage.setItem('usuarioId', usuarioId)
 

@@ -265,7 +265,7 @@ const adicionar = () => {
 					Swal.fire({
 						icon: "error",
 						title: "Erro de duplicidade",
-						text: "Essa disciplina já foi adicionada para esse professor!",
+						text: "Essa escola já foi adicionada para esse professor!",
 
 					});
 				}

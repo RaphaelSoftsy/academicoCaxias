@@ -104,7 +104,9 @@ function listarDisciplinas(dados) {
 			"</td>" +
 
 			"<td>" +
+			"<a href='disciplinas'>" +
 			item.codDiscip + ' - ' + item.nome +
+			"</a>" +
 			"</td>" +
 
 			"<td>" +
