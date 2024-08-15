@@ -11,7 +11,6 @@ let cpfFixed
 let emailFixed
 
 $(document).ready(function() {
-	$('#usuario').prop('disabled', true);
 	getDados()
 
 	$(".reveal").on('click', function() {
