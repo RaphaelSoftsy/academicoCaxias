@@ -4,9 +4,9 @@ let pessoaId = 0
 let professorId = 0
 
 $(document).ready(function() {
-	
-	
-	
+
+
+
 
 	id = getSearchParams("id");
 
@@ -37,7 +37,7 @@ $(document).ready(function() {
 		$("input[name='certidaoCasamentoNumero']").attr("required", false);
 		$("input[name='certidaoCasamentoCartorio']").attr("required", false);
 		$("select[name='certidaoCasamentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
-		$("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
+		$("select[name='certidaoCasamentoMunicipioCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
 		$("input[name='certidaoCasamentoFolha']").attr("required", false);
 		$("input[name='certidaoCasamentoLivro']").attr("required", false);
 		$("input[name='certidaoCasamentoOrdem']").attr("required", false);
@@ -208,7 +208,7 @@ $(document).ready(function() {
 
 
 	getDados2();
-	$("select").select2();	
+	$("select").select2();
 });
 
 function getDados2() {
@@ -218,11 +218,11 @@ function getDados2() {
 		async: false,
 	})
 		.done(function(data) {
-			
+
 			pessoaId = data.pessoa.idPessoa
 			professorId = data.idProfessor
 
-			
+
 
 
 			$('#municipioNascimentoId').attr('disabled', false)
@@ -253,6 +253,16 @@ function getDados2() {
 				$('#certidaoNascimentoLivro').val(data.pessoa.certidaoNascimentoLivro);
 				$('#certidaoNascimentoOrdem').val(data.pessoa.certidaoNascimentoOrdem);
 
+
+				$("input[name='certidaoNascimentoNumero']").attr("required", true);
+				$("select[name='certidaoNascimentoMunicipioCartorioId']").attr("required", true) // Adiciona required e inicializa select2
+				$("input[name='certidaoNascimentoCartorio']").attr("required", true);
+				$("select[name='certidaoNascimentoUfCartorioId']").attr("required", true) // Adiciona required e inicializa select2
+				$("input[name='certidaoNascimentoDataEmissao']").attr("required", true);
+				$("input[name='certidaoNascimentoFolha']").attr("required", true);
+				$("input[name='certidaoNascimentoLivro']").attr("required", true);
+				$("input[name='certidaoNascimentoOrdem']").attr("required", true);
+
 				$("[name='certidaoCasamentoNumero']").attr("required", false);
 				$("[name='certidaoCasamentoCartorio']").attr("required", false);
 				$("[name='certidaoCasamentoUfCartorioId']").attr("required", false);
@@ -273,13 +283,23 @@ function getDados2() {
 				$("#certidaoCasamento").show()
 				$('#certidaoCasamentoNumero').val(data.pessoa.certidaoCasamentoNumero);
 				$('#certidaoCasamentoCartorio').val(data.pessoa.certidaoCasamentoCartorio);
-				$('#certidaoCasamentoUfCartorioId').val(data.pessoa.certidaoCasamentoMunicipioCartorio !== null ? data.pessoa.certidaoCasamentoMunicipioCartorio.ufId : "");
+				$('#certidaoCasamentoUfCartorioId').val(data.pessoa.certidaoCasamentoMunicipioCartorio !== null ? data.pessoa.certidaoCasamentoMunicipioCartorio.ufId : "").trigger('change');
 				$('#certidaoCasamentoMunicipioCartorioId').removeAttr("disabled")
-				$('#certidaoCasamentoMunicipioCartorioId').val(data.pessoa.certidaoCasamentoMunicipioCartorio !== null ? data.pessoa.certidaoCasamentoMunicipioCartorio.idMunicipio : "");
+				$('#certidaoCasamentoMunicipioCartorioId').val(data.pessoa.certidaoCasamentoMunicipioCartorio !== null ? data.pessoa.certidaoCasamentoMunicipioCartorio.idMunicipio : "").trigger('change');
 				$('#certidaoCasamentoDataEmissao').val(data.pessoa.certidaoCasamentoDataEmissao);
 				$('#certidaoCasamentoOrdem').val(data.pessoa.certidaoCasamentoOrdem);
 				$('#certidaoCasamentoFolha').val(data.pessoa.certidaoCasamentoFolha);
 				$('#certidaoCasamentoLivro').val(data.pessoa.certidaoCasamentoLivro);
+
+
+				$("input[name='certidaoCasamentoNumero']").attr("required", true);
+				$("input[name='certidaoCasamentoCartorio']").attr("required", true);
+				$("select[name='certidaoCasamentoUfCartorioId']").attr("required", true); // Adiciona required e inicializa select2
+				$("select[name='certidaoCasamentoCidadeCartorioId']").attr("required", true) // Adiciona required e inicializa select2
+				$("input[name='certidaoCasamentoFolha']").attr("required", true);
+				$("input[name='certidaoCasamentoLivro']").attr("required", true);
+				$("input[name='certidaoCasamentoOrdem']").attr("required", true);
+				$("input[name='certidaoCasamentoDataEmissao']").attr("required", true);
 
 				$("[name='certidaoNascimentoNumero']").attr("required", false);
 				$("[name='certidaoNascimentoCidadeCartorio']").attr("required", false);
@@ -329,17 +349,13 @@ function getDados2() {
 
 			// Exemplo para estado civil usando radio button
 			$('input[name="estadoCivil"][value="' + data.pessoa.estadoCivil + '"]').prop('checked', true); // Supondo que o valor de 'estadoCivil' seja uma string como 'SO' ou 'CA'
-			
+
 			$("#codigoInep").val(data.codigoInep);
 			$("#matricula").val(data.matricula);
 			$("#dataContratacao").val(data.dataContratacao);
 			$("#dataDemissao").val(data.dataDemissao);
 			$("#emailInstucional").val(data.emailInstitucional);
 			$("#usuario").val(data.usuario);
-			
-			
-
-
 
 		})
 
@@ -417,7 +433,7 @@ $('#formNovoCadastro').submit(function(event) {
 			"dataDemissao": $("#dataDemissao").val()
 		}
 	}
-	
+
 	console.log(dadosFormulario)
 
 
@@ -454,7 +470,7 @@ $('#certidaoCasamentoUfCartorioId').change(() => {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			$('#certidaoCasamentoCidadeCartorioId').append($('<option>', {
+			$('#certidaoCasamentoMunicipioCartorioId').append($('<option>', {
 				value: item.idMunicipio,
 				text: item.nomeMunicipio,
 				name: item.nomeMunicipio
@@ -544,7 +560,7 @@ $("#matricula").blur(() => {
 $("#cnpj").blur(function() {
 	let cnpj = $('#cnpj')
 	const message = $("<p id='errMessageCnpj'></p>").text("CNPJ Inválido").css('color', '#FF0000');
- 
+
 	if (cnpjValido(cnpj.val())) {
 		$("#btn-submit").removeAttr('disabled');
 		cnpj.removeClass('err-message')
@@ -561,16 +577,39 @@ $("#cnpj").blur(function() {
 });
 
 
+$('#ufNascimentoId').change(() => {
+	$("#municipioNascimentoId").attr("disabled", false)
+	$("#municipioNascimentoId").empty()
+	$("#municipioNascimentoId").append("<option selected disabled>Selecione uma opção</option>")
+	$.ajax({
+		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#municipioNascimentoId').append($('<option>', {
+				value: item.idMunicipio,
+				text: item.nomeMunicipio,
+				name: item.nomeMunicipio
+			}));
+		});
+
+
+	})
+})
+
+
+
 
 $('#paisNascimentoId').change(() => {
-	if($('#paisNascimentoId').val() != 31){
-		
+	if ($('#paisNascimentoId').val() != 31) {
+
 		$('#ufNascimentoId').val(28).trigger('change')
 		$("#municipioNascimentoId").val(5571).trigger('change')
 		$("#ufNascimentoId").attr("disabled", "disabled");
 		$("#municipioNascimentoId").attr("disabled", "disabled");
-	}else{
-		$("#ufNascimentoId").removeAttr( "disabled");
+	} else {
+		$("#ufNascimentoId").removeAttr("disabled");
 		$("#municipioNascimentoId").removeAttr("disabled");
 	}
 })
@@ -621,24 +660,3 @@ $('input[name="qualPreencher"]').click(function() {
 		$("input[name='certidaoNascimentoOrdem']").attr("required", false);
 	}
 });
-
-$('#ufNascimentoId').change(() => {
-	$("#municipioNascimentoId").attr("disabled", false)
-	$("#municipioNascimentoId").empty()
-	$("#municipioNascimentoId").append("<option selected disabled>Selecione uma opção</option>")
-	$.ajax({
-		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$('#municipioNascimentoId').append($('<option>', {
-				value: item.idMunicipio,
-				text: item.nomeMunicipio,
-				name: item.nomeMunicipio
-			}));
-		});
-
-
-	})
-})
