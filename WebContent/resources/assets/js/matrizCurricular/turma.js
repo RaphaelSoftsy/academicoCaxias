@@ -267,7 +267,7 @@ function showModal(ref) {
 	limpaCampo()
 	id = ref.getAttribute("data-id");
 
-	window.location.href = "nova-turma-matriz-curricular?id=" + id
+	window.location.href = "cadastro-turma?id=" + id
 
 	/*$.ajax({
 		url: url_base + "/turma/" + id,

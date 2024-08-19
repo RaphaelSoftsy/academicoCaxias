@@ -191,7 +191,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row mb-3 mt-3 row-hidden">
 					<div class="col-md-6">
 						<label for="codTurmaInep" class="form-label">Código INEP:</label>
-						<input type="text" class="form-control" id="codTurmaInep" required
+						<input type="text" class="form-control" id="codTurmaInep"
 							aria-describedby="CodTurmaInep" autocomplete="off"
 							name="codTurmaInep">
 					</div>

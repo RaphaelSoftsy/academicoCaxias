@@ -469,7 +469,7 @@ const cadastrar = () => {
 					title: "Cadastrado com sucesso",
 					icon: "success",
 				}).then(result => {
-					window.location.href = "turma-matriz-curricular"
+					window.location.href = "turma"
 				})
 			}
 		})
@@ -512,7 +512,7 @@ function editar() {
 			title: "Editado com sucesso",
 			icon: "success",
 		}).then(result => {
-			window.location.href = 'turma-matriz-curricular'
+			window.location.href = 'turma'
 		})
 	})
 }
