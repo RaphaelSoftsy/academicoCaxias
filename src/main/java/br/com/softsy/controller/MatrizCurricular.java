@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //import br.com.softsy.utils.LoginUtils;
 
 @Controller
-public class matrizCurricular {
+public class MatrizCurricular {
 
 	@RequestMapping(value = { "area-conhecimento" }, method = RequestMethod.GET)
 	public String areaConhecimento(HttpSession session, Model model) throws Exception {

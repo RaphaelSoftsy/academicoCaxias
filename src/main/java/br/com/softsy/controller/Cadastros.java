@@ -635,5 +635,23 @@ public class Cadastros {
 		return "login/escolherConta";
 	}
 	
+	@RequestMapping(value = { "feriado-conta" }, method = RequestMethod.GET)
+	public String feriadosConta(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/feriadoConta";
+	}
+	
+	@RequestMapping(value = { "feriado-escola" }, method = RequestMethod.GET)
+	public String feriadosEscola(HttpSession session, Model model) throws Exception {
+ 
+		return "escolas/feriadoEscola";
+	}
+	
+	@RequestMapping(value = { "agenda" }, method = RequestMethod.GET)
+	public String agenda(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/agenda";
+	}
+	
 
 }
