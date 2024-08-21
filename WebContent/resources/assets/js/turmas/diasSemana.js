@@ -10,6 +10,7 @@ var idTurma = '';
 var horaIni = '';
 var horaFim = '';
 var diaSemana = '';
+var permiteChoqueHorario = '';
 
 $(document).ready(function() {
 
@@ -24,15 +25,15 @@ $(document).ready(function() {
 			$.each(data, function(index, item) {
 				$('#turmaIdEdit').append($('<option>', {
 					value: item.idTurma,
-					text: item.anoEscolar.anoEscolar + ' - ' + item.numTurma,
-					name: item.numTurma
+					text: item.nomeTurma,
+					name: item.nomeTurma
 				}));
 			});
 			$.each(data, function(index, item) {
 				$('#turmaId').append($('<option>', {
 					value: item.idTurma,
-					text: item.anoEscolar.anoEscolar + ' - ' + item.numTurma,
-					name: item.numTurma
+					text: item.nomeTurma,
+					name: item.nomeTurma
 				}));
 			});
 		})
@@ -150,6 +151,13 @@ $(document).ready(function() {
 	}
 
 
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
+
 
 	showPage(currentPage);
 	updatePagination();
@@ -187,13 +195,7 @@ function obterNomeDiaSemana(numeroDia) {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 
-		var turma = turmas.find(function(school) {
-			return school.idTurma === item.turmaId;
-		});
-
-		var numTurma = turma
-			? turma.anoEscolar.anoEscolar + ' - ' + turma.numTurma
-			: "Turma não encontrada.";
+		var chequeHorario = item.permiteChoqueHorario != "N" ? "Sim" : "Não";
 
 		var horaInicioFormatada = item.horaInicio.substring(0, 5);
 		var horaFimFormatada = item.horaFim.substring(0, 5);
@@ -204,7 +206,7 @@ function listarDados(dados) {
 		return (
 			"<tr>" +
 			"<td>" +
-			numTurma +
+			item.turma.nomeTurma +
 			"</td>" +
 			"<td>" +
 			nomeDiaSemana +
@@ -219,10 +221,23 @@ function listarDados(dados) {
 			horaFimFormatada
 			+
 			"</td>" +
+			"<td>" +
+			chequeHorario
+			+
+			"</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" data-status="' +
+			item.ativo +
+			'" data-id="' +
+			item.idTurmaDiaSemana +
+			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
 			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idTurma="' +
 			item.turmaId +
 			'" data-id="' +
 			item.idTurmaDiaSemana +
+			'" data-permitechoquehorario="' +
+			item.permiteChoqueHorario +
 			'" data-horaIni="' +
 			item.horaInicio +
 			'" data-horaFim="' +
@@ -235,6 +250,40 @@ function listarDados(dados) {
 	}).join("");
 
 	$("#cola-tabela").html(html);
+}
+
+
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+	console.log(status)
+	$.ajax({
+		url: url_base + `/turmaDiaSemana/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'turma-dia-semana'
+	})
 }
 
 
@@ -251,6 +300,16 @@ $('#exportar-excel').click(function() {
 });
 
 
+function getAswer(input) {
+
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
+	}
+
+}
+
 // Abrir modal
 
 function showModal(ref) {
@@ -259,12 +318,20 @@ function showModal(ref) {
 	horaIni = ref.getAttribute("data-horaIni");
 	horaFim = ref.getAttribute("data-horaFim");
 	diaSemana = ref.getAttribute("data-diaSemana");
+	permiteChoqueHorario = ref.getAttribute("data-permitechoquehorario");
+	
+	console.log(permiteChoqueHorario)
 
 	$("#turmaIdEdit").val(idTurma).attr('selected', true);
 	$("#horaInicioEdit").val(horaIni);
 	$("#horaFimEdit").val(horaFim);
 	$("#diaSemanaEdit").val(diaSemana).attr('selected', true);
-	
+	if (permiteChoqueHorario == "S") {
+		$('#permiteChoqueHorarioEdit').attr('checked', true)
+	} else {
+		$('#permiteChoqueHorarioEdit').attr('checked', false)
+	}
+
 }
 
 function formatarHoraParaAPI(hora) {
@@ -284,6 +351,8 @@ function editar() {
 		horaInicio: formatarHoraParaAPI($("#horaInicioEdit").val()),
 		horaFim: formatarHoraParaAPI($("#horaFimEdit").val()),
 		diaSemana: $("#diaSemanaEdit").val(),
+		permiteChoqueHorario: getAswer("#permiteChoqueHorarioEdit")
+
 	};
 
 	console.log(objeto)
@@ -314,7 +383,9 @@ function editar() {
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
-			})
+			}).then(() => {
+			window.location.href = "turma-dia-semana"
+		})
 		});
 
 	return false;
@@ -337,6 +408,7 @@ function cadastrar() {
 		horaInicio: formatarHoraParaAPI($("#horaInicio").val()),
 		horaFim: formatarHoraParaAPI($("#horaFim").val()),
 		diaSemana: $("#diaSemana").val(),
+		permiteChoqueHorario: getAswer("#choqueHorario")
 	};
 
 	$.ajax({
@@ -366,6 +438,9 @@ function cadastrar() {
 				title: "Cadastrado com sucesso",
 				icon: "success",
 			})
+			.then(() => {
+			window.location.href = "turma-dia-semana"
+		})
 		});
 	return false;
 }

@@ -653,5 +653,12 @@ public class Cadastros {
 		return "preCadastros/agenda";
 	}
 	
+	@RequestMapping(value = { "agenda-anexo" }, method = RequestMethod.GET)
+	public String agendaAnexo(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/agendaAnexo";
+	}
+	
+	
 
 }

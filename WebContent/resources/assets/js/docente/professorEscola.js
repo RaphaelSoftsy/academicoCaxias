@@ -211,7 +211,7 @@ function alteraStatus(element) {
 
 $('#btn-buscar').click(() => {
 	let nome = $('#nomeProfessor').val()
-	let cpf = $('#cpf').val()
+	let cpf = $('#cpf').val().replace(/[^\d]+/g, '')  
 	let matricula = $('#matricula').val()
 
 	/*let url = url_base + `/professores/filtrar?cpf${cpf}=&nome=${nome}&matricula=${matricula}`*/
