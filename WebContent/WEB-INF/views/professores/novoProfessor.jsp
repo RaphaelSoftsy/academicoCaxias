@@ -387,7 +387,7 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="certidaoNascimentoNumero" class="form-label">Número:
-							<span class="red">*</span>
+							
 						</label> <input type="text" id="certidaoNascimentoNumero"
 							autocomplete="off" name="certidaoNascimentoNumero"
 							class="form-control" />
@@ -395,7 +395,7 @@ String contextPath = request.getContextPath();
 
 					<div class="col-md-6">
 						<label for="certidaoNascimentoCartorio" class="form-label">Cartório
-							de registro: <span class="red">*</span>
+							de registro: 
 						</label> <input type="text" id="certidaoNascimentoCartorio"
 							autocomplete="off" name="certidaoNascimentoCartorio"
 							class="form-control" />
@@ -408,7 +408,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6"
 						style="display: flex; flex-direction: column;">
 						<label for="certidaoNascimentoUfCartorioId" class="form-label">UF
-							do cartório: <span class="red">*</span>
+							do cartório:
 						</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoUfCartorioId"
@@ -420,8 +420,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6"
 						style="display: flex; flex-direction: column;">
 						<label for="certidaoNascimentoMunicipioCartorioId"
-							class="form-label">Município do cartório: <span
-							class="red">*</span>
+							class="form-label">Município do cartório:
 						</label> <select class="form-control"
 							aria-label="Certidão de Nascimento UF Cartório"
 							id="certidaoNascimentoMunicipioCartorioId"
@@ -434,14 +433,14 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6" id='certidaoNascimentoDataEmissaoDiv'>
 						<label for="certidaoNascimentoDataEmissao" class="form-label">Data
-							de emissão: <span class="red">*</span>
+							de emissão: 
 						</label> <input type="date" id="certidaoNascimentoDataEmissao"
 							autocomplete="off" name="certidaoNascimentoDataEmissao"
 							class="form-control" />
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoNascimentoFolha" class="form-label">Folha:
-							<span class="red">*</span>
+							
 						</label> <input type="text" id="certidaoNascimentoFolha"
 							autocomplete="off" name="certidaoNascimentoFolha"
 							class="form-control" />
@@ -451,14 +450,14 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="certidaoNascimentoLivro" class="form-label">Livro:
-							<span class="red">*</span>
+						
 						</label> <input type="text" id="certidaoNascimentoLivro"
 							autocomplete="off" name="certidaoNascimentoLivro"
 							class="form-control" />
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoNascimentoOrdem" class="form-label">Ordem:
-							<span class="red">*</span>
+							
 						</label> <input type="text" id="certidaoNascimentoOrdem"
 							autocomplete="off" name="certidaoNascimentoOrdem"
 							class="form-control" />
@@ -474,14 +473,14 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="certidaoCasamentoNumero" class="form-label">Número:
-							<span class="red">*</span>
+							
 						</label> <input type="text" id="certidaoCasamentoNumero"
 							autocomplete="off" name="certidaoCasamentoNumero"
 							class="form-control" />
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoCasamentoCartorio" class="form-label">Cartório
-							de registro: <span class="red">*</span>
+							de registro: 
 						</label> <input type="text" id="certidaoCasamentoCartorio"
 							autocomplete="off" name="certidaoCasamentoCartorio"
 							class="form-control" />
@@ -491,7 +490,7 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="certidaoCasamentoUfCartorioId" class="form-label">UF
-							do cartório: <span class="red">*</span>
+							do cartório:
 						</label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
@@ -501,8 +500,7 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoCasamentoMunicipioCartorioId"
-							class="form-label">Municipio do cartório: <span
-							class="red">*</span>
+							class="form-label">Municipio do cartório: 
 						</label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoMunicipioCartorioId"
@@ -515,13 +513,13 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="certidaoCasamentoFolha" class="form-label">Folha:
-							<span class="red">*</span>
+						
 						</label> <input type="text" id="certidaoCasamentoFolha" autocomplete="off"
 							name="certidaoCasamentoFolha" class="form-control" />
 					</div>
 					<div class="col-md-6">
 						<label for="certidaoCasamentoLivro" class="form-label">Livro:
-							<span class="red">*</span>
+							
 						</label> <input type="text" id="certidaoCasamentoLivro" autocomplete="off"
 							name="certidaoCasamentoLivro" class="form-control" />
 					</div>
@@ -530,13 +528,13 @@ String contextPath = request.getContextPath();
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="certidaoCasamentoOrdem" class="form-label">Ordem:
-							<span class="red">*</span>
+						
 						</label> <input type="text" id="certidaoCasamentoOrdem" autocomplete="off"
 							name="certidaoCasamentoOrdem" class="form-control" />
 					</div>
 					<div class="col-md-6" id='certidaoCasamentoDataEmissaoDiv'>
 						<label for="certidaoCasamentoDataEmissao" class="form-label">Data
-							de emissão: <span class="red">*</span>
+							de emissão:
 						</label> <input type="date" id="certidaoCasamentoDataEmissao"
 							autocomplete="off" name="certidaoCasamentoDataEmissao"
 							class="form-control" />
