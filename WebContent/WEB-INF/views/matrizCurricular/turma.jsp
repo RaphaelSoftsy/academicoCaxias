@@ -93,7 +93,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
 				<div class="d-flex align-items-center gap-2 ">
-					<button id="limpa-filtros" class="btn btn-danger btn-lg btn-new-alter px-3 py-1 ms-auto">
+					<button id="limpa-filtros"
+						class="btn btn-danger btn-lg btn-new-alter px-3 py-1 ms-auto">
 						Limpar Filtros</button>
 
 					<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
@@ -130,7 +131,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="disciplinaPes">
+						<th scope="col" class="sortable border-end"
+							data-column="disciplinaPes">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -153,7 +155,32 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="anoPeriodoPes">
+						<th scope="col" class="sortable border-end"
+							data-column="escolaPes">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Escola</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="anoPeriodoPes">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -205,30 +232,6 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								<div
 									class="col d-flex align-items-center justify-content-between">
 									<span>Vagas</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton3">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent3">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar</button>
-									</div>
-								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="librasPes">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Libras</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">

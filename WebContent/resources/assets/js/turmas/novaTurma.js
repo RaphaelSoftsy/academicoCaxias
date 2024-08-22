@@ -1,149 +1,219 @@
+const contaId = localStorage.getItem('contaId');;
+let idGradeCurricularSelecionada
+let listaGrades
 
 $(document).ready(function() {
-	
-var selectAno = document.getElementById('anoVigente');
-var anoAtual = new Date().getFullYear();
-
-var anosRetroativos = anoAtual - 2000;
-var anosFuturos = 2;
-
-var anoInicial = anoAtual + anosFuturos;
-var anoFinal = anoAtual - anosRetroativos;
-
-for (var i = anoInicial; i >= anoFinal; i--) {
-    var option = document.createElement('option');
-    option.value = i;
-    option.text = i;
-    selectAno.appendChild(option);
-}   
-
 	$.ajax({
-		url: url_base + "/escolas",
+		url: url_base + "/escolas/conta/" + contaId,
 		type: "GET",
 		async: false,
-	})
-		.done(function(data) {
-			$.each(data, function(index, item) {
-				$('#escolaId').append($('<option>', {
-					value: item.idEscola,
-					text: item.nomeEscola,
-					name: item.nomeEscola
-				}));
-			});
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#escolaId').append($('<option>', {
+				value: item.idEscola,
+				text: item.nomeEscola,
+				name: item.nomeEscola
+			}));
 		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 
 	$.ajax({
-		url: url_base + "/anoEscolar",
+		url: url_base + "/periodoletivo/conta/" + contaId,
 		type: "GET",
 		async: false,
-	})
-		.done(function(data) {
-			$.each(data, function(index, item) {
-				$('#anoEscolarId').append($('<option>', {
-					value: item.idAnoEscolar,
-					text: item.anoEscolar,
-					name: item.anoEscolar
-				}));
-			});
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#periodoLetivoId").append(
+				$("<option>", {
+					value: item.idPeriodoLetivo,
+					text: `Ano: ${item.ano} - Período: ${item.periodo}`,
+					name: item.periodo,
+				})
+			);
 		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
 
 	$.ajax({
-		url: url_base + "/formaOrganEnsino",
+		url: url_base + "/turno/conta/" + contaId,
 		type: "GET",
 		async: false,
-	})
-		.done(function(data) {
-			$.each(data, function(index, item) {
-				$('#formaOrganEnsinoId').append($('<option>', {
-					value: item.idFormaOrganEnsino,
-					text: item.formaOrganEnsino,
-					name: item.formaOrganEnsino
-				}));
-			});
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
-	$.ajax({
-		url: url_base + "/tipoMedicao",
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			$.each(data, function(index, item) {
-				$('#tipoDeMedicaoId').append($('<option>', {
-					value: item.idTipoMedicao,
-					text: item.tipoMedicao,
-					name: item.tipoMedicao
-				}));
-			});
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
-	$.ajax({
-		url: url_base + "/turno",
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			$.each(data, function(index, item) {
-				$('#turnoId').append($('<option>', {
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#turnoId").append(
+				$("<option>", {
 					value: item.idTurno,
 					text: item.turno,
-					name: item.turno
-				}));
-			});
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+					name: item.turno,
+				})
+			);
 		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 
-	$.ajax({
-		url: url_base + "/tipoAtendimento",
+	/*$.ajax({
+		url: url_base + "/gradeCurricular/",
 		type: "GET",
 		async: false,
-	})
-		.done(function(data) {
-			$.each(data, function(index, item) {
-				$('#tipoAtendimentoId').append($('<option>', {
-					value: item.idTipoAtendimento,
-					text: item.tipoAtendimento,
-					name: item.tipoAtendimento
-				}));
-			});
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+	}).done(function(data) {
+		listaGrades = data
+		listarGrade(data)
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});*/
 
 	$.ajax({
-		url: url_base + "/modalidadeEscola",
+		url: url_base + "/cursos/conta/" + contaId,
 		type: "GET",
 		async: false,
-	})
-		.done(function(data) {
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			if (item.ativo == "S") {
+				$("#cursoIdLista").append(
+					$("<option>", {
+						value: item.idCurso,
+						text: item.nome,
+						name: item.nome,
+					})
+				);
+			}
+
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$('#cursoIdLista').change(() => {
+		$("#cola-tabela-grade").empty()
+
+		$('#curriculoIdLista').empty()
+		$('#curriculoIdLista').removeAttr('disabled');
+		$('#curriculoIdLista').append(`<option value='0' selected disabled>Selecione o currículo</option>`)
+
+		let curso = $('#cursoIdLista').val()
+		$.ajax({
+			url: url_base + `/curriculo/curso/${curso}`,
+			type: "get",
+			async: false,
+		}).done(function(data) {
+			console.log(data)
 			$.each(data, function(index, item) {
-				$('#modalidadeEscolaId').append($('<option>', {
-					value: item.idModalidadeEscola,
-					text: item.modalidadeEscola,
-					name: item.modalidadeEscola
+				$('#curriculoIdLista').append($('<option>', {
+					value: item.idCurriculo,
+					text: item.curriculo,
+					name: item.curriculo
 				}));
 			});
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+	});
 
 });
+
+function getGrade(event) {
+	event.preventDefault()
+	const idCurriculo = $("#curriculoIdLista").val()
+	if (idCurriculo != null && idCurriculo != undefined && idCurriculo != 0) {
+		$.ajax({
+			url: url_base + "/gradeCurricular/curriculo/" + idCurriculo,
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			if (data.length > 0) {
+				listaGrades = data
+				listarGrade(data)
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não existe nenhuma grade vinculada a este currículo!"
+				}).then();
+				$("#cola-tabela-grade").empty()
+			}
+
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+	} else {
+		Swal.fire({
+			icon: "error",
+			title: "Oops...",
+			text: "Você deve preencher os dois campos antes de listar as grades!",
+		});
+	}
+
+}
+
+const listarGrade = (dados) => {
+	var html = dados.map(function(item) {
+		var ativo;
+
+		var obrigatoria;
+		var retemSerie;
+
+		let colorBtn = 'btn-warning'
+
+		if (idGradeCurricularSelecionada == item.idGradeCurricular) {
+			colorBtn = 'btn-primary'
+		}
+
+
+		if (item.ativo == "N") {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+		} else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
+
+		if (item.obrigatoria == "N") {
+			obrigatoria = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		} else {
+			obrigatoria = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
+
+		if (item.retemSerie == "N") {
+			retemSerie = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+		} else {
+			retemSerie = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
+		}
+
+		return (
+			"<tr>" +
+
+			'<td class="d-flex justify-content-center"><span style="width: 50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn ' + colorBtn + ' btn-sm" data-id="' +
+			item.idGradeCurricular +
+			'"onclick="selecionar(this)"><i class="fa-solid fa-right-to-bracket fa-lg"></i></span></td>' +
+
+			"<td>" +
+			item.serie.serie +
+			"</td>" +
+
+			"<td>" +
+			item.disciplina.codDiscip + ' - ' + item.disciplina.nome +
+			"</td>" +
+
+			"<td>" +
+			obrigatoria +
+			"</td>" +
+
+			"<td>" +
+			retemSerie +
+			"</td>" +
+
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela-grade").html(html);
+}
+
+const selecionar = (element) => {
+	idGradeCurricularSelecionada = element.getAttribute("data-id")
+	listarGrade(listaGrades)
+}
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
@@ -178,9 +248,9 @@ $("#formNovoCadastro").submit(function(e) {
 		}
 	}).done(function(data) {
 		Swal.fire({
-				title: "Cadastrado com sucesso",
-				icon: "success",
-			})
+			title: "Cadastrado com sucesso",
+			icon: "success",
+		})
 		window.location.href = "escolas-turmas";
 	});
 
