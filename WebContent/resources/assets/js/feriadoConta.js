@@ -24,13 +24,15 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-
 		filteredData = dadosOriginais.filter(function(item) {
 			return item[columnToSearch].toString().toLowerCase().includes(searchInput);
 		});
+		
+		console.log(filteredData)
 
 
 		listarDados(filteredData);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -107,7 +109,7 @@ $(document).ready(function() {
 
 		});
 		listarDados(dadosOrdenados);
-		
+			
 	}
 
 

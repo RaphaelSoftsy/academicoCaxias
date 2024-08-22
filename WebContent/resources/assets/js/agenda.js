@@ -4,42 +4,16 @@ var dadosOriginais = [];
 var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
-var turmas = [];
 var id = '';
-var idTurma = '';
-var horaIni = '';
+var dataAgenda = '';
+var horaInicio = '';
 var horaFim = '';
-var diaSemana = '';
-var permiteChoqueHorario = '';
+var realizada = '';
+var tituloAula = '';
+var resumoAula = '';
+const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
-
-
-	$.ajax({
-		url: url_base + "/turma",
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			turmas = data;
-			$.each(data, function(index, item) {
-				$('#turmaIdEdit').append($('<option>', {
-					value: item.idTurma,
-					text: item.nomeTurma,
-					name: item.nomeTurma
-				}));
-			});
-			$.each(data, function(index, item) {
-				$('#turmaId').append($('<option>', {
-					value: item.idTurma,
-					text: item.nomeTurma,
-					name: item.nomeTurma
-				}));
-			});
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown, jqXHR);
-		});
 
 	getDados()
 
@@ -53,26 +27,13 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-		if (columnToSearch === 'turmaId') {
-			filteredData = dadosOriginais.filter(function(item) {
-				var turma = turmas.find(function(school) {
-					return school.idTurma === item.turmaId;
-				});
-				var numTurma = turma ? turma.numTurma.toLowerCase() : "";
-				return numTurma.includes(searchInput);
-			});
-		} else if (columnToSearch === 'diaSemana') {
-			var filteredData = dadosOriginais.filter(function(item) {
-				return item.diaSemana == searchInput;
-			});
-		} else {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item[columnToSearch].toString().toLowerCase().includes(searchInput);
-			});
-		}
+
+		filteredData = dadosOriginais.filter(function(item) {
+			return item[columnToSearch].toString().toLowerCase().includes(searchInput);
+		});
+
 
 		listarDados(filteredData);
-		$('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -149,6 +110,7 @@ $(document).ready(function() {
 
 		});
 		listarDados(dadosOrdenados);
+		
 	}
 
 
@@ -174,7 +136,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/turmaDiaSemana",
+		url: url_base + "/feriadosConta",
 		type: "GET",
 		async: false,
 	})
@@ -188,74 +150,78 @@ function getDados() {
 		});
 }
 
-function obterNomeDiaSemana(numeroDia) {
-	const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-	return diasSemana[numeroDia - 1];
+
+
+function formatarHoraParaAMPM(hora) {
+    let [horas, minutos] = hora.split(':');
+    horas = parseInt(horas, 10);
+    const periodo = horas >= 12 ? 'PM' : 'AM';
+    horas = horas % 12 || 12;
+    return `${('0' + horas).slice(-2)}:${minutos} ${periodo}`;
 }
+
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 
-		var chequeHorario = item.permiteChoqueHorario != "N" ? "Sim" : "Não";
+		const dataFeriado = item.dataAgenda
+		
+		const horaInicioFormatada = formatarHoraParaAMPM(item.horaInicio)
+		const horaFimFormatada = formatarHoraParaAMPM(item.horaFim)
+		const realizada = item.realizada === "S" ? "Sim" : "Não"
+		// Dividir a string nos componentes ano, mês e dia
+		const [ano, mes, dia] = dataFeriado.split('-');
 
-		var horaInicioFormatada = item.horaInicio.substring(0, 5);
-		var horaFimFormatada = item.horaFim.substring(0, 5);
+		// Formatar a data no formato "dd/mm/aaaa"
+		const dataFormatada = `${dia}/${mes}/${ano}`;
 
-		var nomeDiaSemana = obterNomeDiaSemana(item.diaSemana);
-
+		console.log(dataFormatada); // Saída: "01/01/2024"
 
 		return (
 			"<tr>" +
 			"<td>" +
-			item.turma.nomeTurma +
+			dataFormatada +
 			"</td>" +
 			"<td>" +
-			nomeDiaSemana +
+			horaInicioFormatada +
 			"</td>" +
 			"<td>" +
-			'Às ' +
-			horaInicioFormatada
-			+
+			horaFimFormatada+
 			"</td>" +
 			"<td>" +
-			'Às ' +
-			horaFimFormatada
-			+
+			realizada +
 			"</td>" +
 			"<td>" +
-			chequeHorario
-			+
+			item.tituloAula +
+			"</td>" +
+			"<td>" +
+			item.resumoAula +
 			"</td>" +
 			"<td><div class='d-flex align-items-center gap-1'>" +
 			'<input type="checkbox" data-status="' +
 			item.ativo +
 			'" data-id="' +
-			item.idTurmaDiaSemana +
+			item.idFeriadoConta +
 			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
-			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-idTurma="' +
-			item.turmaId +
-			'" data-id="' +
-			item.idTurmaDiaSemana +
-			'" data-permitechoquehorario="' +
-			item.permiteChoqueHorario +
-			'" data-horaIni="' +
-			item.horaInicio +
-			'" data-horaFim="' +
-			item.horaFim +
-			'" data-diaSemana="' +
-			item.diaSemana +
+			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+			' data-id="' +
+			item.idFeriadoConta +
+			'" data-descricao="' +
+			item.descricao +
+			'" data-dataFeriado="' +
+			item.dataFeriado +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
-	
+
 	// Reaplicar a estilização do toggle
 	$('input[data-toggle="toggle"]').bootstrapToggle();
 
 	$("#cola-tabela").html(html);
-	
-	
+
+
 }
 
 
@@ -277,7 +243,7 @@ function alteraStatus(element) {
 	console.log(id)
 	console.log(status)
 	$.ajax({
-		url: url_base + `/turmaDiaSemana/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		url: url_base + `/feriadosConta/${id}${status === "S" ? '/desativar' : '/ativar'}`,
 		type: "put",
 		error: function(e) {
 			Swal.close();
@@ -288,7 +254,7 @@ function alteraStatus(element) {
 			});
 		}
 	}).then(data => {
-		window.location.href = 'turma-dia-semana'
+		window.location.href = 'feriado-conta'
 	})
 }
 
@@ -306,65 +272,49 @@ $('#exportar-excel').click(function() {
 });
 
 
-function getAswer(input) {
-
-	if ($(input).is(':checked')) {
-		return 'S'
-	} else {
-		return 'N'
-	}
-
-}
-
 // Abrir modal
 
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
-	idTurma = ref.getAttribute("data-idTurma");
-	horaIni = ref.getAttribute("data-horaIni");
-	horaFim = ref.getAttribute("data-horaFim");
-	diaSemana = ref.getAttribute("data-diaSemana");
-	permiteChoqueHorario = ref.getAttribute("data-permitechoquehorario");
-	
-	console.log(permiteChoqueHorario)
+	dataFeriado = ref.getAttribute("data-dataFeriado");
+	descricao = ref.getAttribute("data-descricao");
 
-	$("#turmaIdEdit").val(idTurma).attr('selected', true);
-	$("#horaInicioEdit").val(horaIni);
-	$("#horaFimEdit").val(horaFim);
-	$("#diaSemanaEdit").val(diaSemana).attr('selected', true);
-	if (permiteChoqueHorario == "S") {
-		$('#permiteChoqueHorarioEdit').attr('checked', true)
-	} else {
-		$('#permiteChoqueHorarioEdit').attr('checked', false)
-	}
+	$("#dataFeriadoEdit").val(dataFeriado);
+	$("#descricaoEdit").val(descricao);
+
+
 
 }
 
-function formatarHoraParaAPI(hora) {
-	if (/^\d{2}:\d{2}$/.test(hora)) {
-		return hora + ":00";
-	}
-	return hora;
+function formatarDataParaAPI(data) {
+	// Usar UTC para evitar problemas de fuso horário
+	var year = data.getUTCFullYear();
+	var month = ('0' + (data.getUTCMonth() + 1)).slice(-2);
+	var day = ('0' + data.getUTCDate()).slice(-2);
+
+	return year + '-' + month + '-' + day;
 }
+
 
 // Editar
 
 function editar() {
 
-	var objeto = {
-		idTurmaDiaSemana: id,
-		turmaId: Number($('#turmaIdEdit').val()),
-		horaInicio: formatarHoraParaAPI($("#horaInicioEdit").val()),
-		horaFim: formatarHoraParaAPI($("#horaFimEdit").val()),
-		diaSemana: $("#diaSemanaEdit").val(),
-		permiteChoqueHorario: getAswer("#permiteChoqueHorarioEdit")
+	const dataFeriado = new Date($("#dataFeriadoEdit").val())
 
-	};
+	const dataFormatada = formatarDataParaAPI(dataFeriado)
+
+	var objeto = {
+		"idFeriadoConta": id,
+		"descricao": $("#descricaoEdit").val(),
+		"contaId": contaId,
+		"dataFeriado": dataFormatada
+	}
 
 	console.log(objeto)
 
 	$.ajax({
-		url: url_base + "/turmaDiaSemana",
+		url: url_base + "/feriadosConta",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -379,10 +329,9 @@ function editar() {
 		}
 	})
 		.done(function(data) {
-			$("#turmaIdEdit").val('');
-			$("#horaInicioEdit").val('');
-			$("#horaFimEdit").val('');
-			$("#diaSemanaEdit").val('');
+			$("#dataFeriadoEdit").val('');
+			$("#descricaoEdit").val('');
+
 			getDados();
 			showPage(currentPage);
 			updatePagination();
@@ -390,8 +339,8 @@ function editar() {
 				title: "Editado com sucesso",
 				icon: "success",
 			}).then(() => {
-			window.location.href = "turma-dia-semana"
-		})
+				window.location.href = "feriado-conta"
+			})
 		});
 
 	return false;
@@ -409,16 +358,20 @@ $('#formEdit').on('submit', function(e) {
 
 function cadastrar() {
 
+	const dataFeriado = new Date($("#dataFeriado").val())
+
+	const dataFormatada = formatarDataParaAPI(dataFeriado)
+
 	var objeto = {
-		turmaId: Number($('#turmaId').val()),
-		horaInicio: formatarHoraParaAPI($("#horaInicio").val()),
-		horaFim: formatarHoraParaAPI($("#horaFim").val()),
-		diaSemana: $("#diaSemana").val(),
-		permiteChoqueHorario: getAswer("#choqueHorario")
+		"descricao": $("#descricao").val(),
+		"contaId": contaId,
+		"dataFeriado": dataFormatada
 	};
 
+	console.log(objeto)
+
 	$.ajax({
-		url: url_base + "/turmaDiaSemana",
+		url: url_base + "/feriadosConta",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -444,9 +397,9 @@ function cadastrar() {
 				title: "Cadastrado com sucesso",
 				icon: "success",
 			})
-			.then(() => {
-			window.location.href = "turma-dia-semana"
-		})
+				.then(() => {
+					window.location.href = "feriado-conta"
+				})
 		});
 	return false;
 }
@@ -461,8 +414,6 @@ $('#formCadastro').on('submit', function(e) {
 // Limpa input
 
 function limpaCampo() {
-	$("#turmaId").val('');
-	$("#horaInicio").val('');
-	$("#horaFim").val('');
-	$("#diaSemana").val('');
+	$("#descricao").val('');
+	$("#dataFeriado").val('');
 }

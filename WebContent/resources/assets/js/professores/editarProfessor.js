@@ -430,7 +430,7 @@ $('#formNovoCadastro').submit(function(event) {
 			"idProfessor": professorId,
 			"pessoaId": pessoaId,
 			"contaId": contaId,
-			"codigoInep": $("#codigoInep").val(),
+			"codigoInep": $("#codigoInep").val() === '' ? null : $("#codigoInep").val(),
 			"matricula": $("#matricula").val(),
 			"usuario": $("#usuario").val(),
 			"senha": $("#senha").val(),

@@ -23,7 +23,7 @@ $(document).ready(function() {
 		$("#certidaoNascimento").show();
 		$("#certidaoCasamento").hide();
 
-		
+
 		$("input[name='certidaoCasamentoNumero']").attr("required", false);
 		$("input[name='certidaoCasamentoCartorio']").attr("required", false);
 		$("select[name='certidaoCasamentoUfCartorioId']").attr("required", false).select2(); // Remove required e inicializa select2
@@ -325,7 +325,7 @@ $('#formNovoCadastro').submit(function(event) {
 			professorDTO: {
 				"pessoaId": 2,
 				"contaId": contaId,
-				"codigoInep": $("#codigoInep").val(),
+				"codigoInep": $("#codigoInep").val() === '' ? null : $("#codigoInep").val(),
 				"matricula": $("#matricula").val(),
 				"usuario": $("#usuario").val(),
 				"senha": $("#senha").val(),
@@ -335,6 +335,7 @@ $('#formNovoCadastro').submit(function(event) {
 			}
 
 		}
+
 
 		console.log(dadosFormulario)
 
@@ -480,52 +481,58 @@ $('#paisNascimentoId').change(() => {
 function ValidarCpf() {
 	const cpf = $('#cpf');
 
-	const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
-	if (cpfValido(cpf.val())) {
-		$("#btn-submit").removeAttr('disabled');
-		cpf.removeClass('err-message');
-		$('#errMessage').css('display', 'none');
-	} else {
-		if ($("#cardCpf").find('#errMessage').length > 0) {
-			$('#errMessage').remove();
-		}
-		$("#btn-submit").attr("disabled", "disabled");
-		cpf.addClass('err-message');
-		$("#cardCpf").append(message);
-		message.show();
-	}
 
-	/*$.ajax({
+
+	$.ajax({
 		url: url_base + '/pessoas/cpf/' + cpf.val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		type: "get",
 		async: false,
 		error: function(e) {
+
+			const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
+			if (cpfValido(cpf.val())) {
+				$("#btn-submit").removeAttr('disabled');
+				cpf.removeClass('err-message');
+				$('#errMessage').css('display', 'none');
+			} else {
+				if ($("#cardCpf").find('#errMessage').length > 0) {
+					$('#errMessage').remove();
+				}
+				$("#btn-submit").attr("disabled", "disabled");
+				cpf.addClass('err-message');
+				$("#cardCpf").append(message);
+				message.show();
+			}
 			console.log(e);
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-			
+
 
 		},
 	}).done(function(data) {
-		const message = $("<p id='errMessage'></p>").text("CPF Inválido").css('color', '#FF0000');
-		if (cpfValido(cpf.val())) {
-			$("#btn-submit").removeAttr('disabled');
+		const message = $("<p id='errMessage'></p>").text("CPF já cadastrado").css('color', '#FF0000');
+		/*	$("#btn-submit").removeAttr('disabled');
 			cpf.removeClass('err-message');
-			$('#errMessage').css('display', 'none');
+			$('#errMessage').css('display', 'none');*/
+
+		/*if ($("#cardCpf").find('#errMessage').length > 0) {
+			$('#errMessage').remove();
+		}*/
+
+		if ($("#cardCpf").find('#errMessage').length > 0) {
+			$('#errMessage').remove();
+			$("#btn-submit").attr("disabled", "disabled");
+			cpf.addClass('err-message');
+			$("#cardCpf").append(message);
+			message.show();
 		} else {
-			if ($("#cardCpf").find('#errMessage').length > 0) {
-				$('#errMessage').remove();
-			}
 			$("#btn-submit").attr("disabled", "disabled");
 			cpf.addClass('err-message');
 			$("#cardCpf").append(message);
 			message.show();
 		}
 
-		console.log(data)
+
+
+		/*console.log(data)
 
 		if (data.certidaoNascimentoNumero !== null &&
 			data.certidaoNascimentoDataEmissao !== null &&
@@ -596,10 +603,10 @@ function ValidarCpf() {
 		$('#email').val(data.email);
 		$('#empresa').val(data.empresa);
 		$('#ocupacao').val(data.ocupacao);
-		$('#telefoneComercial').val(data.telefoneComercial);
+		$('#telefoneComercial').val(data.telefoneComercial);*/
 
 		// Restante do código...
-	});*/
+	});
 
 	// Validação do CPF
 

@@ -56,7 +56,8 @@ String contextPath = request.getContextPath();
 <!-- FontAwesome -->
 <script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
+<link rel="stylesheet"
+	href="<%=contextPath%>/resources/assets/css/style.css" />
 </head>
 
 <body>
@@ -100,7 +101,8 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col" class="sortable border-end" data-column="pessoa">
+						<th scope="col" class="sortable border-end"
+							data-column="nomeCompleto">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -117,13 +119,14 @@ String contextPath = request.getContextPath();
 										id="dropdownContent1">
 										<input type="text" class="form-control mb-3 searchInput"
 											placeholder="Digite aqui..." />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar</button>
+										<button class="btn btn-sm col-12 btn-success searchButton">Buscar</button>
 									</div>
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro">Código Inep</th>
+
+						<th scope="col" class="border-end pe-2 th-sem-filtro">Código
+							Inep</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Matrícula</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Email</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>

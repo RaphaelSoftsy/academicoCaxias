@@ -28,34 +28,28 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest(".sortable").data("column");
 		var filteredData;
 
-		if (columnToSearch === "dependenciaAdm") {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item.dependenciaAdm.dependenciaAdministrativa
-					.toLowerCase()
-					.includes(searchInput);
-			});
-		} else if (columnToSearch === "escolaId") {
-			filteredData = dadosOriginais.filter(function(item) {
-				var escola = escolas.find(function(school) {
-					return school.idEscola === item.escolaId;
-				});
-				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
-				return nomeEscola.includes(searchInput);
-			});
-		} else {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item[columnToSearch]
-					.toString()
-					.toLowerCase()
-					.includes(searchInput);
-			});
-		}
+		console.log("Coluna de busca:", columnToSearch);
+
+		filteredData = dadosOriginais.filter(function(item) {
+			// Acesse a propriedade correta no objeto 'pessoa'
+			var value = item.pessoa ? item.pessoa[columnToSearch] : undefined;
+
+			// Verifique se o valor existe e é uma string
+			if (value === undefined || value === null) {
+				return false; // Ou true, dependendo da lógica desejada
+			}
+			return value.toString().toLowerCase().includes(searchInput);
+		});
 
 		listarDados(filteredData);
 
+		// Limpe o campo de pesquisa
 		$(this).siblings(".searchInput").val("");
 		$(this).closest(".dropdown-content-form").removeClass("show");
 	});
+
+
+
 
 	$(document).on("click", ".sortable .col", function() {
 		var column = $(this).closest("th").data("column");
@@ -169,9 +163,9 @@ function editar(candidato) {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-		
-		var codigoInep = item.codigoInep === "" ? "Não possui" : item.codigoInep
-		
+
+		var codigoInep = item.codigoInep === null ? "Não possui" : item.codigoInep
+
 		var email = item.emailInstitucional === "" ? "Não possui" : item.emailInstitucional
 
 		return (
@@ -188,11 +182,11 @@ function listarDados(dados) {
 			"<td>" +
 			item.matricula +
 			"</td>" +
-			
+
 			"<td>" +
-			 email +
+			email +
 			"</td>" +
-			
+
 			"<td>" +
 			'<input type="checkbox" data-status="' +
 			item.ativo +
