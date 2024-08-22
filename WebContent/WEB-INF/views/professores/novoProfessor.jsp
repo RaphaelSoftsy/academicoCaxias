@@ -494,7 +494,7 @@ String contextPath = request.getContextPath();
 						</label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoUfCartorioId"
-							name="certidaoCasamentoUfCartorioId" required>
+							name="certidaoCasamentoUfCartorioId" >
 							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>
@@ -504,7 +504,7 @@ String contextPath = request.getContextPath();
 						</label> <select class="form-select"
 							aria-label="Certidão de Casamento UF Cartório"
 							id="certidaoCasamentoMunicipioCartorioId"
-							name="certidaoCasamentoMunicipioCartorioId" required disabled>
+							name="certidaoCasamentoMunicipioCartorioId" disabled>
 							<option selected disabled value="">Selecione uma opção</option>
 						</select>
 					</div>

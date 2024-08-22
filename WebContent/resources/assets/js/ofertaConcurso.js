@@ -249,11 +249,13 @@ function listarDados(dados) {
 			"</tr>"
 		);
 	}).join("");
+	
+	// Reaplicar a estilização do toggle
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 
 	$("#cola-tabela").html(html);
 
-	// Reaplicar a estilização do toggle
-	$('input[data-toggle="toggle"]').bootstrapToggle();
+	
 }
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");

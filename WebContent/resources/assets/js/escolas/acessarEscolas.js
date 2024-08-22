@@ -197,6 +197,9 @@ function listarDados(dados) {
 	}).join("");
 
 	$("#cola-tabela").html(html);
+	
+		// Reaplicar a estilização do toggle
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 }
 
 function alteraStatus(element) {

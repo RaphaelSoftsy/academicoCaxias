@@ -222,7 +222,7 @@ String contextPath = request.getContextPath();
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Turma" id="turmaId"
 									required name="turmaId">
-									<option selected disabled>Selecione a Turma</option>
+									<option selected disabled value="">Selecione a Turma</option>
 								</select>
 							</div>
 							<div class="mb-4">

@@ -169,6 +169,10 @@ function editar(candidato) {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
+		
+		var codigoInep = item.codigoInep === "" ? "Não possui" : item.codigoInep
+		
+		var email = item.emailInstitucional === "" ? "Não possui" : item.emailInstitucional
 
 		return (
 			"<tr>" +
@@ -178,16 +182,17 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
-			item.codigoInep +
+			codigoInep +
 			"</td>" +
 
 			"<td>" +
 			item.matricula +
 			"</td>" +
-
+			
 			"<td>" +
-			item.emailInstitucional +
+			 email +
 			"</td>" +
+			
 			"<td>" +
 			'<input type="checkbox" data-status="' +
 			item.ativo +
