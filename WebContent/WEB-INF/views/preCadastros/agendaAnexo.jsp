@@ -74,7 +74,7 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-school fa-lg"></i> <span>Agenda</span>
+					<i class="fa-solid fa-school fa-lg"></i> <span>Agenda Anexo</span>
 				</div>
 			</div>
 		</section>
@@ -221,7 +221,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/turmas/diasSemana.js"></script>
+		src="<%=contextPath%>/resources/assets/js/agendaAnexo.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"

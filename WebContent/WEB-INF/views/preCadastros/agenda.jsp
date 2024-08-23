@@ -99,7 +99,7 @@ String contextPath = request.getContextPath();
 				class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Itens Cadastrados</caption>
 				<thead>
-					<tr>
+					<tr><th scope="col" class="border-end pe-2 th-sem-filtro">Turma</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Data
 							Agenda</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Hora
@@ -138,49 +138,57 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formCadastro">
+							<div class="mb-4">
+								<label for="turmaId" class="form-label">Turma:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Turma" id="turmaId"
+									required name="turmaId">
+									<option selected disabled value="">Selecione a Turma</option>
+								</select>
+							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="turmaId" class="form-label">Data Agenda:<span
+										<label for="dataAgenda" class="form-label">Data Agenda:<span
 											class="red">*</span>
-										</label><input autocomplete="off" type="date" id="dataFeriado"
-											name="dataFeriado" class="form-control" required />
+										</label><input autocomplete="off" type="date" id="dataAgenda"
+											name="dataAgenda" class="form-control" required />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="turmaId" class="form-label">Titulo Aula:<span
+										<label for="tituloAula" class="form-label">Titulo Aula:<span
 											class="red">*</span>
-										</label><input autocomplete="off" type="text" id="dataFeriado"
-											name="dataFeriado" class="form-control" required />
+										</label><input autocomplete="off" type="text" id="tituloAula"
+											name="tituloAula" class="form-control" required />
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="turmaId" class="form-label">Hora Início:<span
+										<label for="horaIni" class="form-label">Hora Início:<span
 											class="red">*</span>
-										</label><input autocomplete="off" type="time" id="dataFeriado"
-											name="dataFeriado" class="form-control" required />
+										</label><input autocomplete="off" type="time" id="horaIni"
+											name="horaIni" class="form-control" required />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="turmaId" class="form-label">Hora Fim:<span
+										<label for="horaFim" class="form-label">Hora Fim:<span
 											class="red">*</span>
-										</label><input autocomplete="off" type="time" id="dataFeriado"
-											name="dataFeriado" class="form-control" required />
+										</label><input autocomplete="off" type="time" id="horaFim"
+											name="horaFim" class="form-control" required />
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="turmaId" class="form-label">Resumo:<span
+										<label for="resumo" class="form-label">Resumo:<span
 											class="red">*</span>
-										</label><input autocomplete="off" type="text" id="dataFeriado"
-											name="dataFeriado" class="form-control" required />
+										</label><input autocomplete="off" type="text" id="resumo"
+											name="resumo" class="form-control" required />
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -222,17 +230,75 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
+						
 							<div class="mb-4">
-								<label for="turmaId" class="form-label">Data Feriado:<span
+								<label for="turmaIdEdit" class="form-label">Turma:<span
 									class="red">*</span>
-								</label><input autocomplete="off" type="date" id="dataFeriadoEdit"
-									name="dataFeriado" class="form-control" required />
+								</label> <select class="form-select" aria-label="Turma" id="turmaIdEdit"
+									required name="turmaIdEdit">
+									<option selected disabled value="">Selecione a Turma</option>
+								</select>
 							</div>
-							<div class="mb-4">
-								<label for="horaInicio" class="form-label">Descrição:<span
-									class="red">*</span>
-								</label> <input autocomplete="off" type="text" id="descricaoEdit"
-									name="horaInicio" class="form-control" required />
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mb-4">
+										<label for="dataAgendaEdit" class="form-label">Data Agenda:<span
+											class="red">*</span>
+										</label><input autocomplete="off" type="date" id="dataAgendaEdit"
+											name="dataAgendaEdit" class="form-control" required />
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-4">
+										<label for="tituloAulaEdit" class="form-label">Titulo Aula:<span
+											class="red">*</span>
+										</label><input autocomplete="off" type="text" id="tituloAulaEdit"
+											name="tituloAulaEdit" class="form-control" required />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mb-4">
+										<label for="horaIniEdit" class="form-label">Hora Início:<span
+											class="red">*</span>
+										</label><input autocomplete="off" type="time" id="horaIniEdit"
+											name="horaIniEdit" class="form-control" required />
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-4">
+										<label for="horaFimEdit" class="form-label">Hora Fim:<span
+											class="red">*</span>
+										</label><input autocomplete="off" type="time" id="horaFimEdit"
+											name="horaFimEdit" class="form-control" required />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mb-4">
+										<label for="resumoEdit" class="form-label">Resumo:<span
+											class="red">*</span>
+										</label><input autocomplete="off" type="text" id="resumoEdit"
+											name="resumoEdit" class="form-control" required />
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-4">
+										<label for="turmaId" class="form-label">Realizada:<span
+											class="red">*</span>
+										</label>
+										<div class="form-control card-form-infra">
+											<label for="isRealizadaEdit">Sim</label> <label
+												class="switch"> <input type="checkbox"
+												id="isRealizadaEdit" name="isRealizadaEdit"> <span
+												class="slider"></span>
+											</label> <label for="isRealizadaEdit">Não</label>	
+
+										</div>
+									</div>
+								</div>
 							</div>
 
 							<div class="d-flex justify-content-end gap-2">
