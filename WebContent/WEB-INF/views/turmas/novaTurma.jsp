@@ -115,9 +115,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							name="nomeTurma" class="form-control " />
 					</div>
 					<div class="col-md-6">
-						<label for="codTurmaInep" class="form-label">Código INEP:<span
-							class="red">*</span>
-						</label> <input type="text" id="codTurmaInep" required autocomplete="off"
+						<label for="codTurmaInep" class="form-label">Código INEP:
+						</label> <input type="text" id="codTurmaInep" autocomplete="off"
 							name="codTurmaInep" class="form-control " />
 					</div>
 				</div>
@@ -141,10 +140,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</select>
 					</div> -->
 					<div class="col-md-6">
-						<label for="nomeTurma" class="form-label">Vagas:<span
+						<label for="vagas" class="form-label">Vagas:<span
 							class="red">*</span>
-						</label> <input type="number" id="nomeTurma" required autocomplete="off"
-							name="nomeTurma" class="form-control " />
+						</label> <input type="number" id="vagas" required autocomplete="off"
+							name="vagas" class="form-control " />
 					</div>
 				</div>
 

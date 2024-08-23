@@ -81,6 +81,30 @@ public class MatrizCurricular {
 		return "matrizCurricular/turma";
 	}
 	
+	@RequestMapping(value = { "criterio-avaliacao" }, method = RequestMethod.GET)
+	public String criterioAvaliacao(HttpSession session, Model model) throws Exception {
+
+		return "matrizCurricular/criterioAvaliacao";
+	}
+	
+	@RequestMapping(value = { "novo-criterio-avaliacao" }, method = RequestMethod.GET)
+	public String novoCriterioAvaliacao(HttpSession session, Model model) throws Exception {
+
+		return "matrizCurricular/novoCriterioAvaliacao";
+	}
+	
+	@RequestMapping(value = { "situacao-aluno" }, method = RequestMethod.GET)
+	public String situacaoAluno(HttpSession session, Model model) throws Exception {
+
+		return "matrizCurricular/situacaoAluno";
+	}
+	
+	@RequestMapping(value = { "alunos" }, method = RequestMethod.GET)
+	public String alunos(HttpSession session, Model model) throws Exception {
+
+		return "matrizCurricular/alunos";
+	}
+	
 	@RequestMapping(value = { "cadastro-turma" }, method = RequestMethod.GET)
 	public String novaTurmaMatrizCurricular(HttpSession session, Model model) throws Exception {
 

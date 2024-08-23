@@ -217,20 +217,17 @@ const selecionar = (element) => {
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
-
+	
 	var dadosFormulario = {
 		escolaId: Number($('#escolaId').val()),
-		anoVigente: $('#anoVigente').val(),
-		anoEscolarId: Number($('#anoEscolarId').val()),
-		numTurma: $('#numTurma').val(),
 		codTurmaInep: $('#codTurmaInep').val(),
-		formaOrganEnsinoId: $('#formaOrganEnsinoId').val(),
-		tipoDeMedicaoId: $('#tipoDeMedicaoId').val(),
 		turnoId: $('#turnoId').val(),
-		tipoAtendimentoId: $('#tipoAtendimentoId').val(),
-		modalidadeEscolaId: $('#modalidadeEscolaId').val(),
 		libras: $('input[name="libras"]:checked').val(),
-		vagas: $('#vagas').val()
+		vagas: $('#vagas').val(),
+		"periodoLetivoId": $('#periodoLetivoId').val(),
+		"gradeCurricularId": idGradeCurricularSelecionada,
+		"nomeTurma": $('#nomeTurma').val(),
+		"controlaVagas": $('input[name="controlaVagas"]:checked').val()
 	};
 
 	$.ajax({
@@ -250,8 +247,10 @@ $("#formNovoCadastro").submit(function(e) {
 		Swal.fire({
 			title: "Cadastrado com sucesso",
 			icon: "success",
+		}).then(result => {
+			window.location.href = "turma";
 		})
-		window.location.href = "escolas-turmas";
+		
 	});
 
 });
