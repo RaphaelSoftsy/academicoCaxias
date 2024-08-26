@@ -73,4 +73,10 @@ public class Turmas {
 		return "turmas/editarDisciplina";
 	}
 	
+	@RequestMapping(value = { "turmas-disciplina-professor" }, method = RequestMethod.GET)
+	public String turmaDisciplinaProfessor(HttpSession session, Model model) throws Exception {
+		
+		return "turmas/turmaDisciplinaProfessor";
+	}
+	
 }

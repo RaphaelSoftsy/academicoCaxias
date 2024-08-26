@@ -77,7 +77,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Turma</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Alunos</span>
 				</div>
 			</div>
 		</section>
@@ -98,7 +98,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						Limpar Filtros</button>
 
 					<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
-						href="cadastro-turma">Novo Cadastro</a>
+						href="novo-criterio-avaliacao">Novo Cadastro</a>
 				</div>
 			</div>
 
@@ -108,12 +108,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<thead>
 					<tr>
 						<th scope="col" class="sortable border-end"
-							data-column="nomeTurma">
+							data-column="nomePes">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Turma</span> <i class="fas fa-sort me-3"
+									<span>Nome</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -132,12 +132,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="disciplinaPes">
+							data-column="matriculaPes">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Disciplina</span> <i class="fas fa-sort me-3"
+									<span>Matricula</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -156,12 +156,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="escolaPes">
+							data-column="seriePes">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Escola</span> <i class="fas fa-sort me-3"
+									<span>Série</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -180,12 +180,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="anoPeriodoPes">
+							data-column="emailPes">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Ano/Periodo</span> <i class="fas fa-sort me-3"
+									<span>Email Estudantil</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -203,12 +203,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="turnoPes">
+						<th scope="col" class="sortable border-end"
+							data-column="situacaoAlunoPes">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Turno</span> <i class="fas fa-sort me-3"
+									<span>Situação Aluno</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -226,31 +227,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="vagas">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Vagas</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton3">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent3">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar</button>
-									</div>
-								</div>
-							</div>
-						</th>
-						<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
-						<th class="text-center" scope="col" width="10%">Ações</th>
+<!-- 						<th scope="col" width="10%" class="border-end pe-2 th-sem-filtro">Ativo</th>
+ -->						<th class="text-center" scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -267,138 +245,6 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</button>
 			</div>
 		</section>
-		<div class="modal fade" id="newCadastro" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-novo-ato">Novo
-							Cadastro</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form id="formCadastro">
-							<div class="mb-4">
-								<label for="nomeTurma" class="form-label">Nome turma:</label> <input
-									type="text" class="form-control" id="nomeTurma" required
-									aria-describedby="NomeTurma" autocomplete="off">
-							</div>
-							<div class="mb-4">
-								<label for="codTurmaInep" class="form-label">Codigo inep
-									da turma:</label> <input type="text" class="form-control"
-									id="codTurmaInep" required aria-describedby="CodTurmaInep"
-									autocomplete="off">
-							</div>
-							<div class="mb-4">
-								<label for="vagas" class="form-label">Vagas:</label> <input
-									type="text" class="form-control" id="vagas" required
-									aria-describedby="Vagas" autocomplete="off">
-							</div>
-							<div class="mb-4">
-								<label for="escolaId" class="form-label">Escola:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Escola" id="escolaId"
-									required name="escolaId">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="turnoId" class="form-label">Turno:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Turno" id="turnoId"
-									required name="turnoId">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="periodoLetivoId" class="form-label">Periodo
-									Letivo:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="PeriodoLetivo"
-									id="periodoLetivoId" required name="periodoLetivoId">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-								</select>
-							</div>
-
-							<div class="mb-4">
-								<label for="gradeCurricularId" class="form-label">Grade
-									Curricular:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="GradeCurricular"
-									id="gradeCurricularId" required name="gradeCurricularId">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="libras" class="form-label">Libras:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Libras" id="libras"
-									required name="libras">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-									<option value="S">Sim</option>
-									<option value="N">Não</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="controlaVagas" class="form-label">Controla
-									Vagas:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="ControlaVagas"
-									id="controlaVagas" required name="controlaVagas">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-									<option value="S">Sim</option>
-									<option value="N">Não</option>
-								</select>
-							</div>
-							<div class="d-flex justify-content-end gap-2">
-
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Fechar</button>
-								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id="editAto" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form id="formEdit">
-							<div class="mb-4">
-								<label for="nomeSerieEdit" class="form-label">Nome
-									série:</label> <input type="text" class="form-control"
-									id="nomeSerieEdit" required aria-describedby="Descricao"
-									autocomplete="off">
-							</div>
-							<div class="mb-4">
-								<label for="descricaoEdit" class="form-label">Descricao:</label>
-								<input type="text" class="form-control" id="descricaoEdit"
-									required aria-describedby="Descricao 2" autocomplete="off">
-							</div>
-							<div class="d-flex justify-content-end gap-2">
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Fechar</button>
-								<button type="submit" data-bs-dismiss="modal"
-									class="btn btn-primary">Salvar</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
 	</main>
 
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
@@ -416,9 +262,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/matrizCurricular/turma.js"></script>
-	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/matrizCurricular/alunos.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>

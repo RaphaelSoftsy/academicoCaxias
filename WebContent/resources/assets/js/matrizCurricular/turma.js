@@ -30,6 +30,7 @@ $(document).ready(function() {
 			item.anoPeriodoPes = item.periodoLetivo.ano + '/' + item.periodoLetivo.periodo
 			item.disciplinaPes = item.gradeCurricular.disciplina.codDiscip + ' - ' + item.gradeCurricular.disciplina.nome
 			item.librasPes = item.libras == 'S' ? 'Sim' : 'Não'
+			item.escolaPes = item.escola.nomeEscola
 			console.log(item)
 			var valueToCheck = item[columnToSearch] ? item[columnToSearch].toString().toLowerCase() : '';
 			console.log(searchInput.toLowerCase())
@@ -196,6 +197,10 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
+			item.escola.nomeEscola +
+			"</td>" +
+
+			"<td>" +
 			item.periodoLetivo.ano + '/' + item.periodoLetivo.periodo +
 			"</td>" +
 
@@ -205,10 +210,6 @@ function listarDados(dados) {
 
 			"<td>" +
 			item.vagas +
-			"</td>" +
-
-			"<td>" +
-			libras +
 			"</td>" +
 
 			"<td><div class='d-flex align-items-center gap-1'>" +

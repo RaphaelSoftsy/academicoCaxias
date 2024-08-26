@@ -70,6 +70,56 @@ $(document).ready(function() {
 		$("input[name='certidaoNascimentoOrdem']").attr("required", false);
 	}
 
+	function applyMask(value) {
+		value = value.replace(/[^0-9X]/g, ''); // Remove tudo que não for número ou "X"
+		var x = value.endsWith('X') ? 'X' : ''; // Verifica se o "X" está no final
+		value = value.replace('X', ''); // Remove o "X" para aplicar a máscara
+
+		// Máscaras possíveis baseadas no número de dígitos
+		var masks = [
+			'00.000-0',
+			'00.000-0',
+			'00.000.00-0',
+			'00.000.00-0',
+			'00.000.000-0',
+			'00.000.000-00',
+			'00.000.000-000',
+			'00.000.0000-0000',
+			'00.000.0000-00000'
+		];
+
+		var length = value.length; // Conta o número total de dígitos
+		var mask = masks[Math.min(length, masks.length - 1)]; // Seleciona a máscara apropriada
+
+		var result = '';
+		var j = 0;
+		for (var i = 0; i < mask.length; i++) {
+			if (mask[i] === '0' && j < value.length) {
+				result += value[j++];
+			} else if (mask[i] !== '0') {
+				result += mask[i];
+			}
+		}
+		return result + x; // Adiciona o "X" de volta ao final se estiver presente
+	}
+
+	$('#rgNumero').on('focus', function() {
+		$(this).data('prevValue', $(this).val());
+		$(this).val($(this).val().replace(/[^0-9X]/g, '')); // Remove máscara e mantém o valor
+	});
+
+	$('#rgNumero').on('blur', function() {
+		var value = $(this).val();
+		$(this).val(applyMask(value)); // Aplica a máscara ao sair do campo
+	});
+
+	$('#rgNumero').on('input', function() {
+		var value = $(this).val().replace(/[^0-9X]/g, ''); // Remove tudo que não for número ou "X"
+		if (value.length > 14) {
+			value = value.slice(0, 14); // Limita a entrada a 14 caracteres
+			$(this).val(value); // Atualiza o valor no campo
+		}
+	});
 
 	$.ajax({
 		url: url_base + '/tiposIngresso/conta/' + contaId,
@@ -321,6 +371,7 @@ function getDados2() {
 			$('#nomeCompleto').val(data.pessoa.nomeCompleto);
 			$('#cpf').val(data.pessoa.cpf !== null ? data.pessoa.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "");
 			$('#rgNumero').val(data.pessoa.rgNumero !== null ? data.pessoa.rgNumero.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, "$1.$2.$3-$4") : "");
+			$("#rgNumero").val(applyMask($("#rgNumero").val()))
 			$('#rgOrgaoExpedidor').val(data.pessoa.rgOrgaoExpedidor);
 			$('#rgDataExpedicao').val(data.pessoa.rgDataExpedicao);
 			$('#dtNascimento').val(data.pessoa.dtNascimento);
@@ -370,6 +421,38 @@ function getDados2() {
 		});
 }
 
+function applyMask(value) {
+	value = value.replace(/[^0-9X]/g, ''); // Remove tudo que não for número ou "X"
+	var x = value.endsWith('X') ? 'X' : ''; // Verifica se o "X" está no final
+	value = value.replace('X', ''); // Remove o "X" para aplicar a máscara
+
+	// Máscaras possíveis baseadas no número de dígitos
+	var masks = [
+		'00.000-0',
+		'00.000-0',
+		'00.000.00-0',
+		'00.000.00-0',
+		'00.000.000-0',
+		'00.000.000-00',
+		'00.000.000-000',
+		'00.000.0000-0000',
+		'00.000.0000-00000'
+	];
+
+	var length = value.length; // Conta o número total de dígitos
+	var mask = masks[Math.min(length, masks.length - 1)]; // Seleciona a máscara apropriada
+
+	var result = '';
+	var j = 0;
+	for (var i = 0; i < mask.length; i++) {
+		if (mask[i] === '0' && j < value.length) {
+			result += value[j++];
+		} else if (mask[i] !== '0') {
+			result += mask[i];
+		}
+	}
+	return result + x; // Adiciona o "X" de volta ao final se estiver presente
+}
 
 $('#formNovoCadastro').submit(function(event) {
 	event.preventDefault();
@@ -380,6 +463,7 @@ $('#formNovoCadastro').submit(function(event) {
 		cpf = null
 	}
 
+	var rgValue = $('#rgNumero').val();
 
 
 	var dadosFormulario = {
@@ -399,7 +483,7 @@ $('#formNovoCadastro').submit(function(event) {
 			nacionalidadeId: $('#nacionalidadeId').val(),
 			"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 3),
 			estadoCivil: $('input[name="estadoCivil"]:checked').val(),
-			rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
+			rgNumero: rgValue.replace(/[^\dX]/g, ''),
 			rgDataExpedicao: $('#rgDataExpedicao').val(),
 			rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
 			rgUfEmissorId: $('#rgUfEmissorId').val(),
