@@ -315,7 +315,7 @@ String contextPath = request.getContextPath();
 				<div
 					class="row mb-3 d-flex align-itens-center justify-content-center">
 					<label for="qualPreencher" class="form-label">Qual deseja
-						preencher?<span class="red">*</span>
+						preencher?
 					</label>
 					<div class="form-control card-form qualPreencherSwitch"
 						style="width: 100%;">

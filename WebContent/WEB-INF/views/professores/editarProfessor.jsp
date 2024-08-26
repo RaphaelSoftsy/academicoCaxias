@@ -298,7 +298,7 @@ String contextPath = request.getContextPath();
 					class="mb-5 p-5 card col-12 animate__animated animate__bounceInUp flex-column justify-content-center">
 					<div class="row mb-3 d-flex align-itens-center justify-content-center">
 						<label for="qualPreencher" class="form-label">Qual deseja
-							preencher?<span class="red">*</span>
+							preencher?
 						</label>
 						<div class="form-control card-form qualPreencherSwitch" style="width: 100%;">
 							<label for="qualPreencher">Certidão de Nascimento</label> <label
