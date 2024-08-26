@@ -18,6 +18,7 @@ let idEscola
 $(document).ready(function() {
 	$('.container-table').hide()
 	$('#btn-save').hide()
+	$('#escolaIdDisable, #disciplinaIdDisable').prop('disabled', true)
 	$.ajax({
 		url: url_base + "/disciplina/conta/" + contaId,
 		type: "GET",
@@ -27,6 +28,14 @@ $(document).ready(function() {
 
 		$.each(data, function(index, item) {
 			$("#disciplinaId").append(
+				$("<option>", {
+					value: item.idDisciplina,
+					text: `${item.codDiscip} - ${item.nome}`,
+					name: item.nome,
+				})
+			);
+
+			$("#disciplinaIdDisable").append(
 				$("<option>", {
 					value: item.idDisciplina,
 					text: `${item.codDiscip} - ${item.nome}`,
@@ -57,10 +66,16 @@ $(document).ready(function() {
 					name: item.nomeEscola,
 				})
 			);
+
+			$("#escolaIdDisable").append(
+				$("<option>", {
+					value: item.idEscola,
+					text: item.nomeEscola,
+					name: item.nomeEscola,
+				})
+			);
 		});
 	})
-
-
 })
 
 function listarProfessores(dados) {
@@ -204,44 +219,6 @@ function alteraStatus(element) {
 	})
 }
 
-/*const removerDisciplina = (element) => {
-	idDisciplina = element.getAttribute("data-id")
-	Swal.fire({
-		title: "Deseja tirar essa disciplina do professor?",
-		icon: "warning",
-		showCancelButton: true,
-		showConfirmButton: false,
-		showDenyButton: true,
-		denyButtonText: 'Retirar',
-		cancelButtonText: 'Cancelar'
-	}).then(result => {
-		if (result.isDenied) {
-			$.ajax({
-				url: url_base + "/contaPadraoAcessos/" + Number(id),
-				type: "delete",
-				contentType: "application/json; charset=utf-8",
-				async: false,
-				error: function(e) {
-					console.log(e)
-					Swal.fire({
-						icon: "error",
-						title: "Oops...",
-						text: "Não foi possível realizar esse comando!"
-
-					});
-				}
-			}).done(function(data) {
-				Swal.fire({
-					title: "Deletado com sucesso",
-					icon: "success",
-				}).then((data) => {
-					window.location.href = 'padraoAcesso'
-				})
-			})
-		} else if (result.isCanceled) { }
-	})
-}*/
-
 const selecionar = (element) => {
 	idProfessorSelecionado = element.getAttribute("data-id")
 	listarProfessores(listaProfessores)
@@ -280,17 +257,22 @@ const getTurmasByDisciplina = () => {
 		console.log(data)
 
 		$('#turmaId').empty()
-		$('#turmaId').append(`<option value='0' selected disabled>Selecione uma turma</option>`)
+		if (data.data.length > 0) {
+			$('#turmaId').removeAttr('disabled');
+			$('#turmaId').append(`<option value='0' selected disabled>Selecione uma turma</option>`)
 
-		$.each(data.data, function(index, item) {
-			$("#turmaId").append(
-				$("<option>", {
-					value: item.idTurma,
-					text: item.nomeTurma,
-					name: item.nomeTurma,
-				})
-			);
-		});
+			$.each(data.data, function(index, item) {
+				$("#turmaId").append(
+					$("<option>", {
+						value: item.idTurma,
+						text: item.nomeTurma,
+						name: item.nomeTurma,
+					})
+				);
+			});
+		} else {
+			$('#turmaId').append(`<option value='0' selected disabled>Nenhuma turma encontrada</option>`)
+		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -303,7 +285,6 @@ $('#btn-buscar').click(() => {
 
 	idDisciplina = disciplinaId
 	idEscola = escolaId
-	getTurmasByDisciplina()
 
 	let escolaPath = escolaId != null ? `idEscola=${escolaId}&` : ''
 	let disciplinaPath = disciplinaId != null ? `idDisciplina=${disciplinaId}&` : ''
@@ -383,6 +364,140 @@ const adicionar = () => {
 		})
 	}
 }
+
+
+$('#periodoLetivoId').change(() => {
+
+	$('#turnoId').empty()
+	$('#turnoId').removeAttr('disabled');
+	$('#turnoId').append(`<option value='0' selected disabled>Selecione o currículo</option>`)
+
+	$('#turmaId').prop('disabled', true)
+	$('#turmaId').empty()
+	$('#turmaId').append(`<option value='0' selected disabled>Selecione uma turma</option>`)
+
+	$.ajax({
+		url: url_base + "/turno/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#turnoId").append(
+				$("<option>", {
+					value: item.idTurno,
+					text: item.turno,
+					name: item.turno,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+});
+
+$('#turnoId').change(() => {
+	getTurmasByDisciplina()
+});
+
+$('#escolaId').change(() => {
+	$('#disciplinaId, #disciplinaIdDisable').empty()
+	$('#disciplinaId, #disciplinaIdDisable').append(`<option value='0' selected disabled>Selecione uma opção</option>`)
+	$.ajax({
+		url: url_base + "/disciplina/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+
+		$.each(data, function(index, item) {
+			$("#disciplinaId").append(
+				$("<option>", {
+					value: item.idDisciplina,
+					text: `${item.codDiscip} - ${item.nome}`,
+					name: item.nome,
+				})
+			);
+
+			$("#disciplinaIdDisable").append(
+				$("<option>", {
+					value: item.idDisciplina,
+					text: `${item.codDiscip} - ${item.nome}`,
+					name: item.nome,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	idProfessorSelecionado = ''
+	$("#cola-tabela-professor").empty()
+	$("#cola-tabela-disciplina").empty()
+
+});
+
+$('#disciplinaId').change(() => {
+	idProfessorSelecionado = ''
+	$("#cola-tabela-professor").empty()
+	$("#cola-tabela-disciplina").empty()
+})
+
+const adicionarTurma = () => {
+	$('#escolaIdDisable').val($('#escolaId').val())
+	$('#disciplinaIdDisable').val($('#disciplinaId').val())
+	$('#turmaId').prop('disabled', true)
+	$('#turmaId, #turnoId, #periodoLetivoId').empty()
+	$('#turmaId').append(`<option value='0' selected disabled>Selecione uma turma</option>`)
+	$('#turnoId').append(`<option value='0' selected disabled>Selecione um turno</option>`)
+	$('#periodoLetivoId').append(`<option value='0' selected disabled>Selecione um periodo letivo</option>`)
+
+	$.ajax({
+		url: url_base + "/turno/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#turnoId").append(
+				$("<option>", {
+					value: item.idTurno,
+					text: item.turno,
+					name: item.turno,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/periodoletivo/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$("#periodoLetivoId").append(
+				$("<option>", {
+					value: item.idPeriodoLetivo,
+					text: `Ano: ${item.ano} - Período: ${item.periodo}`,
+					name: item.periodo,
+				})
+			);
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+}
+
+
+$('#editItem').on('show.bs.modal', function(event) {
+	if (idProfessorSelecionado == '') {
+		event.preventDefault();
+		Swal.fire({
+			title: "Selecione um professor!!",
+			icon: "info",
+		})
+	}
+});
 
 $("#editItem").on("submit", function(e) {
 	e.preventDefault();

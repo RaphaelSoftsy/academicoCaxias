@@ -84,44 +84,88 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="pt-4">
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Critério</h1>
-				
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label for="codCriterioAvaliacao" class="form-label">Código avaliação:<span class="red">*</span>
-						</label> <input type="text" id="codCriterioAvaliacao" required
-							autocomplete="off" name="codCriterioAvaliacao" class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="criterioAvaliacao" class="form-label">Critério
-							avaliação:<span class="red">*</span>
-						</label> <input type="text" id="criterioAvaliacao" required
-							autocomplete="off" name="criterioAvaliacao" class="form-control" />
-					</div>
-				</div>
+				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Aluno</h1>
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="turmaId" class="form-label">Turma:<span
+						<label for="candidatoId" class="form-label">Candidato:<span
 							class="red">*</span>
-						</label> <select class="form-select" aria-label="turmaId" id="turmaId"
-							required name="turmaId">
-							<option value='' selected disabled>Selecione a turma</option>
+						</label> <select class="form-select" aria-label="Candidato"
+							id="candidatoId" required name="candidatoId">
+							<option value='' selected disabled>Selecione o candidato</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="ordem" class="form-label">Ordem: </label> <input
-							type="text" id="ordem" autocomplete="off" name="ordem"
-							class="form-control" />
+						<label for="escolaId" class="form-label">Escola:<span
+							class="red">*</span>
+						</label> <select class="form-select" aria-label="Escola" id="escolaId"
+							required name="escolaId">
+							<option value='' selected disabled>Selecione o candidato</option>
+						</select>
 					</div>
 				</div>
 
 				<div class="row mb-3">
-					
 					<div class="col-md-6">
-						<label for="dataProva" class="form-label">Data da prova: </label>
-						<input type='date' id="dataProva" autocomplete="off"
-							name="dataProva" class="form-control" />
+						<label for="cursoId" class="form-label">Curso:<span
+							class="red">*</span>
+						</label> <select class="form-select" aria-label="Curso" id="cursoId"
+							required name="cursoId">
+							<option value='' selected disabled>Selecione o candidato</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="turnoId" class="form-label">Turno:<span
+							class="red">*</span>
+						</label> <select class="form-select" aria-label="Turno" id="turnoId"
+							required name="turnoId">
+							<option value='' selected disabled>Selecione o candidato</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="serieId" class="form-label">Série:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Serie"
+							id="serieIdserieId" required name="serieId">
+							<option value='' selected disabled>Selecione o candidato</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="situacaoAlunoId" class="form-label">Situação
+							Aluno:<span class="red">*</span>
+						</label> <select class="form-select" aria-label="Curso"
+							id="situacaoAlunoId" required name="situacaoAlunoId">
+							<option value='' selected disabled>Selecione o candidato</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="aluno" class="form-label">Nome aluno: </label> <input
+							type="text" id="aluno" autocomplete="off" name="aluno"
+							class="form-control" />
+					</div>
+					<div class="col-md-6">
+						<label for="emailInterno" class="form-label">Email
+							Interno: </label> <input type="text" id="emailInterno" autocomplete="off"
+							name="emailInterno" class="form-control" />
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="senha" class="form-label">Senha: </label>
+						<div class="input-group">
+							<input class="form-control form-control pwd senha"
+								type="password" aria-label=".form-control-lg example" id="senha"
+								required>
+							<button class="btn-default reveal" type="button">
+								<i class="fa-regular fa-eye"></i>
+							</button>
+						</div>
 					</div>
 				</div>
 
@@ -150,7 +194,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/matrizCurricular/novoCriterioAvaliacao.js"></script>
+		src="<%=contextPath%>/resources/assets/js/matrizCurricular/novoAluno.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>

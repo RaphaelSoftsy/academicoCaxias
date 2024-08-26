@@ -180,7 +180,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="col-md-12 text-end mt-3 mb-5">
 					<a data-bs-toggle="modal" data-bs-target="#editItem"
-						class="btn btn-primary px-5" id="btn-save">Adicionar
+						class="btn btn-primary px-5" id="btn-save" onclick="adicionarTurma()">Adicionar
 						turma</a>
 				</div>
 			</form>
@@ -200,6 +200,38 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
+							<div class="mb-4">
+								<label for="escolaIdDisable" class="form-label">Escola:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Escola"
+									id="escolaIdDisable" required name="escolaIdDisable">
+									<option selected disabled value="">Selecione uma opção</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="disciplinaIdDisable" class="form-label">Disciplina:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Disciplina"
+									id="disciplinaIdDisable" required name="disciplinaIdDisable">
+									<option selected disabled value="">Selecione uma opção</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="periodoLetivoId" class="form-label">Ano/Periodo:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="AnoPeriodo"
+									id="periodoLetivoId" required name="periodoLetivoId">
+									<option selected disabled value="">Selecione uma opção</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="turnoId" class="form-label">Turno:<span
+									class="red">*</span>
+								</label> <select class="form-select" aria-label="Turno"
+									id="turnoId" required name="turnoId">
+									<option selected disabled value="">Selecione uma opção</option>
+								</select>
+							</div>
 							<div class="mb-4">
 								<label for="turmaId" class="form-label">Turma:<span
 									class="red">*</span>

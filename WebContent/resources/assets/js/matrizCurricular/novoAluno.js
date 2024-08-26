@@ -41,7 +41,6 @@ $(document).ready(function() {
 		}).done(function(data) {
 			$('#turmaId').val(data.turmaId),
 				$('#criterioAvaliacao').val(data.criterioAvaliacao),
-				$('#codCriterioAvaliacao').val(data.codCriterioAvaliacao),
 				$('#ordem').val(data.ordem),
 				$('#dataProva').val(data.dataProva)
 		}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -55,7 +54,6 @@ const cadastrar = () => {
 
 	let objeto = {
 		"turmaId": $('#turmaId').val(),
-		"codCriterioAvaliacao": $('#codCriterioAvaliacao').val(),
 		"criterioAvaliacao": $('#criterioAvaliacao').val(),
 		"ordem": $('#ordem').val(),
 		"dataProva": $('#dataProva').val()
@@ -98,7 +96,6 @@ function editar() {
 	let objeto = {
 		"idCriterioAvaliacao": idCriterioAvaliacao,
 		"turmaId": $('#turmaId').val(),
-		"codCriterioAvaliacao": $('#codCriterioAvaliacao').val(),
 		"criterioAvaliacao": $('#criterioAvaliacao').val(),
 		"ordem": $('#ordem').val(),
 		"dataProva": $('#dataProva').val()

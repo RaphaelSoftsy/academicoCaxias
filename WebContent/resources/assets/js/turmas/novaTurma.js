@@ -250,7 +250,5 @@ $("#formNovoCadastro").submit(function(e) {
 		}).then(result => {
 			window.location.href = "turma";
 		})
-		
 	});
-
 });
