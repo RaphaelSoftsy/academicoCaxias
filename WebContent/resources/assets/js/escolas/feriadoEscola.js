@@ -108,6 +108,7 @@ $(document).ready(function() {
 
 		});
 		listarDados(dadosOrdenados);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 
 	}
 
@@ -127,6 +128,7 @@ $(document).ready(function() {
 
 $('#limpa-filtros').click(function() {
 	listarDados(dadosOriginais);
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 
@@ -368,7 +370,7 @@ function cadastrar() {
 				icon: "success",
 			})
 				.then(() => {
-					window.location.href = "feriado-conta"
+					window.location.href = "feriado-escola"
 				})
 		});
 	return false;

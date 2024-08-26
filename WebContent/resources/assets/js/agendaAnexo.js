@@ -5,13 +5,8 @@ var rows = 7;
 var currentPage = 1;
 var pagesToShow = 5;
 var id = '';
-var dataAgenda = '';
-var horaInicio = '';
-var horaFim = '';
-var realizada = '';
-var tituloAula = '';
-var resumoAula = '';
-var turmaId = '';
+var agendaId = '';
+var caminhoArquivo = ''
 const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
@@ -20,24 +15,24 @@ $(document).ready(function() {
 
 
 	$.ajax({
-		url: url_base + "/turma",
+		url: url_base + "/agendas",
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
 			turmas = data;
 			$.each(data, function(index, item) {
-				$('#turmaIdEdit').append($('<option>', {
-					value: item.idTurma,
-					text: item.nomeTurma,
-					name: item.nomeTurma
+				$('#agendaIdEdit').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula,
+					name: item.tituloAula
 				}));
 			});
 			$.each(data, function(index, item) {
-				$('#turmaId').append($('<option>', {
-					value: item.idTurma,
-					text: item.nomeTurma,
-					name: item.nomeTurma
+				$('#agendaId').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula,
+					name: item.tituloAula
 				}));
 			});
 		})
@@ -165,7 +160,7 @@ function getDados() {
 
 	$.ajax({
 
-		url: url_base + "/agendas",
+		url: url_base + "/agendaAnexo",
 		type: "GET",
 		async: false,
 	})
@@ -179,89 +174,43 @@ function getDados() {
 		});
 }
 
-
-
-function formatarHoraParaAMPM(hora) {
-	if (!hora) {
-		console.error('Hora não está definida ou é inválida:', hora);
-		return ''; // Ou algum valor padrão, como "00:00 AM"
-	}
-
-	let [horas, minutos, segundos] = hora.split(':');
-	horas = parseInt(horas, 10);
-	const periodo = horas >= 12 ? 'PM' : 'AM';
-	horas = horas % 12 || 12;
-	return `${('0' + horas).slice(-2)}:${minutos} ${periodo}`;
+function formatarDataParaBR(data) {
+	var dataISO = data;
+	var dataObj = new Date(dataISO);
+	var dia = String(dataObj.getUTCDate()).padStart(2, "0");
+	var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
+	var ano = dataObj.getUTCFullYear();
+	return dia + "/" + mes + "/" + ano;
 }
 
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 
-
-
-		const dataAgenda = item.dataAgenda
-
-		const horaInicioFormatada = formatarHoraParaAMPM(item.horaInicio)
-		const horaFimFormatada = formatarHoraParaAMPM(item.horaFim)
-		const realizada = item.realizada === "S" ? "Sim" : "Não"
-		// Dividir a string nos componentes ano, mês e dia
-		const [ano, mes, dia] = dataAgenda.split('-');
-
-		// Formatar a data no formato "dd/mm/aaaa"
-		const dataFormatada = `${dia}/${mes}/${ano}`;
-
-		console.log(dataFormatada); // Saída: "01/01/2024"
+		const dataCadastro = formatarDataParaBR(item.dataCadastro)
 
 		return (
 			"<tr>" +
 			"<td>" +
-			"Nome da Turma" +
+			item.agenda.tituloAula +
 			"</td>" +
 			"<td>" +
-			dataFormatada +
-			"</td>" +
-			"<td>" +
-			horaInicioFormatada +
-			"</td>" +
-			"<td>" +
-			horaFimFormatada +
-			"</td>" +
-			"<td>" +
-			item.tituloAula +
-			"</td>" +
-			"<td>" +
-			item.resumoAula +
-			"</td>" +
-			"<td>" +
-			realizada +
+			dataCadastro +
 			"</td>" +
 			"<td><div class='d-flex align-items-center gap-1'>" +
 			'<input type="checkbox" data-status="' +
 			item.ativo +
 			'" data-id="' +
-			item.idAgenda +
+			item.idAgendaAnexo +
 			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
 			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
 			' data-id="' +
-			item.idAgenda +
-			'" data-turmaId="' +
-			item.turmaId +
-			'" data-horaInicioFormatada="' +
-			item.horaInicio +
-			'" data-horaFimFormatada="' +
-			item.horaFim +
-			'" data-realizada="' +
-			item.realizada +
-			'" data-tituloAula="' +
-			item.tituloAula +
-			'" data-resumoAula="' +
-			item.resumoAula +
-			'" data-dataAgenda="' +
-			item.dataAgenda +
-			'" data-realizada="' +
-			realizada +
+			item.idAgendaAnexo +
+			' data-caminhoArquivo="' +
+			item.caminhoArquivo +
+			' data-agendaId="' +
+			item.agendaId +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -292,7 +241,7 @@ function alteraStatus(element) {
 	console.log(id)
 	console.log(status)
 	$.ajax({
-		url: url_base + `/agendas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		url: url_base + `/agendaAnexo/${id}${status === "S" ? '/desativar' : '/ativar'}`,
 		type: "put",
 		error: function(e) {
 			Swal.close();
@@ -303,7 +252,7 @@ function alteraStatus(element) {
 			});
 		}
 	}).then(data => {
-		window.location.href = 'agenda'
+		window.location.href = 'agenda-anexo'
 	})
 }
 
@@ -325,28 +274,12 @@ $('#exportar-excel').click(function() {
 
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
-	turmaId = ref.getAttribute("data-turmaId")
-	horaInicio = ref.getAttribute("data-horaInicioFormatada");
-	horaFim = ref.getAttribute("data-horaFimFormatada");
-	tituloAula = ref.getAttribute("data-tituloAula");
-	resumoAula = ref.getAttribute("data-resumoAula");
-	dataAgenda = ref.getAttribute("data-dataAgenda");
-	realizada = ref.getAttribute("data-realizada");
+	agendaId = ref.getAttribute("data-agendaId")
+	caminhoArquivo = ref.getAttribute("data-caminhoArquivo")
 
-	$("#turmaIdEdit").val(turmaId)
-	$("#dataAgendaEdit").val(dataAgenda);
-	$("#tituloAulaEdit").val(tituloAula);
-	$("#horaIniEdit").val(horaInicio);
-	$("#horaFimEdit").val(horaFim);
-	$("#resumoEdit").val(resumoAula);
-
-	if (realizada == "S") {
-		$('#isRealizadaEdit').attr('checked', true)
-	} else {
-		$('#isRealizadaEdit').attr('checked', false)
-	}
-
-
+	$("#agendaIdEdit").val(agendaId)
+	$("#anexoAgendaEdit").val(caminhoArquivo)
+	
 
 }
 
@@ -365,53 +298,48 @@ function formatarDataParaAPI(data) {
 function editar() {
 
 	const dataFeriado = new Date($("#dataFeriadoEdit").val())
+function convertToBase64(file, callback) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            callback(event.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
 
-	const dataFormatada = formatarDataParaAPI(dataFeriado)
+    let anexoAgendaFile = $('#anexoAgenda')[0].files[0];
+    convertToBase64(anexoAgendaFile, function(base64String) {
+        // Pegue apenas a parte base64 da string
+        var base64Data = base64String.split(',')[1];
 
-	var objeto = {
-		"idAgenda": id,
-		"turmaId": $("#turmaIdEdit").val(),
-		"dataAgenda": $("#dataAgendaEdit").val(),
-		"horaInicio": $("#horaIniEdit").val(),
-		"horaFim": $("#horaFimEdit").val(),
-		"realizada": getAswer("#isRealizadaEdit"),
-		"tituloAula": $("#tituloAulaEdit").val(),
-		"resumoAula": $("#resumoEdit").val()
-	}
+        var dadosFormulario = {
+			idAgendaAnexo: id,
+            agendaId: $("#agendaId").val(),
+            caminhoArquivo: base64Data  // Envie a string base64 diretamente
+        };
 
-	console.log(objeto)
+        console.log(dadosFormulario);
 
-	$.ajax({
-		url: url_base + "/agendas",
-		type: "PUT",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		error: function(e) {
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-		}
-	})
-		.done(function(data) {
-			$("#dataFeriadoEdit").val('');
-			$("#descricaoEdit").val('');
-
-			getDados();
-			showPage(currentPage);
-			updatePagination();
-			Swal.fire({
-				title: "Editado com sucesso",
-				icon: "success",
-			}).then(() => {
-				window.location.href = "agenda"
-			})
-		});
-
-	return false;
+        $.ajax({
+            url: url_base + '/agendaAnexo',
+            type: "PUT",
+            data: JSON.stringify(dadosFormulario),
+            contentType: "application/json; charset=utf-8",
+            error: function(e) {
+                console.log(e);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Não foi possível cadastrar a escola!",
+                });
+            }
+        }).done(function(data) {
+            Swal.fire({
+                title: "Cadastrado com sucesso",
+                icon: "success",
+            });
+            window.location.href = "agenda-anexo";
+        });
+    });
 }
 
 $('#formEdit').on('submit', function(e) {
@@ -434,50 +362,49 @@ function getAswer(input) {
 
 
 function cadastrar() {
+    function convertToBase64(file, callback) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            callback(event.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
 
-	const dataAgenda = new Date($("#dataAgenda").val())
+    let anexoAgendaFile = $('#anexoAgendaEdit')[0].files[0];
+    convertToBase64(anexoAgendaFile, function(base64String) {
+        // Pegue apenas a parte base64 da string
+        var base64Data = base64String.split(',')[1];
 
-	const dataFormatada = formatarDataParaAPI(dataAgenda)
+        var dadosFormulario = {
+            agendaId: $("#agendaId").val(),
+            caminhoArquivo: base64Data  // Envie a string base64 diretamente
+        };
 
-	var objeto = {
-		"turmaId": $("#turmaId").val(),
-		"dataAgenda": dataFormatada,
-		"horaInicio": $("#horaIni").val(),
-		"horaFim": $("#horaFim").val(),
-		"realizada": getAswer("#isRealizada"),
-		"tituloAula": $("#tituloAula").val(),
-		"resumoAula": $("#resumo").val()
-	};
-	console.log(objeto)
+        console.log(dadosFormulario);
 
-	$.ajax({
-		url: url_base + "/agendas",
-		type: "POST",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		error: function(e) {
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-		}
-	})
-		.done(function() {
-			getDados();
-			showPage(currentPage);
-			updatePagination();
-			Swal.fire({
-				title: "Cadastrado com sucesso",
-				icon: "success",
-			}).then(() => {
-				window.location.href = "agenda"
-			})
-		});
-	return false;
+        $.ajax({
+            url: url_base + '/agendaAnexo',
+            type: "POST",
+            data: JSON.stringify(dadosFormulario),
+            contentType: "application/json; charset=utf-8",
+            error: function(e) {
+                console.log(e);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Não foi possível cadastrar a escola!",
+                });
+            }
+        }).done(function(data) {
+            Swal.fire({
+                title: "Cadastrado com sucesso",
+                icon: "success",
+            });
+            window.location.href = "agenda-anexo";
+        });
+    });
 }
+
 
 $('#formCadastro').on('submit', function(e) {
 	e.preventDefault();
@@ -489,6 +416,6 @@ $('#formCadastro').on('submit', function(e) {
 // Limpa input
 
 function limpaCampo() {
-	$("#descricao").val('');
+	$("#agendaId").val('');
 	$("#dataFeriado").val('');
 }

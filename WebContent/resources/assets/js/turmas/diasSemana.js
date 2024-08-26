@@ -106,6 +106,7 @@ $(document).ready(function() {
 		} else {
 			icon.addClass("fa-sort");
 			listarDados(dadosOriginais);
+			$('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -149,6 +150,7 @@ $(document).ready(function() {
 
 		});
 		listarDados(dadosOrdenados);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
 
@@ -167,6 +169,7 @@ $(document).ready(function() {
 
 $('#limpa-filtros').click(function() {
 	listarDados(dadosOriginais);
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 

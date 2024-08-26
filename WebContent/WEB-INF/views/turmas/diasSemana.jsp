@@ -184,7 +184,7 @@ String contextPath = request.getContextPath();
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Permite Cheque Horário</span> <i class="fas fa-sort me-3"
+									<span>Permite Choque Horário</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 							</div>
@@ -255,7 +255,7 @@ String contextPath = request.getContextPath();
 							<div class="mb-4">
 								<div class="col-md-12">
 									<label for="chequeHorario" class="form-label">Permite
-										Cheque Horário:<span class="red">*</span>
+										Choque Horário:<span class="red">*</span>
 									</label>
 									<div class="form-control card-form-infra">
 										<label for="choqueHorario">Sim</label> <label class="switch">
@@ -326,7 +326,7 @@ String contextPath = request.getContextPath();
 							<div class="mb-4">
 								<div class="col-md-12">
 									<label for="chequeHorario" class="form-label">Permite
-										Cheque Horário:<span class="red">*</span>
+										Choque Horário:<span class="red">*</span>
 									</label>
 									<div class="form-control card-form-infra">
 										<label for="permiteChoqueHorarioEdit">Sim</label> <label class="switch">

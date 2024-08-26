@@ -63,6 +63,7 @@ $(document).ready(function() {
 
 
 		listarDados(filteredData);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -158,6 +159,7 @@ $(document).ready(function() {
 
 $('#limpa-filtros').click(function() {
 	listarDados(dadosOriginais);
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 
@@ -216,7 +218,7 @@ function listarDados(dados) {
 		return (
 			"<tr>" +
 			"<td>" +
-			"Nome da Turma" +
+			item.turma.nomeTurma +
 			"</td>" +
 			"<td>" +
 			dataFormatada +

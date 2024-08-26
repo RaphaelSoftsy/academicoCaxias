@@ -137,7 +137,7 @@ String contextPath = request.getContextPath();
 										<label for="agendaId" class="form-label">Agenda:<span
 											class="red">*</span>
 										</label><select class="form-control"
-											aria-label="Certidão de Nascimento UF Cartório"
+											aria-label="Agenda Id"
 											id="agendaId"
 											name="agendaId">
 											<option selected disabled value="">Selecione uma
@@ -176,19 +176,27 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
-							<div class="mb-4">
-								<label for="turmaId" class="form-label">Data Feriado:<span
-									class="red">*</span>
-								</label><input autocomplete="off" type="date" id="dataFeriadoEdit"
-									name="dataFeriado" class="form-control" required />
-							</div>
-							<div class="mb-4">
-								<label for="horaInicio" class="form-label">Descrição:<span
-									class="red">*</span>
-								</label> <input autocomplete="off" type="text" id="descricaoEdit"
-									name="horaInicio" class="form-control" required />
-							</div>
-
+							<div class="col-md-12">
+									<div class="mb-4">
+										<label for="agendaId" class="form-label">Agenda:<span
+											class="red">*</span>
+										</label><select class="form-control"
+											aria-label="Agenda Id"
+											id="agendaIdEdit"
+											name="agendaIdEdit">
+											<option selected disabled value="">Selecione uma opção</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="mb-4">
+										<label for="turmaId" class="form-label">Arquivo:<span
+											class="red">*</span>
+										</label><input autocomplete="off" type="file" id="anexoAgendaEdit"
+											name="anexoAgendaEdit" class="form-control" required />
+									</div>
+								</div>
+							
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
