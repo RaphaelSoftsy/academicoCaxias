@@ -9,6 +9,9 @@ var classificacao = ""
 
 $(document).ready(function() {
 
+
+
+
 	var tamanhoBody = $("body").width()
 
 	if (tamanhoBody < 768) {
@@ -47,8 +50,56 @@ $(document).ready(function() {
 	}
 
 
+	function applyMask(value) {
+		value = value.replace(/[^0-9X]/g, ''); // Remove tudo que não for número ou "X"
+		var x = value.endsWith('X') ? 'X' : ''; // Verifica se o "X" está no final
+		value = value.replace('X', ''); // Remove o "X" para aplicar a máscara
 
+		// Máscaras possíveis baseadas no número de dígitos
+		var masks = [
+			'00.000-0',
+			'00.000-0',
+			'00.000.00-0',
+			'00.000.00-0',
+			'00.000.000-0',
+			'00.000.000-00',
+			'00.000.000-000',
+			'00.000.0000-0000',
+			'00.000.0000-00000'
+		];
 
+		var length = value.length; // Conta o número total de dígitos
+		var mask = masks[Math.min(length, masks.length - 1)]; // Seleciona a máscara apropriada
+
+		var result = '';
+		var j = 0;
+		for (var i = 0; i < mask.length; i++) {
+			if (mask[i] === '0' && j < value.length) {
+				result += value[j++];
+			} else if (mask[i] !== '0') {
+				result += mask[i];
+			}
+		}
+		return result + x; // Adiciona o "X" de volta ao final se estiver presente
+	}
+
+	$('#rgNumero').on('focus', function() {
+		$(this).data('prevValue', $(this).val());
+		$(this).val($(this).val().replace(/[^0-9X]/g, '')); // Remove máscara e mantém o valor
+	});
+
+	$('#rgNumero').on('blur', function() {
+		var value = $(this).val();
+		$(this).val(applyMask(value)); // Aplica a máscara ao sair do campo
+	});
+
+	$('#rgNumero').on('input', function() {
+		var value = $(this).val().replace(/[^0-9X]/g, ''); // Remove tudo que não for número ou "X"
+		if (value.length > 14) {
+			value = value.slice(0, 14); // Limita a entrada a 14 caracteres
+			$(this).val(value); // Atualiza o valor no campo
+		}
+	});
 
 	$.ajax({
 		url: url_base + '/tiposIngresso/conta/' + contaId,
@@ -207,7 +258,7 @@ $(document).ready(function() {
 			);
 		});
 	});
-
+	
 	$.ajax({
 		url: url_base + "/situacaoProfessor",
 		type: "get",
@@ -223,7 +274,7 @@ $(document).ready(function() {
 			);
 		});
 	});
-
+	
 	$.ajax({
 		url: url_base + "/nivelEscolaridade",
 		type: "get",
@@ -239,7 +290,7 @@ $(document).ready(function() {
 			);
 		});
 	});
-
+	
 	$.ajax({
 		url: url_base + "/tipoEnsinoMedio",
 		type: "get",
@@ -276,6 +327,8 @@ $('#formNovoCadastro').submit(function(event) {
 			cpf = null
 		}
 
+		var rgValue = $('#rgNumero').val();
+
 
 
 		var dadosFormulario = {
@@ -295,7 +348,7 @@ $('#formNovoCadastro').submit(function(event) {
 				nacionalidadeId: $('#nacionalidadeId').val(),
 				"nacionalidade": $('#nacionalidadeId').find(":selected").text().substring(0, 3),
 				estadoCivil: $('input[name="estadoCivil"]:checked').val(),
-				rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
+				rgNumero: rgValue.replace(/[^\dX]/g, ''),
 				rgDataExpedicao: $('#rgDataExpedicao').val(),
 				rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
 				rgUfEmissorId: $('#rgUfEmissorId').val(),
@@ -533,18 +586,18 @@ function ValidarCpf() {
 
 
 		/*console.log(data)
-
+	
 		if (data.certidaoNascimentoNumero !== null &&
 			data.certidaoNascimentoDataEmissao !== null &&
 			data.certidaoNascimentoFolha !== null &&
 			data.certidaoNascimentoLivro !== null &&
 			data.certidaoNascimentoOrdem !== null) {
-
+	
 			$('input[id="qualPreencher"]').attr('checked', true);
-
+	
 			$("#certidaoCasamento").hide();
 			$("#certidaoNascimento").show();
-
+	
 			$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
 			$('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
 			$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "").trigger('change');
@@ -554,7 +607,7 @@ function ValidarCpf() {
 			$('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
 			$('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
 			$('#certidaoNascimentoOrdem').val(data.certidaoNascimentoOrdem);
-
+	
 			// Restante do código...
 		} else if (data.certidaoCasamentoCartorio !== null &&
 			data.certidaoCasamentoMunicipioCartorio !== null &&
@@ -562,11 +615,11 @@ function ValidarCpf() {
 			data.certidaoCasamentoFolha !== null &&
 			data.certidaoCasamentoLivro !== null &&
 			data.certidaoCasamentoOrdem !== null) {
-
+	
 			$('input[id="qualPreencher"]').attr('checked', false);
 			$("#certidaoNascimento").hide();
 			$("#certidaoCasamento").show();
-
+	
 			$('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
 			$('#certidaoCasamentoCartorio').val(data.certidaoCasamentoCartorio);
 			$('#certidaoCasamentoUfCartorioId').val(data.certidaoCasamentoMunicipioCartorio.ufId).trigger('change');
@@ -576,10 +629,10 @@ function ValidarCpf() {
 			$('#certidaoCasamentoOrdem').val(data.certidaoCasamentoOrdem);
 			$('#certidaoCasamentoFolha').val(data.certidaoCasamentoFolha);
 			$('#certidaoCasamentoLivro').val(data.certidaoCasamentoLivro);
-
+	
 			// Restante do código...
 		}
-
+	
 		// Preenchendo outros campos de select
 		$('#racaId').val(data.raca.idRaca).trigger('change');
 		$('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade).trigger('change');
@@ -588,7 +641,7 @@ function ValidarCpf() {
 		$('#ufNascimentoId').val(data.municipioNascimento.ufId).trigger('change');
 		$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio).trigger('change');
 		$('#rgUfEmissorId').val(data.rgUfEmissor !== null ? data.rgUfEmissor.idUf : "").trigger('change');
-
+	
 		// Preenchendo campos de input
 		$('#nomeCompleto').val(data.nomeCompleto);
 		$('#cpf').val(data.cpf !== null ? data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "");

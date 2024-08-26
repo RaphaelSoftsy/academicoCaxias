@@ -280,8 +280,8 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="rgNumero" class="form-label">RG: <span
 							class="red">*</span></label> <input type="text" id="rgNumero"
-							autocomplete="off" data-mask="00.000.000-0" name="rgNumero"
-							class="form-control" required />
+							autocomplete="off" name="rgNumero"
+							class="form-control"  required />
 					</div>
 
 					<div class="col-md-6" id="rgDataExpedicaoDiv">
