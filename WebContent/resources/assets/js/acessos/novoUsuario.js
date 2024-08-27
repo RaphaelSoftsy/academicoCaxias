@@ -573,10 +573,11 @@ const editar = () => {
 			"emailVerificado": "N",
 			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 			"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
-			"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+			"celular": $('#celular').val().replace(/[^a-zA-Z0-9]/g, "").replace(/\s+/g, ""),
 			"celularVerificado": "N"
 		};
-
+		
+		console.log(dadosFormulario)
 
 		$.ajax({
 			url: url_base + '/usuario',

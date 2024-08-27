@@ -77,19 +77,24 @@ $(document).ready(function() {
 
 		// Máscaras possíveis baseadas no número de dígitos
 		var masks = [
-			'00.000-0',
-			'00.000-0',
-			'00.000.00-0',
-			'00.000.00-0',
-			'00.000.000-0',
-			'00.000.000-00',
-			'00.000.000-000',
-			'00.000.0000-0000',
-			'00.000.0000-00000'
+			'0',
+			'0-0',
+			'00-0',
+			'000-0',
+			'000.0-0',
+			'000.00-0',
+			'000.000-0',
+			'000.000.0-0',
+			'000.000.00-0',
+			'000.000.000-00',
+			'000.000.000-000',
+			'000.000.000-0000',
+			'000.000.000-000000',
+			'000.000.000-00000',
 		];
 
 		var length = value.length; // Conta o número total de dígitos
-		var mask = masks[Math.min(length, masks.length - 1)]; // Seleciona a máscara apropriada
+		var mask = masks[length - 1]; // Seleciona a máscara apropriada
 
 		var result = '';
 		var j = 0;
@@ -422,37 +427,42 @@ function getDados2() {
 }
 
 function applyMask(value) {
-	value = value.replace(/[^0-9X]/g, ''); // Remove tudo que não for número ou "X"
-	var x = value.endsWith('X') ? 'X' : ''; // Verifica se o "X" está no final
-	value = value.replace('X', ''); // Remove o "X" para aplicar a máscara
+		value = value.replace(/[^0-9X]/g, ''); // Remove tudo que não for número ou "X"
+		var x = value.endsWith('X') ? 'X' : ''; // Verifica se o "X" está no final
+		value = value.replace('X', ''); // Remove o "X" para aplicar a máscara
 
-	// Máscaras possíveis baseadas no número de dígitos
-	var masks = [
-		'00.000-0',
-		'00.000-0',
-		'00.000.00-0',
-		'00.000.00-0',
-		'00.000.000-0',
-		'00.000.000-00',
-		'00.000.000-000',
-		'00.000.0000-0000',
-		'00.000.0000-00000'
-	];
+		// Máscaras possíveis baseadas no número de dígitos
+		var masks = [
+			'0',
+			'0-0',
+			'00-0',
+			'000-0',
+			'000.0-0',
+			'000.00-0',
+			'000.000-0',
+			'000.000.0-0',
+			'000.000.00-0',
+			'000.000.000-00',
+			'000.000.000-000',
+			'000.000.000-0000',
+			'000.000.000-000000',
+			'000.000.000-00000',
+		];
 
-	var length = value.length; // Conta o número total de dígitos
-	var mask = masks[Math.min(length, masks.length - 1)]; // Seleciona a máscara apropriada
+		var length = value.length; // Conta o número total de dígitos
+		var mask = masks[length - 1]; // Seleciona a máscara apropriada
 
-	var result = '';
-	var j = 0;
-	for (var i = 0; i < mask.length; i++) {
-		if (mask[i] === '0' && j < value.length) {
-			result += value[j++];
-		} else if (mask[i] !== '0') {
-			result += mask[i];
+		var result = '';
+		var j = 0;
+		for (var i = 0; i < mask.length; i++) {
+			if (mask[i] === '0' && j < value.length) {
+				result += value[j++];
+			} else if (mask[i] !== '0') {
+				result += mask[i];
+			}
 		}
+		return result + x; // Adiciona o "X" de volta ao final se estiver presente
 	}
-	return result + x; // Adiciona o "X" de volta ao final se estiver presente
-}
 
 $('#formNovoCadastro').submit(function(event) {
 	event.preventDefault();
