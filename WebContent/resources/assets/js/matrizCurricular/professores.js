@@ -11,6 +11,7 @@ var ativo = "";
 const contaId = localStorage.getItem('contaId')
 const escolaId = sessionStorage.getItem('escolaId')
 let idProfessor = ''
+let matriculaProfessor = ''
 
 $(document).ready(function() {
 
@@ -194,9 +195,27 @@ function listarDados(dados) {
 			item.idProfessor +
 			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			'<td class="d-flex justify-content-center">' +
+			'<span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idProfessor +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+
+			'<span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" data-matricula="' +
+			item.matricula +
+			'" data-id="' +
+			item.idProfessor +
+			'" data-cpf="' +
+			item.pessoa.cpf +
+			'" onclick="showProfessorEscola(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-school"></i></span>' +
+			'<span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" data-matricula="' +
+			item.matricula +
+			'" data-id="' +
+			item.idProfessor +
+			'" data-cpf="' +
+			item.pessoa.cpf +
+			'" onclick="showProfessorDisciplina(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-book"></i></span>' +
+
+			'</td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -247,6 +266,19 @@ function alteraStatus(element) {
 	})
 }
 
+const showProfessorEscola = (ref) => {
+	matriculaProfessor = ref.getAttribute("data-matricula")
+	let id = ref.getAttribute("data-id")
+	let cpf = ref.getAttribute("data-cpf")
+	window.location.href = 'professorEscola?matricula=' + matriculaProfessor + '&id=' + id + '&cpf=' + cpf
+}
+
+const showProfessorDisciplina = (ref) => {
+	matriculaProfessor = ref.getAttribute("data-matricula")
+	let id = ref.getAttribute("data-id")
+	let cpf = ref.getAttribute("data-cpf")
+	window.location.href = 'professorDisciplina?matricula=' + matriculaProfessor + '&id=' + id+ '&cpf=' + cpf
+}
 
 
 function showModal(ref) {

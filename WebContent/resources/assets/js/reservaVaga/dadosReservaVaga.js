@@ -7,8 +7,115 @@ let idPessoa = ''
 let idResponsavel = ''
 let idFichaMedica = ''
 let nomeCandidato = ""
+let ofertaConcurso = {}
+let candidato = {}
+
+const getDadosOfertaConcurso = () => {
+	$.ajax({
+		url: url_base + "/cursos/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#cursoId').append($('<option>', {
+				value: item.idCurso,
+				text: item.nome,
+				name: item.nome
+			}));
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/situacoesAluno/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#situacaoAlunoId').append($('<option>', {
+				value: item.idSituacaoAluno,
+				text: item.situacaoAluno,
+				name: item.situacaoAluno
+			}));
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/turno/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#turnoId').append($('<option>', {
+				value: item.idTurno,
+				text: item.turno,
+				name: item.turno
+			}));
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/concursos/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#concursoId').append($('<option>', {
+				value: item.idConcurso,
+				text: item.concurso,
+				name: item.concurso
+			}));
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/escolas/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			$('#escolaId').append($('<option>', {
+				value: item.idEscola,
+				text: item.nomeEscola,
+				name: item.nomeEscola
+			}));
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
+	});
+
+}
+
+const getOfertaConcurso = (idOferta) => {
+	$.ajax({
+		url: url_base + "/ofertasConcurso/" + idOferta,
+		type: "GET",
+		async: false,
+		error: function(e) {
+			console.log(e)
+		}
+	}).done(function(data) {
+		console.log(data)
+		ofertaConcurso = data
+		$('#concursoId').val(data.concursoId)
+		$('#cursoId').val(data.cursoId)
+		$('#escolaId').val(data.escolaId)
+		$('#turnoId').val(data.turnoId)
+		$('#serie').val(data.serie)
+		$('#descricaoOferta').val(data.descricaoOferta)
+	})
+}
 
 $(document).ready(function() {
+	getDadosOfertaConcurso()
+
 	var triggerTabList = [].slice.call(document.querySelectorAll('#nav-tab button'))
 	triggerTabList.forEach(function(triggerEl) {
 		var tabTrigger = new bootstrap.Tab(triggerEl)
@@ -96,7 +203,7 @@ const aprovarCandidato = () => {
 		cancelButtonText: 'Cancelar'
 	}).then(result => {
 		if (result.isConfirmed) {
-			$.ajax({
+			/*$.ajax({
 				url: url_base + "/candidatos/" + Number(idCandidato) + '/aprovar',
 				type: "put",
 				contentType: "application/json; charset=utf-8",
@@ -117,10 +224,77 @@ const aprovarCandidato = () => {
 				}).then((data) => {
 					window.location.href = 'reservas'
 				})
+			})*/
+			Swal.fire({
+				title: "Como deseja gerar aluno?",
+				icon: "question",
+				showCancelButton: true,
+				showConfirmButton: true,
+				showDenyButton: false,
+				confirmButtonColor: "#042D58",
+				cancelButtonColor: "#042D58",
+				confirmButtonText: 'Gerar aluno automático',
+				cancelButtonText: 'Gerar aluno manualmente'
+			}).then(result => {
+				if (result.isConfirmed) {
+					$('#divMatricula').hide()
+					$('#btnAprovarCandidato').click();
+				} else if (result.isCanceled) { }
 			})
+			/*$('#btnAprovarCandidato').click();*/
 		} else if (result.isCanceled) { }
 	})
 }
+
+$('#gerarAluno').click((event) => {
+	event.preventDefault()
+	const objeto = {
+		"contaId": contaId,
+		"cursoId": $('#cursoId').val(),
+		"escolaId": $('#escolaId').val(),
+		"serieId": $('#serie').val(),
+		"turnoId": $('#turnoId').val(),
+		"pessoaId": candidato.pessoa,
+		"candidatoId": candidato.idCandidato,
+		"situacaoAlunoId": $('#situacaoAlunoId').val(),
+		"aluno": $('#aluno').val(),
+		"emailInterno": $('#emailInterno').val(),
+		"senha": $('#senha').val(),
+	}
+
+	$.ajax({
+		url: url_base + "/alunos/",
+		type: "post",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.log(e)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!"
+
+			});
+		}
+	}).done(function(data) {
+		Swal.fire({
+			title: "Aluno criado com sucesso",
+			icon: "success",
+		}).then((data) => {
+			window.location.href = 'alunos'
+		})
+	})
+})
+
+$('#mtMatricula').change(() => {
+	if ($('#mtMatricula:checked').val() == 'on') {
+		$('#divMatricula').hide()
+	} else {
+		$('#divMatricula').show()
+	}
+
+})
 
 const reprovarCandidato = () => {
 	Swal.fire({
@@ -285,7 +459,9 @@ const getDadosCandidato = () => {
 		}
 	}).done(function(response) {
 		idPessoa = response.pessoa
+		candidato = response
 		console.log(idPessoa)
+		getOfertaConcurso(response.ofertaConcursoId)
 
 		if (response.aprovado == 'S') {
 			$('#aprovarCandidato').hide()

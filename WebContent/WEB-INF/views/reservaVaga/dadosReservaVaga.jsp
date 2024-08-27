@@ -93,15 +93,24 @@ String contextPath = request.getContextPath();
 		<section
 			class="p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 			<div class="d-flex justify-content-end gap-2">
-				<button type="submit" id='reprovarCandidato' class="btn btn-danger statusAprovacao"
-					data-bs-toggle="modal" data-bs-target="#reprovarCand">
+				<button type="submit" id='reprovarCandidato'
+					class="btn btn-danger statusAprovacao" data-bs-toggle="modal"
+					data-bs-target="#reprovarCand">
 					<i class="fa-regular fa-circle-xmark"></i> <span>Reprovar
 						Candidato</span>
 				</button>
 				<button type="submit" id='aprovarCandidato'
-					onclick='aprovarCandidato()' class="btn btn-success statusAprovacao">
+					onclick='aprovarCandidato()'
+					class="btn btn-success statusAprovacao">
 					<i class="fa-regular fa-circle-check"></i> <span>Aprovar
 						Candidato</span>
+				</button>
+
+				<button type="submit" id='btnAprovarCandidato' hidden
+					class="btn btn-danger statusAprovacao" data-bs-toggle="modal"
+					data-bs-target="#modalAprovarCandidato">
+					<i class="fa-regular fa-circle-xmark"></i> <span> Modal
+						Reprovar Candidato</span>
 				</button>
 			</div>
 			<nav>
@@ -110,6 +119,10 @@ String contextPath = request.getContextPath();
 						data-bs-toggle="tab" data-bs-target="#nav-dados-aluno"
 						type="button" role="tab" aria-controls="nav-dados-aluno"
 						aria-selected="true">Dados do Aluno</button>
+					<button class="nav-link" id="nav-oferta-tab" data-bs-toggle="tab"
+						data-bs-target="#nav-oferta" type="button" role="tab"
+						aria-controls="nav-doc" aria-selected="false">Oferta
+						Concurso</button>
 					<!-- <button class="nav-link" id="table-responsavel-tab"
 						data-bs-toggle="tab" data-bs-target="#table-responsavel"
 						type="button" role="tab" aria-controls="table-responsavel"
@@ -1386,6 +1399,67 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div>
+				<div class="tab-pane fade mb-5" id="nav-oferta" role="tabpanel"
+					aria-labelledby="nav-oferta-tab" tabindex="0">
+					<div class="d-flex align-items-center justify-content-between">
+						<h2 id="tituloDados" class="mb-3">Oferta Concurso</h2>
+						<!-- <button type="submit" id='editarCandidato'
+							class="btn btn-primary d-flex gap-2 h-50 align-items-center edit-val"
+							onclick='editarCandidato()'>
+							<i class="fa-solid fa-pen"></i> <span>Editar Candidato</span>
+						</button> -->
+					</div>
+					<%-- 	<input type="text" id="usuarioCadastro" hidden
+					name="usuarioCadastro" value="${funcionario.idUsuario}" /> --%>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="escolaId" class="form-label">Escola: </label> <select
+								class="form-select" disabled aria-label="Escola" id="escolaId"
+								name="escolaId">
+								<option selected disabled>Selecione uma opção</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label for="concursoId" class="form-label">Concurso: </label> <select
+								class="form-select" disabled aria-label="Concurso"
+								id="concursoId" name="concursoId">
+								<option selected disabled>Selecione uma opção</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="cursoId" class="form-label">Curso:</label> <select
+								class="form-select" disabled aria-label="Curso" id="cursoId"
+								name="cursoId">
+								<option selected disabled>Selecione uma opção</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label for="turnoId" class="form-label">Turno: </label> <select
+								class="form-select" disabled aria-label="turnoId" id="turnoId"
+								name="turnoId">
+								<option selected disabled>Selecione uma opção</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="serie" class="form-label">Série: </label> <input
+								type="text" id="serie" disabled autocomplete="off" name="serie"
+								class="form-control" />
+						</div>
+						<div class="col-md-6">
+							<label for="descricaoOferta" class="form-label">Descrição
+								da oferta: </label> <input type="text" id="descricaoOferta" disabled
+								autocomplete="off" name="descricaoOferta" class="form-control" />
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</section>
 		<div class="modal fade" id="reprovarDoc" tabindex="-1"
@@ -1429,12 +1503,94 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id="modalAprovarCandidato" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="title-edit">Gerar Aluno</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form id="formModalAprovarCandidato">
+							<!-- <div class="d-flex flex-column align-items-center mb-4 gap-2"
+								id="divSenha">
+							</div> -->
+							<div class="mb-4">
+								<label for="mtMatricula" class="form-label">Gerar
+									matricula:<span class="red">*</span>
+								</label>
+								<div class="form-control w-100 card-form qualPreencherSwitch">
+									<label for="mtMatricula">Automática</label> <label
+										class="switch"> <input type="checkbox" checked
+										id="mtMatricula" name="mtMatricula"> <span
+										class="slider slider-certidao"></span>
+									</label> <label for="mtMatricula">Manual</label>
+								</div>
+							</div>
+							<!-- 							<div class="mb-4">
+								<label for="mtMatricula" class="form-label">Forma de
+									matricula:</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" checked
+											name="mtMatricula" id="mtMatricula" value="auto" />
+										<label class="form-check-label" for="auto">Automática</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="mtMatricula" id="mtMatricula" value="manual" /> <label
+											class="form-check-label" for="manual">Manual</label>
+									</div>
+								</div>
+							</div> -->
+							<div class="mb-4" id='divMatricula'>
+								<label for="aluno" class="form-label">Matricula: </label> <input
+									type="text" id="aluno" autocomplete="off" name="aluno"
+									class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="situacaoAlunoId" class="form-label">Situação Aluno: </label> <select
+									class="form-select" aria-label="Situação Aluno" id="situacaoAlunoId"
+									name="situacaoAlunoId">
+									<option selected disabled>Selecione uma opção</option>
+								</select>
+							</div>
+							<div class="mb-4">
+								<label for="emailInterno" class="form-label">Email
+									interno: </label> <input type="text" id="emailInterno"
+									autocomplete="off" name="emailInterno" class="form-control" />
+							</div>
+							<div class="mb-4">
+								<label for="senha" class="form-label">Senha: </label>
+								<div class="input-group">
+									<input class="form-control form-control pwd senha"
+										type="password" aria-label=".form-control-lg example"
+										id="senha" required>
+									<button class="btn-default reveal" type="button">
+										<i class="fa-regular fa-eye"></i>
+									</button>
+								</div>
+							</div>
+							<div class="d-flex justify-content-end gap-2">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Fechar</button>
+								<button type="submit" id='gerarAluno' class="btn btn-success"
+									data-bs-dismiss="modal">Gerar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="modal fade" id="reprovarCand" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Reprovação candidato</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Reprovação
+							candidato</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
@@ -1463,8 +1619,8 @@ String contextPath = request.getContextPath();
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
-								<button type="submit" id='btnReprovarCandidato' class="btn btn-danger"
-									data-bs-dismiss="modal">Reprovar</button>
+								<button type="submit" id='btnReprovarCandidato'
+									class="btn btn-danger" data-bs-dismiss="modal">Reprovar</button>
 							</div>
 						</form>
 					</div>

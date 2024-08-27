@@ -12,6 +12,9 @@ let idProfessor = null
 let idProfessorSelecionado = ''
 let url = ''
 var listaProfessores
+const matriculaProfessor = params.get("matricula");
+const idProfessorPes = params.get("id");
+const cpfPes = params.get("cpf");
 
 $(document).ready(function() {
 	$('.container-table').hide()
@@ -35,6 +38,13 @@ $(document).ready(function() {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
+
+	if (matriculaProfessor != undefined) {
+		$('#matricula').val(matriculaProfessor)
+		$('#cpf').val(cpfPes)
+		buscar()
+		selecionarMatricula(idProfessorPes)
+	}
 })
 
 function listarProfessores(dados) {
@@ -91,6 +101,12 @@ const selecionar = (element) => {
 	getEscolas()
 }
 
+const selecionarMatricula = (id) => {
+	idProfessorSelecionado = id
+	listarProfessores(listaProfessores)
+	getEscolas()
+}
+
 const getEscolas = () => {
 	$.ajax({
 		url: url_base + '/professores/escolas?idProfessor=' + idProfessorSelecionado,
@@ -112,11 +128,11 @@ const getEscolas = () => {
 
 function listarEscolas(dados) {
 	var html
-	
+
 	if (dados.length > 0) {
 		html = dados.map(function(item) {
 			var tipoEscola
-			var cnpj = item.cnpj !== null ? item.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5"	) : "Não possui CNPJ"
+			var cnpj = item.cnpj !== null ? item.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5") : "Não possui CNPJ"
 
 			if (item.tipoEscola = "PV") {
 				tipoEscola = 'Privada'
@@ -210,8 +226,12 @@ function alteraStatus(element) {
 }
 
 $('#btn-buscar').click(() => {
+	buscar()
+})
+
+const buscar = () => {
 	let nome = $('#nomeProfessor').val()
-	let cpf = $('#cpf').val().replace(/[^\d]+/g, '')  
+	let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
 	let matricula = $('#matricula').val()
 
 	/*let url = url_base + `/professores/filtrar?cpf${cpf}=&nome=${nome}&matricula=${matricula}`*/
@@ -240,7 +260,7 @@ $('#btn-buscar').click(() => {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
-})
+}
 
 const adicionar = () => {
 	let objeto = {
