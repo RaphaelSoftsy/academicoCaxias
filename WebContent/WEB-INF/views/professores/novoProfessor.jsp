@@ -581,8 +581,6 @@ String contextPath = request.getContextPath();
 						<label for="emailInstucional" class="form-label">Email
 							Institucional: </label> <input type="text" id="emailInstucional"
 							autocomplete="off" name="emailInstucional" class="form-control" />
-
-
 					</div>
 
 					<div class="col-md-6" id="cardUsuario">

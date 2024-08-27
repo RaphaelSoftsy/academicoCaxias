@@ -99,7 +99,9 @@ String contextPath = request.getContextPath();
 				class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Itens Cadastrados</caption>
 				<thead>
-					<tr><th scope="col" class="sortable border-end" data-column="nomeTurma">
+					<tr>
+						<th scope="col" class="sortable border-end"
+							data-column="nomeTurma">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -116,12 +118,14 @@ String contextPath = request.getContextPath();
 										id="dropdownContent1">
 										<input type="text" class="form-control mb-3 searchInput"
 											placeholder="Digite o Nome da Turma" />
-										<button class="btn btn-sm col-12 btn-success searchButton">Buscar Turma</button>
+										<button class="btn btn-sm col-12 btn-success searchButton">Buscar
+											Turma</button>
 									</div>
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="dataAgenda">
+						<th scope="col" class="sortable border-end"
+							data-column="dataAgenda">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -191,16 +195,16 @@ String contextPath = request.getContextPath();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="dataAgenda" class="form-label">Data Agenda:<span
-											class="red">*</span>
+										<label for="dataAgenda" class="form-label">Data
+											Agenda:<span class="red">*</span>
 										</label><input autocomplete="off" type="date" id="dataAgenda"
 											name="dataAgenda" class="form-control" required />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="tituloAula" class="form-label">Titulo Aula:<span
-											class="red">*</span>
+										<label for="tituloAula" class="form-label">Titulo
+											Aula:<span class="red">*</span>
 										</label><input autocomplete="off" type="text" id="tituloAula"
 											name="tituloAula" class="form-control" required />
 									</div>
@@ -239,11 +243,10 @@ String contextPath = request.getContextPath();
 											class="red">*</span>
 										</label>
 										<div class="form-control card-form-infra">
-											<label for="isRealizada">Sim</label> <label
-												class="switch"> <input type="checkbox"
-												id="isRealizada" name="isRealizada"> <span
-												class="slider"></span>
-											</label> <label for="isRealizada">Não</label>	
+											<label for="isRealizada">Sim</label> <label class="switch">
+												<input type="checkbox" id="isRealizada" name="isRealizada">
+												<span class="slider"></span>
+											</label> <label for="isRealizada">Não</label>
 
 										</div>
 									</div>
@@ -272,7 +275,7 @@ String contextPath = request.getContextPath();
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
-						
+
 							<div class="mb-4">
 								<label for="turmaIdEdit" class="form-label">Turma:<span
 									class="red">*</span>
@@ -284,16 +287,16 @@ String contextPath = request.getContextPath();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="dataAgendaEdit" class="form-label">Data Agenda:<span
-											class="red">*</span>
+										<label for="dataAgendaEdit" class="form-label">Data
+											Agenda:<span class="red">*</span>
 										</label><input autocomplete="off" type="date" id="dataAgendaEdit"
 											name="dataAgendaEdit" class="form-control" required />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="tituloAulaEdit" class="form-label">Titulo Aula:<span
-											class="red">*</span>
+										<label for="tituloAulaEdit" class="form-label">Titulo
+											Aula:<span class="red">*</span>
 										</label><input autocomplete="off" type="text" id="tituloAulaEdit"
 											name="tituloAulaEdit" class="form-control" required />
 									</div>
@@ -302,8 +305,8 @@ String contextPath = request.getContextPath();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="horaIniEdit" class="form-label">Hora Início:<span
-											class="red">*</span>
+										<label for="horaIniEdit" class="form-label">Hora
+											Início:<span class="red">*</span>
 										</label><input autocomplete="off" type="time" id="horaIniEdit"
 											name="horaIniEdit" class="form-control" required />
 									</div>
@@ -336,7 +339,7 @@ String contextPath = request.getContextPath();
 												class="switch"> <input type="checkbox"
 												id="isRealizadaEdit" name="isRealizadaEdit"> <span
 												class="slider"></span>
-											</label> <label for="isRealizadaEdit">Não</label>	
+											</label> <label for="isRealizadaEdit">Não</label>
 
 										</div>
 									</div>
@@ -354,7 +357,49 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id="anexoAgenda" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="title-novo-ato">Novo
+							Cadastro</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form id="formCadastroAnexo">
 
+							<div class="col-md-12">
+								<div class="mb-4">
+									<label for="agendaId" class="form-label">Agenda:<span
+										class="red">*</span>
+									</label><select class="form-control" aria-label="Agenda Id"
+										id="agendaId" name="agendaId">
+										<option selected disabled value="">Selecione uma opção</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="mb-4">
+									<label for="anexoAgenda" class="form-label">Arquivo:<span
+										class="red">*</span>
+									</label><input autocomplete="off" type="file" id="anexoAgendaInput"
+										name="anexoAgendaInput" class="form-control" required />
+								</div>
+							</div>
+
+							<div class="d-flex justify-content-end gap-2">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Fechar</button>
+								<button type="submit" data-bs-dismiss="modal"
+									class="btn btn-primary">Salvar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
 
 	<script charset="UTF-8"

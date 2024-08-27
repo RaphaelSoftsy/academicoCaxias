@@ -212,6 +212,14 @@ function listarDados(dados) {
 			' data-agendaId="' +
 			item.agendaId +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
+			' data-id="' +
+			item.idAgendaAnexo +
+			' data-caminhoArquivo="' +
+			item.caminhoArquivo +
+			' data-agendaId="' +
+			item.agendaId +
+			'" onclick="baixarAnexo()"></span></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -220,6 +228,11 @@ function listarDados(dados) {
 	$('input[data-toggle="toggle"]').bootstrapToggle();
 	$("#cola-tabela").html(html);
 
+}
+
+
+function baixarAnexo(ref){
+	caminhoArquivo = ref.getAttribute("data-caminhoArquivo");
 }
 
 
@@ -279,7 +292,7 @@ function showModal(ref) {
 
 	$("#agendaIdEdit").val(agendaId)
 	$("#anexoAgendaEdit").val(caminhoArquivo)
-	
+
 
 }
 
@@ -298,48 +311,48 @@ function formatarDataParaAPI(data) {
 function editar() {
 
 	const dataFeriado = new Date($("#dataFeriadoEdit").val())
-function convertToBase64(file, callback) {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-            callback(event.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
+	function convertToBase64(file, callback) {
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			callback(event.target.result);
+		};
+		reader.readAsDataURL(file);
+	}
 
-    let anexoAgendaFile = $('#anexoAgenda')[0].files[0];
-    convertToBase64(anexoAgendaFile, function(base64String) {
-        // Pegue apenas a parte base64 da string
-        var base64Data = base64String.split(',')[1];
+	let anexoAgendaFile = $('#anexoAgenda')[0].files[0];
+	convertToBase64(anexoAgendaFile, function(base64String) {
+		// Pegue apenas a parte base64 da string
+		var base64Data = base64String.split(',')[1];
 
-        var dadosFormulario = {
+		var dadosFormulario = {
 			idAgendaAnexo: id,
-            agendaId: $("#agendaId").val(),
-            caminhoArquivo: base64Data  // Envie a string base64 diretamente
-        };
+			agendaId: $("#agendaId").val(),
+			caminhoArquivo: base64Data  // Envie a string base64 diretamente
+		};
 
-        console.log(dadosFormulario);
+		console.log(dadosFormulario);
 
-        $.ajax({
-            url: url_base + '/agendaAnexo',
-            type: "PUT",
-            data: JSON.stringify(dadosFormulario),
-            contentType: "application/json; charset=utf-8",
-            error: function(e) {
-                console.log(e);
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Não foi possível cadastrar a escola!",
-                });
-            }
-        }).done(function(data) {
-            Swal.fire({
-                title: "Cadastrado com sucesso",
-                icon: "success",
-            });
-            window.location.href = "agenda-anexo";
-        });
-    });
+		$.ajax({
+			url: url_base + '/agendaAnexo',
+			type: "PUT",
+			data: JSON.stringify(dadosFormulario),
+			contentType: "application/json; charset=utf-8",
+			error: function(e) {
+				console.log(e);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível cadastrar a escola!",
+				});
+			}
+		}).done(function(data) {
+			Swal.fire({
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			});
+			window.location.href = "agenda-anexo";
+		});
+	});
 }
 
 $('#formEdit').on('submit', function(e) {
@@ -362,47 +375,47 @@ function getAswer(input) {
 
 
 function cadastrar() {
-    function convertToBase64(file, callback) {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-            callback(event.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
+	function convertToBase64(file, callback) {
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			callback(event.target.result);
+		};
+		reader.readAsDataURL(file);
+	}
 
-    let anexoAgendaFile = $('#anexoAgendaEdit')[0].files[0];
-    convertToBase64(anexoAgendaFile, function(base64String) {
-        // Pegue apenas a parte base64 da string
-        var base64Data = base64String.split(',')[1];
+	let anexoAgendaFile = $('#anexoAgenda')[0].files[0];
+	convertToBase64(anexoAgendaFile, function(base64String) {
+		// Pegue apenas a parte base64 da string
+		var base64Data = base64String.split(',')[1];
 
-        var dadosFormulario = {
-            agendaId: $("#agendaId").val(),
-            caminhoArquivo: base64Data  // Envie a string base64 diretamente
-        };
+		var dadosFormulario = {
+			agendaId: $("#agendaId").val(),
+			caminhoArquivo: base64Data  // Envie a string base64 diretamente
+		};
 
-        console.log(dadosFormulario);
+		console.log(dadosFormulario);
 
-        $.ajax({
-            url: url_base + '/agendaAnexo',
-            type: "POST",
-            data: JSON.stringify(dadosFormulario),
-            contentType: "application/json; charset=utf-8",
-            error: function(e) {
-                console.log(e);
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Não foi possível cadastrar a escola!",
-                });
-            }
-        }).done(function(data) {
-            Swal.fire({
-                title: "Cadastrado com sucesso",
-                icon: "success",
-            });
-            window.location.href = "agenda-anexo";
-        });
-    });
+		$.ajax({
+			url: url_base + '/agendaAnexo',
+			type: "POST",
+			data: JSON.stringify(dadosFormulario),
+			contentType: "application/json; charset=utf-8",
+			error: function(e) {
+				console.log(e);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível cadastrar a escola!",
+				});
+			}
+		}).done(function(data) {
+			Swal.fire({
+				title: "Cadastrado com sucesso",
+				icon: "success",
+			});
+			window.location.href = "agenda-anexo";
+		});
+	});
 }
 
 
@@ -417,5 +430,5 @@ $('#formCadastro').on('submit', function(e) {
 
 function limpaCampo() {
 	$("#agendaId").val('');
-	$("#dataFeriado").val('');
+	$("#anexoAgenda").empty();
 }

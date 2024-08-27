@@ -57,19 +57,24 @@ $(document).ready(function() {
 
 		// Máscaras possíveis baseadas no número de dígitos
 		var masks = [
-			'00.000-0',
-			'00.000-0',
-			'00.000.00-0',
-			'00.000.00-0',
-			'00.000.000-0',
-			'00.000.000-00',
-			'00.000.000-000',
-			'00.000.0000-0000',
-			'00.000.0000-00000'
+			'0',
+			'0-0',
+			'00-0',
+			'000-0',
+			'000.0-0',
+			'000.00-0',
+			'000.000-0',
+			'000.000.0-0',
+			'000.000.00-0',
+			'000.000.000-00',
+			'000.000.000-000',
+			'000.000.000-0000',
+			'000.000.000-000000',
+			'000.000.000-00000',
 		];
 
 		var length = value.length; // Conta o número total de dígitos
-		var mask = masks[Math.min(length, masks.length - 1)]; // Seleciona a máscara apropriada
+		var mask = masks[length - 1]; // Seleciona a máscara apropriada
 
 		var result = '';
 		var j = 0;

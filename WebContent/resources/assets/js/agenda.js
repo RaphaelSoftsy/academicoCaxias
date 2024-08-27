@@ -20,6 +20,33 @@ $(document).ready(function() {
 
 
 	$.ajax({
+		url: url_base + "/agendas",
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			turmas = data;
+			$.each(data, function(index, item) {
+				$('#agendaIdEdit').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula,
+					name: item.tituloAula
+				}));
+			});
+			$.each(data, function(index, item) {
+				$('#agendaId').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula,
+					name: item.tituloAula
+				}));
+			});
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown, jqXHR);
+		});
+
+
+	$.ajax({
 		url: url_base + "/turma",
 		type: "GET",
 		async: false,
@@ -245,7 +272,7 @@ function listarDados(dados) {
 			item.idAgenda +
 			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
-			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+			'<td style="display:flex "><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
 			' data-id="' +
 			item.idAgenda +
 			'" data-turmaId="' +
@@ -264,8 +291,12 @@ function listarDados(dados) {
 			item.dataAgenda +
 			'" data-realizada="' +
 			realizada +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-			"</tr>"
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+			'<span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
+			' data-id="' +
+			item.idAgenda +
+			'" onclick="showModalAnexo(this)" data-bs-toggle="modal" data-bs-target="#anexoAgenda"><i class="fa-solid fa-file-lines"></span>' +
+			"</td> </tr>"
 		);
 	}).join("");
 
@@ -348,7 +379,14 @@ function showModal(ref) {
 		$('#isRealizadaEdit').attr('checked', false)
 	}
 
+}
 
+
+function showModalAnexo(ref) {
+	limpaCampo()
+	id = ref.getAttribute("data-id");
+
+	$("#agendaId").val(id)
 
 }
 
@@ -481,6 +519,52 @@ function cadastrar() {
 	return false;
 }
 
+
+function cadastrarAnexo() {
+	function convertToBase64(file, callback) {
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			callback(event.target.result);
+		};
+		reader.readAsDataURL(file);
+	}
+
+	let anexoAgendaFile = $('#anexoAgendaInput')[0].files[0];
+	convertToBase64(anexoAgendaFile, function(base64String) {
+		// Pegue apenas a parte base64 da string
+		var base64Data = base64String.split(',')[1];
+
+		var dadosFormulario = {
+			agendaId: $("#agendaId").val(),
+			caminhoArquivo: base64Data  // Envie a string base64 diretamente
+		};
+
+		console.log(dadosFormulario);
+
+		$.ajax({
+			url: url_base + '/agendaAnexo',
+			type: "POST",
+			data: JSON.stringify(dadosFormulario),
+			contentType: "application/json; charset=utf-8",
+			error: function(e) {
+				console.log(e);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível cadastrar a escola!",
+				});
+			}
+		}).done(function(data) {
+			Swal.fire({
+				title: "Anexo cadastrado com sucesso",
+				icon: "success",
+			});
+			window.location.href = "agenda";
+		});
+	});
+}
+
+
 $('#formCadastro').on('submit', function(e) {
 	e.preventDefault();
 	cadastrar();
@@ -488,9 +572,15 @@ $('#formCadastro').on('submit', function(e) {
 });
 
 
+$('#formCadastroAnexo').on('submit', function(e) {
+	e.preventDefault();
+	cadastrarAnexo();
+	return false;
+});
+
 // Limpa input
 
 function limpaCampo() {
 	$("#descricao").val('');
-	$("#dataFeriado").val('');
+	$("#anexoAgendaInput").val('');
 }

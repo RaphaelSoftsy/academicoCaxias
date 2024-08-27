@@ -280,7 +280,7 @@ String contextPath = request.getContextPath();
 							<label for="rgDataExpedicao" class="form-label">RG Data
 								de Expedição:<span class="red">*</span>
 							</label> <input type="date" id="rgDataExpedicao" autocomplete="off"
-								name="rgDataExpedicao" class="form-control" required/>
+								name="rgDataExpedicao" class="form-control" required />
 						</div>
 					</div>
 
@@ -289,7 +289,7 @@ String contextPath = request.getContextPath();
 							<label for="rgOrgaoExpedidor" class="form-label">Órgão
 								Expedidor-RG:<span class="red">*</span>
 							</label> <input type="text" id="rgOrgaoExpedidor" autocomplete="off"
-								name="rgOrgaoExpedidor" class="form-control" required/>
+								name="rgOrgaoExpedidor" class="form-control" required />
 						</div>
 						<div class="col-md-6">
 							<label for="rgUfEmissorId" class="form-label">UF Emissor
@@ -307,8 +307,7 @@ String contextPath = request.getContextPath();
 					<div
 						class="row mb-3 d-flex align-itens-center justify-content-center">
 						<label for="qualPreencher" class="form-label">Qual deseja
-							preencher?
-						</label>
+							preencher? </label>
 						<div class="form-control card-form qualPreencherSwitch"
 							style="width: 100%;">
 							<label for="qualPreencher">Certidão de Nascimento</label> <label
@@ -568,8 +567,7 @@ String contextPath = request.getContextPath();
 
 							<label for="emailInstucional" class="form-label">Email
 								Institucional: </label> <input type="text" id="emailInstucional"
-								autocomplete="off" name="emailInstucional" class="form-control"
-								required />
+								autocomplete="off" name="emailInstucional" class="form-control" />
 						</div>
 
 						<div class="col-md-6">
