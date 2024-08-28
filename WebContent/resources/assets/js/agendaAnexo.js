@@ -216,9 +216,9 @@ function listarDados(dados) {
 			'<td style="display:flex;"><span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
 			' data-id="' +
 			item.idAgendaAnexo +
-			' data-caminhoArquivo="' +
+			'" data-caminhoArquivo="' +
 			item.caminhoArquivo +
-			' data-agendaId="' +
+			'"data-agendaId="' +
 			item.agendaId +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
 			'<span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
@@ -331,14 +331,14 @@ function editar() {
 		reader.readAsDataURL(file);
 	}
 
-	let anexoAgendaFile = $('#anexoAgenda')[0].files[0];
+	let anexoAgendaFile = $('#anexoAgendaEdit')[0].files[0];
 	convertToBase64(anexoAgendaFile, function(base64String) {
 		// Pegue apenas a parte base64 da string
 		var base64Data = base64String.split(',')[1];
 
 		var dadosFormulario = {
 			idAgendaAnexo: id,
-			agendaId: $("#agendaId").val(),
+			agendaId: $("#agendaIdEdit").val(),
 			caminhoArquivo: base64Data  // Envie a string base64 diretamente
 		};
 
@@ -354,12 +354,12 @@ function editar() {
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
-					text: "Não foi possível cadastrar a escola!",
+					text: "Não foi possível cadastrar o anexo!",
 				});
 			}
 		}).done(function(data) {
 			Swal.fire({
-				title: "Cadastrado com sucesso",
+				title: "Editado com sucesso",
 				icon: "success",
 			});
 			window.location.href = "agenda-anexo";

@@ -567,7 +567,7 @@ function cadastrarAnexo() {
 				title: "Anexo cadastrado com sucesso",
 				icon: "success",
 			});
-			window.location.href = "agenda";
+			window.location.href = "agenda-anexo";
 		});
 	});
 }
