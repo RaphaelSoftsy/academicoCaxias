@@ -82,24 +82,24 @@ $(document).ready(function() {
 		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
-		
-		
-		if(columnToSearch == "nomeTurma"){
+
+
+		if (columnToSearch == "nomeTurma") {
 			filteredData = dadosOriginais.filter(function(item) {
-			return item.turma.nomeTurma.toString().toLowerCase().includes(searchInput);
-		});
-		}else{
+				return item.turma.nomeTurma.toString().toLowerCase().includes(searchInput);
+			});
+		} else {
 			filteredData = dadosOriginais.filter(function(item) {
-			return item[columnToSearch].toString().toLowerCase().includes(searchInput);
-		});
+				return item[columnToSearch].toString().toLowerCase().includes(searchInput);
+			});
 		}
 
 
-		
+
 
 
 		listarDados(filteredData);
-		
+
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -248,6 +248,9 @@ function listarDados(dados) {
 		// Formatar a data no formato "dd/mm/aaaa"
 		const dataFormatada = `${dia}/${mes}/${ano}`;
 
+		const tituloAulaArrumado = item.tituloAula == null ? "Não preenchido" : item.tituloAula
+
+		const resumoAulaArrumado = item.resumoAula == null ? "Não preenchido" : item.resumoAula
 		console.log(dataFormatada); // Saída: "01/01/2024"
 
 		return (
@@ -265,10 +268,10 @@ function listarDados(dados) {
 			horaFimFormatada +
 			"</td>" +
 			"<td>" +
-			item.tituloAula +
+			tituloAulaArrumado +
 			"</td>" +
 			"<td>" +
-			item.resumoAula +
+			resumoAulaArrumado +
 			"</td>" +
 			"<td>" +
 			realizada +
@@ -310,7 +313,7 @@ function listarDados(dados) {
 
 	// Reaplicar a estilização do toggle
 	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
-	
+
 
 }
 
@@ -415,6 +418,10 @@ function editar() {
 	const dataFeriado = new Date($("#dataFeriadoEdit").val())
 
 	const dataFormatada = formatarDataParaAPI(dataFeriado)
+	
+	const tituloAulaFormatado = $("#tituloAulaEdit").val() === '' ? null : $("#tituloAulaEdit").val()
+
+	const resumoAulaFormatado = $("#resumoEdit").val() === '' ? null : $("#resumoEdit").val()
 
 	var objeto = {
 		"idAgenda": id,
@@ -423,8 +430,8 @@ function editar() {
 		"horaInicio": $("#horaIniEdit").val(),
 		"horaFim": $("#horaFimEdit").val(),
 		"realizada": getAswer("#isRealizadaEdit"),
-		"tituloAula": $("#tituloAulaEdit").val(),
-		"resumoAula": $("#resumoEdit").val()
+		"tituloAula": tituloAulaFormatado,
+		"resumoAula": resumoAulaFormatado
 	}
 
 	console.log(objeto)
@@ -487,14 +494,16 @@ function cadastrar() {
 
 	const dataFormatada = formatarDataParaAPI(dataAgenda)
 
+	 
+
 	var objeto = {
 		"turmaId": $("#turmaId").val(),
 		"dataAgenda": dataFormatada,
 		"horaInicio": $("#horaIni").val(),
 		"horaFim": $("#horaFim").val(),
 		"realizada": getAswer("#isRealizada"),
-		"tituloAula": $("#tituloAula").val(),
-		"resumoAula": $("#resumo").val()
+		"tituloAula": tituloAulaFormatado,
+		"resumoAula": resumoAulaFormatado
 	};
 	console.log(objeto)
 

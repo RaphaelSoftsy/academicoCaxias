@@ -2,7 +2,6 @@ const contaId = localStorage.getItem('contaId')
 const idCandidato = sessionStorage.getItem('idCandidato')
 let id = getSearchParams("id");
 const candidatoId = getSearchParams("idCandidato");
-var url_base = "http://10.40.110.2:8080/api-educacional-dev";
 var idPessoa = 0
 var numeroCandidato = 0
 var ofertaConcursoId = 0
@@ -10,14 +9,6 @@ var aprovado = ""
 var usuarioAprovacaoId = 0
 var classificacao = ""
 
-
-function getSearchParams(k) {
-	var p = {};
-	location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(s, key, value) {
-		p[key] = value;
-	});
-	return k ? p[k] : p;
-}
 
 $(document).ready(function() {
 

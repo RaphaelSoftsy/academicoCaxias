@@ -204,9 +204,9 @@ String contextPath = request.getContextPath();
 								<div class="col-md-6">
 									<div class="mb-4">
 										<label for="tituloAula" class="form-label">Titulo
-											Aula:<span class="red">*</span>
+											Aula:
 										</label><input autocomplete="off" type="text" id="tituloAula"
-											name="tituloAula" class="form-control" required />
+											name="tituloAula" class="form-control"  />
 									</div>
 								</div>
 							</div>
@@ -231,10 +231,9 @@ String contextPath = request.getContextPath();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="resumo" class="form-label">Resumo:<span
-											class="red">*</span>
+										<label for="resumo" class="form-label">Resumo:
 										</label><input autocomplete="off" type="text" id="resumo"
-											name="resumo" class="form-control" required />
+											name="resumo" class="form-control" />
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -296,9 +295,9 @@ String contextPath = request.getContextPath();
 								<div class="col-md-6">
 									<div class="mb-4">
 										<label for="tituloAulaEdit" class="form-label">Titulo
-											Aula:<span class="red">*</span>
+											Aula:
 										</label><input autocomplete="off" type="text" id="tituloAulaEdit"
-											name="tituloAulaEdit" class="form-control" required />
+											name="tituloAulaEdit" class="form-control"  />
 									</div>
 								</div>
 							</div>
@@ -323,10 +322,9 @@ String contextPath = request.getContextPath();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="resumoEdit" class="form-label">Resumo:<span
-											class="red">*</span>
+										<label for="resumoEdit" class="form-label">Resumo:
 										</label><input autocomplete="off" type="text" id="resumoEdit"
-											name="resumoEdit" class="form-control" required />
+											name="resumoEdit" class="form-control"  />
 									</div>
 								</div>
 								<div class="col-md-6">
