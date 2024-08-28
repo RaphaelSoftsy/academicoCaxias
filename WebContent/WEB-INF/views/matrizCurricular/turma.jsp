@@ -126,7 +126,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										<input type="text" class="form-control mb-3 searchInput"
 											placeholder="Digite..." />
 										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar</button>
+											Buscar</button> <a href=""></a>
 									</div>
 								</div>
 							</div>

@@ -72,7 +72,7 @@ $(document).ready(function() {
 		}
 
 		listarDados(filteredData);
-		$('input[data-toggle="toggle"]').bootstrapToggle();
+	
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -106,7 +106,7 @@ $(document).ready(function() {
 		} else {
 			icon.addClass("fa-sort");
 			listarDados(dadosOriginais);
-			$('input[data-toggle="toggle"]').bootstrapToggle();
+		
 		}
 
 		sortOrder[column] = newOrder;
@@ -150,7 +150,7 @@ $(document).ready(function() {
 
 		});
 		listarDados(dadosOrdenados);
-		$('input[data-toggle="toggle"]').bootstrapToggle();
+
 	}
 
 
@@ -169,7 +169,7 @@ $(document).ready(function() {
 
 $('#limpa-filtros').click(function() {
 	listarDados(dadosOriginais);
-	$('input[data-toggle="toggle"]').bootstrapToggle();
+
 	$('.searchInput').val('');
 });
 
@@ -252,11 +252,12 @@ function listarDados(dados) {
 			"</tr>"
 		);
 	}).join("");
-	
-	// Reaplicar a estilização do toggle
-	$('input[data-toggle="toggle"]').bootstrapToggle();
 
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
+	
+
+	// Reaplicar a estilização do toggle
+	
 	
 	
 }

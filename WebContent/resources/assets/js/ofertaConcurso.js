@@ -249,12 +249,12 @@ function listarDados(dados) {
 			"</tr>"
 		);
 	}).join("");
+
+	$("#cola-tabela").html(html); 
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 	
 	// Reaplicar a estilização do toggle
-	$('input[data-toggle="toggle"]').bootstrapToggle();
-
-	$("#cola-tabela").html(html);
-
+	
 	
 }
 function alteraStatus(element) {

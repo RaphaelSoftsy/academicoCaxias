@@ -95,7 +95,7 @@ function listarAtos(atos) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
 }
 
 function alteraStatus(element) {

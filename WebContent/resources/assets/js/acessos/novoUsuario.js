@@ -236,7 +236,7 @@ const listarDados = (dadosTabela) => {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
 }
 
 function formatarDataParaISO(data) {
@@ -337,7 +337,7 @@ const getValues = () => {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
 	$('#escola option:selected').val(0)
 	$('#padraoAcesso option:selected').val(0)
 

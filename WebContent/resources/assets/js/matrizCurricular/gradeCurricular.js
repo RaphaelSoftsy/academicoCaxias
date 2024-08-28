@@ -260,7 +260,7 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
 /*
 	// Limitar o número de linhas exibidas
 	var maxRows = 6;
@@ -281,7 +281,7 @@ function listarDados(dados) {
 	});
 
 	// Certifique-se de que o Bootstrap Toggle esteja inicializado corretamente
-	$('input[data-toggle="toggle"]').bootstrapToggle();
+	
 }
 
 

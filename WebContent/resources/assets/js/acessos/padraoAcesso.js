@@ -202,7 +202,7 @@ function listarDados(dados) {
         })
         .join("");
 
-    $("#cola-tabela").html(html);
+    $("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
     // Initialize tooltips after the new elements are added to the DOM
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

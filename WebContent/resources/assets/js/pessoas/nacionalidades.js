@@ -134,7 +134,7 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
 }
 
 function showModal(ref) {

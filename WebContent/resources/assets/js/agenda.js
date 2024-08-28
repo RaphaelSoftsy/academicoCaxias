@@ -82,15 +82,24 @@ $(document).ready(function() {
 		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
-
-
-		filteredData = dadosOriginais.filter(function(item) {
+		
+		
+		if(columnToSearch == "nomeTurma"){
+			filteredData = dadosOriginais.filter(function(item) {
+			return item.turma.nomeTurma.toString().toLowerCase().includes(searchInput);
+		});
+		}else{
+			filteredData = dadosOriginais.filter(function(item) {
 			return item[columnToSearch].toString().toLowerCase().includes(searchInput);
 		});
+		}
+
+
+		
 
 
 		listarDados(filteredData);
-		$('input[data-toggle="toggle"]').bootstrapToggle();
+		
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -186,7 +195,6 @@ $(document).ready(function() {
 
 $('#limpa-filtros').click(function() {
 	listarDados(dadosOriginais);
-	$('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 
@@ -301,8 +309,8 @@ function listarDados(dados) {
 	}).join("");
 
 	// Reaplicar a estilização do toggle
-	$('input[data-toggle="toggle"]').bootstrapToggle();
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
+	
 
 }
 

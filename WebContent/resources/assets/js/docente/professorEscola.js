@@ -183,7 +183,7 @@ function listarEscolas(dados) {
 			$(this).prop('checked', false);
 		}
 	});
-	$('input[data-toggle="toggle"]').bootstrapToggle();
+	
 }
 
 function alteraStatus(element) {

@@ -51,17 +51,23 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest('.sortable').data('column');
 		var filteredData;
 
-
-		filteredData = dadosOriginais.filter(function(item) {
-			return item[columnToSearch].toString().toLowerCase().includes(searchInput);
-		});
-
+		// Ajustar para acessar a coluna aninhada dentro de 'agenda'
+		if (columnToSearch === 'tituloAula') {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.agenda.tituloAula.toString().toLowerCase().includes(searchInput);
+			});
+		} else {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item[columnToSearch].toString().toLowerCase().includes(searchInput);
+			});
+		}
 
 		listarDados(filteredData);
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
 	});
+
 
 	$(document).on('click', '.sortable .col', function() {
 		var column = $(this).closest('th').data("column");
@@ -85,9 +91,11 @@ $(document).ready(function() {
 		if (newOrder === 'asc') {
 			icon.addClass("fa-sort-up");
 			sortData(column, newOrder);
+			
 		} else if (newOrder === 'desc') {
 			icon.addClass("fa-sort-down");
 			sortData(column, newOrder);
+	
 		} else {
 			icon.addClass("fa-sort");
 			listarDados(dadosOriginais);
@@ -133,7 +141,9 @@ $(document).ready(function() {
 			}
 
 		});
+
 		listarDados(dadosOrdenados);
+
 
 	}
 
@@ -186,8 +196,7 @@ function formatarDataParaBR(data) {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-
-		const dataCadastro = formatarDataParaBR(item.dataCadastro)
+		const dataCadastro = formatarDataParaBR(item.dataCadastro);
 
 		return (
 			"<tr>" +
@@ -204,37 +213,41 @@ function listarDados(dados) {
 			item.idAgendaAnexo +
 			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
-			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+			'<td style="display:flex;"><span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
 			' data-id="' +
 			item.idAgendaAnexo +
 			' data-caminhoArquivo="' +
 			item.caminhoArquivo +
 			' data-agendaId="' +
 			item.agendaId +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+			'<span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
 			' data-id="' +
 			item.idAgendaAnexo +
 			' data-caminhoArquivo="' +
 			item.caminhoArquivo +
 			' data-agendaId="' +
 			item.agendaId +
-			'" onclick="baixarAnexo()"></span></td>' +
+			'" onclick="baixarAnexo(this)"><i class="fa-solid fa-file-arrow-down"></i></span></td>' +
 			"</tr>"
 		);
 	}).join("");
 
+	
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
 	// Reaplicar a estilização do toggle
-	$('input[data-toggle="toggle"]').bootstrapToggle();
-	$("#cola-tabela").html(html);
-
+	
 }
 
-
-function baixarAnexo(ref){
-	caminhoArquivo = ref.getAttribute("data-caminhoArquivo");
+function baixarAnexo(ref) {
+	const caminhoArquivo = ref.getAttribute("data-caminhoArquivo");
+	const link = document.createElement('a');
+	link.href = caminhoArquivo;
+	link.download = ''; // Deixe em branco para usar o nome do arquivo original
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
 }
-
 
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");
@@ -292,7 +305,6 @@ function showModal(ref) {
 
 	$("#agendaIdEdit").val(agendaId)
 	$("#anexoAgendaEdit").val(caminhoArquivo)
-
 
 }
 

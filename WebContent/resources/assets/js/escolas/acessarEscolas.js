@@ -196,10 +196,10 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
 	
 		// Reaplicar a estilização do toggle
-	$('input[data-toggle="toggle"]').bootstrapToggle();
+	
 }
 
 function alteraStatus(element) {

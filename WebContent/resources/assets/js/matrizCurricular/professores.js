@@ -220,7 +220,7 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html);
+	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
 
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
@@ -229,7 +229,7 @@ function listarDados(dados) {
 		}
 	});
 
-	$('input[data-toggle="toggle"]').bootstrapToggle();
+	
 }
 
 
