@@ -116,11 +116,31 @@ function listarDados(dados) {
 			"<tr>" +
 
 			"<td>" +
-			item.criterioAvaliacao +
+			item.turma.escola.nomeEscola +
 			"</td>" +
 
 			"<td>" +
-			item.turma.nomeTurma +
+			`${item.turma.periodoLetivo.ano}/${item.turma.periodoLetivo.periodo}` +
+			"</td>" +
+
+			"<td>" +
+			item.turma.turno.turno +
+			"</td>" +
+
+			"<td>" +
+			`${item.turma.nomeTurma}` +
+			"</td>" +
+
+			"<td>" +
+			`${item.turma.gradeCurricular.disciplina.nome} - ${item.turma.gradeCurricular.disciplina.codDiscip}` +
+			"</td>" +
+
+			"<td>" +
+			item.codCriterioAvaliacao +
+			"</td>" +
+
+			"<td>" +
+			item.criterioAvaliacao +
 			"</td>" +
 
 			"<td>" +

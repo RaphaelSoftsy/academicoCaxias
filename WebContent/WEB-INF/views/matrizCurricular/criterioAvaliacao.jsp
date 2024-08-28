@@ -109,6 +109,158 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<thead>
 					<tr>
 						<th scope="col" class="sortable border-end"
+							data-column="escolaPes">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Escola</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+
+						<th scope="col" class="sortable border-end"
+							data-column="anoPeriodoPes">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Ano/Periodo</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+
+						<th scope="col" class="sortable border-end" data-column="turno">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Turno</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+
+
+						<th scope="col" class="sortable border-end"
+							data-column="nomeTurmaPes">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Turma</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+
+
+
+						<th scope="col" class="sortable border-end"
+							data-column="disciplina">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Disciplina</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						
+						<th scope="col" class="sortable border-end"
+							data-column="codCriterioAvaliacao">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Código Critério</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton3">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent3">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite..." />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
+									</div>
+								</div>
+							</div>
+						</th>
+
+						<th scope="col" class="sortable border-end"
 							data-column="criterioAvaliacao">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
@@ -132,33 +284,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="nomeTurmaPes">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Nome turma</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton3">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent3">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar</button>
-									</div>
-								</div>
-							</div>
-						</th>
 
-						<th scope="col" class="sortable border-end"
-							data-column="ordem">
+						<th scope="col" class="sortable border-end" data-column="ordem">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div

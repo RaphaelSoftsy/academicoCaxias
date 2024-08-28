@@ -117,10 +117,6 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
-			item.candidato.candidato +
-			"</td>" +
-
-			"<td>" +
 			item.serie.serie +
 			"</td>" +
 

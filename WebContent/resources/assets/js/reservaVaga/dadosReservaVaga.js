@@ -203,28 +203,6 @@ const aprovarCandidato = () => {
 		cancelButtonText: 'Cancelar'
 	}).then(result => {
 		if (result.isConfirmed) {
-			/*$.ajax({
-				url: url_base + "/candidatos/" + Number(idCandidato) + '/aprovar',
-				type: "put",
-				contentType: "application/json; charset=utf-8",
-				async: false,
-				error: function(e) {
-					console.log(e)
-					Swal.fire({
-						icon: "error",
-						title: "Oops...",
-						text: "Não foi possível realizar esse comando!"
-
-					});
-				}
-			}).done(function(data) {
-				Swal.fire({
-					title: "Aprovado com sucesso",
-					icon: "success",
-				}).then((data) => {
-					window.location.href = 'reservas'
-				})
-			})*/
 			Swal.fire({
 				title: "Como deseja gerar aluno?",
 				icon: "question",
@@ -278,11 +256,27 @@ $('#gerarAluno').click((event) => {
 			});
 		}
 	}).done(function(data) {
-		Swal.fire({
-			title: "Aluno criado com sucesso",
-			icon: "success",
-		}).then((data) => {
-			window.location.href = 'alunos'
+		$.ajax({
+			url: url_base + "/candidatos/" + Number(idCandidato) + '/aprovar',
+			type: "put",
+			contentType: "application/json; charset=utf-8",
+			async: false,
+			error: function(e) {
+				console.log(e)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!"
+
+				});
+			}
+		}).done(function(data) {
+			Swal.fire({
+				title: "Aluno criado com sucesso",
+				icon: "success",
+			}).then((data) => {
+				window.location.href = 'alunos'
+			})
 		})
 	})
 })

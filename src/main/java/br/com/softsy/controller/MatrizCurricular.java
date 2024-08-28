@@ -105,6 +105,13 @@ public class MatrizCurricular {
 		return "matrizCurricular/alunos";
 	}
 	
+	@RequestMapping(value = { "dados-aluno-candidato" }, method = RequestMethod.GET)
+	public String dadosAlunoCandidato(HttpSession session, Model model) throws Exception {
+
+		return "matrizCurricular/dadosAluno";
+	}
+	
+	
 	@RequestMapping(value = { "novo-aluno" }, method = RequestMethod.GET)
 	public String novoAluno(HttpSession session, Model model) throws Exception {
 

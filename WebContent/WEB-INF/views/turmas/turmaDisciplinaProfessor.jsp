@@ -86,7 +86,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-link"></i><span id="span-title">TurmaDisciplina
+					<i class="fa-solid fa-link"></i><span id="span-title">Turma Disciplina
 						Professor</span>
 				</div>
 			</div>
