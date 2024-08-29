@@ -66,8 +66,7 @@ String contextPath = request.getContextPath();
 
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
-<link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/reservaVaga.css" />
+
 </head>
 
 <body>
@@ -546,22 +545,25 @@ String contextPath = request.getContextPath();
 							</select>
 						</div>
 						<div class="col-md-6">
-							<label for="aluno" class="form-label">Matricula:</label>
-							<input type="text" id="aluno" autocomplete="off"
-								name="aluno" class="form-control" />
+							<label for="aluno" class="form-label">Matricula:</label> <input
+								type="text" id="aluno" autocomplete="off" name="aluno"
+								class="form-control" />
 						</div>
 					</div>
 
 					<div class="row mb-3">
 						<div class="col-md-6">
-							<label for="emailInterno" class="form-label">Email interno:</label>
-							<input type="text" id="emailInterno" autocomplete="off"
+							<label for="emailInterno" class="form-label">Email
+								interno:</label> <input type="text" id="emailInterno" autocomplete="off"
 								name="emailInterno" class="form-control" />
 						</div>
 					</div>
 
 
 				</div>
+			</div>
+			<div class="col-md-12 text-center mt-3">
+				<button type="submit" class="btn btn-primary px-5" id="btn-edit">Editar</button>
 			</div>
 		</section>
 	</main>
