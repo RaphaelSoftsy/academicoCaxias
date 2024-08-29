@@ -152,88 +152,76 @@ function getDados() {
 
 
 function listarDados(dados) {
-	var html = dados.map(function(item) {
+    var html = dados.map(function(item) {
+        // Formatar a data
+        const dataFeriado = item.dataFeriado;
+        const [ano, mes, dia] = dataFeriado.split('-');
+        const dataFormatada = `${dia}/${mes}/${ano}`;
 
-		const dataFeriado = item.dataFeriado
+        // Definir o estado inicial do checkbox
+        const isChecked = item.ativo === 'S' ? 'checked' : '';
 
-		// Dividir a string nos componentes ano, mês e dia
-		const [ano, mes, dia] = dataFeriado.split('-');
+        return (
+            "<tr>" +
+            "<td>" +
+            dataFormatada +
+            "</td>" +
+            "<td>" +
+            item.descricao +
+            "</td>" +
+            "<td><div class='d-flex align-items-center gap-1'>" +
+            '<input type="checkbox" data-status="' +
+            item.ativo +
+            '" data-id="' +
+            item.idFeriadoEscola +
+            '" onChange="alteraStatus(this)" ' + isChecked + ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+            "</div></td>" +
+            '<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+            ' data-id="' +
+            item.idFeriadoEscola +
+            '" data-descricao="' +
+            item.descricao +
+            '" data-dataFeriado="' +
+            item.dataFeriado +
+            '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+            "</tr>"
+        );
+    }).join("");
 
-		// Formatar a data no formato "dd/mm/aaaa"
-		const dataFormatada = `${dia}/${mes}/${ano}`;
+    $("#cola-tabela").html(html); 
 
-		console.log(dataFormatada); // Saída: "01/01/2024"
-
-		return (
-			"<tr>" +
-			"<td>" +
-			dataFormatada +
-			"</td>" +
-			"<td>" +
-			item.descricao +
-			"</td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			'<input type="checkbox" data-status="' +
-			item.ativo +
-			'" data-id="' +
-			item.idFeriadoEscola +
-			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-			"</div></td>" +
-			'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
-			' data-id="' +
-			item.idFeriadoEscola +
-			'" data-descricao="' +
-			item.descricao +
-			'" data-dataFeriado="' +
-			item.dataFeriado +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-			"</tr>"
-		);
-	}).join("");
-	
-	
-
-	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
-	
-	// Reaplicar a estilização do toggle
-	
-
-	
+    // Reaplicar a estilização do toggle
+    $('input[data-toggle="toggle"]').bootstrapToggle();
 }
+
 
 
 function alteraStatus(element) {
-	var idFeriado = element.getAttribute("data-id");
-	var status = element.getAttribute("data-status");
+    var idFeriado = element.getAttribute("data-id");
+    var status = element.getAttribute("data-status");
 
-	const button = $(element).closest("tr").find(".btn-status");
-	if (status === "S") {
-		button.removeClass("btn-success").addClass("btn-danger");
-		button.find("i").removeClass("fa-check").addClass("fa-xmark");
-		element.setAttribute("data-status", "N");
-	} else {
-		button.removeClass("btn-danger").addClass("btn-success");
-		button.find("i").removeClass("fa-xmark").addClass("fa-check");
-		element.setAttribute("data-status", "S");
-	}
+    if (status === "S") {
+        element.setAttribute("data-status", "N");
+    } else {
+        element.setAttribute("data-status", "S");
+    }
 
-	console.log(id)
-	console.log(status)
-	$.ajax({
-		url: url_base + `/feriadosEscola/${idFeriado}${status === "S" ? '/desativar' : '/ativar'}`,
-		type: "put",
-		error: function(e) {
-			Swal.close();
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: e.responseJSON.message
-			});
-		}
-	}).then(data => {
-		window.location.href = 'feriado-escola'
-	})
+    $.ajax({
+        url: url_base + `/feriadosEscola/${idFeriado}${status === "S" ? '/desativar' : '/ativar'}`,
+        type: "put",
+        error: function(e) {
+            Swal.close();
+            console.log(e.responseJSON);
+            Swal.fire({
+                icon: "error",
+                title: e.responseJSON.message
+            });
+        }
+    }).then(data => {
+        window.location.href = 'feriado-escola';
+    });
 }
+
 
 
 // Exportar Dados

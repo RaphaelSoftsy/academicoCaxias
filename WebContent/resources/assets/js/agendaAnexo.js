@@ -146,15 +146,14 @@ $(document).ready(function() {
 
 
 	}
-
-
+	
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
 		if (status !== 'S') {
 			$(this).prop('checked', false);
 		}
 	});
-
+	
 
 	showPage(currentPage);
 	updatePagination();
@@ -195,49 +194,56 @@ function formatarDataParaBR(data) {
 
 
 function listarDados(dados) {
-	var html = dados.map(function(item) {
-		const dataCadastro = formatarDataParaBR(item.dataCadastro);
+    var html = dados.map(function(item) {
+        const dataCadastro = formatarDataParaBR(item.dataCadastro);
 
-		return (
-			"<tr>" +
-			"<td>" +
-			item.agenda.tituloAula +
-			"</td>" +
-			"<td>" +
-			dataCadastro +
-			"</td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			'<input type="checkbox" data-status="' +
-			item.ativo +
-			'" data-id="' +
-			item.idAgendaAnexo +
-			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-			"</div></td>" +
-			'<td style="display:flex;"><span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
-			' data-id="' +
-			item.idAgendaAnexo +
-			'" data-caminhoArquivo="' +
-			item.caminhoArquivo +
-			'"data-agendaId="' +
-			item.agendaId +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
-			'<span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
-			' data-id="' +
-			item.idAgendaAnexo +
-			' data-caminhoArquivo="' +
-			item.caminhoArquivo +
-			' data-agendaId="' +
-			item.agendaId +
-			'" onclick="baixarAnexo(this)"><i class="fa-solid fa-file-arrow-down"></i></span></td>' +
-			"</tr>"
-		);
-	}).join("");
+        return (
+            "<tr>" +
+            "<td>" + item.agenda.tituloAula + "</td>" +
+            "<td>" + dataCadastro + "</td>" +
+            "<td><div class='d-flex align-items-center gap-1'>" +
+            '<input type="checkbox" ' +
+            (item.ativo === 'S' ? 'checked' : '') + 
+            ' data-id="'+ item.idAgendaAnexo +'"' +
+            ' onChange="alteraStatus(this)" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+            "</div></td>" +
+            '<td style="display:flex;"><span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+            ' data-id="'+ item.idAgendaAnexo +'" data-caminhoArquivo="' + item.caminhoArquivo +
+            '"data-agendaId="' + item.agendaId +'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+            '<span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
+            ' data-id="' + item.idAgendaAnexo +'" data-caminhoArquivo="' + item.caminhoArquivo +
+            ' data-agendaId="' + item.agendaId +'" onclick="baixarAnexo(this)"><i class="fa-solid fa-file-arrow-down"></i></span></td>' +
+            "</tr>"
+        );
+    }).join("");
 
-	
-	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
-	// Reaplicar a estilização do toggle
-	
+    $("#cola-tabela").html(html);
+    $('input[data-toggle="toggle"]').bootstrapToggle();
 }
+
+function alteraStatus(element) {
+    var id = element.getAttribute("data-id");
+    var status = $(element).is(':checked') ? 'S' : 'N';
+
+    console.log(id, status);
+
+    $.ajax({
+        url: url_base + `/agendaAnexo/${id}/${status === 'S' ? 'ativar' : 'desativar'}`,
+        type: "PUT",
+        success: function() {
+            element.setAttribute("data-status", status);
+        },
+        error: function(e) {
+            Swal.fire({
+                icon: "error",
+                title: e.responseJSON.message
+            });
+        }
+    }).then(data => {
+		window.location.href = 'agenda-anexo'
+	});
+}
+
 
 function baixarAnexo(ref) {
 	const caminhoArquivo = ref.getAttribute("data-caminhoArquivo");

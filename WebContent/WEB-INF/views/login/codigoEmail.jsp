@@ -75,41 +75,23 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					src="<%=contextPath%>/resources/assets/img/logoPrefeitura.png"
 					alt="Logo Prefeitura Caxias do Sul" />
 
-				<form>
-
-					<div class="mb-3">
-						<label for="inputPassword" class="form-label">Nova Senha</label>
-						<div class="input-group ">
-							<input class="form-control form-control pwd senha"
-								type="password" aria-label=".form-control-lg example"
-								id="passwordInput" required>
-							<button class="btn-default reveal" type="button">
-								<i class="fa-regular fa-eye"></i>
-							</button>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="inputPassword" class="form-label">Confirmar
-							Senha</label>
-						<div class="input-group ">
-							<input class="form-control form-control pwd senha"
-								type="password" aria-label=".form-control-lg example"
-								id="passwordInput" required>
-							<button class="btn-default reveal" type="button">
-								<i class="fa-regular fa-eye"></i>
-							</button>
-						</div>
+				<form class="form">
+					<div class="title">Recuperar Senha</div>
+					<div class="title">Código de Verificação</div>
+					<p class="message">Enviamos um código para o seu email,
+						verifique-o e preencha o código abaixo</p>
+					<div class="inputs">
+						<input id="input1" type="text" maxlength="1"> <input
+							id="input2" type="text" maxlength="1"> <input id="input3"
+							type="text" maxlength="1"> <input id="input4" type="text"
+							maxlength="1">
 					</div>
 
 					<div class="container-btns">
 						<button type="submit" class="btn btn-primary" data-toggle="modal"
-							data-target="#exampleModalCenter" id="btnLogin">Salvar</button>
-
+							data-target="#exampleModalCenter" id="btnVerificar">Verificar</button>
 					</div>
-
 				</form>
-
-
 			</div>
 		</div>
 	</main>

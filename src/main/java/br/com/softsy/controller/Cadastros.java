@@ -629,6 +629,13 @@ public class Cadastros {
 		return "login/recuperarSenha";
 	}
 	
+	
+	@RequestMapping(value = { "login/verificacao" }, method = RequestMethod.GET)
+	public String codigoEmail(HttpSession session, Model model) throws Exception {
+ 
+		return "login/codigoEmail";
+	}
+	
 	@RequestMapping(value = { "login/conta" }, method = RequestMethod.GET)
 	public String escolherEscola(HttpSession session, Model model) throws Exception {
  
