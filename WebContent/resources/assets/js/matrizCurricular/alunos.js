@@ -128,16 +128,14 @@ function listarDados(dados) {
 			item.situacaoAluno.situacaoAluno +
 			"</td>" +
 
-/*			"<td><div class='d-flex align-items-center gap-1'>" +
-			'<input type="checkbox" data-status="' +
-			item.ativo +
-			'" data-id="' +
-			item.idCriterioAvaliacao +
-			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-			"</div></td>" +*/
-			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idCriterioAvaliacao +
-			'" onclick="showModal(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			'<td class="d-flex justify-content-center">' +
+			'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" ' +
+			'data-id=' + item.idAluno +
+			' onclick="showModal(this)"><i class="fa-solid fa-file-lines"></i></span>' +
+/*			'<span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			item.idAluno +
+			'" onclick="showModal(this)"><i class="fa-solid fa-pen fa-lg"></i></span>' +*/
+			'</td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -178,8 +176,7 @@ function alteraStatus(element) {
 }
 
 function showModal(ref) {
-	limpaCampo()
 	id = ref.getAttribute("data-id");
 
-	window.location.href = "novo-criterio-avaliacao?id=" + id
+	window.location.href = "dados-aluno-candidato?id=" + id
 }
