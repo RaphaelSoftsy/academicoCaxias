@@ -112,7 +112,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarDados(data);
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -158,41 +158,40 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
+	$("#cola-tabela").html(html); 
 }
 function alteraStatus(element) {
-	var id = element.getAttribute("data-id");
-	var status = element.getAttribute("data-status");
+    var id = element.getAttribute("data-id");
+    var status = element.getAttribute("data-status");
 
-	const button = $(element).closest("tr").find(".btn-status");
-	if (status === "S") {
-		button.removeClass("btn-success").addClass("btn-danger");
-		button.find("i").removeClass("fa-check").addClass("fa-xmark");
-		element.setAttribute("data-status", "N");
-	} else {
-		button.removeClass("btn-danger").addClass("btn-success");
-		button.find("i").removeClass("fa-xmark").addClass("fa-check");
-		element.setAttribute("data-status", "S");
-	}
+    // Inverte o status atual
+    var novoStatus = (status === "S") ? "N" : "S";
+    element.setAttribute("data-status", novoStatus);
 
-	console.log(id)
-	console.log(status)
+    // Atualiza o visual do botão checkbox
+    $(element).bootstrapToggle(novoStatus === "S" ? 'on' : 'off');
 
-	$.ajax({
-		url: url_base + `/escola/${id}${status === "S" ? '/desativar' : '/ativar'}`,
-		type: "put",
-		error: function(e) {
-			Swal.close();
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: e.responseJSON.message
-			});
-		}
-	}).then(data => {
-		window.location.href = 'acessar-escolas'
-	})
+    $.ajax({
+        url: url_base + `/escola/${id}${novoStatus === "S" ? '/ativar' : '/desativar'}`,
+        type: "PUT",
+        success: function() {
+            console.log(`Status da escola com ID ${id} atualizado para ${novoStatus}`);
+        },
+        error: function(e) {
+            console.error("Erro ao atualizar o status:", e.responseJSON);
+            Swal.fire({
+                icon: "error",
+                title: e.responseJSON.message
+            });
+
+            // Reverte o status visual e do atributo em caso de erro
+            var revertStatus = (novoStatus === "S") ? "N" : "S";
+            element.setAttribute("data-status", revertStatus);
+            $(element).bootstrapToggle(revertStatus === "S" ? 'on' : 'off');
+        }
+    });
 }
+
 
 function editar(ref) {
 	id = ref.getAttribute("data-id");

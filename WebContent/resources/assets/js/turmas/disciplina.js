@@ -39,7 +39,7 @@ $(document).ready(function () {
       });
     }
 
-    listarDados(filteredData);
+    listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle();
 
     $(this).siblings(".searchInput").val("");
     $(this).closest(".dropdown-content-form").removeClass("show");
@@ -72,7 +72,7 @@ $(document).ready(function () {
       sortData(column, newOrder);
     } else {
       icon.addClass("fa-sort");
-      listarDados(dadosOriginais);
+      listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
     }
 
     sortOrder[column] = newOrder;
@@ -132,7 +132,7 @@ $(document).ready(function () {
         }
       }
     });
-    listarDados(dadosOrdenados);
+    listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();
   }
 
   showPage(currentPage);
@@ -140,7 +140,7 @@ $(document).ready(function () {
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);
+  listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
   $(".searchInput").val("");
 });
 
@@ -153,7 +153,7 @@ function getDados() {
     .done(function (data) {
       dados = data;
       dadosOriginais = data;
-      listarDados(data);
+      listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", jqXHR);
@@ -212,7 +212,7 @@ function listarDados(dados) {
     })
     .join("");
 
-  $("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
+  $("#cola-tabela").html(html); 
 }
 
 // Exportar Dados

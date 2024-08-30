@@ -38,7 +38,7 @@ $(document).ready(function() {
 		});
 
 		console.log("Filtered Data:", filteredData);
-		listarDados(filteredData);
+		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -202,7 +202,7 @@ $(document).ready(function() {
 });
 
 $('#limpa-filtros').click(function() {
-	listarDados(dadosOriginais);
+	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 
@@ -214,7 +214,7 @@ function getDados() {
 	})
 		.done(function(data) {
 			dadosOriginais = data;
-			listarDados(data);
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -251,7 +251,7 @@ function listarDados(dados) {
 	}).join("");
 
 	$("#cola-tabela").html(html); 
-	$('input[data-toggle="toggle"]').bootstrapToggle();
+	
 	
 	// Reaplicar a estilização do toggle
 	

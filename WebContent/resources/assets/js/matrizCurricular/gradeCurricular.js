@@ -260,7 +260,7 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
+	$("#cola-tabela").html(html); 
 /*
 	// Limitar o número de linhas exibidas
 	var maxRows = 6;

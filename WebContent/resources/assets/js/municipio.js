@@ -94,7 +94,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarDados(data);
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -136,7 +136,7 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html); $('input[data-toggle="toggle"]').bootstrapToggle();
+	$("#cola-tabela").html(html); 
 }
 
 function showModal(ref) {
