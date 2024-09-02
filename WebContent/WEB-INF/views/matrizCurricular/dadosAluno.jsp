@@ -123,13 +123,19 @@ String contextPath = request.getContextPath();
 								name="nomeCompleto" class="form-control" />
 						</div>
 						<div class="col-md-6">
+							<label for="nomeSocial" class="form-label">Nome
+								Social:<span class="red">*</span>
+							</label> <input type="text" id="nomeSocial" required autocomplete="off"
+								name="nomeSocial" class="form-control" />
+						</div>
+						<!-- <div class="col-md-6">
 							<label for="tipoIngressoId" class="form-label">Tipo
 								Ingresso: </label> <select class="form-select"
 								aria-label="Tipo Ingresso" id="tipoIngressoId"
 								name="tipoIngressoId">
 								<option selected disabled>Selecione uma opção</option>
 							</select>
-						</div>
+						</div> -->
 					</div>
 
 					<div class="row mb-3">
@@ -557,6 +563,14 @@ String contextPath = request.getContextPath();
 								interno:</label> <input type="text" id="emailInterno" autocomplete="off"
 								name="emailInterno" class="form-control" />
 						</div>
+						<div class="col-md-6">
+							<label for="tipoIngressoId" class="form-label">Tipo
+								Ingresso: </label> <select class="form-select"
+								aria-label="Tipo Ingresso" id="tipoIngressoId"
+								name="tipoIngressoId">
+								<option selected disabled>Selecione uma opção</option>
+							</select>
+						</div> 
 					</div>
 
 

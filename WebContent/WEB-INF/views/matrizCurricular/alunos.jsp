@@ -97,8 +97,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						class="btn btn-danger btn-lg btn-new-alter px-3 py-1 ms-auto">
 						Limpar Filtros</button>
 
-					<a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
-						href="novo-criterio-avaliacao">Novo Cadastro</a>
+					<!-- <a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
+						href="novo-criterio-avaliacao">Novo Cadastro</a> -->
 				</div>
 			</div>
 

@@ -420,186 +420,68 @@ const loadSelects = () => {
 }
 
 $('#btn-edit').click(() => {
-	if (changeDadosPessoais && changeDadosAcademicos) {
 
-		var dadosFormulario = {
-			idPessoa: aluno.pessoa.idPessoa,
-			contaId: parseInt(contaId),
-			nomeCompleto: $('#nomeCompleto').val(),
-			nomeSocial: $('#nomeSocial').val(),
-			cpf: $('#cpf').val().replace(/[^\d]+/g, ''),
-			rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
-			rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
-			rgUfEmissorId: parseInt($('#rgUfEmissorId').val()),
-			rgDataExpedicao: $('#rgDataExpedicao').val(),
-			rneNumero: $('#rneNumero').val(),
-			rneOrgaoExpedidor: $('#rneOrgaoExpedidor').val(),
-			rneUfEmissorId: parseInt($('#rneUfEmissorId').val()),
-			rneDataExpedicao: $('#rneDataExpedicao').val(),
-			certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
-			certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-			certidaoNascimentoUfCartorioId: parseInt($('#certidaoNascimentoUfCartorioId').val()),
-			certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
-			certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
-			certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
-			certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
-			certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
-			certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-			certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val() == null || $('#certidaoCasamentoUfCartorioId').val() == undefined ? '' : $('#certidaoCasamentoUfCartorioId').val(),
-			certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
-			certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
-			certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
-			certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
-			dtNascimento: $('#dtNascimento').val(),
-			sexo: $('input[name="sexo"]:checked').val(),
-			racaId: parseInt($('#racaId').val()),
-			paisNascimentoId: parseInt($('#paisNascimentoId').val()),
-			ufNascimentoId: parseInt($('#ufNascimentoId').val()),
-			nacionalidadeId: parseInt($('#nacionalidadeId').val()),
-			municipioNascimentoId: parseInt($('#municipioNascimentoId').val()),
-			paisResidenciaId: parseInt($('#paisNascimentoId').val()),
-			nacionalidade: $('#nacionalidadeId option:selected').text().substring(0, 2),
-			nomePai: $('#nomePai').val(),
-			nomeMae: $('#nomeMae').val(),
-			uf: $('#uf').val(),
-		};
+	var dadosFormulario = {
+		idPessoa: aluno.pessoa.idPessoa,
+		contaId: parseInt(contaId),
+		nomeCompleto: $('#nomeCompleto').val(),
+		nomeSocial: $('#nomeSocial').val(),
+		cpf: $('#cpf').val().replace(/[^\d]+/g, ''),
+		rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
+		rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
+		rgUfEmissorId: parseInt($('#rgUfEmissorId').val()),
+		rgDataExpedicao: $('#rgDataExpedicao').val(),
+		rneNumero: $('#rneNumero').val(),
+		rneOrgaoExpedidor: $('#rneOrgaoExpedidor').val(),
+		rneUfEmissorId: parseInt($('#rneUfEmissorId').val()),
+		rneDataExpedicao: $('#rneDataExpedicao').val(),
+		certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
+		certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
+		certidaoNascimentoUfCartorioId: parseInt($('#certidaoNascimentoUfCartorioId').val()),
+		certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
+		certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
+		certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
+		certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
+		certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
+		certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
+		certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val() == null || $('#certidaoCasamentoUfCartorioId').val() == undefined ? '' : $('#certidaoCasamentoUfCartorioId').val(),
+		certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
+		certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
+		certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
+		certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
+		dtNascimento: $('#dtNascimento').val(),
+		sexo: $('input[name="sexo"]:checked').val(),
+		racaId: parseInt($('#racaId').val()),
+		paisNascimentoId: parseInt($('#paisNascimentoId').val()),
+		ufNascimentoId: parseInt($('#ufNascimentoId').val()),
+		nacionalidadeId: parseInt($('#nacionalidadeId').val()),
+		municipioNascimentoId: parseInt($('#municipioNascimentoId').val()),
+		paisResidenciaId: parseInt($('#paisNascimentoId').val()),
+		nacionalidade: $('#nacionalidadeId option:selected').text().substring(0, 2),
+		nomePai: $('#nomePai').val(),
+		nomeMae: $('#nomeMae').val(),
+		uf: $('#uf').val(),
+	};
 
-		$.ajax({
-			url: url_base + '/pessoas/' + aluno.pessoa.idPessoa,
-			type: "PUT",
-			data: JSON.stringify(dadosFormulario),
-			contentType: "application/json; charset=utf-8",
-			beforeSend: function() {
-				Swal.showLoading()
-			},
-			error: function(e) {
-				Swal.close()
-				console.log(e)
-				console.log(e.responseJSON)
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível realizar esse comando!",
-				});
-			}
-		}).done(function(data) {
-			let objeto = {
-				"idAluno": aluno.idAluno,
-				"contaId": contaId,
-				"cursoId": $('#cursoId').val(),
-				"escolaId": $('#escolaId').val(),
-				"serieId": $('#serieId').val(),
-				"turnoId": $('#turnoId').val(),
-				"pessoaId": aluno.pessoa.idPessoa,
-				"candidatoId": aluno.candidato.idCandidato,
-				"situacaoAlunoId": $('#situacaoAlunoId').val(),
-				"aluno": $('#aluno').val(),
-				"emailInterno": $('#emailInterno').val()
-			}
-
-			$.ajax({
-				url: url_base + '/alunos',
-				type: "PUT",
-				data: JSON.stringify(objeto),
-				contentType: "application/json; charset=utf-8",
-				error: function(e) {
-					Swal.close()
-					console.log(e)
-					Swal.fire({
-						icon: "error",
-						title: "Oops...",
-						text: "Não foi possível realizar esse comando!",
-					});
-				}
-			}).done(function(data) {
-				Swal.close()
-				Swal.fire({
-					title: "Editado com sucesso",
-					icon: "success",
-				}).then(result => {
-
-					window.location.href = "alunos";
-				})
-			});
-		});
-
-	} else if (changeDadosPessoais) {
-		var dadosFormulario = {
-			idPessoa: aluno.pessoa.idPessoa,
-			contaId: parseInt(contaId),
-			nomeCompleto: $('#nomeCompleto').val(),
-			nomeSocial: $('#nomeSocial').val(),
-			cpf: $('#cpf').val().replace(/[^\d]+/g, ''),
-			rgNumero: $('#rgNumero').val().replace(/[^\d]+/g, ''),
-			rgOrgaoExpedidor: $('#rgOrgaoExpedidor').val(),
-			rgUfEmissorId: parseInt($('#rgUfEmissorId').val()),
-			rgDataExpedicao: $('#rgDataExpedicao').val(),
-			rneNumero: $('#rneNumero').val(),
-			rneOrgaoExpedidor: $('#rneOrgaoExpedidor').val(),
-			rneUfEmissorId: parseInt($('#rneUfEmissorId').val()),
-			rneDataExpedicao: $('#rneDataExpedicao').val(),
-			certidaoNascimentoNumero: $('#certidaoNascimentoNumero').val(),
-			certidaoNascimentoCartorio: $('#certidaoNascimentoCartorio').val(),
-			certidaoNascimentoUfCartorioId: parseInt($('#certidaoNascimentoUfCartorioId').val()),
-			certidaoNascimentoDataEmissao: $('#certidaoNascimentoDataEmissao').val(),
-			certidaoNascimentoFolha: $('#certidaoNascimentoFolha').val(),
-			certidaoNascimentoLivro: $('#certidaoNascimentoLivro').val(),
-			certidaoNascimentoOrdem: $('#certidaoNascimentoOrdem').val(),
-			certidaoCasamentoNumero: $('#certidaoCasamentoNumero').val(),
-			certidaoCasamentoCartorio: $('#certidaoCasamentoCartorio').val(),
-			certidaoCasamentoUfCartorioId: $('#certidaoCasamentoUfCartorioId').val() == null || $('#certidaoCasamentoUfCartorioId').val() == undefined ? '' : $('#certidaoCasamentoUfCartorioId').val(),
-			certidaoCasamentoDataEmissao: $('#certidaoCasamentoDataEmissao').val(),
-			certidaoCasamentoFolha: $('#certidaoCasamentoFolha').val(),
-			certidaoCasamentoLivro: $('#certidaoCasamentoLivro').val(),
-			certidaoCasamentoOrdem: $('#certidaoCasamentoOrdem').val(),
-			dtNascimento: $('#dtNascimento').val(),
-			sexo: $('input[name="sexo"]:checked').val(),
-			racaId: parseInt($('#racaId').val()),
-			paisNascimentoId: parseInt($('#paisNascimentoId').val()),
-			ufNascimentoId: parseInt($('#ufNascimentoId').val()),
-			nacionalidadeId: parseInt($('#nacionalidadeId').val()),
-			municipioNascimentoId: parseInt($('#municipioNascimentoId').val()),
-			paisResidenciaId: parseInt($('#paisNascimentoId').val()),
-			nacionalidade: $('#nacionalidadeId option:selected').text().substring(0, 2),
-			nomePai: $('#nomePai').val(),
-			nomeMae: $('#nomeMae').val(),
-			uf: $('#uf').val(),
-		};
-
-		dadosFormulario.rneUfEmissorId = undefined
-
-		console.log(dadosFormulario)
-
-		$.ajax({
-			url: url_base + '/pessoas/' + aluno.pessoa.idPessoa,
-			type: "PUT",
-			data: JSON.stringify(dadosFormulario),
-			contentType: "application/json; charset=utf-8",
-			beforeSend: function() {
-				Swal.showLoading()
-			},
-			error: function(e) {
-				Swal.close()
-				console.log(e)
-				console.log(e.responseJSON)
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível realizar esse comando!",
-				});
-			}
-		}).done(function(data) {
+	$.ajax({
+		url: url_base + '/pessoas/' + aluno.pessoa.idPessoa,
+		type: "PUT",
+		data: JSON.stringify(dadosFormulario),
+		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
+		error: function(e) {
 			Swal.close()
+			console.log(e)
+			console.log(e.responseJSON)
 			Swal.fire({
-				title: "Editado com sucesso",
-				icon: "success",
-			}).then(result => {
-
-				window.location.href = "alunos";
-			})
-		});
-
-	} else if (changeDadosAcademicos) {
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
+		}
+	}).done(function(data) {
 		let objeto = {
 			"idAluno": aluno.idAluno,
 			"contaId": contaId,
@@ -620,6 +502,7 @@ $('#btn-edit').click(() => {
 			data: JSON.stringify(objeto),
 			contentType: "application/json; charset=utf-8",
 			error: function(e) {
+				Swal.close()
 				console.log(e)
 				Swal.fire({
 					icon: "error",
@@ -628,13 +511,17 @@ $('#btn-edit').click(() => {
 				});
 			}
 		}).done(function(data) {
+			Swal.close()
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
 			}).then(result => {
+
 				window.location.href = "alunos";
 			})
 		});
-	}
+	});
+
+
 })
 
