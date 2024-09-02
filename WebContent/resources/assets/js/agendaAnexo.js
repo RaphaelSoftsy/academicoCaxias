@@ -10,8 +10,8 @@ var caminhoArquivo = ''
 const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
-
-	getDados()
+	$('.container-table').hide()
+	$('#btn-save').hide()
 
 
 	$.ajax({
@@ -29,9 +29,11 @@ $(document).ready(function() {
 				}));
 			});
 			$.each(data, function(index, item) {
+
+				const dataAgenda = formatarDataParaBR(item.dataAgenda)
 				$('#agendaId').append($('<option>', {
 					value: item.idAgenda,
-					text: item.tituloAula,
+					text: item.tituloAula == null ? "Agenda Cadastrada em " + dataAgenda : item.tituloAula,
 					name: item.tituloAula
 				}));
 			});
@@ -62,7 +64,7 @@ $(document).ready(function() {
 			});
 		}
 
-		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -91,14 +93,14 @@ $(document).ready(function() {
 		if (newOrder === 'asc') {
 			icon.addClass("fa-sort-up");
 			sortData(column, newOrder);
-			
+
 		} else if (newOrder === 'desc') {
 			icon.addClass("fa-sort-down");
 			sortData(column, newOrder);
-	
+
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -146,14 +148,14 @@ $(document).ready(function() {
 
 
 	}
-	
+
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
 		if (status !== 'S') {
 			$(this).prop('checked', false);
 		}
 	});
-	
+
 
 	showPage(currentPage);
 	updatePagination();
@@ -161,11 +163,39 @@ $(document).ready(function() {
 });
 
 $('#limpa-filtros').click(function() {
-	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 
-function getDados() {
+$('#btn-buscar').click(() => {
+	let agendaId = $('#agendaId').val()
+
+	url = url_base + `/agendaAnexo/agenda/${agendaId}`
+	/*	url = url_base + `/professores`*/
+
+	$.ajax({
+		url: url,
+		type: "GET",
+		async: false,
+		error: function(e) {
+			console.log(url)
+			console.log(e)
+		}
+	}).done(function(data) {
+		$('.container-table').show()
+		$('#btn-save').show()
+		$("#messageInfo").addClass("none")
+		dados = data
+		dadosOriginais = data;
+		listarDados(data);
+		
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.log(url)
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+})
+
+/*function getDados() {
 
 	$.ajax({
 
@@ -176,12 +206,13 @@ function getDados() {
 		.done(function(data) {
 			dados = data
 			dadosOriginais = data;
-			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data);
+			
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
-}
+}*/
 
 function formatarDataParaBR(data) {
 	var dataISO = data;
@@ -194,52 +225,52 @@ function formatarDataParaBR(data) {
 
 
 function listarDados(dados) {
-    var html = dados.map(function(item) {
-        const dataCadastro = formatarDataParaBR(item.dataCadastro);
+	var html = dados.map(function(item) {
+		const dataCadastro = formatarDataParaBR(item.dataCadastro);
 
-        return (
-            "<tr>" +
-            "<td>" + item.agenda.tituloAula + "</td>" +
-            "<td>" + dataCadastro + "</td>" +
-            "<td><div class='d-flex align-items-center gap-1'>" +
-            '<input type="checkbox" ' +
-            (item.ativo === 'S' ? 'checked' : '') + 
-            ' data-id="'+ item.idAgendaAnexo +'"' +
-            ' onChange="alteraStatus(this)" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-            "</div></td>" +
-            '<td style="display:flex;"><span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
-            ' data-id="'+ item.idAgendaAnexo +'" data-caminhoArquivo="' + item.caminhoArquivo +
-            '"data-agendaId="' + item.agendaId +'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
-            '<span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
-            ' data-id="' + item.idAgendaAnexo +'" data-caminhoArquivo="' + item.caminhoArquivo +
-            ' data-agendaId="' + item.agendaId +'" onclick="baixarAnexo(this)"><i class="fa-solid fa-file-arrow-down"></i></span></td>' +
-            "</tr>"
-        );
-    }).join("");
+		return (
+			"<tr>" +
+			"<td>" + item.agenda.tituloAula + "</td>" +
+			"<td>" + dataCadastro + "</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" ' +
+			(item.ativo === 'S' ? 'checked' : '') +
+			' data-id="' + item.idAgendaAnexo + '"' +
+			' onChange="alteraStatus(this)" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
+			'<td style="display:flex;"><span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+			' data-id="' + item.idAgendaAnexo + '" data-caminhoArquivo="' + item.caminhoArquivo +
+			'"data-agendaId="' + item.agendaId + '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+			'<span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
+			' data-id="' + item.idAgendaAnexo + '" data-caminhoArquivo="' + item.caminhoArquivo +
+			' data-agendaId="' + item.agendaId + '" onclick="baixarAnexo(this)"><i class="fa-solid fa-file-arrow-down"></i></span></td>' +
+			"</tr>"
+		);
+	}).join("");
 
-    $("#cola-tabela").html(html);
-    
+	$("#cola-tabela").html(html);
+
 }
 
 function alteraStatus(element) {
-    var id = element.getAttribute("data-id");
-    var status = $(element).is(':checked') ? 'S' : 'N';
+	var id = element.getAttribute("data-id");
+	var status = $(element).is(':checked') ? 'S' : 'N';
 
-    console.log(id, status);
+	console.log(id, status);
 
-    $.ajax({
-        url: url_base + `/agendaAnexo/${id}/${status === 'S' ? 'ativar' : 'desativar'}`,
-        type: "PUT",
-        success: function() {
-            element.setAttribute("data-status", status);
-        },
-        error: function(e) {
-            Swal.fire({
-                icon: "error",
-                title: e.responseJSON.message
-            });
-        }
-    }).then(data => {
+	$.ajax({
+		url: url_base + `/agendaAnexo/${id}/${status === 'S' ? 'ativar' : 'desativar'}`,
+		type: "PUT",
+		success: function() {
+			element.setAttribute("data-status", status);
+		},
+		error: function(e) {
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
 		window.location.href = 'agenda-anexo'
 	});
 }

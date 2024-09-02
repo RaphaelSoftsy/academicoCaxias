@@ -83,7 +83,7 @@ $(document).ready(function() {
 			});
 		}
 
-		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -116,7 +116,7 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -160,7 +160,7 @@ $(document).ready(function() {
 			}
 
 		});
-		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
 
@@ -171,7 +171,7 @@ $(document).ready(function() {
 });
 
 $('#limpa-filtros').click(function() {
-	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 
@@ -186,7 +186,7 @@ function getDados() {
 		.done(function(data) {
 			dados = data
 			dadosOriginais = data;
-			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

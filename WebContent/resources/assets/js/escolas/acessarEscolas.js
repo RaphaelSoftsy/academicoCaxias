@@ -26,7 +26,8 @@ $(document).ready(function() {
 			return item[columnToSearch].toLowerCase().includes(searchInput);
 		});
 
-		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -109,21 +110,11 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
 	});
-
-
-
-	$('.checkbox-toggle').each(function() {
-		var status = $(this).data('status');
-		if (status !== 'S') {
-			$(this).prop('checked', false);
-		}
-	});
-
 
 	showPage(currentPage);
 	updatePagination();
@@ -132,7 +123,7 @@ $(document).ready(function() {
 });
 
 $('#limpa-filtros').click(function() {
-	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 
@@ -147,7 +138,7 @@ function getDados() {
 			console.log(data)
 			dados = data
 			dadosOriginais = data;
-			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -191,7 +182,9 @@ function listarDados(dados) {
 			item.ativo +
 			'" data-id="' +
 			item.idEscola +
-			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			' " onChange="alteraStatus(this)" '+
+			`${item.ativo === "S" ? "checked" : ""}`
+			+' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 			item.idEscola +
@@ -207,41 +200,36 @@ function listarDados(dados) {
 }
 
 function alteraStatus(element) {
-    var id = element.getAttribute("data-id");
-    var statusAtual = element.getAttribute("data-status");
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
 
-    // Inverte o status atual
-    var novoStatus = (statusAtual === "S") ? "N" : "S";
-    
-    const button = $(element).closest("tr").find(".btn-status");
-    if (novoStatus === "N") {
-        button.removeClass("btn-success").addClass("btn-danger");
-        button.find("i").removeClass("fa-check").addClass("fa-xmark");
-        $(element).bootstrapToggle('off'); // Desativa o toggle
-    } else {
-        button.removeClass("btn-danger").addClass("btn-success");
-        button.find("i").removeClass("fa-xmark").addClass("fa-check");
-        $(element).bootstrapToggle('on'); // Ativa o toggle
-    }
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
 
-    // Atualiza o atributo `data-status` no elemento
-    element.setAttribute("data-status", novoStatus);
-
-    $.ajax({
-        url: url_base + `/escolas/${id}${statusAtual === "S" ? '/desativar' : '/ativar'}`,
-        type: "PUT",
-        error: function(e) {
-            Swal.close();
-            console.log(e.responseJSON);
-            Swal.fire({
-                icon: "error",
-                title: e.responseJSON.message
-            });
-        }
-    }).then(data => {
-        // Redireciona após a alteração
-        window.location.href = 'acessar-escolas';
-    });
+	console.log(id)
+	console.log(status)
+	$.ajax({
+		url: url_base + `/escolas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'acessar-escolas'
+	})
 }
 
 function editar(ref) {

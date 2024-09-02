@@ -96,7 +96,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

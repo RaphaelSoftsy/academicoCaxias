@@ -79,6 +79,23 @@ String contextPath = request.getContextPath();
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
+
+			<div class="row mb-3">
+				<div class="col-md-6">
+					<label for="agendaId" class="form-label">Agenda:<span
+						class="red">*</span>
+					</label> <select class="form-select" aria-label="Agenda" id="agendaIdSelect"
+						required name="agendaIdSelect">
+						<option selected disabled value="">Selecione uma opção</option>
+					</select>
+				</div>
+				<div class="col-md-6 align-self-end">
+					<a class="btn btn-warning px-5" id="btn-buscar"
+						style="font-weight: 500">Buscar Anexos </a>
+				</div>
+			</div>
+
+			<hr>
 			<div class="mt-3 mb-3"
 				style="display: flex; align-items: center; justify-content: end">
 				<div class="d-flex align-items-center gap-2">
@@ -118,7 +135,8 @@ String contextPath = request.getContextPath();
 										id="dropdownContent1">
 										<input type="text" class="form-control mb-3 searchInput"
 											placeholder="Digite o titulo da aula" />
-										<button class="btn btn-sm col-12 btn-success searchButton">Buscar agenda</button>
+										<button class="btn btn-sm col-12 btn-success searchButton">Buscar
+											agenda</button>
 									</div>
 								</div>
 							</div>
@@ -154,28 +172,26 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 
-								<div class="col-md-12">
-									<div class="mb-4">
-										<label for="agendaId" class="form-label">Agenda:<span
-											class="red">*</span>
-										</label><select class="form-control"
-											aria-label="Agenda Id"
-											id="agendaId"
-											name="agendaId">
-											<option selected disabled value="">Selecione uma
-												opção</option>
-										</select>
-									</div>
+							<div class="col-md-12">
+								<div class="mb-4">
+									<label for="agendaId" class="form-label">Agenda:<span
+										class="red">*</span>
+									</label><select class="form-control" aria-label="Agenda Id"
+										id="agendaId" name="agendaId">
+										<option selected disabled value="">Selecione uma
+											opção</option>
+									</select>
 								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-										<label for="turmaId" class="form-label">Arquivo:<span
-											class="red">*</span>
-										</label><input autocomplete="off" type="file" id="anexoAgenda"
-											name="anexoAgenda" class="form-control" required />
-									</div>
+							</div>
+							<div class="col-md-12">
+								<div class="mb-4">
+									<label for="turmaId" class="form-label">Arquivo:<span
+										class="red">*</span>
+									</label><input autocomplete="off" type="file" id="anexoAgenda"
+										name="anexoAgenda" class="form-control" required />
 								</div>
-							
+							</div>
+
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
@@ -199,26 +215,25 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="col-md-12">
-									<div class="mb-4">
-										<label for="agendaId" class="form-label">Agenda:<span
-											class="red">*</span>
-										</label><select class="form-control"
-											aria-label="Agenda Id"
-											id="agendaIdEdit"
-											name="agendaIdEdit">
-											<option selected disabled value="">Selecione uma opção</option>
-										</select>
-									</div>
+								<div class="mb-4">
+									<label for="agendaId" class="form-label">Agenda:<span
+										class="red">*</span>
+									</label><select class="form-control" aria-label="Agenda Id"
+										id="agendaIdEdit" name="agendaIdEdit">
+										<option selected disabled value="">Selecione uma
+											opção</option>
+									</select>
 								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-										<label for="turmaId" class="form-label">Arquivo:<span
-											class="red">*</span>
-										</label><input autocomplete="off" type="file" id="anexoAgendaEdit"
-											name="anexoAgendaEdit" class="form-control" required />
-									</div>
+							</div>
+							<div class="col-md-12">
+								<div class="mb-4">
+									<label for="turmaId" class="form-label">Arquivo:<span
+										class="red">*</span>
+									</label><input autocomplete="off" type="file" id="anexoAgendaEdit"
+										name="anexoAgendaEdit" class="form-control" required />
 								</div>
-							
+							</div>
+
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>

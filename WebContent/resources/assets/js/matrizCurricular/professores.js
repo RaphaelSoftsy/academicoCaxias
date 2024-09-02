@@ -42,7 +42,7 @@ $(document).ready(function() {
 			return value.toString().toLowerCase().includes(searchInput);
 		});
 
-		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 
 		// Limpe o campo de pesquisa
 		$(this).siblings(".searchInput").val("");
@@ -79,7 +79,7 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -121,7 +121,7 @@ $(document).ready(function() {
 				}
 			}
 		});
-		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
 	$('.checkbox-toggle').each(function() {
@@ -136,7 +136,7 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
-	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 	$(".searchInput").val("");
 });
 
@@ -150,7 +150,7 @@ function getDados() {
 			dados = data;
 			dadosOriginais = data;
 			console.log(data)
-			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

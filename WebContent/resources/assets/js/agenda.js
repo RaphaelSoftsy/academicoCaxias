@@ -95,9 +95,6 @@ $(document).ready(function() {
 		}
 
 
-
-
-
 		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle();
 
 
@@ -178,18 +175,11 @@ $(document).ready(function() {
 		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();
 
 	}
-
-
-	$('.checkbox-toggle').each(function() {
-		var status = $(this).data('status');
-		if (status !== 'S') {
-			$(this).prop('checked', false);
-		}
-	});
-
-
+	
 	showPage(currentPage);
 	updatePagination();
+
+
 
 });
 
@@ -209,8 +199,9 @@ function getDados() {
 		.done(function(data) {
 			dados = data
 			dadosOriginais = data;
-			listarDados(data); 
-			$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
+
+
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -282,7 +273,9 @@ function listarDados(dados) {
 			item.ativo +
 			'" data-id="' +
 			item.idAgenda +
-			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			' " onChange="alteraStatus(this)" ' +
+			`${item.ativo === "S" ? "checked" : ""}`
+			+' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
 			'<td style="display:flex "><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
 			' data-id="' +
@@ -311,11 +304,8 @@ function listarDados(dados) {
 			"</td> </tr>"
 		);
 	}).join("");
-		
+
 	$("#cola-tabela").html(html);
-	
-	
-	 
 
 }
 
@@ -420,7 +410,7 @@ function editar() {
 	const dataFeriado = new Date($("#dataFeriadoEdit").val())
 
 	const dataFormatada = formatarDataParaAPI(dataFeriado)
-	
+
 	const tituloAulaFormatado = $("#tituloAulaEdit").val() === '' ? null : $("#tituloAulaEdit").val()
 
 	const resumoAulaFormatado = $("#resumoEdit").val() === '' ? null : $("#resumoEdit").val()
@@ -496,7 +486,7 @@ function cadastrar() {
 
 	const dataFormatada = formatarDataParaAPI(dataAgenda)
 
-	 
+
 
 	var objeto = {
 		"turmaId": $("#turmaId").val(),
