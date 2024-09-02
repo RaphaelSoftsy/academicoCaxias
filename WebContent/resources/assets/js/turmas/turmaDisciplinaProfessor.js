@@ -165,7 +165,7 @@ function listarTurmas(dados) {
 			item.ativo +
 			'" data-id="' +
 			item.idTurmaProfessor +
-			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			' " onChange="alteraStatus(this)" '+ `${item.ativo === "S" ? "checked" : ""}` +' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
 			"</tr>"
 		);
