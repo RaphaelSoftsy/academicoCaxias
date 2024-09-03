@@ -37,6 +37,15 @@ $(document).ready(function() {
 					name: item.tituloAula
 				}));
 			});
+			$.each(data, function(index, item) {
+
+				const dataAgenda = formatarDataParaBR(item.dataAgenda)
+				$('#agendaIdSelect').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula == null ? "Agenda Cadastrada em " + dataAgenda : item.tituloAula,
+					name: item.tituloAula
+				}));
+			});
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown, jqXHR);
@@ -64,7 +73,8 @@ $(document).ready(function() {
 			});
 		}
 
-		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData);
+		z$('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
@@ -100,7 +110,7 @@ $(document).ready(function() {
 
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -144,8 +154,8 @@ $(document).ready(function() {
 
 		});
 
-		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();
-
+		listarDados(dadosOrdenados);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 
 	}
 
@@ -163,36 +173,50 @@ $(document).ready(function() {
 });
 
 $('#limpa-filtros').click(function() {
-	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 
 $('#btn-buscar').click(() => {
-	let agendaId = $('#agendaId').val()
 
-	url = url_base + `/agendaAnexo/agenda/${agendaId}`
-	/*	url = url_base + `/professores`*/
 
-	$.ajax({
-		url: url,
-		type: "GET",
-		async: false,
-		error: function(e) {
+	let agendaId = $('#agendaIdSelect').val()
+
+	if (agendaId == null) {
+		Swal.fire({
+			icon: "error",
+			title: "Erro...",
+			text: "Selecione uma agenda!",
+
+		});
+	} else {
+
+		url = url_base + `/agendaAnexo/agenda/${agendaId}`
+		/*	url = url_base + `/professores`*/
+
+		$.ajax({
+			url: url,
+			type: "GET",
+			async: false,
+			error: function(e) {
+				console.log(url)
+				console.log(e)
+			}
+		}).done(function(data) {
+			$('.container-table').show()
+			$('#btn-save').show()
+			$("#messageInfo").addClass("none")
+			dados = data
+			dadosOriginais = data;
+			listarDados(data);
+			$('input[data-toggle="toggle"]').bootstrapToggle();
+
+		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.log(url)
-			console.log(e)
-		}
-	}).done(function(data) {
-		$('.container-table').show()
-		$('#btn-save').show()
-		$("#messageInfo").addClass("none")
-		dados = data
-		dadosOriginais = data;
-		listarDados(data);
-		
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.log(url)
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+	}
+
 })
 
 /*function getDados() {
@@ -235,7 +259,8 @@ function listarDados(dados) {
 			"<td><div class='d-flex align-items-center gap-1'>" +
 			'<input type="checkbox" ' +
 			(item.ativo === 'S' ? 'checked' : '') +
-			' data-id="' + item.idAgendaAnexo + '"' +
+			' data-status="' + item.ativo +
+			'" data-id="' + item.idAgendaAnexo + '"' +
 			' onChange="alteraStatus(this)" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
 			'<td style="display:flex;"><span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
@@ -254,17 +279,27 @@ function listarDados(dados) {
 
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");
-	var status = $(element).is(':checked') ? 'S' : 'N';
+	var status = element.getAttribute("data-status");
 
-	console.log(id, status);
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
 
+	console.log(id)
+	console.log(status)
 	$.ajax({
-		url: url_base + `/agendaAnexo/${id}/${status === 'S' ? 'ativar' : 'desativar'}`,
-		type: "PUT",
-		success: function() {
-			element.setAttribute("data-status", status);
-		},
+		url: url_base + `/agendaAnexo/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
 		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
 			Swal.fire({
 				icon: "error",
 				title: e.responseJSON.message
@@ -272,7 +307,7 @@ function alteraStatus(element) {
 		}
 	}).then(data => {
 		window.location.href = 'agenda-anexo'
-	});
+	})
 }
 
 
@@ -478,6 +513,6 @@ $('#formCadastro').on('submit', function(e) {
 // Limpa input
 
 function limpaCampo() {
-	$("#agendaId").val('');
+	$("#agendaId").val($("#agendaIdSelect").val());
 	$("#anexoAgenda").empty();
 }

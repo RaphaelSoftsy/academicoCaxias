@@ -256,10 +256,6 @@ function listarDados(dados) {
 
 	$("#cola-tabela").html(html); 
 	
-
-	// Reaplicar a estilização do toggle
-	
-	
 	
 }
 

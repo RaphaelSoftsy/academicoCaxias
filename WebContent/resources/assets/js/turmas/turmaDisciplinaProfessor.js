@@ -172,12 +172,7 @@ function listarTurmas(dados) {
 	}).join("");
 
 	$("#cola-tabela-disciplina").html(html);
-	$('.checkbox-toggle').each(function() {
-		var status = $(this).data('status');
-		if (status !== 'S') {
-			$(this).prop('checked', false);
-		}
-	});
+	
 	
 }
 

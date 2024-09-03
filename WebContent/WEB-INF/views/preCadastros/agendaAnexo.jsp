@@ -84,8 +84,8 @@ String contextPath = request.getContextPath();
 				<div class="col-md-6">
 					<label for="agendaId" class="form-label">Agenda:<span
 						class="red">*</span>
-					</label> <select class="form-select" aria-label="Agenda" id="agendaIdSelect"
-						required name="agendaIdSelect">
+					</label> <select class="form-select" aria-label="Agenda"
+						id="agendaIdSelect" required name="agendaIdSelect">
 						<option selected disabled value="">Selecione uma opção</option>
 					</select>
 				</div>
@@ -99,8 +99,6 @@ String contextPath = request.getContextPath();
 			<div class="mt-3 mb-3"
 				style="display: flex; align-items: center; justify-content: end">
 				<div class="d-flex align-items-center gap-2">
-					<button id="limpa-filtros" class="btn btn-sm btn-danger">
-						Limpar Filtros</button>
 					<button id="exportar-excel"
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
@@ -112,43 +110,39 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 
-			<table
-				class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Itens Cadastrados</caption>
-				<thead>
-					<tr>
-						<th scope="col" class="sortable border-end"
-							data-column="tituloAula">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Agenda</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton1">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
-									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o titulo da aula" />
-										<button class="btn btn-sm col-12 btn-success searchButton">Buscar
-											agenda</button>
-									</div>
-								</div>
-							</div>
-						</th>
+
+			<div id="messageInfo" class="d-flex justify-content-center">
+				<h3>Selecione os filtros para a realizar a busca</h3>
+			</div>
+
+
+			<div class="container-table contTable">
+				<table
+					class="table tableNot tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+					<thead>
+						<tr>
+						<th scope="col" class="border-end pe-2 th-sem-filtro">Agenda</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Data de
 							Cadastro</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
 					</tr>
-				</thead>
-				<tbody id="cola-tabela" class="table-group-divider"></tbody>
-			</table>
+					</thead>
+					<tbody id="cola-tabela" class="table-group-divider">
+
+					</tbody>
+				</table>
+				<div id="pagination" class="mx-auto mt-auto">
+					<!-- <button id="prev" class="btn btn-sm">
+						<i class="fa-solid fa-angle-left fa-xl"></i>
+					</button>
+					<div id="page-numbers" class="btn-group"></div>
+					<button id="next" class="btn btn-sm">
+						<i class="fa-solid fa-angle-right fa-xl"></i>
+					</button> -->
+				</div>
+			</div>
+
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
