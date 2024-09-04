@@ -182,7 +182,6 @@ function alteraStatus(element) {
 			});
 		}
 	}).then(data => {
-		console.log('Funfou')
 		console.log(data)
 		getDisciplinas()
 	})

@@ -12,10 +12,14 @@ var realizada = '';
 var tituloAula = '';
 var resumoAula = '';
 var turmaId = '';
+var idAgendaAnexo
+var idAgendaSelecionada
+var listaAgenda
+var descricaoAgendaAnexo = "";
 const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
-
+	$('#containerAnexos').hide()
 	getDados()
 
 
@@ -32,13 +36,26 @@ $(document).ready(function() {
 					text: item.tituloAula,
 					name: item.tituloAula
 				}));
-			});
-			$.each(data, function(index, item) {
+
+
 				$('#agendaId').append($('<option>', {
 					value: item.idAgenda,
 					text: item.tituloAula,
 					name: item.tituloAula
 				}));
+				
+				$('#agendaIdAnexo').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula,
+					name: item.tituloAula
+				}));
+				
+				$('#agendaIdAnexoEdit').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula,
+					name: item.tituloAula
+				}));
+
 			});
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -175,7 +192,7 @@ $(document).ready(function() {
 		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();
 
 	}
-	
+
 	showPage(currentPage);
 	updatePagination();
 
@@ -200,7 +217,7 @@ function getDados() {
 			dados = data
 			dadosOriginais = data;
 			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
-
+			listaAgenda = data
 
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -243,13 +260,36 @@ function listarDados(dados) {
 		const tituloAulaArrumado = item.tituloAula == null ? "Não preenchido" : item.tituloAula
 
 		const resumoAulaArrumado = item.resumoAula == null ? "Não preenchido" : item.resumoAula
+
+		let colorBtn = 'btn-warning'
+
+
+		if (idAgendaSelecionada == item.idAgenda) {
+			colorBtn = 'btn-primary'
+		}
 		console.log(dataFormatada); // Saída: "01/01/2024"
 
 		return (
 			"<tr>" +
+			'<td class="d-flex justify-content-center"><span style="width: 50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn ' + colorBtn + ' btn-sm" data-id="' +
+			item.idAgenda +
+			'" onclick="selecionar(this)"><i class="fa-solid fa-right-to-bracket fa-lg"></i></span></td>' +
+			"<td>" +
+			item.turma.escola.nomeEscola +
+			"</td>" +
+			"<td>" +
+			item.turma.periodoLetivo.ano + "/" + item.turma.periodoLetivo.periodo +
+			"</td>" +
+			"<td>" +
+			item.turma.turno.turno +
+			"</td>" +
 			"<td>" +
 			item.turma.nomeTurma +
 			"</td>" +
+			"<td>" +
+			item.turma.gradeCurricular.disciplina.nome +
+			"</td>" +
+
 			"<td>" +
 			dataFormatada +
 			"</td>" +
@@ -275,9 +315,9 @@ function listarDados(dados) {
 			item.idAgenda +
 			' " onChange="alteraStatus(this)" ' +
 			`${item.ativo === "S" ? "checked" : ""}`
-			+' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			+ ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
-			'<td style="display:flex "><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+			'<td><span style=" height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
 			' data-id="' +
 			item.idAgenda +
 			'" data-turmaId="' +
@@ -296,17 +336,80 @@ function listarDados(dados) {
 			item.dataAgenda +
 			'" data-realizada="' +
 			realizada +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span>' +
-			'<span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
-			' data-id="' +
-			item.idAgenda +
-			'" onclick="showModalAnexo(this)" data-bs-toggle="modal" data-bs-target="#anexoAgenda"><i class="fa-solid fa-file-lines"></span>' +
-			"</td> </tr>"
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editItem"><i class="fa-solid fa-pen fa-lg"></i></span> </tr>'
 		);
 	}).join("");
 
 	$("#cola-tabela").html(html);
 
+}
+
+
+const selecionar = (element) => {
+	idAgendaSelecionada = element.getAttribute("data-id")
+	listarDados(listaAgenda)
+	getAnexos()
+}
+
+function formatarDataParaBR(data) {
+	var dataISO = data;
+	var dataObj = new Date(dataISO);
+	var dia = String(dataObj.getUTCDate()).padStart(2, "0");
+	var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
+	var ano = dataObj.getUTCFullYear();
+	return dia + "/" + mes + "/" + ano;
+}
+
+
+
+const getAnexos = () => {
+	$.ajax({
+		url: url_base + '/agendaAnexo/agenda/' + idAgendaSelecionada,
+		type: "GET",
+		async: false,
+		error: function(e) {
+			console.log(url)
+			console.log(e)
+		}
+	}).done(function(data) {
+		console.log(data)
+		$('#containerAnexos').show()
+		listarAnexos(data)
+		$('input[data-toggle="toggle"]').bootstrapToggle();
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.log(url)
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	})
+}
+
+
+function listarAnexos(dados) {
+	var html = dados.map(function(item) {
+		const dataCadastro = formatarDataParaBR(item.dataCadastro);
+
+		return (
+			"<tr>" +
+			"<td>" + item.agenda.tituloAula + "</td>" +
+			"<td>" + dataCadastro + "</td>" +
+			"<td>" + (item.descricao == null ? "Sem descrição" : item.descricao) + "</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" ' +
+			(item.ativo === 'S' ? 'checked' : '') +
+			' data-status="' + item.ativo +
+			'" data-id="' + item.idAgendaAnexo + '"' +
+			' onChange="alteraStatusAgendaAnexo(this)" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
+			'<td style="display:flex;"><span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+			' data-id="' + item.idAgendaAnexo + '" data-caminhoArquivo="' + item.caminhoArquivo + '" data-descricao="' + item.descricao +
+			'"data-agendaId="' + item.agendaId + '" onclick="showModalAnexoEdit(this)" data-bs-toggle="modal" data-bs-target="#editItemAnexo"><i class="fa-solid fa-pen fa-lg"></i></span>' +
+			'<span style=" margin-right: 5px; height: 31px; width: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm"' +
+			' data-id="' + item.idAgendaAnexo + '" data-caminhoArquivo="' + item.caminhoArquivo +
+			'" data-agendaId="' + item.agendaId + '" onclick="baixarAnexo(this)"><i class="fa-solid fa-file-arrow-down"></i></span></td>' +
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela-anexo").html(html);
 }
 
 
@@ -329,6 +432,40 @@ function alteraStatus(element) {
 	console.log(status)
 	$.ajax({
 		url: url_base + `/agendas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	}).then(data => {
+		window.location.href = 'agenda'
+	})
+}
+
+
+function alteraStatusAgendaAnexo(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	console.log(id)
+	console.log(status)
+	$.ajax({
+		url: url_base + `/agendaAnexo/${id}${status === "S" ? '/desativar' : '/ativar'}`,
 		type: "put",
 		error: function(e) {
 			Swal.close();
@@ -386,10 +523,21 @@ function showModal(ref) {
 
 
 function showModalAnexo(ref) {
-	limpaCampo()
-	id = ref.getAttribute("data-id");
+	limpaCampoAnexo()
 
-	$("#agendaId").val(id)
+	$("#agendaIdAnexo").val(idAgendaSelecionada)
+	$("#agendaIdAnexoEdit").val(idAgendaSelecionada)
+
+}
+
+
+function showModalAnexoEdit(ref) {
+	idAgendaAnexo = ref.getAttribute("data-id")
+	descricaoAgendaAnexo = ref.getAttribute("data-descricao")
+	limpaCampoAnexo()
+	
+	$("#descricaoAnexoAgendaEdit").val(descricaoAgendaAnexo)
+	$("#agendaIdAnexoEdit").val(idAgendaSelecionada)
 
 }
 
@@ -538,13 +686,14 @@ function cadastrarAnexo() {
 		reader.readAsDataURL(file);
 	}
 
-	let anexoAgendaFile = $('#anexoAgendaInput')[0].files[0];
+	let anexoAgendaFile = $('#anexoAgenda')[0].files[0];
 	convertToBase64(anexoAgendaFile, function(base64String) {
 		// Pegue apenas a parte base64 da string
 		var base64Data = base64String.split(',')[1];
 
 		var dadosFormulario = {
-			agendaId: $("#agendaId").val(),
+			agendaId: $("#agendaIdAnexo").val(),
+			descricao: $("#descricaoAnexoAgenda").val() == "" ? null : $("#descricaoAnexoAgenda").val(),
 			caminhoArquivo: base64Data  // Envie a string base64 diretamente
 		};
 
@@ -560,7 +709,7 @@ function cadastrarAnexo() {
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
-					text: "Não foi possível cadastrar a escola!",
+					text: "Não foi possível cadastrar o anexo!",
 				});
 			}
 		}).done(function(data) {
@@ -568,7 +717,55 @@ function cadastrarAnexo() {
 				title: "Anexo cadastrado com sucesso",
 				icon: "success",
 			});
-			window.location.href = "agenda-anexo";
+			window.location.href = "agenda";
+		});
+	});
+}
+
+function editarAnexo() {
+
+	const dataFeriado = new Date($("#dataFeriadoEdit").val())
+	function convertToBase64(file, callback) {
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			callback(event.target.result);
+		};
+		reader.readAsDataURL(file);
+	}
+
+	let anexoAgendaFile = $('#anexoAgendaEdit')[0].files[0];
+	convertToBase64(anexoAgendaFile, function(base64String) {
+		// Pegue apenas a parte base64 da string
+		var base64Data = base64String.split(',')[1];
+
+		var dadosFormulario = {
+			idAgendaAnexo: idAgendaAnexo,
+			agendaId: $("#agendaIdAnexoEdit").val(),
+			descricao: $("#descricaoAnexoAgendaEdit").val() == "" ? null : $("#descricaoAnexoAgendaEdit").val(),
+			caminhoArquivo: base64Data  // Envie a string base64 diretamente
+		};
+
+		console.log(dadosFormulario);
+
+		$.ajax({
+			url: url_base + '/agendaAnexo',
+			type: "PUT",
+			data: JSON.stringify(dadosFormulario),
+			contentType: "application/json; charset=utf-8",
+			error: function(e) {
+				console.log(e);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível editar o anexo!",
+				});
+			}
+		}).done(function(data) {
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			});
+			window.location.href = "agenda";
 		});
 	});
 }
@@ -587,9 +784,21 @@ $('#formCadastroAnexo').on('submit', function(e) {
 	return false;
 });
 
+
+$('#formEditAnexo').on('submit', function(e) {
+	e.preventDefault();
+	editarAnexo();
+	return false;
+});
+
 // Limpa input
 
 function limpaCampo() {
 	$("#descricao").val('');
 	$("#anexoAgendaInput").val('');
+}
+
+function limpaCampoAnexo() {
+	$("#agendaIdAnexo").val('');
+	$("#anexoAgenda").empty();
 }

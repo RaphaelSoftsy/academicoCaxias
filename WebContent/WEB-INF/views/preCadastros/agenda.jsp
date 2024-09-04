@@ -78,7 +78,7 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</section>
-		<section class="pt-4 card card-table px-5 py-3">
+		<section class="pt-4 card  px-5 py-3 mb-4">
 			<div class="mt-3 mb-3"
 				style="display: flex; align-items: center; justify-content: end">
 				<div class="d-flex align-items-center gap-2">
@@ -100,6 +100,79 @@ String contextPath = request.getContextPath();
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
+						<th scope="col" class="border-end pe-2 th-sem-filtro">Selecionar</th>
+						<th scope="col" class="sortable border-end"
+							data-column="nomeTurma">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Escola</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton1">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite a Escola" />
+										<button class="btn btn-sm col-12 btn-success searchButton">Buscar
+											Escola</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="nomeTurma">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Período</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton1">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite o Período" />
+										<button class="btn btn-sm col-12 btn-success searchButton">Buscar
+											Turma</button>
+									</div>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="nomeTurma">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Turno</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton1">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite o Turno" />
+										<button class="btn btn-sm col-12 btn-success searchButton">Buscar
+											Turno</button>
+									</div>
+								</div>
+							</div>
+						</th>
 						<th scope="col" class="sortable border-end"
 							data-column="nomeTurma">
 							<div
@@ -124,6 +197,32 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
+						<th scope="col" class="sortable border-end"
+							data-column="nomeTurma">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Disciplina</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+								<div class="dropdown-form">
+									<div class="dropdown-toggle-form" id="dropdownButton1">
+										<i class="fas fa-search" style="color: #dddddd"></i>
+									</div>
+									<div
+										class="dropdown-content-form rounded-3 dropdown-content-left"
+										id="dropdownContent1">
+										<input type="text" class="form-control mb-3 searchInput"
+											placeholder="Digite a Disciplina" />
+										<button class="btn btn-sm col-12 btn-success searchButton">Buscar
+											Disciplina</button>
+									</div>
+								</div>
+							</div>
+						</th>
+
+
 						<th scope="col" class="sortable border-end"
 							data-column="dataAgenda">
 							<div
@@ -162,6 +261,7 @@ String contextPath = request.getContextPath();
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider"></tbody>
 			</table>
+
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
@@ -171,6 +271,166 @@ String contextPath = request.getContextPath();
 					<i class="fa-solid fa-angle-right fa-xl"></i>
 				</button>
 			</div>
+
+
+
+
+		</section>
+
+		<section class="pt-4 card  px-5 py-3" id="containerAnexos">
+
+			<div class="mt-3 mb-3"
+				style="display: flex; align-items: center; justify-content: space-between;">
+				<span class="infra-title"> Anexos </span>
+				<div class="d-flex align-items-center gap-2">
+					<button id="exportar-excel"
+						class="btn btn-sm btn-success d-flex align-items-center gap-2">
+						<i class="fa-solid fa-file-export"></i> Exportar
+					</button>
+					<button
+						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto"
+						data-bs-toggle="modal" onclick="showModalAnexo()"
+						data-bs-target="#newCadastroAnexo">Novo Cadastro</button>
+				</div>
+			</div>
+
+			<div class="container-table contTable pt-4">
+				<table
+					class="table tableNot tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+					<thead>
+						<tr>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Agenda</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Data de Cadastro</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Descrição</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
+						</tr>
+					</thead>
+					<tbody id="cola-tabela-anexo" class="table-group-divider">
+
+					</tbody>
+				</table>
+			</div>
+
+			<div id="pagination" class="mx-auto mt-auto">
+				<button id="prev" class="btn btn-sm">
+					<i class="fa-solid fa-angle-left fa-xl"></i>
+				</button>
+				<div id="page-numbers" class="btn-group"></div>
+				<button id="next" class="btn btn-sm">
+					<i class="fa-solid fa-angle-right fa-xl"></i>
+				</button>
+			</div>
+
+
+			<div class="modal fade" id="newCadastroAnexo" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="title-novo-ato">Novo
+								Cadastro</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form id="formCadastroAnexo">
+
+								<div class="col-md-12">
+									<div class="mb-4">
+										<label for="agendaIdAnexo" class="form-label">Agenda:<span
+											class="red">*</span>
+										</label><select class="form-control" aria-label="Agenda Id"
+											id="agendaIdAnexo" name="agendaIdAnexo">
+											<option selected disabled value="">Selecione uma
+												opção</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="mb-4">
+										<label for="agendaIdAnexo" class="form-label">Descrição:
+										</label> <input autocomplete="off" type="text"
+											id="descricaoAnexoAgenda" name="descricaoAnexoAgenda"
+											class="form-control" />
+
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="mb-4">
+										<label for="anexoAgenda" class="form-label">Arquivo:<span
+											class="red">*</span>
+										</label><input autocomplete="off" type="file" id="anexoAgenda"
+											name="anexoAgenda" class="form-control" required />
+									</div>
+								</div>
+
+								<div class="d-flex justify-content-end gap-2">
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Fechar</button>
+									<button type="submit" data-bs-dismiss="modal"
+										class="btn btn-primary">Salvar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="editItemAnexo" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form id="formEditAnexo">
+								<div class="col-md-12">
+									<div class="mb-4">
+										<label for="agendaIdAnexoEdit" class="form-label">Agenda:<span
+											class="red">*</span>
+										</label><select class="form-control" aria-label="Agenda Id"
+											id="agendaIdAnexoEdit" name="agendaIdEdit">
+											<option selected disabled value="">Selecione uma
+												opção</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="mb-4">
+										<label for="descricaoAnexoAgendaEdit" class="form-label">Descrição:
+										</label> <input autocomplete="off" type="text"
+											id="descricaoAnexoAgendaEdit" name="descricaoAnexoAgendaEdit"
+											class="form-control" />
+
+									</div>
+								</div>
+
+
+								<div class="col-md-12">
+									<div class="mb-4">
+										<label for="anexoAgendaEdit" class="form-label">Arquivo:<span
+											class="red">*</span>
+										</label><input autocomplete="off" type="file" id="anexoAgendaEdit"
+											name="anexoAgendaEdit" class="form-control" required />
+									</div>
+								</div>
+
+								<div class="d-flex justify-content-end gap-2">
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Fechar</button>
+									<button type="submit" data-bs-dismiss="modal"
+										class="btn btn-primary">Salvar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</section>
 		<div class="modal fade" id="newCadastro" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -204,9 +464,8 @@ String contextPath = request.getContextPath();
 								<div class="col-md-6">
 									<div class="mb-4">
 										<label for="tituloAula" class="form-label">Titulo
-											Aula:
-										</label><input autocomplete="off" type="text" id="tituloAula"
-											name="tituloAula" class="form-control"  />
+											Aula: </label><input autocomplete="off" type="text" id="tituloAula"
+											name="tituloAula" class="form-control" />
 									</div>
 								</div>
 							</div>
@@ -231,9 +490,9 @@ String contextPath = request.getContextPath();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="resumo" class="form-label">Resumo:
-										</label><input autocomplete="off" type="text" id="resumo"
-											name="resumo" class="form-control" />
+										<label for="resumo" class="form-label">Resumo: </label><input
+											autocomplete="off" type="text" id="resumo" name="resumo"
+											class="form-control" />
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -295,9 +554,9 @@ String contextPath = request.getContextPath();
 								<div class="col-md-6">
 									<div class="mb-4">
 										<label for="tituloAulaEdit" class="form-label">Titulo
-											Aula:
-										</label><input autocomplete="off" type="text" id="tituloAulaEdit"
-											name="tituloAulaEdit" class="form-control"  />
+											Aula: </label><input autocomplete="off" type="text"
+											id="tituloAulaEdit" name="tituloAulaEdit"
+											class="form-control" />
 									</div>
 								</div>
 							</div>
@@ -322,9 +581,9 @@ String contextPath = request.getContextPath();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-4">
-										<label for="resumoEdit" class="form-label">Resumo:
-										</label><input autocomplete="off" type="text" id="resumoEdit"
-											name="resumoEdit" class="form-control"  />
+										<label for="resumoEdit" class="form-label">Resumo: </label><input
+											autocomplete="off" type="text" id="resumoEdit"
+											name="resumoEdit" class="form-control" />
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -374,7 +633,8 @@ String contextPath = request.getContextPath();
 										class="red">*</span>
 									</label><select class="form-control" aria-label="Agenda Id"
 										id="agendaId" name="agendaId">
-										<option selected disabled value="">Selecione uma opção</option>
+										<option selected disabled value="">Selecione uma
+											opção</option>
 									</select>
 								</div>
 							</div>

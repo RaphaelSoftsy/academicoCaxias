@@ -116,32 +116,7 @@ String contextPath = request.getContextPath();
 			</div>
 
 
-			<div class="container-table contTable">
-				<table
-					class="table tableNot tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
-					<thead>
-						<tr>
-						<th scope="col" class="border-end pe-2 th-sem-filtro">Agenda</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro">Data de
-							Cadastro</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
-					</tr>
-					</thead>
-					<tbody id="cola-tabela" class="table-group-divider">
-
-					</tbody>
-				</table>
-				<div id="pagination" class="mx-auto mt-auto">
-					<!-- <button id="prev" class="btn btn-sm">
-						<i class="fa-solid fa-angle-left fa-xl"></i>
-					</button>
-					<div id="page-numbers" class="btn-group"></div>
-					<button id="next" class="btn btn-sm">
-						<i class="fa-solid fa-angle-right fa-xl"></i>
-					</button> -->
-				</div>
-			</div>
+			
 
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
