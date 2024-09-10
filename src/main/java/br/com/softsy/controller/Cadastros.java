@@ -221,6 +221,12 @@ public class Cadastros {
 		return "escolas/novoTelefone";
 	}
 	
+	@RequestMapping(value = { "motivo-reprovacao" }, method = RequestMethod.GET)
+	public String motivoReprovacao(HttpSession session, Model model) throws Exception {
+		
+		return "preCadastros/motivoReprovacao";
+	}
+	
 	
 
 	@RequestMapping(value = { "cadastroFuncionario" }, method = RequestMethod.GET)
