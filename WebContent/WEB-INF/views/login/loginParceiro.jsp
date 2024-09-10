@@ -49,7 +49,7 @@
       src="https://kit.fontawesome.com/3ce21ff22c.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
+    <link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
     
     </head>
  

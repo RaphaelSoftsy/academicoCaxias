@@ -44,7 +44,7 @@ String contextPath = request.getContextPath();
     <script charset="UTF-8"  src="sweetalert2.all.min.js"></script>
     
 <!-- CSS -->
-<link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
+<link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />

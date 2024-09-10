@@ -40,7 +40,7 @@ String contextPath = request.getContextPath();
 	src="https://cdnjs.cloudflare.com/ajax/libs/bs58/4.0.1/bs58.min.js"></script>
 <!-- CSS -->
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
 
 
 </head>
@@ -62,7 +62,7 @@ String contextPath = request.getContextPath();
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/login.css" />
 <title>Softsy - Educacional</title>

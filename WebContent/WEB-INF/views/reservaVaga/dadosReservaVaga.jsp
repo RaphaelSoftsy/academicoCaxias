@@ -65,7 +65,7 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/reservaVaga.css" />
 </head>

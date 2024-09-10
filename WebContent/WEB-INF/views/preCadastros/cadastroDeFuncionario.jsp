@@ -57,7 +57,7 @@ String contextPath = request.getContextPath();
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
 <!-- Animation-css 
 	<link
     rel="stylesheet"

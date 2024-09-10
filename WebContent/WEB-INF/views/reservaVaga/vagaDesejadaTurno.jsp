@@ -55,7 +55,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 <!-- Css -->
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/login.css">
 

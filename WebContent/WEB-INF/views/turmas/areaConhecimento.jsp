@@ -61,7 +61,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <link
       rel="stylesheet"
-      href="<%=contextPath%>/resources/assets/css/style.css"
+      href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>"
     />
     
   </head>
