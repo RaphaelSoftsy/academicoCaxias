@@ -412,6 +412,7 @@ $(document).ready(function() {
 
 
 $('#ufNascimentoId').change(() => {
+	
 	$("#municipioNascimentoId").attr("disabled", false)
 	$("#municipioNascimentoId").empty()
 	$("#municipioNascimentoId").append("<option selected disabled>Selecione uma opção</option>")
@@ -431,6 +432,19 @@ $('#ufNascimentoId').change(() => {
 
 	})
 })
+
+
+$('#paisNascimentoId').change(() => {
+    if ($("#paisNascimentoId").val() != '31') {
+        $("#ufNascimentoId").val(28).trigger('change').prop("disabled", true);
+        $("#municipioNascimentoId").val(5571).trigger('change').prop("disabled", true);
+    } else {
+        $("#ufNascimentoId").prop("disabled", false).trigger('change');
+        $("#municipioNascimentoId").prop("disabled", false).trigger('change');
+    }
+});
+
+
 
 
 function carregarDados(id) {

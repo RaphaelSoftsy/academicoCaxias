@@ -165,15 +165,15 @@ function listarTurmas(dados) {
 			item.ativo +
 			'" data-id="' +
 			item.idTurmaProfessor +
-			' " onChange="alteraStatus(this)" '+ `${item.ativo === "S" ? "checked" : ""}` +' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			' " onChange="alteraStatus(this)" ' + `${item.ativo === "S" ? "checked" : ""}` + ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
 			"</tr>"
 		);
 	}).join("");
 
 	$("#cola-tabela-disciplina").html(html);
-	
-	
+
+
 }
 
 function alteraStatus(element) {
@@ -217,6 +217,7 @@ function alteraStatus(element) {
 const selecionar = (element) => {
 	idProfessorSelecionado = element.getAttribute("data-id")
 	listarProfessores(listaProfessores)
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 	getTurmas()
 }
 
@@ -233,6 +234,7 @@ const getTurmas = () => {
 		console.log(data)
 
 		listarTurmas(data)
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -275,37 +277,49 @@ const getTurmasByDisciplina = () => {
 }
 
 $('#btn-buscar').click(() => {
+
+
 	let escolaId = $('#escolaId').val()
 	let disciplinaId = $('#disciplinaId').val()
 
 	idDisciplina = disciplinaId
 	idEscola = escolaId
 
-	let escolaPath = escolaId != null ? `idEscola=${escolaId}&` : ''
-	let disciplinaPath = disciplinaId != null ? `idDisciplina=${disciplinaId}&` : ''
 
-	url = url_base + `/professores/filtrarDisciplinaEscola?` + escolaPath + disciplinaPath
-	/*	url = url_base + `/professores`*/
+	if (escolaId != null && disciplinaId != null) {
+		let escolaPath = escolaId != null ? `idEscola=${escolaId}&` : ''
+		let disciplinaPath = disciplinaId != null ? `idDisciplina=${disciplinaId}&` : ''
 
-	$.ajax({
-		url: url,
-		type: "GET",
-		async: false,
-		error: function(e) {
+		url = url_base + `/professores/filtrarDisciplinaEscola?` + escolaPath + disciplinaPath
+		/*	url = url_base + `/professores`*/
+
+		$.ajax({
+			url: url,
+			type: "GET",
+			async: false,
+			error: function(e) {
+				console.log(url)
+				console.log(e)
+			}
+		}).done(function(data) {
+			$('.container-table').show()
+			$('#btn-save').show()
+			$("#messageInfo").addClass("none")
+			console.log(data)
+			listaProfessores = data.data
+			listarProfessores(data.data)
+		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.log(url)
-			console.log(e)
-		}
-	}).done(function(data) {
-		$('.container-table').show()
-		$('#btn-save').show()
-		$("#messageInfo").addClass("none")
-		console.log(data)
-		listaProfessores = data.data
-		listarProfessores(data.data)
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.log(url)
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+	}else{
+		Swal.fire({
+			title: "Selecione uma Escola e Disciplina!",
+			icon: "info",
+		})
+	}
+
+
 })
 
 const adicionar = () => {
@@ -485,6 +499,7 @@ const adicionarTurma = () => {
 
 
 $('#editItem').on('show.bs.modal', function(event) {
+
 	if (idProfessorSelecionado == '') {
 		event.preventDefault();
 		Swal.fire({

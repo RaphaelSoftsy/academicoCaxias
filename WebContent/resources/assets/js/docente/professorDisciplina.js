@@ -228,12 +228,14 @@ function alteraStatus(element) {
 const selecionar = (element) => {
 	idProfessorSelecionado = element.getAttribute("data-id")
 	listarProfessores(listaProfessores)
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 	getDisciplinas()
 }
 
 const selecionarMatricula = (id) => {
 	idProfessorSelecionado = id
 	listarProfessores(listaProfessores)
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 	getDisciplinas()
 }
 
@@ -250,6 +252,7 @@ const getDisciplinas = () => {
 		console.log(data)
 
 		listarDisciplinas(data.data)
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -287,6 +290,7 @@ const buscar = () => {
 			console.log(data)
 			listaProfessores = data.data
 			listarProfessores(data.data)
+			$('input[data-toggle="toggle"]').bootstrapToggle();
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.log(url)
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

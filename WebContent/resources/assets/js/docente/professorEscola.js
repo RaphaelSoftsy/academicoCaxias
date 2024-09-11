@@ -121,6 +121,7 @@ const getEscolas = () => {
 		console.log(data.data)
 
 		listarEscolas(data.data)
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -309,6 +310,7 @@ const adicionar = () => {
 		}).then(result => {
 			$('#escolaId').val('')
 			getEscolas()
+			$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 	})
 }

@@ -499,12 +499,23 @@ function editar() {
 		error: function(e) {
 			console.log(e)
 			console.log(e.responseJSON.message)
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
+			if (e.responseJSON != undefined) {
+					if (e.responseJSON.error == "Duplicidade de registro") {
+						Swal.fire({
+							icon: "error",
+							title: "Erro de duplicidade",
+							text: "Essa turma já existe!",
 
-			});
+						});
+					}
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível realizar esse comando!",
+
+					});
+				}
 		}
 	}).done(function(data) {
 		Swal.close()
