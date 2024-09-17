@@ -143,7 +143,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<!-- <button id="prev" class="btn btn-sm">
 						<i class="fa-solid fa-angle-left fa-xl"></i>
 					</button>
-					<div id="page-numbers" class="btn-group"></div>
+					<div id="page-numbers" class="btn-group mt-2"></div>
 					<button id="next" class="btn btn-sm">
 						<i class="fa-solid fa-angle-right fa-xl"></i>
 					</button> -->
@@ -169,7 +169,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<!-- <button id="prev" class="btn btn-sm">
 						<i class="fa-solid fa-angle-left fa-xl"></i>
 					</button>
-					<div id="page-numbers" class="btn-group"></div>
+					<div id="page-numbers" class="btn-group mt-2"></div>
 					<button id="next" class="btn btn-sm">
 						<i class="fa-solid fa-angle-right fa-xl"></i>
 					</button> -->

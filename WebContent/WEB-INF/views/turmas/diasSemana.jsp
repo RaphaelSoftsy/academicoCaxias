@@ -199,7 +199,7 @@ String contextPath = request.getContextPath();
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
 				</button>
-				<div id="page-numbers" class="btn-group"></div>
+				<div id="page-numbers" class="btn-group mt-2"></div>
 				<button id="next" class="btn btn-sm">
 					<i class="fa-solid fa-angle-right fa-xl"></i>
 				</button>
