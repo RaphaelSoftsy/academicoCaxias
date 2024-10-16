@@ -302,17 +302,27 @@ $('#btn-buscar').click(() => {
 				console.log(e)
 			}
 		}).done(function(data) {
-			$('.container-table').show()
-			$('#btn-save').show()
-			$("#messageInfo").addClass("none")
 			console.log(data)
-			listaProfessores = data.data
-			listarProfessores(data.data)
+
+			if (data.data.length > 0) {
+				$('.container-table').show()
+				$('#btn-save').show()
+				$("#messageInfo").addClass("none")
+				console.log(data)
+				listaProfessores = data.data
+				listarProfessores(data.data)
+			} else {
+				Swal.fire({
+					title: "Nenhum Professor encontrado!",
+					icon: "info",
+				})
+			}
+
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.log(url)
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
-	}else{
+	} else {
 		Swal.fire({
 			title: "Selecione uma Escola e Disciplina!",
 			icon: "info",

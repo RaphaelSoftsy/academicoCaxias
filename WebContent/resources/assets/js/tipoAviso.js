@@ -1,26 +1,13 @@
 var dados = [];
-var id = '';
+const contaId = localStorage.getItem('contaId');
 var nome = '';
-var rows = 12;
+var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
 
-	if (isNaN(contaId)) {
-		Swal.fire({
-			title: "Nenhum usuário localizado, logue novamente",
-			icon: "info",
-		}).then(result => {
-			if (result) {
-				window.location.href = "login"
-			}
-		})
-	}
-
 	getDados()
-	console.log(contaId)
 
 	$("#inputBusca").on("keyup", function() {
 		var valorBusca = $(this).val().toLowerCase();
@@ -59,7 +46,7 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + `/atoRegulatorio/conta/${contaId}`,
+		url: url_base + "/tipoTelefone",
 		type: "GET",
 		async: false,
 	})
@@ -73,28 +60,23 @@ function getDados() {
 
 function listarDados(dados) {
 	var html = dados.map(function(item) {
-
 		if (item.ativo == 'N') {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
 		}
 		else {
 			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
 		}
-
 		return (
+
+
 			"<tr>" +
 			"<td>" +
-			item.atoRegulatorio +
+			item.tipoTelefone +
 			"</td>" +
-			"<td>" +
-			ativo +
-			"</td>" +
-			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idAtoRegulatorio +
+			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			item.idTipoTelefone +
 			'" data-nome="' +
-			item.atoRegulatorio +
-			'" data-ativo="' +
-			item.ativo +
+			item.tipoTelefone +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -106,33 +88,19 @@ function listarDados(dados) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	nome = ref.getAttribute("data-nome");
-	isAtivo = ref.getAttribute("data-ativo");
-	
-	console.log(id)
-
-	if (isAtivo == "S") {
-		$(".ativar").hide();
-		$(".desativar").show()
-	}
-	else {
-		$(".desativar").hide();
-		$(".ativar").show();
-	}
-
 	$('#edit-nome').val(nome);
 }
 
+
 function editar() {
 	var objeto = {
-		idAtoRegulatorio: Number(id),
-		atoRegulatorio: $('#edit-nome').val(),
+		idTipoTelefone: Number(id),
+		tipoTelefone: $('#edit-nome').val(),
 		contaId: contaId
 	}
-	
-	console.log(id)
 
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/tipoTelefone",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -173,12 +141,13 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		atoRegulatorio: $('#cadastro-nome').val(),
+		tipoTelefone: $('#cadastro-nome').val(),
 		contaId: contaId
+
 	}
 
 	$.ajax({
-		url: url_base + "/atoRegulatorio",
+		url: url_base + "/tipoTelefone",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -198,6 +167,7 @@ function cadastrar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
+			showPage(currentPage);
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",

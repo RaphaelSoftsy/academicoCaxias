@@ -1,6 +1,6 @@
 var dados = [];
 var id = '';
-var rows = 7;
+var rows = 12;
 var currentPage = 1;
 var pagesToShow = 5;
 

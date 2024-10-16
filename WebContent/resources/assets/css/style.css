@@ -1131,7 +1131,7 @@ a {
 }
 
 .card-table {
-	height: 680px !important;
+	min-height: 680px !important;
 }
 
 #card-table {
@@ -1283,7 +1283,7 @@ a {
 		margin-left: 0.5em;
 	}
 	.card-table {
-		height: 580px !important;
+		min-height: 580px !important;
 	}
 	#colaTabela {
 		font-size: 1.1em;

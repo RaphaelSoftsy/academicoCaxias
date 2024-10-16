@@ -10,11 +10,11 @@ $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
 	// Caminho base para os favicons
 	var contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf('/', 1));
-	
+
 	// Array de favicons para adicionar
 	var favicons = [
-		{ rel: 'apple-touch-icon', sizes: '180x180', href: `${contextPath}/resources/assets/img/apple-touch-icon.png`},
-		{ rel: 'icon', type: 'image/png', sizes: '32x32', href: `${contextPath}/resources/assets/img/favicon-32x32.png`},
+		{ rel: 'apple-touch-icon', sizes: '180x180', href: `${contextPath}/resources/assets/img/apple-touch-icon.png` },
+		{ rel: 'icon', type: 'image/png', sizes: '32x32', href: `${contextPath}/resources/assets/img/favicon-32x32.png` },
 		{ rel: 'icon', type: 'image/png', sizes: '16x16', href: `${contextPath}/resources/assets/img/favicon-16x16.png` }
 	];
 
@@ -184,7 +184,7 @@ $(document).ready(function() {
 var str = localStorage.getItem('nomeConta').toLowerCase();
 str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
 	return letter.toUpperCase();
-});
+});	
 
 const notAccess = () => {
 	Swal.fire({
@@ -408,68 +408,6 @@ function remover(endpoint) {
 	return false;
 }
 
-function showPage(page) {
-	var start = (page - 1) * rows;
-	var end = start + rows;
-
-	$('#cola-tabela tr').hide();
-	$('#cola-tabela tr').slice(start, end).show();
-}
-
-function toggleNavigation() {
-	var totalRows = $('#cola-tabela tr').length;
-	var totalPages = Math.ceil(totalRows / rows);
-
-	$('#prev').prop('disabled', currentPage === 1);
-	$('#next').prop('disabled', currentPage === totalPages);
-
-	$('#pagination').toggle(totalRows > 0);
-
-	$('#page-numbers').empty();
-
-	if (totalRows > 0) {
-		var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
-		var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
-
-		if (startPage > 1) {
-			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
-			if (startPage > 2) {
-				$('#page-numbers').append('<span>...</span>');
-			}
-		}
-
-		for (var i = startPage; i <= endPage; i++) {
-			var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
-			$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
-		}
-
-		if (endPage < totalPages) {
-			if (endPage < totalPages - 1) {
-				$('#page-numbers').append('<span>...</span>');
-			}
-			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
-		}
-
-		$('.btn-page').click(function() {
-			goToPage(parseInt($(this).data('page')));
-
-		});
-	}
-}
-
-
-function updatePagination() {
-	toggleNavigation();
-}
-
-function goToPage(page) {
-	if (page >= 1 && page <= Math.ceil($('#cola-tabela tr').length / rows)) {
-		currentPage = page;
-		showPage(currentPage);
-		updatePagination();
-
-	}
-}
 
 function containerResponsivo() {
 	let container = $('<div>')
@@ -480,12 +418,40 @@ function containerResponsivo() {
 
 
 
-$('#prev').click(function() {
-	goToPage(currentPage - 1);
+function showPage(page) {
+    currentPage = page;
+    const start = (page - 1) * rows;
+    const end = start + rows;
+    const paginatedData = dados.slice(start, end);
+
+    listarDados(paginatedData);
+    $('input[data-toggle="toggle"]').bootstrapToggle();	
+    updatePagination();
+}
+
+function updatePagination() {
+    const totalPages = Math.ceil(dados.length / rows);
+    let paginationHTML = "";
+
+    let startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
+    let endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+    for (let i = startPage; i <= endPage; i++) {
+        paginationHTML += `
+            <li class="page-item ${i === currentPage ? 'active' : ''}">
+                <a class="page-link" href="#">${i}</a>
+            </li>`;
+    }
+
+    $("#pagination").html(paginationHTML);
+}
+
+$(document).on("click", "#pagination .page-link", function (e) {
+    e.preventDefault();
+    const selectedPage = parseInt($(this).text());
+    showPage(selectedPage);
 });
 
-$('#next').click(function() {
-	goToPage(currentPage + 1);
-});
+
 
 

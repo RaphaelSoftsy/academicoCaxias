@@ -57,7 +57,7 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 </head>
 
 <body>
@@ -262,15 +262,10 @@ String contextPath = request.getContextPath();
 				<tbody id="cola-tabela" class="table-group-divider"></tbody>
 			</table>
 
-			<div id="pagination" class="mx-auto mt-auto">
-				<button id="prev" class="btn btn-sm">
-					<i class="fa-solid fa-angle-left fa-xl"></i>
-				</button>
-				<div id="page-numbers" class="btn-group mt-2"></div>
-				<button id="next" class="btn btn-sm">
-					<i class="fa-solid fa-angle-right fa-xl"></i>
-				</button>
-			</div>
+			<nav>
+				<ul id="pagination" class="pagination justify-content-center"></ul>
+			</nav>
+
 
 
 
@@ -300,7 +295,8 @@ String contextPath = request.getContextPath();
 					<thead>
 						<tr>
 							<th scope="col" class="border-end pe-2 th-sem-filtro">Agenda</th>
-							<th scope="col" class="border-end pe-2 th-sem-filtro">Data de Cadastro</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Data
+								de Cadastro</th>
 							<th scope="col" class="border-end pe-2 th-sem-filtro">Descrição</th>
 							<th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
 							<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
