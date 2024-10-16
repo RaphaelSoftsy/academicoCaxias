@@ -262,10 +262,15 @@ String contextPath = request.getContextPath();
 				<tbody id="cola-tabela" class="table-group-divider"></tbody>
 			</table>
 
-			<nav>
-				<ul id="pagination" class="pagination justify-content-center"></ul>
-			</nav>
-
+			<div id="pagination" class="mx-auto mt-auto">
+				<button id="prev" class="btn btn-sm">
+					<i class="fa-solid fa-angle-left fa-xl"></i>
+				</button>
+				<div id="page-numbers" class="btn-group mt-2"></div>
+				<button id="next" class="btn btn-sm">
+					<i class="fa-solid fa-angle-right fa-xl"></i>
+				</button>
+			</div>
 
 
 

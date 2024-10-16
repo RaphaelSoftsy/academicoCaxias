@@ -425,31 +425,48 @@ function showPage(page) {
     const paginatedData = dados.slice(start, end);
 
     listarDados(paginatedData);
-    $('input[data-toggle="toggle"]').bootstrapToggle();	
-    updatePagination();
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+    updatePagination(); // Atualiza os botões da paginação
 }
 
+// Função para atualizar os números de página e controlar os botões 'Prev' e 'Next'
 function updatePagination() {
-    const totalPages = Math.ceil(dados.length / rows);
+    totalPages = Math.ceil(dados.length / rows);
     let paginationHTML = "";
 
-    let startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
-    let endPage = Math.min(totalPages, startPage + pagesToShow - 1);
-
-    for (let i = startPage; i <= endPage; i++) {
+    // Gera os botões de número de página dinamicamente
+    for (let i = 1; i <= totalPages; i++) {
         paginationHTML += `
-            <li class="page-item ${i === currentPage ? 'active' : ''}">
-                <a class="page-link" href="#">${i}</a>
-            </li>`;
+            <button class="btn btn-sm page-number" data-page="${i}">
+                ${i}
+            </button>`;
     }
 
-    $("#pagination").html(paginationHTML);
+    $("#page-numbers").html(paginationHTML);
+
+    // Habilita ou desabilita os botões de 'Prev' e 'Next'
+    $("#prev").prop("disabled", currentPage === 1);
+    $("#next").prop("disabled", currentPage === totalPages);
 }
 
-$(document).on("click", "#pagination .page-link", function (e) {
-    e.preventDefault();
-    const selectedPage = parseInt($(this).text());
+// Evento de clique nos números de página
+$(document).on("click", ".page-number", function () {
+    const selectedPage = parseInt($(this).data("page"));
     showPage(selectedPage);
+});
+
+// Evento de clique no botão 'Prev'
+$("#prev").click(function () {
+    if (currentPage > 1) {
+        showPage(currentPage - 1);
+    }
+});
+
+// Evento de clique no botão 'Next'
+$("#next").click(function () {
+    if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+    }
 });
 
 

@@ -111,7 +111,7 @@ function listarDados(dados) {
         return `
             <tr>
                 <td class="d-flex justify-content-center">
-                    <span class="btn btn-warning btn-sm" data-id="${item.idEscola}" data-nome="${item.nomeEscola}" data-logo="${item.logoEscola}" onclick="acessar(this)">
+                    <span class="btn btn-warning btn-sm" data-id="${item.idEscola}" data-nome="${item.nomeEscola}" data-logo="${item.logoEscola}" onclick="acessar(this)" style="margin: 5%;" >
                         <i class="fa-solid fa-right-to-bracket fa-lg"></i>
                     </span>
                 </td>
