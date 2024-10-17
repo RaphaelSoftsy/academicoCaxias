@@ -156,7 +156,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Nome</span> <i class="fas fa-sort me-3"
+									<span>Escola</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">

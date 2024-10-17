@@ -356,8 +356,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									name="tipoPeriodicidadeEdit">
 									<option selected disabled value="">Selecione uma opção
 									</option>
-									<option value="A">A</option>
-									<option value="B">B</option>
+									<option value="A">Anual</option>
+									<option value="B">Bimestral</option>
+									<option value="T">Trimestral</option>
+									<option value="S">Semestral</option>
 								</select>
 							</div>
 
