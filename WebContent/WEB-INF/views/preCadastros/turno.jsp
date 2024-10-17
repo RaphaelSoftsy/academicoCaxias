@@ -109,7 +109,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
-				<tbody id="cola-tabela" class="table-group-divider">
+				<tbody id="cola-tabela-turnos" class="table-group-divider">
 
 				</tbody>
 			</table>

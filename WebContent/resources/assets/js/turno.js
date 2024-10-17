@@ -8,6 +8,7 @@ var horaFim = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+let turnos = []
 
 $(document).ready(function() {
 
@@ -61,6 +62,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
+			turnos = data
 			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -69,8 +71,10 @@ function getDados() {
 }
 
 function listarDados(dados) {
-	var html = dados.map(function(item) {
-
+	var html = turnos.map(function(item) {
+		
+		console.log(item)
+		
 		var horaInicioFormatada = item.horaInicio.substring(0, 5);
 		var horaFimFormatada = item.horaFim.substring(0, 5);
 
@@ -120,7 +124,7 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html); 
+	$("#cola-tabela-turnos").html(html); 
 }
 
 

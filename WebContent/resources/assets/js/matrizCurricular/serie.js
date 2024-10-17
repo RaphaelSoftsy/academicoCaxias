@@ -62,7 +62,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -70,42 +70,46 @@ function getDados() {
 }
 
 function listarDados(dados) {
-	var html = dados.map(function(item) {
-		var ativo;
+	if (dados.length > 0) {
 
-		if (item.ativo == "N") {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-		} else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-		}
 
-		return (
-			"<tr>" +
-			"<td>" +
-			item.serie +
-			"</td>" +
-			"<td>" +
-			item.descricao +
-			"</td>" +
-			"<td>" +
-			'<input type="checkbox" data-status="' +
-			item.ativo +
-			'" data-id="' +
-			item.idSerie +
-			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-			"</td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idSerie +
-			'" data-nomeSerie="' +
-			item.serie +
-			'" data-descricao="' +
-			item.descricao +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-			"</tr>"
-		);
-	}).join("");
+		var html = dados.map(function(item) {
+			var ativo;
 
-	$("#cola-tabela").html(html); 
+			if (item.ativo == "N") {
+				ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+			} else {
+				ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+			}
+
+			return (
+				"<tr>" +
+				"<td>" +
+				item.serie +
+				"</td>" +
+				"<td>" +
+				item.descricao +
+				"</td>" +
+				"<td>" +
+				'<input type="checkbox" data-status="' +
+				item.ativo +
+				'" data-id="' +
+				item.idSerie +
+				' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+				"</td>" +
+				'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+				item.idSerie +
+				'" data-nomeSerie="' +
+				item.serie +
+				'" data-descricao="' +
+				item.descricao +
+				'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				"</tr>"
+			);
+		}).join("");
+
+		$("#cola-tabela").html(html);
+	}
 }
 
 function alteraStatus(element) {

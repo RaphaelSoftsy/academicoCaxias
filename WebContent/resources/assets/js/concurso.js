@@ -70,8 +70,8 @@ $(document).ready(function() {
 			}).show();
 		}
 	}
-	
-		$('.checkbox-toggle').each(function() {
+
+	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
 		if (status !== 'S') {
 			$(this).prop('checked', false);
@@ -84,17 +84,17 @@ $(document).ready(function() {
 });
 
 
-function formatarPeriodo(tipoPeriodicidade){
-	if(tipoPeriodicidade == "A"){
+function formatarPeriodo(tipoPeriodicidade) {
+	if (tipoPeriodicidade == "A") {
 		return "Anual"
-	}else if(tipoPeriodicidade == "B"){
+	} else if (tipoPeriodicidade == "B") {
 		return "Bimestral"
-	}else if(tipoPeriodicidade == "T"){
+	} else if (tipoPeriodicidade == "T") {
 		return "Trimestral"
-	}else if(tipoPeriodicidade == "S"){
+	} else if (tipoPeriodicidade == "S") {
 		return "Semestral"
 	}
-	
+
 }
 
 function formatarDataParaBR(data) {
@@ -114,7 +114,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -122,55 +122,58 @@ function getDados() {
 }
 
 function listarDados(dados) {
-	var html = dados.map(function(item) {
+	if (dados.length > 0) {
 
 
-		var ativo;
+		var html = dados.map(function(item) {
 
-		if (item.ativo == "N") {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-		} else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-		}
 
-		return (
-			"<tr>" +
-			"<td>" +
-			item.concurso +
-			"</td>" +
-			"<td>" +
-			formatarDataParaBR(item.dataAbertura) +
-			"</td>" +
-			"<td>" +
-			formatarDataParaBR(item.dataFechamento) +
-			"</td>" +
-			"<td><div class='d-flex align-items-center gap-1'>" +
-			'<input type="checkbox" data-status="' +
-			item.ativo +
-			'" data-id="' +
-			item.idConcurso +
-			' " onChange="alteraStatus(this)" '+ `${item.ativo === "S" ? "checked" : ""}` +' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-			"</div></td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idConcurso +
-			'" data-nome="' +
-			item.concurso +
-			'" data-dataInicio="' +
-			item.dataAbertura +
-			'" data-dataFim="' +
-			item.dataFechamento +
-			'" data-idPeriodoLetivo="' +
-			item.periodoLetivo.idPeriodoLetivo +
-			'" data-ativo="' +
-			item.ativo +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-			"</tr>"
-		);
-	}).join("");
+			var ativo;
 
-	$("#cola-tabela").html(html); 
-	
-	
+			if (item.ativo == "N") {
+				ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+			} else {
+				ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+			}
+
+			return (
+				"<tr>" +
+				"<td>" +
+				item.concurso +
+				"</td>" +
+				"<td>" +
+				formatarDataParaBR(item.dataAbertura) +
+				"</td>" +
+				"<td>" +
+				formatarDataParaBR(item.dataFechamento) +
+				"</td>" +
+				"<td><div class='d-flex align-items-center gap-1'>" +
+				'<input type="checkbox" data-status="' +
+				item.ativo +
+				'" data-id="' +
+				item.idConcurso +
+				' " onChange="alteraStatus(this)" ' + `${item.ativo === "S" ? "checked" : ""}` + ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+				"</div></td>" +
+				'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+				item.idConcurso +
+				'" data-nome="' +
+				item.concurso +
+				'" data-dataInicio="' +
+				item.dataAbertura +
+				'" data-dataFim="' +
+				item.dataFechamento +
+				'" data-idPeriodoLetivo="' +
+				item.periodoLetivo.idPeriodoLetivo +
+				'" data-ativo="' +
+				item.ativo +
+				'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				"</tr>"
+			);
+		}).join("");
+
+		$("#cola-tabela").html(html);
+	}
+
 }
 
 function alteraStatus(element) {
@@ -295,7 +298,7 @@ $('#formCadastro').on('submit', function(e) {
 
 function cadastrar() {
 
-var objeto = {
+	var objeto = {
 		concurso: $('#cadastro-nome').val(),
 		dataAbertura: $('#dataInicio').val(),
 		dataFechamento: $("#dataFechamento").val(),

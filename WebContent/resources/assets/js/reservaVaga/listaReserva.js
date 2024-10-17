@@ -52,7 +52,7 @@ $(document).ready(function() {
 			});
 		}
 
-		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings(".searchInput").val("");
 		$(this).closest(".dropdown-content-form").removeClass("show");
@@ -85,7 +85,7 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -127,7 +127,7 @@ $(document).ready(function() {
 				}
 			}
 		});
-		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
 	$('.checkbox-toggle').each(function() {
@@ -142,7 +142,7 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
-	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 	$(".searchInput").val("");
 });
 
@@ -153,10 +153,10 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			dados = data;
-			dadosOriginais = data;
-			console.log(data)
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			dados = data != 'Nenhum resultado encontrado para os parâmetros informados.' ? data : [];
+			dadosOriginais = data != 'Nenhum resultado encontrado para os parâmetros informados.' ? data : [];
+			console.log(data != 'Nenhum resultado encontrado para os parâmetros informados.' ? data : [])
+			listarDados(data != 'Nenhum resultado encontrado para os parâmetros informados.' ? data : []); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -231,42 +231,45 @@ function getTipoIngresso(idTipoIngresso) {
 
 
 function listarDados(dados) {
-	var html = dados.map(function(item) {
+	console.log(dados)
+	if (dados.length > 0) {
+		var html = dados.map(function(item) {
 
 
-		if (item.aprovado == null) {
-			status = "Aguardando"
-		} else if (item.aprovado == "N") {
-			status = "Reprovado"
-		} else {
-			status = "Aprovado"
-		}
+			if (item.aprovado == null) {
+				status = "Aguardando"
+			} else if (item.aprovado == "N") {
+				status = "Reprovado"
+			} else {
+				status = "Aprovado"
+			}
 
-		let escolaNome = item.nomeEscola ? item.nomeEscola : 'Não possui escola'
-		let turno = item.turno ? item.turno : 'Não possui turno'
-		let serie = item.serie ? item.serie : 'Não possui serie'
+			let escolaNome = item.nomeEscola ? item.nomeEscola : 'Não possui escola'
+			let turno = item.turno ? item.turno : 'Não possui turno'
+			let serie = item.serie ? item.serie : 'Não possui serie'
 
 
-		return (
-			"<tr>" +
-			"<td>" + item.candidato + "</td>" +
-			"<td>" + item.nomeCompleto + "</td>" +
-			"<td>" + escolaNome + "</td>" +
-			"<td>" + turno + "</td>" +
-			"<td>" + serie + "</td>" +
-			"<td>" + item.tipoIngresso + "</td>" +
-			"<td>" + status + "</td>" +
-			"</td>" +
-			'<td class="d-flex justify-content-center">' +
-			'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" ' +
-			'data-id=' + item.idCandidato +
-			' onclick="showModal(this)"><i class="fa-solid fa-file-lines"></i></span>' +
-			'</td>' +
-			"</tr>"
-		);
-	}).join("");
+			return (
+				"<tr>" +
+				"<td>" + item.candidato + "</td>" +
+				"<td>" + item.nomeCompleto + "</td>" +
+				"<td>" + escolaNome + "</td>" +
+				"<td>" + turno + "</td>" +
+				"<td>" + serie + "</td>" +
+				"<td>" + item.tipoIngresso + "</td>" +
+				"<td>" + status + "</td>" +
+				"</td>" +
+				'<td class="d-flex justify-content-center">' +
+				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" ' +
+				'data-id=' + item.idCandidato +
+				' onclick="showModal(this)"><i class="fa-solid fa-file-lines"></i></span>' +
+				'</td>' +
+				"</tr>"
+			);
+		}).join("");
 
-	$("#cola-tabela").html(html); 
+		$("#cola-tabela").html(html);
+	}
 }
 
 

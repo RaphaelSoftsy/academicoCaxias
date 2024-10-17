@@ -52,7 +52,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -60,24 +60,28 @@ function getDados() {
 }
 
 function listarDados(dados) {
-	var html = dados.map(function(item) {
-		console.log(item)
+	if (dados.length > 0) {
 
-		return (
-			"<tr>" +
-			"<td>" +
-			item.areaConhecimento +
-			"</td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idAreaConhecimento +
-			'" data-nome="' +
-			item.areaConhecimento +
-			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-			"</tr>"
-		);
-	}).join("");
 
-	$("#cola-tabela").html(html); 
+		var html = dados.map(function(item) {
+			console.log(item)
+
+			return (
+				"<tr>" +
+				"<td>" +
+				item.areaConhecimento +
+				"</td>" +
+				'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+				item.idAreaConhecimento +
+				'" data-nome="' +
+				item.areaConhecimento +
+				'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+				"</tr>"
+			);
+		}).join("");
+
+		$("#cola-tabela").html(html);
+	}
 }
 
 function showModal(ref) {
@@ -155,7 +159,7 @@ function cadastrar() {
 				icon: "error",
 				title: "Oops...",
 				text: "Essa área de conhecimento já existe!",
-			
+
 			});
 		}
 	})
