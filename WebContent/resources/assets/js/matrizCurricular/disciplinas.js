@@ -47,10 +47,13 @@ $(document).ready(function() {
 					.includes(searchInput);
 			}
 		});
-
+		
+		dados = filteredData
 		console.log("Dados filtrados:", filteredData); // Verifica os dados filtrados
 		listarDados(filteredData);
 		$('input[data-toggle="toggle"]').bootstrapToggle();
+		updatePagination();
+		showPage(1)
 		$(this).siblings(".searchInput").val("");
 		$(this).closest(".dropdown-content-form").removeClass("show");
 	});
@@ -83,9 +86,9 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
-			showPage(currentPage);
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();	
 			updatePagination();
+			showPage(1)
 		}
 
 		sortOrder[column] = newOrder;
@@ -148,8 +151,10 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
+	
 	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
-	showPage(currentPage);
+	dados = dadosOriginais
+	showPage(1);
 	updatePagination();
 	$(".searchInput").val("");
 });
