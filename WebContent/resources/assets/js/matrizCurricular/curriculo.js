@@ -21,7 +21,7 @@ $(document).ready(function() {
 				$("#cursoIdEdit").append(
 					$("<option>", {
 						value: item.idCurso,
-						text: item.nome,
+						text: `${item.nome} - ${item.codCurso}`,
 						name: item.nome,
 					})
 				);
@@ -29,7 +29,7 @@ $(document).ready(function() {
 				$("#cursoId").append(
 					$("<option>", {
 						value: item.idCurso,
-						text: item.nome,
+						text: `${item.nome} - ${item.codCurso}`,
 						name: item.nome,
 					})
 				);
@@ -66,29 +66,33 @@ $(document).ready(function() {
 				var nome = curso ? curso.nome.toLowerCase() : "";
 				return nome.includes(searchInput);
 			});
-		} else if (
-			columnToSearch === "dtHomologacao" ||
-			columnToSearch === "dtExtincao"
-		) {
-			searchInput = searchInput.split("T")[0];
+		} else if (columnToSearch === "dtHomologacao") {
+			// Verificação para evitar erro de `.split()` em valores nulos
 			filteredData = dadosOriginais.filter(function(item) {
-				var itemDate = item[columnToSearch].split("T")[0];
+				var itemDate = item[columnToSearch] ? item[columnToSearch].split("T")[0] : "";
+				return itemDate.includes(searchInput);
+			});
+		} else if (columnToSearch === "dtExtincao") {
+			// Verificação para evitar erro de `.split()` em valores nulos
+			filteredData = dadosOriginais.filter(function(item) {
+				var itemDate = item[columnToSearch] ? item[columnToSearch].split("T")[0] : "";
 				return itemDate.includes(searchInput);
 			});
 		} else {
 			filteredData = dadosOriginais.filter(function(item) {
-				return item[columnToSearch]
-					.toString()
-					.toLowerCase()
-					.includes(searchInput);
+				var value = item[columnToSearch] ? item[columnToSearch].toString().toLowerCase() : "";
+				return value.includes(searchInput);
 			});
 		}
 
-		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 
+		// Limpar input e fechar dropdown
 		$(this).siblings(".searchInput").val("");
 		$(this).closest(".dropdown-content-form").removeClass("show");
 	});
+
 
 	$(document).on("click", ".sortable .col", function() {
 		var column = $(this).closest("th").data("column");
@@ -117,7 +121,7 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -168,7 +172,7 @@ $(document).ready(function() {
 				}
 			}
 		});
-		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
 	showPage(currentPage);
@@ -176,7 +180,7 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
-	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 	$(".searchInput").val("");
 });
 
@@ -189,7 +193,7 @@ function getDados() {
 		.done(function(data) {
 			dados = data;
 			dadosOriginais = data;
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", jqXHR);
@@ -253,7 +257,7 @@ function listarDados(dados) {
 					"<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
 			}
 
-			var nome = curso ? curso.nome : "Curso não encontrado";
+			var nome = curso ? `${curso.nome} - ${curso.codCurso}` : "Curso não encontrado";
 
 			return (
 				"<tr>" +
@@ -267,10 +271,10 @@ function listarDados(dados) {
 				item.descricao +
 				"</td>" +
 				"<td>" +
-				formatarDataParaBR(item.dtHomologacao) +
+				(formatarDataParaBR(item.dtHomologacao) == "01/01/1970" ? "Não possui" : formatarDataParaBR(item.dtHomologacao)) +
 				"</td>" +
 				"<td>" +
-				formatarDataParaBR(item.dtExtincao) +
+				(formatarDataParaBR(item.dtExtincao) == "01/01/1970" ? "Não possui" : formatarDataParaBR(item.dtExtincao)) +
 				"</td>" +
 				"<td>" +
 				item.aulasPrevistas +
@@ -290,7 +294,7 @@ function listarDados(dados) {
 		})
 		.join("");
 
-	$("#cola-tabela").html(html); 
+	$("#cola-tabela").html(html);
 }
 
 
@@ -362,13 +366,13 @@ function showModal(ref) {
 // Editar
 
 function editar() {
-	var dtHomologacaoEdit = $('#dtHomologacaoEdit').val();
+	var dtHomologacaoEdit = $('#dtHomologacaoEdit').val() || null;
 
 	var data1 = new Date(dtHomologacaoEdit);
 
 	var data1Formatada = formatarDataParaAPI(data1);
 
-	var dtExtincaoEdit = $('#dtExtincaoEdit').val();
+	var dtExtincaoEdit = $('#dtExtincaoEdit').val() || null;
 
 	var data2 = new Date(dtExtincaoEdit);
 
@@ -380,8 +384,8 @@ function editar() {
 		descricao: $("#descricaoEdit").val(),
 		cursoId: Number($("#cursoIdEdit").val()),
 		curriculo: $("#curriculoEdit").val(),
-		dtHomologacao: data1Formatada,
-		dtExtincao: data2Formatada,
+		dtHomologacao: data1Formatada == "1969-12-31T23:59:59" ? null : data1Formatada,
+		dtExtincao: data2Formatada == "1969-12-31T23:59:59" ? null : data2Formatada,
 		prazoIdeal: Number($("#prazoIdealEdit").val()),
 		prazoMax: Number($("#prazoMaxEdit").val()),
 		creditos: Number($("#creditosEdit").val()),
@@ -433,7 +437,7 @@ $("#formEdit").on("submit", function(e) {
 });
 
 $("#curriculoNew").on("blur", () => {
-	
+
 	const curriculoNew = $("#curriculoNew")
 
 	if (curriculoNew.val().length > 10) {
@@ -455,7 +459,7 @@ $("#curriculoNew").on("blur", () => {
 })
 
 $("#curriculoEdit").on("blur", () => {
-	
+
 	const curriculoNew = $("#curriculoEdit")
 
 	if (curriculoNew.val().length > 10) {
@@ -480,13 +484,13 @@ $("#curriculoEdit").on("blur", () => {
 // Cadastrar
 
 function cadastrar() {
-	var dtHomologacao = $('#dtHomologacao').val();
+	var dtHomologacao = $('#dtHomologacao').val() || null;
 
 	var data1 = new Date(dtHomologacao);
 
 	var data1Formatada = formatarDataParaAPI(data1);
 
-	var dtExtincao = $('#dtExtincao').val();
+	var dtExtincao = $('#dtExtincao').val() || null;
 
 	var data2 = new Date(dtExtincao);
 
@@ -497,15 +501,17 @@ function cadastrar() {
 		descricao: $("#descricao").val(),
 		cursoId: Number($("#cursoId").val()),
 		curriculo: $("#curriculoNew").val(),
-		dtHomologacao: data1Formatada,
-		dtExtincao: data2Formatada,
+		dtHomologacao: data1Formatada == "1969-12-31T23:59:59" ? null : data1Formatada,
+		dtExtincao: data2Formatada == "1969-12-31T23:59:59" ? null : data2Formatada,
 		prazoIdeal: Number($("#prazoIdeal").val()),
 		prazoMax: Number($("#prazoMax").val()),
 		creditos: Number($("#creditos").val()),
 		aulasPrevistas: Number($("#aulasPrevistas").val()),
 	};
 
-	$.ajax({
+	console.log(objeto)
+
+	/*$.ajax({
 		url: url_base + "/curriculo",
 		type: "POST",
 		data: JSON.stringify(objeto),
@@ -537,7 +543,7 @@ function cadastrar() {
 		}).then(() => {
 			window.location.href = "curriculo"
 		})
-	});
+	});*/
 
 	return false;
 }

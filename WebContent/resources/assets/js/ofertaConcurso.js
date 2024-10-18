@@ -32,7 +32,6 @@ $(document).ready(function() {
 		console.log("Column to Search:", columnToSearch);
 
 		var filteredData = dadosOriginais.filter(function(item) {
-			console.log(item)
 			var valueToCheck = item[columnToSearch] ? item[columnToSearch].toString().toLowerCase() : '';
 			return valueToCheck.toString().includes(searchInput.toLowerCase());
 		});

@@ -33,13 +33,9 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest(".sortable").data("column");
 		var filteredData;
 
-		if (columnToSearch === "escolaId") {
+		if (columnToSearch === "disciplina") {
 			filteredData = dadosOriginais.filter(function(item) {
-				var escola = escolas.find(function(school) {
-					return school.idEscola === item.escolaId;
-				});
-				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
-				return nomeEscola.includes(searchInput);
+				return item[columnToSearch].toString().toLowerCase().includes(searchInput);
 			});
 		} else {
 			filteredData = dadosOriginais.filter(function(item) {
@@ -50,7 +46,7 @@ $(document).ready(function() {
 			});
 		}
 
-		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings(".searchInput").val("");
 		$(this).closest(".dropdown-content-form").removeClass("show");
@@ -130,7 +126,8 @@ $(document).ready(function() {
 				}
 			}
 		});
-		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(dadosOrdenados); 
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
 		$('.checkbox-toggle').each(function() {
@@ -145,7 +142,7 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
-	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
 	$(".searchInput").val("");
 });
 
@@ -158,7 +155,7 @@ function getDados() {
 		.done(function(data) {
 			dados = data;
 			dadosOriginais = data;
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

@@ -43,13 +43,13 @@ $(document).ready(function() {
 					text: item.tituloAula,
 					name: item.tituloAula
 				}));
-				
+
 				$('#agendaIdAnexo').append($('<option>', {
 					value: item.idAgenda,
 					text: item.tituloAula,
 					name: item.tituloAula
 				}));
-				
+
 				$('#agendaIdAnexoEdit').append($('<option>', {
 					value: item.idAgenda,
 					text: item.tituloAula,
@@ -104,6 +104,38 @@ $(document).ready(function() {
 		if (columnToSearch == "nomeTurma") {
 			filteredData = dadosOriginais.filter(function(item) {
 				return item.turma.nomeTurma.toString().toLowerCase().includes(searchInput);
+			});
+		} else if (columnToSearch == "nomeTurma") {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.turma.escola.nomeEscola.toString().toLowerCase().includes(searchInput);
+			});
+		} else if (columnToSearch == "ano") {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.turma.periodoLetivo.ano.toString().toLowerCase().includes(searchInput);
+			});
+		} else if (columnToSearch == "turno") {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.turma.turno.turno.toString().toLowerCase().includes(searchInput);
+			});
+		} else if (columnToSearch == "nomeDisciplina") {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.turma.gradeCurricular.disciplina.nome.toString().toLowerCase().includes(searchInput);
+			});
+		} else if (columnToSearch == "ano") {
+			filteredData = dadosOriginais.filter(function(item) {
+
+				const dataAgenda = item.dataAgenda
+
+				const horaInicioFormatada = formatarHoraParaAMPM(item.horaInicio)
+				const horaFimFormatada = formatarHoraParaAMPM(item.horaFim)
+				const realizada = item.realizada === "S" ? "Sim" : "Não"
+				// Dividir a string nos componentes ano, mês e dia
+				const [ano, mes, dia] = dataAgenda.split('-');
+
+				// Formatar a data no formato "dd/mm/aaaa"
+				const dataFormatada = `${dia}/${mes}/${ano}`;
+				
+				return dataFormatada.toString().toLowerCase().includes(searchInput);
 			});
 		} else {
 			filteredData = dadosOriginais.filter(function(item) {
@@ -535,7 +567,7 @@ function showModalAnexoEdit(ref) {
 	idAgendaAnexo = ref.getAttribute("data-id")
 	descricaoAgendaAnexo = ref.getAttribute("data-descricao")
 	limpaCampoAnexo()
-	
+
 	$("#descricaoAnexoAgendaEdit").val(descricaoAgendaAnexo)
 	$("#agendaIdAnexoEdit").val(idAgendaSelecionada)
 
@@ -633,6 +665,10 @@ function cadastrar() {
 	const dataAgenda = new Date($("#dataAgenda").val())
 
 	const dataFormatada = formatarDataParaAPI(dataAgenda)
+
+	const tituloAulaFormatado = $("#tituloAula").val() === '' ? null : $("#tituloAula").val()
+
+	const resumoAulaFormatado = $("#resumo").val() === '' ? null : $("#resumo").val()
 
 
 

@@ -100,7 +100,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col" class="sortable border-end" data-column="escolaId">
+						<th scope="col" class="sortable border-end" data-column="padraoAcesso">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -116,7 +116,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent1">
 										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o nome da escola" />
+											placeholder="Digite o padrão" />
 										<button class="btn btn-sm col-12 btn-success searchButton">
 											Buscar</button>
 									</div>

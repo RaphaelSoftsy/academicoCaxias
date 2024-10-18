@@ -102,7 +102,7 @@ String contextPath = request.getContextPath();
 					<tr>
 						<th scope="col" class="border-end pe-2 th-sem-filtro">Selecionar</th>
 						<th scope="col" class="sortable border-end"
-							data-column="nomeTurma">
+							data-column="nomeEscola">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -126,7 +126,7 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="nomeTurma">
+							data-column="ano">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -142,7 +142,7 @@ String contextPath = request.getContextPath();
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent1">
 										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o Período" />
+											placeholder="Digite o ANO do periodo" />
 										<button class="btn btn-sm col-12 btn-success searchButton">Buscar
 											Turma</button>
 									</div>
@@ -150,7 +150,7 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="nomeTurma">
+							data-column="turno">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -198,7 +198,7 @@ String contextPath = request.getContextPath();
 							</div>
 						</th>
 						<th scope="col" class="sortable border-end"
-							data-column="nomeTurma">
+							data-column="nomeDisciplina">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -239,10 +239,9 @@ String contextPath = request.getContextPath();
 									<div
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o Nº da Turma" />
-										<button class="btn btn-sm col-12 btn-success searchButton">age
-											Buscar</button>
+										<input type="date" class="form-control mb-3 searchInput"
+											 />
+										<button class="btn btn-sm col-12 btn-success searchButton">									Buscar</button>
 									</div>
 								</div>
 							</div>

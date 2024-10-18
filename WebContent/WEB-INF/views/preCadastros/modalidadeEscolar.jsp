@@ -112,7 +112,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						<th class="text-center" scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
-				<tbody id="cola-tabela" class="table-group-divider"></tbody>
+				<tbody id="cola-tabela-modalidades" class="table-group-divider"></tbody>
 			</table>
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">

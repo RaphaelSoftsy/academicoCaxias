@@ -1,4 +1,4 @@
-	var dados = [];
+var dados = [];
 var sortOrder = {};
 var dadosOriginais = [];
 var rows = 12;
@@ -30,30 +30,17 @@ $(document).ready(function() {
 		var columnToSearch = $(this).closest(".sortable").data("column");
 		var filteredData;
 
-		if (columnToSearch === "dependenciaAdm") {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item.dependenciaAdm.dependenciaAdministrativa
-					.toLowerCase()
-					.includes(searchInput);
-			});
-		} else if (columnToSearch === "escolaId") {
-			filteredData = dadosOriginais.filter(function(item) {
-				var escola = escolas.find(function(school) {
-					return school.idEscola === item.escolaId;
-				});
-				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
-				return nomeEscola.includes(searchInput);
-			});
-		} else {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item[columnToSearch]
-					.toString()
-					.toLowerCase()
-					.includes(searchInput);
-			});
-		}
 
-		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		filteredData = dadosOriginais.filter(function(item) {
+			console.log(item)
+			return item[columnToSearch]
+				.toString()
+				.toLowerCase()
+				.includes(searchInput);
+		});
+
+
+		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle(); 
 
 		$(this).siblings(".searchInput").val("");
 		$(this).closest(".dropdown-content-form").removeClass("show");
@@ -86,7 +73,7 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -128,7 +115,7 @@ $(document).ready(function() {
 				}
 			}
 		});
-		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
 	$('.checkbox-toggle').each(function() {
@@ -143,7 +130,7 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
-	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 	$(".searchInput").val("");
 });
 
@@ -161,7 +148,7 @@ function getDados() {
 		.done(function(data) {
 			dados = data;
 			dadosOriginais = data;
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -174,40 +161,40 @@ function getDados() {
 }*/
 
 function listarDados(dados) {
-    console.log(dados)
-    var html = dados
-        .map(function(item) {
-            var ativo;
-            if (item.ativo == "N") {
-                ativo = '<i style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-            } else {
-                ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-            }
+	console.log(dados)
+	var html = dados
+		.map(function(item) {
+			var ativo;
+			if (item.ativo == "N") {
+				ativo = '<i style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+			} else {
+				ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+			}
 
-            return (
-                "<tr>" +
-                "<td>" + item.padraoAcesso + "</td>" +
-                '<td class="d-flex justify-content-center">' +
-                '<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
-                ' data-id="' + item.idContaPadraoAcesso + '"' +
-                ' data-ativo="' + item.ativo + '"' +
-                ' data-nome="' + item.padraoAcesso + '"' +
-                ' data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editItem" title="Renomear">' +
-                '<i class="fa-solid fa-pen fa-lg"></i></span>' +
-                '<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" onClick="window.location.href=\'configuracao-acesso?id=' + item.idContaPadraoAcesso + '\'" title="Configurar">' +
-                '<i class="fa-solid fa-gear fa-lg"></i></span>' +
-                '</td>' +
-                "</tr>"
-            );
-        })
-        .join("");
+			return (
+				"<tr>" +
+				"<td>" + item.padraoAcesso + "</td>" +
+				'<td class="d-flex justify-content-center">' +
+				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"' +
+				' data-id="' + item.idContaPadraoAcesso + '"' +
+				' data-ativo="' + item.ativo + '"' +
+				' data-nome="' + item.padraoAcesso + '"' +
+				' data-bs-toggle="modal" onclick="showModal(this)" data-bs-target="#editItem" title="Renomear">' +
+				'<i class="fa-solid fa-pen fa-lg"></i></span>' +
+				'<span style="width:50%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" onClick="window.location.href=\'configuracao-acesso?id=' + item.idContaPadraoAcesso + '\'" title="Configurar">' +
+				'<i class="fa-solid fa-gear fa-lg"></i></span>' +
+				'</td>' +
+				"</tr>"
+			);
+		})
+		.join("");
 
-    $("#cola-tabela").html(html); 
-    // Initialize tooltips after the new elements are added to the DOM
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+	$("#cola-tabela").html(html);
+	// Initialize tooltips after the new elements are added to the DOM
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+		return new bootstrap.Tooltip(tooltipTriggerEl)
+	})
 }
 
 
@@ -291,7 +278,7 @@ function editar() {
 	})
 		.done(function(data) {
 			let idPadraoAcesso = data.idContaPadraoAcesso
-			
+
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
@@ -324,9 +311,9 @@ function cadastrar() {
 			});
 		},
 	}).done(function(data) {
-		
+
 		let idPadraoAcesso = data.idContaPadraoAcesso
-		
+
 		Swal.fire({
 			title: "Cadastrado com sucesso",
 			icon: "success",
