@@ -31,26 +31,30 @@ $(document).ready(function() {
 	$(".searchButton").click(function() {
 		var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
 		var columnToSearch = $(this).closest(".sortable").data("column");
-		var filteredData;
 
-		if (columnToSearch === "disciplina") {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item[columnToSearch].toString().toLowerCase().includes(searchInput);
-			});
-		} else {
-			filteredData = dadosOriginais.filter(function(item) {
+		console.log("Coluna a ser filtrada:", columnToSearch); // Verifica a coluna
+
+		var filteredData = dadosOriginais.filter(function(item) {
+			// Verifica se a coluna existe no item
+			if (columnToSearch === "conta") {
+				// Filtrando baseado na conta (subpropriedade)
+				return item.conta.conta.toLowerCase().includes(searchInput);
+			} else {
+				// Filtrando pelas outras propriedades principais
 				return item[columnToSearch]
 					.toString()
 					.toLowerCase()
 					.includes(searchInput);
-			});
-		}
+			}
+		});
 
-		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();
-
+		console.log("Dados filtrados:", filteredData); // Verifica os dados filtrados
+		listarDados(filteredData);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 		$(this).siblings(".searchInput").val("");
 		$(this).closest(".dropdown-content-form").removeClass("show");
 	});
+
 
 	$(document).on("click", ".sortable .col", function() {
 		var column = $(this).closest("th").data("column");
@@ -79,7 +83,9 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+			showPage(currentPage);
+			updatePagination();
 		}
 
 		sortOrder[column] = newOrder;
@@ -126,11 +132,11 @@ $(document).ready(function() {
 				}
 			}
 		});
-		listarDados(dadosOrdenados); 
+		listarDados(dadosOrdenados);
 		$('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
-		$('.checkbox-toggle').each(function() {
+	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
 		if (status !== 'S') {
 			$(this).prop('checked', false);
@@ -142,7 +148,9 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
-	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
+	showPage(currentPage);
+	updatePagination();
 	$(".searchInput").val("");
 });
 
@@ -155,79 +163,60 @@ function getDados() {
 		.done(function(data) {
 			dados = data;
 			dadosOriginais = data;
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data);
+			 $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 }
 
-function getAreaConhecimento(dadosDisciplina, callback) {
-	var nomesAreaConhecimento = [];
-	dadosDisciplina.forEach(function(item, index) {
-		$.ajax({
-			url: url_base + "/areaConhecimento/" + item.areaConhecimentoId,
-			type: "GET",
-			async: false,
-		})
-			.done(function(data) {
-				nomesAreaConhecimento[index] = data.areaConhecimento;
-			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-			});
-	});
-
-	// Chamada do callback passando os nomes das áreas de conhecimento
-	callback(nomesAreaConhecimento);
-}
 
 function listarDados(dados) {
-	getAreaConhecimento(dados, function(nomesAreaConhecimento) {
-		var html = dados.map(function(item, index) {
-			var ativo;
-			var escola = escolas.find(function(school) {
-				return school.idEscola === item.escolaId;
-			});
-			var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
-			if (item.ativo == "N") {
-				ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-			} else {
-				ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-			}
-			return (
-				"<tr>" +
-				"<td>" +
-				nomesAreaConhecimento[index] + // Usando o nome da área de conhecimento correspondente
-				"</td>" +
-				"<td>" +
-				item.nome +
-				"</td>" +
-				"<td>" +
-				item.horasSemanal +
-				"h" +
-				"</td>" +
-				"<td>" +
-				item.horasAno +
-				"h" +
-				"</td>" +
-				"<td><div class='d-flex align-items-center gap-1'>" +
-				'<input type="checkbox" data-status="' +
-				item.ativo +
-				'" data-id="' +
-				item.idDisciplina +
-				' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
-				"</div></td>" +
-				'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-				item.idDisciplina +
-				'" data-areaconhecimento="' +
-				item.areaConhecimentoId +
-				'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-				"</tr>"
-			);
-		}).join("");
-		$("#cola-tabela").html(html); 
-	});
+
+	var html = dados.map(function(item, index) {
+		var ativo;
+		var escola = escolas.find(function(school) {
+			return school.idEscola === item.escolaId;
+		});
+		var nomeEscola = escola ? escola.nomeEscola : "Escola não encontrada";
+		if (item.ativo == "N") {
+			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
+		} else {
+			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
+		}
+		return (
+			"<tr>" +
+			"<td>" +
+			item.nomeAreaConhecimento + // Usando o nome da área de conhecimento correspondente
+			"</td>" +
+			"<td>" +
+			item.nome +
+			"</td>" +
+			"<td>" +
+			item.horasSemanal +
+			"h" +
+			"</td>" +
+			"<td>" +
+			item.horasAno +
+			"h" +
+			"</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" data-status="' +
+			item.ativo +
+			'" data-id="' +
+			item.idDisciplina +
+			' " onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
+			'<td class="d-flex justify-content-center"><span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			item.idDisciplina +
+			'" data-areaconhecimento="' +
+			item.areaConhecimentoId +
+			'" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			"</tr>"
+		);
+	}).join("");
+	$("#cola-tabela").html(html);
 }
 
 function alteraStatus(element) {

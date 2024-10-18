@@ -201,7 +201,7 @@ $(document).ready(function() {
 });
 
 $('#limpa-filtros').click(function() {
-	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
 });
 

@@ -124,7 +124,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</th> -->
 							<th scope="col" class="sortable border-end"
-								data-column="areaConhecimentoId">
+								data-column="nomeAreaConhecimento">
 								<div
 									class='d-flex align-items-center justify-content-between pe-2'>
 									<div
