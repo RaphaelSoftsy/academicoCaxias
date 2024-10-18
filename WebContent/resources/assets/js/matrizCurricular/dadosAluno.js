@@ -292,7 +292,7 @@ const loadSelectsAcademico = () => {
 		$.each(data, function(index, item) {
 			$('#serieId').append($('<option>', {
 				value: item.idSerie,
-				text: item.serie,
+				text: `${item.serie} - ${item.descricao}`,
 				name: item.serie
 			}));
 		});
@@ -306,7 +306,7 @@ const loadSelectsAcademico = () => {
 		$.each(data, function(index, item) {
 			$('#cursoId').append($('<option>', {
 				value: item.idCurso,
-				text: item.nome,
+				text: `${item.nome} - ${item.codCurso}`,
 				name: item.nome
 			}));
 		});

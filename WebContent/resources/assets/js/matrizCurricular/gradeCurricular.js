@@ -51,7 +51,7 @@ $(document).ready(function() {
 				$("#cursoIdLista").append(
 				$("<option>", {
 					value: item.idCurso,
-					text: item.nome,
+					text: `${item.nome} - ${item.codCurso}`,
 					name: item.nome,
 				})
 			);
@@ -96,7 +96,7 @@ $(document).ready(function() {
 			$("#serieId").append(
 				$("<option>", {
 					value: item.idSerie,
-					text: item.serie,
+					text: `${item.serie} - ${item.descricao}`,
 					name: item.serie,
 				})
 			);
@@ -161,7 +161,7 @@ $(document).ready(function() {
 			$("#serieIdEdit").append(
 				$("<option>", {
 					value: item.idSerie,
-					text: item.serie,
+					text:`${item.serie} - ${item.descricao}`,
 					name: item.serie,
 				})
 			);
@@ -255,7 +255,7 @@ function listarDados(dados) {
 
 		return (
 			"<tr>" +
-			"<td>" + item.serie.serie + "</td>" +
+			"<td>" + `${item.serie.serie} - ${item.serie.descricao}` + "</td>" +
 			"<td>" + `${item.disciplina.codDiscip} - ${item.disciplina.nome}` + "</td>" +
 			"<td>" + obrigatorio + "</td>" +
 			"<td>" + item.curriculo.aulasPrevistas + "</td>" +
@@ -457,7 +457,7 @@ function cadastrar() {
 			}).then(result => {
 				sessionStorage.setItem("cursoId", $("#cursoIdLista").val())
 				sessionStorage.setItem("curriculoId", $("#curriculoIdLista").val())
-				window.location.href = 'grade-curricular-matriz-curricular'
+				window.location.href = 'grade-curricular'
 			})
 		})
 	return false;

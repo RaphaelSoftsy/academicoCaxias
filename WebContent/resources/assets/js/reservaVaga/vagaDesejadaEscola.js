@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 			$('#curso').append($('<option>', {
 				value: item.idCurso,
-				text: item.nome,
+				text: `${item.nome} - ${item.codCurso}`,
 				name: item.nome
 			}));
 
@@ -67,7 +67,7 @@ $('#escola').change(() => {
 		$.each(data, function(index, item) {
 			$('#serie').append($('<option>', {
 				value: item.serie,
-				text: item.serie,
+				text: `${item.serie} - ${item.descricao}`,
 				name: item.serie
 			}));
 

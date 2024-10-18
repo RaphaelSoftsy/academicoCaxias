@@ -60,7 +60,7 @@ $(document).ready(function() {
 			$("#cursoId").append(
 				$("<option>", {
 					value: item.idCurso,
-					text: item.nome,
+					text: `${item.nome} - ${item.codCurso}`,
 					name: item.nome,
 				})
 			);

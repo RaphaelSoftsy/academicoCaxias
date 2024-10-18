@@ -193,7 +193,7 @@ function listarDados(dados) {
         item.serie + 'º série' +
         "</td>" +
         "<td>" +
-        item.curso.nome +
+        `${item.curso.nome} - ${item.curso.codCurso}` +
         "</td>" +
 		"<td>" +
         item.situacao +
