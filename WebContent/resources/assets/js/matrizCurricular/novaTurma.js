@@ -33,7 +33,7 @@ $(document).ready(function() {
 			$("#cursoId").append(
 				$("<option>", {
 					value: item.idCurso,
-					text: item.nome,
+					text: `${item.nome} - ${item.codCurso}`,
 					name: item.nome,
 				})
 			);
@@ -53,7 +53,7 @@ $(document).ready(function() {
 			$("#serieId").append(
 				$("<option>", {
 					value: item.idSerie,
-					text: item.serie,
+					text: `${item.serie} - ${item.descricao}`,
 					name: item.serie,
 				})
 			);

@@ -19,7 +19,7 @@ const getDadosOfertaConcurso = () => {
 		$.each(data, function(index, item) {
 			$('#cursoId').append($('<option>', {
 				value: item.idCurso,
-				text: item.nome,
+				text: `${item.nome} - ${item.codCurso}`,
 				name: item.nome
 			}));
 		});

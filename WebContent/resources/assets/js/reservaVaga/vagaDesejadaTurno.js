@@ -10,7 +10,7 @@ $(document).ready(function() {
 		$.each(data, function(index, item) {
 			$('#curso').append($('<option>', {
 				value: item.idCurso,
-				text: item.nome,
+				text: `${item.nome} - ${item.codCurso}`,
 				name: item.nome
 			}));
 		});
@@ -58,7 +58,7 @@ $('#turno').change(() => {
 		$.each(data, function(index, item) {
 			$('#serie').append($('<option>', {
 				value: item.serie,
-				text: item.serie,
+				text: `${item.serie} - ${item.descricao}`,
 				name: item.serie
 			}));
 

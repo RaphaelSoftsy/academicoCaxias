@@ -78,7 +78,7 @@ $(document).ready(function() {
 				$("#cursoIdLista").append(
 					$("<option>", {
 						value: item.idCurso,
-						text: item.nome,
+						text: `${item.nome} - ${item.codCurso}`,
 						name: item.nome,
 					})
 				);
