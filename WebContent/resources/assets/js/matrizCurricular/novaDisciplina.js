@@ -5,6 +5,7 @@ const contaId = Number(localStorage.getItem('contaId'))
 
 
 $(document).ready(function() {
+	$('select').select2();
 	/*$.ajax({
 		url: url_base + "/escolas",
 		type: "get",
@@ -30,6 +31,7 @@ $(document).ready(function() {
 					})
 				);
 			})
+			$('select').select2();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

@@ -4,6 +4,7 @@ const contaId = localStorage.getItem('contaId')
 
 var idEscola = ''
 $(document).ready(function() {
+	$('select').select2();
 
 	$(".desativar").toggleClass("btn-secondary btn-danger")
 	$(".ativar").toggleClass("btn-secondary btn-success")
@@ -30,9 +31,9 @@ $(document).ready(function() {
 				name: item.areaConhecimento
 			}));
 		});
-
-
+		
 		$("#areaConhecimentoId").val(refAreaConhecimento.idAreaConhecimento)
+		$('select').select2();
 	})
 
 

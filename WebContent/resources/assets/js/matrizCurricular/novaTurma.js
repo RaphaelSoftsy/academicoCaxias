@@ -20,6 +20,7 @@ $(document).ready(function() {
 	$('#btn-save').hide()
 	$('#serieId').prop('disabled', true);
 	$('#curriculoId').prop('disabled', true);
+	
 
 	$.ajax({
 		url: url_base + "/cursos/conta/" + contaId,
@@ -121,6 +122,8 @@ $(document).ready(function() {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 
+	$('select').select2();
+
 
 
 	if (idTurma != undefined) {
@@ -149,6 +152,7 @@ $(document).ready(function() {
 			$('#btn-buscar').hide()
 			$('#cursoId').val(data.gradeCurricular.curriculo.cursoId)
 			$('#serieId').val(data.gradeCurricular.serie.idSerie)
+			$('select').select2();
 
 			$.ajax({
 				url: url_base + "/curriculo/curso/" + data.gradeCurricular.curriculo.cursoId,
@@ -175,6 +179,7 @@ $(document).ready(function() {
 						})
 					);
 				})
+				$('select').select2();
 			}).fail(function(jqXHR, textStatus, errorThrown) {
 				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 			});
@@ -195,7 +200,7 @@ $(document).ready(function() {
 
 			lista = [data.gradeCurricular]
 			listarGradeCurricular(lista)
-			$('#curriculoId').val(data.gradeCurricular.curriculo.idCurriculo)
+			$('#curriculoId').val(data.gradeCurricular.curriculo.idCurriculo).select2();
 
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

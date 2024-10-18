@@ -9,6 +9,7 @@ var cursos = [];
 const contaId = localStorage.getItem("contaId")
 
 $(document).ready(function() {
+	$('select').select2();
 	$.ajax({
 		url: url_base + "/cursos",
 		type: "GET",
@@ -36,6 +37,7 @@ $(document).ready(function() {
 			}
 
 		});
+		$('select').select2();
 
 	});
 

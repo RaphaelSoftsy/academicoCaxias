@@ -3,6 +3,7 @@ let idGradeCurricularSelecionada
 let listaGrades
 
 $(document).ready(function() {
+	$('select').select2();
 	$.ajax({
 		url: url_base + "/escolas/conta/" + contaId,
 		type: "GET",
@@ -87,6 +88,8 @@ $(document).ready(function() {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
+
+	$('select').select2();
 
 	$('#cursoIdLista').change(() => {
 		$("#cola-tabela-grade").empty()

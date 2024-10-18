@@ -13,6 +13,7 @@ let id = ''
 
 $(document).ready(function() {
 	$(".container-table").hide()
+	$('select').select2();
 	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
 		$('#curriculoIdLista').removeAttr('disabled');
 		$("#cotainerNewCadastro").removeClass("none");
@@ -32,9 +33,9 @@ $(document).ready(function() {
 				}));
 			});
 		});
-
-		$('#curriculoIdLista').val(curriculoIdSession);
-		$('#cursoIdLista').val(cursoIdSession);
+		
+		$('#curriculoIdLista').val(curriculoIdSession).select2();
+		$('#cursoIdLista').val(cursoIdSession).select2();
 		getDados(curriculoIdSession);
 	}
 
@@ -57,6 +58,7 @@ $(document).ready(function() {
 			}
 			
 		});
+		$('select').select2();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -81,6 +83,7 @@ $(document).ready(function() {
 					name: item.curriculo
 				}));
 			});
+			$('select').select2();
 		})
 	});
 
@@ -98,6 +101,7 @@ $(document).ready(function() {
 				})
 			);
 		});
+		$('select').select2();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -116,6 +120,7 @@ $(document).ready(function() {
 				})
 			);
 		});
+		$('select').select2();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -142,6 +147,7 @@ $(document).ready(function() {
 				})
 			);
 		});
+		$('select').select2();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -160,6 +166,7 @@ $(document).ready(function() {
 				})
 			);
 		});
+		$('select').select2();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -178,6 +185,7 @@ $(document).ready(function() {
 				})
 			);
 		});
+		$('select').select2();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});

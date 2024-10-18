@@ -19,6 +19,7 @@ $(document).ready(function() {
 	$('.container-table').hide()
 	$('#btn-save').hide()
 	$('#escolaIdDisable, #disciplinaIdDisable').prop('disabled', true)
+	$('select').select2();
 	$.ajax({
 		url: url_base + "/disciplina/conta/" + contaId,
 		type: "GET",
@@ -76,6 +77,8 @@ $(document).ready(function() {
 			);
 		});
 	})
+
+	$('select').select2();
 })
 
 function listarProfessores(dados) {
