@@ -166,11 +166,14 @@ $(document).ready(function() {
 	}
 	console.log(url)
 	const perfilEscola = sessionStorage.getItem("perfil")
-	if (window.location.href.indexOf("escola") > -1 && !(window.location.toString().includes("acessar")) && !(window.location.toString().includes("nova-escola")) && !(window.location.toString().includes("editar-escola"))) {
+	if (window.location.pathname.includes('escola') && !(window.location.toString().includes("acessar")) && !(window.location.toString().includes("nova-escola")) && !(window.location.toString().includes("editar-escola"))) {
 
 		if (perfilEscola == undefined || perfilEscola == null) {
 			Swal.fire({
-				title: "Nenhum escola localizada, selecione uma escola",
+				html: `<h3>Nenhuma escola selecionada. Clique em 
+    <span class="btn btn-warning btn-sm">
+      <i class="fa-solid fa-right-to-bracket fa-lg"></i>
+    </span> para selecionar.</h3>`,
 				icon: "info",
 			}).then(result => {
 				if (result) {
@@ -184,7 +187,7 @@ $(document).ready(function() {
 var str = localStorage.getItem('nomeConta').toLowerCase();
 str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
 	return letter.toUpperCase();
-});	
+});
 
 const notAccess = () => {
 	Swal.fire({
@@ -419,54 +422,54 @@ function containerResponsivo() {
 
 
 function showPage(page) {
-    currentPage = page;
-    const start = (page - 1) * rows;
-    const end = start + rows;
-    const paginatedData = dados.slice(start, end);
+	currentPage = page;
+	const start = (page - 1) * rows;
+	const end = start + rows;
+	const paginatedData = dados.slice(start, end);
 
-    listarDados(paginatedData);
-    $('input[data-toggle="toggle"]').bootstrapToggle();
-    updatePagination(); // Atualiza os botões da paginação
+	listarDados(paginatedData);
+	$('input[data-toggle="toggle"]').bootstrapToggle();
+	updatePagination(); // Atualiza os botões da paginação
 }
 
 // Função para atualizar os números de página e controlar os botões 'Prev' e 'Next'
 function updatePagination() {
-    totalPages = Math.ceil(dados.length / rows);
-    let paginationHTML = "";
+	totalPages = Math.ceil(dados.length / rows);
+	let paginationHTML = "";
 
-    // Gera os botões de número de página dinamicamente
-    for (let i = 1; i <= totalPages; i++) {
-        paginationHTML += `
+	// Gera os botões de número de página dinamicamente
+	for (let i = 1; i <= totalPages; i++) {
+		paginationHTML += `
             <button class="btn btn-sm page-number" data-page="${i}">
                 ${i}
             </button>`;
-    }
+	}
 
-    $("#page-numbers").html(paginationHTML);
+	$("#page-numbers").html(paginationHTML);
 
-    // Habilita ou desabilita os botões de 'Prev' e 'Next'
-    $("#prev").prop("disabled", currentPage === 1);
-    $("#next").prop("disabled", currentPage === totalPages);
+	// Habilita ou desabilita os botões de 'Prev' e 'Next'
+	$("#prev").prop("disabled", currentPage === 1);
+	$("#next").prop("disabled", currentPage === totalPages);
 }
 
 // Evento de clique nos números de página
-$(document).on("click", ".page-number", function () {
-    const selectedPage = parseInt($(this).data("page"));
-    showPage(selectedPage);
+$(document).on("click", ".page-number", function() {
+	const selectedPage = parseInt($(this).data("page"));
+	showPage(selectedPage);
 });
 
 // Evento de clique no botão 'Prev'
-$("#prev").click(function () {
-    if (currentPage > 1) {
-        showPage(currentPage - 1);
-    }
+$("#prev").click(function() {
+	if (currentPage > 1) {
+		showPage(currentPage - 1);
+	}
 });
 
 // Evento de clique no botão 'Next'
-$("#next").click(function () {
-    if (currentPage < totalPages) {
-        showPage(currentPage + 1);
-    }
+$("#next").click(function() {
+	if (currentPage < totalPages) {
+		showPage(currentPage + 1);
+	}
 });
 
 

@@ -121,7 +121,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<hr>
 
 				<div id="messageInfo" class="d-flex justify-content-center">
-					<h3>Selecione os filtros para a realizar a busca</h3>
+					<h3>Informe um dos filtros acima para realizar a busca.</h3>
 				</div>
 
 				<table

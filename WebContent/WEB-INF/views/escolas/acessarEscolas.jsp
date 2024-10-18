@@ -121,7 +121,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<thead>
 					<tr>
 						<th class='text-center th-sem-filtro border-end' scope="col"
-							width="10%">Acessar Perfil</th>
+							width="10%">Acessar</th>
 						<th scope="col" class="sortable border-end"
 							data-column="nomeEscola">
 							<div

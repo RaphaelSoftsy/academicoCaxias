@@ -39,14 +39,14 @@ $(document).ready(function() {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
-	
-	if(matriculaProfessor != undefined){
+
+	if (matriculaProfessor != undefined) {
 		$('#matricula').val(matriculaProfessor)
 		$('#cpf').val(cpfPes)
 		buscar()
 		selecionarMatricula(idProfessorPes)
 	}
-	
+
 })
 
 function listarProfessores(dados) {
@@ -146,7 +146,7 @@ function listarDisciplinas(dados) {
 			$(this).prop('checked', false);
 		}
 	});
-	
+
 }
 
 function alteraStatus(element) {
@@ -265,25 +265,37 @@ $('#btn-buscar').click(() => {
 
 const buscar = () => {
 	let nome = $('#nomeProfessor').val()
-		let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
-		let matricula = $('#matricula').val()
+	let cpf = $('#cpf').val().replace(/[^\d]+/g, '')
+	let matricula = $('#matricula').val()
 
-		/*let url = url_base + `/professores/filtrar?cpf${cpf}=&nome=${nome}&matricula=${matricula}`*/
-		let cpfPath = cpf != '' ? `cpf=${cpf}&` : ''
-		let nomePath = nome != '' ? `nome=${nome}&` : ''
-		let matriculaPath = matricula != '' ? `matricula=${matricula}&` : ''
+	/*let url = url_base + `/professores/filtrar?cpf${cpf}=&nome=${nome}&matricula=${matricula}`*/
+	let cpfPath = cpf != '' ? `cpf=${cpf}&` : ''
+	let nomePath = nome != '' ? `nome=${nome}&` : ''
+	let matriculaPath = matricula != '' ? `matricula=${matricula}&` : ''
 
-		url = url_base + `/professores/filtrar?` + cpfPath + nomePath + matriculaPath
+	url = url_base + `/professores/filtrar?` + cpfPath + nomePath + matriculaPath
 
-		$.ajax({
-			url: url,
-			type: "GET",
-			async: false,
-			error: function(e) {
-				console.log(url)
-				console.log(e)
-			}
-		}).done(function(data) {
+	$.ajax({
+		url: url,
+		type: "GET",
+		async: false,
+		error: function(e) {
+			console.log(url)
+			console.log(e)
+		}
+	}).done(function(data) {
+
+		if (data.data.length <= 0) {
+			Swal.fire({
+				text: "Nenhuma informação encontrada para os filtros informados.",
+				icon: "info",
+			}).then(result => {
+				$('#nomeProfessor').val("")
+				$('#cpf').val("")
+				$('#matricula').val("")
+			})
+
+		} else {
 			$('.container-table').show()
 			$('#btn-save').show()
 			$("#messageInfo").addClass("none")
@@ -291,10 +303,11 @@ const buscar = () => {
 			listaProfessores = data.data
 			listarProfessores(data.data)
 			$('input[data-toggle="toggle"]').bootstrapToggle();
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.log(url)
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.log(url)
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 }
 
 const adicionar = () => {

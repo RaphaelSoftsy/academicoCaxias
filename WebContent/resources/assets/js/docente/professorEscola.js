@@ -167,9 +167,9 @@ function listarEscolas(dados) {
 				item.ativoProfessorEscola +
 				'" data-id="' +
 				item.idProfessorEscola +
-				' " onChange="alteraStatus(this)" '+
+				' " onChange="alteraStatus(this)" ' +
 				`${item.ativo === "S" ? "checked" : ""}`
-				+' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+				+ ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 				"</div></td>" +
 
 				"</tr>"
@@ -187,7 +187,7 @@ function listarEscolas(dados) {
 			$(this).prop('checked', false);
 		}
 	});
-	
+
 }
 
 function alteraStatus(element) {
@@ -254,14 +254,26 @@ const buscar = () => {
 			console.log(e)
 		}
 	}).done(function(data) {
-		console.log(data)
-		$('.container-table').show()
-		$('#btn-save').show()
-		$("#messageInfo").addClass("none")
-		listaProfessores = data.data
-		listarProfessores(data.data)
+		
+		if (data.data.length <= 0) {
+			Swal.fire({
+				text: "Nenhuma informação encontrada para os filtros informados.",
+				icon: "info",
+			}).then(result => {
+				$('#nomeProfessor').val("")
+				$('#cpf').val("")
+				$('#matricula').val("")
+			})
+
+		} else {
+			$('.container-table').show()
+			$('#btn-save').show()
+			$("#messageInfo").addClass("none")
+			listaProfessores = data.data
+			listarProfessores(data.data)
+		}
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 }
