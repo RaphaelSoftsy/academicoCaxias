@@ -73,28 +73,27 @@ $(document).ready(function() {
 		sessionStorage.setItem('contaId', contaId)
 
 		let transacao = "/" + $(location).attr('href').split("/")[$(location).attr('href').split("/").length - 1];
-		console.log(transacao);
+		
 
 		if (transacao.includes('?')) {
 			let pathUrl = transacao
-			console.log(pathUrl)
+			
 			transacao = pathUrl.split('?')[0]
-			console.log(transacao)
+			
 		}
 
 		$.ajax({
 			url: url_base + `/transacoes/acessos/${usuarioId}?url=${transacao}`,
 			type: "get",
 			error: function(e) {
-				console.log(e);
+				
 				if (e.responseText == "Nenhum acesso encontrado para o usuário ou transação informado.") {
 					console.log(e.responseText)
-					console.log(url)
+					
 				}
 			}
 		}).then(data => {
-			console.log(data)
-			console.log(data[0])
+			
 			if (data[0].acessa == 'N') {
 				Swal.fire({
 					title: "Acesso não autorizado.",
@@ -164,7 +163,7 @@ $(document).ready(function() {
 			})
 		}
 	}
-	console.log(url)
+	
 	const perfilEscola = sessionStorage.getItem("perfil")
 	if (window.location.pathname.includes('escola') && !(window.location.toString().includes("acessar")) && !(window.location.toString().includes("nova-escola")) && !(window.location.toString().includes("editar-escola"))) {
 

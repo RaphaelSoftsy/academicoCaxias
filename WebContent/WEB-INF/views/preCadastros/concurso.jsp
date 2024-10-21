@@ -39,6 +39,14 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8"
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
+<!-- Select 2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <!-- Sweetalert -->
 <script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -54,11 +62,12 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 
 </head>
 
@@ -91,7 +100,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							class="fas fa-search"></i></span>
 					</div>
 				</div>
-				<button class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
+				<button
+					class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
 					data-bs-toggle="modal" onclick="limpaCampo()"
 					data-bs-target="#newCadastro">Novo Cadastro</button>
 
@@ -211,8 +221,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<option selected disabled value="">Selecione o período</option>
 								</select>
 							</div>
-							
-							 
+
+
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" onclick='ativar("concursos")'
 									class="ativar btn btn-secondary" data-bs-dismiss="modal">
@@ -250,6 +260,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		src="<%=contextPath%>/resources/assets/js/concurso.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>

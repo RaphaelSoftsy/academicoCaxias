@@ -14,7 +14,7 @@ var id = 0;
 $(document).ready(function() {
 
 	getDados()
-
+	$('select').select2();
 	$.ajax({
 		url: url_base + '/periodoletivo/conta/' + contaId,
 		type: "get",
@@ -41,6 +41,7 @@ $(document).ready(function() {
 			}
 
 		});
+		$('select').select2();
 	})
 
 	$("#inputBusca").on("keyup", function() {

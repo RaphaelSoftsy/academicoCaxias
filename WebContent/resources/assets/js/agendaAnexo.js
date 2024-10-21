@@ -10,10 +10,11 @@ var caminhoArquivo = ''
 const contaId = localStorage.getItem('contaId')
 
 $(document).ready(function() {
+	$('select').select2();
 	$('.container-table').hide()
 	$('#btn-save').hide()
 
-
+	
 	$.ajax({
 		url: url_base + "/agendas",
 		type: "GET",

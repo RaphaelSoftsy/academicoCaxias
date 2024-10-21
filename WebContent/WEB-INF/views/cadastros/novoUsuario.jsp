@@ -21,6 +21,14 @@ String contextPath = request.getContextPath();
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
 
+<!-- Select 2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,7 +48,7 @@ String contextPath = request.getContextPath();
 	src="https://cdnjs.cloudflare.com/ajax/libs/bs58/4.0.1/bs58.min.js"></script>
 <!-- CSS -->
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 
 
 </head>
@@ -58,11 +66,12 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/login.css" />
 <title>Softsy - Educacional</title>
@@ -85,13 +94,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="pt-4">
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Usuário</h1>
+				<h1 id="tituloForm" class="text-center mb-5">Cadastrar
+					Usuï¿½rio</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="usuario" class="form-label">Usuário:<span
+						<label for="usuario" class="form-label">Usuï¿½rio:<span
 							class="red">*</span></label> <input required autocomplete="off"
 							type="text" id="usuario" name="usuario" class="form-control "
 							maxlength="255" />
@@ -111,7 +121,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							type="text" id="email" name="email" class="form-control "
 							maxlength="255" />
 					</div>
-					<div class="col-md-6" style="display: flex; align-items: flex-end; justify-content: flex-start;">
+					<div class="col-md-6"
+						style="display: flex; align-items: flex-end; justify-content: flex-start;">
 						<button type="submit" class='btn btn-primary px-5'
 							id='btnVerificarEmail'>Verificar Email</button>
 					</div>
@@ -125,12 +136,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							data-mask="00.000.000/0000-00" />
 					</div>
 					<div class="col-md-6">
-						<label for="dataNascimento" class="form-label">Data de Nascimento:<span class="red">*</span></label>
-						<input type='date' class="form-control" id="dataNascimento"
+						<label for="dataNascimento" class="form-label">Data de
+							Nascimento:<span class="red">*</span>
+						</label> <input type='date' class="form-control" id="dataNascimento"
 							required name="dataNascimento" />
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="senha" class="form-label">Senha:<span
@@ -139,12 +151,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							maxlength="255" data-mask="(00)00000-0000" />
 					</div>
 					<div class="col-md-6">
-						<label for="verificarSenha" class="form-label">Verificar senha:<span class="red">*</span>
-						</label> <input required autocomplete="off" type="password" id="verificarSenha"
-							name="verificarSenha" class="form-control " maxlength="255" />
+						<label for="verificarSenha" class="form-label">Verificar
+							senha:<span class="red">*</span>
+						</label> <input required autocomplete="off" type="password"
+							id="verificarSenha" name="verificarSenha" class="form-control "
+							maxlength="255" />
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="phone" class="form-label">Telefone:<span
@@ -152,13 +166,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							type="text" id="phone" name="phone" class="form-control "
 							maxlength="255" />
 					</div>
-					<div class="col-md-6" style="display: flex; align-items: flex-end; justify-content: flex-start;">
+					<div class="col-md-6"
+						style="display: flex; align-items: flex-end; justify-content: flex-start;">
 						<button type="submit" class='btn btn-primary px-5'
 							id='btnVerificarTelefone'>Verificar Telefone</button>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="col-md-12 text-center mt-3">
 					<button type="submit" class='btn btn-primary px-5' id='btn-submit'>Cadastrar</button>
 				</div>
