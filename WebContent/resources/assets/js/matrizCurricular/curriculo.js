@@ -9,39 +9,93 @@ var cursos = [];
 const contaId = localStorage.getItem("contaId")
 
 $(document).ready(function() {
-	$('select').select2();
+
 	$.ajax({
 		url: url_base + "/cursos",
 		type: "GET",
 		async: false,
 	}).done(function(data) {
 		cursos = data;
-		$.each(data, function(index, item) {
+		preencherOpcoes(cursos);
+	});
 
-			if (item.ativo == "S") {
-				$("#cursoIdEdit").append(
-					$("<option>", {
+
+	function preencherOpcoes(cursos) {
+		const $optionsList = $('#cursoOptions');
+		const $cursoId = $('#cursoId');
+
+		// Limpa as opções anteriores
+		$optionsList.empty();
+		$cursoId.empty().append('<option value="" disabled selected>Selecione uma opção</option>');
+
+		// Itera sobre os cursos retornados pela API
+		$.each(cursos, function(index, item) {
+			if (item.ativo === "S") {
+				// Cria a opção da lista de sugestões
+				const optionHTML = `<li data-value="${item.idCurso}">${item.nome} - ${item.codCurso}</li>`;
+				$optionsList.append(optionHTML);
+
+				// Cria a opção no select oculto
+				$cursoId.append(
+					$('<option>', {
 						value: item.idCurso,
 						text: `${item.nome} - ${item.codCurso}`,
-						name: item.nome,
-					})
-				);
-
-				$("#cursoId").append(
-					$("<option>", {
-						value: item.idCurso,
-						text: `${item.nome} - ${item.codCurso}`,
-						name: item.nome,
 					})
 				);
 			}
-
 		});
-		$('select').select2();
+	}
 
+	$('#cursoSearch').on('focus', function() {
+		$('#cursoOptions').show();
+	});
+
+
+	$('#cursoSearch').on('input', function() {
+		const searchValue = $(this).val().toLowerCase();
+		$('#cursoOptions li').each(function() {
+			const text = $(this).text().toLowerCase();
+			$(this).toggle(text.includes(searchValue));
+		});
+	});
+
+
+
+	// Evento de clique nas opções da lista
+	$('#cursoOptions').on('click', 'li', function() {
+		const selectedText = $(this).text();
+		const selectedValue = $(this).data('value');
+
+		// Preenche o campo de pesquisa com o texto selecionado
+		$('#cursoSearch').val(selectedText);
+
+		// Atualiza o select oculto com o valor do curso selecionado
+		$('#cursoId').val(selectedValue);
+
+		// Esconde a lista de opções
+		$('#cursoOptions').hide();
+	});
+
+	// Fecha a lista ao clicar fora
+	$(document).on('click', function(e) {
+		if (!$(e.target).closest('.custom-select').length) {
+			$('#cursoOptions').hide();
+		}
 	});
 
 	getDados();
+
+	$('#searchCurso').on('input', function() {
+		const searchValue = $(this).val().toLowerCase();
+
+		$('#cursoId option').each(function() {
+			const text = $(this).text().toLowerCase();
+			const isMatch = text.includes(searchValue);
+
+			// Mostrar ou esconder opções com base no valor do input
+			$(this).toggle(isMatch);
+		});
+	});
 
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');

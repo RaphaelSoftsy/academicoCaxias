@@ -21,6 +21,43 @@ body{
     font-weight: bold;
 }
 
+
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+.options-list {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+}
+
+.options-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.options-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.custom-select input:focus + .options-list,
+.custom-select input.active + .options-list {
+    display: block;
+}
+
+
+
+
 /* Transição suave para o accordion */
 .accordion-collapse {
     transition: height 1000ms ease-in-out; /* Define a transição suave */
