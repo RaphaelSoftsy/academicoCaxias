@@ -447,8 +447,14 @@ String contextPath = request.getContextPath();
 							<div class="mb-4">
 								<label for="turmaId" class="form-label">Turma:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Turma" id="turmaId"
-									required name="turmaId">
+								</label> 
+								<div class="custom-select">
+									<input type="text" id="agendaSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="agendaOptions"></ul>
+								</div>
+								<select class="form-select" aria-label="Turma" id="agendaId"
+									required name="agendaId" style="display: none">
 									<option selected disabled value="">Selecione a Turma</option>
 								</select>
 							</div>

@@ -286,9 +286,15 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="concurso" class="form-label">Concurso:</label> <select
+								<label for="concurso" class="form-label">Concurso:</label> 
+								<div class="custom-select">
+									<input type="text" id="turmaSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="turmaOptions"></ul>
+								</div>
+								<select
 									class="form-select" aria-label="concurso" id="concursoSelect"
-									required name="concurso">
+									required name="concurso" style="display: none">
 									<option selected disabled value="">Selecione o
 										Concurso</option>
 								</select>
@@ -297,16 +303,28 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="curso" class="form-label">Curso:<span
 									class="red">*</span>
-								</label><select class="form-select" aria-label="curso" id="cursoSelect"
-									required name="curso">
-									<option selected disabled value="">Selecione o Curso</option>
+								</label>
+								<div class="custom-select">
+									<input type="text" id="turmaSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="turmaOptions"></ul>
+								</div>
+								<select class="form-select" aria-label="curso" id="cursoSelect"
+									required name="curso" style="display: none">
+									<option selected disabled value="" >Selecione o Curso</option>
 								</select>
 							</div>
 							<div class="mb-4">
 								<label for="escola" class="form-label">Escola<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="escola" id="escola"
-									required name="escola">
+								</label> 
+								<div class="custom-select">
+									<input type="text" id="turmaSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="turmaOptions"></ul>
+								</div>
+								<select class="form-select" aria-label="escola" id="escola"
+									required name="escola" style="display: none">
 									<option selected disabled value="">Selecione a Escola</option>
 								</select>
 							</div>

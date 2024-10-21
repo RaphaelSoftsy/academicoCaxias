@@ -30,37 +30,88 @@ $(document).ready(function() {
 	})
 		.done(function(data) {
 			turmas = data;
-			$.each(data, function(index, item) {
-				$('#agendaIdEdit').append($('<option>', {
-					value: item.idAgenda,
-					text: item.tituloAula,
-					name: item.tituloAula
-				}));
 
-
-				$('#agendaId').append($('<option>', {
-					value: item.idAgenda,
-					text: item.tituloAula,
-					name: item.tituloAula
-				}));
-
-				$('#agendaIdAnexo').append($('<option>', {
-					value: item.idAgenda,
-					text: item.tituloAula,
-					name: item.tituloAula
-				}));
-
-				$('#agendaIdAnexoEdit').append($('<option>', {
-					value: item.idAgenda,
-					text: item.tituloAula,
-					name: item.tituloAula
-				}));
-
-			});
+			preencherOpcoes(turmas, "#agendaOptions", "#agendaId", "#agendaSearch");
+			preencherOpcoes(
+				turmas,
+				"#agendaOptionsEdit",
+				"#agendaIdEdit",
+				"#agendaSearchEdit"
+			);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown, jqXHR);
 		});
+
+	function preencherOpcoes(
+		agenda,
+		optionsListId,
+		selectId,
+		searchId,
+		agendaIdPreSelecionada = null
+	) {
+		const $optionsList = $(optionsListId);
+		const $agendaId = $(selectId);
+
+		// Limpa as opções anteriores
+		$optionsList.empty();
+		$agendaId
+			.empty()
+			.append(
+				'<option value="" disabled selected>Selecione uma opção</option>'
+			);
+
+		// Itera sobre as turmas retornadas pela API
+		$.each(agenda, function(index, item) {
+			$optionsList.append(
+				`<li data-value="${item.idTurma}">${item.nomeTurma}</li>`
+			);
+			$agendaId.append(
+				$("<option>", {
+					value: item.idTurma,
+					text: item.nomeTurma,
+				})
+			);
+		});
+
+		// Se houver um turmaId para ser pré-selecionado
+		if (agendaIdPreSelecionada) {
+			$agendaId.val(agendaIdPreSelecionada);
+			const agendaSelecionada = $agendaId.find("option:selected").text();
+			$(searchId).val(agendaSelecionada);
+		}
+
+		// Exibe as opções ao focar no campo de busca
+		$(searchId).on("focus", function() {
+			$optionsList.show();
+		});
+
+		// Filtra as opções conforme o usuário digita
+		$(searchId).on("input", function() {
+			const searchValue = $(this).val().toLowerCase();
+			$optionsList.find("li").each(function() {
+				const text = $(this).text().toLowerCase();
+				$(this).toggle(text.includes(searchValue));
+			});
+		});
+
+		// Ao clicar em uma opção, atualiza o campo de busca e o select oculto
+		$optionsList.on("click", "li", function() {
+			const selectedText = $(this).text();
+			const selectedValue = $(this).data("value");
+
+			$(searchId).val(selectedText); // Preenche o campo de pesquisa
+			$agendaId.val(selectedValue); // Preenche o select oculto com o ID da turma
+			$optionsList.hide(); // Esconde a lista de opções
+		});
+
+		// Fecha a lista se o usuário clicar fora
+		$(document).on("click", function(e) {
+			if (!$(e.target).closest(".custom-select").length) {
+				$optionsList.hide();
+			}
+		});
+	}
 
 
 	$.ajax({
@@ -92,7 +143,7 @@ $(document).ready(function() {
 
 	// Dropdown de Pesquisa
 	$('.dropdown-toggle-form').click(function() {
-		
+
 	});
 
 	$('.searchButton').click(function() {
@@ -134,7 +185,7 @@ $(document).ready(function() {
 
 				// Formatar a data no formato "dd/mm/aaaa"
 				const dataFormatada = `${dia}/${mes}/${ano}`;
-				
+
 				return dataFormatada.toString().toLowerCase().includes(searchInput);
 			});
 		} else {
