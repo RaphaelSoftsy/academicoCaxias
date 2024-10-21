@@ -86,8 +86,6 @@ $(document).ready(function () {
     });
   }
 
-  getDados();
-
   $("#searchCurso").on("input", function () {
     const searchValue = $(this).val().toLowerCase();
 
@@ -98,6 +96,8 @@ $(document).ready(function () {
       $(this).toggle(isMatch);
     });
   });
+  getDados();
+
 
   $(".checkbox-toggle").each(function () {
     var status = $(this).data("status");

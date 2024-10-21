@@ -27,13 +27,13 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-	<!-- Select 2 -->
-  <link
-  href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-  rel="stylesheet" />
-  
-  <script
-  src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <!-- Select 2 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -77,7 +77,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
       href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>"
     />
-    
   </head>
 
   <body>
@@ -292,15 +291,26 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formCadastro">
                 <div class="mb-4">
-                  <label for="turmaId" class="form-label"
-                    >Turma:<span class="red">*</span>
+                  <label for="turmaId" class="form-label">
+                    Turma:<span class="red">*</span>
                   </label>
+                  <div class="custom-select">
+                    <input
+                      type="text"
+                      id="turmaSearch"
+                      class="form-control"
+                      placeholder="Selecione ou pesquise..."
+                      autocomplete="off"
+                    />
+                    <ul class="options-list" id="turmaOptions"></ul>
+                  </div>
                   <select
                     class="form-select"
                     aria-label="Turma"
                     id="turmaId"
                     required
                     name="turmaId"
+                    style="display: none"
                   >
                     <option selected disabled value="">
                       Selecione a Turma
@@ -413,15 +423,26 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-body">
               <form id="formEdit">
                 <div class="mb-4">
-                  <label for="turmaIdEdit" class="form-label"
-                    >Turma:<span class="red">*</span>
+                  <label for="turmaIdEdit" class="form-label">
+                    Turma:<span class="red">*</span>
                   </label>
+                  <div class="custom-select">
+                    <input
+                      type="text"
+                      id="turmaSearchEdit"
+                      class="form-control"
+                      placeholder="Selecione ou pesquise..."
+                      autocomplete="off"
+                    />
+                    <ul class="options-list" id="turmaOptionsEdit"></ul>
+                  </div>
                   <select
                     class="form-select"
                     aria-label="Turma"
                     id="turmaIdEdit"
                     required
                     name="turmaIdEdit"
+                    style="display: none"
                   >
                     <option selected disabled>Selecione a Turma</option>
                   </select>

@@ -13,7 +13,6 @@ var diaSemana = "";
 var permiteChoqueHorario = "";
 
 $(document).ready(function () {
-  $("select").select2();
   $.ajax({
     url: url_base + "/turma",
     type: "GET",
@@ -21,24 +20,13 @@ $(document).ready(function () {
   })
     .done(function (data) {
       turmas = data;
-      $.each(data, function (index, item) {
-        $("#turmaIdEdit").append(
-          $("<option>", {
-            value: item.idTurma,
-            text: item.nomeTurma,
-            name: item.nomeTurma,
-          })
-        );
-      });
-      $.each(data, function (index, item) {
-        $("#turmaId").append(
-          $("<option>", {
-            value: item.idTurma,
-            text: item.nomeTurma,
-            name: item.nomeTurma,
-          })
-        );
-      });
+      preencherOpcoes(turmas, "#turmaOptions", "#turmaId", "#turmaSearch");
+      preencherOpcoes(
+        turmas,
+        "#turmaOptionsEdit",
+        "#turmaIdEdit",
+        "#turmaSearchEdit"
+      );
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error(
@@ -49,7 +37,75 @@ $(document).ready(function () {
       );
     });
 
-  $("select").select2();
+  function preencherOpcoes(
+    turmas,
+    optionsListId,
+    selectId,
+    searchId,
+    turmaIdPreSelecionada = null
+  ) {
+    const $optionsList = $(optionsListId);
+    const $turmaId = $(selectId);
+
+    // Limpa as opções anteriores
+    $optionsList.empty();
+    $turmaId
+      .empty()
+      .append(
+        '<option value="" disabled selected>Selecione uma opção</option>'
+      );
+
+    // Itera sobre as turmas retornadas pela API
+    $.each(turmas, function (index, item) {
+      $optionsList.append(
+        `<li data-value="${item.idTurma}">${item.nomeTurma}</li>`
+      );
+      $turmaId.append(
+        $("<option>", {
+          value: item.idTurma,
+          text: item.nomeTurma,
+        })
+      );
+    });
+
+    // Se houver um turmaId para ser pré-selecionado
+    if (turmaIdPreSelecionada) {
+      $turmaId.val(turmaIdPreSelecionada);
+      const turmaSelecionada = $turmaId.find("option:selected").text();
+      $(searchId).val(turmaSelecionada);
+    }
+
+    // Exibe as opções ao focar no campo de busca
+    $(searchId).on("focus", function () {
+      $optionsList.show();
+    });
+
+    // Filtra as opções conforme o usuário digita
+    $(searchId).on("input", function () {
+      const searchValue = $(this).val().toLowerCase();
+      $optionsList.find("li").each(function () {
+        const text = $(this).text().toLowerCase();
+        $(this).toggle(text.includes(searchValue));
+      });
+    });
+
+    // Ao clicar em uma opção, atualiza o campo de busca e o select oculto
+    $optionsList.on("click", "li", function () {
+      const selectedText = $(this).text();
+      const selectedValue = $(this).data("value");
+
+      $(searchId).val(selectedText); // Preenche o campo de pesquisa
+      $turmaId.val(selectedValue); // Preenche o select oculto com o ID da turma
+      $optionsList.hide(); // Esconde a lista de opções
+    });
+
+    // Fecha a lista se o usuário clicar fora
+    $(document).on("click", function (e) {
+      if (!$(e.target).closest(".custom-select").length) {
+        $optionsList.hide();
+      }
+    });
+  }
 
   getDados();
 
@@ -338,16 +394,22 @@ function getAswer(input) {
 // Abrir modal
 
 function showModal(ref) {
-  id = ref.getAttribute("data-id");
-  idTurma = ref.getAttribute("data-idTurma");
-  horaIni = ref.getAttribute("data-horaIni");
-  horaFim = ref.getAttribute("data-horaFim");
-  diaSemana = ref.getAttribute("data-diaSemana");
-  permiteChoqueHorario = ref.getAttribute("data-permitechoquehorario");
+ id = ref.getAttribute("data-id");
+  const idTurma = ref.getAttribute("data-idTurma");
+  const horaIni = ref.getAttribute("data-horaIni");
+  const horaFim = ref.getAttribute("data-horaFim");
+  const diaSemana = ref.getAttribute("data-diaSemana");
+  const permiteChoqueHorario = ref.getAttribute("data-permitechoquehorario");
 
   console.log(permiteChoqueHorario);
 
-  $("#turmaIdEdit").val(idTurma).attr("selected", true);
+  $("#turmaSearchEdit").val(""); // Limpa o campo de busca
+  $("#turmaOptionsEdit").hide();
+  
+  $("#turmaIdEdit").val(idTurma).change(); // Atualiza o valor do select oculto
+  const turmaSelecionada = $("#turmaIdEdit option:selected").text();
+  $("#turmaSearchEdit").val(turmaSelecionada); // Preenche o campo de pesquisa
+
   $("#horaInicioEdit").val(horaIni);
   $("#horaFimEdit").val(horaFim);
   $("#diaSemanaEdit").val(diaSemana).attr("selected", true);
@@ -471,6 +533,7 @@ $("#formCadastro").on("submit", function (e) {
 
 function limpaCampo() {
   $("#turmaId").val("");
+  $("#turmaSearch").val("");
   $("#horaInicio").val("");
   $("#horaFim").val("");
   $("#diaSemana").val("");
