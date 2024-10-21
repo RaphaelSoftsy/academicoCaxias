@@ -6,85 +6,72 @@ var currentPage = 1;
 var pagesToShow = 5;
 
 $(document).ready(function () {
+  // Carrega os dados ao iniciar a página
   $.ajax({
     url: url_base + "/tipoTelefone",
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      dados = data;
-      listarDados(data);
-      $('input[data-toggle="toggle"]').bootstrapToggle();
+      dados = data; // Armazena os dados na variável global
+      listarDados(dados); // Lista todos os dados inicialmente
       $('input[data-toggle="toggle"]').bootstrapToggle();
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
-  $("#inputBusca").on("keyup", function () {
-    var valorBusca = $(this).val().toLowerCase();
-
-    if (valorBusca === "") {
-      busca();
-      $("#cola-tabela tr").show();
-    } else {
-      $("#cola-tabela tr")
-        .hide()
-        .filter(function () {
-          return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
-        })
-        .show();
-    }
-  });
-
+  // Escuta o evento de input para busca
   $("#inputBusca").on("input", function () {
     var valorBusca = $(this).val().toLowerCase();
     realizarBusca(valorBusca);
   });
 
-  function realizarBusca(valorInput) {
-    if (valorInput === "") {
-      showPage(currentPage);
-    } else {
-      $("#cola-tabela tr")
-        .hide()
-        .filter(function () {
-          return $(this).text().toLowerCase().indexOf(valorInput) > -1;
-        })
-        .show();
-    }
-  }
-
-  showPage(currentPage);
-  updatePagination();
+  showPage(currentPage); // Exibe a página inicial
+  updatePagination(); // Atualiza a paginação
 });
 
-function listarDados(dados) {
-  var html = dados
+function realizarBusca(valorInput) {
+  if (valorInput === "") {
+    listarDados(dados); // Se não houver busca, exibe todos os dados
+    showPage(currentPage); // Volta para a página atual
+  } else {
+    // Filtra os dados em memória com base no input de busca
+    var resultadosFiltrados = dados.filter(function (item) {
+      return item.tipoTelefone.toLowerCase().includes(valorInput);
+    });
+    listarDados(resultadosFiltrados); // Exibe os resultados filtrados
+  }
+}
+
+// Função para listar os dados na tabela
+function listarDados(data) {
+  var html = data
     .map(function (item) {
-      if (item.ativo == "N") {
-        ativo =
-          '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não';
-      } else {
-        ativo =
-          "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
-      }
+      var ativo = item.ativo === "N"
+        ? '<i style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
+        : '<i style="color:#2eaa3a" class="fa-solid iconeTabela fa-circle-check"></i> Sim';
+
       return (
-        "<tr>" +
-        "<td>" +
-        item.tipoTelefone +
-        "</td>" +
-        '<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-        item.idTipoTelefone +
-        '" data-nome="' +
-        item.tipoTelefone +
-        '" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
-        "</tr>"
+        `<tr>
+          <td>${item.tipoTelefone}</td>
+          <td class="d-flex justify-content-center">
+            <span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" 
+              class="btn btn-warning btn-sm" 
+              data-id="${item.idTipoTelefone}" 
+              data-nome="${item.tipoTelefone}" 
+              onclick="showModal(this)" 
+              data-bs-toggle="modal" 
+              data-bs-target="#editAto">
+              <i class="fa-solid fa-pen fa-lg"></i>
+            </span>
+          </td>
+        </tr>`
       );
     })
     .join("");
 
-  $("#cola-tabela").html(html);
+  $("#cola-tabela").html(html); // Atualiza a tabela com os dados
 }
 
 function showModal(ref) {
@@ -93,6 +80,7 @@ function showModal(ref) {
   $("#edit-nome").val(nome);
 }
 
+// Função para editar um item
 function editar() {
   var objeto = {
     idTipoTelefone: Number(id),
@@ -126,17 +114,22 @@ function editar() {
   });
   return false;
 }
+
+// Evento para submissão do formulário de edição
 $("#formEdit").on("submit", function (e) {
   e.preventDefault();
   editar();
   return false;
 });
+
+// Evento para submissão do formulário de cadastro
 $("#formCadastro").on("submit", function (e) {
   e.preventDefault();
   cadastrar();
   return false;
 });
 
+// Função para cadastrar um novo item
 function cadastrar() {
   var objeto = {
     tipoTelefone: $("#cadastro-nome").val(),
@@ -162,7 +155,6 @@ function cadastrar() {
     recarregarDados();
     showPage(currentPage);
     updatePagination();
-    showPage(currentPage);
     Swal.fire({
       title: "Cadastrado com sucesso",
       icon: "success",
@@ -170,20 +162,23 @@ function cadastrar() {
   });
   return false;
 }
+
+// Função para recarregar os dados após edição ou cadastro
 function recarregarDados() {
   $.ajax({
     url: url_base + "/tipoTelefone",
     type: "GET",
     async: false,
   }).done(function (data) {
-    dados = data;
-    listarDados(data);
-    showPage(currentPage);
-    updatePagination();
+    dados = data; // Atualiza os dados em memória
+    listarDados(dados); // Exibe os dados atualizados
+    showPage(currentPage); // Volta para a página atual
+    updatePagination(); // Atualiza a paginação
     $('input[data-toggle="toggle"]').bootstrapToggle();
   });
 }
 
+// Função para limpar campos de entrada
 function limpaCampo() {
   $("#cadastro-nome").val("");
   $("#edit-nome").val("");

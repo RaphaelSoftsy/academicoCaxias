@@ -44,29 +44,29 @@ $(document).ready(function() {
 		});
 
 	function preencherOpcoes(
-		agenda,
+		turmas,
 		optionsListId,
 		selectId,
 		searchId,
-		agendaIdPreSelecionada = null
+		turmaIdPreSelecionada = null
 	) {
 		const $optionsList = $(optionsListId);
-		const $agendaId = $(selectId);
+		const $turmaId = $(selectId);
 
 		// Limpa as opções anteriores
 		$optionsList.empty();
-		$agendaId
+		$turmaId
 			.empty()
 			.append(
 				'<option value="" disabled selected>Selecione uma opção</option>'
 			);
 
 		// Itera sobre as turmas retornadas pela API
-		$.each(agenda, function(index, item) {
+		$.each(turmas, function(index, item) {
 			$optionsList.append(
 				`<li data-value="${item.idTurma}">${item.nomeTurma}</li>`
 			);
-			$agendaId.append(
+			$turmaId.append(
 				$("<option>", {
 					value: item.idTurma,
 					text: item.nomeTurma,
@@ -75,10 +75,10 @@ $(document).ready(function() {
 		});
 
 		// Se houver um turmaId para ser pré-selecionado
-		if (agendaIdPreSelecionada) {
-			$agendaId.val(agendaIdPreSelecionada);
-			const agendaSelecionada = $agendaId.find("option:selected").text();
-			$(searchId).val(agendaSelecionada);
+		if (turmaIdPreSelecionada) {
+			$turmaId.val(turmaIdPreSelecionada);
+			const turmaSelecionada = $turmaId.find("option:selected").text();
+			$(searchId).val(turmaSelecionada);
 		}
 
 		// Exibe as opções ao focar no campo de busca
@@ -101,7 +101,7 @@ $(document).ready(function() {
 			const selectedValue = $(this).data("value");
 
 			$(searchId).val(selectedText); // Preenche o campo de pesquisa
-			$agendaId.val(selectedValue); // Preenche o select oculto com o ID da turma
+			$turmaId.val(selectedValue); // Preenche o select oculto com o ID da turma
 			$optionsList.hide(); // Esconde a lista de opções
 		});
 
@@ -121,20 +121,14 @@ $(document).ready(function() {
 	})
 		.done(function(data) {
 			turmas = data;
-			$.each(data, function(index, item) {
-				$('#turmaIdEdit').append($('<option>', {
-					value: item.idTurma,
-					text: item.nomeTurma,
-					name: item.nomeTurma
-				}));
-			});
-			$.each(data, function(index, item) {
-				$('#turmaId').append($('<option>', {
-					value: item.idTurma,
-					text: item.nomeTurma,
-					name: item.nomeTurma
-				}));
-			});
+			preencherOpcoes(turmas, "#turmaOptions", "#turmaId", "#turmaSearch");
+			preencherOpcoes(
+				turmas,
+				"#turmaOptionsEdit",
+				"#turmaIdEdit",
+				"#turmaSearchEdit"
+			);
+
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown, jqXHR);
@@ -588,6 +582,15 @@ function showModal(ref) {
 	resumoAula = ref.getAttribute("data-resumoAula");
 	dataAgenda = ref.getAttribute("data-dataAgenda");
 	realizada = ref.getAttribute("data-realizada");
+
+
+	$("#turmaSearchEdit").val(""); // Limpa o campo de busca
+	$("#turmaOptionsEdit").hide();
+
+	$("#turmaIdEdit").val(turmaId).change(); // Atualiza o valor do select oculto
+	const turmaSelecionada = $("#turmaIdEdit option:selected").text();
+	$("#turmaSearchEdit").val(turmaSelecionada); // Preenche o campo de pesquisa
+
 
 	$("#turmaIdEdit").val(turmaId)
 	$("#dataAgendaEdit").val(dataAgenda);

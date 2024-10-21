@@ -84,17 +84,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-3"
-				style="display: flex; align-items: center; justify-content: space-around; gap: 5%;">
+				style="display: flex; align-items: center; justify-content: end; gap: 5%;">
 
 
-				<div class='col-6'>
-					<div class="input-group">
-						<input id="inputBusca" type="text" class="form-control inputForm"
-							placeholder="Buscar" /> <span
-							class="input-group-text icone-pesquisa"><i
-							class="fas fa-search"></i></span>
-					</div>
-				</div>
+				
 
 
 				<div class="d-flex align-items-center gap-2">

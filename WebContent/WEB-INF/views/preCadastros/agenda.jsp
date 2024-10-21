@@ -445,16 +445,16 @@ String contextPath = request.getContextPath();
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="turmaId" class="form-label">Turma:<span
+								<label for="turmaId" class="form-label"> Turma:<span
 									class="red">*</span>
-								</label> 
+								</label>
 								<div class="custom-select">
-									<input type="text" id="agendaSearch" class="form-control"
+									<input type="text" id="turmaSearch" class="form-control"
 										placeholder="Selecione ou pesquise..." autocomplete="off" />
-									<ul class="options-list" id="agendaOptions"></ul>
+									<ul class="options-list" id="turmaOptions"></ul>
 								</div>
-								<select class="form-select" aria-label="Turma" id="agendaId"
-									required name="agendaId" style="display: none">
+								<select class="form-select" aria-label="Turma" id="turmaId"
+									required name="turmaId" style="display: none">
 									<option selected disabled value="">Selecione a Turma</option>
 								</select>
 							</div>
@@ -541,11 +541,17 @@ String contextPath = request.getContextPath();
 						<form id="formEdit">
 
 							<div class="mb-4">
-								<label for="turmaIdEdit" class="form-label">Turma:<span
+								<label for="turmaIdEdit" class="form-label"> Turma:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Turma" id="turmaIdEdit"
-									required name="turmaIdEdit">
-									<option selected disabled value="">Selecione a Turma</option>
+								</label>
+								<div class="custom-select">
+									<input type="text" id="turmaSearchEdit" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="turmaOptionsEdit"></ul>
+								</div>
+								<select class="form-select" aria-label="Turma" id="turmaIdEdit"
+									required name="turmaIdEdit" style="display: none">
+									<option selected disabled>Selecione a Turma</option>
 								</select>
 							</div>
 							<div class="row">

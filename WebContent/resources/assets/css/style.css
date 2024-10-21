@@ -1241,8 +1241,7 @@ a {
   display: none;
   background-color: #f9f9f9;
   position: absolute;
-  top: 30px;
-  right: -10px;
+  top: 30px;	
   min-width: 250px;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);

@@ -115,7 +115,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent3">
 										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
+											placeholder="Digite a Turma" />
 										<button class="btn btn-sm col-12 btn-success searchButton">
 											Buscar</button> <a href=""></a>
 									</div>
@@ -139,7 +139,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent3">
 										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
+											placeholder="Digite a Disciplina" />
 										<button class="btn btn-sm col-12 btn-success searchButton">
 											Buscar</button>
 									</div>
@@ -163,7 +163,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent3">
 										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
+											placeholder="Digite a Escola" />
 										<button class="btn btn-sm col-12 btn-success searchButton">
 											Buscar</button>
 									</div>
@@ -187,7 +187,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent3">
 										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
+											placeholder="Digite o Ano" />
 										<button class="btn btn-sm col-12 btn-success searchButton">
 											Buscar</button>
 									</div>
@@ -210,7 +210,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent3">
 										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
+											placeholder="Digite o Turno" />
 										<button class="btn btn-sm col-12 btn-success searchButton">
 											Buscar</button>
 									</div>
@@ -233,7 +233,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent3">
 										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite..." />
+											placeholder="Digite o Numero de Vagas" />
 										<button class="btn btn-sm col-12 btn-success searchButton">
 											Buscar</button>
 									</div>
