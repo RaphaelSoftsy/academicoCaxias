@@ -83,15 +83,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-3"
-				style="display: flex; align-items: center; justify-content: space-between;">
-				<div class='col-6'>
-					<div class="input-group">
-						<input id="inputBusca" type="text" class="form-control inputForm"
-							placeholder="Buscar" /> <span
-							class="input-group-text icone-pesquisa"><i
-							class="fas fa-search"></i></span>
-					</div>
-				</div>
+				style="display: flex; align-items: center; justify-content: end;">
+				
 				<div class="d-flex align-items-center gap-2 ">
 					<button id="limpa-filtros"
 						class="btn btn-danger btn-lg btn-new-alter px-3 py-1 ms-auto">
@@ -102,13 +95,11 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</div>
 			</div>
 
-			<table
-				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+			<table class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col" class="sortable border-end"
-							data-column="nomeTurma">
+						<th scope="col" class="sortable border-end" data-column="nomeTurma">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div

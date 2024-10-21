@@ -3,7 +3,7 @@ const contaId = localStorage.getItem('contaId');
 var nome = '';
 var nome2 = '';
 var nome3 = '';
-var rows = 8;
+var rows = 10;
 var currentPage = 1;
 var pagesToShow = 5;
 let descricao = '';
@@ -13,9 +13,7 @@ var dadosOriginais = [];
 
 $(document).ready(function() {
 
-	$('.dropdown-toggle-form').click(function() {
-		$(this).siblings('.dropdown-content-form').toggleClass('show');
-	});
+	
 
 	$('.searchButton').click(function() {
 		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
@@ -32,6 +30,10 @@ $(document).ready(function() {
 			return valueToCheck.includes(searchInput);
 		});
 
+		dados = filteredData
+
+		updatePagination()
+		showPage(1);
 		listarDados(filteredData);
 		$('input[data-toggle="toggle"]').bootstrapToggle();
 
@@ -45,6 +47,7 @@ $(document).ready(function() {
 		});
 
 		$('input[data-toggle="toggle"]').bootstrapToggle();
+		
 	});
 
 	// Funções AJAX para popular dropdowns omitidas para brevidade
@@ -69,10 +72,9 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			console.log('Turmas: ')
-			console.log(data)
+			dados = data
 			dadosOriginais = data;
-			listarDados(data);
+			listarDados(dados);
 			$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -81,6 +83,9 @@ function getDados() {
 }
 
 $('#limpa-filtros').click(function() {
+	dados = dadosOriginais
+	updatePagination();
+	showPage(1);
 	listarDados(dadosOriginais);
 	$('input[data-toggle="toggle"]').bootstrapToggle();
 	$('.searchInput').val('');
@@ -89,22 +94,12 @@ $('#limpa-filtros').click(function() {
 function listarDados(dados) {
 
 	if (dados.length > 0) {
-		console.log('Dados: ')
-		console.log(dados)
 		var html = dados.map(item => {
-			var ativo = item.ativo == "N" ?
-				'<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não' :
-				"<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
 
 			var libras = item.libras == "N" ? "Não" : "Sim";
 
 			const isChecked = item.ativo === 'S' ? 'checked' : '';
 
-			console.log(item.nomeTurma)
-			console.log(item.gradeCurricular.disciplina.codDiscip)
-			console.log(item.gradeCurricular.disciplina.nome)
-			console.log(item.escola.nomeEscola)
-			console.log(item.periodoLetivo.periodo)
 
 			return (
 				"<tr>" +

@@ -51,7 +51,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -61,13 +61,7 @@ function getDados() {
 function listarDados(dados) {
 	var html = dados.map(function(item) {
 
-		if (item.ativo == 'N') {
-			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
-		}
-		else {
-			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
-		}
-
+		
 		return (
 			"<tr>" +
 			"<td>" +

@@ -578,8 +578,7 @@ function cadastrar() {
     descricao: $("#descricao").val(),
     cursoId: Number($("#cursoId").val()),
     curriculo: $("#curriculoNew").val(),
-    dtHomologacao:
-      data1Formatada == "1969-12-31T23:59:59" ? null : data1Formatada,
+    dtHomologacao: data1Formatada == "1969-12-31T23:59:59" ? null : data1Formatada,
     dtExtincao: data2Formatada == "1969-12-31T23:59:59" ? null : data2Formatada,
     prazoIdeal: Number($("#prazoIdeal").val()),
     prazoMax: Number($("#prazoMax").val()),
@@ -589,7 +588,7 @@ function cadastrar() {
 
   console.log(objeto);
 
-  /*$.ajax({
+  $.ajax({
 		url: url_base + "/curriculo",
 		type: "POST",
 		data: JSON.stringify(objeto),
@@ -621,7 +620,7 @@ function cadastrar() {
 		}).then(() => {
 			window.location.href = "curriculo"
 		})
-	});*/
+	});
 
   return false;
 }

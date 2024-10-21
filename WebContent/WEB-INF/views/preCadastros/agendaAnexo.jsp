@@ -92,7 +92,8 @@ String contextPath = request.getContextPath();
 				<div class="col-md-6">
 					<label for="agendaId" class="form-label">Agenda:<span
 						class="red">*</span>
-					</label> <select class="form-select" aria-label="Agenda"
+					</label> 
+					<select class="form-select" aria-label="Agenda"
 						id="agendaIdSelect" required name="agendaIdSelect">
 						<option selected disabled value="">Selecione uma opção</option>
 					</select>
@@ -153,9 +154,15 @@ String contextPath = request.getContextPath();
 								<div class="mb-4">
 									<label for="agendaId" class="form-label">Agenda:<span
 										class="red">*</span>
-									</label><select class="form-control" aria-label="Agenda Id"
-										id="agendaId" name="agendaId">
-										<option selected disabled value="">Selecione uma
+									</label>
+
+									<div class="custom-select">
+										<input type="text" id="agendaSearch" class="form-control"
+											placeholder="Selecione ou pesquise..." autocomplete="off" />
+										<ul class="options-list" id="agendaOptions"></ul>
+									</div>
+									<select class="form-control" aria-label="Agenda Id"
+										id="agendaId" name="agendaId" style="display: none;">										<option selected disabled value="">Selecione uma
 											opção</option>
 									</select>
 								</div>
@@ -195,8 +202,14 @@ String contextPath = request.getContextPath();
 								<div class="mb-4">
 									<label for="agendaId" class="form-label">Agenda:<span
 										class="red">*</span>
-									</label><select class="form-control" aria-label="Agenda Id"
-										id="agendaIdEdit" name="agendaIdEdit">
+									</label>
+									<div class="custom-select">
+										<input type="text" id="agendaSearchEdit" class="form-control"
+											placeholder="Selecione ou pesquise..." autocomplete="off" />
+										<ul class="options-list" id="agendaOptionsEdit"></ul>
+									</div>
+									<select class="form-control" aria-label="Agenda Id"
+										id="agendaIdEdit" name="agendaIdEdit" style="display: none;">
 										<option selected disabled value="">Selecione uma
 											opção</option>
 									</select>

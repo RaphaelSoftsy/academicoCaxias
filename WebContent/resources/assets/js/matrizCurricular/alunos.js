@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 	$('.dropdown-toggle-form').click(function() {
 		console.log('TESTE');
-		$(this).siblings('.dropdown-content-form').toggleClass('show');
+		
 	});
 
 	$('.searchButton').click(function() {

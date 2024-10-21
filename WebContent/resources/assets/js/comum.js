@@ -8,6 +8,24 @@ const usuarioId = localStorage.getItem("usuarioId");
 $('#escolaIdStyle').css('display', 'none')
 $('#escolaIdStyleEdit').css('display', 'none')
 $(document).ready(function() {
+	
+	// Fechar dropdowns quando clicar fora deles
+	$(document).on('click', function(e) {
+		if (!$(e.target).closest('.dropdown-form').length) {
+			$('.dropdown-content-form').hide(); // Esconde todos os dropdowns
+		}
+	});
+
+	// Abrir/fechar dropdown específico
+	$('.dropdown-toggle-form').on('click', function() {
+		$('.dropdown-content-form').not($(this).next()).hide();
+		$(this).next('.dropdown-content-form').toggle();
+	});
+	
+	 $('.searchButton').click(function() {
+        $(this).closest('.dropdown-content-form').slideUp();
+    });
+	
 	// Caminho base para os favicons
 	var contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf('/', 1));
 

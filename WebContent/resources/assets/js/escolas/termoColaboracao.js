@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 	// Dropdown de Pesquisa
 	$('.dropdown-toggle-form').click(function() {
-		$(this).siblings('.dropdown-content-form').toggleClass('show');
+		
 	});
 
 	$('.searchButton').click(function() {
