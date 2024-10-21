@@ -1,46 +1,48 @@
 <html>
-<head>
+  <head> </head>
 
-	
-</head>
-
-<body>
-	<section id="menu-mobile" class="menu-mobile">
-		<div class="container-header">
-			<div class="img-mobile-menu">
-				<img class="logo-mobile"
-					src="resources/assets/img/logoPrefeitura.png"
-					alt="Logo Prefeitura Caxias do Sul" />
-			</div>
-			<i class="fa-solid fa-bars" id="barsIcon"></i>
-		</div>
-	</section>
-	<section id="modalMenu" class="abracaMenu modalMenu">
-		<div class="close-btn-menu botao-desativa-menu" id="closeBtn">
-			<i class="fas fa-times"></i>
-		</div>
-		<div class="container-icon">
-			<i class="fa-solid fa-chevron-left arrow"></i>
-		</div>
-		<div class="img-menu">
-			<img class="logoSumare animate__animated animate__bounceIn mx-auto"
-				alt="Logo Prefeitura de Uruçui" id="imgLogoMenu"
-				src="resources/assets/img/logoPrefeitura.png" />
-		</div>
-		<hr />
-		<p>
-			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span
-				id="nome-user"></span>
-		</p>
-		<hr />
-		<nav class="menu" id="navMenu">
-			<div class="item" id="sairEscola">
-				<a class="sub-btn"> <i
-					class="fa-solid fa-person-walking-arrow-right"></i><span
-					id="itemName1"> Trocar Escola</span>
-				</a>
-			</div>
-			<!-- <div class="item">
+  <body>
+    <section id="menu-mobile" class="menu-mobile">
+      <div class="container-header">
+        <div class="img-mobile-menu">
+          <img
+            class="logo-mobile"
+            src="resources/assets/img/logoPrefeitura.png"
+            alt="Logo Prefeitura Caxias do Sul"
+          />
+        </div>
+        <i class="fa-solid fa-bars" id="barsIcon"></i>
+      </div>
+    </section>
+    <section id="modalMenu" class="abracaMenu modalMenu">
+      <div class="close-btn-menu botao-desativa-menu" id="closeBtn">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="container-icon">
+        <i class="fa-solid fa-chevron-left arrow"></i>
+      </div>
+      <div class="img-menu">
+        <img
+          class="logoSumare animate__animated animate__bounceIn mx-auto"
+          alt="Logo Prefeitura de Uruçui"
+          id="imgLogoMenu"
+          src="resources/assets/img/logoPrefeitura.png"
+        />
+      </div>
+      <hr />
+      <p>
+        <i class="fa-solid fa-user me-2" style="width: 28px"></i>
+        <span id="nome-user"></span>
+      </p>
+      <hr />
+      <nav class="menu" id="navMenu">
+        <div class="item" id="sairEscola">
+          <a class="sub-btn">
+            <i class="fa-solid fa-person-walking-arrow-right"></i
+            ><span id="itemName1"> Trocar Escola</span>
+          </a>
+        </div>
+        <!-- <div class="item">
 				<a class="sub-btn">
 					<i class="fas fa-cogs"></i><span id="itemName0">Configurações</span>
 					<i class="fas fa-angle-right dropdown"></i>
@@ -120,39 +122,39 @@
 					<i class="fa-solid fa-right-from-bracket"></i><span id="itemName5">Sair</span>
 				</a>
 			</div> -->
-		</nav>
-	</section>
-</body>
-<script charset="UTF-8" type="text/javascript">
-	var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
-	var idContaAcesso = localStorage.getItem('idContaAcesso');
-	let isMenuClickEventAttached = false;
+      </nav>
+    </section>
+  </body>
+  <script charset="UTF-8" type="text/javascript">
+    var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
+    var idContaAcesso = localStorage.getItem("idContaAcesso");
+    let isMenuClickEventAttached = false;
 
-	$(document).ready(function () {
-		var tamanhoMenu = $(".abracaMenu").width();
-		const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
-		let sairModule = `
+    $(document).ready(function () {
+      var tamanhoMenu = $(".abracaMenu").width();
+      const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
+      let sairModule = `
         	<div class="item"  >
  				<a class="sub-btn" id="sair"  >
  					<i class="fa-solid fa-right-from-bracket"></i><span id="itemNameSair"></span>
  				</a>
- 			</div>`
-		
-		$.ajax({
-			url: `${url_base}/modulo/acessos/${usuarioId}`,
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			async: true,
-			error: function (error) {
-				console.log('Erro ao carregar módulos:', error);
-			}
-		}).done(function (modules) {
-			let index = 0
-		
-			$.each(modules, function (index, module) { 
-				if(module.exibe == 'S'){
-					console.log(module)
-					let moduleHtml = `
+ 			</div>`;
+
+      $.ajax({
+        url: `${url_base}/modulo/acessos/${usuarioId}`,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        async: true,
+        error: function (error) {
+          console.log("Erro ao carregar módulos:", error);
+        },
+      }).done(function (modules) {
+        let index = 0;
+
+        $.each(modules, function (index, module) {
+          if (module.exibe == "S") {
+            console.log(module);
+            let moduleHtml = `
                         <div class="item">
                             <a class="sub-btn showMenu">
                             	${module.iconeModulo}<span id="itemName${index}">${module.modulo}</span>
@@ -163,412 +165,276 @@
                             	${module.iconeModulo}
                         	</a>
                         </div>`;
-					$('#navMenu').append(moduleHtml);
-				}
-				index+=1
-				if(index == modules.length){
-					$('#navMenu').append(sairModule);
-				}
-			})
-			
-			$(".arrow").css("transform", "rotate(180deg)");
-			$(".arrow").css("transition", "1000ms");
-			$(".abracaMenu").css("width", "60px");
-			$(".abracaMenu").css("transition", "1000ms");
-			$(".container-res").css("margin-left", "10%");
-			$(".container-res").css("transition", "1000ms");
-			$(".logoSumare").hide();
-			$("#nome-user").hide();
-			$(".img-menu").hide();
-			$(".sub-menu").hide();
-			$(".showMenu").hide();
-			$(".hidden").show();
-			$("#itemName1").text('')
-			$("#itemNameSair").text('')
-			
-			$(".container-icon").css({
-				"width": "100%",
-				"display": "flex",
-				"align-items": "center",
-				"justify-content": "center",
-				"height": "8%",
-				"padding-top": "20%",
-				"padding-right": "0"
-			});
-			
-			$(".hidden").click(() => {
+            $("#navMenu").append(moduleHtml);
+          }
+          index += 1;
+          if (index == modules.length) {
+            $("#navMenu").append(sairModule);
+          }
+        });
 
-				
-				if (tamanhoMenu == 280) {
-					$(".abracaMenu").css("width", "280px");
-					$(".container-res").css("margin-left", "19em");
-				} else {
-					$(".abracaMenu").css("width", "250px");
-					$(".container-res").css("margin-left", "25%");
-				}
+        $(".arrow").css("transform", "rotate(0deg)");
+        $(".arrow").css("transition", "1000ms");
+        $(".abracaMenu").css("width", "250px");
+        $(".abracaMenu").css("transition", "1000ms");
+        $(".container-res").css("margin-left", "25%");
+        $(".container-res").css("transition", "1000ms");
+        $(".logoSumare").show();
+        $("#nome-user").show();
+        $(".img-menu").show();
+        $(".showMenu").show();
+        $(".hidden").hide();
+        $("#itemName1").text("Trocar escola");
+        $("#itemNameSair").text("Sair");
 
-				$(".arrow").css("transform", "rotate(0deg)");
-				$(".logoSumare").show();
-				$("#nome-user").show();
-				$("#itemName1").text('Trocar escola')
-				$("#itemNameSair").text('Sair')
+        $(".container-icon").css({
+          width: "100%",
+          display: "flex",
+          "align-items": "center",
+          "justify-content": "flex-end",
+          height: "2em",
+          "padding-right": "10%",
+          "padding-top": "0",
+        });
 
-				$(".showMenu").show();
-				$(".hidden").hide();
+        $(".hidden").click(() => {
+          if (tamanhoMenu == 280) {
+            $(".abracaMenu").css("width", "280px");
+            $(".container-res").css("margin-left", "19em");
+          } else {
+            $(".abracaMenu").css("width", "250px");
+            $(".container-res").css("margin-left", "25%");
+          }
 
-				/* $(".fa-angle-right").show(); */
-				$(".img-menu").show();
-				$(".container-icon").css({
-					"width": "100%",
-					"display": "flex",
-					"align-items": "center",
-					"justify-content": "flex-end",
-					"height": "2em",
-					"padding-right": "10%",
-					"padding-top": "0"
-				});
-			});
-		})
-		4
-		$.ajax({
-			url: `${url_base}/transacoes/${usuarioId}/acessos`,
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			async: true,
-			error: function (error) {
-				console.log('Erro ao carregar módulos:', error);
-			}
-		}).done(function (transacoes) {
-			$.each(transacoes, function (index, subItem) {
-				if(subItem.acessa != 'N'){
-					let subItemHtml = `<a href="${subItem.url.replace(/\//g, '')}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
-					$(`#sub-menu-${subItem.idModulo}`).append(subItemHtml);
-				}
-			});
-			
-			
-			$(".sub-btn").off('click').on('click', function () {
-				
-				$(".hidden").click(() => {					
-					if (tamanhoMenu == 280) {
-						$(".abracaMenu").css("width", "280px");
-						$(".container-res").css("margin-left", "19em");
-					} else {
-						$(".abracaMenu").css("width", "250px");
-						$(".container-res").css("margin-left", "25%");
-					}
+          $(".arrow").css("transform", "rotate(0deg)");
+          $(".logoSumare").show();
+          $("#nome-user").show();
+          $("#itemName1").text("Trocar escola");
+          $("#itemNameSair").text("Sair");
 
-					$(".arrow").css("transform", "rotate(0deg)");
-					$(".logoSumare").show();
-					$("#nome-user").show();
-					$("#itemName1").text('Trocar escola')
-					$("#itemNameSair").text('Sair')
+          $(".showMenu").show();
+          $(".hidden").hide();
 
-					$(".showMenu").show();
-					$(".hidden").hide();
+          /* $(".fa-angle-right").show(); */
+          $(".img-menu").show();
+          $(".container-icon").css({
+            width: "100%",
+            display: "flex",
+            "align-items": "center",
+            "justify-content": "flex-end",
+            height: "2em",
+            "padding-right": "10%",
+            "padding-top": "0",
+          });
+        });
+      });
 
-					/* $(".fa-angle-right").show(); */
-					$(".img-menu").show();
-					$(".container-icon").css({
-						"width": "100%",
-						"display": "flex",
-						"align-items": "center",
-						"justify-content": "flex-end",
-						"height": "2em",
-						"padding-right": "10%",
-						"padding-top": "0"
-					});
-				});
-				
-				/* if($(this).attr('id') == 'sair'){
+      $.ajax({
+        url: `${url_base}/transacoes/${usuarioId}/acessos`,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        async: true,
+        error: function (error) {
+          console.log("Erro ao carregar módulos:", error);
+        },
+      }).done(function (transacoes) {
+        $.each(transacoes, function (index, subItem) {
+          if (subItem.acessa != "N") {
+            let subItemHtml = `<a href="${subItem.url.replace(
+              /\//g,
+              ""
+            )}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
+            $(`#sub-menu-${subItem.idModulo}`).append(subItemHtml);
+          }
+        });
+
+        $(".sub-btn")
+          .off("click")
+          .on("click", function () {
+            $(".hidden").click(() => {
+              if (tamanhoMenu == 280) {
+                $(".abracaMenu").css("width", "280px");
+                $(".container-res").css("margin-left", "19em");
+              } else {
+                $(".abracaMenu").css("width", "250px");
+                $(".container-res").css("margin-left", "25%");
+              }
+
+              $(".arrow").css("transform", "rotate(0deg)");
+              $(".logoSumare").show();
+              $("#nome-user").show();
+              $("#itemName1").text("Trocar escola");
+              $("#itemNameSair").text("Sair");
+
+              $(".showMenu").show();
+              $(".hidden").hide();
+
+              /* $(".fa-angle-right").show(); */
+              $(".img-menu").show();
+              $(".container-icon").css({
+                width: "100%",
+                display: "flex",
+                "align-items": "center",
+                "justify-content": "flex-end",
+                height: "2em",
+                "padding-right": "10%",
+                "padding-top": "0",
+              });
+            });
+
+            /* if($(this).attr('id') == 'sair'){
 					sessionStorage.removeItem('usuarioId')
 					sessionStorage.removeItem('contaId')
 					window.location.href = 'login'
 				}  */
-				
-				if ($(".abracaMenu").width() == 60) {
-					if ($(".abracaMenu").width() <= 60) {
-						if (tamanhoMenu == 280) {
-							$(".abracaMenu").css("width", "280px");
-							$(".container-res").css("margin-left", "19em");
-						} else {
-							$(".abracaMenu").css("width", "250px");
-							$(".container-res").css("margin-left", "25%");
-						}
 
-						$(".arrow").css("transform", "rotate(0deg)");
-						$(".logoSumare").show();
-						$("#nome-user").show();
-						$("#itemName1").text('Trocar escola')
-						$("#itemNameSair").text('Sair')
+            if ($(".abracaMenu").width() == 60) {
+              if ($(".abracaMenu").width() <= 60) {
+                if (tamanhoMenu == 280) {
+                  $(".abracaMenu").css("width", "280px");
+                  $(".container-res").css("margin-left", "19em");
+                } else {
+                  $(".abracaMenu").css("width", "250px");
+                  $(".container-res").css("margin-left", "25%");
+                }
 
-						$(".showMenu").show();
-						$(".hidden").hide();
+                $(".arrow").css("transform", "rotate(0deg)");
+                $(".logoSumare").show();
+                $("#nome-user").show();
+                $("#itemName1").text("Trocar escola");
+                $("#itemNameSair").text("Sair");
 
-						/* $(".fa-angle-right").show(); */
-						$(".img-menu").show();
-						$(".container-icon").css({
-							"width": "100%",
-							"display": "flex",
-							"align-items": "flex-end",
-							"justify-content": "flex-end",
-							"height": "2em",
-							"padding-right": "10%",
-							"padding-top": "0"
-						});
-					}
-					
-					$(".logoSumare").show();
-					$(".abracaMenu").css("width", "250px");
-					$(".container-res").css("margin-left", "25%");
-					$(".fa-chevron-left").css("transform", "rotate(0deg)");
-					$(".logoSumare").show();
-					$("#nome-user").show();
-					$(".fa-angle-right").show();
-					$(".container-icon").css({
-						"width": "100%",
-						"display": "flex",
-						"align-items": "flex-end",
-						"justify-content": "flex-end",
-						"height": "2em",
-						"padding-right": "10%",
-						"padding-top": "0"
-					});
-				}
-				$(this).next(".sub-menu").slideToggle();
-				$(this).find(".dropdown").toggleClass("rotate");
-			});
-			
-			$("#sair").click(() => {
-				sessionStorage.removeItem('contaId')
-				sessionStorage.removeItem('usuarioId')
-				window.location.href = 'login'
-			});
-		})
+                $(".showMenu").show();
+                $(".hidden").hide();
 
-		/* $.ajax({
-			url: `${url_base}/modulo`,
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			async: true,
-			error: function (error) {
-				console.log('Erro ao carregar módulos:', error);
-			}
-		}).done(function (modules) {
-			$.each(modules, function (index, module) {
-				$.ajax({
-					url: `${url_base}/transacoes/${usuarioId}/acessos/modulo/${module.idModulo}`,
-					type: "GET",
-					async: true,
-					contentType: "application/json; charset=utf-8",
-					error: function (error) {
-						console.log(`Erro ao carregar subitens para o módulo ${module.idModulo}:`, error);
-					}
-				}).done(function (listaTransicoes) {
-					if (listaTransicoes.length > 0) {
-						let moduleHtml = `
-	                        <div class="item">
-	                            <a class="sub-btn show">
-	                            	${module.icone}<span id="itemName${index}">${module.modulo}</span>
-	                                <i class="fas fa-angle-right dropdown"></i>
-	                            </a>
-	                            <div class="sub-menu" id="sub-menu-${module.idModulo}"></div>
-	                            <a class="sub-btn hidden">
-	                            	${module.icone}
-                            	</a>
-	                        </div>`;
-						$('#navMenu').append(moduleHtml);
+                /* $(".fa-angle-right").show(); */
+                $(".img-menu").show();
+                $(".container-icon").css({
+                  width: "100%",
+                  display: "flex",
+                  "align-items": "flex-end",
+                  "justify-content": "flex-end",
+                  height: "2em",
+                  "padding-right": "10%",
+                  "padding-top": "0",
+                });
+              }
 
-						$.each(listaTransicoes, function (index, subItem) {
-							if(subItem.acessa != 'N'){
-								let subItemHtml = `<a href="${subItem.idCodHtml}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
-								$(`#sub-menu-${module.idModulo}`).append(subItemHtml);
-							}
-						});
+              $(".logoSumare").show();
+              $(".abracaMenu").css("width", "250px");
+              $(".container-res").css("margin-left", "25%");
+              $(".fa-chevron-left").css("transform", "rotate(0deg)");
+              $(".logoSumare").show();
+              $("#nome-user").show();
+              $(".fa-angle-right").show();
+              $(".container-icon").css({
+                width: "100%",
+                display: "flex",
+                "align-items": "flex-end",
+                "justify-content": "flex-end",
+                height: "2em",
+                "padding-right": "10%",
+                "padding-top": "0",
+              });
+            }
+            $(this).next(".sub-menu").slideToggle();
+            $(this).find(".dropdown").toggleClass("rotate");
+          });
 
-						// Anexa o evento click aos sub-itens após serem adicionados ao DOM
-						$(".sub-btn").off('click').on('click', function () {
-							console.log('teste');
-							if ($(".abracaMenu").width() == 60) {
-								if ($(".abracaMenu").width() <= 60) {
-									if (tamanhoMenu == 280) {
-										$(".abracaMenu").css("width", "280px");
-										$(".container-res").css("margin-left", "19em");
-									} else {
-										$(".abracaMenu").css("width", "250px");
-										$(".container-res").css("margin-left", "25%");
-									}
+        $("#sair").click(() => {
+          sessionStorage.removeItem("contaId");
+          sessionStorage.removeItem("usuarioId");
+          window.location.href = "login";
+        });
+      });
+      $(".fa-chevron-left").click(() => {
+        if ($(".abracaMenu").width() > 60) {
+          $(".arrow").css("transform", "rotate(180deg)");
+          $(".arrow").css("transition", "1000ms");
+          $(".abracaMenu").css("width", "60px");
+          $(".abracaMenu").css("transition", "1000ms");
+          $(".container-res").css("margin-left", "10%");
+          $(".container-res").css("transition", "1000ms");
+          $(".logoSumare").hide();
+          $("#nome-user").hide();
+          $(".img-menu").hide();
+          $(".sub-menu").hide();
+          $(".showMenu").hide();
+          $(".hidden").show();
+          $("#itemName1").text("");
+          $("#itemNameSair").text("");
 
-									$(".arrow").css("transform", "rotate(0deg)");
-									$(".logoSumare").show();
-									$("#nome-user").show();
-									$("#itemName1").text('Trocar escola')
+          $(".container-icon").css({
+            width: "100%",
+            display: "flex",
+            "align-items": "center",
+            "justify-content": "center",
+            height: "8%",
+            "padding-top": "20%",
+            "padding-right": "0",
+          });
+        } else {
+          if (tamanhoMenu == 280) {
+            $(".abracaMenu").css("width", "280px");
+            $(".container-res").css("margin-left", "19em");
+          } else {
+            $(".abracaMenu").css("width", "250px");
+            $(".container-res").css("margin-left", "25%");
+          }
 
-									$(".showMenu").show();
-									$(".hidden").hide();
+          $(".arrow").css("transform", "rotate(0deg)");
+          $(".logoSumare").show();
+          $("#nome-user").show();
+          $("#itemName1").text("Trocar escola");
+          $("#itemNameSair").text("Sair");
 
-									 $(".fa-angle-right").show(); 
-									$(".img-menu").show();
-									$(".container-icon").css({
-										"width": "100%",
-										"display": "flex",
-										"align-items": "flex-end",
-										"justify-content": "flex-end",
-										"height": "2em",
-										"padding-right": "10%",
-										"padding-top": "0"
-									});
-								}
-								
-								$(".logoSumare").show();
-								$(".abracaMenu").css("width", "250px");
-								$(".container-res").css("margin-left", "25%");
-								$(".fa-chevron-left").css("transform", "rotate(0deg)");
-								$(".logoSumare").show();
-								$("#nome-user").show();
-								$(".fa-angle-right").show();
-								$(".container-icon").css({
-									"width": "100%",
-									"display": "flex",
-									"align-items": "flex-end",
-									"justify-content": "flex-end",
-									"height": "2em",
-									"padding-right": "10%",
-									"padding-top": "0"
-								});
-							}
-							$(this).next(".sub-menu").slideToggle();
-							$(this).find(".dropdown").toggleClass("rotate");
-						});
-						$(".arrow").css("transform", "rotate(180deg)");
-						$(".arrow").css("transition", "1000ms");
-						$(".abracaMenu").css("width", "60px");
-						$(".abracaMenu").css("transition", "1000ms");
-						$(".container-res").css("margin-left", "10%");
-						$(".container-res").css("transition", "1000ms");
-						$(".logoSumare").hide();
-						$("#nome-user").hide();
-						$(".img-menu").hide();
-						$(".sub-menu").hide();
-						$(".fa-angle-right").hide(); 
-						$("#itemName1").text('');
-						$("#itemName0").text('');
-						$("#itemName2").text('');
-						$("#itemName3").text('');
-						$("#itemName4").text('');
-						$("#itemName5").text(''); 
-						$(".showMenu").hide();
-						$(".hidden").show();
+          $(".showMenu").show();
+          $(".hidden").hide();
 
-						$(".container-icon").css({
-							"width": "100%",
-							"display": "flex",
-							"align-items": "center",
-							"justify-content": "center",
-							"height": "8%",
-							"padding-top": "20%",
-							"padding-right": "0"
-						}); 
-						
-						
-					}
-				});
-			});
-		}); */
+          /* $(".fa-angle-right").show(); */
+          $(".img-menu").show();
+          $(".container-icon").css({
+            width: "100%",
+            display: "flex",
+            "align-items": "center",
+            "justify-content": "flex-end",
+            height: "2em",
+            "padding-right": "10%",
+            "padding-top": "0",
+          });
+        }
+      });
 
+      str = sessionStorage.getItem("nomeConta");
+      $("#nome-user").text(str);
 
-		$(".fa-chevron-left").click(() => {
-			if ($(".abracaMenu").width() > 60) {
-				$(".arrow").css("transform", "rotate(180deg)");
-				$(".arrow").css("transition", "1000ms");
-				$(".abracaMenu").css("width", "60px");
-				$(".abracaMenu").css("transition", "1000ms");
-				$(".container-res").css("margin-left", "10%");
-				$(".container-res").css("transition", "1000ms");
-				$(".logoSumare").hide();
-				$("#nome-user").hide();
-				$(".img-menu").hide();
-				$(".sub-menu").hide();
-				$(".showMenu").hide();
-				$(".hidden").show();
-				$("#itemName1").text('')
-				$("#itemNameSair").text('')
+      if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
+        $("#sairEscola").show();
+        $("#nome-user").text(perfilArmazenado.nome);
+        $("#itemName1").text("");
 
-				$(".container-icon").css({
-					"width": "100%",
-					"display": "flex",
-					"align-items": "center",
-					"justify-content": "center",
-					"height": "8%",
-					"padding-top": "20%",
-					"padding-right": "0"
-				});
-			} else {
-				if (tamanhoMenu == 280) {
-					$(".abracaMenu").css("width", "280px");
-					$(".container-res").css("margin-left", "19em");
-				} else {
-					$(".abracaMenu").css("width", "250px");
-					$(".container-res").css("margin-left", "25%");
-				}
+        $(".menu .sub-btn").each(function () {
+          if ($(this).text().trim() === "Configurações") {
+            $(this).parent().hide();
+          }
+        });
+      } else {
+        $("#sairEscola").hide();
+      }
 
-				$(".arrow").css("transform", "rotate(0deg)");
-				$(".logoSumare").show();
-				$("#nome-user").show();
-				$("#itemName1").text('Trocar escola')
-				$("#itemNameSair").text('Sair')
+      $("#barsIcon").click(function () {
+        $("#modalMenu").show();
+      });
 
-				$(".showMenu").show();
-				$(".hidden").hide();
+      $(".logoSumare").click(() => {
+        window.location.href = "acessar-escolas";
+      });
 
-				/* $(".fa-angle-right").show(); */
-				$(".img-menu").show();
-				$(".container-icon").css({
-					"width": "100%",
-					"display": "flex",
-					"align-items": "center",
-					"justify-content": "flex-end",
-					"height": "2em",
-					"padding-right": "10%",
-					"padding-top": "0"
-				});
-			}
-		});
-
-		str = sessionStorage.getItem('nomeConta');
-		$("#nome-user").text(str);
-
-		if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
-			$("#sairEscola").show();
-			$("#nome-user").text(perfilArmazenado.nome);
-			$("#itemName1").text('')
-
-			$(".menu .sub-btn").each(function () {
-				if ($(this).text().trim() === "Configurações") {
-					$(this).parent().hide();
-				}
-			});
-		} else {
-			$("#sairEscola").hide();
-		}
-
-		$('#barsIcon').click(function () {
-			$('#modalMenu').show();
-		});
-		
-		
-		$(".logoSumare").click(()=>{
-			window.location.href = 'acessar-escolas'
-		})
-	
-
-		$("#sairEscola").click(() => {
-			sessionStorage.removeItem('escolaId')
-			sessionStorage.removeItem('perfil')
-			window.location.href = 'acessar-escolas'
-		});
-	});
-
-</script>
-
+      $("#sairEscola").click(() => {
+        sessionStorage.removeItem("escolaId");
+        sessionStorage.removeItem("perfil");
+        window.location.href = "acessar-escolas";
+      });
+    });
+  </script>
 </html>
