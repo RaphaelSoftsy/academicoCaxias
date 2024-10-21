@@ -1,6 +1,7 @@
 
 
 $(document).ready(function() {
+	$('select').select2();
 	$.ajax({
 		url: url_base + "/escolas",
 		type: "GET",
@@ -26,6 +27,7 @@ $(document).ready(function() {
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
+		$('select').select2();
 });
 $("#phone").mask("(99) 99999-9999");
 

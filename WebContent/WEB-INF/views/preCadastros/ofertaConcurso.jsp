@@ -27,6 +27,14 @@ String contextPath = request.getContextPath();
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
 
+<!-- Select 2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -61,7 +69,7 @@ String contextPath = request.getContextPath();
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 
 </head>
 
@@ -95,8 +103,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</button>
 					<button class="btn btn-primary btn-sm px-3 py-1 ms-auto"
 						data-bs-toggle="modal" onclick="limpaCampo()"
-						data-bs-target="#newCadastro">Novo Cadastro
-					</button>
+						data-bs-target="#newCadastro">Novo Cadastro</button>
 				</div>
 			</div>
 
@@ -455,9 +462,11 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-	
+
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/ofertaConcurso.js"></script>
 	<script charset="UTF-8"

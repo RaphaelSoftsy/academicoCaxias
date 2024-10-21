@@ -22,10 +22,18 @@ String contextPath = request.getContextPath();
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script charset="UTF-8" 
+<script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
+
+<!-- Select 2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,12 +44,13 @@ String contextPath = request.getContextPath();
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet" />
-<script charset="UTF-8" 
+<script charset="UTF-8"
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- Sweetalert -->
-<script charset="UTF-8"  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script charset="UTF-8"  src="sweetalert2.all.min.js"></script>
+<script charset="UTF-8"
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- CSS -->
 
@@ -53,11 +62,12 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 </head>
 
 <body>
@@ -95,7 +105,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i>Exportar
 					</button>
-					<button class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto"
+					<button
+						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto"
 						data-bs-toggle="modal" onclick="limpaCampo()"
 						data-bs-target="#newCadastro">Novo Cadastro</button>
 				</div>
@@ -178,7 +189,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Descrição</span> 
+									<span>Descrição</span>
 								</div>
 							</div>
 						</th>
@@ -284,7 +295,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
 			</div>
-		</div>-
+		</div>
+		-
 		<div class="modal fade" id="editItem" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
@@ -296,7 +308,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 					<div class="modal-body">
 						<form id="formEdit">
-							
+
 							<div class="row mb-4">
 								<div class="col-6">
 									<label for="anoEdit" class="form-label">Ano:<span
@@ -382,26 +394,30 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		</div>
 	</main>
 
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
-	<script charset="UTF-8"  src="https://code.jquery.com/jquery-3.7.1.js"
+	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/periodoLetivo.js"></script>
-	<script charset="UTF-8"  src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script charset="UTF-8" 
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/periodoLetivo.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
 </html>

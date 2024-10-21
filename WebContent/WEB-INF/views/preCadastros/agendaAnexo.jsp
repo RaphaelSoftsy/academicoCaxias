@@ -27,6 +27,14 @@ String contextPath = request.getContextPath();
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
 
+<!-- Select 2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -57,7 +65,7 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 </head>
 
 <body>
@@ -116,7 +124,7 @@ String contextPath = request.getContextPath();
 			</div>
 
 
-			
+
 
 			<div id="pagination" class="mx-auto mt-auto">
 				<button id="prev" class="btn btn-sm">
@@ -238,6 +246,8 @@ String contextPath = request.getContextPath();
 		src="<%=contextPath%>/resources/assets/js/agendaAnexo.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
