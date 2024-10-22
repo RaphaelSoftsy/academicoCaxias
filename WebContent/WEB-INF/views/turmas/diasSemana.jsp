@@ -358,9 +358,6 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
-								<button type="button" onclick='remover("turmaDiaSemana")'
-									class="ativar btn btn-danger" data-bs-dismiss="modal">
-									Remover</button>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
 								<button type="submit" data-bs-dismiss="modal"

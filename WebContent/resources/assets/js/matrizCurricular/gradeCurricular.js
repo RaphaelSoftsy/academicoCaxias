@@ -235,6 +235,7 @@ function getDados(idCurriculo) {
 		if (data.length > 0) {
 			console.log(data)
 			listarDados(data)
+			$('input[data-toggle="toggle"]').bootstrapToggle();
 		} else {
 			Swal.fire({
 				icon: "error",

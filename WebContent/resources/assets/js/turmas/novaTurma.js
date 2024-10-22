@@ -131,9 +131,9 @@ function getGrade(event) {
 				listarGrade(data)
 			} else {
 				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não existe nenhuma grade vinculada a este currículo!"
+					icon: "info",
+					title: "Não existe nenhuma grade vinculada a este currículo!",
+					text: "Cadastre uma grade vinculado a este currículo para fazer o cadastro da turma."
 				}).then();
 				$("#cola-tabela-grade").empty()
 			}
