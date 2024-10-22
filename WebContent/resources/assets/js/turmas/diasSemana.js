@@ -401,8 +401,6 @@ function showModal(ref) {
   const diaSemana = ref.getAttribute("data-diaSemana");
   const permiteChoqueHorario = ref.getAttribute("data-permitechoquehorario");
 
-  console.log(permiteChoqueHorario);
-
   $("#turmaSearchEdit").val(""); // Limpa o campo de busca
   $("#turmaOptionsEdit").hide();
   
