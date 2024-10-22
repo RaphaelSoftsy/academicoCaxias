@@ -5,8 +5,6 @@ $(document).ready(function() {
 
 
 
-
-
 	$.ajax({
 		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
 		type: "get",
@@ -40,9 +38,6 @@ $(document).ready(function() {
 			}).done(function(transacoes) {
 				// Adiciona os cartões ao módulo específico
 				$.each(transacoes, function(index, transacao) {
-					
-					
-
 
 					let card = criarCards(transacao.nome, transacao.idCodHtml, transacao.idTransacao);
 					$(`#collapse${modulo.idModulo} .accordion-body`).append(card);
@@ -57,9 +52,10 @@ $(document).ready(function() {
 		getDados(id);
 	}
 
-	$("#padroesAcessoId").on("blur", function() {
-		getDados($("#padroesAcessoId").val());
+	$("#padroesAcessoId").on("change", function() {
+		getDados($(this).val());
 	});
+
 
 	function getDados(idPadraoAcesso) {
 		$.ajax({
@@ -80,21 +76,30 @@ $(document).ready(function() {
 					if (acessa === 'S') {
 						card.find(`input[name$="Leitura"][value="S"]`).prop('checked', true);
 						card.find(`.col-md-6.small-inputs`).show(); // Mostrar inputs de escrita
+
+						if (altera === 'S') {
+							card.find(`input[name$="Escrita"][value="S"]`).prop('checked', true);
+						} else {
+							card.find(`input[name$="Escrita"][value="N"]`).prop('checked', true);
+						}
 					} else {
 						card.find(`input[name$="Leitura"][value="N"]`).prop('checked', true);
-						// Esconder inputs de escrita
-						card.find(`input[name$="Escrita"][value="N"]`).prop('checked', true);
-					}
-
-					if (acessa === 'S' && altera === 'S') {
-						card.find(`input[name$="Escrita"][value="S"]`).prop('checked', true);
-					} else {
 						card.find(`input[name$="Escrita"][value="N"]`).prop('checked', true);
 					}
 				});
+			} else {
+				Swal.fire({
+					icon: 'info',
+					title: 'Padrão de Acesso não configurado',
+					text: 'Configure o padrão de acesso.',
+				});
+				$('.card-check').each(function() {
+					$(this).find('input[name$="Leitura"]').prop('checked', false);
+					$(this).find('input[name$="Escrita"]').prop('checked', false);
+					
+				});
 			}
 		});
-		return false;
 	}
 
 	$(document).on('click', '#formSubmit', function(event) {
