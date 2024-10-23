@@ -4,6 +4,7 @@ var nome = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+let dados = []
 
 $(document).ready(function() {
 
@@ -46,7 +47,7 @@ $(document).ready(function() {
 
 	showPage(currentPage);
 	updatePagination();
-
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 });
 
 
@@ -57,14 +58,15 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarAtos(data);
+			dados = data
+			listarDados(data);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 }
 
-function listarAtos(atos) {
+function listarDados(atos) {
 	var html = atos.map(function(item) {
 		if (item.ativo == 'N') {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
@@ -95,7 +97,7 @@ function listarAtos(atos) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html); 
+	$("#cola-tabela").html(html);
 }
 
 function alteraStatus(element) {
@@ -184,11 +186,10 @@ function editar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
+			 $('input[data-toggle="toggle"]').bootstrapToggle();
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
-			}).then(data => {
-				window.location.href = 'tipo-ingresso'
 			})
 		})
 	return false;
@@ -233,12 +234,11 @@ function cadastrar() {
 			getDados();
 			showPage(currentPage);
 			updatePagination();
-			showPage(currentPage);
+			$('input[data-toggle="toggle"]').bootstrapToggle();
+
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
-			}).then(data => {
-				window.location.href = 'tipo-ingresso'
 			})
 		})
 	return false;
