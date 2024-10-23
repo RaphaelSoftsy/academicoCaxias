@@ -162,9 +162,9 @@ header{
 	.container-image{
 		display: none;
 	}
-	.logo-login {
+	/* .logo-login {
 		width: 30%
-	}
+	} */
 }
 @media screen and (max-width: 500px) {
     .container-btns button {

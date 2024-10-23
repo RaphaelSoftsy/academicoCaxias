@@ -20,42 +20,37 @@ body {
   font-weight: bold;
 }
 
-
 .custom-select {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .options-list {
-    
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #ccc;
-    max-height: 200px;
-    overflow-y: auto;
-    position: absolute;
-    width: 100%;
-    background-color: white;
-    z-index: 1000;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
 }
 
 .options-list li {
-    padding: 10px;
-    cursor: pointer;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .options-list li:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .custom-select input:focus + .options-list,
 .custom-select input.active + .options-list {
-    display: block;
+  display: block;
 }
-
-
-
 
 /* Transição suave para o accordion */
 .accordion-collapse {
@@ -364,6 +359,8 @@ body {
 }
 
 .logo-login {
+  filter: invert(60%) sepia(28%) saturate(3000%) hue-rotate(170deg)
+  brightness(40%) contrast(100%);
   width: 50%;
 }
 
@@ -1037,10 +1034,11 @@ a {
 .logoSumare {
   cursor: pointer;
   width: 100%;
-  background: #fff;
-  border-radius: 25px;
-  padding: 10px 20px;
-  box-shadow: 0px 7px 10px 1px #171717;
+  /* background: #fff; */
+  /* border-radius: 25px; */
+  /* padding: 10px 20px; */
+  padding: 0 10px;
+  /* box-shadow: 0px 7px 10px 1px #171717; */
 }
 
 .close-btn-menu {
@@ -1241,7 +1239,7 @@ a {
   display: none;
   background-color: #f9f9f9;
   position: absolute;
-  top: 30px;	
+  top: 30px;
   min-width: 250px;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -1392,9 +1390,9 @@ a {
 }
 
 @media screen and (max-width: 1279px) {
-  .logoSumare {
+  /* .logoSumare {
     width: 70%;
-  }
+  } */
   .container-res {
     margin-right: 2em;
   }
@@ -1430,9 +1428,9 @@ a {
     height: 20%;
     width: 100vw;
   }
-  .logoSumare {
+  /* .logoSumare {
     width: 40%;
-  }
+  } */
   .container-icon {
     display: none;
   }
@@ -1440,6 +1438,7 @@ a {
     display: flex;
   }
   .img-mobile-menu img {
+    padding: 8px 0;
     width: 20%;
   }
   .container-header {
