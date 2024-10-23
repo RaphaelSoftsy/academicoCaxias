@@ -1,4 +1,5 @@
 var atos = [];
+var dados = [];
 var id = '';
 var nome = '';
 var rows = 8;
@@ -57,7 +58,8 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarAtos(data);
+			dados = data
+			listarDados(data);
 			$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -65,7 +67,7 @@ function getDados() {
 		});
 }
 
-function listarAtos(atos) {
+function listarDados(atos) {
 	var html = atos.map(function(item) {
 		if (item.ativo == 'N') {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
