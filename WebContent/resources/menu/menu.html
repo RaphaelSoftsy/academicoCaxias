@@ -103,7 +103,6 @@
         $(".arrow").css("transition", "1000ms");
         $(".abracaMenu").css("width", "250px");
         $(".abracaMenu").css("transition", "1000ms");
-        $(".container-res").css("margin-left", "25%");
         $(".container-res").css("transition", "1000ms");
         $(".logoSumare").show();
         $("#nome-user").show();
@@ -344,8 +343,22 @@
       }
 
       $("#barsIcon").click(function () {
-        $("#modalMenu").show();
+        $("#modalMenu").show();	
+        $("#modalMenu").css({
+        	width: "100%"
+        })
+        $(".logoSumare").css({
+        	width: "50%"
+        })
+        $(".container-icon").hide()
+        $("#closeBtn").show()
       });
+      
+      $("#closeBtn").click(function () {
+          $("#modalMenu").hide();	
+          $("#closeBtn").hide()
+          $(".container-icon").show()
+        });
 
       $(".logoSumare").click(() => {
         window.location.href = "acessar-escolas";
