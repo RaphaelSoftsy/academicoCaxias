@@ -19,7 +19,6 @@ $(document).ready(function() {
 	$('.container-table').hide()
 	$('#btn-save').hide()
 	$('#escolaIdDisable, #disciplinaIdDisable').prop('disabled', true)
-	$('select').select2();
 	$.ajax({
 		url: url_base + "/disciplina/conta/" + contaId,
 		type: "GET",
@@ -78,7 +77,8 @@ $(document).ready(function() {
 		});
 	})
 
-	$('select').select2();
+	$('#escolaId').select2();
+	$('#disciplinaId').select2();
 })
 
 function listarProfessores(dados) {
@@ -128,6 +128,62 @@ function listarProfessores(dados) {
 
 	$("#cola-tabela-professor").html(html);
 }
+
+function preencherOpcoes(items, optionsListId, selectId, searchId) {
+	const $optionsList = $(optionsListId);
+	const $selectElement = $(selectId);
+
+	$optionsList.empty();
+	$selectElement
+		.empty()
+		.append('<option value="" disabled selected>Selecione uma opção</option>');
+
+	$.each(items, function(index, item) {
+		if (item.ativo === "S") {
+			const optionText = item.ano ?
+				`Ano: ${item.ano} - Período: ${item.periodo}` :
+				`${item.turno || ""} - ${item.mnemonico || ""}`;
+
+			$optionsList.append(`<li data-value="${item.idPeriodoLetivo || item.idTurno}">${optionText}</li>`);
+			$selectElement.append(
+				$("<option>", {
+					value: item.idPeriodoLetivo || item.idTurno, // Corrigido aqui!
+					text: optionText,
+				})
+			);
+		}
+	});
+
+	$(searchId).on("focus", function() {
+		$optionsList.show();
+	});
+
+	$(searchId).on("input", function() {
+		const searchValue = $(this).val().toLowerCase();
+		$optionsList.find("li").each(function() {
+			const text = $(this).text().toLowerCase();
+			$(this).toggle(text.includes(searchValue));
+		});
+	});
+
+	$optionsList.on("click", "li", function() {
+		const selectedText = $(this).text();
+		const selectedValue = $(this).data("value");
+
+		$(searchId).val(selectedText);
+		$selectElement.val(selectedValue).trigger("change"); // Garante o evento 'change'
+		$optionsList.hide();
+	});
+
+	$(document).on("click", function(e) {
+		if (!$(e.target).closest(".custom-select").length) {
+			$optionsList.hide();
+		}
+	});
+}
+
+
+
 
 function listarTurmas(dados) {
 	var html = dados.map(function(item) {
@@ -389,33 +445,32 @@ const adicionar = () => {
 
 
 $('#periodoLetivoId').change(() => {
+    const periodoLetivoId = $('#periodoLetivoId').val();
 
-	$('#turnoId').empty()
-	$('#turnoId').removeAttr('disabled');
-	$('#turnoId').append(`<option value='0' selected disabled>Selecione o currículo</option>`)
+    if (!periodoLetivoId) {
+        console.warn("Período letivo não selecionado!");
+        return;
+    }
 
-	$('#turmaId').prop('disabled', true)
-	$('#turmaId').empty()
-	$('#turmaId').append(`<option value='0' selected disabled>Selecione uma turma</option>`)
+    $('#turmaSearchTurno').prop('disabled', false);
+    $('#turnoId').empty().removeAttr('disabled');
+    $('#turnoId').append(`<option value='0' selected disabled>Selecione o turno</option>`);
 
-	$.ajax({
-		url: url_base + "/turno/conta/" + contaId,
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#turnoId").append(
-				$("<option>", {
-					value: item.idTurno,
-					text: item.turno,
-					name: item.turno,
-				})
-			);
-		});
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
+    $('#turmaId').prop('disabled', true).empty().append(`<option value='0' selected disabled>Selecione uma turma</option>`);
+
+    $.ajax({
+        url: `${url_base}/turno/conta/${contaId}`,
+        type: "GET",
+        async: false,
+    }).done(function (data) {
+        console.log("Turnos carregados:", data);
+        preencherOpcoes(data, "#turmaOptionsTurno", "#turnoId", "#turmaSearchTurno");
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+    });
 });
+
+
 
 $('#turnoId').change(() => {
 	getTurmasByDisciplina()
@@ -478,15 +533,12 @@ const adicionarTurma = () => {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#turnoId").append(
-				$("<option>", {
-					value: item.idTurno,
-					text: item.turno,
-					name: item.turno,
-				})
-			);
-		});
+		preencherOpcoes(
+			data,
+			"#turmaOptionsTurno",
+			"#turnoId",
+			"#turmaSearchTurno"
+		);
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -496,15 +548,15 @@ const adicionarTurma = () => {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#periodoLetivoId").append(
-				$("<option>", {
-					value: item.idPeriodoLetivo,
-					text: `Ano: ${item.ano} - Período: ${item.periodo}`,
-					name: item.periodo,
-				})
-			);
-		});
+
+		preencherOpcoes(
+			data,
+			"#turmaOptionsPeriodo",
+			"#periodoLetivoId",
+			"#turmaSearchPeriodoLetivo"
+		);
+
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});

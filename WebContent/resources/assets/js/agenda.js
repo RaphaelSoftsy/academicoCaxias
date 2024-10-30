@@ -31,13 +31,22 @@ $(document).ready(function() {
 		.done(function(data) {
 			turmas = data;
 
-			preencherOpcoes(turmas, "#agendaOptions", "#agendaId", "#agendaSearch");
-			preencherOpcoes(
-				turmas,
-				"#agendaOptionsEdit",
-				"#agendaIdEdit",
-				"#agendaSearchEdit"
-			);
+			$.each(data, function(index, item) {
+				const dataAgenda = formatarDataParaBR(item.dataAgenda)
+				$('#agendaIdAnexo').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula == null ? "Agenda Cadastrada em " + dataAgenda : item.tituloAula,
+					name: item.tituloAula
+				}))
+
+				$('#agendaIdAnexoEdit').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula == null ? "Agenda Cadastrada em " + dataAgenda : item.tituloAula,
+					name: item.tituloAula
+				}))
+			});
+
+
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown, jqXHR);
@@ -449,10 +458,20 @@ const getAnexos = () => {
 			console.log(e)
 		}
 	}).done(function(data) {
-		console.log(data)
-		$('#containerAnexos').show()
-		listarAnexos(data)
-		$('input[data-toggle="toggle"]').bootstrapToggle();
+
+		if (data.length != 0) {
+			console.log(data)
+			$('#containerAnexos').show()
+			listarAnexos(data)
+			$('input[data-toggle="toggle"]').bootstrapToggle();
+		}else{
+			Swal.fire({
+				icon: "info",
+				title: "Essa agenda não possui nenhum anexo!"
+			});
+			listarAnexos(data)
+		}
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(url)
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

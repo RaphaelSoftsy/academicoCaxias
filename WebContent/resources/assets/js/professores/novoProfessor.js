@@ -379,6 +379,8 @@ $('#formNovoCadastro').submit(function(event) {
 				"certidaoNascimentoMunicipioCartorioId": $('#certidaoNascimentoMunicipioCartorioId').val(),
 				"certidaoCasamentoMunicipioCartorioId": $('#certidaoCasamentoMunicipioCartorioId').val(),
 				"pessoaId": 2,
+				tipoIngressoId: null,
+				senha: "teste"
 			},
 			professorDTO: {
 				"pessoaId": 2,

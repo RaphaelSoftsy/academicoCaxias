@@ -92,8 +92,7 @@ String contextPath = request.getContextPath();
 				<div class="col-md-6">
 					<label for="agendaId" class="form-label">Agenda:<span
 						class="red">*</span>
-					</label> 
-					<select class="form-select" aria-label="Agenda"
+					</label> <select class="form-select" aria-label="Agenda"
 						id="agendaIdSelect" required name="agendaIdSelect">
 						<option selected disabled value="">Selecione uma opção</option>
 					</select>
@@ -122,6 +121,26 @@ String contextPath = request.getContextPath();
 
 			<div id="messageInfo" class="d-flex justify-content-center">
 				<h3>Selecione os filtros para a realizar a busca</h3>
+			</div>
+			
+			
+			<div class="container-table contTable pt-4">
+				<table
+					class="table tableNot tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+					<thead>
+						<tr>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Agenda</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Data
+								de Cadastro</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Descrição</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Ativo</th>
+							<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
+						</tr>
+					</thead>
+					<tbody id="cola-tabela-anexo" class="table-group-divider">
+
+					</tbody>
+				</table>
 			</div>
 
 
@@ -162,7 +181,8 @@ String contextPath = request.getContextPath();
 										<ul class="options-list" id="agendaOptions"></ul>
 									</div>
 									<select class="form-control" aria-label="Agenda Id"
-										id="agendaId" name="agendaId" style="display: none;">										<option selected disabled value="">Selecione uma
+										id="agendaId" name="agendaId" style="display: none;">
+										<option selected disabled value="">Selecione uma
 											opção</option>
 									</select>
 								</div>

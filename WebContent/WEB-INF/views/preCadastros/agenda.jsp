@@ -125,8 +125,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="ano">
+						<th scope="col" class="sortable border-end" data-column="ano">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -149,8 +148,7 @@ String contextPath = request.getContextPath();
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="turno">
+						<th scope="col" class="sortable border-end" data-column="turno">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -239,9 +237,9 @@ String contextPath = request.getContextPath();
 									<div
 										class="dropdown-content-form rounded-3 dropdown-content-left"
 										id="dropdownContent1">
-										<input type="date" class="form-control mb-3 searchInput"
-											 />
-										<button class="btn btn-sm col-12 btn-success searchButton">									Buscar</button>
+										<input type="date" class="form-control mb-3 searchInput" />
+										<button class="btn btn-sm col-12 btn-success searchButton">
+											Buscar</button>
 									</div>
 								</div>
 							</div>
@@ -341,7 +339,7 @@ String contextPath = request.getContextPath();
 										<label for="agendaIdAnexo" class="form-label">Agenda:<span
 											class="red">*</span>
 										</label><select class="form-control" aria-label="Agenda Id"
-											id="agendaIdAnexo" name="agendaIdAnexo">
+											id="agendaIdAnexo" name="agendaIdAnexo" disabled>
 											<option selected disabled value="">Selecione uma
 												opção</option>
 										</select>
@@ -392,7 +390,7 @@ String contextPath = request.getContextPath();
 										<label for="agendaIdAnexoEdit" class="form-label">Agenda:<span
 											class="red">*</span>
 										</label><select class="form-control" aria-label="Agenda Id"
-											id="agendaIdAnexoEdit" name="agendaIdEdit">
+											id="agendaIdAnexoEdit" name="agendaIdEdit" disabled>
 											<option selected disabled value="">Selecione uma
 												opção</option>
 										</select>
@@ -644,7 +642,7 @@ String contextPath = request.getContextPath();
 									<label for="agendaId" class="form-label">Agenda:<span
 										class="red">*</span>
 									</label><select class="form-control" aria-label="Agenda Id"
-										id="agendaId" name="agendaId">
+										id="agendaId" name="agendaId" >
 										<option selected disabled value="">Selecione uma
 											opção</option>
 									</select>

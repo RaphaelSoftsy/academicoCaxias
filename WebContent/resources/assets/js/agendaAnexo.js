@@ -21,15 +21,15 @@ $(document).ready(function() {
 		async: false,
 	})
 		.done(function(data) {
-		$.each(data, function(index, item) {
-			const dataAgenda = formatarDataParaBR(item.dataAgenda)
-			$('#agendaIdSelect').append($('<option>', {
-				value: item.idAgenda,
-				text: item.tituloAula == null ? "Agenda Cadastrada em " + dataAgenda : item.tituloAula,
-				name: item.tituloAula
-			}))
+			$.each(data, function(index, item) {
+				const dataAgenda = formatarDataParaBR(item.dataAgenda)
+				$('#agendaIdSelect').append($('<option>', {
+					value: item.idAgenda,
+					text: item.tituloAula == null ? "Agenda Cadastrada em " + dataAgenda : item.tituloAula,
+					name: item.tituloAula
+				}))
 			});
-	
+
 			preencherOpcoes(data, "#agendaOptions", "#agendaId", "#agendaSearch");
 			preencherOpcoes(data, "#agendaOptionsEdit", "#agendaIdEdit", "#agendaSearchEdit");
 		})
@@ -577,4 +577,4 @@ $('#formCadastro').on('submit', function(e) {
 function limpaCampo() {
 	$("#agendaId").val($("#agendaIdSelect").val());
 	$("#anexoAgenda").empty();
-}
+}te amo
