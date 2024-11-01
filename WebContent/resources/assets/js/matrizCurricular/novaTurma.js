@@ -20,7 +20,7 @@ $(document).ready(function() {
 	$('#btn-save').hide()
 	$('#serieId').prop('disabled', true);
 	$('#curriculoId').prop('disabled', true);
-	
+
 
 	$.ajax({
 		url: url_base + "/cursos/conta/" + contaId,
@@ -443,6 +443,18 @@ function adicionar() {
 }
 
 const cadastrar = () => {
+
+	if (grades.length == 0) {
+		Swal.fire({
+			icon: "error",
+			title: "Não foi possivel cadastrar",
+			text: "Por favor, selecione uma grade curricular !",
+
+		});
+		return
+	}
+
+
 	$.each(turmas, function(index, objeto) {
 
 		$.ajax({
@@ -505,22 +517,22 @@ function editar() {
 			console.log(e)
 			console.log(e.responseJSON.message)
 			if (e.responseJSON != undefined) {
-					if (e.responseJSON.error == "Duplicidade de registro") {
-						Swal.fire({
-							icon: "error",
-							title: "Erro de duplicidade",
-							text: "Essa turma já existe!",
-
-						});
-					}
-				} else {
+				if (e.responseJSON.error == "Duplicidade de registro") {
 					Swal.fire({
 						icon: "error",
-						title: "Oops...",
-						text: "Não foi possível realizar esse comando!",
+						title: "Erro de duplicidade",
+						text: "Essa turma já existe!",
 
 					});
 				}
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível realizar esse comando!",
+
+				});
+			}
 		}
 	}).done(function(data) {
 		Swal.close()
