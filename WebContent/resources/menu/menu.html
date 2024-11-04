@@ -54,6 +54,12 @@
   <script charset="UTF-8" type="text/javascript">
     var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
     var idContaAcesso = localStorage.getItem("idContaAcesso");
+    var logoConta = localStorage.getItem("imagemLogo");
+    
+    console.log('Logo')
+    console.log(logoConta)
+    $("#imgLogoMenu").attr("src", logoConta);
+    
     let isMenuClickEventAttached = false;
 
     $(document).ready(function () {

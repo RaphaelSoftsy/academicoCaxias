@@ -1,4 +1,10 @@
 $(document).ready(function() {
+	var logoConta = localStorage.getItem("imagemLogo");
+
+	if (logoConta != undefined) {
+		$("#logo-login").attr("src", logoConta);
+	}
+
 	$(".reveal").on('click', function() {
 		let pwd = $(".pwd");
 		let icon = $(".fa-regular");
@@ -88,10 +94,35 @@ $('#btnLogin').click(function() {
 					text: 'Redirecionando você...',
 					icon: 'success',
 					showConfirmButton: false,
-					timer: 1500
 				})
 
-				window.location.href = "acessarEscolas"
+				$.ajax({
+					url: url_base + '/conta/' + responseData.contaId,
+					type: "get",
+					contentType: "application/json; charset=utf-8",
+					error: function(e) {
+						console.log(e)
+						Swal.fire({
+							title: 'Erro no sistema',
+							text: 'Erro ao realizar o login, por favor tente novamente mais tarde!!',
+							icon: 'error',
+							confirmButtonText: 'Ok'
+						})
+					}
+				}).done((res) => {
+					localStorage.setItem('imagemLogo', res.logoConta)
+					window.location.href = "acessarEscolas"
+				})
+
+
+				/*Swal.fire({
+					title: 'Login feito com sucesso',
+					text: 'Redirecionando você...',
+					icon: 'success',
+					showConfirmButton: false,
+					timer: 1500
+				})*/
+
 
 			})
 		});

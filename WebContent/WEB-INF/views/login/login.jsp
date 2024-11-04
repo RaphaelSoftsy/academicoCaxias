@@ -84,7 +84,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
           <img
             class="logo-login"
             src="<%=contextPath%>/resources/assets/img/logo-sumare.png"
-            alt="Logo Prefeitura Caxias do Sul"
+            alt="Logo"
+            id="logo-login"
           />
 
           <form>
