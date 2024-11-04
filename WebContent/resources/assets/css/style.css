@@ -359,8 +359,6 @@ body {
 }
 
 .logo-login {
-  filter: invert(60%) sepia(28%) saturate(3000%) hue-rotate(170deg)
-  brightness(40%) contrast(100%);
   width: 50%;
 }
 
