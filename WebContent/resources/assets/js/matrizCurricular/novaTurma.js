@@ -261,11 +261,23 @@ $('#btn-buscar').click(() => {
 			type: "GET",
 			async: false,
 		}).done(function(data) {
-			grades = data
-			listarGradeCurricular(data);
-			$('.container-table').not('.contTable').show()
-			$('.row-hidden').show()
-			$('#btn-submit').show()
+			if (data.length != 0) {
+				grades = data
+				listarGradeCurricular(data);
+				$('.container-table').not('.contTable').show()
+				$('.row-hidden').show()
+				$('#btn-submit').show()
+			} else {
+				Swal.fire({
+					icon: "info",
+					title: "Nenhuma Grade Curricular Encontrada",
+					text: "Cadastre uma Grade Curriular antes de cadastrar a Turma",
+
+				}).then(result => {
+					window.location.href = 'grade-curricular'
+				});
+			}
+
 
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

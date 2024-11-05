@@ -106,6 +106,9 @@ function listarDados(dados) {
 				"<td>" + item.nomeTurma + "</td>" +
 				"<td>" + item.gradeCurricular.disciplina.codDiscip + ' - ' + item.gradeCurricular.disciplina.nome + "</td>" +
 				"<td>" + item.escola.nomeEscola + "</td>" +
+				"<td>" + item.gradeCurricular.disciplina.nome + "</td>" +
+				"<td>" + item.gradeCurricular.curriculo.curriculo + "</td>" +
+				"<td>" + item.gradeCurricular.serie.serie + ' - ' + item.gradeCurricular.serie.descricao + "</td>" +
 				"<td>" + item.periodoLetivo.ano + '/' + item.periodoLetivo.periodo + "</td>" +
 				"<td>" + item.turno.turno + "</td>" +
 				"<td>" + item.vagas + "</td>" +

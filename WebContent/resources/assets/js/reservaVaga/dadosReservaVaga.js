@@ -239,6 +239,8 @@ $('#gerarAluno').click((event) => {
 		"emailInterno": $('#emailInterno').val(),
 		"senha": $('#senha').val(),
 	}
+	
+	console.log(objeto)
 
 	$.ajax({
 		url: url_base + "/alunos/",
