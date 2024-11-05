@@ -4,6 +4,12 @@ var nome = '';
 var rows = 12;
 var currentPage = 1;
 var pagesToShow = 5;
+
+
+var dados = [];
+var sortOrder = {};
+var dadosOriginais = [];
+
 var idSelect = ''
 var isAtivo = '';
 let modalidades = []
@@ -35,32 +41,125 @@ $(document).ready(function() {
 
 	getDados()
 
-	$("#inputBusca").on("keyup", function() {
-		var valorBusca = $(this).val().toLowerCase();
-
-		if (valorBusca === '') {
-			busca()
-			$("#cola-tabela tr").show();
-		} else {
-			$("#cola-tabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
-			}).show();
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
 		}
 	});
 
-	$("#inputBusca").on("input", function() {
-		var valorBusca = $(this).val().toLowerCase();
-		realizarBusca(valorBusca);
+	// Dropdown de Pesquisa
+	$(".dropdown-toggle-form").click(function() {
+		$(this).siblings(".dropdown-content-form").toggleClass("show");
 	});
 
-	function realizarBusca(valorInput) {
-		if (valorInput === '') {
-			showPage(currentPage);
+	$(".searchButton").click(function() {
+		var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
+		var columnToSearch = $(this).closest(".sortable").data("column");
+		var filteredData;
+
+		if (columnToSearch === "dependenciaAdm") {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item.dependenciaAdm.dependenciaAdministrativa
+					.toLowerCase()
+					.includes(searchInput);
+			});
+		} else if (columnToSearch === "escolaId") {
+			filteredData = dadosOriginais.filter(function(item) {
+				var escola = escolas.find(function(school) {
+					return school.idEscola === item.escolaId;
+				});
+				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
+				return nomeEscola.includes(searchInput);
+			});
 		} else {
-			$("#cola-tabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorInput) > -1;
-			}).show();
+			filteredData = dadosOriginais.filter(function(item) {
+				return item['modalidadeEscola']
+					.toString()
+					.toLowerCase()
+					.includes(searchInput);
+			});
 		}
+		filteredData.length > 0 ? filteredData[0].busca = undefined : filteredData.push({busca: undefined})
+
+		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
+
+		$(this).siblings(".searchInput").val("");
+		$(this).closest(".dropdown-content-form").removeClass("show");
+	});
+
+	$(document).on("click", ".sortable .col", function() {
+		var column = $(this).closest("th").data("column");
+		var currentOrder = sortOrder[column] || "vazio";
+		var newOrder;
+
+		if (currentOrder === "vazio") {
+			newOrder = "asc";
+		} else if (currentOrder === "asc") {
+			newOrder = "desc";
+		} else {
+			newOrder = "vazio";
+		}
+
+		$(".sortable span").removeClass("asc desc");
+		$(this).find("span").addClass(newOrder);
+
+		var icon = $(this).find("i");
+		icon.removeClass("fa-sort-up fa-sort-down fa-sort");
+
+		if (newOrder === "asc") {
+			icon.addClass("fa-sort-up");
+			sortData(column, newOrder);
+		} else if (newOrder === "desc") {
+			icon.addClass("fa-sort-down");
+			sortData(column, newOrder);
+		} else {
+			icon.addClass("fa-sort");
+			dadosOriginais.length > 0 ? dadosOriginais[0].busca = undefined : dadosOriginais.push({busca: undefined})
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
+		}
+
+		sortOrder[column] = newOrder;
+	});
+
+	function sortData(column, order) {
+		var dadosOrdenados = dadosOriginais.slice();
+
+		dadosOrdenados.sort(function(a, b) {
+			if (column === "dependenciaAdm") {
+				var valueA = a.dependenciaAdm.dependenciaAdministrativa.toLowerCase();
+				var valueB = b.dependenciaAdm.dependenciaAdministrativa.toLowerCase();
+				if (order === "asc") {
+					return valueA.localeCompare(valueB);
+				} else {
+					return valueB.localeCompare(valueA);
+				}
+			} else if (column === "escolaId") {
+				var escolaA = escolas.find(function(school) {
+					return school.idEscola === a.escolaId;
+				});
+				var escolaB = escolas.find(function(school) {
+					return school.idEscola === b.escolaId;
+				});
+				var nomeEscolaA = escolaA ? escolaA.nomeEscola.toLowerCase() : "";
+				var nomeEscolaB = escolaB ? escolaB.nomeEscola.toLowerCase() : "";
+				if (order === "asc") {
+					return nomeEscolaA.localeCompare(nomeEscolaB);
+				} else {
+					return nomeEscolaB.localeCompare(nomeEscolaA);
+				}
+			} else {
+				var valueA = a[column].toString().toLowerCase();
+				var valueB = b[column].toString().toLowerCase();
+				if (order === "asc") {
+					return valueA.localeCompare(valueB);
+				} else {
+					return valueB.localeCompare(valueA);
+				}
+			}
+		});
+		dadosOrdenados.length > 0 ? dadosOrdenados[0].busca = undefined : dadosOrdenados.push({busca: undefined})
+		listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 	}
 
 	$('.checkbox-toggle').each(function() {
@@ -83,23 +182,28 @@ function getDados() {
 	})
 		.done(function(data) {
 			turnos = data
-			listarDados();  $('input[data-toggle="toggle"]').bootstrapToggle();
+			dadosOriginais = data
+			dadosOriginais.length > 0 ? dadosOriginais[0].busca = undefined : dadosOriginais.push({busca: undefined})
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 }
 
-function listarDados() {
-	var html = turnos.map(function(item) {
+function listarDados(dados) {
+	console.log(dados)
+	
+	var html = dados.map(function(item) {
 
+		console.log(item)
 		if (item.ativo == 'N') {
 			ativo = '<i  style="color:#ff1f00" class="fa-solid iconeTabela fa-circle-xmark"></i> Não'
 		}
 		else {
 			ativo = "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim"
 		}
-
+		
 		return (
 			"<tr>" +
 			"<td>" +
@@ -110,7 +214,7 @@ function listarDados() {
 			item.ativo +
 			'" data-id="' +
 			item.idModalidadeEscola +
-			' " onChange="alteraStatus(this)" ' + 
+			' " onChange="alteraStatus(this)" ' +
 			`${item.ativo === "S" ? "checked" : ""}` +
 			' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 			"</div></td>" +
@@ -127,7 +231,9 @@ function listarDados() {
 		);
 	}).join("");
 
-	$("#cola-tabela-modalidades").html(html); 
+	if (dados.length > 0 || dados[0].busca) {
+		$("#cola-tabela-modalidades").html(dados[0].modalidadeEscola == undefined ? '' : html);
+	}
 }
 
 function alteraStatus(element) {
@@ -217,7 +323,7 @@ function editar() {
 			Swal.fire({
 				title: "Editado com sucesso",
 				icon: "success",
-			}).then(() =>{
+			}).then(() => {
 				window.location.href = 'modalidades'
 			})
 		})
@@ -268,7 +374,7 @@ function cadastrar() {
 			Swal.fire({
 				title: "Cadastrado com sucesso",
 				icon: "success",
-			}).then(()=>{
+			}).then(() => {
 				window.location.href = 'modalidades'
 			})
 		})

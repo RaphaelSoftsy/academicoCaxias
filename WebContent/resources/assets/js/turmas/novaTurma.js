@@ -26,10 +26,23 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
+			let tipoPeriodicidade;
+
+			switch (item.tipoPeriodicidade) {
+				case 'A':
+					tipoPeriodicidade = 'Anual'
+				case 'B':
+					tipoPeriodicidade = 'Bimestral'
+				case 'T':
+					tipoPeriodicidade = 'Trimestral'
+				case 'S':
+					tipoPeriodicidade = 'Semestral'
+			}
+
 			$("#periodoLetivoId").append(
 				$("<option>", {
 					value: item.idPeriodoLetivo,
-					text: `Ano: ${item.ano} - Período: ${item.periodo}`,
+					text: `Ano: ${item.ano} - Período: ${item.periodo} - ${tipoPeriodicidade}`,
 					name: item.periodo,
 				})
 			);
@@ -220,7 +233,7 @@ const selecionar = (element) => {
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
-	
+
 	var dadosFormulario = {
 		escolaId: Number($('#escolaId').val()),
 		codTurmaInep: $('#codTurmaInep').val(),

@@ -90,11 +90,24 @@ $(document).ready(function() {
 		console.log(data)
 
 		$.each(data, function(index, item) {
+			let tipoPeriodicidade;
+
+			switch (item.tipoPeriodicidade) {
+				case 'A':
+					tipoPeriodicidade = 'Anual'
+				case 'B':
+					tipoPeriodicidade = 'Bimestral'
+				case 'T':
+					tipoPeriodicidade = 'Trimestral'
+				case 'S':
+					tipoPeriodicidade = 'Semestral'
+			}
+
 			$("#periodoLetivoId").append(
 				$("<option>", {
 					value: item.idPeriodoLetivo,
-					text: `${item.ano}/${item.periodo}`,
-					name: `${item.ano}/${item.periodo}`,
+					text: `Ano: ${item.ano} - Período: ${item.periodo} - ${tipoPeriodicidade}`,
+					name: `Ano: ${item.ano} - Período: ${item.periodo} - ${tipoPeriodicidade}`,
 				})
 			);
 		});

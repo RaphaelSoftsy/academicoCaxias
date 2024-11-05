@@ -93,7 +93,7 @@ $(document).ready(function() {
 			});
 		}
 
-		listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(filteredData); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 
 		$(this).siblings(".searchInput").val("");
 		$(this).closest(".dropdown-content-form").removeClass("show");
@@ -126,7 +126,7 @@ $(document).ready(function() {
 			sortData(column, newOrder);
 		} else {
 			icon.addClass("fa-sort");
-			listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
 		}
 
 		sortOrder[column] = newOrder;
@@ -186,7 +186,7 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
-	listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle();
 	$(".searchInput").val("");
 });
 
@@ -199,7 +199,7 @@ function getDados() {
 		.done(function(data) {
 			dados = data;
 			dadosOriginais = data;
-			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", jqXHR);
@@ -225,10 +225,29 @@ function listarDados(dados) {
 				ativo =
 					"<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
 			}
+
+			let tipoPeriodicidade;
+
+
+			switch (item.tipoPeriodicidade) {
+				case 'A':
+					tipoPeriodicidade = 'Anual'
+				case 'B':
+					tipoPeriodicidade = 'Bimestral'
+				case 'T':
+					tipoPeriodicidade = 'Trimestral'
+				case 'S':
+					tipoPeriodicidade = 'Semestral'
+			}
+
+
 			return (
 				"<tr>" +
 				"<td>" +
 				item.ano +
+				"</td>" +
+				"<td>" +
+				tipoPeriodicidade +
 				"</td>" +
 				"<td>" +
 				item.periodo +
@@ -247,7 +266,7 @@ function listarDados(dados) {
 				item.ativo +
 				'" data-id="' +
 				item.idPeriodoLetivo +
-				' " onChange="alteraStatus(this)" '+  (item.ativo === "S" ? 'checked' : '') +' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+				' " onChange="alteraStatus(this)" ' + (item.ativo === "S" ? 'checked' : '') + ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
 				"</div></td>" +
 				'<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
 				item.idPeriodoLetivo +
@@ -257,7 +276,7 @@ function listarDados(dados) {
 		})
 		.join("");
 
-	$("#cola-tabela").html(html); 
+	$("#cola-tabela").html(html);
 }
 
 function alteraStatus(element) {
