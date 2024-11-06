@@ -1208,6 +1208,15 @@ a {
   margin-right: 5px;
 }
 
+#prevB a,
+#nextB a {
+  pointer-events: none;
+}
+#prevB,
+#nextB {
+  cursor: pointer;
+}
+
 .active-page {
   background-color: #ddd;
 }
