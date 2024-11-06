@@ -163,11 +163,17 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									name="dataFechamento" class="form-control" required />
 							</div>
 
-							<div class="col-6">
+							<div class="mb-4">
 								<label for="periodoLetivo" class="form-label">Período
 									Letivo:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="periodoLetivo"
-									id="periodoLetivo" required name="periodoLetivo">
+								</label> 
+								<div class="custom-select">
+									<input type="text" id="periodoLetivoSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="periodoLetivoOption"></ul>
+								</div>
+								<select class="form-select" aria-label="periodoLetivo"
+									id="periodoLetivoId" name="periodoLetivo" hidden>
 									<option selected disabled value="">Selecione o período</option>
 								</select>
 							</div>
@@ -213,11 +219,16 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									name="dataFimEdit" class="form-control" />
 							</div>
 
-							<div class="col-6 mb-3">
+							<div class="mb-3">
 								<label for="periodoLetivoEdit" class="form-label">Período
 									Letivo:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="periodoLetivoEdit"
-									id="periodoLetivoEdit" required name="periodoLetivoEdit">
+								</label>
+								<div class="custom-select">
+									<input type="text" id="periodoLetivoSearchEdit" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="periodoLetivoOptionEdit"></ul>
+								</div> <select class="form-select" aria-label="periodoLetivoEdit"
+									id="periodoLetivoIdEdit"  name="idPeriodoLetivo" hidden>
 									<option selected disabled value="">Selecione o período</option>
 								</select>
 							</div>

@@ -67,7 +67,7 @@ $('#escola').change(() => {
 		$.each(data, function(index, item) {
 			$('#serie').append($('<option>', {
 				value: item.serie,
-				text: `${item.serie} - ${item.descricao}`,
+				text: `${item.serie}`,
 				name: item.serie
 			}));
 

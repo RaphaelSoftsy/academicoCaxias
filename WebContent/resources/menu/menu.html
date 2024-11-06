@@ -1,57 +1,53 @@
 <html>
-  <head> </head>
+<head>
 
-  <body>
-    <section id="menu-mobile" class="menu-mobile">
-      <div class="container-header">
-        <div class="img-mobile-menu">
-          <img
-            class="logo-mobile"
-            src="resources/assets/img/logo-sumare.png"
-            alt="Logo Prefeitura Caxias do Sul"
-          />
-        </div>
-        <i class="fa-solid fa-bars" id="barsIcon"></i>
-      </div>
-    </section>
-    <section id="modalMenu" class="abracaMenu modalMenu">
-      <div class="close-btn-menu botao-desativa-menu" id="closeBtn">
-        <i class="fas fa-times"></i>
-      </div>
+</head>
 
-      <div class="container-icon">
-        <i class="fa-solid fa-chevron-left arrow"></i>
-      </div>
+<body>
+	<section id="menu-mobile" class="menu-mobile">
+		<div class="container-header">
+			<div class="img-mobile-menu">
+				<img class="logo-mobile" src="resources/assets/img/logo-sumare.png"
+					alt="Logo Prefeitura Caxias do Sul" />
+			</div>
+			<i class="fa-solid fa-bars" id="barsIcon"></i>
+		</div>
+	</section>
+	<section id="modalMenu" class="abracaMenu modalMenu">
+		<div class="close-btn-menu botao-desativa-menu" id="closeBtn">
+			<i class="fas fa-times"></i>
+		</div>
 
-      <div class="img-menu">
-        <img
-          class="logoSumare animate__animated animate__bounceIn mx-auto"
-          alt="Logo Prefeitura de Uruçui"
-          id="imgLogoMenu"
-          src="resources/assets/img/logo-sumare.png"
-        />
-      </div>
+		<div class="container-icon">
+			<i class="fa-solid fa-chevron-left arrow"></i>
+		</div>
 
-      <hr />
+		<div class="img-menu">
+			<img class="logoSumare animate__animated animate__bounceIn mx-auto"
+				alt="Logo Prefeitura de Uruçui" id="imgLogoMenu"
+				src="resources/assets/img/logo-sumare.png" />
+		</div>
 
-      <p>
-        <i class="fa-solid fa-user me-2" style="width: 28px"></i>
-        <span id="nome-user"></span>
-      </p>
+		<hr />
 
-      <hr />
+		<p>
+			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span
+				id="nome-user"></span>
+		</p>
 
-      <nav class="menu" id="navMenu">
-        <div class="item" id="sairEscola">
-          <a class="sub-btn">
-            <i class="fa-solid fa-person-walking-arrow-right"></i
-            ><span id="itemName1"> Trocar Escola</span>
-          </a>
-        </div>
-      </nav>
-    </section>
-  </body>
-  <script charset="UTF-8" type="text/javascript">
+		<hr />
+
+		<nav class="menu" id="navMenu">
+			<div class="item" id="sairEscola">
+				<a class="sub-btn"> <i
+					class="fa-solid fa-person-walking-arrow-right"></i><span
+					id="itemName1"> Trocar Escola</span>
+				</a>
+			</div>
+		</nav>
+	</section>
+</body>
+<script charset="UTF-8" type="text/javascript">
     var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
     var idContaAcesso = localStorage.getItem("idContaAcesso");
     var logoConta = localStorage.getItem("imagemLogo");
@@ -65,6 +61,7 @@
     $(document).ready(function () {
       var tamanhoMenu = $(".abracaMenu").width();
       const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
+      
       let sairModule = `
         	<div class="item"  >
  				<a class="sub-btn" id="sair"  >
@@ -87,16 +84,20 @@
           if (module.exibe == "S") {
             console.log(module);
             let moduleHtml = `
-                        <div class="item">
-                            <a class="sub-btn showMenu">
-                            	${module.iconeModulo}<span id="itemName${index}">${module.modulo}</span>
-                                <i class="fas fa-angle-right dropdown"></i>
-                            </a>
-                            <div class="sub-menu" id="sub-menu-${module.idModulo}"></div>
-                            <a class="sub-btn hidden">
-                            	${module.iconeModulo}
-                        	</a>
-                        </div>`;
+            	  <div class="item">
+            	    <a class="sub-btn showMenu">
+            	      ${module.iconeModulo}<span id="itemName${index}">${module.modulo}</span>
+            	      
+            	      <i class="fas fa-angle-right dropdown"></i>
+            	    </a>
+            	    <div class="sub-menu" id="sub-menu-${module.idModulo}"></div>
+            	    <a class="sub-btn icon-modulo hidden">
+            	    ${module.iconeModulo}
+            	    <span class="dot"></span> 
+            	</a>
+
+            	  </div>`;
+
             $("#navMenu").append(moduleHtml);
           }
           index += 1;
@@ -275,31 +276,41 @@
 
       $(".fa-chevron-left").click(() => {
         if ($(".abracaMenu").width() > 60) {
-          $(".arrow").css("transform", "rotate(180deg)");
-          $(".arrow").css("transition", "1000ms");
-          $(".abracaMenu").css("width", "60px");
-          $(".abracaMenu").css("transition", "1000ms");
-          $(".container-res").css("margin-left", "10%");
-          $(".container-res").css("transition", "1000ms");
-          $(".logoSumare").hide();
-          $("#nome-user").hide();
-          $(".img-menu").hide();
-          $(".sub-menu").hide();
-          $(".showMenu").hide();
-          $(".hidden").show();
-          $("#itemName1").text("");
-          $("#itemNameSair").text("");
-
-          $(".container-icon").css({
-            width: "100%",
-            display: "flex",
-            "align-items": "center",
-            "justify-content": "center",
-            height: "8%",
-            "padding-top": "20%",
-            "padding-right": "0",
-          });
+        	$(".abracaMenu").addClass("menu-fechado");
+        	
+	        $(".arrow").css("transform", "rotate(180deg)");
+	          $(".arrow").css("transition", "1000ms");
+	          $(".abracaMenu").css("width", "60px");
+	          $(".abracaMenu").css("transition", "1000ms");
+	          $(".container-res").css("margin-left", "10%");
+	          $(".container-res").css("transition", "1000ms");
+	          $(".logoSumare").hide();
+	          $("#nome-user").hide();
+	          $(".img-menu").hide();
+	          $(".sub-menu").hide();
+	          $(".showMenu").hide();
+	          $(".hidden").show();
+	          $("#itemName1").text("");
+	          $("#itemNameSair").text("");
+	          
+	        
+			   $(".icon-modulo").css({
+				  display: "flex",
+				  "align-items": "center",
+				  "justify-content": "space-between"
+			  })
+	          $(".container-icon").css({
+	            width: "100%",
+	            display: "flex",
+	            "align-items": "center",
+	            "justify-content": "center",
+	            height: "8%",
+	            "padding-top": "20%",
+	            "padding-right": "0",
+	          });
         } else {
+        	$(".abracaMenu").removeClass("menu-fechado");
+
           if (tamanhoMenu == 280) {
             $(".abracaMenu").css("width", "280px");
             $(".container-res").css("margin-left", "19em");
@@ -330,6 +341,67 @@
           });
         }
       });
+      
+      let submenuTimeout;
+
+	   // Função para fechar todos os submenus abertos
+	   function fecharTodosSubmenus() {
+	       $(".sub-menu").removeClass("submenu-aberto").hide();
+	   }
+	
+	   // Abertura do submenu ao passar o mouse sobre o módulo
+	   $(document).on("mouseenter", ".sub-btn", function () {
+	       // Verifica se o menu principal está colapsado
+	       if ($(".abracaMenu").width() <= 60) {
+	           fecharTodosSubmenus(); // Fecha todos antes de abrir o novo
+	           const submenu = $(this).siblings(".sub-menu");
+	           submenu
+	               .addClass("submenu-aberto")
+	               .css({
+	                   display: "block",
+	                   position: "absolute",
+	                   left: $(this).offset().left + $(this).outerWidth() + 4 + "px",
+	                   "border-radius": '5px'
+	               });
+	       } else {
+	    	   
+	    	   submenu = $(this).siblings(".sub-menu")
+	    	   if (submenu.css('display') === 'none') {
+	    		   submenu.removeAttr("style").css('display', 'none')
+	    		} else {
+	    			submenu.removeAttr("style").css('display', 'block')
+	    		}
+	       }
+	   });
+	
+	   // Mantém o submenu aberto ao passar o mouse sobre ele
+	   $(document).on("mouseenter", ".sub-menu, .sub-btn", function () {
+	       clearTimeout(submenuTimeout); // Cancela o tempo limite de fechamento
+	   });
+	
+	   // Inicia um atraso para esconder o submenu ao sair do botão principal
+	   $(document).on("mouseleave", ".sub-btn", function () {
+	       submenuTimeout = setTimeout(() => {
+	           const submenu = $(this).siblings(".sub-menu");
+	           if (!submenu.is(":hover")) {
+	               submenu.removeClass("submenu-aberto").hide();
+	           }
+	       }, 200); // Tempo para permitir a navegação (em ms)
+	   });
+	
+	   // Esconde o submenu ao sair dele, mas com o mesmo atraso
+		   $(document).on("mouseleave", ".sub-menu", function () {
+		       submenuTimeout = setTimeout(() => {
+	           $(this).removeClass("submenu-aberto").hide();
+	       }, 200);
+	   });
+	
+	   // Evento para fechar todos os submenus ao fechar o menu principal
+	   $(document).on("click", ".menu-toggle-btn", function () {
+	       if ($(".abracaMenu").hasClass("menu-fechado")) {
+	           fecharTodosSubmenus(); // Reseta a visualização dos submenus ao fechar o menu
+	       }
+	   });
 
       str = sessionStorage.getItem("nomeConta");
       $("#nome-user").text(str);
@@ -347,7 +419,7 @@
       } else {
         $("#sairEscola").hide();
       }
-
+ 
       $("#barsIcon").click(function () {
         $("#modalMenu").show();	
         $("#modalMenu").css({

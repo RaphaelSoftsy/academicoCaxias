@@ -10,38 +10,20 @@ var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 var id = 0;
+var periodosLetivos = []
 
 $(document).ready(function() {
 
 	getDados()
-	$('select').select2();
+
 	$.ajax({
 		url: url_base + '/periodoletivo/conta/' + contaId,
 		type: "get",
 		async: false,
 	}).done(function(data) {
-		$.each(data, function(index, item) {
-
-			if (item.ativo == "S") {
-				$('#periodoLetivoEdit').append($('<option>', {
-					value: item.idPeriodoLetivo,
-					text: item.periodo + ' - ' + item.descricao,
-					name: item.periodo
-				}));
-			}
-
-		});
-		$.each(data, function(index, item) {
-			if (item.ativo == "S") {
-				$('#periodoLetivo').append($('<option>', {
-					value: item.idPeriodoLetivo,
-					text: item.ano + '/' + item.periodo + " - " + formatarPeriodo(item.tipoPeriodicidade) + " - " + item.descricao,
-					name: item.periodo
-				}));
-			}
-
-		});
-		$('select').select2();
+		periodosLetivos = data
+		preencherOpcoes(periodosLetivos, "#periodoLetivoOption", "#periodoLetivoId", "#periodoLetivoSearch");
+		preencherOpcoes(periodosLetivos, "#periodoLetivoOptionEdit", "#periodoLetivoIdEdit", "#periodoLetivoSearchEdit");
 	})
 
 	$("#inputBusca").on("keyup", function() {
@@ -85,6 +67,68 @@ $(document).ready(function() {
 });
 
 
+function preencherOpcoes(periodosLetivos, optionsListId, selectId, searchId) {
+	const $optionsList = $(optionsListId);
+	const $periodoLetivoId = $(selectId);
+
+	// Limpa as opções anteriores
+	$optionsList.empty();
+	$periodoLetivoId
+		.empty()
+		.append(
+			'<option value="" disabled selected>Selecione uma opção</option>'
+		);
+
+	// Itera sobre os cursos retornados pela API
+	$.each(periodosLetivos, function(index, item) {
+		if (item.ativo === "S") {
+			// Cria a opção da lista de sugestões
+			const optionHTML = `<li data-value="${item.idPeriodoLetivo}">${item.ano}/${item.periodo} - ${formatarPeriodo(item.tipoPeriodicidade)} - ${item.descricao}</li>`;
+			$optionsList.append(optionHTML);
+
+			// Cria a opção no select oculto
+			$periodoLetivoId.append(
+				$("<option>", {
+					value: item.idPeriodoLetivo,
+					text: item.ano + '/' + item.periodo + " - " + formatarPeriodo(item.tipoPeriodicidade) + " - " + item.descricao
+				})
+			);
+		}
+	});
+
+	// Exibe as opções ao focar no campo de busca
+	$(searchId).on("focus", function() {
+		$optionsList.show();
+	});
+
+	// Filtra as opções conforme o usuário digita
+	$(searchId).on("input", function() {
+		const searchValue = $(this).val().toLowerCase();
+		$optionsList.find("li").each(function() {
+			const text = $(this).text().toLowerCase();
+			$(this).toggle(text.includes(searchValue));
+		});
+	});
+
+	// Ao clicar em uma opção, atualiza o campo de busca e o select oculto
+	$optionsList.on("click", "li", function() {
+		const selectedText = $(this).text();
+		const selectedValue = $(this).data("value");
+
+		$(searchId).val(selectedText); // Preenche o campo de pesquisa
+		$periodoLetivoId.val(selectedValue); // Preenche o select oculto com o ID do curso
+		$optionsList.hide(); // Esconde a lista de opções
+	});
+
+	// Fecha a lista se o usuário clicar fora
+	$(document).on("click", function(e) {
+		if (!$(e.target).closest(".custom-select").length) {
+			$optionsList.hide();
+		}
+	});
+}
+
+
 function formatarPeriodo(tipoPeriodicidade) {
 	if (tipoPeriodicidade == "A") {
 		return "Anual"
@@ -115,7 +159,8 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			listarDados(data); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
+			listarDados(data); 
+			$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -211,31 +256,42 @@ function alteraStatus(element) {
 	})
 }
 function showModal(ref) {
-	id = ref.getAttribute("data-id");
-	nome = ref.getAttribute("data-nome");
-	dataIni = ref.getAttribute("data-dataInicio");
-	dataFim = ref.getAttribute("data-dataFim");
-	isAtivo = ref.getAttribute("data-ativo");
-	periodoLetivoId = ref.getAttribute("data-idPeriodoLetivo")
+    // Obtém os atributos do elemento de referência
+     id = ref.getAttribute("data-id");
+    const nome = ref.getAttribute("data-nome");
+    const dataIni = ref.getAttribute("data-dataInicio");
+    const dataFim = ref.getAttribute("data-dataFim");
+    const isAtivo = ref.getAttribute("data-ativo");
+    const periodoLetivoId = ref.getAttribute("data-idPeriodoLetivo");
 
-	if (isAtivo == "S") {
-		$(".ativar").hide();
-		$(".desativar").show()
-	}
-	else {
-		$(".desativar").hide();
-		$(".ativar").show();
-	}
+    // Atualiza o valor do select oculto
+    $("#periodoLetivoIdEdit").val(periodoLetivoId).change();
 
-	$('#edit-nome').val(nome);
-	$("#dataInicioEdit").val(dataIni);
-	$("#dataFimEdit").val(dataFim);
+    // Verifica se a opção correspondente está no select e obtém o texto
+    const periodoLetivoSelecionado = $("#periodoLetivoIdEdit option:selected").text();
+    if (periodoLetivoSelecionado) {
+        // Preenche o campo de pesquisa com o texto correspondente
+        $("#periodoLetivoSearchEdit").val(periodoLetivoSelecionado);
+    } else {
+        // Preencha com um valor padrão ou mensagem se a opção não for encontrada
+        $("#periodoLetivoSearchEdit").val("Período não encontrado");
+    }
 
+    // Controle de exibição para elementos de ativação/desativação
+    if (isAtivo === "S") {
+        $(".ativar").hide();
+        $(".desativar").show();
+    } else {
+        $(".desativar").hide();
+        $(".ativar").show();
+    }
 
-	$("#periodoLetivoEdit").val(periodoLetivoId).attr('selected', true);
-
-
+    // Preenche outros campos
+    $('#edit-nome').val(nome);
+    $("#dataInicioEdit").val(dataIni);
+    $("#dataFimEdit").val(dataFim);
 }
+
 
 function formatarHoraParaAPI(hora) {
 	if (/^\d{2}:\d{2}$/.test(hora)) {
@@ -250,7 +306,7 @@ function editar() {
 		concurso: $('#edit-nome').val(),
 		dataAbertura: $('#dataInicioEdit').val(),
 		dataFechamento: $("#dataFimEdit").val(),
-		periodoLetivoId: $("#periodoLetivoEdit").val(),
+		periodoLetivoId: $("#periodoLetivoIdEdit").val(),
 		contaId: contaId
 
 	}
@@ -303,11 +359,10 @@ function cadastrar() {
 		concurso: $('#cadastro-nome').val(),
 		dataAbertura: $('#dataInicio').val(),
 		dataFechamento: $("#dataFechamento").val(),
-		periodoLetivoId: $("#periodoLetivo").val(),
+		periodoLetivoId: $("#periodoLetivoId").val(),
 		contaId: contaId
 
 	}
-
 
 	$.ajax({
 		url: url_base + "/concursos",
@@ -329,7 +384,6 @@ function cadastrar() {
 			$("#dataInicio").val('');
 			$("#dataFechamento").val('');
 			getDados();
-			showPage(currentPage);
 			updatePagination();
 			showPage(currentPage);
 			Swal.fire({
