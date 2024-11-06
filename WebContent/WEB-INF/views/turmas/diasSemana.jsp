@@ -267,8 +267,7 @@ String contextPath = request.getContextPath();
 							</div>
 							<div class="mb-4">
 								<div class="col-md-12">
-									<label for="chequeHorario" class="form-label">Permite
-										Choque Horário:<span class="red">*</span>
+									<label for="chequeHorario" class="form-label">Obrigatprio:<span class="red">*</span>
 									</label>
 									<div class="form-control card-form-infra">
 										<label for="choqueHorario">Sim</label> <label class="switch">

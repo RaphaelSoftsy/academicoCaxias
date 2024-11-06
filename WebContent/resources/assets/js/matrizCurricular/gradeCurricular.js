@@ -13,7 +13,6 @@ let id = ''
 
 $(document).ready(function() {
 	$(".container-table").hide()
-	$('select').select2();
 	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
 		$('#curriculoIdLista').removeAttr('disabled');
 		$("#cotainerNewCadastro").removeClass("none");
@@ -33,7 +32,7 @@ $(document).ready(function() {
 				}));
 			});
 		});
-		
+
 		$('#curriculoIdLista').val(curriculoIdSession).select2();
 		$('#cursoIdLista').val(cursoIdSession).select2();
 		getDados(curriculoIdSession);
@@ -47,18 +46,18 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			if(item.ativo == "S"){
+			if (item.ativo == "S") {
 				$("#cursoIdLista").append(
-				$("<option>", {
-					value: item.idCurso,
-					text: `${item.nome} - ${item.codCurso}`,
-					name: item.nome,
-				})
-			);
+					$("<option>", {
+						value: item.idCurso,
+						text: `${item.nome} - ${item.codCurso}`,
+						name: item.nome,
+					})
+				);
 			}
-			
+
 		});
-		$('select').select2();
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -83,7 +82,7 @@ $(document).ready(function() {
 					name: item.curriculo
 				}));
 			});
-			$('select').select2();
+
 		})
 	});
 
@@ -101,7 +100,7 @@ $(document).ready(function() {
 				})
 			);
 		});
-		$('select').select2();
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -120,7 +119,7 @@ $(document).ready(function() {
 				})
 			);
 		});
-		$('select').select2();
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -147,7 +146,7 @@ $(document).ready(function() {
 				})
 			);
 		});
-		$('select').select2();
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -161,12 +160,12 @@ $(document).ready(function() {
 			$("#serieIdEdit").append(
 				$("<option>", {
 					value: item.idSerie,
-					text:`${item.serie} - ${item.descricao}`,
+					text: `${item.serie} - ${item.descricao}`,
 					name: item.serie,
 				})
 			);
 		});
-		$('select').select2();
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -185,7 +184,6 @@ $(document).ready(function() {
 				})
 			);
 		});
-		$('select').select2();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -219,9 +217,12 @@ $(document).ready(function() {
 		}
 	}
 
+	$('#curriculoIdLista').select2()
+	$('#cursoIdLista').select2()
+
 	showPage(currentPage);
 	updatePagination();
-	
+
 
 });
 
@@ -269,17 +270,17 @@ function listarDados(dados) {
 		);
 	}).join("");
 
-	$("#cola-tabela").html(html); 
-/*
-	// Limitar o número de linhas exibidas
-	var maxRows = 6;
-
-	// Mostrar apenas as linhas que estão dentro do limite
-	$('#myTable tbody tr').each(function(index) {
-		if (index >= maxRows) {
-			$(this).addClass('hidden-row');
-		}
-	});*/
+	$("#cola-tabela").html(html);
+	/*
+		// Limitar o número de linhas exibidas
+		var maxRows = 6;
+	
+		// Mostrar apenas as linhas que estão dentro do limite
+		$('#myTable tbody tr').each(function(index) {
+			if (index >= maxRows) {
+				$(this).addClass('hidden-row');
+			}
+		});*/
 
 	// Inicializar o toggle
 	$('.checkbox-toggle').each(function() {
@@ -290,7 +291,7 @@ function listarDados(dados) {
 	});
 
 	// Certifique-se de que o Bootstrap Toggle esteja inicializado corretamente
-	
+
 }
 
 
@@ -298,6 +299,77 @@ function listarDados(dados) {
 $("#btnModalCadastrar").click(() => {
 	$("#curriculoId").val($("#curriculoIdLista").val())
 })
+
+function preencherOpcoes(items, optionsListId, selectId, searchId) {
+	const $optionsList = $(optionsListId);
+	const $selectElement = $(selectId);
+
+	// Limpa as opções anteriores
+	$optionsList.empty();
+	$selectElement
+		.empty()
+		.append(
+			'<option value="" disabled selected>Selecione uma opção</option>'
+		);
+
+	// Itera sobre os itens retornados pela API
+	$.each(items, function(index, item) {
+
+		if (item.ativo === "S") {
+			const optionText =
+				`${item.curriculo}` ||
+					`$${item.serie} - ${item.descricao}`||
+					item.codDiscip + " - " + item.nome ||
+					item?.nomeCurso ||
+					`${item?.turno || ""} - ${item?.mnemonico || ""}`;
+
+
+			$optionsList.append(
+				`<li data-value="${item.idConcurso || item.idCurso || item.idEscola || item.idTurno
+				}">${optionText}</li>`
+			);
+			$selectElement.append(
+				$("<option>", {
+					value: item.idConcurso ?? item.idCurso ?? item.idEscola ?? item.idTurno ?? ''
+					,
+					text: optionText,
+				})
+			);
+		}
+	});
+
+	// Exibe as opções ao focar no campo de busca
+	$(searchId).on("focus", function() {
+		$optionsList.show();
+	});
+
+	// Filtra as opções conforme o usuário digita
+	$(searchId).on("input", function() {
+		const searchValue = $(this).val().toLowerCase();
+		$optionsList.find("li").each(function() {
+			const text = $(this).text().toLowerCase();
+			$(this).toggle(text.includes(searchValue));
+		});
+	});
+
+	// Ao clicar em uma opção, atualiza o campo de busca e o select oculto
+	$optionsList.on("click", "li", function() {
+		const selectedText = $(this).text();
+		const selectedValue = $(this).data("value");
+
+		$(searchId).val(selectedText); // Preenche o campo de pesquisa
+		$selectElement.val(selectedValue); // Preenche o select oculto com o ID
+		$optionsList.hide(); // Esconde a lista de opções
+	});
+
+	// Fecha a lista se o usuário clicar fora
+	$(document).on("click", function(e) {
+		if (!$(e.target).closest(".custom-select").length) {
+			$optionsList.hide();
+		}
+	});
+}
+
 
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");

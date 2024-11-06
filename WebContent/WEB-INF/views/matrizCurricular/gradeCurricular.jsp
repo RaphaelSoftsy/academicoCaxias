@@ -208,28 +208,35 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									</option>
 								</select>
 							</div>
+							
 							<div class="mb-4">
-								<label for="obrigatoria" class="form-label">Obrigatória:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Obrigatoria"
-									id="obrigatoria" required name="obrigatoria">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-									<option value="S">Sim</option>
-									<option value="N">Não</option>
-								</select>
+								<div class="col-md-12">
+									<label for="chequeHorario" class="form-label">Obrigatório:<span class="red">*</span>
+									</label>
+									<div class="form-control card-form-infra">
+										<label for="choqueHorario">Sim</label> <label class="switch">
+											<input type="checkbox" id="choqueHorario"
+											name="choqueHorario" /> <span
+											class="slider"></span>
+										</label> <label for="choqueHorario">Não</label>
+									</div>
+								</div>
 							</div>
+							
 							<div class="mb-4">
-								<label for="retemSerie" class="form-label">Pode reter o
-									aluno:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="retemSerie"
-									id="retemSerie" required name="retemSerie">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-									<option value="S">Sim</option>
-									<option value="N">Não</option>
-								</select>
+								<div class="col-md-12">
+									<label for="retemSerie" class="form-label">Pode reter o aluno:<span class="red">*</span>
+									</label>
+									<div class="form-control card-form-infra">
+										<label for="retemSerie">Sim</label> <label class="switch">
+											<input type="checkbox" id="retemSerie"
+											name="retemSerie" /> <span
+											class="slider"></span>
+										</label> <label for="choqueHorario">Não</label>
+									</div>
+								</div>
 							</div>
+							
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
