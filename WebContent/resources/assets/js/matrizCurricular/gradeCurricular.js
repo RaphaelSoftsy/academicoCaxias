@@ -11,8 +11,38 @@ var pagesToShow = 5;
 let descricao = ''
 let id = ''
 
+function getAswer(input) {
+
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
+	}
+
+}
+
 $(document).ready(function() {
 	$(".container-table").hide()
+	$.ajax({
+		url: url_base + "/areaConhecimento/conta/" + contaId,
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			$.each(data, function(index, item) {
+				$("#areaConhecimentoId").append(
+					$("<option>", {
+						value: item.idAreaConhecimento,
+						text: item.areaConhecimento,
+						name: item.areaConhecimento,
+					})
+				);
+			})
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+
 	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
 		$('#curriculoIdLista').removeAttr('disabled');
 		$("#cotainerNewCadastro").removeClass("none");
@@ -60,6 +90,41 @@ $(document).ready(function() {
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$('#areaConhecimentoId').change(() => {
+		$('#disciplinaId').empty()
+		$('#disciplinaId').removeAttr('disabled');
+		$('#disciplinaId').append(`<option value='0' selected disabled>Selecione a disciplina</option>`)
+
+		let area = $('#areaConhecimentoId').val()
+		console.log(area)
+		$.ajax({
+			url: url_base + "/disciplina/areaConhecimento/" + area,
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			$.each(data, function(index, item) {
+				$("#disciplinaId").append(
+					$("<option>", {
+						value: item.idDisciplina,
+						text: item.codDiscip + " - " + item.nome,
+						name: item.nome,
+					})
+				);
+
+				$("#disciplinaIdEdit").append(
+					$("<option>", {
+						value: item.idDisciplina,
+						text: item.codDiscip + " - " + item.nome,
+						name: item.nome,
+					})
+				);
+			});
+
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
 	});
 
 	$('#cursoIdLista').change(() => {
@@ -318,10 +383,10 @@ function preencherOpcoes(items, optionsListId, selectId, searchId) {
 		if (item.ativo === "S") {
 			const optionText =
 				`${item.curriculo}` ||
-					`$${item.serie} - ${item.descricao}`||
-					item.codDiscip + " - " + item.nome ||
-					item?.nomeCurso ||
-					`${item?.turno || ""} - ${item?.mnemonico || ""}`;
+				`$${item.serie} - ${item.descricao}` ||
+				item.codDiscip + " - " + item.nome ||
+				item?.nomeCurso ||
+				`${item?.turno || ""} - ${item?.mnemonico || ""}`;
 
 
 			$optionsList.append(
@@ -448,8 +513,8 @@ function editar() {
 		serieId: $('#serieIdEdit').val(),
 		disciplinaId: $('#disciplinaIdEdit').val(),
 		curriculoId: $('#curriculoIdEdit').val(),
-		obrigatoria: $('#obrigatoriaEdit').val(),
-		retemSerie: $('#retemSerieEdit').val(),
+		obrigatoria: getAswer('#obrigatoriaEdit'),
+		retemSerie: getAswer('#retemSerieEdit')
 	}
 
 	$.ajax({
@@ -492,13 +557,15 @@ $('#formCadastro').on('submit', function(e) {
 });
 
 function cadastrar() {
+	
+	
 
 	var objeto = {
 		serieId: $('#serieId').val(),
 		disciplinaId: $('#disciplinaId').val(),
 		curriculoId: $('#curriculoId').val(),
-		obrigatoria: $('#obrigatoria').val(),
-		retemSerie: $('#retemSerie').val(),
+		obrigatoria: getAswer('#obrigatoria'),
+		retemSerie: getAswer('#retemSerie'),
 	}
 
 	$.ajax({

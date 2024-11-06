@@ -133,7 +133,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Tipo de Periodidade</span> <i class="fas fa-sort me-3"
+									<span>Tipo de Periodicidade</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 							</div>
