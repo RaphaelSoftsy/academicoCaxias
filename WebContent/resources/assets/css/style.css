@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+
+main{
+	z-index: 1;
+}
 .box-edit-val {
   cursor: pointer;
 }
@@ -120,9 +124,7 @@ tr {
   border-color: var(--bs-table-border-color);
 }
 
-.abracaMenu {
-  overflow-y: scroll;
-}
+
 .h1,
 h1 {
   font-size: 2.5rem;
@@ -1009,6 +1011,10 @@ a {
   margin-left: 0.5em;
 }
 
+.abracaMenu{
+	z-index: 999;
+}
+
 .abracaMenu p {
   padding: 5px 18px;
   font-size: 16px;
@@ -1251,6 +1257,50 @@ a {
 	left: auto;
 } */
 
+
+.submenu-aberto {
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px; /* Defina a largura desejada para o submenu */
+    
+    
+}
+
+
+.icon-modulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.icon-modulo i {
+    display: block;
+    margin: auto; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+.dot {
+    position: absolute;
+    right: 10px; /* Ajuste a posição para alinhá-lo à direita do ícone */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: #fff; /* Cor da bolinha */
+    border-radius: 50%;
+}
+
+  
+.abracaMenu:not(.menu-fechado) .dot {
+    display: none;
+    
+}
+
+
+  
+
+
 .show {
   display: block;
 }
@@ -1480,6 +1530,7 @@ a {
   }
   .sub-btn {
     font-size: 1.2rem;
+    align-items: center;
   }
   .card-table {
     width: 100%;
