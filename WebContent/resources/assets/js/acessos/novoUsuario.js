@@ -1,316 +1,448 @@
 var dados = [];
-var id = '';
-var nome = '';
+var id = "";
+var nome = "";
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
-const contaId = localStorage.getItem('contaId')
+const contaId = localStorage.getItem("contaId");
 const idUsuario = params.get("id");
-let idArray = 0
-let cpfFixed
-let emailFixed
+let idArray = 0;
+let cpfFixed;
+let emailFixed;
 
-$(document).ready(function() {
-	getDados()
+$(document).ready(function () {
+  getDados();
 
-	$(".reveal").on('click', function() {
-		let pwd = $(this).siblings("input");
-		let icon = $(this).find("i");
-		if (pwd.attr('type') === 'password') {
-			pwd.attr('type', 'text');
-			icon.removeClass("fa-eye").addClass("fa-eye-slash");
-		} else {
-			pwd.attr('type', 'password');
-			icon.removeClass("fa-eye-slash").addClass("fa-eye");
-		}
-	});
+  $(".reveal").on("click", function () {
+    let pwd = $(this).siblings("input");
+    let icon = $(this).find("i");
+    if (pwd.attr("type") === "password") {
+      pwd.attr("type", "text");
+      icon.removeClass("fa-eye").addClass("fa-eye-slash");
+    } else {
+      pwd.attr("type", "password");
+      icon.removeClass("fa-eye-slash").addClass("fa-eye");
+    }
+  });
 
-	$(".reveal-pwd").on('click', function() {
-		let pwd = $(this).siblings("input");
-		let icon = $(this).find("i");
-		if (pwd.attr('type') === 'password') {
-			pwd.attr('type', 'text');
-			icon.removeClass("fa-eye").addClass("fa-eye-slash");
-		} else {
-			pwd.attr('type', 'password');
-			icon.removeClass("fa-eye-slash").addClass("fa-eye");
-		}
-	});
+  $(".reveal-pwd").on("click", function () {
+    let pwd = $(this).siblings("input");
+    let icon = $(this).find("i");
+    if (pwd.attr("type") === "password") {
+      pwd.attr("type", "text");
+      icon.removeClass("fa-eye").addClass("fa-eye-slash");
+    } else {
+      pwd.attr("type", "password");
+      icon.removeClass("fa-eye-slash").addClass("fa-eye");
+    }
+  });
 
-	$("#inputBusca").on("keyup", function() {
-		var valorBusca = $(this).val().toLowerCase();
+  $("#inputBusca").on("keyup", function () {
+    var valorBusca = $(this).val().toLowerCase();
 
-		if (valorBusca === '') {
-			busca()
-			$("#cola-tabela tr").show();
-		} else {
-			$("#cola-tabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
-			}).show();
-		}
-	});
+    if (valorBusca === "") {
+      busca();
+      $("#cola-tabela tr").show();
+    } else {
+      $("#cola-tabela tr")
+        .hide()
+        .filter(function () {
+          return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
+        })
+        .show();
+    }
+  });
 
-	$("#inputBusca").on("input", function() {
-		var valorBusca = $(this).val().toLowerCase();
-		realizarBusca(valorBusca);
-	});
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
 
-	function realizarBusca(valorInput) {
-		if (valorInput === '') {
-			showPage(currentPage);
-		} else {
-			$("#cola-tabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorInput) > -1;
-			}).show();
-		}
-	}
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      showPageUser(currentPage);
+    } else {
+      $("#cola-tabela tr")
+        .hide()
+        .filter(function () {
+          return $(this).text().toLowerCase().indexOf(valorInput) > -1;
+        })
+        .show();
+    }
+  }
 
+  showPageUser(currentPage);
+  renderPageNumbers();
 
-	showPage(currentPage);
-	updatePagination();
+  //Exemplo para setar valor
+  /*$('#mySelect').val([1, 6])*/
 
-	//Exemplo para setar valor
-	/*$('#mySelect').val([1, 6])*/
+  if (idUsuario != undefined) {
+    let listaAcessos = [];
+    $("#tituloPagina, #tituloForm").text("Editar Usuario");
+    $("#h1-curso").text("Editar Usuario");
+    $("#btn-adicionar").text("Editar");
+    $("#divSenha").hide();
+    $("#divSenhaConfirmacao").hide();
+    $("#senha").removeAttr("required");
+    $("#senhaConfirmacao").removeAttr("required");
 
-	if (idUsuario != undefined) {
-		let listaAcessos = []
-		$("#tituloPagina, #tituloForm").text("Editar Usuario");
-		$("#h1-curso").text("Editar Usuario");
-		$("#btn-adicionar").text("Editar");
-		$("#divSenha").hide()
-		$("#divSenhaConfirmacao").hide()
-		$("#senha").removeAttr("required");
-		$("#senhaConfirmacao").removeAttr("required");
+    $.ajax({
+      url: url_base + "/usuario/" + idUsuario,
+      type: "GET",
+      contentType: "application/json; charset=utf-8",
+      beforeSend: function () {
+        Swal.showLoading();
+      },
+      error: function (e) {
+        console.log(e);
+        Swal.close();
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Não foi possível cadastrar nesse momento!",
+        });
+      },
+    }).done(function (data) {
+      Swal.close();
+      $("#usuario").val(data.usuario.usuario);
+      $("#nomeCompleto").val(data.usuario.nomeCompleto);
+      $("#email").val(data.usuario.email);
+      $("#cpf").val(
+        data.usuario.cpf.replace(
+          /^(\d{3})(\d{3})(\d{3})(\d{2})$/,
+          "$1.$2.$3-$4"
+        )
+      );
+      $("#dataNascimento").val(
+        formatarDataParaISO(data.usuario.dataNascimento)
+      ); // Aqui colocamos no formato yyyy-MM-dd
+      $("#celular").val(
+        data.usuario.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3")
+      );
 
-		$.ajax({
-			url: url_base + '/usuario/' + idUsuario,
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			beforeSend: function() {
-				Swal.showLoading();
-			},
-			error: function(e) {
-				console.log(e);
-				Swal.close();
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível cadastrar nesse momento!",
-				});
-			}
-		}).done(function(data) {
-			Swal.close();
-			$('#usuario').val(data.usuario.usuario);
-			$('#nomeCompleto').val(data.usuario.nomeCompleto);
-			$('#email').val(data.usuario.email);
-			$('#cpf').val(data.usuario.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"));
-			$('#dataNascimento').val(formatarDataParaISO(data.usuario.dataNascimento)); // Aqui colocamos no formato yyyy-MM-dd
-			$('#celular').val(data.usuario.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"));
+      cpfFixed = data.usuario.cpf;
+      emailFixed = data.usuario.email;
 
-			cpfFixed = data.usuario.cpf
-			emailFixed = data.usuario.email
+      $.each(data.usuarioConta, function (index, item) {
+        let nomeEscola = "";
+        let padraoAcesso = "";
 
-			$.each(data.usuarioConta, function(index, item) {
-				let nomeEscola = ''
-				let padraoAcesso = ''
+        $.ajax({
+          url: url_base + "/escolas/" + item.escolaId,
+          type: "GET",
+          contentType: "application/json; charset=utf-8",
+          error: function (e) {
+            console.log(e);
+            Swal.close();
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Não foi possível cadastrar nesse momento!",
+            });
+          },
+        }).done(function (dataEscola) {
+          nomeEscola = dataEscola.nomeEscola;
 
-				$.ajax({
-					url: url_base + '/escolas/' + item.escolaId,
-					type: "GET",
-					contentType: "application/json; charset=utf-8",
-					error: function(e) {
-						console.log(e);
-						Swal.close();
-						Swal.fire({
-							icon: "error",
-							title: "Oops...",
-							text: "Não foi possível cadastrar nesse momento!",
-						});
-					}
-				}).done(function(dataEscola) {
-					nomeEscola = dataEscola.nomeEscola
+          $.ajax({
+            url: url_base + "/contaPadraoAcessos/" + item.contaPadraoAcessoId,
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            error: function (e) {
+              console.log(e);
+              Swal.close();
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Não foi possível cadastrar nesse momento!",
+              });
+            },
+          }).done(function (dataPadrao) {
+            idArray += 1;
+            dados.push({
+              id: idArray,
+              escolaId: item.escolaId,
+              padraoAcessoId: item.contaPadraoAcessoId,
+              nomeEscola: nomeEscola,
+              padraoAcesso: dataPadrao.padraoAcesso,
+            });
+            listarDados(dados);
+            showPageUser(currentPage);
+            renderPageNumbers();
 
-					$.ajax({
-						url: url_base + '/contaPadraoAcessos/' + item.contaPadraoAcessoId,
-						type: "GET",
-						contentType: "application/json; charset=utf-8",
-						error: function(e) {
-							console.log(e);
-							Swal.close();
-							Swal.fire({
-								icon: "error",
-								title: "Oops...",
-								text: "Não foi possível cadastrar nesse momento!",
-							});
-						}
-					}).done(function(dataPadrao) {
-						idArray += 1
-						dados.push({
-							id: idArray,
-							escolaId: item.escolaId,
-							padraoAcessoId: item.contaPadraoAcessoId,
-							nomeEscola: nomeEscola,
-							padraoAcesso: dataPadrao.padraoAcesso,
-						})
-						listarDados(dados)
+            console.log({
+              id: idArray,
+              escolaId: item.escolaId,
+              padraoAcessoId: item.contaPadraoAcessoId,
+              nomeEscola: nomeEscola,
+              padraoAcesso: dataPadrao.padraoAcesso,
+            });
+          });
+        });
+      });
 
-						console.log({
-							id: idArray,
-							escolaId: item.escolaId,
-							padraoAcessoId: item.contaPadraoAcessoId,
-							nomeEscola: nomeEscola,
-							padraoAcesso: dataPadrao.padraoAcesso,
-						})
-					})
-				})
-			});
+      //$('#mySelect').val(listaAcessos)
 
+      //$('#mySelect').chosen();
+    });
+  } else {
+    //$('#mySelect').chosen();
+  }
 
-			//$('#mySelect').val(listaAcessos)
+  function showPageUser(page) {
+    var start = (page - 1) * rows;
+    var end = start + rows;
 
-			//$('#mySelect').chosen();
-		});
-	} else {
-		//$('#mySelect').chosen();
-	}
+    $("#cola-tabela tr").hide();
+    $("#cola-tabela tr").slice(start, end).show();
+    toggleNavigation();
+  }
+
+  function renderPageNumbers() {
+    var totalRows = dados.length;
+    var totalPages = Math.ceil(totalRows / rows);
+    var pageNumbersHtml = "";
+
+    if (totalRows > rows) {
+      var startPage = Math.max(1, currentPage - 1);
+      var endPage = Math.min(totalPages, currentPage + 1);
+
+      if (currentPage === 1) {
+        endPage = Math.min(totalPages, 3);
+      } else if (currentPage === totalPages) {
+        startPage = Math.max(1, totalPages - 2);
+      }
+
+      if (totalPages > 1) {
+        for (var i = startPage; i <= endPage; i++) {
+          pageNumbersHtml +=
+            '<li class="page-item ' +
+            (i === currentPage ? "active" : "") +
+            '">';
+          pageNumbersHtml +=
+            '<a class="page-link" href="#" data-page="' + i + '">' + i + "</a>";
+          pageNumbersHtml += "</li>";
+        }
+      }
+
+      $("#pagination").find("li.page-item:not(#prevB):not(#nextB)").remove();
+      $("#pagination").find("li#prevB").after(pageNumbersHtml);
+
+      $("#pagination").show();
+
+      $("#pagination .page-link").click(function (e) {
+        e.preventDefault();
+        var page = $(this).data("page");
+        if (page !== currentPage) {
+          currentPage = page;
+          showPageUser(currentPage);
+          renderPageNumbers();
+          toggleNavigation();
+        }
+      });
+    } else {
+      $("#pagination").hide();
+    }
+  }
+
+  function toggleNavigation() {
+    var totalRows = dados.length;
+    var totalPages = Math.ceil(totalRows / rows);
+
+    if (totalRows > rows) {
+      $("#prevB, #nextB").show();
+      $("#prevB").toggleClass("disabled", currentPage === 1);
+      $("#nextB").toggleClass("disabled", currentPage === totalPages);
+
+      $("#prevB a").click(function (e) {
+        e.preventDefault();
+        if (currentPage > 1) {
+          currentPage--;
+          showPageUser(currentPage);
+          renderPageNumbers();
+        }
+      });
+
+      $("#nextB a").click(function (e) {
+        e.preventDefault();
+        if (currentPage < totalPages) {
+          currentPage++;
+          showPageUser(currentPage);
+          renderPageNumbers();
+        }
+      });
+    } else {
+      $("#prevB, #nextB").hide();
+    }
+  }
+
+  $("#prevB").click(function () {
+    if (currentPage > 1) {
+      currentPage--;
+      showPageUser(currentPage);
+      renderPageNumbers();
+    }
+  });
+
+  $("#nextB").click(function () {
+    var totalRows = dados.length;
+    var totalPages = Math.ceil(totalRows / rows);
+
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPageUser(currentPage);
+      renderPageNumbers();
+    }
+  });
 });
 
 const removerItem = (ref) => {
-	let id = ref.getAttribute("data-id");
+  let id = ref.getAttribute("data-id");
 
-	dados = dados.filter(item => item.id != id);
-	listarDados(dados)
-}
+  dados = dados.filter((item) => item.id != id);
+  listarDados(dados);
+  showPageUser(currentPage);
+  renderPageNumbers();
+};
 
-
-$('#add-table').click(() => {
-	if (
-		$('#escola').val() == 0 ||
-		$('#escola').val() == null &&
-		$('#padraoAcessoId').val() == 0 ||
-		$('#padraoAcessoId').val() == null
-	) {
-		Swal.fire({
-			icon: "warning",
-			title: "Valores incompletos",
-			text: "Para adicionar selecione uma escola e um padrão de acesso",
-		})
-	} else if (
-		$('#escola').val() == 0 ||
-		$('#escola').val() == null
-	) {
-		Swal.fire({
-			icon: "warning",
-			title: "Valores incompletos",
-			text: "Para adicionar também selecione uma escola",
-		})
-	} else if (
-		$('#padraoAcessoId').val() == 0 ||
-		$('#padraoAcessoId').val() == null
-	) {
-		Swal.fire({
-			icon: "warning",
-			title: "Valores incompletos",
-			text: "Para adicionar também selecione um padrão de acesso",
-		})
-	} else {
-		getValues()
-		listarDados(dados)
-		$('#escola').val(0)
-		$('#padraoAcessoId').val(0)
-	}
-})
+$("#add-table").click(() => {
+  if (
+    $("#escola").val() == 0 ||
+    ($("#escola").val() == null && $("#padraoAcessoId").val() == 0) ||
+    $("#padraoAcessoId").val() == null
+  ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Valores incompletos",
+      text: "Para adicionar selecione uma escola e um padrão de acesso",
+    });
+  } else if ($("#escola").val() == 0 || $("#escola").val() == null) {
+    Swal.fire({
+      icon: "warning",
+      title: "Valores incompletos",
+      text: "Para adicionar também selecione uma escola",
+    });
+  } else if (
+    $("#padraoAcessoId").val() == 0 ||
+    $("#padraoAcessoId").val() == null
+  ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Valores incompletos",
+      text: "Para adicionar também selecione um padrão de acesso",
+    });
+  } else {
+    getValues();
+    listarDados(dados);
+    showPageUser(currentPage);
+    renderPageNumbers();
+    $("#escola").val(0);
+    $("#padraoAcessoId").val(0);
+  }
+});
 
 const listarDados = (dadosTabela) => {
-	var html = dadosTabela.map(function(item) {
-		console.log(item)
+  var html = dadosTabela
+    .map(function (item) {
+      console.log(item);
 
-		return (
-			"<tr>" +
-			"<td>" + item.padraoAcesso + "</td>" +
-			"<td>" + item.nomeEscola + "</td>" +
-			'<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-id="' +
-			item.id +
-			'" onclick="removerItem(this)"><i class="fa-solid fa-xmark"></i></span></td>' +
-			"</tr>"
-		);
-	}).join("");
+      return (
+        "<tr>" +
+        "<td>" +
+        item.padraoAcesso +
+        "</td>" +
+        "<td>" +
+        item.nomeEscola +
+        "</td>" +
+        '<td class="d-flex justify-content-center"><span style="width: 63px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-id="' +
+        item.id +
+        '" onclick="removerItem(this)"><i class="fa-solid fa-xmark"></i></span></td>' +
+        "</tr>"
+      );
+    })
+    .join("");
 
-	$("#cola-tabela").html(html); 
-}
+  $("#cola-tabela").html(html);
+};
 
 function formatarDataParaISO(data) {
-	if (!data) {
-		return "";
-	}
+  if (!data) {
+    return "";
+  }
 
-	var dataObj = new Date(data);
+  var dataObj = new Date(data);
 
-	if (isNaN(dataObj)) {
-		return "";
-	}
+  if (isNaN(dataObj)) {
+    return "";
+  }
 
-	var dia = String(dataObj.getUTCDate()).padStart(2, "0");
-	var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
-	var ano = dataObj.getUTCFullYear();
+  var dia = String(dataObj.getUTCDate()).padStart(2, "0");
+  var mes = String(dataObj.getUTCMonth() + 1).padStart(2, "0");
+  var ano = dataObj.getUTCFullYear();
 
-	return ano + "-" + mes + "-" + dia; // Formato ISO para campos de data (yyyy-MM-dd)
+  return ano + "-" + mes + "-" + dia; // Formato ISO para campos de data (yyyy-MM-dd)
 }
 
 function getDados() {
-	$.ajax({
-		url: url_base + '/contaPadraoAcessos/conta/' + contaId,
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			if (item.ativo == "S") {
-				/*$('#mySelect').append($('<option>', {
+  $.ajax({
+    url: url_base + "/contaPadraoAcessos/conta/" + contaId,
+    type: "get",
+    async: false,
+  }).done(function (data) {
+    $.each(data, function (index, item) {
+      if (item.ativo == "S") {
+        /*$('#mySelect').append($('<option>', {
 					value: item.idContaPadraoAcesso,
 					text: item.padraoAcesso,
 					name: item.idContaPadraoAcesso
 				}));*/
 
-				$('#padraoAcessoId').append($('<option>', {
-					value: item.idContaPadraoAcesso,
-					text: item.padraoAcesso,
-					name: item.padraoAcesso
-				}));
-			}
-		});
-	})
+        $("#padraoAcessoId").append(
+          $("<option>", {
+            value: item.idContaPadraoAcesso,
+            text: item.padraoAcesso,
+            name: item.padraoAcesso,
+          })
+        );
+      }
+    });
+  });
 
-	$.ajax({
-		url: url_base + "/escolas/conta/" + contaId,
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			if (item.ativo == "S") {
-				$('#escola').append($('<option>', {
-					value: item.idEscola,
-					text: item.nomeEscola,
-					name: item.nomeEscola
-				}));
-			}
-		});
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
+  $.ajax({
+    url: url_base + "/escolas/conta/" + contaId,
+    type: "GET",
+    async: false,
+  })
+    .done(function (data) {
+      $.each(data, function (index, item) {
+        if (item.ativo == "S") {
+          $("#escola").append(
+            $("<option>", {
+              value: item.idEscola,
+              text: item.nomeEscola,
+              name: item.nomeEscola,
+            })
+          );
+        }
+      });
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+    });
 }
 
 const getValues = () => {
-	idArray += 1
-	dados.push({
-		id: idArray,
-		escolaId: $('#escola').val(),
-		padraoAcessoId: $('#padraoAcessoId').val(),
-		nomeEscola: $('#escola option:selected').text(),
-		padraoAcesso: $('#padraoAcessoId option:selected').text(),
-	})
+  idArray += 1;
+  dados.push({
+    id: idArray,
+    escolaId: $("#escola").val(),
+    padraoAcessoId: $("#padraoAcessoId").val(),
+    nomeEscola: $("#escola option:selected").text(),
+    padraoAcesso: $("#padraoAcessoId option:selected").text(),
+  });
 
-	return dados
-}
+  return dados;
+};
 
 /*$('#add-table').click(() => {
 	let dadosTabela = getValues()
@@ -344,327 +476,339 @@ const getValues = () => {
 })*/
 
 function cpfValido(cpf) {
-	cpf = cpf.replace(/[^\d]+/g, '');
+  cpf = cpf.replace(/[^\d]+/g, "");
 
-	if (cpf.length != 11)
-		return false;
+  if (cpf.length != 11) return false;
 
-	var soma = 0;
-	var resto;
-	for (var i = 1; i <= 9; i++) {
-		soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-	}
-	resto = (soma * 10) % 11;
+  var soma = 0;
+  var resto;
+  for (var i = 1; i <= 9; i++) {
+    soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+  }
+  resto = (soma * 10) % 11;
 
-	if ((resto == 10) || (resto == 11)) {
-		resto = 0;
-	}
+  if (resto == 10 || resto == 11) {
+    resto = 0;
+  }
 
-	if (resto != parseInt(cpf.substring(9, 10))) {
-		return false;
-	}
+  if (resto != parseInt(cpf.substring(9, 10))) {
+    return false;
+  }
 
-	soma = 0;
-	for (var i = 1; i <= 10; i++) {
-		soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-	}
-	resto = (soma * 10) % 11;
+  soma = 0;
+  for (var i = 1; i <= 10; i++) {
+    soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+  }
+  resto = (soma * 10) % 11;
 
-	if ((resto == 10) || (resto == 11)) {
-		resto = 0;
-	}
+  if (resto == 10 || resto == 11) {
+    resto = 0;
+  }
 
-	if (resto != parseInt(cpf.substring(10, 11))) {
-		return false;
-	}
+  if (resto != parseInt(cpf.substring(10, 11))) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 function ValidarCpf() {
-	const cpf = $('#cpf');
-	$.ajax({
-		url: url_base + '/usuario/verificar-cpf?cpf=' + cpf.val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		type: "get",
-		complete: function(jqXHR, textStatus) {
-			console.log('Status da requisição:', textStatus);
-			console.log('Código de status HTTP:', jqXHR.status);
-			if (jqXHR.status == 400 && cpf.val().replace(/[^a-zA-Z0-9 ]/g, "") != cpfFixed) {
-				const message = $("<p id='errMessage'></p>").text("CPF já utilizado por outro usuário").css('color', '#FF0000');
-				if ($("#cardCpf").find('#errMessage').length > 0) {
-					$('#errMessage').remove()
-				}
-				$("#btn-adicionar").attr("disabled", "disabled");
-				cpf.addClass('err-message')
-				$("#cardCpf").append(message)
-				message.show()
-			} else {
-				$("#btn-adicionar").removeAttr('disabled');
-				cpf.removeClass('err-message')
-				$('#errMessage').css('display', 'none')
-			}
-		}
-	})
-	
-	const messageCpf = $("<p id='errMessageCPF'></p>").text("CPF Inválido").css('color', '#FF0000');
-	if (cpfValido(cpf.val())) {
-		$("#btn-adicionar").removeAttr('disabled');
-		cpf.removeClass('err-message')
-		$('#errMessageCPF').css('display', 'none')
-	} else {
-		if ($("#cardCpf").find('#errMessageCPF').length > 0) {
-			$('#errMessageCPF').remove()
-		}
-		$("#btn-adicionar").attr("disabled", "disabled");
-		cpf.addClass('err-message')
-		$("#cardCpf").append(messageCpf)
-		messageCpf.show()
-	}
+  const cpf = $("#cpf");
+  $.ajax({
+    url:
+      url_base +
+      "/usuario/verificar-cpf?cpf=" +
+      cpf.val().replace(/[^a-zA-Z0-9 ]/g, ""),
+    type: "get",
+    complete: function (jqXHR, textStatus) {
+      console.log("Status da requisição:", textStatus);
+      console.log("Código de status HTTP:", jqXHR.status);
+      if (
+        jqXHR.status == 400 &&
+        cpf.val().replace(/[^a-zA-Z0-9 ]/g, "") != cpfFixed
+      ) {
+        const message = $("<p id='errMessage'></p>")
+          .text("CPF já utilizado por outro usuário")
+          .css("color", "#FF0000");
+        if ($("#cardCpf").find("#errMessage").length > 0) {
+          $("#errMessage").remove();
+        }
+        $("#btn-adicionar").attr("disabled", "disabled");
+        cpf.addClass("err-message");
+        $("#cardCpf").append(message);
+        message.show();
+      } else {
+        $("#btn-adicionar").removeAttr("disabled");
+        cpf.removeClass("err-message");
+        $("#errMessage").css("display", "none");
+      }
+    },
+  });
+
+  const messageCpf = $("<p id='errMessageCPF'></p>")
+    .text("CPF Inválido")
+    .css("color", "#FF0000");
+  if (cpfValido(cpf.val())) {
+    $("#btn-adicionar").removeAttr("disabled");
+    cpf.removeClass("err-message");
+    $("#errMessageCPF").css("display", "none");
+  } else {
+    if ($("#cardCpf").find("#errMessageCPF").length > 0) {
+      $("#errMessageCPF").remove();
+    }
+    $("#btn-adicionar").attr("disabled", "disabled");
+    cpf.addClass("err-message");
+    $("#cardCpf").append(messageCpf);
+    messageCpf.show();
+  }
 }
 
-$("#cpf").blur(function() {
-	if(this.val() !== '')
-		ValidarCpf()
+$("#cpf").blur(function () {
+  if (this.val() !== "") ValidarCpf();
 });
 
-$("#email").blur(()=>{
-	
-	const email = $("#email")
-	$.ajax({
-		url: url_base + '/usuario/verificar-email?email=' + email.val(),
-		type: "get",
-		complete: function(jqXHR, textStatus) {
-			console.log('Status da requisição:', textStatus);
-			console.log('Código de status HTTP:', jqXHR.status);
-			if (jqXHR.status == 400 && email.val() != emailFixed) {
-				const message = $("<p id='errMessageEmail'></p>").text("Email já utilizado por outro usuário").css('color', '#FF0000');
-				if ($("#cardEmail").find('#errMessageEmail').length > 0) {
-					$('#errMessageEmail').remove()
-				}
-				$("#btn-adicionar").attr("disabled", "disabled");
-				email.addClass('err-message')
-				$("#cardEmail").append(message)
-				message.show()
-			} else {
-				$("#btn-adicionar").removeAttr('disabled');
-				email.removeClass('err-message')
-				$('#errMessageEmail').css('display', 'none')
-			}
-		}
-	})
-})
+$("#email").blur(() => {
+  const email = $("#email");
+  $.ajax({
+    url: url_base + "/usuario/verificar-email?email=" + email.val(),
+    type: "get",
+    complete: function (jqXHR, textStatus) {
+      console.log("Status da requisição:", textStatus);
+      console.log("Código de status HTTP:", jqXHR.status);
+      if (jqXHR.status == 400 && email.val() != emailFixed) {
+        const message = $("<p id='errMessageEmail'></p>")
+          .text("Email já utilizado por outro usuário")
+          .css("color", "#FF0000");
+        if ($("#cardEmail").find("#errMessageEmail").length > 0) {
+          $("#errMessageEmail").remove();
+        }
+        $("#btn-adicionar").attr("disabled", "disabled");
+        email.addClass("err-message");
+        $("#cardEmail").append(message);
+        message.show();
+      } else {
+        $("#btn-adicionar").removeAttr("disabled");
+        email.removeClass("err-message");
+        $("#errMessageEmail").css("display", "none");
+      }
+    },
+  });
+});
 
-
-$("#usuario").blur(()=>{
-	
-	const usuario = $("#usuario")
-	$.ajax({
-		url: url_base + '/usuario/verificar-usuario?usuario=' + usuario.val(),
-		type: "get",
-		complete: function(jqXHR, textStatus) {
-			console.log('Status da requisição:', textStatus);
-			console.log('Código de status HTTP:', jqXHR.status);
-			if (jqXHR.status == 400) {
-				const messageEmail = $("<p id='errMessageUsuario'></p>").text("Usuário já utilizado").css('color', '#FF0000');
-				if ($("#cardUsuario").find('#errMessageUsuario').length > 0) {
-					$('#errMessageUsuario').remove()
-				}
-				$("#btn-adicionar").attr("disabled", "disabled");
-				usuario.addClass('err-message')
-				$("#cardUsuario").append(messageEmail)
-				messageEmail.show()
-			} else {
-				$("#btn-adicionar").removeAttr('disabled');
-				usuario.removeClass('err-message')
-				$('#errMessageUsuario').css('display', 'none')
-			}
-		}
-	})
-})
-
+$("#usuario").blur(() => {
+  const usuario = $("#usuario");
+  $.ajax({
+    url: url_base + "/usuario/verificar-usuario?usuario=" + usuario.val(),
+    type: "get",
+    complete: function (jqXHR, textStatus) {
+      console.log("Status da requisição:", textStatus);
+      console.log("Código de status HTTP:", jqXHR.status);
+      if (jqXHR.status == 400) {
+        const messageEmail = $("<p id='errMessageUsuario'></p>")
+          .text("Usuário já utilizado")
+          .css("color", "#FF0000");
+        if ($("#cardUsuario").find("#errMessageUsuario").length > 0) {
+          $("#errMessageUsuario").remove();
+        }
+        $("#btn-adicionar").attr("disabled", "disabled");
+        usuario.addClass("err-message");
+        $("#cardUsuario").append(messageEmail);
+        messageEmail.show();
+      } else {
+        $("#btn-adicionar").removeAttr("disabled");
+        usuario.removeClass("err-message");
+        $("#errMessageUsuario").css("display", "none");
+      }
+    },
+  });
+});
 
 const cadastrar = () => {
-	if (dados.length == 0) {
-		Swal.fire({
-			icon: "warning",
-			title: "Valores incompletos",
-			text: "Para cadastrar selecione uma escola e um padrão de acesso",
-		})
-	} else {
-		let dadosFormulario = {
-			"usuario": $('#usuario').val(),
-			"nomeCompleto": $('#nomeCompleto').val(),
-			"email": $('#email').val(),
-			"emailVerificado": "N",
-			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
-			"senha": $('#senha').val(),
-			"celular": $('#celular').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"celularVerificado": "N"
-		};
+  if (dados.length == 0) {
+    Swal.fire({
+      icon: "warning",
+      title: "Valores incompletos",
+      text: "Para cadastrar selecione uma escola e um padrão de acesso",
+    });
+  } else {
+    let dadosFormulario = {
+      usuario: $("#usuario").val(),
+      nomeCompleto: $("#nomeCompleto").val(),
+      email: $("#email").val(),
+      emailVerificado: "N",
+      cpf: $("#cpf")
+        .val()
+        .replace(/[^a-zA-Z0-9 ]/g, ""),
+      dataNascimento: `${$("#dataNascimento").val()}T00:00:00`,
+      senha: $("#senha").val(),
+      celular: $("#celular")
+        .val()
+        .replace(/[^a-zA-Z0-9 ]/g, ""),
+      celularVerificado: "N",
+    };
 
-		$.ajax({
-			url: url_base + '/usuario',
-			type: "POST",
-			data: JSON.stringify(dadosFormulario),
-			contentType: "application/json; charset=utf-8",
-			beforeSend: function() {
-				Swal.showLoading()
-			},
-			error: function(e) {
-				Swal.close();
-				console.log(e)
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível cadastrar nesse momento!",
-				});
-			}
-		}).done(function(data) {
-			$.each(dados, function(index, item) {
-				let objeto = {
-					"usuarioId": data.idUsuario,
-					"contaPadraoAcessoId": item.padraoAcessoId,
-					"escolaId": item.escolaId
-				}
+    $.ajax({
+      url: url_base + "/usuario",
+      type: "POST",
+      data: JSON.stringify(dadosFormulario),
+      contentType: "application/json; charset=utf-8",
+      beforeSend: function () {
+        Swal.showLoading();
+      },
+      error: function (e) {
+        Swal.close();
+        console.log(e);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Não foi possível cadastrar nesse momento!",
+        });
+      },
+    }).done(function (data) {
+      $.each(dados, function (index, item) {
+        let objeto = {
+          usuarioId: data.idUsuario,
+          contaPadraoAcessoId: item.padraoAcessoId,
+          escolaId: item.escolaId,
+        };
 
-				$.ajax({
-					url: url_base + '/usuarioContas',
-					type: "POST",
-					data: JSON.stringify(objeto),
-					contentType: "application/json; charset=utf-8",
-					error: function(e) {
-						Swal.close();
-						console.log(e)
-						Swal.fire({
-							icon: "error",
-							title: "Oops...",
-							text: "Não foi possível cadastar nesse momento!",
-						});
-					}
-				}).done(function(res) {
-				});
-			});
+        $.ajax({
+          url: url_base + "/usuarioContas",
+          type: "POST",
+          data: JSON.stringify(objeto),
+          contentType: "application/json; charset=utf-8",
+          error: function (e) {
+            Swal.close();
+            console.log(e);
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Não foi possível cadastar nesse momento!",
+            });
+          },
+        }).done(function (res) {});
+      });
 
-			Swal.close();
-			Swal.fire({
-				title: "Cadastrado com sucesso",
-				icon: "success",
-			}).then(() => {
-				window.location.href = "usuarios";
-			})
-		});
-	}
-}
+      Swal.close();
+      Swal.fire({
+        title: "Cadastrado com sucesso",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "usuarios";
+      });
+    });
+  }
+};
 
 const editar = () => {
-	if (dados.length == 0) {
-		Swal.fire({
-			icon: "warning",
-			title: "Valores incompletos",
-			text: "Para cadastrar selecione uma escola e um padrão de acesso",
-		})
-	} else {
-		let dadosFormulario = {
-			"idUsuario": idUsuario,
-			"usuario": $('#usuario').val(),
-			"nomeCompleto": $('#nomeCompleto').val(),
-			"email": $('#email').val(),
-			"emailVerificado": "N",
-			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"dataNascimento": `${$('#dataNascimento').val()}T00:00:00`,
-			"celular": $('#celular').val().replace(/[^a-zA-Z0-9]/g, "").replace(/\s+/g, ""),
-			"celularVerificado": "N"
-		};
-		
-		console.log(dadosFormulario)
+  if (dados.length == 0) {
+    Swal.fire({
+      icon: "warning",
+      title: "Valores incompletos",
+      text: "Para cadastrar selecione uma escola e um padrão de acesso",
+    });
+  } else {
+    let dadosFormulario = {
+      idUsuario: idUsuario,
+      usuario: $("#usuario").val(),
+      nomeCompleto: $("#nomeCompleto").val(),
+      email: $("#email").val(),
+      emailVerificado: "N",
+      cpf: $("#cpf")
+        .val()
+        .replace(/[^a-zA-Z0-9 ]/g, ""),
+      dataNascimento: `${$("#dataNascimento").val()}T00:00:00`,
+      celular: $("#celular")
+        .val()
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .replace(/\s+/g, ""),
+      celularVerificado: "N",
+    };
 
-		$.ajax({
-			url: url_base + '/usuario',
-			type: "PUT",
-			data: JSON.stringify(dadosFormulario),
-			contentType: "application/json; charset=utf-8",
-			beforeSend: function() {
-				Swal.showLoading()
-			},
-			error: function(e) {
-				Swal.close();
-				console.log(e)
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível editar nesse momento!",
-				});
-			}
-		}).done(function(data) {
-			$.ajax({
-				url: url_base + '/usuarioContas/usuario/' + idUsuario,
-				type: "delete",
-				contentType: "application/json; charset=utf-8",
-				error: function(e) {
-					Swal.close();
-					console.log(e)
-					Swal.fire({
-						icon: "error",
-						title: "Oops...",
-						text: "Não foi possível deletar nesse momento!",
-					});
-				}
-			}).done(function(resp) {
+    console.log(dadosFormulario);
 
-				$.each(dados, function(index, item) {
-					let objeto = {
-						"usuarioId": idUsuario,
-						"contaPadraoAcessoId": item.padraoAcessoId,
-						"escolaId": item.escolaId
-					}
+    $.ajax({
+      url: url_base + "/usuario",
+      type: "PUT",
+      data: JSON.stringify(dadosFormulario),
+      contentType: "application/json; charset=utf-8",
+      beforeSend: function () {
+        Swal.showLoading();
+      },
+      error: function (e) {
+        Swal.close();
+        console.log(e);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Não foi possível editar nesse momento!",
+        });
+      },
+    }).done(function (data) {
+      $.ajax({
+        url: url_base + "/usuarioContas/usuario/" + idUsuario,
+        type: "delete",
+        contentType: "application/json; charset=utf-8",
+        error: function (e) {
+          Swal.close();
+          console.log(e);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Não foi possível deletar nesse momento!",
+          });
+        },
+      }).done(function (resp) {
+        $.each(dados, function (index, item) {
+          let objeto = {
+            usuarioId: idUsuario,
+            contaPadraoAcessoId: item.padraoAcessoId,
+            escolaId: item.escolaId,
+          };
 
-					$.ajax({
-						url: url_base + '/usuarioContas',
-						type: "POST",
-						data: JSON.stringify(objeto),
-						contentType: "application/json; charset=utf-8",
-						error: function(e) {
-							Swal.close();
-							console.log(e)
-							Swal.fire({
-								icon: "error",
-								title: "Oops...",
-								text: "Não foi possível editar usuario conta!",
-							});
-						}
-					}).done(function(res) {
-					});
-				});
+          $.ajax({
+            url: url_base + "/usuarioContas",
+            type: "POST",
+            data: JSON.stringify(objeto),
+            contentType: "application/json; charset=utf-8",
+            error: function (e) {
+              Swal.close();
+              console.log(e);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Não foi possível editar usuario conta!",
+              });
+            },
+          }).done(function (res) {});
+        });
 
-				Swal.close();
-				Swal.fire({
-					title: "Editado com sucesso",
-					icon: "success",
-				}).then(() => {
-					window.location.href = "usuarios";
-				})
-			})
-		});
-	}
-}
+        Swal.close();
+        Swal.fire({
+          title: "Editado com sucesso",
+          icon: "success",
+        }).then(() => {
+          window.location.href = "usuarios";
+        });
+      });
+    });
+  }
+};
 
+$("#formNovoCadastro").submit(function (e) {
+  e.preventDefault();
 
-
-$("#formNovoCadastro").submit(function(e) {
-	e.preventDefault();
-
-	if (idUsuario != undefined) {
-		editar()
-	} else {
-		if ($("#senhaConfirmacao").val() != $("#senha").val()) {
-			Swal.fire({
-				icon: "error",
-				title: "A duas senhas devem ser iguais!",
-				text: "Verifique as senha novamente!",
-			});
-		} else {
-			cadastrar()
-		}
-	}
+  if (idUsuario != undefined) {
+    editar();
+  } else {
+    if ($("#senhaConfirmacao").val() != $("#senha").val()) {
+      Swal.fire({
+        icon: "error",
+        title: "A duas senhas devem ser iguais!",
+        text: "Verifique as senha novamente!",
+      });
+    } else {
+      cadastrar();
+    }
+  }
 });
