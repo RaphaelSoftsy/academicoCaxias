@@ -14,6 +14,7 @@ var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 var id = 0;
+var series = [];
 
 $(document).ready(function () {
   $(".dropdown-toggle-form").click(function () {});
@@ -114,12 +115,13 @@ $(document).ready(function () {
       "#turmaSearchTurnoEdit"
     );
   });
+
   $.ajax({
     url: url_base + "/serie",
     type: "get",
     async: false,
   }).done(function (data) {
-    console.log(data);
+    series = data;
     preencherOpcoes(data, "#serieIdOptions", "#serieId", "#serieIdSearch");
     preencherOpcoes(
       data,
@@ -271,7 +273,6 @@ function getDados() {
 }
 
 function listarDados(dados) {
-  console.log(dados);
   var html = dados
     .map(function (item) {
       var ativo;
@@ -283,6 +284,10 @@ function listarDados(dados) {
         ativo =
           "<i style='color:#2eaa3a' class='fa-solid iconeTabela fa-circle-check'></i> Sim";
       }
+
+      var serie = series.find(function (serie) {
+        return serie.idSerie == item.idSerie;
+      });
 
       return (
         "<tr>" +
@@ -299,7 +304,7 @@ function listarDados(dados) {
         item.turno +
         "</td>" +
         "<td>" +
-        item.serie +
+        `${serie.serie} - ${serie.descricao}` +
         "</td>" +
         "<td>" +
         item.descricaoOferta +
@@ -322,7 +327,7 @@ function listarDados(dados) {
         '<td class="d-flex justify-content-center"><button style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm edit-table" data-concursoId="' +
         item.idConcurso +
         '" data-serieId="' +
-        item.serieId +
+        item.idSerie +
         '" data-cursoId="' +
         item.idCurso +
         '" data-escolaId="' +
