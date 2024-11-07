@@ -201,7 +201,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="modal-body">
 						<form id="formEdit">
 							<div class="mb-4">
-								<label for="edit-nome" class="form-label">Concurso:</label> <input
+								<label for="edit-nome" class="form-label">Concurso:</label><span class="red">*</span> <input
 									type="text" class="form-control" id="edit-nome" required
 									aria-describedby="Descricao" autocomplete="off">
 							</div>

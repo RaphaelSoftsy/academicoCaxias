@@ -361,7 +361,6 @@ function cadastrar() {
 		dataFechamento: $("#dataFechamento").val(),
 		periodoLetivoId: $("#periodoLetivoId").val(),
 		contaId: contaId
-
 	}
 
 	$.ajax({
