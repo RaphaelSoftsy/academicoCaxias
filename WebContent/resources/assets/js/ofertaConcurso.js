@@ -238,9 +238,12 @@ $(document).ready(function () {
         .show();
     }
   }
-  showPage(currentPage);
+  
   updatePagination();
+  showPage(currentPage);
+
   getDados();
+  
 
   $(".checkbox-toggle").each(function () {
     var status = $(this).data("status");

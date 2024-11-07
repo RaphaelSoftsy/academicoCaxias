@@ -184,8 +184,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="curriculoId" class="form-label">Curriculo:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Curriculo"
-									id="curriculoId" required name="curriculoId">
+								</label>
+								<div class="custom-select">
+									<input type="text" id="curriculoSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="curriculoOption"></ul>
+								</div>
+								<select class="form-select" aria-label="Curriculo"
+									id="curriculoId" name="curriculoId" hidden>
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
@@ -193,16 +199,29 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="serieId" class="form-label">Série:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Serie" id="serieId"
-									required name="serieId">
+								</label>
+								<div class="custom-select">
+									<input type="text" id="serieSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="serieOption"></ul>
+								</div>
+								<select class="form-select" aria-label="Serie" id="serieId"
+									name="serieId" hidden>
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="areaConhecimentoId" class="form-label">Área de conhecimento (Caso queira filtrar disciplina):
-								</label> <select class="form-select" aria-label="Disciplina"
-									id="areaConhecimentoId" required name="areaConhecimentoId">
+								<label for="areaConhecimentoId" class="form-label">Área
+									de conhecimento (Caso queira filtrar disciplina): </label>
+								<div class="custom-select">
+									<input type="text" id="areaConhecimentoSearch"
+										class="form-control" placeholder="Selecione ou pesquise..."
+										autocomplete="off" />
+									<ul class="options-list" id="areaConhecimentoOption"></ul>
+								</div>
+								<select class="form-select" aria-label="Area Conhecimento"
+									id="areaConhecimentoId" name="areaConhecimentoId" hidden>
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
@@ -210,41 +229,47 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="disciplinaId" class="form-label">Disciplina:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Disciplina"
-									id="disciplinaId" required name="disciplinaId">
+								</label>
+								<div class="custom-select">
+									<input type="text" id="disciplinaSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="disciplinaOption"></ul>
+								</div>
+								<select class="form-select" aria-label="Disciplina"
+									id="disciplinaId" name="disciplinaId" hidden>
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
 							</div>
-							
+
 							<div class="mb-4">
 								<div class="col-md-12">
-									<label for="chequeHorario" class="form-label">Obrigatório:<span class="red">*</span>
+									<label for="obrigatoria" class="form-label">Obrigatório:<span
+										class="red">*</span>
 									</label>
 									<div class="form-control card-form-infra">
-										<label for="choqueHorario">Sim</label> <label class="switch">
-											<input type="checkbox" id="choqueHorario"
-											name="choqueHorario" /> <span
-											class="slider"></span>
-										</label> <label for="choqueHorario">Não</label>
+										<label for="obrigatoria">Sim</label> <label class="switch">
+											<input type="checkbox" id="obrigatoria"
+											name="obrigatoria" /> <span class="slider"></span>
+										</label> <label for="obrigatoria">Não</label>
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="mb-4">
 								<div class="col-md-12">
-									<label for="retemSerie" class="form-label">Pode reter o aluno:<span class="red">*</span>
+									<label for="retemSerie" class="form-label">Pode reter o
+										aluno:<span class="red">*</span>
 									</label>
 									<div class="form-control card-form-infra">
 										<label for="retemSerie">Sim</label> <label class="switch">
-											<input type="checkbox" id="retemSerie"
-											name="retemSerie" /> <span
-											class="slider"></span>
+											<input type="checkbox" id="retemSerie" name="retemSerie" />
+											<span class="slider"></span>
 										</label> <label for="choqueHorario">Não</label>
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
@@ -270,8 +295,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="serieIdEdit" class="form-label">Série:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Serie" id="serieIdEdit"
-									required name="serieIdEdit">
+								</label>
+								<div class="custom-select">
+									<input type="text" id="serieSearchEdit" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="serieOptionEdit"></ul>
+								</div>
+								<select class="form-select" aria-label="Serie" id="serieIdEdit"
+									required name="serieIdEdit" hidden>
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
@@ -279,51 +310,65 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="curriculoIdEdit" class="form-label">Curriculo:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Curriculo"
-									id="curriculoIdEdit" required name="curriculoIdEdit">
+								</label>
+								<div class="custom-select">
+									<input type="text" id="curriculoSearchEdit"
+										class="form-control" placeholder="Selecione ou pesquise..."
+										autocomplete="off" />
+									<ul class="options-list" id="curriculoOptionEdit"></ul>
+								</div>
+								<select class="form-select" aria-label="Curriculo"
+									id="curriculoIdEdit" required name="curriculoIdEdit" hidden>
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
 							</div>
 							<div class="mb-4">
-								<label for="areaConhecimentoIdEdit" class="form-label">Área de conhecimento (Caso queira filtrar disciplina):
-								</label> <select class="form-select" aria-label="Disciplina"
-									id="areaConhecimentoIdEdit" required name="areaConhecimentoIdEdit">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-								</select>
-							</div>
-							<div class="mb-4">
-								<label for="disciplinaIdEdit" class="form-label">Disciplina:<span
+								<label for="disciplinaId" class="form-label">Disciplina:<span
 									class="red">*</span>
-								</label> <select class="form-select" aria-label="Disciplina"
-									id="disciplinaIdEdit" required name="disciplinaIdEdit">
+								</label>
+								<div class="custom-select">
+									<input type="text" id="disciplinaSearchEdit"
+										class="form-control" placeholder="Selecione ou pesquise..."
+										autocomplete="off" />
+									<ul class="options-list" id="disciplinaOptionEdit"></ul>
+								</div>
+								<select class="form-select" aria-label="Disciplina"
+									id="disciplinaIdEdit" required name="disciplinaId" hidden>
 									<option selected disabled value="">Selecione uma opção
 									</option>
 								</select>
 							</div>
+
+
 							<div class="mb-4">
-								<label for="obrigatoriaEdit" class="form-label">Obrigatória:<span
-									class="red">*</span>
-								</label> <select class="form-select" aria-label="Obrigatoria"
-									id="obrigatoriaEdit" required name="obrigatoriaEdit">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-									<option value="S">Sim</option>
-									<option value="N">Não</option>
-								</select>
+								<div class="col-md-12">
+									<label for="obrigatoriaEdit" class="form-label">Obrigatório:<span
+										class="red">*</span>
+									</label>
+									<div class="form-control card-form-infra">
+										<label for="obrigatoriaEdit">Sim</label> <label class="switch">
+											<input type="checkbox" id="obrigatoriaEdit"
+											name="obrigatoriaEdit" /> <span class="slider"></span>
+										</label> <label for="obrigatoriaEdit">Não</label>
+									</div>
+								</div>
 							</div>
+
 							<div class="mb-4">
-								<label for="retemSerieEdit" class="form-label">Pode
-									reter o aluno:<span class="red">*</span>
-								</label> <select class="form-select" aria-label="retemSerie"
-									id="retemSerieEdit" required name="retemSerieEdit">
-									<option selected disabled value="">Selecione uma opção
-									</option>
-									<option value="S">Sim</option>
-									<option value="N">Não</option>
-								</select>
+								<div class="col-md-12">
+									<label for="retemSerieEdit" class="form-label">Pode
+										reter o aluno:<span class="red">*</span>
+									</label>
+									<div class="form-control card-form-infra">
+										<label for="retemSerieEdit">Sim</label> <label class="switch">
+											<input type="checkbox" id="retemSerieEdit"
+											name="retemSerieEdit" /> <span class="slider"></span>
+										</label> <label for="choqueHorario">Não</label>
+									</div>
+								</div>
 							</div>
+
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>

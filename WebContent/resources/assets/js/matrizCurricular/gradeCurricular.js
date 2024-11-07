@@ -5,7 +5,7 @@ const cursoIdSession = sessionStorage.getItem("cursoId")
 var nome = '';
 var nome2 = '';
 var nome3 = '';
-var rows = 5;
+var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 let descricao = ''
@@ -23,33 +23,7 @@ function getAswer(input) {
 
 $(document).ready(function() {
 	$(".container-table").hide()
-	$.ajax({
-		url: url_base + "/areaConhecimento/conta/" + contaId,
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			$.each(data, function(index, item) {
-				$("#areaConhecimentoId").append(
-					$("<option>", {
-						value: item.idAreaConhecimento,
-						text: item.areaConhecimento,
-						name: item.areaConhecimento,
-					})
-				);
 
-				$("#areaConhecimentoIdEdit").append(
-					$("<option>", {
-						value: item.idAreaConhecimento,
-						text: item.areaConhecimento,
-						name: item.areaConhecimento,
-					})
-				);
-			})
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
 
 	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
 		$('#curriculoIdLista').removeAttr('disabled');
@@ -100,34 +74,6 @@ $(document).ready(function() {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 
-	$('#areaConhecimentoIdEdit').change(() => {
-		$('#disciplinaIdEdit').empty()
-		$('#disciplinaIdEdit').removeAttr('disabled');
-		$('#disciplinaIdEdit').append(`<option value='0' selected disabled>Selecione a disciplina</option>`)
-
-		let area = $('#areaConhecimentoIdEdit').val()
-		console.log(area)
-		$.ajax({
-			url: url_base + "/disciplina/areaConhecimento/" + area,
-			type: "GET",
-			async: false,
-		}).done(function(data) {
-			$.each(data, function(index, item) {
-
-				$("#disciplinaIdEdit").append(
-					$("<option>", {
-						value: item.idDisciplina,
-						text: item.codDiscip + " - " + item.nome,
-						name: item.nome,
-					})
-				);
-			});
-
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-	});
-
 	$('#areaConhecimentoId').change(() => {
 		$('#disciplinaId').empty()
 		$('#disciplinaId').removeAttr('disabled');
@@ -140,23 +86,13 @@ $(document).ready(function() {
 			type: "GET",
 			async: false,
 		}).done(function(data) {
-			$.each(data, function(index, item) {
-				$("#disciplinaId").append(
-					$("<option>", {
-						value: item.idDisciplina,
-						text: item.codDiscip + " - " + item.nome,
-						name: item.nome,
-					})
-				);
 
-				$("#disciplinaIdEdit").append(
-					$("<option>", {
-						value: item.idDisciplina,
-						text: item.codDiscip + " - " + item.nome,
-						name: item.nome,
-					})
-				);
-			});
+			preencherOpcoes(
+				data,
+				"#disciplinaOption",
+				"#disciplinaId",
+				"#disciplinaSearch"
+			);
 
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -187,107 +123,92 @@ $(document).ready(function() {
 		})
 	});
 
-	$.ajax({
-		url: url_base + "/serie",
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#serieId").append(
-				$("<option>", {
-					value: item.idSerie,
-					text: `${item.serie} - ${item.descricao}`,
-					name: item.serie,
-				})
-			);
-		});
-
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
 
 	$.ajax({
 		url: url_base + "/curriculo",
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#curriculoId").append(
-				$("<option>", {
-					value: item.idCurriculo,
-					text: item.curriculo,
-					name: item.curriculo,
-				})
-			);
-		});
+		preencherOpcoes(
+			data,
+			"#curriculoOption",
+			"#curriculoId",
+			"#curriculoSearch"
+		);
 
+		preencherOpcoes(
+			data,
+			"#curriculoOptionEdit",
+			"#curriculoIdEdit",
+			"#curriculoSearchEdit"
+		);
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
+
+	$.ajax({
+		url: url_base + "/serie",
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		preencherOpcoes(
+			data,
+			"#serieOption",
+			"#serieId",
+			"#serieSearch"
+		)
+
+		preencherOpcoes(
+			data,
+			"#serieOptionEdit",
+			"#serieIdEdit",
+			"#serieSearchEdit"
+		)
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$.ajax({
+		url: url_base + "/areaConhecimento/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		console.log("Dados de Área de Conhecimento:", data); // Log para verificar o retorno
+		preencherOpcoes(
+			data,
+			"#areaConhecimentoOption",
+			"#areaConhecimentoId",
+			"#areaConhecimentoSearch"
+		);
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+
 
 	$.ajax({
 		url: url_base + "/disciplina",
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#disciplinaId").append(
-				$("<option>", {
-					value: item.idDisciplina,
-					text: item.codDiscip + " - " + item.nome,
-					name: item.nome,
-				})
-			);
+		preencherOpcoes(
+			data,
+			"#disciplinaOption",
+			"#disciplinaId",
+			"#disciplinaSearch"
+		);
 
-			$("#disciplinaIdEdit").append(
-				$("<option>", {
-					value: item.idDisciplina,
-					text: item.codDiscip + " - " + item.nome,
-					name: item.nome,
-				})
-			);
-		});
+		preencherOpcoes(
+			data,
+			"#disciplinaOptionEdit",
+			"#disciplinaIdEdit",
+			"#disciplinaSearchEdit"
+		);
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 
-	$.ajax({
-		url: url_base + "/serie",
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#serieIdEdit").append(
-				$("<option>", {
-					value: item.idSerie,
-					text: `${item.serie} - ${item.descricao}`,
-					name: item.serie,
-				})
-			);
-		});
-
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
-
-	$.ajax({
-		url: url_base + "/curriculo",
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$("#curriculoIdEdit").append(
-				$("<option>", {
-					value: item.idCurriculo,
-					text: item.curriculo,
-					name: item.curriculo,
-				})
-			);
-		});
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
 
 
 	$("#inputBusca").on("keyup", function() {
@@ -372,16 +293,6 @@ function listarDados(dados) {
 	}).join("");
 
 	$("#cola-tabela").html(html);
-	/*
-		// Limitar o número de linhas exibidas
-		var maxRows = 6;
-	
-		// Mostrar apenas as linhas que estão dentro do limite
-		$('#myTable tbody tr').each(function(index) {
-			if (index >= maxRows) {
-				$(this).addClass('hidden-row');
-			}
-		});*/
 
 	// Inicializar o toggle
 	$('.checkbox-toggle').each(function() {
@@ -405,7 +316,6 @@ function preencherOpcoes(items, optionsListId, selectId, searchId) {
 	const $optionsList = $(optionsListId);
 	const $selectElement = $(selectId);
 
-	// Limpa as opções anteriores
 	$optionsList.empty();
 	$selectElement
 		.empty()
@@ -413,30 +323,40 @@ function preencherOpcoes(items, optionsListId, selectId, searchId) {
 			'<option value="" disabled selected>Selecione uma opção</option>'
 		);
 
-	// Itera sobre os itens retornados pela API
 	$.each(items, function(index, item) {
 
-		if (item.ativo === "S") {
+
+
+		// Primeiro, verifica se o item está ativo, caso exista a chave "ativo"
+		if (item.ativo === "S" || item.areaConhecimento) {
 			const optionText =
-				`${item.curriculo}` ||
-				`$${item.serie} - ${item.descricao}` ||
-				item.codDiscip + " - " + item.nome ||
-				item?.nomeCurso ||
-				`${item?.turno || ""} - ${item?.mnemonico || ""}`;
+				item.curriculo
+					? `${item.curriculo}`
+					: item.serie && item.descricao
+						? `${item.serie} - ${item.descricao}`
+						: item.codDiscip && item.nome
+							? `${item.codDiscip} - ${item.nome}`
+							: item.areaConhecimento
+								? `${item.areaConhecimento}`
+								: "Opção Inválida";
 
+	
+		
 
-			$optionsList.append(
-				`<li data-value="${item.idConcurso || item.idCurso || item.idEscola || item.idTurno
-				}">${optionText}</li>`
-			);
-			$selectElement.append(
-				$("<option>", {
-					value: item.idConcurso ?? item.idCurso ?? item.idEscola ?? item.idTurno ?? ''
-					,
-					text: optionText,
-				})
-			);
+		$optionsList.append(
+			`<li data-value="${item.idCurriculo || item.idSerie || item.idAreaConhecimento || item.idDisciplina
+			}">${optionText}</li>`
+		);
+		$selectElement.append(
+			$("<option>", {
+				value: item.idCurriculo ?? item.idSerie ?? item.idreaConhecimento ?? item.idDisciplina ?? '',
+				text: optionText || 'Valor Inválido',
+			})
+		);
+		
 		}
+
+
 	});
 
 	// Exibe as opções ao focar no campo de busca
@@ -514,16 +434,49 @@ function showModal(ref) {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		$('#serieIdEdit').val(data.serie.idSerie)
-		$('#disciplinaIdEdit').val(data.disciplina.idDisciplina)
-		$('#areaConhecimentoIdEdit').val(data.disciplina.areaConhecimentoId)
-		$('#curriculoIdEdit').val(data.curriculo.idCurriculo)
-		$('#obrigatoriaEdit').val(data.obrigatoria)
-		$('#retemSerieEdit').val(data.retemSerie)
 		
+		preecherSwitch('#obrigatoriaEdit', data.obrigatoria)
+		preecherSwitch('#retemSerieEdit', data.retemSerie)
+
+		preencherCampoBusca(
+			"#serieSearchEdit",
+			"#serieOptionEdit",
+			"#serieIdEdit",
+			data.serie.idSerie
+		);
+
+		preencherCampoBusca(
+			"#curriculoSearchEdit",
+			"#curriculoOptionEdit",
+			"#curriculoIdEdit",
+			data.curriculo.idCurriculo
+		);
+
+		preencherCampoBusca(
+			"#disciplinaSearchEdit",
+			"#disciplinaOptionEdit",
+			"#disciplinaIdEdit",
+			data.disciplina.idDisciplina
+		);
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
+}
+
+function preecherSwitch(switchId, valor){
+	if(valor === "S"){
+		$(switchId).prop("checked", true)
+	}else{
+		$(switchId).prop("checked", false)
+	}
+}
+
+function preencherCampoBusca(searchId, optionsListId, selectId, valorId) {
+	$(selectId).val(valorId).change(); // Atualiza o valor do select
+	const textoSelecionado = $(selectId + " option:selected").text(); // Texto do select
+	$(searchId).val(textoSelecionado); // Preenche o campo de pesquisa
+	$(optionsListId).hide(); // Esconde a lista de opções
 }
 
 function listarGrade() {
@@ -578,7 +531,9 @@ function editar() {
 				title: "Editado com sucesso",
 				icon: "success",
 			}).then(result => {
-				window.location.href = 'grade-curricular-matriz-curricular'
+				sessionStorage.setItem("cursoId", $("#cursoIdLista").val())
+				sessionStorage.setItem("curriculoId", $("#curriculoIdLista").val())
+				window.location.href = 'grade-curricular'
 			})
 		})
 	return false;
