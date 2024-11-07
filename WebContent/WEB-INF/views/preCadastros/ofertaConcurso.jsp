@@ -367,13 +367,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
                 </div> -->
 
 							<div class="mb-4">
-								<label for="descricao" class="form-label">Descrição:</label> <input
+								<label for="descricao" class="form-label">Descrição:<span class="red">*</span></label> <input
 									type="text" class="form-control" id="descricao" required
 									aria-describedby="Descricao" autocomplete="off" />
 							</div>
 
 							<div class="mb-4">
-								<label for="vagas" class="form-label">Vagas:</label> <input
+								<label for="vagas" class="form-label">Vagas:<span class="red">*</span></label> <input
 									type="number" class="form-control" id="vagas" required
 									aria-describedby="vagas" autocomplete="off" />
 							</div>
@@ -381,7 +381,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<div class="mb-4">
 								<label for="vagasMin" class="form-label">Vagas
 									Mínimas para Abertura:</label> <input type="text" class="form-control"
-									id="vagasMin" required aria-describedby="vagasMin"
+									id="vagasMin" aria-describedby="vagasMin"
 									autocomplete="off" />
 							</div>
 
