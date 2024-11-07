@@ -78,11 +78,10 @@ $("#escola").change(() => {
       "<option selected disabled>Selecione uma opção</option>"
     );
     $.each(data, function (index, item) {
-		console.log(item)
       $("#serie").append(
         $("<option>", {
           value: item.serie,
-          text: `${item.serie}`,
+          text: `${item.serie} - ${item.descricao}`,
           name: item.serie,
         })
       );
