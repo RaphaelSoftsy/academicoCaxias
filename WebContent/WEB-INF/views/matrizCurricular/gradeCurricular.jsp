@@ -286,6 +286,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</select>
 							</div>
 							<div class="mb-4">
+								<label for="areaConhecimentoIdEdit" class="form-label">Área de conhecimento (Caso queira filtrar disciplina):
+								</label> <select class="form-select" aria-label="Disciplina"
+									id="areaConhecimentoIdEdit" required name="areaConhecimentoIdEdit">
+									<option selected disabled value="">Selecione uma opção
+									</option>
+								</select>
+							</div>
+							<div class="mb-4">
 								<label for="disciplinaIdEdit" class="form-label">Disciplina:<span
 									class="red">*</span>
 								</label> <select class="form-select" aria-label="Disciplina"

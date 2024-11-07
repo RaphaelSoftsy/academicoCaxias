@@ -146,13 +146,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="modal-body">
 						<form id="formCadastro">
 							<div class="mb-4">
-								<label for="cadastro-nome" class="form-label">Concurso:</label>
+								<label for="cadastro-nome" class="form-label">Concurso:<span class="red">*</span></label>
 								<input type="text" class="form-control" id="cadastro-nome"
 									required aria-describedby="Descricao" autocomplete="off">
 							</div>
 
 							<div class="mb-4">
-								<label for="dataInicio" class="form-label">Data Inicio:</label>
+								<label for="dataInicio" class="form-label">Data Inicio:<span class="red">*</span></label>
 								<input type="date" class="form-control" id="dataInicio" required
 									aria-describedby="Descricao 2" autocomplete="off">
 							</div>

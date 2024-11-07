@@ -37,6 +37,14 @@ $(document).ready(function() {
 						name: item.areaConhecimento,
 					})
 				);
+
+				$("#areaConhecimentoIdEdit").append(
+					$("<option>", {
+						value: item.idAreaConhecimento,
+						text: item.areaConhecimento,
+						name: item.areaConhecimento,
+					})
+				);
 			})
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -90,6 +98,34 @@ $(document).ready(function() {
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
+
+	$('#areaConhecimentoIdEdit').change(() => {
+		$('#disciplinaIdEdit').empty()
+		$('#disciplinaIdEdit').removeAttr('disabled');
+		$('#disciplinaIdEdit').append(`<option value='0' selected disabled>Selecione a disciplina</option>`)
+
+		let area = $('#areaConhecimentoIdEdit').val()
+		console.log(area)
+		$.ajax({
+			url: url_base + "/disciplina/areaConhecimento/" + area,
+			type: "GET",
+			async: false,
+		}).done(function(data) {
+			$.each(data, function(index, item) {
+
+				$("#disciplinaIdEdit").append(
+					$("<option>", {
+						value: item.idDisciplina,
+						text: item.codDiscip + " - " + item.nome,
+						name: item.nome,
+					})
+				);
+			});
+
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
 	});
 
 	$('#areaConhecimentoId').change(() => {
@@ -480,9 +516,11 @@ function showModal(ref) {
 	}).done(function(data) {
 		$('#serieIdEdit').val(data.serie.idSerie)
 		$('#disciplinaIdEdit').val(data.disciplina.idDisciplina)
+		$('#areaConhecimentoIdEdit').val(data.disciplina.areaConhecimentoId)
 		$('#curriculoIdEdit').val(data.curriculo.idCurriculo)
 		$('#obrigatoriaEdit').val(data.obrigatoria)
 		$('#retemSerieEdit').val(data.retemSerie)
+		
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
@@ -557,8 +595,8 @@ $('#formCadastro').on('submit', function(e) {
 });
 
 function cadastrar() {
-	
-	
+
+
 
 	var objeto = {
 		serieId: $('#serieId').val(),
