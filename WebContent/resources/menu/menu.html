@@ -54,7 +54,7 @@
     
     console.log('Logo')
     console.log(logoConta)
-    $("#imgLogoMenu").attr("src", logoConta);
+    $("#imgLogoMenu").attr("src", `data:image/png;base64,${logoConta}`);
     
     let isMenuClickEventAttached = false;
 

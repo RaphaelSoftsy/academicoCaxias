@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var logoConta = localStorage.getItem("imagemLogo");
 
 	if (logoConta != undefined) {
-		$("#logo-login").attr("src", logoConta);
+		$("#logo-login").attr("src", `data:image/png;base64,${logoConta}`);
 	}
 
 	$(".reveal").on('click', function() {
@@ -110,8 +110,23 @@ $('#btnLogin').click(function() {
 						})
 					}
 				}).done((res) => {
-					localStorage.setItem('imagemLogo', res.logoConta)
-					window.location.href = "acessarEscolas"
+					$.ajax({
+						url: url_base + `/conta/${responseData.contaId}/logo/`,
+						type: "get",
+						contentType: "application/json; charset=utf-8",
+						error: function(e) {
+							console.log(e)
+							Swal.fire({
+								title: 'Erro no sistema',
+								text: 'Erro ao realizar o login, por favor tente novamente mais tarde!!',
+								icon: 'error',
+								confirmButtonText: 'Ok'
+							})
+						}
+					}).done((imagemLogo) => {
+						localStorage.setItem('imagemLogo', imagemLogo)
+						window.location.href = "acessarEscolas"
+					})
 				})
 
 
