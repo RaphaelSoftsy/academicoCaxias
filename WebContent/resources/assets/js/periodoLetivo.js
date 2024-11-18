@@ -247,10 +247,10 @@ function listarDados(dados) {
 				item.ano +
 				"</td>" +
 				"<td>" +
-				tipoPeriodicidade +
+				item.periodo +
 				"</td>" +
 				"<td>" +
-				item.periodo +
+				tipoPeriodicidade +
 				"</td>" +
 				"<td>" +
 				formatarDataParaBR(item.dtInicio) +

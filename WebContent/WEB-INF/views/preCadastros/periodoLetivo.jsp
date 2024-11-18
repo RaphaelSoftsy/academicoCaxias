@@ -128,22 +128,23 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="tipoPeriodidade">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Tipo de Periodicidade</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-							</div>
-						</th>
+						
 						<th scope="col" class="sortable border-end" data-column="periodo">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
 									class="col d-flex align-items-center justify-content-between">
 									<span>Período</span> <i class="fas fa-sort me-3"
+										style="color: #dddddd"></i>
+								</div>
+							</div>
+						</th>
+						<th scope="col" class="sortable border-end" data-column="tipoPeriodidade">
+							<div
+								class="d-flex align-items-center justify-content-between pe-2">
+								<div
+									class="col d-flex align-items-center justify-content-between">
+									<span>Tipo de Periodicidade</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 							</div>

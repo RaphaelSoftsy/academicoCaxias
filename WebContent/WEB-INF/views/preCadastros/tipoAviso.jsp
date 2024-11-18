@@ -84,7 +84,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class='col-6'>
 					<div class="input-group">
-						<input id="inputBusca" type="text" class="form-	control inputForm"
+						<input id="inputBusca" type="text" class="form-control inputForm"
 							placeholder="Buscar" /> <span
 							class="input-group-text icone-pesquisa"><i
 							class="fas fa-search"></i></span>
