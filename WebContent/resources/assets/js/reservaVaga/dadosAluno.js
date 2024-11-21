@@ -108,6 +108,8 @@ $(document).ready(function() {
 			}
 		});
 	})
+	
+	
 
 	$.ajax({
 		url: url_base + '/paises',
@@ -465,6 +467,7 @@ function carregarDados(id) {
 		}).done(function(data) {
 
 			$("#tipoIngressoId").val(data.tipoIngresso.idTipoIngresso)
+			
 
 			numeroCandidato = data.candidato
 			idPessoa = data.pessoa
@@ -577,6 +580,7 @@ function carregarDados(id) {
 				$('#paisNascimentoId').val(data.paisNascimento.idPais);
 				$('#paisResidenciaId').val(data.paisResidencia.idPais);
 				$('#relacionamentoId').val(data.idPapelPessoa);
+				
 				/*	$('#nacionalidadeId').val(data.nacionalidadeId.idNacionalidade).attr("selected", true);;
 					$('#paisNascimentoId').val(data.paisNascimento.idPais).attr("selected", true);;
 					$('#paisResidenciaId').val(data.paisResidencia.idPais).attr("selected", true);;

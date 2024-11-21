@@ -75,7 +75,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-cogs fa-lg"></i> <span>Motivo Reprovação</span>
+					<i class="fa-solid fa-cogs fa-lg"></i> <span>Motivo de Reprovação do Candidato</span>
 				</div>
 			</div>
 		</section>

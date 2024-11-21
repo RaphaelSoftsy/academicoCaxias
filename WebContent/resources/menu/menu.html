@@ -13,7 +13,7 @@
 			<i class="fa-solid fa-bars" id="barsIcon"></i>
 		</div>
 	</section>
-	<section id="modalMenu" class="abracaMenu modalMenu">
+	<section id="modalMenu" class="abracaMenu modalMenu overflow-y">
 		<div class="close-btn-menu botao-desativa-menu" id="closeBtn">
 			<i class="fas fa-times"></i>
 		</div>
@@ -277,6 +277,7 @@
       $(".fa-chevron-left").click(() => {
         if ($(".abracaMenu").width() > 60) {
         	$(".abracaMenu").addClass("menu-fechado");
+        	$(".abracaMenu").removeClass("overflow-y")
         	
 	        $(".arrow").css("transform", "rotate(180deg)");
 	          $(".arrow").css("transition", "1000ms");
@@ -339,6 +340,8 @@
             "padding-right": "10%",
             "padding-top": "0",
           });
+          
+          $(".abracaMenu").addClass("overflow-y")
         }
       });
       

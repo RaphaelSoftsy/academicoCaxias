@@ -71,6 +71,7 @@ function getDados() {
 		async: false,
 	}).done(function(data) {
 		dadosOriginais = data
+		dados = data
 		listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 		$('.searchInput').val('');
 		$('.checkbox-toggle').each(function() {

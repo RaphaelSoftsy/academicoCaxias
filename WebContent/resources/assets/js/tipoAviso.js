@@ -46,11 +46,12 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/tipoTelefone",
+		url: url_base + "/tipoAviso/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
+			dados = data
 			listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -71,12 +72,12 @@ function listarDados(dados) {
 
 			"<tr>" +
 			"<td>" +
-			item.tipoTelefone +
+			item.descricao +
 			"</td>" +
 			'<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
-			item.idTipoTelefone +
+			item.idTipoAviso +
 			'" data-nome="' +
-			item.tipoTelefone +
+			item.descricao +
 			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
 			"</tr>"
 		);
@@ -94,19 +95,19 @@ function showModal(ref) {
 
 function editar() {
 	var objeto = {
-		idTipoTelefone: Number(id),
-		tipoTelefone: $('#edit-nome').val(),
+		idTipoAviso: Number(id),
+		descricao: $('#edit-nome').val(),
 		contaId: contaId
 	}
 
 	$.ajax({
-		url: url_base + "/tipoTelefone",
+		url: url_base + "/tipoAviso",
 		type: "PUT",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		error: function(e) {
-			console.log(e.responseJSON.message)
+			console.log(e)
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
@@ -141,13 +142,13 @@ $('#formCadastro').on('submit', function(e) {
 function cadastrar() {
 
 	var objeto = {
-		tipoTelefone: $('#cadastro-nome').val(),
+		descricao: $('#cadastro-nome').val(),
 		contaId: contaId
-
+		
 	}
 
 	$.ajax({
-		url: url_base + "/tipoTelefone",
+		url: url_base + "/tipoAviso",
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",

@@ -24,6 +24,11 @@ body {
   font-weight: bold;
 }
 
+
+.overflow-y{
+	overflow-y: scroll; 
+}
+
 .custom-select {
   position: relative;
   width: 100%;

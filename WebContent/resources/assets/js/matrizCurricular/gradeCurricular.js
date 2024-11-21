@@ -12,7 +12,8 @@ let descricao = ''
 let id = ''
 
 function getAswer(input) {
-
+	
+	
 	if ($(input).is(':checked')) {
 		return 'S'
 	} else {
@@ -29,7 +30,7 @@ $(document).ready(function() {
 		$('#curriculoIdLista').removeAttr('disabled');
 		$("#cotainerNewCadastro").removeClass("none");
 		$(".container-table").show();
-
+		
 		$.ajax({
 			url: url_base + `/curriculo/curso/${cursoIdSession}`,
 			type: "get",

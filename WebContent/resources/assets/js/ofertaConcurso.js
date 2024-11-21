@@ -256,7 +256,7 @@ $(document).ready(function () {
 $("#limpa-filtros").click(function () {
   listarDados(dadosOriginais);
   $('input[data-toggle="toggle"]').bootstrapToggle();
-  $(".searchInput").val("");
+  $(".searchInput").val("");	
 });
 
 function getDados() {

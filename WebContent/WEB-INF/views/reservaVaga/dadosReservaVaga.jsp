@@ -1448,9 +1448,14 @@ String contextPath = request.getContextPath();
 
 					<div class="row mb-3">
 						<div class="col-md-6">
-							<label for="serie" class="form-label">Série: </label> <input
-								type="text" id="serie" disabled autocomplete="off" name="serie"
-								class="form-control" />
+							<label for="serie" class="form-label">Série: </label>
+							
+							<select
+								class="form-select" disabled aria-label="serieId" id="serieId"
+								name="serieId">
+								<option selected disabled>Selecione uma opção</option>
+							</select>
+							 
 						</div>
 						<div class="col-md-6">
 							<label for="descricaoOferta" class="form-label">Descrição

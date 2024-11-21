@@ -58,7 +58,23 @@ const getDadosOfertaConcurso = () => {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
 	});
-
+	
+	$.ajax({
+		url: url_base + '/serie/conta/' + contaId,
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			if (item.ativo == "S") {
+				$('#serieId').append($('<option>', {
+					value: item.idSerie,
+					text: item.serie + " - " + item.descricao,
+					name: item.serie
+				}));
+			}
+		});
+	})
+	
 	$.ajax({
 		url: url_base + "/concursos/conta/" + contaId,
 		type: "GET",
@@ -108,7 +124,7 @@ const getOfertaConcurso = (idOferta) => {
 		$('#cursoId').val(data.cursoId)
 		$('#escolaId').val(data.escolaId)
 		$('#turnoId').val(data.turnoId)
-		$('#serie').val(data.serie)
+		$('#serieId').val(data.serieId)
 		$('#descricaoOferta').val(data.descricaoOferta)
 	})
 }
@@ -217,7 +233,11 @@ const aprovarCandidato = () => {
 				if (result.isConfirmed) {
 					$('#divMatricula').hide()
 					$('#btnAprovarCandidato').click();
-				} else if (result.isCanceled) { }
+				} else {
+					$('#divMatricula').show()
+					$('#btnAprovarCandidato').click();
+					$("#mtMatricula").removeAttr("checked")
+				}
 			})
 			/*$('#btnAprovarCandidato').click();*/
 		} else if (result.isCanceled) { }
@@ -230,7 +250,7 @@ $('#gerarAluno').click((event) => {
 		"contaId": contaId,
 		"cursoId": $('#cursoId').val(),
 		"escolaId": $('#escolaId').val(),
-		"serieId": $('#serie').val(),
+		"serieId": $('#serieId').val(),
 		"turnoId": $('#turnoId').val(),
 		"pessoaId": candidato.pessoa,
 		"candidatoId": candidato.idCandidato,
@@ -253,7 +273,7 @@ $('#gerarAluno').click((event) => {
 			Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Não foi possível realizar esse comando!"
+				text: "Não foi possível cadastrar o aluno!"
 
 			});
 		}
@@ -273,6 +293,10 @@ $('#gerarAluno').click((event) => {
 				});
 			}
 		}).done(function(data) {
+			
+			$('#aluno').val('')
+			$('#emailInterno').val('')
+			$('#senha').val('')
 			Swal.fire({
 				title: "Aluno criado com sucesso",
 				icon: "success",
