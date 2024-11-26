@@ -130,6 +130,28 @@ $(document).ready(function () {
       "#serieIdSearchEdit"
     );
   });
+  
+  
+  // Carrega os cursos
+  $.ajax({
+    url: url_base + "/curriculo",
+    type: "get",
+    async: false,
+  }).done(function (data) {
+	console.log(data)
+    preencherOpcoes(
+      data,
+      "#curriculoOptionsCurso",
+      "#curriculoSelect",
+      "#curriculoSearchCurso"
+    );
+    preencherOpcoes(
+      data,
+      "#curriculoOptionsCursoEdit",
+      "#curriculoEdit",
+      "#curriculoSearchCursoEdit"
+    );
+  });
 
   function preencherOpcoes(items, optionsListId, selectId, searchId) {
     const $optionsList = $(optionsListId);
@@ -144,14 +166,14 @@ $(document).ready(function () {
 
     $.each(items, function (index, item) {
       if (item.ativo === "S") {
-        const optionText = item.serie
-          ? `${item.serie} - ${item.descricao || ""}`
-          : item?.nome
+        const optionText = item.serie ? `${item.serie} - ${item.descricao || ""}`
+         : item?.nome
           ? `${item.nome} - ${item.codCurso || ""}`
           : item?.concurso ||
             item?.nomeEscola ||
             item?.nomeCurso ||
-            `${item?.turno || ""} - ${item?.mnemonico || ""}`;
+            `${item?.turno || ""} - ${item?.mnemonico || ""}` ||
+            item?.curriculo;
 
         $optionsList.append(
           `<li data-value="${
@@ -159,7 +181,8 @@ $(document).ready(function () {
             item.idConcurso ||
             item.idCurso ||
             item.idEscola ||
-            item.idTurno
+            item.idTurno ||
+            item.idCurriculo
           }">${optionText}</li>`
         );
         $selectElement.append(
@@ -170,6 +193,7 @@ $(document).ready(function () {
               item.idCurso ||
               item.idEscola ||
               item.idTurno ||
+              item.idCurriculo||
               "",
             text: optionText,
           })

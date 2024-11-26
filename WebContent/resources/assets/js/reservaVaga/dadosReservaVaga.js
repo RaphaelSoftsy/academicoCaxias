@@ -126,6 +126,7 @@ const getOfertaConcurso = (idOferta) => {
 		$('#turnoId').val(data.turnoId)
 		$('#serieId').val(data.serieId)
 		$('#descricaoOferta').val(data.descricaoOferta)
+		
 	})
 }
 

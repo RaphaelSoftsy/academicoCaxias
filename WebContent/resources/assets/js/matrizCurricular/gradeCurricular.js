@@ -242,7 +242,9 @@ $(document).ready(function() {
 
 	$('#curriculoIdLista').select2()
 	$('#cursoIdLista').select2()
-
+	
+	
+	
 	showPage(currentPage);
 	updatePagination();
 
@@ -258,6 +260,7 @@ function getDados(idCurriculo) {
 	}).done(function(data) {
 		if (data.length > 0) {
 			console.log(data)
+			dados = data
 			listarDados(data)
 			$('input[data-toggle="toggle"]').bootstrapToggle();
 		} else {
@@ -598,6 +601,12 @@ function cadastrar() {
 }
 
 function limpaCampo() {
+	preencherCampoBusca(
+			"#curriculoSearch",
+			"#curriculoOption",
+			"#curriculoId",
+			$('#curriculoIdLista').val()
+		);
 	$('#nomeSerie').val('');
 	$('#descricao').val('');
 }

@@ -354,6 +354,22 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<option selected disabled value="">Selecione a Série</option>
 								</select>
 							</div>
+							
+							
+							<div class="mb-4">
+								<label for="curriculoId" class="form-label">Currículo:<span
+									class="red">*</span></label>
+								<div class="custom-select">
+									<input type="text" id="curriculoIdSearch" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="curriculoIdOptions"></ul>
+								</div>
+								<select class="form-select" aria-label="serieId"
+									id="curriculoId" name="curriculoId"
+									style="display: none">
+									<option selected disabled value="">Selecione o Currículo</option>
+								</select>
+							</div>
 
 							<!-- <div class="mb-4">
                   <label for="serie" class="form-label">Séries:</label>
@@ -483,6 +499,22 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<option selected disabled value="">Selecione a Série</option>
 								</select>
 							</div>
+							
+							<div class="mb-4">
+								<label for="curriculoIdEdit" class="form-label">Currículo:<span
+									class="red">*</span></label>
+								<div class="custom-select">
+									<input type="text" id="curriculoIdSearchEdit" class="form-control"
+										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<ul class="options-list" id="curriculoIdOptionsEdit"></ul>
+								</div>
+								<select class="form-select" aria-label="serieId"
+									id="curriculoIdEdit" name="curriculoIdEdit"
+									style="display: none">
+									<option selected disabled value="">Selecione o Currículo</option>
+								</select>
+							</div>
+							
 
 							<!-- <div class="mb-4">
                   <label for="serieEdit" class="form-label">Séries:</label>

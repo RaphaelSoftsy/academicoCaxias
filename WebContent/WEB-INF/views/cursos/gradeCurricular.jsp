@@ -92,7 +92,7 @@ String contextPath = request.getContextPath();
 					<button
 						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto"
 						data-bs-toggle="modal" onclick="limpaCampo()"
-						data-bs-target="#newCadastro">Novo Cadastro
+						data-bs-target="#newCadastro" id="btnCadastro">Novo Cadastro
 					</button>
 				</div>
 			</div>

@@ -225,7 +225,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<hr>
 
-				<h5 id="tituloForm" class="text-start mb-5">Selecione o tipo de envio da mensagem</h5>
+				<h5 id="tituloForm" class="text-start mb-5">Selecione o tipo de
+					envio da mensagem</h5>
 
 				<div class="col-md-12">
 					<label for="assunto" class="form-label">Assunto:<span
@@ -252,32 +253,25 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row">
 
 					<div class="col-md-6">
-						<label for="isAviso" class="form-label">Enviar como aviso
-							:<span class="red">*</span>
-						</label>
-						<div class="form-control card-form-infra">
-							<label for="isAviso">Sim</label> <label class="switch"> <input
-								type="checkbox" id="isAviso" name="isAviso"> <span
-								class="slider"></span>
-							</label> <label for="isAviso">Não</label>
 
-						</div>
+						<label for="racaId" class="form-label">Tipo Aviso:</label> <select
+							class="form-select" aria-label="Raça" id="racaId" name="racaId">
+							<option selected disabled>Selecione uma opção</option>
+						</select>
+
 					</div>
 					<div class="col-md-6">
-						<label for="isEmail" class="form-label">Enviar como email:<span
-							class="red">*</span>
-						</label>
-						<div class="form-control card-form-infra">
-							<label for="isEmail">Sim</label> <label class="switch"> <input
-								type="checkbox" id="isEmail" name="isEmail"> <span
-								class="slider"></span>
-							</label> <label for="isEmail">Não</label>
+						<label for="isEmail" class="form-label">Anexo:
+						</label> <input autocomplete="off" type="file" id="anexoAgendaEdit"
+							name="anexoAgendaEdit" class="form-control" />
 
-						</div>
 					</div>
 				</div>
 
-				<div class="row">
+
+			
+
+				<div class="row mt-3">
 
 					<div class="col-md-6">
 						<label for="mensagem" class="form-label">Início :<span
@@ -290,6 +284,27 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							type="date" id="termino" name="termino" class="form-control " />
 					</div>
 				</div>
+				
+				
+					<div class="row mt-3">
+
+					<div class="col-md-6">
+						<label for="isAviso" class="form-label">Respostas Abertas
+							:<span class="red">*</span>
+						</label>
+						<div class="form-control card-form-infra">
+							<label for="isAviso">Sim</label> <label class="switch"> <input
+								type="checkbox" id="isAviso" name="isAviso"> <span
+								class="slider"></span>
+							</label> <label for="isAviso">Não</label>
+
+						</div>
+					</div>
+
+				</div>
+
+
+
 
 
 

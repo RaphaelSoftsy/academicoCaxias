@@ -1463,6 +1463,21 @@ String contextPath = request.getContextPath();
 								autocomplete="off" name="descricaoOferta" class="form-control" />
 						</div>
 					</div>
+					
+					
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="curriculo" class="form-label">Currículo: </label>
+							
+							<select
+								class="form-select" disabled aria-label="curriculoId" id="curriculoId"
+								name="curriculoId">
+								<option selected disabled value=""></option>
+							</select>
+							 
+						</div>
+						
+					</div>
 
 				</div>
 			</div>

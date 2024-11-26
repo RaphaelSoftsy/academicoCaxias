@@ -134,7 +134,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="d-flex justify-content-end">
 					<button
 						class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
-						data-bs-toggle="modal" data-bs-target="#newCadastro"
+						data-bs-toggle="modal" data-bs-target="#newCadastro" onclick="limpaCampo()"
 						id="btnModalCadastrar">Novo Cadastro</button>
 				</div>
 			</div>
