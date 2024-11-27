@@ -174,7 +174,7 @@ $(document).ready(function() {
 						item?.nomeCurso ||
 						`${item?.turno || ""} - ${item?.mnemonico || ""}` ||
 						item?.curriculo;
-						
+
 				item.curriculo ? optionText = item.curriculo : ''
 
 				$optionsList.append(
@@ -292,7 +292,9 @@ function getDados() {
 	})
 		.done(function(data) {
 			dadosOriginais = data;
-			listarDados(data);
+			if (data != 'Nenhum resultado encontrado para os parâmetros informados.') {
+				listarDados(data);
+			}
 			$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -316,6 +318,8 @@ function listarDados(dados) {
 			var serie = series.find(function(serie) {
 				return serie.idSerie == item.idSerie;
 			});
+
+			console.log(item)
 
 			return (
 				"<tr>" +
@@ -358,6 +362,8 @@ function listarDados(dados) {
 				item.idSerie +
 				'" data-cursoId="' +
 				item.idCurso +
+				'" data-curriculoId="' +
+				item.curriculo +
 				'" data-escolaId="' +
 				item.idEscola +
 				'" data-turnoId="' +
@@ -433,6 +439,7 @@ function showModal(ref) {
 	const vagas = ref.getAttribute("data-vagas");
 	const minVagasAbertTurma = ref.getAttribute("data-minVagasAbertTurma");
 	const isAtivo = ref.getAttribute("data-ativo");
+	const curriculoId = ref.getAttribute("data-curriculoId");
 
 	// Verifica se a turma está ativa ou não e ajusta a exibição de botões
 	if (isAtivo == "S") {
@@ -488,6 +495,13 @@ function showModal(ref) {
 		"#turnoEdit",
 		turnoId
 	);
+
+	preencherCampoBusca(
+		"#curriculoIdOptionsEdit",
+		"#curriculoIdEdit",
+		"#curriculoIdSearchEdit",
+		curriculoId
+	);
 }
 
 function formatarHoraParaAPI(hora) {
@@ -509,6 +523,8 @@ function editar() {
 		descricaoOferta: $("#descricaoEdit").val(),
 		vagas: $("#vagasEdit").val(),
 		minVagasAbertTurma: $("#vagasMinEdit").val(),
+		curriculoId: Number($("#curriculoIdEdit").val()),
+
 	};
 
 	console.log(objeto);
@@ -559,6 +575,7 @@ function cadastrar() {
 		cursoId: Number($("#cursoSelect").val()),
 		escolaId: Number($("#escolaSelect").val()),
 		turnoId: Number($("#turnoSelect").val()),
+		curriculoId: Number($("#curriculoSelect").val()),
 		// series: $("#serie").val(),
 		serieId: $("#serieId").val(),
 		descricaoOferta: $("#descricao").val(),
@@ -593,7 +610,7 @@ function cadastrar() {
 			title: "Cadastrado com sucesso",
 			icon: "success",
 		});
-		window.location.href("oferta-concurso");
+		window.location.href = "oferta-concurso";
 	});
 	return false;
 }
