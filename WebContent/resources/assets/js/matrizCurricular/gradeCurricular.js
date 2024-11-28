@@ -554,13 +554,10 @@ $('#formCadastro').on('submit', function(e) {
 });
 
 function cadastrar() {
-
-
-
 	var objeto = {
 		serieId: $('#serieId').val(),
 		disciplinaId: $('#disciplinaId').val(),
-		curriculoId: $('#curriculoId').val(),
+		curriculoId: $('#curriculoIdLista').val(),
 		obrigatoria: getAswer('#obrigatoria'),
 		retemSerie: getAswer('#retemSerie'),
 	}
