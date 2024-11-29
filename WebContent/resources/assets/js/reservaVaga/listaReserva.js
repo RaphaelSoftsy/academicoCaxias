@@ -142,7 +142,8 @@ $(document).ready(function() {
 });
 
 $("#limpa-filtros").click(function() {
-	listarDados(dadosOriginais); $('input[data-toggle="toggle"]').bootstrapToggle(); $('input[data-toggle="toggle"]').bootstrapToggle();
+	listarDados(dadosOriginais); 
+	$('input[data-toggle="toggle"]').bootstrapToggle(); 
 	$(".searchInput").val("");
 });
 
@@ -254,6 +255,7 @@ function listarDados(dados) {
 				"<td>" + item.candidato + "</td>" +
 				"<td>" + item.nomeCompleto + "</td>" +
 				"<td>" + escolaNome + "</td>" +
+				"<td>" + `${item.nomeCurso} - ${item.codigoCurso}` + "</td>" +
 				"<td>" + turno + "</td>" +
 				"<td>" + serie + "</td>" +
 				"<td>" + item.tipoIngresso + "</td>" +

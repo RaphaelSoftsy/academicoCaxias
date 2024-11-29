@@ -8,10 +8,9 @@ var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
 const contaId = localStorage.getItem('contaId');
-const turmaId = params.get("id");
+
 
 $(document).ready(function() {
-	
 
 	if (isNaN(contaId)) {
 		Swal.fire({
@@ -65,13 +64,13 @@ $(document).ready(function() {
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/turma/alunos?idTurma=" + turmaId,
+		url: url_base + "/motivoReprovacaoDocumento/conta/" + contaId,
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
 			dados = data
-			listarDados(data.data);
+			listarDados(data);
 			$('input[data-toggle="toggle"]').bootstrapToggle(); 
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -80,26 +79,33 @@ function getDados() {
 }
 
 function listarDados(dados) {
-    var html = dados.map(function(item) {
-        return (
-            "<tr>" +
-            "<td>" +
-            "<input type='checkbox' class='checkbox-aluno' data-id='" + item.id + "' />" +
-            "</td>" +
-            "<td>" +
-            item.aluno +
-            "</td>" +
-            "<td>" +
-            item.nomeCompleto +
-            "</td>" +
-            "<td>" +
-            item.emailInterno +
-            "</td>" +
-            "</tr>"
-        );
-    }).join("");
+	var html = dados.map(function(item) {
 
-    $("#cola-tabela").html(html);
+		return (
+			"<tr>" +
+			"<td>" +
+			item.motivoReprovacaoDocumento +
+			"</td>" +
+			"<td>" +
+			(item.obrigatorio !== "N" ? "Sim" : "Não") +
+			"</td>" +
+			"<td><div class='d-flex align-items-center gap-1'>" +
+			'<input type="checkbox" ' +
+			(item.ativo === 'S' ? 'checked' : '') +
+			' data-status="' + item.ativo +
+			'" data-id="' + item.idMotivoReprovacaoDocumento + '"' +
+			' onChange="alteraStatus(this)" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+			"</div></td>" +
+			'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
+			item.idMotivoReprovacaoDocumento +
+			'" data-motivo="' +
+			item.motivoReprovacaoDocumento +
+			'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></span></td>' +
+			"</tr>"
+		);
+	}).join("");
+
+	$("#cola-tabela").html(html);
 }
 
 

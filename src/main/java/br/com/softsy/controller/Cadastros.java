@@ -678,6 +678,12 @@ public class Cadastros {
 		return "preCadastros/tipoAviso";
 	}
 	
+	@RequestMapping(value = { "motivo-reprovacao-documento" }, method = RequestMethod.GET)
+	public String motivoReprovacaoDocumento(HttpSession session, Model model) throws Exception {
+ 
+		return "preCadastros/motivoReprovacaoDocumento";
+	}
+	
 	
 
 }

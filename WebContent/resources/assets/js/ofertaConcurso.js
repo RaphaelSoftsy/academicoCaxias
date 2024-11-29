@@ -575,13 +575,14 @@ function cadastrar() {
 		cursoId: Number($("#cursoSelect").val()),
 		escolaId: Number($("#escolaSelect").val()),
 		turnoId: Number($("#turnoSelect").val()),
-		curriculoId: Number($("#curriculoSelect").val()),
-		// series: $("#serie").val(),
-		serieId: $("#serieId").val(),
+		curriculoId: Number($("#curriculoId").val()),
+		serieId: $("#serieId").val(),	
 		descricaoOferta: $("#descricao").val(),
 		vagas: $("#vagas").val(),
 		minVagasAbertTurma: $("#vagasMin").val(),
 	};
+	
+	console.log(objeto)
 
 	$.ajax({
 		url: url_base + "/ofertasConcurso",

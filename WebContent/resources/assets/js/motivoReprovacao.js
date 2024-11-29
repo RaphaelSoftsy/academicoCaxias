@@ -137,8 +137,6 @@ function alteraStatus(element) {
 				title: e.responseJSON.message
 			});
 		}
-	}).then(data => {
-		window.location.href = 'motivo-reprovacao'
 	})
 }
 
@@ -185,8 +183,6 @@ function editar() {
 				title: "Editado com sucesso",
 				icon: "success",
 			})
-		}).then(()=>{
-			window.location.href = "motivo-reprovacao"
 		})
 	return false;
 }

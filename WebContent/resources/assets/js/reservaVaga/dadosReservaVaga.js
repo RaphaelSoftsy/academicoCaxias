@@ -58,7 +58,7 @@ const getDadosOfertaConcurso = () => {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
 	});
-	
+
 	$.ajax({
 		url: url_base + '/serie/conta/' + contaId,
 		type: "get",
@@ -74,7 +74,24 @@ const getDadosOfertaConcurso = () => {
 			}
 		});
 	})
-	
+
+
+	$.ajax({
+		url: url_base + '/curriculo',
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+			if (item.ativo == "S") {
+				$('#curriculoId').append($('<option>', {
+					value: item.idCurriculo,
+					text: item.curriculo,
+					name: item.curriculo
+				}));
+			}
+		});
+	})
+
 	$.ajax({
 		url: url_base + "/concursos/conta/" + contaId,
 		type: "GET",
@@ -109,6 +126,7 @@ const getDadosOfertaConcurso = () => {
 
 }
 
+
 const getOfertaConcurso = (idOferta) => {
 	$.ajax({
 		url: url_base + "/ofertasConcurso/" + idOferta,
@@ -126,7 +144,8 @@ const getOfertaConcurso = (idOferta) => {
 		$('#turnoId').val(data.turnoId)
 		$('#serieId').val(data.serieId)
 		$('#descricaoOferta').val(data.descricaoOferta)
-		
+		$("#curriculoId").val(item.curriculoId)
+
 	})
 }
 
@@ -210,39 +229,29 @@ const showResponsavel = () => {
 }
 
 const aprovarCandidato = () => {
-	Swal.fire({
-		title: "Deseja mesmo aprovar esse candidato?",
-		icon: "question",
-		showCancelButton: true,
-		showConfirmButton: true,
-		showDenyButton: false,
-		confirmButtonText: 'Aprovar',
-		cancelButtonText: 'Cancelar'
-	}).then(result => {
-		if (result.isConfirmed) {
-			Swal.fire({
-				title: "Como deseja gerar aluno?",
-				icon: "question",
-				showCancelButton: true,
-				showConfirmButton: true,
-				showDenyButton: false,
-				confirmButtonColor: "#042D58",
-				cancelButtonColor: "#042D58",
-				confirmButtonText: 'Gerar aluno automático',
-				cancelButtonText: 'Gerar aluno manualmente'
-			}).then(result => {
-				if (result.isConfirmed) {
-					$('#divMatricula').hide()
-					$('#btnAprovarCandidato').click();
-				} else {
-					$('#divMatricula').show()
-					$('#btnAprovarCandidato').click();
-					$("#mtMatricula").removeAttr("checked")
-				}
-			})
-			/*$('#btnAprovarCandidato').click();*/
-		} else if (result.isCanceled) { }
-	})
+	if ($("#curriculoId").val() == null) {
+		Swal.fire({
+			title: "Oferta de Curso sem Currículo informado.",
+			text: "Para realizar a aprovação do Candidato, altere a oferta e informe o Currículo.",
+			icon: "error",
+		}).then((data) => {
+			window.location.href = 'oferta-concurso'
+		})
+	}
+	const senhaAleatoria = gerarSenhaAleatoria();
+	$(".senha").val(senhaAleatoria);
+}
+
+
+
+function gerarSenhaAleatoria(tamanho = 8) {
+	const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	let senha = "";
+	for (let i = 0; i < tamanho; i++) {
+		const randomIndex = Math.floor(Math.random() * caracteres.length);
+		senha += caracteres[randomIndex];
+	}
+	return senha;
 }
 
 $('#gerarAluno').click((event) => {
@@ -259,8 +268,10 @@ $('#gerarAluno').click((event) => {
 		"aluno": $('#aluno').val(),
 		"emailInterno": $('#emailInterno').val(),
 		"senha": $('#senha').val(),
+		"geraPreMatricula": $('#geraMatricula:checked').val() != 'on' ? "N" : "S",
+		"tipoMatriculaId": $('#geraMatricula:checked').val() != 'on' ? Number($("#tipoMatriculaId").val()) : null
 	}
-	
+
 	console.log(objeto)
 
 	$.ajax({
@@ -294,7 +305,7 @@ $('#gerarAluno').click((event) => {
 				});
 			}
 		}).done(function(data) {
-			
+
 			$('#aluno').val('')
 			$('#emailInterno').val('')
 			$('#senha').val('')
@@ -313,6 +324,15 @@ $('#mtMatricula').change(() => {
 		$('#divMatricula').hide()
 	} else {
 		$('#divMatricula').show()
+	}
+
+})
+
+$('#geraMatricula').change(() => {
+	if ($('#geraMatricula:checked').val() == 'on') {
+		$('.divTipoMatricula').show()
+	} else {
+		$('.divTipoMatricula').hide()
 	}
 
 })
@@ -369,6 +389,22 @@ const loadSelects = () => {
 					name: item.tipoIngresso
 				}));
 			}
+
+		});
+	})
+
+	$.ajax({
+		url: url_base + '/tiposMatricula/conta/' + contaId,
+		type: "get",
+		async: false,
+	}).done(function(data) {
+		$.each(data, function(index, item) {
+
+			$('#tipoMatriculaId').append($('<option>', {
+				value: item.tipoMatricula,
+				text: item.tipoMatricula,
+				name: item.tipoMatricula
+			}));
 
 		});
 	})
@@ -751,6 +787,19 @@ function goToPage(page) {
 
 	}
 }
+
+$(".reveal").on("click", function() {
+	const $input = $(this).siblings(".senha"); // Seleciona o input relacionado
+	const $icon = $(this).find("i"); // Seleciona o ícone dentro do botão
+
+	if ($input.attr("type") === "password") {
+		$input.attr("type", "text");
+		$icon.removeClass("fa-eye").addClass("fa-eye-slash");
+	} else {
+		$input.attr("type", "password");
+		$icon.removeClass("fa-eye-slash").addClass("fa-eye");
+	}
+});
 
 
 $('#prevFicha').click(function() {

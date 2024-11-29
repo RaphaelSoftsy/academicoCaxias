@@ -65,7 +65,7 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/reservaVaga.css" />
 </head>
@@ -99,12 +99,15 @@ String contextPath = request.getContextPath();
 					<i class="fa-regular fa-circle-xmark"></i> <span>Reprovar
 						Candidato</span>
 				</button>
-				<button type="submit" id='aprovarCandidato'
-					onclick='aprovarCandidato()'
-					class="btn btn-success statusAprovacao">
-					<i class="fa-regular fa-circle-check"></i> <span>Aprovar
-						Candidato</span>
-				</button>
+
+
+				<button
+					class="btn btn-success btn-new-alter statusAprovacao"
+					data-bs-toggle="modal" data-bs-target="#modalAprovarCandidato"
+					onclick="aprovarCandidato()" id="aprovarCandidato"><i class="fa-regular fa-circle-check"></i> <span>Aprovar Candidato</span></button>
+					
+					
+				
 
 				<button type="submit" id='btnAprovarCandidato' hidden
 					class="btn btn-danger statusAprovacao" data-bs-toggle="modal"
@@ -1448,14 +1451,12 @@ String contextPath = request.getContextPath();
 
 					<div class="row mb-3">
 						<div class="col-md-6">
-							<label for="serie" class="form-label">Série: </label>
-							
-							<select
+							<label for="serie" class="form-label">Série: </label> <select
 								class="form-select" disabled aria-label="serieId" id="serieId"
 								name="serieId">
 								<option selected disabled>Selecione uma opção</option>
 							</select>
-							 
+
 						</div>
 						<div class="col-md-6">
 							<label for="descricaoOferta" class="form-label">Descrição
@@ -1463,20 +1464,18 @@ String contextPath = request.getContextPath();
 								autocomplete="off" name="descricaoOferta" class="form-control" />
 						</div>
 					</div>
-					
-					
+
+
 					<div class="row mb-3">
 						<div class="col-md-6">
-							<label for="curriculo" class="form-label">Currículo: </label>
-							
-							<select
-								class="form-select" disabled aria-label="curriculoId" id="curriculoId"
-								name="curriculoId">
-								<option selected disabled value=""></option>
+							<label for="curriculo" class="form-label">Currículo: </label> <select
+								class="form-select" aria-label="curriculoId"
+								id="curriculoId" disabled  name="curriculoId">
+								<option selected disabled value="">Currículo não existente</option>
 							</select>
-							 
+
 						</div>
-						
+
 					</div>
 
 				</div>
@@ -1543,7 +1542,7 @@ String contextPath = request.getContextPath();
 								</label>
 								<div class="form-control w-100 card-form qualPreencherSwitch">
 									<label for="mtMatricula">Automática</label> <label
-										class="switch"> <input type="checkbox" checked
+										class="switch"> <input type="checkbox"
 										id="mtMatricula" name="mtMatricula"> <span
 										class="slider slider-certidao"></span>
 									</label> <label for="mtMatricula">Manual</label>
@@ -1571,9 +1570,9 @@ String contextPath = request.getContextPath();
 									class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="situacaoAlunoId" class="form-label">Situação Aluno: </label> <select
-									class="form-select" aria-label="Situação Aluno" id="situacaoAlunoId"
-									name="situacaoAlunoId">
+								<label for="situacaoAlunoId" class="form-label">Situação
+									Aluno: </label> <select class="form-select" aria-label="Situação Aluno"
+									id="situacaoAlunoId" name="situacaoAlunoId">
 									<option selected disabled>Selecione uma opção</option>
 								</select>
 							</div>
@@ -1583,15 +1582,32 @@ String contextPath = request.getContextPath();
 									autocomplete="off" name="emailInterno" class="form-control" />
 							</div>
 							<div class="mb-4">
-								<label for="senha" class="form-label">Senha: </label>
+								<label for="senha" class="form-label">Senha:</label>
 								<div class="input-group">
 									<input class="form-control form-control pwd senha"
-										type="password" aria-label=".form-control-lg example"
-										id="senha" required>
-									<button class="btn-default reveal" type="button">
-										<i class="fa-regular fa-eye"></i>
-									</button>
+										type="text" aria-label=".form-control-lg example"
+										id="senha" required disabled>
 								</div>
+							</div>
+							
+							<div class="mb-4">
+								<label for="geraMatricula" class="form-label">Gerar
+									Pré Matricula:<span class="red">*</span>
+								</label>
+								<div class="form-control w-100 card-form qualPreencherSwitch">
+									<label for="geraMatricula">Sim</label> <label
+										class="switch"> <input type="checkbox"
+										id="geraMatricula" name="geraMatricula" checked> <span
+										class="slider slider-certidao"></span>
+									</label> <label for="geraMatricula">Não</label>
+								</div>
+							</div>
+							
+							
+							<div class="mb-4 divTipoMatricula">
+								<label for="tipoMatriculaId" class="form-label">Tipo Matricula: </label> <select class="form-select" aria-label="Tipo Matricula" id="tipoMatriculaId" name="tipoMatriculaId">
+									<option selected disabled>Selecione uma opção</option>
+								</select>
 							</div>
 							<div class="d-flex justify-content-end gap-2">
 								<button type="button" class="btn btn-secondary"

@@ -69,6 +69,8 @@ $("#escola").change(() => {
     type: "get",
     async: false,
   }).done(function (data) {
+	
+	console.log(data)
     $("#serie").empty();
     $("#serie").append(
       "<option selected disabled>Selecione uma opção</option>"

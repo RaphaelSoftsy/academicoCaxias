@@ -261,15 +261,15 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 					</div>
 					<div class="col-md-6">
-						<label for="isEmail" class="form-label">Anexo:
-						</label> <input autocomplete="off" type="file" id="anexoAgendaEdit"
+						<label for="isEmail" class="form-label">Anexo: </label> <input
+							autocomplete="off" type="file" id="anexoAgendaEdit"
 							name="anexoAgendaEdit" class="form-control" />
 
 					</div>
 				</div>
 
 
-			
+
 
 				<div class="row mt-3">
 
@@ -284,9 +284,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							type="date" id="termino" name="termino" class="form-control " />
 					</div>
 				</div>
-				
-				
-					<div class="row mt-3">
+
+
+				<div class="row mt-3">
 
 					<div class="col-md-6">
 						<label for="isAviso" class="form-label">Respostas Abertas
@@ -365,10 +365,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-	<%--  <script
-      charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/turmas/avisos.js"
-    ></script> --%>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/turmas/avisos.js"></script>
 
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
