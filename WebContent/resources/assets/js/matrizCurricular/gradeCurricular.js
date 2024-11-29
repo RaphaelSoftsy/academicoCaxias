@@ -12,20 +12,15 @@ let descricao = ''
 let id = ''
 
 function getAswer(input) {
-	
-	
 	if ($(input).is(':checked')) {
 		return 'S'
 	} else {
 		return 'N'
 	}
-
 }
 
 $(document).ready(function() {
 	$(".container-table").hide()
-
-
 	if (curriculoIdSession !== null && curriculoIdSession !== undefined && curriculoIdSession !== 0) {
 		$('#curriculoIdLista').removeAttr('disabled');
 		$("#cotainerNewCadastro").removeClass("none");
@@ -250,7 +245,6 @@ $(document).ready(function() {
 
 
 });
-
 
 function getDados(idCurriculo) {
 	$.ajax({
