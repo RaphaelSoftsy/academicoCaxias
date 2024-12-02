@@ -610,6 +610,12 @@ public class Cadastros {
 		return "preCadastros/ofertaConcurso";
 	}
 	
+	@RequestMapping(value = { "nova-oferta-concurso" }, method = RequestMethod.GET)
+	public String novaOfertaConcurso(HttpSession session, Model model) throws Exception {
+ 
+		return "captacao/novaOfertaConcurso";
+	}
+	
 	@RequestMapping(value = { "tipo-ingresso" }, method = RequestMethod.GET)
 	public String tipoIngresso(HttpSession session, Model model) throws Exception {
  

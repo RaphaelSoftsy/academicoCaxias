@@ -321,6 +321,9 @@ function listarDados(dados) {
 			var serie = series.find(function(serie) {
 				return serie.idSerie == item.idSerie;
 			});
+			
+			const minVagasAbertTurma = item.minVagasAbertTurma == null ? '-': item.minVagasAbertTurma
+
 
 			console.log(item)
 
@@ -348,7 +351,7 @@ function listarDados(dados) {
 				item.vagas +
 				"</td>" +
 				"<td>" +
-				item.minVagasAbertTurma +
+				minVagasAbertTurma +
 				"</td>" +
 				"<td><div class='d-flex align-items-center gap-1'>" +
 				'<input type="checkbox" data-status="' +
@@ -383,7 +386,7 @@ function listarDados(dados) {
 				item.idOfertaConcurso +
 				'" data-ativo="' +
 				item.ativo +
-				'" onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></button></td>' +
+				'" onclick="showRef(this)" data-bs-toggle="modal" data-bs-target="#editAto"><i class="fa-solid fa-pen fa-lg"></i></button></td>' +
 				"</tr>"
 			);
 		})
@@ -393,6 +396,13 @@ function listarDados(dados) {
 
 	// Reaplicar a estilização do toggle
 }
+
+const showRef = (ref) => {
+	id = ref.getAttribute("data-id");
+	
+	window.location.href = "nova-oferta-concurso?id=" + id;
+}
+
 function alteraStatus(element) {
 	var id = element.getAttribute("data-id");
 	var status = element.getAttribute("data-status");
