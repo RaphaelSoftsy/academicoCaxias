@@ -26,6 +26,9 @@ String contextPath = request.getContextPath();
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
+<!-- TinyMCE Script -->
+<script src="https://cdn.tiny.cloud/1/ybbnp45uwmaxy2afou9tc84m31aga7qy1w24rc7lno1h4ekl/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
 
 <!-- Select 2 -->
 <link
@@ -191,7 +194,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</tr>
 					</thead>
 					<tbody id="cola-tabela" class="table-group-divider">
-						
+
 					</tbody>
 				</table>
 				<div id="pagination" class="mx-auto mt-auto">
@@ -220,7 +223,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<label for="mensagem" class="form-label">Mensagem:<span
 						class="red">*</span></label>
 					<textarea required autocomplete="off" id="mensagem" name="mensagem"
-						class="form-control" style="height: 300px; resize: none;"></textarea>
+						class="form-control"></textarea>
 				</div>
 
 				<div class="row col-md-12"></div>
@@ -229,14 +232,16 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<hr>
 
 
-				<h4 id="tituloForm" class="text-start mb-5">Selecione o tipo de envio da mensagem:</h4>
+				<h4 id="tituloForm" class="text-start mb-5">Selecione o tipo de
+					envio da mensagem:</h4>
 
 				<div class="row">
 
 					<div class="col-md-6">
 
 						<label for="tipoAvisoId" class="form-label">Tipo Aviso:</label> <select
-							class="form-select" aria-label="tipoAvisoId" id="tipoAvisoId" name="tipoAvisoId">
+							class="form-select" aria-label="tipoAvisoId" id="tipoAvisoId"
+							name="tipoAvisoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 

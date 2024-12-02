@@ -11,6 +11,16 @@ const contaId = localStorage.getItem('contaId');
 const turmaId = params.get("id");
 
 $(document).ready(function() {
+	
+	
+	 tinymce.init({
+            selector: '#mensagem',
+            height: 300,
+            menubar: false,
+            plugins: 'link image code lists',
+            toolbar: 'undo redo | bold italic underline | bullist numlist | link image | code',
+            content_style: 'body { font-family:Arial,sans-serif; font-size:14px }'
+        });
 
 
 	$.ajax({
