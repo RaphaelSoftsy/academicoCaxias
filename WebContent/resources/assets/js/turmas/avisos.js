@@ -11,7 +11,29 @@ const contaId = localStorage.getItem('contaId');
 const turmaId = params.get("id");
 
 $(document).ready(function() {
-	
+
+
+	$.ajax({
+		url: url_base + "/tipoAviso/conta/" + contaId,
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		console.log(data)
+
+		$.each(data, function(index, item) {
+			$("#tipoAvisoId").append(
+				$("<option>", {
+					value: item.idTipoAviso,
+					text: item.descricao,
+					name: item.idTipoAviso,
+				})
+			);
+
+
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+	});
 
 	if (isNaN(contaId)) {
 		Swal.fire({
@@ -23,8 +45,6 @@ $(document).ready(function() {
 			}
 		})
 	}
-
-
 
 	getDados()
 
@@ -57,6 +77,7 @@ $(document).ready(function() {
 	}
 
 
+
 	showPage(currentPage);
 	updatePagination();
 
@@ -72,7 +93,7 @@ function getDados() {
 		.done(function(data) {
 			dados = data
 			listarDados(data.data);
-			$('input[data-toggle="toggle"]').bootstrapToggle(); 
+			$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -80,26 +101,26 @@ function getDados() {
 }
 
 function listarDados(dados) {
-    var html = dados.map(function(item) {
-        return (
-            "<tr>" +
-            "<td>" +
-            "<input type='checkbox' class='checkbox-aluno' data-id='" + item.id + "' />" +
-            "</td>" +
-            "<td>" +
-            item.aluno +
-            "</td>" +
-            "<td>" +
-            item.nomeCompleto +
-            "</td>" +
-            "<td>" +
-            item.emailInterno +
-            "</td>" +
-            "</tr>"
-        );
-    }).join("");
+	var html = dados.map(function(item) {
+		return (
+			"<tr>" +
+			"<td>" +
+			"<input type='checkbox' class='form-check-input' data-id='" + item.id + "' />" +
+			"</td>" +
+			"<td>" +
+			item.aluno +
+			"</td>" +
+			"<td>" +
+			item.nomeCompleto +
+			"</td>" +
+			"<td>" +
+			item.emailInterno +
+			"</td>" +
+			"</tr>"
+		);
+	}).join("");
 
-    $("#cola-tabela").html(html);
+	$("#cola-tabela").html(html);
 }
 
 
@@ -137,7 +158,6 @@ function alteraStatus(element) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	motivo = ref.getAttribute("data-motivo");
-	
 
 	$('#motivoEdit').val(motivo);
 }
@@ -180,6 +200,8 @@ function editar() {
 		})
 	return false;
 }
+
+
 $('#formEdit').on('submit', function(e) {
 	e.preventDefault();
 	editar();
@@ -189,6 +211,24 @@ $('#formCadastro').on('submit', function(e) {
 	e.preventDefault();
 	cadastrar();
 	return false;
+});
+
+
+// Atualizando o evento para lidar com checkboxes dinâmicos
+$('#checkAll').on('change', function() {
+	const isChecked = $(this).is(':checked');
+
+	// Altera todos os checkboxes dentro da tabela
+	$('#cola-tabela input[type="checkbox"]').prop('checked', isChecked);
+});
+
+// Garantindo a sincronização de `#checkAll` quando itens individuais são alterados
+$('#cola-tabela').on('change', 'input[type="checkbox"]', function() {
+	const totalCheckboxes = $('#cola-tabela input[type="checkbox"]').length;
+	const checkedCheckboxes = $('#cola-tabela input[type="checkbox"]:checked').length;
+
+	// Sincroniza o estado do checkbox principal
+	$('#checkAll').prop('checked', totalCheckboxes === checkedCheckboxes);
 });
 
 function cadastrar() {

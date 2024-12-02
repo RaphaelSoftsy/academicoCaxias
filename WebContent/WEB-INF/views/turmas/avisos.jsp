@@ -184,32 +184,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<thead>
 						<tr>
 							<th scope="col" width="25px"><input class="form-check-input"
-								type="checkbox" value="" id="flexCheckDefault"></th>
+								type="checkbox" value="" id="checkAll"></th>
+							<th scope="col">Matrícula</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Email</th>
 						</tr>
 					</thead>
-					<tbody id="cola-tabela-grade" class="table-group-divider">
-						<tr>
-							<td class="d-flex justify-content-center align-items-center"><input
-								class="form-check-input" type="checkbox" value=""
-								id="flexCheckDefault"></td>
-							<td>Vinícius Monteiro Araújo</td>
-							<td>vmonteiro@gmail.com</td>
-						</tr>
-						<tr>
-							<td><input class="form-check-input" type="checkbox" value=""
-								id="flexCheckDefault"></td>
-							<td>Artur de Miranda Alves</td>
-							<td>a.alves@gmail.com</td>
-						</tr>
-						<tr>
-							<td><input class="form-check-input" type="checkbox" value=""
-								id="flexCheckDefault"></td>
-							<td>Luiz Gustavo da Silva</td>
-							<td>l.silva@gmail.com</td>
-						</tr>
-
+					<tbody id="cola-tabela" class="table-group-divider">
+						
 					</tbody>
 				</table>
 				<div id="pagination" class="mx-auto mt-auto">
@@ -247,15 +229,14 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<hr>
 
 
-				<h4 id="tituloForm" class="text-start mb-5">Selecione o tipo de
-					envio da mensagem:</h4>
+				<h4 id="tituloForm" class="text-start mb-5">Selecione o tipo de envio da mensagem:</h4>
 
 				<div class="row">
 
 					<div class="col-md-6">
 
-						<label for="racaId" class="form-label">Tipo Aviso:</label> <select
-							class="form-select" aria-label="Raça" id="racaId" name="racaId">
+						<label for="tipoAvisoId" class="form-label">Tipo Aviso:</label> <select
+							class="form-select" aria-label="tipoAvisoId" id="tipoAvisoId" name="tipoAvisoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 
