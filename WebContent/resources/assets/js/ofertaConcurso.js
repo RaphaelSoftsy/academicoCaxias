@@ -263,11 +263,13 @@ $(document).ready(function() {
 				.show();
 		}
 	}
-
-	updatePagination();
-	showPage(currentPage);
-
+	
 	getDados();
+	
+	showPage(currentPage);
+	updatePagination();
+
+	
 
 
 	$(".checkbox-toggle").each(function() {
@@ -292,6 +294,7 @@ function getDados() {
 	})
 		.done(function(data) {
 			dadosOriginais = data;
+			dados = data
 			if (data != 'Nenhum resultado encontrado para os parâmetros informados.') {
 				listarDados(data);
 			}
