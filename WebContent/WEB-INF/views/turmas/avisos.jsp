@@ -222,7 +222,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="col-md-12">
 					<label for="mensagem" class="form-label">Mensagem:<span
 						class="red">*</span></label>
-					<textarea required autocomplete="off" id="mensagem" name="mensagem"
+					<textarea  autocomplete="off" id="mensagem" name="mensagem"
 						class="form-control"></textarea>
 				</div>
 
@@ -239,7 +239,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 					<div class="col-md-6">
 
-						<label for="tipoAvisoId" class="form-label">Tipo Aviso:</label> <select
+						<label for="tipoAvisoId" class="form-label">Tipo Aviso <span
+							class="red">*</span>:</label> <select
 							class="form-select" aria-label="tipoAvisoId" id="tipoAvisoId"
 							name="tipoAvisoId">
 							<option selected disabled>Selecione uma opção</option>
@@ -247,9 +248,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 					</div>
 					<div class="col-md-6">
-						<label for="isEmail" class="form-label">Anexo: </label> <input
-							autocomplete="off" type="file" id="anexoAgendaEdit"
-							name="anexoAgendaEdit" class="form-control" />
+						<label for=anexoAviso class="form-label">Anexo: </label> <input
+							autocomplete="off" type="file" id="anexoAviso"
+							name="anexoAviso" class="form-control" />
 
 					</div>
 				</div>

@@ -79,10 +79,16 @@ public class Turmas {
 		return "turmas/turmaDisciplinaProfessor";
 	}
 	
-	@RequestMapping(value = { "avisos" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "aviso" }, method = RequestMethod.GET)
 	public String avisos(HttpSession session, Model model) throws Exception {
 		
 		return "turmas/avisos";
+	}
+	
+	@RequestMapping(value = { "avisos" }, method = RequestMethod.GET)
+	public String listarAvisos(HttpSession session, Model model) throws Exception {
+		
+		return "avisos/listarAvisos";
 	}
 	
 }

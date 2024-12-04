@@ -322,7 +322,7 @@ function listarDados(dados) {
 				return serie.idSerie == item.idSerie;
 			});
 			
-			const minVagasAbertTurma = item.minVagasAbertTurma == null ? '-': item.minVagasAbertTurma
+			const minVagasAbertTurma = item.minVagasAbertTurma != null ?  item.minVagasAbertTurma : "Não definido"
 
 
 			console.log(item)
