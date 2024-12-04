@@ -206,7 +206,7 @@ function showModal(ref) {
 function goToAvisos(ref) {
   limpaCampo();
   id = ref.getAttribute("data-id");
-  window.location.href = "avisos?id=" + id;
+  window.location.href = "aviso?id=" + id;
 }
 
 function limpaCampo() {

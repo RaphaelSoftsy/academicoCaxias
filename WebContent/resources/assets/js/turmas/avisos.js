@@ -7,10 +7,21 @@ var idSelect = '';
 var rows = 8;
 var currentPage = 1;
 var pagesToShow = 5;
+let destinatarios = []
 const contaId = localStorage.getItem('contaId');
 const turmaId = params.get("id");
 
 $(document).ready(function() {
+
+
+	tinymce.init({
+		selector: '#mensagem',
+		height: 300,
+		menubar: false,
+		plugins: 'link image code lists',
+		toolbar: 'undo redo | bold italic underline | bullist numlist | link image | code',
+		content_style: 'body { font-family:Arial,sans-serif; font-size:14px }'
+	});
 
 
 	$.ajax({
@@ -77,10 +88,6 @@ $(document).ready(function() {
 	}
 
 
-
-	showPage(currentPage);
-	updatePagination();
-
 });
 
 
@@ -105,7 +112,7 @@ function listarDados(dados) {
 		return (
 			"<tr>" +
 			"<td>" +
-			"<input type='checkbox' class='form-check-input' data-id='" + item.id + "' />" +
+			"<input type='checkbox' class='form-check-input' data-id='" + item.idAluno + "' />" +
 			"</td>" +
 			"<td>" +
 			item.aluno +
@@ -155,14 +162,14 @@ function alteraStatus(element) {
 	})
 }
 
-function showModal(ref) {
+/*function showModal(ref) {
 	id = ref.getAttribute("data-id");
 	motivo = ref.getAttribute("data-motivo");
 
 	$('#motivoEdit').val(motivo);
-}
+}*/
 
-function editar() {
+/*function editar() {
 	var objeto = {
 		"idMotivoReprovacaoDocumento": id,
 		"contaId": contaId,
@@ -199,7 +206,7 @@ function editar() {
 			})
 		})
 	return false;
-}
+}*/
 
 
 $('#formEdit').on('submit', function(e) {
@@ -207,7 +214,7 @@ $('#formEdit').on('submit', function(e) {
 	editar();
 	return false;
 });
-$('#formCadastro').on('submit', function(e) {
+$('#formNovoCadastro').on('submit', function(e) {
 	e.preventDefault();
 	cadastrar();
 	return false;
@@ -232,44 +239,114 @@ $('#cola-tabela').on('change', 'input[type="checkbox"]', function() {
 });
 
 function cadastrar() {
+	const fileInput = $("#anexoAviso")
+	const file = fileInput.files[0]; // Pega o primeiro arquivo selecionado, se houver
 
-	var objeto = {
-		"contaId": contaId,
-		"motivoReprovacaoDocumento": $("#motivo").val(),
-		"obrigatorio": "N"
-	}
-
-	$.ajax({
-		url: url_base + "/motivoReprovacaoDocumento",
-		type: "POST",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		error: function(e) {
-			console.log(e.responseJSON.message)
+	if (file) {
+		// Converter arquivo para Base64
+		const reader = new FileReader();
+		reader.onload = function(event) {
+			const base64Anexo = event.target.result.split(",")[1]; // Apenas a parte Base64
+			enviarCadastro(base64Anexo);
+		};
+		reader.onerror = function() {
 			Swal.fire({
 				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-
+				title: "Erro",
+				text: "Não foi possível processar o anexo.",
 			});
+		};
+		reader.readAsDataURL(file);
+	} else {
+		// Sem arquivo, passa null
+		enviarCadastro(null);
+	}
+}
+
+
+function obterIdsSelecionados() {
+	let idsSelecionados = [];
+
+	// Itera pelos checkboxes que estão marcados
+	$('#cola-tabela input[type="checkbox"]:checked').each(function() {
+		const id = $(this).data('id'); // Pega o atributo data-id
+		if (id) {
+			idsSelecionados.push(id); // Adiciona o ID ao array
 		}
-	})
-		.done(function(data) {
-			$('#cadastro-nome').val('');
-			$('#cadastro-nome2').val('');
-			$('#selectCadastro').val('');
-			getDados();
-			showPage(currentPage);
-			updatePagination();
-			showPage(currentPage);
-			Swal.fire({
-				title: "Cadastrado com sucesso",
-				icon: "success",
-			})
-		})
+	});
+
+	return idsSelecionados; // Retorna o array com os IDs
+}
+
+
+function getAswer(input) {
+
+	if ($(input).is(':checked')) {
+		return 'S'
+	} else {
+		return 'N'
+	}
+
+}
+
+
+function enviarCadastro(base64Anexo) {
+
+
+	destinatarios = obterIdsSelecionados();
+
+
+
+	if (destinatarios.length === 0) {
+		Swal.fire({
+			icon: "info",
+			title: "Nenhum aluno selecionado",
+			text: "Selecione pelo menos um aluno antes de continuar.",
+		});
+		return false;
+	}
+	
+	const objeto = {
+		"tipoAvisoId": $("#tipoAvisoId").val(),
+		"dataInicio": `${$("#inicio").val()}T15:30:00`,
+		"dataFim": `${$("#termino").val()}T15:30:00`,
+		"titulo": $("#assunto").val(),
+		"mensagem": tinymce.get('mensagem').getContent(),
+		"usuarioId": usuarioId,
+		"destinatarios": destinatarios, 
+		"pathAnexo": base64Anexo,
+		permiteResposta: getAswer("#isAviso")
+	};
+
+
+	console.log(objeto)
+
+	 $.ajax({
+		 url: url_base + "/aviso",
+		 type: "POST",
+		 data: JSON.stringify(objeto),
+		 contentType: "application/json; charset=utf-8",
+		 async: false,
+		 error: function(e) {
+			 console.error(e.responseJSON.message);
+			 Swal.fire({
+				 icon: "error",
+				 title: "Oops...",
+				 text: "Não foi possível realizar esse comando!",
+			 });
+		 }
+	 }).done(function(data) {
+		 // Limpa os campos e exibe mensagem de sucesso
+		 limpaCampo();
+		 Swal.fire({
+			 title: "Cadastrado com sucesso",
+			 icon: "success",
+		 });
+	 });
+ 
 	return false;
 }
+
 
 function limpaCampo() {
 	$('#cadastro-nome').val('');
