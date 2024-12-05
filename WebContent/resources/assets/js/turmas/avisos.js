@@ -239,29 +239,40 @@ $('#cola-tabela').on('change', 'input[type="checkbox"]', function() {
 });
 
 function cadastrar() {
-	const fileInput = $("#anexoAviso")
-	const file = fileInput.files[0]; // Pega o primeiro arquivo selecionado, se houver
+    const fileInput = $("#anexoAviso")[0]; // Garante que está pegando o elemento correto
 
-	if (file) {
-		// Converter arquivo para Base64
-		const reader = new FileReader();
-		reader.onload = function(event) {
-			const base64Anexo = event.target.result.split(",")[1]; // Apenas a parte Base64
-			enviarCadastro(base64Anexo);
-		};
-		reader.onerror = function() {
-			Swal.fire({
-				icon: "error",
-				title: "Erro",
-				text: "Não foi possível processar o anexo.",
-			});
-		};
-		reader.readAsDataURL(file);
-	} else {
-		// Sem arquivo, passa null
-		enviarCadastro(null);
-	}
+    if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+        // Valida se o input existe e se há um arquivo selecionado
+        Swal.fire({
+            icon: "info",
+            title: "Nenhum arquivo selecionado",
+            text: "Por favor, selecione um arquivo para anexar.",
+        });
+        return false;
+    }
+
+    const file = fileInput.files[0]; 
+    if (file) {
+       
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const base64Anexo = event.target.result.split(",")[1]; 
+            enviarCadastro(base64Anexo);
+        };
+        reader.onerror = function () {
+            Swal.fire({
+                icon: "error",
+                title: "Erro",
+                text: "Não foi possível processar o anexo.",
+            });
+        };
+        reader.readAsDataURL(file);
+    } else {
+        
+        enviarCadastro(null);
+    }
 }
+
 
 
 function obterIdsSelecionados() {
@@ -307,15 +318,17 @@ function enviarCadastro(base64Anexo) {
 	}
 	
 	const objeto = {
-		"tipoAvisoId": $("#tipoAvisoId").val(),
+		"tipoAvisoId": Number($("#tipoAvisoId").val()),
 		"dataInicio": `${$("#inicio").val()}T15:30:00`,
 		"dataFim": `${$("#termino").val()}T15:30:00`,
 		"titulo": $("#assunto").val(),
 		"mensagem": tinymce.get('mensagem').getContent(),
-		"usuarioId": usuarioId,
+		"usuarioId": Number(usuarioId),
+		"professorId": null,
 		"destinatarios": destinatarios, 
 		"pathAnexo": base64Anexo,
-		permiteResposta: getAswer("#isAviso")
+		permiteResposta: getAswer("#isAviso"),
+		contaId: Number(contaId) 	
 	};
 
 
@@ -341,7 +354,11 @@ function enviarCadastro(base64Anexo) {
 		 Swal.fire({
 			 title: "Cadastrado com sucesso",
 			 icon: "success",
-		 });
+		 }).then(() => {
+			window.location.href = "avisos"
+		 })
+			
+		 
 	 });
  
 	return false;

@@ -219,7 +219,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						type="text" id="assunto" name="assunto" class="form-control "
 						maxlength="255" />
 				</div>
-				<div class="col-md-12">
+				<div class="col-md-12 mt-3">
 					<label for="mensagem" class="form-label">Mensagem:<span
 						class="red">*</span></label>
 					<textarea  autocomplete="off" id="mensagem" name="mensagem"
