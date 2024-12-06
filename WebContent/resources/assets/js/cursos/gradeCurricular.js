@@ -135,28 +135,41 @@ $(document).ready(function () {
   });
 
   $(".searchButton").click(function () {
-    var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
+    // Função para normalizar a string (converter para minúsculas e remover acentuação)
+    function normalizeString(str) {
+      return str
+        ? str
+            .toLowerCase()
+            .normalize("NFD") // Decompor caracteres acentuados
+            .replace(/[\u0300-\u036f]/g, "") // Remover marcas diacríticas
+        : "";
+    }
+
+    // Captura o valor da pesquisa e normaliza
+    var searchInput = normalizeString($(this).siblings(".searchInput").val());
+
     var columnToSearch = $(this).closest(".sortable").data("column");
     var filteredData;
 
     if (columnToSearch === "disciplina") {
       filteredData = dadosOriginais.filter(function (item) {
-        return item.disciplina.nome.toLowerCase().includes(searchInput);
+        return normalizeString(item.disciplina.nome).includes(searchInput);
       });
     } else if (columnToSearch === "curriculo") {
       filteredData = dadosOriginais.filter(function (item) {
-        return item.curriculo.curriculo.toLowerCase().includes(searchInput);
+        return normalizeString(item.curriculo.curriculo).includes(searchInput);
       });
     } else {
       filteredData = dadosOriginais.filter(function (item) {
-        return item[columnToSearch]
-          .toString()
-          .toLowerCase()
-          .includes(searchInput);
+        var columnValue = normalizeString(
+          item[columnToSearch]?.toString() || ""
+        );
+        return columnValue.includes(searchInput);
       });
     }
 
-    listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+    listarDados(filteredData);
+    $('input[data-toggle="toggle"]').bootstrapToggle();
 
     $(this).siblings(".searchInput").val("");
     $(this).closest(".dropdown-content-form").removeClass("show");
@@ -189,7 +202,9 @@ $(document).ready(function () {
       sortData(column, newOrder);
     } else {
       icon.addClass("fa-sort");
-      listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+      listarDados(dadosOriginais);
+      $('input[data-toggle="toggle"]').bootstrapToggle();
+      $('input[data-toggle="toggle"]').bootstrapToggle();
     }
 
     sortOrder[column] = newOrder;
@@ -241,7 +256,9 @@ $(document).ready(function () {
         }
       }
     });
-    listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+    listarDados(dadosOrdenados);
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+    $('input[data-toggle="toggle"]').bootstrapToggle();
   }
 
   showPage(currentPage);
@@ -249,8 +266,14 @@ $(document).ready(function () {
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+  currentPage = 1;
+  dados = [...dadosOriginais];
+
+  updatePagination();
+  showPage(currentPage);
+
   $(".searchInput").val("");
+  $('input[data-toggle="toggle"]').bootstrapToggle();
 });
 
 function getDados() {
@@ -262,7 +285,9 @@ function getDados() {
     .done(function (data) {
       dados = data;
       dadosOriginais = data;
-      listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+      listarDados(data);
+      $('input[data-toggle="toggle"]').bootstrapToggle();
+      $('input[data-toggle="toggle"]').bootstrapToggle();
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -330,7 +355,7 @@ function listarDados(dados) {
     })
     .join("");
 
-  $("#cola-tabela").html(html); 
+  $("#cola-tabela").html(html);
 }
 
 // Exportar Dados

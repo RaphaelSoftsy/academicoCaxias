@@ -94,7 +94,7 @@ function getDados() {
     });
 }
 
-// solucao - limpar filtros
+// limpar filtros
 
 $("#limpa-filtros").click(function () {
   currentPage = 1; 

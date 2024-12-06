@@ -53,20 +53,23 @@ $(document).ready(function () {
     var columnToSearch = $(this).closest(".sortable").data("column");
     var filteredData;
 
+    // Função para normalizar e comparar valores
+    function normalizeAndCompare(value) {
+      return value
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .includes(searchInput);
+    }
+
     if (columnToSearch === "escolaId") {
       filteredData = dadosOriginais.filter(function (item) {
         var escola = escolas.find(function (school) {
           return school.idEscola === item.escolaId;
         });
 
-        var nomeEscola = escola
-          ? escola.nomeEscola
-              .toLowerCase()
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "") 
-          : "";
-
-        return nomeEscola.includes(searchInput);
+        var nomeEscola = escola ? escola.nomeEscola : "";
+        return normalizeAndCompare(nomeEscola);
       });
     } else if (columnToSearch === "anoVigente") {
       filteredData = dadosOriginais.filter(function (item) {
@@ -75,14 +78,9 @@ $(document).ready(function () {
     } else {
       filteredData = dadosOriginais.filter(function (item) {
         var columnValue = item[columnToSearch]
-          ? item[columnToSearch]
-              .toString()
-              .toLowerCase()
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "") 
+          ? item[columnToSearch].toString()
           : "";
-
-        return columnValue.includes(searchInput);
+        return normalizeAndCompare(columnValue);
       });
     }
 
@@ -190,10 +188,14 @@ $(document).ready(function () {
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);
-  $('input[data-toggle="toggle"]').bootstrapToggle();
-  $('input[data-toggle="toggle"]').bootstrapToggle();
+  currentPage = 1;
+  dados = [...dadosOriginais];
+
+  updatePagination();
+  showPage(currentPage);
+
   $(".searchInput").val("");
+  $('input[data-toggle="toggle"]').bootstrapToggle();
 });
 
 function getDados() {

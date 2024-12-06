@@ -14,32 +14,55 @@ $(document).ready(function () {
   });
 
   $(".searchButton").click(function () {
-    var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
+    var searchInput = $(this)
+      .siblings(".searchInput")
+      .val()
+      .toLowerCase()
+      .normalize("NFD") // Decomposição de caracteres acentuados
+      .replace(/[\u0300-\u036f]/g, ""); // Remove os sinais diacríticos (acentos)
+
     var columnToSearch = $(this).closest(".sortable").data("column");
     var filteredData;
 
     if (columnToSearch === "turma") {
       filteredData = dadosOriginais.filter(function (item) {
-        return item.turma.numTurma.toLowerCase().includes(searchInput);
+        return item.turma.numTurma
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(searchInput);
       });
     } else if (columnToSearch === "disciplina") {
       filteredData = dadosOriginais.filter(function (item) {
-        return item.disciplina.nome.toLowerCase().includes(searchInput);
+        return item.disciplina.nome
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(searchInput);
       });
     } else if (columnToSearch === "curso") {
       filteredData = dadosOriginais.filter(function (item) {
-        return item.curso.nome.toLowerCase().includes(searchInput);
+        return item.curso.nome
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(searchInput);
       });
     } else {
       filteredData = dadosOriginais.filter(function (item) {
-        return item[columnToSearch]
-          .toString()
-          .toLowerCase()
+        var value = item[columnToSearch]
+          ? item[columnToSearch].toString().toLowerCase()
+          : "";
+        return value
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
           .includes(searchInput);
       });
     }
 
-    listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+    listarDados(filteredData);
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+    $('input[data-toggle="toggle"]').bootstrapToggle();
 
     $(this).siblings(".searchInput").val("");
     $(this).closest(".dropdown-content-form").removeClass("show");
@@ -72,7 +95,9 @@ $(document).ready(function () {
       sortData(column, newOrder);
     } else {
       icon.addClass("fa-sort");
-      listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+      listarDados(dadosOriginais);
+      $('input[data-toggle="toggle"]').bootstrapToggle();
+      $('input[data-toggle="toggle"]').bootstrapToggle();
     }
 
     sortOrder[column] = newOrder;
@@ -132,7 +157,9 @@ $(document).ready(function () {
         }
       }
     });
-    listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+    listarDados(dadosOrdenados);
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+    $('input[data-toggle="toggle"]').bootstrapToggle();
   }
 
   showPage(currentPage);
@@ -140,8 +167,14 @@ $(document).ready(function () {
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+  currentPage = 1;
+  dados = [...dadosOriginais];
+
+  updatePagination();
+  showPage(currentPage);
+
   $(".searchInput").val("");
+  $('input[data-toggle="toggle"]').bootstrapToggle();
 });
 
 function getDados() {
@@ -153,7 +186,9 @@ function getDados() {
     .done(function (data) {
       dados = data;
       dadosOriginais = data;
-      listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+      listarDados(data);
+      $('input[data-toggle="toggle"]').bootstrapToggle();
+      $('input[data-toggle="toggle"]').bootstrapToggle();
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", jqXHR);
@@ -189,16 +224,17 @@ function listarDados(dados) {
         "<td>" +
         item.disciplina.nome +
         "</td>" +
-		"<td>" +
-        item.serie + 'º série' +
+        "<td>" +
+        item.serie +
+        "º série" +
         "</td>" +
         "<td>" +
         `${item.curso.nome} - ${item.curso.codCurso}` +
         "</td>" +
-		"<td>" +
+        "<td>" +
         item.situacao +
         "</td>" +
-		"<td>" +
+        "<td>" +
         item.nivelPresenca +
         "</td>" +
         "<td>" +
@@ -212,7 +248,7 @@ function listarDados(dados) {
     })
     .join("");
 
-  $("#cola-tabela").html(html); 
+  $("#cola-tabela").html(html);
 }
 
 // Exportar Dados

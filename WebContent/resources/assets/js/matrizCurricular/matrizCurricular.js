@@ -183,9 +183,16 @@ $(document).ready(function () {
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+  currentPage = 1;
+  dados = [...dadosOriginais];
+
+  updatePagination();
+  showPage(currentPage);
+
   $(".searchInput").val("");
+  $('input[data-toggle="toggle"]').bootstrapToggle();
 });
+
 
 function getDados() {
   $.ajax({
@@ -397,32 +404,29 @@ function limpaCampo() {
 }
 */
 
-
 $("#btn-adicionar").on("click", function (e) {
   e.preventDefault();
-  adcionar()
+  adcionar();
   return false;
 });
 
-function adcionar () {
-	
-	var object = {
-		nomeCurso: $("#nome").val(),
-		areaConhecimento: $("#areaConhecimentoId").val(),
-		disciplina: $("#disciplinaId").val()
-	}
-	
-	sessionStorage.setItem('teste', object)
-	
-	$("#cola-tabela").append(
-		"<tr>" +
-        "<td>" +
-        $("#areaConhecimentoId").val() +
-        "</td>" +
-        "<td>" +
-       $("#disciplinaId").val() +
-        "</td>"+
-        "</tr>"
-	);
-	
+function adcionar() {
+  var object = {
+    nomeCurso: $("#nome").val(),
+    areaConhecimento: $("#areaConhecimentoId").val(),
+    disciplina: $("#disciplinaId").val(),
+  };
+
+  sessionStorage.setItem("teste", object);
+
+  $("#cola-tabela").append(
+    "<tr>" +
+      "<td>" +
+      $("#areaConhecimentoId").val() +
+      "</td>" +
+      "<td>" +
+      $("#disciplinaId").val() +
+      "</td>" +
+      "</tr>"
+  );
 }

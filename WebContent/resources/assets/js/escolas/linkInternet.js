@@ -5,11 +5,11 @@ var rows = 12;
 var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
-const contaId = Number(localStorage.getItem('contaId'))
+const contaId = Number(localStorage.getItem("contaId"));
 var idEscola = localStorage.getItem("escolaId");
-var pefilEscola = localStorage.getItem("perfil")
-var escola = JSON.parse(pefilEscola)
-var nomeEscola = escola.nome
+var pefilEscola = localStorage.getItem("perfil");
+var escola = JSON.parse(pefilEscola);
+var nomeEscola = escola.nome;
 
 $(document).ready(function () {
   $.ajax({
@@ -35,13 +35,16 @@ $(document).ready(function () {
     var columnToSearch = $(this).closest(".sortable").data("column");
     var filteredData;
 
+    // Filtragem para "provedorInternet"
     if (columnToSearch === "provedorInternet") {
       filteredData = dadosOriginais.filter(function (item) {
         return item.provedorInternet.provedorInternet
           .toLowerCase()
           .includes(searchInput);
       });
-    } else if (columnToSearch === "escolaId") {
+    }
+    // Filtragem para "escolaId"
+    else if (columnToSearch === "escolaId") {
       filteredData = dadosOriginais.filter(function (item) {
         var escola = escolas.find(function (school) {
           return school.idEscola === item.escolaId;
@@ -49,17 +52,23 @@ $(document).ready(function () {
         var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
         return nomeEscola.includes(searchInput);
       });
-    } else {
+    }
+    // Filtragem genérica para outros campos
+    else {
       filteredData = dadosOriginais.filter(function (item) {
-        return item[columnToSearch]
-          .toString()
-          .toLowerCase()
-          .includes(searchInput);
+        var columnValue = item[columnToSearch]
+          ? item[columnToSearch].toString().toLowerCase()
+          : "";
+        return columnValue.includes(searchInput);
       });
     }
 
-    listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+    listarDados(filteredData);
 
+    // Inicializa o toggle, chamando apenas uma vez
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+
+    // Limpa o campo de pesquisa e fecha o dropdown
     $(this).siblings(".searchInput").val("");
     $(this).closest(".dropdown-content-form").removeClass("show");
   });
@@ -91,7 +100,9 @@ $(document).ready(function () {
       sortData(column, newOrder);
     } else {
       icon.addClass("fa-sort");
-      listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+      listarDados(dadosOriginais);
+      $('input[data-toggle="toggle"]').bootstrapToggle();
+      $('input[data-toggle="toggle"]').bootstrapToggle();
     }
 
     sortOrder[column] = newOrder;
@@ -141,7 +152,9 @@ $(document).ready(function () {
         }
       }
     });
-    listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+    listarDados(dadosOrdenados);
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+    $('input[data-toggle="toggle"]').bootstrapToggle();
   }
 
   showPage(currentPage);
@@ -149,8 +162,14 @@ $(document).ready(function () {
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+  currentPage = 1;
+  dados = [...dadosOriginais];
+
+  updatePagination();
+  showPage(currentPage);
+
   $(".searchInput").val("");
+  $('input[data-toggle="toggle"]').bootstrapToggle();
 });
 
 function getDados() {
@@ -162,7 +181,9 @@ function getDados() {
     .done(function (data) {
       dados = data;
       dadosOriginais = data;
-      listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+      listarDados(data);
+      $('input[data-toggle="toggle"]').bootstrapToggle();
+      $('input[data-toggle="toggle"]').bootstrapToggle();
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -235,7 +256,7 @@ function listarDados(dados) {
     })
     .join("");
 
-  $("#cola-tabela").html(html); 
+  $("#cola-tabela").html(html);
 }
 
 // Exportar Dados

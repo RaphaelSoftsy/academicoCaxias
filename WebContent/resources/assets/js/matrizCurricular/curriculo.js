@@ -98,7 +98,6 @@ $(document).ready(function () {
   });
   getDados();
 
-
   $(".checkbox-toggle").each(function () {
     var status = $(this).data("status");
     if (status !== "S") {
@@ -116,6 +115,7 @@ $(document).ready(function () {
     var columnToSearch = $(this).closest(".sortable").data("column");
     var filteredData;
 
+    // Filtragem para "cursoId"
     if (columnToSearch === "cursoId") {
       filteredData = dadosOriginais.filter(function (item) {
         var curso = cursos.find(function (school) {
@@ -124,23 +124,21 @@ $(document).ready(function () {
         var nome = curso ? curso.nome.toLowerCase() : "";
         return nome.includes(searchInput);
       });
-    } else if (columnToSearch === "dtHomologacao") {
-      // Verificação para evitar erro de `.split()` em valores nulos
+    }
+    // Filtragem para "dtHomologacao" e "dtExtincao" (datas)
+    else if (
+      columnToSearch === "dtHomologacao" ||
+      columnToSearch === "dtExtincao"
+    ) {
       filteredData = dadosOriginais.filter(function (item) {
         var itemDate = item[columnToSearch]
           ? item[columnToSearch].split("T")[0]
           : "";
         return itemDate.includes(searchInput);
       });
-    } else if (columnToSearch === "dtExtincao") {
-      // Verificação para evitar erro de `.split()` em valores nulos
-      filteredData = dadosOriginais.filter(function (item) {
-        var itemDate = item[columnToSearch]
-          ? item[columnToSearch].split("T")[0]
-          : "";
-        return itemDate.includes(searchInput);
-      });
-    } else {
+    }
+    // Filtragem genérica para outros campos
+    else {
       filteredData = dadosOriginais.filter(function (item) {
         var value = item[columnToSearch]
           ? item[columnToSearch].toString().toLowerCase()
@@ -247,10 +245,14 @@ $(document).ready(function () {
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);
-  $('input[data-toggle="toggle"]').bootstrapToggle();
-  $('input[data-toggle="toggle"]').bootstrapToggle();
+  currentPage = 1;
+  dados = [...dadosOriginais];
+
+  updatePagination();
+  showPage(currentPage);
+
   $(".searchInput").val("");
+  $('input[data-toggle="toggle"]').bootstrapToggle();
 });
 
 function getDados() {
@@ -362,7 +364,9 @@ function listarDados(dados) {
         item.ativo +
         '" data-id="' +
         item.idCurriculo +
-        ' " onChange="alteraStatus(this)" '+ (item.ativo === "S" ? 'checked' : "" ) +' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
+        ' " onChange="alteraStatus(this)" ' +
+        (item.ativo === "S" ? "checked" : "") +
+        ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Sim" data-off="Não" data-width="63" class="checkbox-toggle" data-size="sm">' +
         "</div></td>" +
         '<td><span style=" margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
         item.idCurriculo +
@@ -578,7 +582,8 @@ function cadastrar() {
     descricao: $("#descricao").val(),
     cursoId: Number($("#cursoId").val()),
     curriculo: $("#curriculoNew").val(),
-    dtHomologacao: data1Formatada == "1969-12-31T23:59:59" ? null : data1Formatada,
+    dtHomologacao:
+      data1Formatada == "1969-12-31T23:59:59" ? null : data1Formatada,
     dtExtincao: data2Formatada == "1969-12-31T23:59:59" ? null : data2Formatada,
     prazoIdeal: Number($("#prazoIdeal").val()),
     prazoMax: Number($("#prazoMax").val()),
@@ -589,38 +594,38 @@ function cadastrar() {
   console.log(objeto);
 
   $.ajax({
-		url: url_base + "/curriculo",
-		type: "POST",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		error: function(e) {
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-		},
-	}).done(function(data) {
-		$("#cursoId").val("");
-		$("#curriculo").val("");
-		$("#dtHomologacao").val("");
-		$("#dtExtincao").val("");
-		$("#prazoIdeal").val("");
-		$("#prazoMax").val("");
-		$("#creditos").val("");
-		$("#aulasPrevistas").val("");
-		getDados();
-		showPage(currentPage);
-		updatePagination();
-		Swal.fire({
-			title: "Cadastrado com sucesso",
-			icon: "success",
-		}).then(() => {
-			window.location.href = "curriculo"
-		})
-	});
+    url: url_base + "/curriculo",
+    type: "POST",
+    data: JSON.stringify(objeto),
+    contentType: "application/json; charset=utf-8",
+    async: false,
+    error: function (e) {
+      console.log(e.responseJSON);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Não foi possível realizar esse comando!",
+      });
+    },
+  }).done(function (data) {
+    $("#cursoId").val("");
+    $("#curriculo").val("");
+    $("#dtHomologacao").val("");
+    $("#dtExtincao").val("");
+    $("#prazoIdeal").val("");
+    $("#prazoMax").val("");
+    $("#creditos").val("");
+    $("#aulasPrevistas").val("");
+    getDados();
+    showPage(currentPage);
+    updatePagination();
+    Swal.fire({
+      title: "Cadastrado com sucesso",
+      icon: "success",
+    }).then(() => {
+      window.location.href = "curriculo";
+    });
+  });
 
   return false;
 }

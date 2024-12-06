@@ -47,29 +47,36 @@ $(document).ready(function () {
   });
 
   $(".searchButton").click(function () {
+    // Captura o valor da pesquisa e converte para minúsculas
     var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
     var columnToSearch = $(this).closest(".sortable").data("column");
     var filteredData;
 
+    // Filtragem para "cursoId"
     if (columnToSearch === "cursoId") {
       filteredData = dadosOriginais.filter(function (item) {
-        var escola = cursos.find(function (school) {
-          return school.idCurso === item.cursoId;
+        var curso = cursos.find(function (course) {
+          return course.idCurso === item.cursoId;
         });
-        var nome = escola ? escola.nome.toLowerCase() : "";
-        return nome.includes(searchInput);
+        var nomeCurso = curso ? curso.nome.toLowerCase() : "";
+        return nomeCurso.includes(searchInput);
       });
     } else {
+      // Filtragem genérica para outros campos
       filteredData = dadosOriginais.filter(function (item) {
-        return item[columnToSearch]
-          .toString()
-          .toLowerCase()
-          .includes(searchInput);
+        var columnValue = item[columnToSearch]
+          ? item[columnToSearch].toString().toLowerCase()
+          : "";
+        return columnValue.includes(searchInput);
       });
     }
 
-    listarDados(filteredData);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+    listarDados(filteredData);
 
+    // Inicializa o toggle, chamando apenas uma vez
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+
+    // Limpa o campo de pesquisa e fecha o dropdown
     $(this).siblings(".searchInput").val("");
     $(this).closest(".dropdown-content-form").removeClass("show");
   });
@@ -101,7 +108,9 @@ $(document).ready(function () {
       sortData(column, newOrder);
     } else {
       icon.addClass("fa-sort");
-      listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+      listarDados(dadosOriginais);
+      $('input[data-toggle="toggle"]').bootstrapToggle();
+      $('input[data-toggle="toggle"]').bootstrapToggle();
     }
 
     sortOrder[column] = newOrder;
@@ -143,7 +152,9 @@ $(document).ready(function () {
         }
       }
     });
-    listarDados(dadosOrdenados); $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+    listarDados(dadosOrdenados);
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+    $('input[data-toggle="toggle"]').bootstrapToggle();
   }
 
   showPage(currentPage);
@@ -151,8 +162,14 @@ $(document).ready(function () {
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+  currentPage = 1;
+  dados = [...dadosOriginais];
+
+  updatePagination();
+  showPage(currentPage);
+
   $(".searchInput").val("");
+  $('input[data-toggle="toggle"]').bootstrapToggle();
 });
 
 function getDados() {
@@ -164,7 +181,9 @@ function getDados() {
     .done(function (data) {
       dados = data;
       dadosOriginais = data;
-      listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+      listarDados(data);
+      $('input[data-toggle="toggle"]').bootstrapToggle();
+      $('input[data-toggle="toggle"]').bootstrapToggle();
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -213,7 +232,7 @@ function listarDados(dados) {
     })
     .join("");
 
-  $("#cola-tabela").html(html); 
+  $("#cola-tabela").html(html);
 }
 
 // Exportar Dados

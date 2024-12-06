@@ -8,7 +8,7 @@ var escolas = [];
 var id = "";
 var idEscola = sessionStorage.getItem("escolaId");
 var ativo = "";
-const contaId = localStorage.getItem('contaId');
+const contaId = localStorage.getItem("contaId");
 
 /*$(document).ready(function () {
   $.ajax({
@@ -184,9 +184,16 @@ const contaId = localStorage.getItem('contaId');
 });
 
 $("#limpa-filtros").click(function () {
-  listarDados(dadosOriginais);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+  currentPage = 1;
+  dados = [...dadosOriginais];
+
+  updatePagination();
+  showPage(currentPage);
+
   $(".searchInput").val("");
+  $('input[data-toggle="toggle"]').bootstrapToggle();
 });
+
 
 function getDados() {
   $.ajax({
@@ -398,156 +405,159 @@ function limpaCampo() {
 }
 */
 
-
-
 $(document).ready(function () {
-	
-	$("telefone").mask("(99) 9999-9999");
-	
-	$.ajax({
-		url: url_base + `/escolas/conta/${contaId}`,
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			escolas = data;
-			$.each(data, function(index, item) {
-				$('#escolaIdEdit').append($('<option>', {
-					value: item.idEscola,
-					text: item.nomeEscola,
-					name: item.nomeEscola
-				}));
-			});
-			$.each(data, function(index, item) {
-				$('#escolaId').append($('<option>', {
-					value: item.idEscola,
-					text: item.nomeEscola,
-					name: item.nomeEscola
-				}));
-			});
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+  $("telefone").mask("(99) 9999-9999");
 
-	$.ajax({
-		url: url_base + '/tipoTelefone',
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$('#idTipoTelefone').append($('<option>', {
-				value: item.idTipoTelefone,
-				text: item.tipoTelefone,
-				name: item.tipoTelefone
-			}));
-		});
-		$.each(data, function(index, item) {
-			$('#idTipoTelefoneEdit').append($('<option>', {
-				value: item.idTipoTelefone,
-				text: item.tipoTelefone,
-				name: item.tipoTelefone
-			}));
-		});
+  $.ajax({
+    url: url_base + `/escolas/conta/${contaId}`,
+    type: "GET",
+    async: false,
+  })
+    .done(function (data) {
+      escolas = data;
+      $.each(data, function (index, item) {
+        $("#escolaIdEdit").append(
+          $("<option>", {
+            value: item.idEscola,
+            text: item.nomeEscola,
+            name: item.nomeEscola,
+          })
+        );
+      });
+      $.each(data, function (index, item) {
+        $("#escolaId").append(
+          $("<option>", {
+            value: item.idEscola,
+            text: item.nomeEscola,
+            name: item.nomeEscola,
+          })
+        );
+      });
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+    });
 
-	})
-})
+  $.ajax({
+    url: url_base + "/tipoTelefone",
+    type: "get",
+    async: false,
+  }).done(function (data) {
+    $.each(data, function (index, item) {
+      $("#idTipoTelefone").append(
+        $("<option>", {
+          value: item.idTipoTelefone,
+          text: item.tipoTelefone,
+          name: item.tipoTelefone,
+        })
+      );
+    });
+    $.each(data, function (index, item) {
+      $("#idTipoTelefoneEdit").append(
+        $("<option>", {
+          value: item.idTipoTelefone,
+          text: item.tipoTelefone,
+          name: item.tipoTelefone,
+        })
+      );
+    });
+  });
+});
 
 //Mascara para telefone
 $("#telefone").mask("(99) 99999-9999");
 
-$("#telefone").on("blur", function() {
-    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+$("#telefone").on("blur", function () {
+  var last = $(this)
+    .val()
+    .substr($(this).val().indexOf("-") + 1);
 
-    if( last.length == 3 ) {
-        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
-        var lastfour = move + last;
-        var first = $(this).val().substr( 0, 9 );
+  if (last.length == 3) {
+    var move = $(this)
+      .val()
+      .substr($(this).val().indexOf("-") - 1, 1);
+    var lastfour = move + last;
+    var first = $(this).val().substr(0, 9);
 
-        $(this).val( first + '-' + lastfour );
-    }
+    $(this).val(first + "-" + lastfour);
+  }
 });
 
 $("#btn-adcionar").on("click", function (e) {
   e.preventDefault();
-  adcionar()
+  adcionar();
   return false;
 });
 
-function adcionar () {
-	
-	var object = {
-		telefone: $("#telefone").val(),
-		escolaId: Number(idEscola),
-		tipoTelefoneId: $("#idTipoTelefone").val(),
-		descricao: $("#descricao").val()
-	}
-	
+function adcionar() {
+  var object = {
+    telefone: $("#telefone").val(),
+    escolaId: Number(idEscola),
+    tipoTelefoneId: $("#idTipoTelefone").val(),
+    descricao: $("#descricao").val(),
+  };
 
-	
-	
-	$("#cola-tabela").append(
-		"<tr>" +
-        "<td>" +
-        $("#telefone").val() +
-        "</td>" +
-        "<td>" +
-       $("#idTipoTelefone option:selected").text() +
-        "</td>"+
-        "<td>" +
-       $("#descricao").val() +
-        "</td>"+
-        "</tr>"
-	);
-	
-	$("#telefone").val('')
-	$("#idTipoTelefone option:selected").val('')
-	$("#descricao").val('')
-	
-	return false
+  $("#cola-tabela").append(
+    "<tr>" +
+      "<td>" +
+      $("#telefone").val() +
+      "</td>" +
+      "<td>" +
+      $("#idTipoTelefone option:selected").text() +
+      "</td>" +
+      "<td>" +
+      $("#descricao").val() +
+      "</td>" +
+      "</tr>"
+  );
+
+  $("#telefone").val("");
+  $("#idTipoTelefone option:selected").val("");
+  $("#descricao").val("");
+
+  return false;
 }
-
 
 function cadastrar() {
+  var objeto = {
+    escolaId: Number(idEscola),
+    telefone: $("#telefone")
+      .val()
+      .replace(/[^\d]+/g, ""),
+    tipoTelefoneId: Number($("#idTipoTelefone").val()),
+  };
 
-	var objeto = {
-		escolaId: Number(idEscola),
-		telefone: $('#telefone').val().replace(/[^\d]+/g, ''),
-		tipoTelefoneId: Number($('#idTipoTelefone').val())
-	}
-
-	$.ajax({
-		url: url_base + "/escolaTelefone",
-		type: "POST",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		async: false,
-		error: function(e) {
-			console.log(e.responseJSON.message)
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Não foi possível realizar esse comando!",
-			});
-		}
-	})
-		.done(function(data) {
-			$("#escolaId").val('');
-			$("#idTipoTelefone").val('');
-			$("#telefone").val('');
-			getDados();
-			showPage(currentPage);
-			updatePagination();
-			Swal.fire({
-				title: "Cadastrado com sucesso",
-				icon: "success",
-			})
-		})
-	return false;
+  $.ajax({
+    url: url_base + "/escolaTelefone",
+    type: "POST",
+    data: JSON.stringify(objeto),
+    contentType: "application/json; charset=utf-8",
+    async: false,
+    error: function (e) {
+      console.log(e.responseJSON.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Não foi possível realizar esse comando!",
+      });
+    },
+  }).done(function (data) {
+    $("#escolaId").val("");
+    $("#idTipoTelefone").val("");
+    $("#telefone").val("");
+    getDados();
+    showPage(currentPage);
+    updatePagination();
+    Swal.fire({
+      title: "Cadastrado com sucesso",
+      icon: "success",
+    });
+  });
+  return false;
 }
 
-$('#formCadastro').on('submit', function(e) {
-	e.preventDefault();
-	cadastrar();
-	return false;
+$("#formCadastro").on("submit", function (e) {
+  e.preventDefault();
+  cadastrar();
+  return false;
 });
