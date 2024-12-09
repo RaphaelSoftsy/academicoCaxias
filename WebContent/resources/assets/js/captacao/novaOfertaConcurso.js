@@ -96,13 +96,15 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		$.each(data, function(index, item) {
-			$("#curriculoId").append(
-				$("<option>", {
-					value: item.idCurriculo,
-					text: item.curriculo,
-					name: item.curriculo,
-				})
-			);
+			if (item.ativo == "S") {
+				$("#curriculoId").append(
+					$("<option>", {
+						value: item.idCurriculo,
+						text: item.curriculo,
+						name: item.curriculo,
+					})
+				);
+			}
 		});
 	});
 

@@ -358,7 +358,7 @@ function enviarCadastro(base64Anexo) {
 			window.location.href = "avisos"
 		 })
 			
-		 
+		
 	 });
  
 	return false;

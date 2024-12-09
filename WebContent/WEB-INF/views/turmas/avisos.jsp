@@ -239,8 +239,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 					<div class="col-md-6">
 
-						<label for="tipoAvisoId" class="form-label">Tipo Aviso <span
-							class="red">*</span>:</label> <select
+						<label for="tipoAvisoId" class="form-label">Tipo Aviso:<span class="red">*</span></label> <select
 							class="form-select" aria-label="tipoAvisoId" id="tipoAvisoId"
 							name="tipoAvisoId">
 							<option selected disabled>Selecione uma opção</option>

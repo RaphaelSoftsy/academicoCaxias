@@ -9,6 +9,7 @@ let idFichaMedica = ''
 let nomeCandidato = ""
 let ofertaConcurso = {}
 let candidato = {}
+let idOfertaConcurso
 
 const getDadosOfertaConcurso = () => {
 	$.ajax({
@@ -144,7 +145,7 @@ const getOfertaConcurso = (idOferta) => {
 		$('#turnoId').val(data.turnoId)
 		$('#serieId').val(data.serieId)
 		$('#descricaoOferta').val(data.descricaoOferta)
-		$("#curriculoId").val(item.curriculoId)
+		$("#curriculoId").val(data.curriculoId)
 
 	})
 }
@@ -235,7 +236,7 @@ const aprovarCandidato = () => {
 			text: "Para realizar a aprovação do Candidato, altere a oferta e informe o Currículo.",
 			icon: "error",
 		}).then((data) => {
-			window.location.href = 'oferta-concurso'
+			window.location.href = 'nova-oferta-concurso?id=' + idOfertaConcurso
 		})
 	}
 	const senhaAleatoria = gerarSenhaAleatoria();
@@ -518,6 +519,7 @@ const getDadosCandidato = () => {
 		idPessoa = response.pessoa
 		candidato = response
 		console.log(idPessoa)
+		idOfertaConcurso = response.ofertaConcursoId
 		getOfertaConcurso(response.ofertaConcursoId)
 
 		if (response.aprovado == 'S') {
