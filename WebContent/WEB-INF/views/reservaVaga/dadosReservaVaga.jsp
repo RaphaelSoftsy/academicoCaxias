@@ -101,13 +101,15 @@ String contextPath = request.getContextPath();
 				</button>
 
 
-				<button
-					class="btn btn-success btn-new-alter statusAprovacao"
+				<button class="btn btn-success btn-new-alter statusAprovacao"
 					data-bs-toggle="modal" data-bs-target="#modalAprovarCandidato"
-					onclick="aprovarCandidato()" id="aprovarCandidato"><i class="fa-regular fa-circle-check"></i> <span>Aprovar Candidato</span></button>
-					
-					
-				
+					onclick="aprovarCandidato()" id="aprovarCandidato">
+					<i class="fa-regular fa-circle-check"></i> <span>Aprovar
+						Candidato</span>
+				</button>
+
+
+
 
 				<button type="submit" id='btnAprovarCandidato' hidden
 					class="btn btn-danger statusAprovacao" data-bs-toggle="modal"
@@ -116,6 +118,28 @@ String contextPath = request.getContextPath();
 						Reprovar Candidato</span>
 				</button>
 			</div>
+		
+			<section id="containerReprovacao">
+				<h2 id="tituloDados" class="mb-3">Motivo Reprovação</h2>
+				<div class="row">
+					<div class="mb-4 col-md-6">
+					<label for="motivoReprovacaoDocumentoId" class="form-label">Motivo
+						reprovação:<span class="red">*</span>
+					</label> <select class="form-select"
+						aria-label="motivoReprovacaoDocumentoId"
+						id="motivoReprovadoDocumentoId" required
+						name="motivoReprovacaoDocumentoId" disabled>
+						<option value='0' selected disabled>Selecione um motivo:</option>
+					</select>
+				</div>
+				<div class="mb-4 col-md-6">
+					<label for="obsAprovacao" class="form-label">Observação: </label> <input
+						type="text" id="obsAprovacaoReprovado" autocomplete="off"
+						name="obsAprovacao" class="form-control"  disabled/>
+				</div>
+				</div>
+
+			</section>
 			<nav>
 				<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
 					<button class="nav-link active" id="nav-dados-aluno-tab"
@@ -1469,9 +1493,10 @@ String contextPath = request.getContextPath();
 					<div class="row mb-3">
 						<div class="col-md-6">
 							<label for="curriculo" class="form-label">Currículo: </label> <select
-								class="form-select" aria-label="curriculoId"
-								id="curriculoId" disabled  name="curriculoId">
-								<option selected disabled value="">Currículo não existente</option>
+								class="form-select" aria-label="curriculoId" id="curriculoId"
+								disabled name="curriculoId">
+								<option selected disabled value="">Currículo não
+									existente</option>
 							</select>
 
 						</div>
@@ -1584,28 +1609,30 @@ String contextPath = request.getContextPath();
 							<div class="mb-4">
 								<label for="senha" class="form-label">Senha:</label>
 								<div class="input-group">
-									<input class="form-control form-control pwd senha"
-										type="text" aria-label=".form-control-lg example"
-										id="senha" required disabled>
+									<input class="form-control form-control pwd senha" type="text"
+										aria-label=".form-control-lg example" id="senha" required
+										disabled>
 								</div>
 							</div>
-							
+
 							<div class="mb-4">
-								<label for="geraMatricula" class="form-label">Gerar
-									Pré Matricula:<span class="red">*</span>
+								<label for="geraMatricula" class="form-label">Gerar Pré
+									Matricula:<span class="red">*</span>
 								</label>
 								<div class="form-control w-100 card-form qualPreencherSwitch">
-									<label for="geraMatricula">Sim</label> <label
-										class="switch"> <input type="checkbox"
-										id="geraMatricula" name="geraMatricula" checked> <span
-										class="slider slider-certidao"></span>
+									<label for="geraMatricula">Sim</label> <label class="switch">
+										<input type="checkbox" id="geraMatricula" name="geraMatricula"
+										checked> <span class="slider slider-certidao"></span>
 									</label> <label for="geraMatricula">Não</label>
 								</div>
 							</div>
-							
-							
+
+
 							<div class="mb-4 divTipoMatricula">
-								<label for="tipoMatriculaId" class="form-label">Tipo Matricula: </label> <select class="form-select" aria-label="Tipo Matricula" id="tipoMatriculaId" name="tipoMatriculaId">
+								<label for="tipoMatriculaId" class="form-label">Tipo
+									Matricula: </label> <select class="form-select"
+									aria-label="Tipo Matricula" id="tipoMatriculaId"
+									name="tipoMatriculaId">
 									<option selected disabled>Selecione uma opção</option>
 								</select>
 							</div>

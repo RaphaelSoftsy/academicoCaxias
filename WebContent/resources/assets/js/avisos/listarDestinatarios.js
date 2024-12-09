@@ -7,6 +7,8 @@ var pagesToShow = 5;
 var escolas = [];
 var id = "";
 var idEscola = "";
+let idAviso = params.get("id");
+
 
 $(document).ready(function() {
 	var selectAno = document.getElementById("anoVigenteSelect");
@@ -177,7 +179,7 @@ $(document).ready(function() {
 
 		listarDados(dadosOrdenados);
 		$('input[data-toggle="toggle"]').bootstrapToggle();
-		$('input[data-toggle="toggle"]').bootstrapToggle();
+		
 	}
 
 	showPage(currentPage);
@@ -190,53 +192,18 @@ $("#limpa-filtros").click(function() {
 	$(".searchInput").val("");
 });
 
-function formatarHoraParaAMPM(hora) {
-	if (!hora) {
-		console.error("Hora não está definida ou é inválida:", hora);
-		return "";
-	}
 
-	let [horas, minutos, segundos] = hora.split(":");
-	horas = parseInt(horas, 10);
-	const periodo = horas >= 12 ? "PM" : "AM";
-	horas = horas % 12 || 12;
-	return `${("0" + horas).slice(-2)}:${minutos} ${periodo}`;
-}
-
-function extrairTexto(html) {
-    if (!html) return ""; 
-    var tempDiv = document.createElement("div");
-    tempDiv.innerHTML = html;
-    return tempDiv.innerText.trim(); 
-}
-
-
-function formatarDataComHora(dataISO) {
-
-	if (!dataISO) return "Não informado"; 
-	const data = new Date(dataISO);
-	const opcoesData = { year: "numeric", month: "2-digit", day: "2-digit" };
-	const opcoesHora = { hour: "2-digit", minute: "2-digit", hour12: false };
-	const dataFormatada = new Intl.DateTimeFormat("pt-BR", opcoesData).format(
-		data
-	);
-	const horaFormatada = new Intl.DateTimeFormat("pt-BR", opcoesHora).format(
-		data
-	);
-	return dataFormatada
-
-}
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/aviso",
+		url: url_base + "/avisoDestinatario/listarDestinatarios?idAviso=" + idAviso,
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
-			dados = data;
-			dadosOriginais = data;
-			listarDados(data);
+			dados = data.data;
+			dadosOriginais = data.data;
+			listarDados(data.data);
 			$('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -247,21 +214,19 @@ function getDados() {
 function listarDados(dados) {
     var html = dados
         .map(function(item) {
-            var mensagem = extrairTexto(item.mensagem); // Extrair texto puro
-            var isDisabled = item.pathAnexo == null ? "disabled" : "";
-
+          
             return (
                 "<tr>" +
                 "<td>" +
-                item.titulo +
+                item.aluno +
                 "</td>" +
                 "<td>" +
-                mensagem + // Apenas o texto puro da mensagem
+                item.nomeCompleto+ // Apenas o texto puro da mensagem
                 "</td>" +
                 "<td>" +
-                formatarDataComHora(item.dataInicio) +
+               	item.nomeCurso +' - ' +item.codigoCurso+
                 "</td>" +
-                "<td>" +
+              /*  "<td>" +
                 formatarDataComHora(item.dataFim) +
                 "</td>" +
                 '<td class="d-flex justify-content-center">' +
@@ -274,10 +239,10 @@ function listarDados(dados) {
                 "</span>" +
                 '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" title="Visualizar Destinatários" data-id="' +
                 item.idAviso +
-                '" onclick="verDestinatarios(this)">' +
+                '" onclick="editar(this)">' +
                 '<i class="fa-solid fa-graduation-cap fa-lg text-light"></i>' +
                 "</span>" +
-                "</td>" +
+                "</td>" +*/
                 "</tr>"
             );
         })
@@ -298,35 +263,6 @@ $("#exportar-excel").click(function() {
 	XLSX.writeFile(livro, "turmas.xlsx");
 });
 
-function baixarAnexo(ref) {
-	var id = parseInt(ref.getAttribute("data-id"));
-	var aviso = dados.find((item) => item.idAviso === id);
-
-	if (!aviso || !aviso.pathAnexo) {
-		alert("Anexo não disponível para este aviso.");
-		return;
-	}
-
-	var link = document.createElement("a");
-	link.href =
-		"http://10.40.110.2:8080" +
-		aviso.pathAnexo.replace("/opt/tomcat9/webapps", "");
-	link.download = aviso.titulo.replace(/[^a-zA-Z0-9]/g, "_") || "anexo";
-
-	document.body.appendChild(link);
-	link.click();
-	document.body.removeChild(link);
-}
-
-
-
-function verDestinatarios(ref) {
-
-	const id = parseInt(ref.getAttribute("data-id"));
-	
-	
-	window.location.href = `destinatarios?id=` + id
-}
 
 
 

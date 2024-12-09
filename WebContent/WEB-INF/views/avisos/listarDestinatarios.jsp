@@ -77,7 +77,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-bell fa-lg"></i> <span>Avisos</span>
+					<i class="fa-solid fa-bell fa-lg"></i> <span>Destinatários</span>
 				</div>
 			</div>
 		</section>
@@ -92,9 +92,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
-					<a href="turmas-nova-turma"
-						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Novo
-						Cadastro</a>
+					
 				</div>
 
 			</div>
@@ -109,7 +107,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Titulo</span> <i class="fas fa-sort me-3"
+									<span>Matrícula</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -132,7 +130,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Mensagem</span> <i class="fas fa-sort me-3"
+									<span>Nome</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -158,7 +156,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								class='d-flex align-items-center justify-content-between pe-2'>
 								<div
 									class="col d-flex align-items-center justify-content-between">
-									<span>Data Início</span> <i class="fas fa-sort me-3"
+									<span>Curso</span> <i class="fas fa-sort me-3"
 										style="color: #dddddd"></i>
 								</div>
 								<div class="dropdown-form">
@@ -176,18 +174,6 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</th>
 
-						<th scope="col" class="sortable border-end" data-column="turnoId">
-							<div
-								class='d-flex align-items-center justify-content-between pe-2'>
-								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Data Fim</span> <i class="fas fa-sort"
-										style="color: #dddddd"></i>
-								</div>
-
-							</div>
-						</th>
-						<th scope="col" class="border-end pe-2 th-sem-filtro">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">
@@ -241,11 +227,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/avisos/listarAvisos.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/avisos/listarDestinatarios.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>

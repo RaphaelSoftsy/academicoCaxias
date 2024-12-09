@@ -205,6 +205,12 @@ $(document).ready(function() {
 				text: item.motivoReprovacaoCandidato,
 				name: item.motivoReprovacaoCandidato
 			}));
+			
+			$('#motivoReprovadoDocumentoId').append($('<option>', {
+				value: item.idMotivoReprovacaoCandidato,
+				text: item.motivoReprovacaoCandidato,
+				name: item.motivoReprovacaoCandidato
+			}));
 		});
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação imagens 2 AJAX:", textStatus, errorThrown);
@@ -524,11 +530,15 @@ const getDadosCandidato = () => {
 
 		if (response.aprovado == 'S') {
 			$('#aprovarCandidato').hide()
+			$("#containerReprovacao").hide()
 			$('#reprovarCandidato').css('display', 'flex')
 			$('#reprovarCandidato').css('gap', '0.5rem')
 			$('#reprovarCandidato').css('align-items', 'center')
 		} else if (response.aprovado == 'N') {
 			$('#reprovarCandidato').hide()
+			$("#containerReprovacao").show()
+			$("#motivoReprovadoDocumentoId").val(response.motivoReprovacaoCandidato.idMotivoReprovacaoCandidato)
+			$("#obsAprovacaoReprovado").val(response.motivoReprovacaoCandidato.motivoReprovacaoCandidato)
 			$('#aprovarCandidato').css('display', 'flex')
 			$('#aprovarCandidato').css('gap', '0.5rem')
 			$('#aprovarCandidato').css('align-items', 'center')
@@ -814,9 +824,15 @@ $('#nextFicha').click(function() {
 
 $('#formReprovCand').submit(function(event) {
 	event.preventDefault();
+
+	const objeto = {
+		"motivoReprovacaoCandidatoId": $("#motivoReprovacaoCandidatoId").val(),
+		"descricaoReprovacao": $("#obsReprovacaoCandidato").val()
+	}
 	$.ajax({
 		url: url_base + "/candidatos/" + Number(idCandidato) + '/reprovar',
 		type: "put",
+		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		async: false,
 		error: function(e) {
