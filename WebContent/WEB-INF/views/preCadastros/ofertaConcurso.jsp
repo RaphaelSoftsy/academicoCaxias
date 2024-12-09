@@ -89,184 +89,208 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3"
-				style="display: flex; align-items: center; justify-content: end">
-				<div class="d-flex align-items-center gap-2">
-					<button id="limpa-filtros" class="btn btn-sm btn-danger">
-						Limpar Filtros</button>
-					<button id="exportar-excel"
-						class="btn btn-sm btn-success d-flex align-items-center gap-2">
-						<i class="fa-solid fa-file-export"></i>Exportar
-					</button>
-					<a class="btn btn-primary btn-sm px-3 py-1 ms-auto"
-						href="nova-oferta-concurso">Novo Cadastro
-					</a>
+			<h3 id="tituloForm" class="text-start mb-5">Filtrar</h3>
+
+			<div class="row mb-3">
+				<div class="col-md-6">
+					<label for="concursoSearch" class="form-label">Concurso:<span
+						class="red">*</span></label> <select class="form-select"
+						aria-label="concursoSearch" id="concursoSearch" required name="concursoSearch">
+						<option value="" selected disabled>Selecione o Concurso</option>
+					</select>
+				</div>
+				<div class="col-md-3 align-self-end">
+					<a class="btn btn-warning px-5" id="btn-buscar"
+						style="font-weight: 500">Buscar </a>
 				</div>
 			</div>
 
-			<table
-				class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Itens Cadastrados</caption>
-				<thead>
-					<tr>
-						<th scope="col" class="sortable border-end" data-column="concurso">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
+			<hr />
+
+			<div id="messageInfo" class="d-flex justify-content-center">
+				<h3>Informe o concurso acima para realizar a busca.</h3>
+			</div>
+
+			<div id="grid">
+				<div class="mt-3 mb-1"
+					style="display: flex; align-items: center; justify-content: end">
+					<div class="d-flex align-items-center gap-2">
+						<button id="limpa-filtros" class="btn btn-sm btn-danger">
+							Limpar Filtros</button>
+						<button id="exportar-excel"
+							class="btn btn-sm btn-success d-flex align-items-center gap-2">
+							<i class="fa-solid fa-file-export"></i>Exportar
+						</button>
+						<a class="btn btn-primary btn-sm px-3 py-1 ms-auto"
+							href="nova-oferta-concurso">Novo Cadastro </a>
+					</div>
+				</div>
+
+				<table
+					class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
+					<caption>Itens Cadastrados</caption>
+					<thead>
+						<tr>
+							<th scope="col" class="sortable border-end"
+								data-column="concurso">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Concurso</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton1">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
+									class="d-flex align-items-center justify-content-between pe-2">
 									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o nome" />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar concurso</button>
+										class="col d-flex align-items-center justify-content-between">
+										<span>Concurso</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButton1">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent1">
+											<input type="text" class="form-control mb-3 searchInput"
+												placeholder="Digite o nome" />
+											<button class="btn btn-sm col-12 btn-success searchButton">
+												Buscar concurso</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="nomeCurso" style="width: 18%">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="nomeCurso" style="width: 18%">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Curso</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton2">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
+									class="d-flex align-items-center justify-content-between pe-2">
 									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o nome" />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar curso</button>
+										class="col d-flex align-items-center justify-content-between">
+										<span>Curso</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButton2">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent1">
+											<input type="text" class="form-control mb-3 searchInput"
+												placeholder="Digite o nome" />
+											<button class="btn btn-sm col-12 btn-success searchButton">
+												Buscar curso</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="nomeEscola" style="width: 40%">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="nomeEscola" style="width: 40%">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Escola</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton3">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
+									class="d-flex align-items-center justify-content-between pe-2">
 									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o nome" />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar escola</button>
+										class="col d-flex align-items-center justify-content-between">
+										<span>Escola</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButton3">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent1">
+											<input type="text" class="form-control mb-3 searchInput"
+												placeholder="Digite o nome" />
+											<button class="btn btn-sm col-12 btn-success searchButton">
+												Buscar escola</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end" data-column="turno">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
+							</th>
+							<th scope="col" class="sortable border-end" data-column="turno">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Turno</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton4">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
+									class="d-flex align-items-center justify-content-between pe-2">
 									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o nome" />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar turno</button>
+										class="col d-flex align-items-center justify-content-between">
+										<span>Turno</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButton4">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent1">
+											<input type="text" class="form-control mb-3 searchInput"
+												placeholder="Digite o nome" />
+											<button class="btn btn-sm col-12 btn-success searchButton">
+												Buscar turno</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end" data-column="serie">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
+							</th>
+							<th scope="col" class="sortable border-end" data-column="serie">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Série</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButto5">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
+									class="d-flex align-items-center justify-content-between pe-2">
 									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite o nome" />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar série</button>
+										class="col d-flex align-items-center justify-content-between">
+										<span>Série</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButto5">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent1">
+											<input type="text" class="form-control mb-3 searchInput"
+												placeholder="Digite o nome" />
+											<button class="btn btn-sm col-12 btn-success searchButton">
+												Buscar série</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col" class="sortable border-end"
-							data-column="descricaoOferta" style="width: 30%">
-							<div
-								class="d-flex align-items-center justify-content-between pe-2">
+							</th>
+							<th scope="col" class="sortable border-end"
+								data-column="descricaoOferta" style="width: 30%">
 								<div
-									class="col d-flex align-items-center justify-content-between">
-									<span>Descrição</span> <i class="fas fa-sort me-3"
-										style="color: #dddddd"></i>
-								</div>
-								<div class="dropdown-form">
-									<div class="dropdown-toggle-form" id="dropdownButton1">
-										<i class="fas fa-search" style="color: #dddddd"></i>
-									</div>
+									class="d-flex align-items-center justify-content-between pe-2">
 									<div
-										class="dropdown-content-form rounded-3 dropdown-content-left"
-										id="dropdownContent1">
-										<input type="text" class="form-control mb-3 searchInput"
-											placeholder="Digite a descrição" />
-										<button class="btn btn-sm col-12 btn-success searchButton">
-											Buscar escola</button>
+										class="col d-flex align-items-center justify-content-between">
+										<span>Descrição</span> <i class="fas fa-sort me-3"
+											style="color: #dddddd"></i>
+									</div>
+									<div class="dropdown-form">
+										<div class="dropdown-toggle-form" id="dropdownButton1">
+											<i class="fas fa-search" style="color: #dddddd"></i>
+										</div>
+										<div
+											class="dropdown-content-form rounded-3 dropdown-content-left"
+											id="dropdownContent1">
+											<input type="text" class="form-control mb-3 searchInput"
+												placeholder="Digite a descrição" />
+											<button class="btn btn-sm col-12 btn-success searchButton">
+												Buscar escola</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th scope="col">Vagas</th>
-						<th scope="col" style="width: 10%">Min Vagas</th>
-						<th scope="col" width="6%">Ativo</th>
-						<th class="text-center" scope="col" width="10%" height="100%">
-							Ações</th>
-					</tr>
-				</thead>
-				<tbody id="cola-tabela" class="table-group-divider"></tbody>
-			</table>
-			<div id="pagination" class="mx-auto mt-auto">
-				<button id="prev" class="btn btn-sm">
-					<i class="fa-solid fa-angle-left fa-xl"></i>
-				</button>
-				<div id="page-numbers" class="btn-group mt-2"></div>
-				<button id="next" class="btn btn-sm">
-					<i class="fa-solid fa-angle-right fa-xl"></i>
-				</button>
+							</th>
+							<th scope="col">Vagas</th>
+							<th scope="col" style="width: 10%">Min Vagas</th>
+							<th scope="col" width="6%">Ativo</th>
+							<th class="text-center" scope="col" width="10%" height="100%">
+								Ações</th>
+						</tr>
+					</thead>
+					<tbody id="cola-tabela" class="table-group-divider"></tbody>
+				</table>
+				<div id="pagination" class="mx-auto mt-auto">
+					<button id="prev" class="btn btn-sm">
+						<i class="fa-solid fa-angle-left fa-xl"></i>
+					</button>
+					<div id="page-numbers" class="btn-group mt-2"></div>
+					<button id="next" class="btn btn-sm">
+						<i class="fa-solid fa-angle-right fa-xl"></i>
+					</button>
+				</div>
 			</div>
 		</section>
 		<div class="modal fade" id="newCadastro" tabindex="-1"
@@ -291,8 +315,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<ul class="options-list" id="turmaOptionsConcurso"></ul>
 								</div>
 								<select class="form-select" aria-label="concurso"
-									id="concursoSelect" name="concurso"
-									style="display: none">
+									id="concursoSelect" name="concurso" style="display: none">
 									<option selected disabled value="">Selecione o
 										Concurso</option>
 								</select>
@@ -349,12 +372,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<ul class="options-list" id="serieIdOptions"></ul>
 								</div>
 								<select class="form-select" aria-label="serieId" id="serieId"
-									 name="serieId" style="display: none">
+									name="serieId" style="display: none">
 									<option selected disabled value="">Selecione a Série</option>
 								</select>
 							</div>
-							
-							
+
+
 							<div class="mb-4">
 								<label for="curriculoId" class="form-label">Currículo:<span
 									class="red">*</span></label>
@@ -364,9 +387,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<ul class="options-list" id="curriculoIdOptions"></ul>
 								</div>
 								<select class="form-select" aria-label="serieId"
-									id="curriculoId" name="curriculoId"
-									style="display: none">
-									<option selected disabled value="">Selecione o Currículo</option>
+									id="curriculoId" name="curriculoId" style="display: none">
+									<option selected disabled value="">Selecione o
+										Currículo</option>
 								</select>
 							</div>
 
@@ -382,22 +405,22 @@ https://kit.fontawesome.com/3ce21ff22c.js"
                 </div> -->
 
 							<div class="mb-4">
-								<label for="descricao" class="form-label">Descrição:<span class="red">*</span></label> <input
-									type="text" class="form-control" id="descricao" required
-									aria-describedby="Descricao" autocomplete="off" />
-							</div>
-
-							<div class="mb-4">
-								<label for="vagas" class="form-label">Vagas:<span class="red">*</span></label> <input
-									type="number" class="form-control" id="vagas" required
-									aria-describedby="vagas" autocomplete="off" />
-							</div>
-
-							<div class="mb-4">
-								<label for="vagasMin" class="form-label">Vagas
-									Mínimas para Abertura:</label> <input type="text" class="form-control"
-									id="vagasMin" aria-describedby="vagasMin"
+								<label for="descricao" class="form-label">Descrição:<span
+									class="red">*</span></label> <input type="text" class="form-control"
+									id="descricao" required aria-describedby="Descricao"
 									autocomplete="off" />
+							</div>
+
+							<div class="mb-4">
+								<label for="vagas" class="form-label">Vagas:<span
+									class="red">*</span></label> <input type="number" class="form-control"
+									id="vagas" required aria-describedby="vagas" autocomplete="off" />
+							</div>
+
+							<div class="mb-4">
+								<label for="vagasMin" class="form-label">Vagas Mínimas
+									para Abertura:</label> <input type="text" class="form-control"
+									id="vagasMin" aria-describedby="vagasMin" autocomplete="off" />
 							</div>
 
 							<div class="d-flex justify-content-end gap-2">
@@ -432,8 +455,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<ul class="options-list" id="turmaOptionsConcursoEdit"></ul>
 								</div>
 								<select class="form-select" aria-label="concursoEdit"
-									id="concursoEdit"  name="concursoEdit"
-									style="display: none">
+									id="concursoEdit" name="concursoEdit" style="display: none">
 									<option selected disabled value="">Selecione o
 										Concurso</option>
 								</select>
@@ -448,7 +470,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<ul class="options-list" id="turmaOptionsCursoEdit"></ul>
 								</div>
 								<select class="form-select" aria-label="cursoEdit"
-									id="cursoEdit"  name="cursoEdit" style="display: none">
+									id="cursoEdit" name="cursoEdit" style="display: none">
 									<option selected disabled value="">Selecione o Curso</option>
 								</select>
 							</div>
@@ -462,8 +484,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<ul class="options-list" id="turmaOptionsEscolaEdit"></ul>
 								</div>
 								<select class="form-select" aria-label="escolaEdit"
-									id="escolaEdit"  name="escolaEdit"
-									style="display: none">
+									id="escolaEdit" name="escolaEdit" style="display: none">
 									<option selected disabled value="">Selecione a Escola
 									</option>
 								</select>
@@ -493,27 +514,28 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 									<ul class="options-list" id="serieIdOptionsEdit"></ul>
 								</div>
 								<select class="form-select" aria-label="serieId"
-									id="serieIdEdit" name="serieIdEdit"
-									style="display: none">
+									id="serieIdEdit" name="serieIdEdit" style="display: none">
 									<option selected disabled value="">Selecione a Série</option>
 								</select>
 							</div>
-							
+
 							<div class="mb-4">
 								<label for="curriculoIdEdit" class="form-label">Currículo:<span
 									class="red">*</span></label>
 								<div class="custom-select">
-									<input type="text" id="curriculoIdSearchEdit" class="form-control"
-										placeholder="Selecione ou pesquise..." autocomplete="off" />
+									<input type="text" id="curriculoIdSearchEdit"
+										class="form-control" placeholder="Selecione ou pesquise..."
+										autocomplete="off" />
 									<ul class="options-list" id="curriculoIdOptionsEdit"></ul>
 								</div>
 								<select class="form-select" aria-label="serieId"
 									id="curriculoIdEdit" name="curriculoIdEdit"
 									style="display: none">
-									<option selected disabled value="">Selecione o Currículo</option>
+									<option selected disabled value="">Selecione o
+										Currículo</option>
 								</select>
 							</div>
-							
+
 
 							<!-- <div class="mb-4">
                   <label for="serieEdit" class="form-label">Séries:</label>

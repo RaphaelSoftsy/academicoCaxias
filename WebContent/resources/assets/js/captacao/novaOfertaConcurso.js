@@ -133,12 +133,38 @@ $(document).ready(function() {
 			$("#cursoId").val(data.cursoId)
 			$("#escolaId").val(data.escolaId)
 			$("#turnoId").val(data.turnoId)
-			$("#curriculoId").val(data.curriculoId)
 			$("#serieId").val(data.serieId)
 			$("#descricao").val(data.descricaoOferta)
 			$("#vagas").val(data.vagas)
 			$("#vagasMin").val(data.minVagasAbertTurma)
 			$('select').select2();
+
+			$('#concursoId').prop('disabled', true);
+			$('#cursoId').prop('disabled', true);
+			$('#escolaId').prop('disabled', true);
+			$('#turnoId').prop('disabled', true);
+
+			$('#curriculoId').empty()
+			$('#curriculoId').removeAttr('disabled');
+			$('#curriculoId').append(`<option value='0' selected disabled>Selecione o currículo</option>`)
+
+			$.ajax({
+				url: url_base + `/curriculo/curso/${data.cursoId}`,
+				type: "get",
+				async: false,
+			}).done(function(resp) {
+				$.each(resp, function(index, item) {
+					$("#curriculoId").append(
+						$("<option>", {
+							value: item.idCurriculo,
+							text: item.curriculo,
+							name: item.curriculo,
+						})
+					);
+				});
+				$("#curriculoId").val(data.curriculoId)
+			})
+
 		});
 	}
 })

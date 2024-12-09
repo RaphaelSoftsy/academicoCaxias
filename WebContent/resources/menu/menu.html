@@ -1,67 +1,75 @@
 <html>
-<head>
+  <head> </head>
 
-</head>
+  <body>
+    <section id="menu-mobile" class="menu-mobile">
+      <div class="container-header">
+        <div class="img-mobile-menu">
+          <img
+            class="logo-mobile"
+            src="resources/assets/img/logo-sumare.png"
+            alt="Logo Prefeitura Caxias do Sul"
+          />
+        </div>
+        <i class="fa-solid fa-bars" id="barsIcon"></i>
+      </div>
+    </section>
+    <section id="modalMenu" class="abracaMenu modalMenu overflow-y">
+      <div class="close-btn-menu botao-desativa-menu" id="closeBtn">
+        <i class="fas fa-times"></i>
+      </div>
 
-<body>
-	<section id="menu-mobile" class="menu-mobile">
-		<div class="container-header">
-			<div class="img-mobile-menu">
-				<img class="logo-mobile" src="resources/assets/img/logo-sumare.png"
-					alt="Logo Prefeitura Caxias do Sul" />
-			</div>
-			<i class="fa-solid fa-bars" id="barsIcon"></i>
-		</div>
-	</section>
-	<section id="modalMenu" class="abracaMenu modalMenu overflow-y">
-		<div class="close-btn-menu botao-desativa-menu" id="closeBtn">
-			<i class="fas fa-times"></i>
-		</div>
+      <div class="container-icon">
+        <i class="fa-solid fa-chevron-left arrow"></i>
+      </div>
 
-		<div class="container-icon">
-			<i class="fa-solid fa-chevron-left arrow"></i>
-		</div>
+      <div class="img-menu">
+        <img
+          class="logoSumare animate__animated animate__bounceIn mx-auto"
+          alt="Logo Prefeitura de Uruçui"
+          id="imgLogoMenu"
+          src="resources/assets/img/logo-sumare.png"
+        />
+      </div>
 
-		<div class="img-menu">
-			<img class="logoSumare animate__animated animate__bounceIn mx-auto"
-				alt="Logo Prefeitura de Uruçui" id="imgLogoMenu"
-				src="resources/assets/img/logo-sumare.png" />
-		</div>
+      <hr />
 
-		<hr />
+      <p>
+        <i class="fa-solid fa-user me-2" style="width: 28px"></i>
+        <span id="nome-user"></span>
+      </p>
 
-		<p>
-			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span
-				id="nome-user"></span>
-		</p>
+      <hr />
 
-		<hr />
-
-		<nav class="menu" id="navMenu">
-			<div class="item" id="sairEscola">
-				<a class="sub-btn"> <i
-					class="fa-solid fa-person-walking-arrow-right"></i><span
-					id="itemName1"> Trocar Escola</span>
-				</a>
-			</div>
-		</nav>
-	</section>
-</body>
-<script charset="UTF-8" type="text/javascript">
+      <nav class="menu" id="navMenu">
+        <div class="item" id="sairEscola">
+          <a class="sub-btn">
+            <i class="fa-solid fa-person-walking-arrow-right"></i
+            ><span id="itemName1"> Trocar Escola</span>
+          </a>
+        </div>
+      </nav>
+    </section>
+  </body>
+  <script charset="UTF-8" type="text/javascript">
     var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
     var idContaAcesso = localStorage.getItem("idContaAcesso");
     var logoConta = localStorage.getItem("imagemLogo");
-    
-    console.log('Logo')
-    console.log(logoConta)
+
+    console.log("Logo");
+    console.log(logoConta);
     $("#imgLogoMenu").attr("src", `data:image/png;base64,${logoConta}`);
-    
+
     let isMenuClickEventAttached = false;
 
     $(document).ready(function () {
       var tamanhoMenu = $(".abracaMenu").width();
       const contaPadraoAcesso = localStorage.getItem("idContaAcesso");
-      
+      const modulesStorage = JSON.parse(localStorage.getItem("modulesStorage"));
+      const transacoesStorage = JSON.parse(
+        localStorage.getItem("transacoesStorage")
+      );
+
       let sairModule = `
         	<div class="item"  >
  				<a class="sub-btn" id="sair"  >
@@ -69,18 +77,8 @@
  				</a>
  			</div>`;
 
-      $.ajax({
-        url: `${url_base}/modulo/acessos/${usuarioId}`,
-        type: "GET",
-        contentType: "application/json; charset=utf-8",
-        async: true,
-        error: function (error) {
-          console.log("Erro ao carregar módulos:", error);
-        },
-      }).done(function (modules) {
-        let index = 0;
-
-        $.each(modules, function (index, module) {
+      if (modulesStorage != undefined) {
+        $.each(modulesStorage, function (index, module) {
           if (module.exibe == "S") {
             console.log(module);
             let moduleHtml = `
@@ -101,7 +99,7 @@
             $("#navMenu").append(moduleHtml);
           }
           index += 1;
-          if (index == modules.length) {
+          if (index == modulesStorage.length) {
             $("#navMenu").append(sairModule);
           }
         });
@@ -160,31 +158,51 @@
           });
         });
 
-        $.ajax({
-          url: `${url_base}/transacoes/${usuarioId}/acessos`,
-          type: "GET",
-          contentType: "application/json; charset=utf-8",
-          async: true,
-          error: function (error) {
-            console.log("Erro ao carregar módulos:", error);
-          },
-        }).done(function (transacoes) {
-          $.each(transacoes, function (index, subItem) {
-            if (subItem.acessa != "N") {
-              let subItemHtml = `<a href="${subItem.url.replace(
-                /\//g,
-                ""
-              )}" id="${subItem.idCodHtml}" class="sub-item">${
-                subItem.nome
-              }</a>`;
-              $(`#sub-menu-${subItem.idModulo}`).append(subItemHtml);
-            }
-          });
+        $.each(transacoesStorage, function (index, subItem) {
+          if (subItem.acessa != "N") {
+            let subItemHtml = `<a href="${subItem.url.replace(
+              /\//g,
+              ""
+            )}" id="${subItem.idCodHtml}" class="sub-item">${subItem.nome}</a>`;
+            $(`#sub-menu-${subItem.idModulo}`).append(subItemHtml);
+          }
+        });
 
-          $(".sub-btn")
-            .off("click")
-            .on("click", function () {
-              $(".hidden").click(() => {
+        $(".sub-btn")
+          .off("click")
+          .on("click", function () {
+            $(".hidden").click(() => {
+              if (tamanhoMenu == 280) {
+                $(".abracaMenu").css("width", "280px");
+                $(".container-res").css("margin-left", "19em");
+              } else {
+                $(".abracaMenu").css("width", "250px");
+                $(".container-res").css("margin-left", "25%");
+              }
+
+              $(".arrow").css("transform", "rotate(0deg)");
+              $(".logoSumare").show();
+              $("#nome-user").show();
+              $("#itemName1").text("Trocar escola");
+              $("#itemNameSair").text("Sair");
+
+              $(".showMenu").show();
+              $(".hidden").hide();
+
+              $(".img-menu").show();
+              $(".container-icon").css({
+                width: "100%",
+                display: "flex",
+                "align-items": "center",
+                "justify-content": "flex-end",
+                height: "2em",
+                "padding-right": "10%",
+                "padding-top": "0",
+              });
+            });
+
+            if ($(".abracaMenu").width() == 60) {
+              if ($(".abracaMenu").width() <= 60) {
                 if (tamanhoMenu == 280) {
                   $(".abracaMenu").css("width", "280px");
                   $(".container-res").css("margin-left", "19em");
@@ -206,16 +224,164 @@
                 $(".container-icon").css({
                   width: "100%",
                   display: "flex",
-                  "align-items": "center",
+                  "align-items": "flex-end",
                   "justify-content": "flex-end",
                   height: "2em",
                   "padding-right": "10%",
                   "padding-top": "0",
                 });
-              });
+              }
 
-              if ($(".abracaMenu").width() == 60) {
-                if ($(".abracaMenu").width() <= 60) {
+              $(".logoSumare").show();
+              $(".abracaMenu").css("width", "250px");
+              $(".container-res").css("margin-left", "25%");
+              $(".fa-chevron-left").css("transform", "rotate(0deg)");
+              $(".logoSumare").show();
+              $("#nome-user").show();
+              $(".fa-angle-right").show();
+              $(".container-icon").css({
+                width: "100%",
+                display: "flex",
+                "align-items": "flex-end",
+                "justify-content": "flex-end",
+                height: "2em",
+                "padding-right": "10%",
+                "padding-top": "0",
+              });
+            }
+            $(this).next(".sub-menu").slideToggle();
+            $(this).find(".dropdown").toggleClass("rotate");
+          });
+
+        $("#sair").click(() => {
+          sessionStorage.removeItem("contaId");
+          sessionStorage.removeItem("usuarioId");
+          localStorage.removeItem("modulesStorage");
+          localStorage.removeItem("transacoesStorage");
+          window.location.href = "login";
+        });
+      } else {
+        $.ajax({
+          url: `${url_base}/modulo/acessos/${usuarioId}`,
+          type: "GET",
+          contentType: "application/json; charset=utf-8",
+          async: true,
+          error: function (error) {
+            console.log("Erro ao carregar módulos:", error);
+          },
+        }).done(function (modules) {
+          let index = 0;
+          localStorage.setItem("modulesStorage", JSON.stringify(modules));
+
+          $.each(modules, function (index, module) {
+            if (module.exibe == "S") {
+              console.log(module);
+              let moduleHtml = `
+            	  <div class="item">
+            	    <a class="sub-btn showMenu">
+            	      ${module.iconeModulo}<span id="itemName${index}">${module.modulo}</span>
+            	      
+            	      <i class="fas fa-angle-right dropdown"></i>
+            	    </a>
+            	    <div class="sub-menu" id="sub-menu-${module.idModulo}"></div>
+            	    <a class="sub-btn icon-modulo hidden">
+            	    ${module.iconeModulo}
+            	    <span class="dot"></span> 
+            	</a>
+
+            	  </div>`;
+
+              $("#navMenu").append(moduleHtml);
+            }
+            index += 1;
+            if (index == modules.length) {
+              $("#navMenu").append(sairModule);
+            }
+          });
+
+          $(".arrow").css("transform", "rotate(0deg)");
+          $(".arrow").css("transition", "1000ms");
+          $(".abracaMenu").css("width", "250px");
+          $(".abracaMenu").css("transition", "1000ms");
+          $(".container-res").css("transition", "1000ms");
+          $(".logoSumare").show();
+          $("#nome-user").show();
+          $(".img-menu").show();
+          $(".showMenu").show();
+          $(".hidden").hide();
+          $("#itemName1").text("Trocar escola");
+          $("#itemNameSair").text("Sair");
+
+          $(".container-icon").css({
+            width: "100%",
+            display: "flex",
+            "align-items": "center",
+            "justify-content": "flex-end",
+            height: "2em",
+            "padding-right": "10%",
+            "padding-top": "0",
+          });
+
+          $(".hidden").click(() => {
+            if (tamanhoMenu == 280) {
+              $(".abracaMenu").css("width", "280px");
+              $(".container-res").css("margin-left", "19em");
+            } else {
+              $(".abracaMenu").css("width", "250px");
+              $(".container-res").css("margin-left", "25%");
+            }
+
+            $(".arrow").css("transform", "rotate(0deg)");
+            $(".logoSumare").show();
+            $("#nome-user").show();
+            $("#itemName1").text("Trocar escola");
+            $("#itemNameSair").text("Sair");
+
+            $(".showMenu").show();
+            $(".hidden").hide();
+
+            /* $(".fa-angle-right").show(); */
+            $(".img-menu").show();
+            $(".container-icon").css({
+              width: "100%",
+              display: "flex",
+              "align-items": "center",
+              "justify-content": "flex-end",
+              height: "2em",
+              "padding-right": "10%",
+              "padding-top": "0",
+            });
+          });
+
+          $.ajax({
+            url: `${url_base}/transacoes/${usuarioId}/acessos`,
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            async: true,
+            error: function (error) {
+              console.log("Erro ao carregar módulos:", error);
+            },
+          }).done(function (transacoes) {
+            localStorage.setItem(
+              "transacoesStorage",
+              JSON.stringify(transacoes)
+            );
+            $.each(transacoes, function (index, subItem) {
+              if (subItem.acessa != "N") {
+                let subItemHtml = `<a href="${subItem.url.replace(
+                  /\//g,
+                  ""
+                )}" id="${subItem.idCodHtml}" class="sub-item">${
+                  subItem.nome
+                }</a>`;
+                $(`#sub-menu-${subItem.idModulo}`).append(subItemHtml);
+              }
+            });
+
+            $(".sub-btn")
+              .off("click")
+              .on("click", function () {
+                $(".hidden").click(() => {
                   if (tamanhoMenu == 280) {
                     $(".abracaMenu").css("width", "280px");
                     $(".container-res").css("margin-left", "19em");
@@ -237,6 +403,55 @@
                   $(".container-icon").css({
                     width: "100%",
                     display: "flex",
+                    "align-items": "center",
+                    "justify-content": "flex-end",
+                    height: "2em",
+                    "padding-right": "10%",
+                    "padding-top": "0",
+                  });
+                });
+
+                if ($(".abracaMenu").width() == 60) {
+                  if ($(".abracaMenu").width() <= 60) {
+                    if (tamanhoMenu == 280) {
+                      $(".abracaMenu").css("width", "280px");
+                      $(".container-res").css("margin-left", "19em");
+                    } else {
+                      $(".abracaMenu").css("width", "250px");
+                      $(".container-res").css("margin-left", "25%");
+                    }
+
+                    $(".arrow").css("transform", "rotate(0deg)");
+                    $(".logoSumare").show();
+                    $("#nome-user").show();
+                    $("#itemName1").text("Trocar escola");
+                    $("#itemNameSair").text("Sair");
+
+                    $(".showMenu").show();
+                    $(".hidden").hide();
+
+                    $(".img-menu").show();
+                    $(".container-icon").css({
+                      width: "100%",
+                      display: "flex",
+                      "align-items": "flex-end",
+                      "justify-content": "flex-end",
+                      height: "2em",
+                      "padding-right": "10%",
+                      "padding-top": "0",
+                    });
+                  }
+
+                  $(".logoSumare").show();
+                  $(".abracaMenu").css("width", "250px");
+                  $(".container-res").css("margin-left", "25%");
+                  $(".fa-chevron-left").css("transform", "rotate(0deg)");
+                  $(".logoSumare").show();
+                  $("#nome-user").show();
+                  $(".fa-angle-right").show();
+                  $(".container-icon").css({
+                    width: "100%",
+                    display: "flex",
                     "align-items": "flex-end",
                     "justify-content": "flex-end",
                     height: "2em",
@@ -244,73 +459,57 @@
                     "padding-top": "0",
                   });
                 }
+                $(this).next(".sub-menu").slideToggle();
+                $(this).find(".dropdown").toggleClass("rotate");
+              });
 
-                $(".logoSumare").show();
-                $(".abracaMenu").css("width", "250px");
-                $(".container-res").css("margin-left", "25%");
-                $(".fa-chevron-left").css("transform", "rotate(0deg)");
-                $(".logoSumare").show();
-                $("#nome-user").show();
-                $(".fa-angle-right").show();
-                $(".container-icon").css({
-                  width: "100%",
-                  display: "flex",
-                  "align-items": "flex-end",
-                  "justify-content": "flex-end",
-                  height: "2em",
-                  "padding-right": "10%",
-                  "padding-top": "0",
-                });
-              }
-              $(this).next(".sub-menu").slideToggle();
-              $(this).find(".dropdown").toggleClass("rotate");
+            $("#sair").click(() => {
+              sessionStorage.removeItem("contaId");
+              sessionStorage.removeItem("usuarioId");
+              localStorage.removeItem("modulesStorage");
+              localStorage.removeItem("transacoesStorage");
+              window.location.href = "login";
             });
-
-          $("#sair").click(() => {
-            sessionStorage.removeItem("contaId");
-            sessionStorage.removeItem("usuarioId");
-            window.location.href = "login";
           });
         });
-      });
+      }
 
       $(".fa-chevron-left").click(() => {
         if ($(".abracaMenu").width() > 60) {
-        	$(".abracaMenu").addClass("menu-fechado");
-        	$(".abracaMenu").removeClass("overflow-y")
-        	
-	        $(".arrow").css("transform", "rotate(180deg)");
-	          $(".arrow").css("transition", "1000ms");
-	          $(".abracaMenu").css("width", "60px");
-	          $(".abracaMenu").css("transition", "1000ms");
-	          $(".container-res").css("margin-left", "10%");
-	          $(".container-res").css("transition", "1000ms");
-	          $(".logoSumare").hide();
-	          $("#nome-user").hide();
-	          $(".img-menu").hide();
-	          $(".sub-menu").hide();
-	          $(".showMenu").hide();
-	          $(".hidden").show();
-	          $("#itemName1").text("");
-	          $("#itemNameSair").text("");
-	          
-	        
-			   $(".icon-modulo").css({
-				  display: "flex",
-				  "align-items": "center",
-				  "justify-content": "space-between"
-			  })
-	          $(".container-icon").css({
-	            width: "100%",
-	            display: "flex",
-	            "align-items": "center",
-	            "justify-content": "center",
-	            height: "8%",
-	            "padding-top": "20%",
-	            "padding-right": "0",
-	          });
+          $(".abracaMenu").addClass("menu-fechado");
+          $(".abracaMenu").removeClass("overflow-y");
+
+          $(".arrow").css("transform", "rotate(180deg)");
+          $(".arrow").css("transition", "1000ms");
+          $(".abracaMenu").css("width", "60px");
+          $(".abracaMenu").css("transition", "1000ms");
+          $(".container-res").css("margin-left", "10%");
+          $(".container-res").css("transition", "1000ms");
+          $(".logoSumare").hide();
+          $("#nome-user").hide();
+          $(".img-menu").hide();
+          $(".sub-menu").hide();
+          $(".showMenu").hide();
+          $(".hidden").show();
+          $("#itemName1").text("");
+          $("#itemNameSair").text("");
+
+          $(".icon-modulo").css({
+            display: "flex",
+            "align-items": "center",
+            "justify-content": "space-between",
+          });
+          $(".container-icon").css({
+            width: "100%",
+            display: "flex",
+            "align-items": "center",
+            "justify-content": "center",
+            height: "8%",
+            "padding-top": "20%",
+            "padding-right": "0",
+          });
         } else {
-        	$(".abracaMenu").removeClass("menu-fechado");
+          $(".abracaMenu").removeClass("menu-fechado");
 
           if (tamanhoMenu == 280) {
             $(".abracaMenu").css("width", "280px");
@@ -340,71 +539,68 @@
             "padding-right": "10%",
             "padding-top": "0",
           });
-          
-          $(".abracaMenu").addClass("overflow-y")
+
+          $(".abracaMenu").addClass("overflow-y");
         }
       });
-      
+
       let submenuTimeout;
 
-	   // Função para fechar todos os submenus abertos
-	   function fecharTodosSubmenus() {
-	       $(".sub-menu").removeClass("submenu-aberto").hide();
-	   }
-	
-	   // Abertura do submenu ao passar o mouse sobre o módulo
-	   $(document).on("mouseenter", ".sub-btn", function () {
-	       // Verifica se o menu principal está colapsado
-	       if ($(".abracaMenu").width() <= 60) {
-	           fecharTodosSubmenus(); // Fecha todos antes de abrir o novo
-	           const submenu = $(this).siblings(".sub-menu");
-	           submenu
-	               .addClass("submenu-aberto")
-	               .css({
-	                   display: "block",
-	                   position: "absolute",
-	                   left: $(this).offset().left + $(this).outerWidth() + 4 + "px",
-	                   "border-radius": '5px'
-	               });
-	       } else {
-	    	   
-	    	   submenu = $(this).siblings(".sub-menu")
-	    	   if (submenu.css('display') === 'none') {
-	    		   submenu.removeAttr("style").css('display', 'none')
-	    		} else {
-	    			submenu.removeAttr("style").css('display', 'block')
-	    		}
-	       }
-	   });
-	
-	   // Mantém o submenu aberto ao passar o mouse sobre ele
-	   $(document).on("mouseenter", ".sub-menu, .sub-btn", function () {
-	       clearTimeout(submenuTimeout); // Cancela o tempo limite de fechamento
-	   });
-	
-	   // Inicia um atraso para esconder o submenu ao sair do botão principal
-	   $(document).on("mouseleave", ".sub-btn", function () {
-	       submenuTimeout = setTimeout(() => {
-	           const submenu = $(this).siblings(".sub-menu");
-	           if (!submenu.is(":hover")) {
-	               submenu.removeClass("submenu-aberto").hide();
-	           }
-	       }, 200); // Tempo para permitir a navegação (em ms)
-	   });
-	
-	   // Esconde o submenu ao sair dele, mas com o mesmo atraso
-		   $(document).on("mouseleave", ".sub-menu", function () {
-		       submenuTimeout = setTimeout(() => {
-	           $(this).removeClass("submenu-aberto").hide();
-	       }, 200);
-	   });
-	
-	   // Evento para fechar todos os submenus ao fechar o menu principal
-	   $(document).on("click", ".menu-toggle-btn", function () {
-	       if ($(".abracaMenu").hasClass("menu-fechado")) {
-	           fecharTodosSubmenus(); // Reseta a visualização dos submenus ao fechar o menu
-	       }
-	   });
+      // Função para fechar todos os submenus abertos
+      function fecharTodosSubmenus() {
+        $(".sub-menu").removeClass("submenu-aberto").hide();
+      }
+
+      // Abertura do submenu ao passar o mouse sobre o módulo
+      $(document).on("mouseenter", ".sub-btn", function () {
+        // Verifica se o menu principal está colapsado
+        if ($(".abracaMenu").width() <= 60) {
+          fecharTodosSubmenus(); // Fecha todos antes de abrir o novo
+          const submenu = $(this).siblings(".sub-menu");
+          submenu.addClass("submenu-aberto").css({
+            display: "block",
+            position: "absolute",
+            left: $(this).offset().left + $(this).outerWidth() + 4 + "px",
+            "border-radius": "5px",
+          });
+        } else {
+          submenu = $(this).siblings(".sub-menu");
+          if (submenu.css("display") === "none") {
+            submenu.removeAttr("style").css("display", "none");
+          } else {
+            submenu.removeAttr("style").css("display", "block");
+          }
+        }
+      });
+
+      // Mantém o submenu aberto ao passar o mouse sobre ele
+      $(document).on("mouseenter", ".sub-menu, .sub-btn", function () {
+        clearTimeout(submenuTimeout); // Cancela o tempo limite de fechamento
+      });
+
+      // Inicia um atraso para esconder o submenu ao sair do botão principal
+      $(document).on("mouseleave", ".sub-btn", function () {
+        submenuTimeout = setTimeout(() => {
+          const submenu = $(this).siblings(".sub-menu");
+          if (!submenu.is(":hover")) {
+            submenu.removeClass("submenu-aberto").hide();
+          }
+        }, 200); // Tempo para permitir a navegação (em ms)
+      });
+
+      // Esconde o submenu ao sair dele, mas com o mesmo atraso
+      $(document).on("mouseleave", ".sub-menu", function () {
+        submenuTimeout = setTimeout(() => {
+          $(this).removeClass("submenu-aberto").hide();
+        }, 200);
+      });
+
+      // Evento para fechar todos os submenus ao fechar o menu principal
+      $(document).on("click", ".menu-toggle-btn", function () {
+        if ($(".abracaMenu").hasClass("menu-fechado")) {
+          fecharTodosSubmenus(); // Reseta a visualização dos submenus ao fechar o menu
+        }
+      });
 
       str = sessionStorage.getItem("nomeConta");
       $("#nome-user").text(str);
@@ -422,24 +618,24 @@
       } else {
         $("#sairEscola").hide();
       }
- 
+
       $("#barsIcon").click(function () {
-        $("#modalMenu").show();	
+        $("#modalMenu").show();
         $("#modalMenu").css({
-        	width: "100%"
-        })
-        $(".logoSumare").css({
-        	width: "50%"
-        })
-        $(".container-icon").hide()
-        $("#closeBtn").show()
-      });
-      
-      $("#closeBtn").click(function () {
-          $("#modalMenu").hide();	
-          $("#closeBtn").hide()
-          $(".container-icon").show()
+          width: "100%",
         });
+        $(".logoSumare").css({
+          width: "50%",
+        });
+        $(".container-icon").hide();
+        $("#closeBtn").show();
+      });
+
+      $("#closeBtn").click(function () {
+        $("#modalMenu").hide();
+        $("#closeBtn").hide();
+        $(".container-icon").show();
+      });
 
       $(".logoSumare").click(() => {
         window.location.href = "acessar-escolas";

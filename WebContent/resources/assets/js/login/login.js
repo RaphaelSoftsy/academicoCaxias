@@ -64,7 +64,6 @@ $('#btnLogin').click(function() {
 			sessionStorage.setItem('usuarioId', data.usuarioLogado.idUsuario)
 			localStorage.setItem("idContaAcesso", data.usuarioConta[0].contaPadraoAcessoId)
 
-
 			console.log(data)
 			$.ajax({
 				url: url_base + '/contaPadraoAcessos/' + data.usuarioConta[0].contaPadraoAcessoId,
@@ -80,7 +79,8 @@ $('#btnLogin').click(function() {
 					})
 				}
 			}).done(function(responseData) {
-
+				localStorage.removeItem('modulesStorage')
+				localStorage.removeItem('transacoesStorage')
 
 
 				if ($("#remeberMeCheck").checked) {
