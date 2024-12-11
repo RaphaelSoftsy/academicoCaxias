@@ -330,7 +330,7 @@ function enviarCadastro(base64Anexo) {
 		permiteResposta: getAswer("#isAviso"),
 		contaId: Number(contaId) 	
 	};
-
+z
 
 	console.log(objeto)
 

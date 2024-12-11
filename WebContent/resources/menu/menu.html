@@ -40,6 +40,10 @@
       </p>
 
       <hr />
+      
+      <div class="search-container"><i class="fa-solid fa-magnifying-glass me-2" style="width: 28px"></i> <input type="text" id="searchInput" placeholder="Buscar..."></div>
+      
+      <hr>
 
       <nav class="menu" id="navMenu">
         <div class="item" id="sairEscola">
@@ -646,6 +650,27 @@
         sessionStorage.removeItem("perfil");
         window.location.href = "acessar-escolas";
       });
+      
+      $("#searchInput").on("input", function () {
+    	    const searchQuery = $(this).val().toLowerCase();
+
+    	    $(".menu .item").each(function () {
+    	        const text = $(this).text().toLowerCase();
+    	        
+    	        // Verifica se o texto do item inclui a busca
+    	        if (text.includes(searchQuery)) {
+    	            $(this).show(); // Exibe o item
+    	            $(this).closest(".sub-menu").show(); // Exibe o submenu pai
+    	            $("#sairEscola").hide(); // Esconde 'sairEscola'
+    	        } else {
+    	            $(this).hide(); // Oculta o item
+    	            $(this).closest(".sub-menu").hide(); // Oculta o submenu pai
+    	            $("#sairEscola").hide(); // Esconde 'sairEscola'
+    	        }
+    	    });
+    	});
+
+
     });
   </script>
 </html>

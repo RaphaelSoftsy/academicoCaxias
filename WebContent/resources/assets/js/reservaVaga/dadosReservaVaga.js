@@ -536,7 +536,7 @@ const getDadosCandidato = () => {
 			$('#reprovarCandidato').css('align-items', 'center')
 		} else if (response.aprovado == 'N') {
 			$('#reprovarCandidato').hide()
-			$("#containerReprovacao").show()
+			$("#containerReprovacao").removeAttr("hidden")
 			$("#motivoReprovadoDocumentoId").val(response.motivoReprovacaoCandidato.idMotivoReprovacaoCandidato)
 			$("#obsAprovacaoReprovado").val(response.motivoReprovacaoCandidato.motivoReprovacaoCandidato)
 			$('#aprovarCandidato').css('display', 'flex')

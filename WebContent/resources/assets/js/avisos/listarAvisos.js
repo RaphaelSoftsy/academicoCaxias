@@ -242,12 +242,29 @@ function getDados() {
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
+		
+		
+		$.ajax({
+		url: url_base + "/aviso",
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			dados = data;
+			dadosOriginais = data;
+			listarDados(data);
+			$('input[data-toggle="toggle"]').bootstrapToggle();
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
 }
 
 function listarDados(dados) {
     var html = dados
         .map(function(item) {
             var mensagem = extrairTexto(item.mensagem); // Extrair texto puro
+            mensagem = mensagem.length > 100 ? mensagem.substring(0, 100) + "..." : mensagem; // Limitar a 100 caracteres
             var isDisabled = item.pathAnexo == null ? "disabled" : "";
 
             return (
@@ -265,17 +282,10 @@ function listarDados(dados) {
                 formatarDataComHora(item.dataFim) +
                 "</td>" +
                 '<td class="d-flex justify-content-center">' +
-                '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" title="Baixar Anexo" data-id="' +
-                item.idAviso +
-                '" onclick="baixarAnexo(this)" ' +
-                isDisabled +
-                '>' +
-                '<i class="fa-solid fa-file-arrow-down fa-lg"></i>' +
-                "</span>" +
                 '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" title="Visualizar Destinatários" data-id="' +
                 item.idAviso +
                 '" onclick="verDestinatarios(this)">' +
-                '<i class="fa-solid fa-graduation-cap fa-lg text-light"></i>' +
+                '<i class="fa-solid fa-eye fa-lg text-light"></i>' +
                 "</span>" +
                 "</td>" +
                 "</tr>"
@@ -285,6 +295,7 @@ function listarDados(dados) {
 
     $("#cola-tabela").html(html);
 }
+
 
 
 // Exportar Dados
@@ -298,25 +309,7 @@ $("#exportar-excel").click(function() {
 	XLSX.writeFile(livro, "turmas.xlsx");
 });
 
-function baixarAnexo(ref) {
-	var id = parseInt(ref.getAttribute("data-id"));
-	var aviso = dados.find((item) => item.idAviso === id);
 
-	if (!aviso || !aviso.pathAnexo) {
-		alert("Anexo não disponível para este aviso.");
-		return;
-	}
-
-	var link = document.createElement("a");
-	link.href =
-		"http://10.40.110.2:8080" +
-		aviso.pathAnexo.replace("/opt/tomcat9/webapps", "");
-	link.download = aviso.titulo.replace(/[^a-zA-Z0-9]/g, "_") || "anexo";
-
-	document.body.appendChild(link);
-	link.click();
-	document.body.removeChild(link);
-}
 
 
 

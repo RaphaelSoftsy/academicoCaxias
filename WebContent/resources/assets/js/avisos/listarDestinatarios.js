@@ -1,7 +1,8 @@
-var dados = [];
+let dados = [];
+let dadosAviso = [];
 var sortOrder = {};
 var dadosOriginais = [];
-var rows = 12;
+var rows = 5;
 var currentPage = 1;
 var pagesToShow = 5;
 var escolas = [];
@@ -27,17 +28,7 @@ $(document).ready(function() {
 		selectAno.appendChild(option);
 	}
 
-	$.ajax({
-		url: url_base + "/escolas",
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			escolas = data;
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+
 
 	getDados();
 
@@ -179,7 +170,7 @@ $(document).ready(function() {
 
 		listarDados(dadosOrdenados);
 		$('input[data-toggle="toggle"]').bootstrapToggle();
-		
+
 	}
 
 	showPage(currentPage);
@@ -209,47 +200,138 @@ function getDados() {
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
+
+
+	$.ajax({
+		url: url_base + "/aviso/" + idAviso,
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			dadosAviso = data;
+			carregarAviso(data);
+			$('input[data-toggle="toggle"]').bootstrapToggle();
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
 }
 
 function listarDados(dados) {
-    var html = dados
-        .map(function(item) {
-          
-            return (
-                "<tr>" +
-                "<td>" +
-                item.aluno +
-                "</td>" +
-                "<td>" +
-                item.nomeCompleto+ // Apenas o texto puro da mensagem
-                "</td>" +
-                "<td>" +
-               	item.nomeCurso +' - ' +item.codigoCurso+
-                "</td>" +
-              /*  "<td>" +
-                formatarDataComHora(item.dataFim) +
-                "</td>" +
-                '<td class="d-flex justify-content-center">' +
-                '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" title="Baixar Anexo" data-id="' +
-                item.idAviso +
-                '" onclick="baixarAnexo(this)" ' +
-                isDisabled +
-                '>' +
-                '<i class="fa-solid fa-file-arrow-down fa-lg"></i>' +
-                "</span>" +
-                '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" title="Visualizar Destinatários" data-id="' +
-                item.idAviso +
-                '" onclick="editar(this)">' +
-                '<i class="fa-solid fa-graduation-cap fa-lg text-light"></i>' +
-                "</span>" +
-                "</td>" +*/
-                "</tr>"
-            );
-        })
-        .join("");
+	var html = dados
+		.map(function(item) {
 
-    $("#cola-tabela").html(html);
+			return (
+				"<tr>" +
+				"<td>" +
+				item.aluno +
+				"</td>" +
+				"<td>" +
+				item.nomeCompleto + // Apenas o texto puro da mensagem
+				"</td>" +
+				"<td>" +
+				item.nomeCurso + ' - ' + item.codigoCurso +
+				"</td>" +
+				/*  "<td>" +
+				  formatarDataComHora(item.dataFim) +
+				  "</td>" +
+				  '<td class="d-flex justify-content-center">' +
+				  '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" title="Baixar Anexo" data-id="' +
+				  item.idAviso +
+				  '" onclick="baixarAnexo(this)" ' +
+				  isDisabled +
+				  '>' +
+				  '<i class="fa-solid fa-file-arrow-down fa-lg"></i>' +
+				  "</span>" +
+				  '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" title="Visualizar Destinatários" data-id="' +
+				  item.idAviso +
+				  '" onclick="editar(this)">' +
+				  '<i class="fa-solid fa-graduation-cap fa-lg text-light"></i>' +
+				  "</span>" +
+				  "</td>" +*/
+				"</tr>"
+			);
+		})
+		.join("");
+
+	$("#cola-tabela").html(html);
 }
+
+function formatarData(dataISO) {
+    if (!dataISO) return "Data inválida";
+
+    const data = new Date(dataISO);
+
+    const dia = String(data.getDate()).padStart(2, "0");
+    const mes = String(data.getMonth() + 1).padStart(2, "0"); // Os meses começam em 0
+    const ano = data.getFullYear();
+    const horas = String(data.getHours()).padStart(2, "0");
+    const minutos = String(data.getMinutes()).padStart(2, "0");
+    const segundos = String(data.getSeconds()).padStart(2, "0");
+
+    return `${dia}/${mes}/${ano} `;
+}
+
+
+function carregarAviso(dados) {
+    const dataEnvioFormatada = formatarData(dados.dataCadastro)
+    $("#tituloAviso").text(dados.titulo);
+    $("#mensagemAviso").html(dados.mensagem);  // Alterado para .html() para renderizar HTML
+    $("#dataEnvio").text(`Publicado em ${dataEnvioFormatada}`);
+
+    var anexosContainer = $(".d-flex.flex-wrap.gap-3");
+    anexosContainer.empty();
+
+    var avisoAnexo = dados.pathAnexo.replace("/opt/tomcat9/webapps", "");
+    if (avisoAnexo && avisoAnexo != null) {
+
+        var iconeClasse = "fa-file";
+        if (dados.type === "pdf") {
+            iconeClasse = "fa-file-pdf text-danger";
+        } else if (dados.type === "image") {
+            iconeClasse = "fa-image text-info";
+        }
+
+        var anexoCard = `
+                <div class="anexo-card text-center">
+                    <i class="fa-solid ${iconeClasse} fa-2x"></i>
+                    <p class="mt-2 mb-1 text-truncate" title="anexo">Anexo do aviso</p>
+                    <a href="http://10.40.110.2:8080${avisoAnexo}" class="btn btn-outline-primary btn-sm" download>
+    					<i class="fa fa-download" style="font-size: 15px;"></i> Baixar
+					</a>
+                </div>
+            `;
+        anexosContainer.append(anexoCard);
+
+    } else {
+        anexosContainer.append('<p class="text-muted">Nenhum anexo disponível.</p>');
+    }
+}
+
+
+
+
+
+function baixarAnexo(ref) {
+	var id = parseInt(ref.getAttribute("data-id"));
+	var aviso = dados.find((item) => item.idAviso === id);
+
+	if (!aviso || !aviso.pathAnexo) {
+		alert("Anexo não disponível para este aviso.");
+		return;
+	}
+
+	var link = document.createElement("a");
+	link.href =
+		"http://10.40.110.2:8080" +
+		aviso.pathAnexo.replace("/opt/tomcat9/webapps", "");
+	link.download = aviso.titulo.replace(/[^a-zA-Z0-9]/g, "_") || "anexo";
+
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+}
+
 
 
 // Exportar Dados

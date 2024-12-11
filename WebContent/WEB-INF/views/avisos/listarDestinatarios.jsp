@@ -77,29 +77,17 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-bell fa-lg"></i> <span>Destinatários</span>
+					<i class="fa-solid fa-bell fa-lg"></i> <span>Aviso</span>
 				</div>
 			</div>
 		</section>
-		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-3"
-				style="display: flex; align-items: center; justify-content: end;">
+		<section class="pt-4 card px-5 py-3"
+			style="height: fit-content !important;">
 
-				<div class="d-flex align-items-center gap-2">
-					<button id="limpa-filtros" class="btn btn-sm btn-danger">Limpar
-						Filtros</button>
-					<button id="exportar-excel"
-						class="btn btn-sm btn-success d-flex align-items-center gap-2">
-						<i class="fa-solid fa-file-export"></i> Exportar
-					</button>
-					
-				</div>
-
-			</div>
 
 			<table
 				class="table tabela-cadastro table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Itens Cadastrados</caption>
+				<caption>Destinatários</caption>
 				<thead>
 					<tr>
 						<th scope="col" class="sortable border-end" data-column="escolaId">
@@ -180,7 +168,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				</tbody>
 			</table>
-			<div id="pagination" class="mx-auto mt-auto">
+			<div id="pagination" class="mx-auto">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
 				</button>
@@ -192,18 +180,45 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		</section>
 
 
+		<section class="pt-4 card px-5 py-3 mt-3"
+			style="height: fit-content !important;">
+			<div class="card-body">
+				<!-- Título do Aviso -->
+				<h5 class="card-title" id="tituloAviso">Título do Aviso</h5>
+				<hr>
+
+				<!-- Mensagem -->
+				<p class="card-text" id="mensagemAviso">Esta é a mensagem do
+					aviso. Ela pode conter informações detalhadas sobre o assunto em
+					questão.</p>
+
+				<!-- Anexos -->
+				<div class="mt-4">
+					<h6>Anexos</h6>
+					<div class="d-flex flex-wrap gap-3">
+						<!-- Os anexos serão adicionados aqui dinamicamente -->
+					</div>
+				</div>
+
+			</div>
+			<div class="card-footer text-muted text-end">
+				<small id="dataEnvio">Publicado em: 11/12/2024</small>
+			</div>
+		</section>
+
+
+
 		<div class="modal fade" id="destinatarios" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Lista de Destinatários</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Lista de
+							Destinatários</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
-					<div class="modal-body">
-						
-					</div>
+					<div class="modal-body"></div>
 				</div>
 			</div>
 		</div>

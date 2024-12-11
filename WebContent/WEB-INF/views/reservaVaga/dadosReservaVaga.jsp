@@ -81,13 +81,43 @@ String contextPath = request.getContextPath();
 	</div>
 	<header id="menu"></header>
 	<main class="py-4 container-res">
-		<section class="mb-5">
+		<section class="mb-5 ">
 			<div class="card">
 				<div class="card-body title">
 					<i class="fa-solid fa-circle-info" style="font-size: 24px"></i> <span>Dados
 						da reserva de vagas</span>
 				</div>
 			</div>
+		</section>
+
+		<section id="containerReprovacao" class="mb-5" hidden>
+			<div class="card p-3">
+				
+				<div class="title text-danger mb-3">
+					<i class="fa-solid fa-triangle-exclamation" style="font-size: 24px"></i> <span>Candidato Reprovado</span>
+				</div>
+
+				<div class="row">
+					<div class="mb-4 col-md-6">
+						<label for="motivoReprovacaoDocumentoId" class="form-label">Motivo
+							reprovação:<span class="red">*</span>
+						</label> <select class="form-select"
+							aria-label="motivoReprovacaoDocumentoId"
+							id="motivoReprovadoDocumentoId" required
+							name="motivoReprovacaoDocumentoId" disabled>
+							<option value='0' selected disabled>Selecione um motivo:</option>
+						</select>
+					</div>
+					<div class="mb-4 col-md-6">
+						<label for="obsAprovacao" class="form-label">Observação: </label>
+						<input type="text" id="obsAprovacaoReprovado" autocomplete="off"
+							name="obsAprovacao" class="form-control" disabled />
+					</div>
+				</div>
+
+
+			</div>
+
 		</section>
 
 		<section
@@ -118,28 +148,8 @@ String contextPath = request.getContextPath();
 						Reprovar Candidato</span>
 				</button>
 			</div>
-		
-			<section id="containerReprovacao">
-				<h2 id="tituloDados" class="mb-3">Motivo Reprovação</h2>
-				<div class="row">
-					<div class="mb-4 col-md-6">
-					<label for="motivoReprovacaoDocumentoId" class="form-label">Motivo
-						reprovação:<span class="red">*</span>
-					</label> <select class="form-select"
-						aria-label="motivoReprovacaoDocumentoId"
-						id="motivoReprovadoDocumentoId" required
-						name="motivoReprovacaoDocumentoId" disabled>
-						<option value='0' selected disabled>Selecione um motivo:</option>
-					</select>
-				</div>
-				<div class="mb-4 col-md-6">
-					<label for="obsAprovacao" class="form-label">Observação: </label> <input
-						type="text" id="obsAprovacaoReprovado" autocomplete="off"
-						name="obsAprovacao" class="form-control"  disabled/>
-				</div>
-				</div>
 
-			</section>
+
 			<nav>
 				<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
 					<button class="nav-link active" id="nav-dados-aluno-tab"
