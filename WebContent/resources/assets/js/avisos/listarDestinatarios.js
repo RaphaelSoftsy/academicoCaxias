@@ -258,41 +258,48 @@ function listarDados(dados) {
 }
 
 function formatarData(dataISO) {
-    if (!dataISO) return "Data inválida";
+	if (!dataISO) return "Data inválida";
 
-    const data = new Date(dataISO);
+	const data = new Date(dataISO);
 
-    const dia = String(data.getDate()).padStart(2, "0");
-    const mes = String(data.getMonth() + 1).padStart(2, "0"); // Os meses começam em 0
-    const ano = data.getFullYear();
-    const horas = String(data.getHours()).padStart(2, "0");
-    const minutos = String(data.getMinutes()).padStart(2, "0");
-    const segundos = String(data.getSeconds()).padStart(2, "0");
+	const dia = String(data.getDate()).padStart(2, "0");
+	const mes = String(data.getMonth() + 1).padStart(2, "0"); // Os meses começam em 0
+	const ano = data.getFullYear();
+	const horas = String(data.getHours()).padStart(2, "0");
+	const minutos = String(data.getMinutes()).padStart(2, "0");
+	const segundos = String(data.getSeconds()).padStart(2, "0");
 
-    return `${dia}/${mes}/${ano} `;
+	return `${dia}/${mes}/${ano} `;
 }
 
 
 function carregarAviso(dados) {
-    const dataEnvioFormatada = formatarData(dados.dataCadastro)
-    $("#tituloAviso").text(dados.titulo);
-    $("#mensagemAviso").html(dados.mensagem);  // Alterado para .html() para renderizar HTML
-    $("#dataEnvio").text(`Publicado em ${dataEnvioFormatada}`);
+	const dataEnvioFormatada = formatarData(dados.dataCadastro)
+	const dataInicioFormatada = formatarData(dados.dataInicio)
+	const dataFimFormatada = formatarData(dados.dataFim)
+	$("#tituloAviso").text(`${dados.tipoAviso.descricao} - ${dados.titulo}`);
+	$("#mensagemAviso").html(dados.mensagem);
+	$("#dataEnvio").text(`Publicado em ${dataEnvioFormatada}`);
+	
+	if (dados.dataInicio != null) {
+		
+		$("#dataVigencia").text(`Disponível de ${dataInicioFormatada} até ${dataFimFormatada}`);
+	}
 
-    var anexosContainer = $(".d-flex.flex-wrap.gap-3");
-    anexosContainer.empty();
+	var anexosContainer = $(".d-flex.flex-wrap.gap-3");
+	anexosContainer.empty();
 
-    var avisoAnexo = dados.pathAnexo.replace("/opt/tomcat9/webapps", "");
-    if (avisoAnexo && avisoAnexo != null) {
+	let avisoAnexo = dados.pathAnexo;
+	if (avisoAnexo && avisoAnexo != null) {
+		avisoAnexo = dados.pathAnexo.replace("/opt/tomcat9/webapps", "")
+		var iconeClasse = "fa-file";
+		if (dados.type === "pdf") {
+			iconeClasse = "fa-file-pdf text-danger";
+		} else if (dados.type === "image") {
+			iconeClasse = "fa-image text-info";
+		}
 
-        var iconeClasse = "fa-file";
-        if (dados.type === "pdf") {
-            iconeClasse = "fa-file-pdf text-danger";
-        } else if (dados.type === "image") {
-            iconeClasse = "fa-image text-info";
-        }
-
-        var anexoCard = `
+		var anexoCard = `
                 <div class="anexo-card text-center">
                     <i class="fa-solid ${iconeClasse} fa-2x"></i>
                     <p class="mt-2 mb-1 text-truncate" title="anexo">Anexo do aviso</p>
@@ -301,11 +308,11 @@ function carregarAviso(dados) {
 					</a>
                 </div>
             `;
-        anexosContainer.append(anexoCard);
+		anexosContainer.append(anexoCard);
 
-    } else {
-        anexosContainer.append('<p class="text-muted">Nenhum anexo disponível.</p>');
-    }
+	} else {
+		anexosContainer.append('<p class="text-muted">Nenhum anexo disponível.</p>');
+	}
 }
 
 

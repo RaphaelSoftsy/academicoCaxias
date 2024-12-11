@@ -194,7 +194,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<!-- Anexos -->
 				<div class="mt-4">
-					<h6>Anexos</h6>
+					
 					<div class="d-flex flex-wrap gap-3">
 						<!-- Os anexos serão adicionados aqui dinamicamente -->
 					</div>
@@ -203,6 +203,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			</div>
 			<div class="card-footer text-muted text-end">
 				<small id="dataEnvio">Publicado em: 11/12/2024</small>
+				<br>
+				<small id="dataVigencia"></small>
+				
 			</div>
 		</section>
 

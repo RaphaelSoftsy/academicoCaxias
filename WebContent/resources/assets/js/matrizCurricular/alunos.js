@@ -118,9 +118,26 @@ function listarDados(dados) {
 			"</td>" +
 
 			"<td>" +
+			item.pessoa.nomeCompleto +
+			"</td>" +
+			
+			"<td>" +
+			`${item.curso.nomeCurso} - ${item.curso.codCurso}` +
+			"</td>" +
+			
+			
+			"<td>" +
 			item.serie.serie +
 			"</td>" +
-
+			
+			"<td>" +
+			item.escola.nomeEscola +
+			"</td>" +
+			
+			"<td>" +
+			item.turno.turno +
+			"</td>" +
+			
 			"<td>" +
 			item.emailInterno +
 			"</td>" +

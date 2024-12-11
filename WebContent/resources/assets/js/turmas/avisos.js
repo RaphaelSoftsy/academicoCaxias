@@ -222,6 +222,18 @@ $('#formNovoCadastro').on('submit', function(e) {
 
 
 // Atualizando o evento para lidar com checkboxes dinâmicos
+$('#inicio').on('change', function() {
+	if ($('#inicio').val() != '') {
+		$('#inicio').attr('required', true)
+		$('#termino').attr('disabled', false);
+		$('#termino').attr('required', true);
+	}else{
+		$('#termino').attr('disabled', true);
+		$('#termino').attr('required', false);
+	}
+});
+
+
 $('#checkAll').on('change', function() {
 	const isChecked = $(this).is(':checked');
 
@@ -239,38 +251,28 @@ $('#cola-tabela').on('change', 'input[type="checkbox"]', function() {
 });
 
 function cadastrar() {
-    const fileInput = $("#anexoAviso")[0]; // Garante que está pegando o elemento correto
+	const fileInput = $("#anexoAviso")[0]; // Garante que está pegando o elemento correto
 
-    if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-        // Valida se o input existe e se há um arquivo selecionado
-        Swal.fire({
-            icon: "info",
-            title: "Nenhum arquivo selecionado",
-            text: "Por favor, selecione um arquivo para anexar.",
-        });
-        return false;
-    }
+	const file = fileInput.files[0];
+	if (file) {
 
-    const file = fileInput.files[0]; 
-    if (file) {
-       
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            const base64Anexo = event.target.result.split(",")[1]; 
-            enviarCadastro(base64Anexo);
-        };
-        reader.onerror = function () {
-            Swal.fire({
-                icon: "error",
-                title: "Erro",
-                text: "Não foi possível processar o anexo.",
-            });
-        };
-        reader.readAsDataURL(file);
-    } else {
-        
-        enviarCadastro(null);
-    }
+		const reader = new FileReader();
+		reader.onload = function(event) {
+			const base64Anexo = event.target.result.split(",")[1];
+			enviarCadastro(base64Anexo);
+		};
+		reader.onerror = function() {
+			Swal.fire({
+				icon: "error",
+				title: "Erro",
+				text: "Não foi possível processar o anexo.",
+			});
+		};
+		reader.readAsDataURL(file);
+	} else {
+
+		enviarCadastro(null);
+	}
 }
 
 
@@ -305,7 +307,10 @@ function enviarCadastro(base64Anexo) {
 
 
 	destinatarios = obterIdsSelecionados();
-
+	
+	
+	const dataInicio = $("#inicio").val() != '' ? `${$("#inicio").val()}T15:30:00` : null
+	const dataFim = $("#termino").val() != '' ? `${$("#termino").val()}T15:30:00` : null
 
 
 	if (destinatarios.length === 0) {
@@ -316,51 +321,51 @@ function enviarCadastro(base64Anexo) {
 		});
 		return false;
 	}
-	
+
 	const objeto = {
 		"tipoAvisoId": Number($("#tipoAvisoId").val()),
-		"dataInicio": `${$("#inicio").val()}T15:30:00`,
-		"dataFim": `${$("#termino").val()}T15:30:00`,
+		"dataInicio": dataInicio,
+		"dataFim": dataFim,
 		"titulo": $("#assunto").val(),
 		"mensagem": tinymce.get('mensagem').getContent(),
 		"usuarioId": Number(usuarioId),
 		"professorId": null,
-		"destinatarios": destinatarios, 
+		"destinatarios": destinatarios,
 		"pathAnexo": base64Anexo,
 		permiteResposta: getAswer("#isAviso"),
-		contaId: Number(contaId) 	
+		contaId: Number(contaId)
 	};
-z
+	
 
 	console.log(objeto)
 
-	 $.ajax({
-		 url: url_base + "/aviso",
-		 type: "POST",
-		 data: JSON.stringify(objeto),
-		 contentType: "application/json; charset=utf-8",
-		 async: false,
-		 error: function(e) {
-			 console.error(e.responseJSON.message);
-			 Swal.fire({
-				 icon: "error",
-				 title: "Oops...",
-				 text: "Não foi possível realizar esse comando!",
-			 });
-		 }
-	 }).done(function(data) {
-		 // Limpa os campos e exibe mensagem de sucesso
-		 limpaCampo();
-		 Swal.fire({
-			 title: "Cadastrado com sucesso",
-			 icon: "success",
-		 }).then(() => {
+	$.ajax({
+		url: url_base + "/aviso",
+		type: "POST",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		async: false,
+		error: function(e) {
+			console.error(e.responseJSON.message);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível realizar esse comando!",
+			});
+		}
+	}).done(function(data) {
+		// Limpa os campos e exibe mensagem de sucesso
+		limpaCampo();
+		Swal.fire({
+			title: "Cadastrado com sucesso",
+			icon: "success",
+		}).then(() => {
 			window.location.href = "avisos"
-		 })
-			
-		
-	 });
- 
+		})
+
+
+	});
+
 	return false;
 }
 

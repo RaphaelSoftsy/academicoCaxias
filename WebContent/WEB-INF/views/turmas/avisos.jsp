@@ -261,13 +261,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 					<div class="col-md-6">
 						<label for="mensagem" class="form-label">Início :<span
-							class="red">*</span></label> <input required autocomplete="off"
+							class="red">*</span></label> <input  autocomplete="off"
 							type="date" id="inicio" name="inicio" class="form-control " />
 					</div>
 					<div class="col-md-6">
 						<label for="mensagem" class="form-label">Término:<span
-							class="red">*</span></label> <input required autocomplete="off"
-							type="date" id="termino" name="termino" class="form-control " />
+							class="red">*</span></label> <input  autocomplete="off"
+							type="date" id="termino" name="termino" class="form-control " disabled/>
 					</div>
 				</div>
 

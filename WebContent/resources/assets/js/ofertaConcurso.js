@@ -327,7 +327,10 @@ const buscar = () => {
 				$("#grid").show();
 				$("#messageInfo").addClass("none");
 				dadosOriginais = data;
+				dados = data
 				listarDados(data);
+				updatePagination()
+				showPage(currentPage)
 				$('input[data-toggle="toggle"]').bootstrapToggle();
 			}
 		})
