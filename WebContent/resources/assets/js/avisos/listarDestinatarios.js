@@ -192,6 +192,7 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
+			console.log(data)
 			dados = data.data;
 			dadosOriginais = data.data;
 			listarDados(data.data);
@@ -232,23 +233,6 @@ function listarDados(dados) {
 				"<td>" +
 				item.nomeCurso + ' - ' + item.codigoCurso +
 				"</td>" +
-				/*  "<td>" +
-				  formatarDataComHora(item.dataFim) +
-				  "</td>" +
-				  '<td class="d-flex justify-content-center">' +
-				  '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" title="Baixar Anexo" data-id="' +
-				  item.idAviso +
-				  '" onclick="baixarAnexo(this)" ' +
-				  isDisabled +
-				  '>' +
-				  '<i class="fa-solid fa-file-arrow-down fa-lg"></i>' +
-				  "</span>" +
-				  '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" title="Visualizar Destinatários" data-id="' +
-				  item.idAviso +
-				  '" onclick="editar(this)">' +
-				  '<i class="fa-solid fa-graduation-cap fa-lg text-light"></i>' +
-				  "</span>" +
-				  "</td>" +*/
 				"</tr>"
 			);
 		})

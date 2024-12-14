@@ -1,5 +1,6 @@
 var dados = [];
 var sortOrder = {};
+const urlBaseAluno = "http://10.40.110.2:8080/api-aluno"
 var dadosOriginais = [];
 var rows = 12;
 var currentPage = 1;
@@ -7,6 +8,7 @@ var pagesToShow = 5;
 var escolas = [];
 var id = "";
 var idEscola = "";
+const alunoId = params.get("idAluno");
 
 $(document).ready(function() {
 	var selectAno = document.getElementById("anoVigenteSelect");
@@ -24,20 +26,12 @@ $(document).ready(function() {
 		option.text = i;
 		selectAno.appendChild(option);
 	}
+	
+	if (alunoId != null)
+		getDadosAluno()
+	else
+		getDados()
 
-	$.ajax({
-		url: url_base + "/escolas",
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			escolas = data;
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
-	getDados();
 
 	// Dropdown de Pesquisa
 	$(".dropdown-toggle-form").click(function() { });
@@ -242,22 +236,55 @@ function getDados() {
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
-		
-		
-		$.ajax({
-		url: url_base + "/aviso",
-		type: "GET",
-		async: false,
-	})
-		.done(function(data) {
-			dados = data;
-			dadosOriginais = data;
-			listarDados(data);
-			$('input[data-toggle="toggle"]').bootstrapToggle();
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+}
+
+
+function getDadosAluno() {
+    $.ajax({
+        url: urlBaseAluno + "/avisoDestinatarioAluno/aluno/" + alunoId,
+        type: "GET",
+    })
+        .done(function (data) {
+        	
+            dados = data;
+            dadosOriginais = data;
+            listarDadosAluno(data);
+            $('input[data-toggle="toggle"]').bootstrapToggle();
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+        });
+}
+
+function listarDadosAluno(dados) {
+    var html = dados
+        .map(function (item) {
+            var mensagem = item.aviso.mensagem
+                ? extrairTexto(item.aviso.mensagem)
+                : "Mensagem indisponível";
+            mensagem = mensagem.length > 100 ? mensagem.substring(0, 100) + "..." : mensagem;
+
+            return (
+                `<tr>
+                    <td>${item.aviso.titulo || "Título não disponível"}</td>
+                    <td>${mensagem}</td>
+                    <td>${formatarDataComHora(item.aviso.dataInicio)}</td>
+                    <td>${formatarDataComHora(item.aviso.dataFim)}</td>
+                    <td class="d-flex justify-content-center">
+                        <span 
+                            class="btn btn-primary btn-sm"
+                            title="Visualizar Destinatários"
+                            data-id="${item.aviso.idAviso}"
+                            onclick="verDestinatarios(this)">
+                            <i class="fa-solid fa-eye fa-lg text-light"></i>
+                        </span>
+                    </td>
+                </tr>`
+            );
+        })
+        .join("");
+
+    $("#cola-tabela").html(html);
 }
 
 function listarDados(dados) {
