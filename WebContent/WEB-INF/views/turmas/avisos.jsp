@@ -93,6 +93,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			</div>
 		</section>
 		<section class="pt-4">
+		
+		
 			<form id="formNovoCadastro"
 				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
 				<h3 id="tituloForm" class="text-start mb-5">Selecione os alunos</h3>

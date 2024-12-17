@@ -26,7 +26,7 @@ $(document).ready(function() {
 		option.text = i;
 		selectAno.appendChild(option);
 	}
-	
+
 	if (alunoId != null)
 		getDadosAluno()
 	else
@@ -198,16 +198,16 @@ function formatarHoraParaAMPM(hora) {
 }
 
 function extrairTexto(html) {
-    if (!html) return ""; 
-    var tempDiv = document.createElement("div");
-    tempDiv.innerHTML = html;
-    return tempDiv.innerText.trim(); 
+	if (!html) return "";
+	var tempDiv = document.createElement("div");
+	tempDiv.innerHTML = html;
+	return tempDiv.innerText.trim();
 }
 
 
 function formatarDataComHora(dataISO) {
 
-	if (!dataISO) return "Não informado"; 
+	if (!dataISO) return "Não informado";
 	const data = new Date(dataISO);
 	const opcoesData = { year: "numeric", month: "2-digit", day: "2-digit" };
 	const opcoesHora = { hour: "2-digit", minute: "2-digit", hour12: false };
@@ -240,32 +240,36 @@ function getDados() {
 
 
 function getDadosAluno() {
-    $.ajax({
-        url: urlBaseAluno + "/avisoDestinatarioAluno/aluno/" + alunoId,
-        type: "GET",
-    })
-        .done(function (data) {
-        	
-            dados = data;
-            dadosOriginais = data;
-            listarDadosAluno(data);
-            $('input[data-toggle="toggle"]').bootstrapToggle();
-        })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-        });
+	$.ajax({
+		url: urlBaseAluno + "/avisoDestinatarioAluno/aluno/" + alunoId,
+		type: "GET",
+	})
+		.done(function(data) {
+
+			dados = data;
+			dadosOriginais = data;
+			listarDados(data);
+			$('input[data-toggle="toggle"]').bootstrapToggle();
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
 }
 
-function listarDadosAluno(dados) {
-    var html = dados
-        .map(function (item) {
-            var mensagem = item.aviso.mensagem
-                ? extrairTexto(item.aviso.mensagem)
-                : "Mensagem indisponível";
-            mensagem = mensagem.length > 100 ? mensagem.substring(0, 100) + "..." : mensagem;
 
-            return (
-                `<tr>
+
+function listarDados(dados) {
+
+	if (alunoId != null) {
+		var html = dados
+			.map(function(item) {
+				var mensagem = item.aviso.mensagem
+					? extrairTexto(item.aviso.mensagem)
+					: "Mensagem indisponível";
+				mensagem = mensagem.length > 100 ? mensagem.substring(0, 100) + "..." : mensagem;
+
+				return (
+					`<tr>
                     <td>${item.aviso.titulo || "Título não disponível"}</td>
                     <td>${mensagem}</td>
                     <td>${formatarDataComHora(item.aviso.dataInicio)}</td>
@@ -280,47 +284,45 @@ function listarDadosAluno(dados) {
                         </span>
                     </td>
                 </tr>`
-            );
-        })
-        .join("");
+				);
+			})
+			.join("");
+	} else {
+		var html = dados
+			.map(function(item) {
+				var mensagem = extrairTexto(item.mensagem); // Extrair texto puro
+				mensagem = mensagem.length > 100 ? mensagem.substring(0, 100) + "..." : mensagem; // Limitar a 100 caracteres
+				var isDisabled = item.pathAnexo == null ? "disabled" : "";
 
-    $("#cola-tabela").html(html);
-}
+				return (
+					"<tr>" +
+					"<td>" +
+					item.titulo +
+					"</td>" +
+					"<td>" +
+					mensagem + // Apenas o texto puro da mensagem
+					"</td>" +
+					"<td>" +
+					formatarDataComHora(item.dataInicio) +
+					"</td>" +
+					"<td>" +
+					formatarDataComHora(item.dataFim) +
+					"</td>" +
+					'<td class="d-flex justify-content-center">' +
+					'<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" title="Visualizar Destinatários" data-id="' +
+					item.idAviso +
+					'" onclick="verDestinatarios(this)">' +
+					'<i class="fa-solid fa-eye fa-lg text-light"></i>' +
+					"</span>" +
+					"</td>" +
+					"</tr>"
+				);
+			})
+			.join("");
+	}
 
-function listarDados(dados) {
-    var html = dados
-        .map(function(item) {
-            var mensagem = extrairTexto(item.mensagem); // Extrair texto puro
-            mensagem = mensagem.length > 100 ? mensagem.substring(0, 100) + "..." : mensagem; // Limitar a 100 caracteres
-            var isDisabled = item.pathAnexo == null ? "disabled" : "";
 
-            return (
-                "<tr>" +
-                "<td>" +
-                item.titulo +
-                "</td>" +
-                "<td>" +
-                mensagem + // Apenas o texto puro da mensagem
-                "</td>" +
-                "<td>" +
-                formatarDataComHora(item.dataInicio) +
-                "</td>" +
-                "<td>" +
-                formatarDataComHora(item.dataFim) +
-                "</td>" +
-                '<td class="d-flex justify-content-center">' +
-                '<span style="width: 80%; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" title="Visualizar Destinatários" data-id="' +
-                item.idAviso +
-                '" onclick="verDestinatarios(this)">' +
-                '<i class="fa-solid fa-eye fa-lg text-light"></i>' +
-                "</span>" +
-                "</td>" +
-                "</tr>"
-            );
-        })
-        .join("");
-
-    $("#cola-tabela").html(html);
+	$("#cola-tabela").html(html);
 }
 
 
@@ -343,8 +345,8 @@ $("#exportar-excel").click(function() {
 function verDestinatarios(ref) {
 
 	const id = parseInt(ref.getAttribute("data-id"));
-	
-	
+
+
 	window.location.href = `destinatarios?id=` + id
 }
 
