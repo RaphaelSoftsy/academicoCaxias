@@ -64,7 +64,7 @@ $(document).ready(function() {
 			}
 
 
-			if (data.tipoEscola == "Pu") {
+			if (data.tipoEscola == "PU") {
 				$("#tipoEscola").val('PU').attr('selected', true);
 			} else {
 				$("#tipoEscola").val('PV').attr('selected', true);

@@ -98,7 +98,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="col-md-6">
 						<label for="nome" class="form-label">Nome:<span
 							class="red">*</span></label> <input required autocomplete="off"
-							type="text" id="nome" name="nome" class="form-control inputForm"
+							type="text" id="nome" name="nome" class="form-control "
 							maxlength="255" />
 					</div>
 					<div class="col-md-6">
@@ -117,8 +117,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="row mb-3">
 					<div class="col-md-6 mt-3" id="divLogoEscola">
 						<label for="logoEscola" class="form-label">Logo:<span
-							class="red">*</span></label> <input class="form-control inputForm"
-							type="file" id="logoEscola" name="logoEscola"> </input>
+							class="red">*</span></label> <input class="form-control "
+							type="file" id="logoEscola" name="logoEscola">
 					</div>
 				</div>
 
@@ -136,7 +136,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="col-md-6">
 						<label for="email" class="form-label">Email:<span
 							class="red">*</span></label> <input type="email" id="email" required
-							autocomplete="off" name="email" class="form-control inputForm" />
+							autocomplete="off" name="email" class="form-control " />
 					</div>
 
 				</div>
@@ -144,13 +144,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<div class="col-md-6">
 						<label for="cnpj" class="form-label">CNPJ:</label> <input
 							type="tel" disabled id="cnpj" autocomplete="off" name="cnpj"
-							class="form-control inputForm" data-mask="00.000.000/0000-00" />
+							class="form-control" data-mask="00.000.000/0000-00" />
 					</div>
 					<div class="col-md-6">
 						<label for="codigoInep" class="form-label">Código Inep:<span
 							class="red">*</span></label> <input type="tel" id="codigoInep" required
 							autocomplete="off" name="codigoInep"
-							class="form-control inputForm" />
+							class="form-control " />
 					</div>
 
 				</div>
