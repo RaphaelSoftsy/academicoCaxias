@@ -12,7 +12,7 @@ $("#cep").blur(function() {
 		Swal.fire({
 			title: "CEP Inválido",
 			confirmButtonText: "Ok",
-			icon:'error'
+			icon: 'error'
 		}).then((result) => {
 			$("#cep").val('')
 		});
@@ -101,7 +101,8 @@ function getAswer(input) {
 
 $("#formNovoCadastro").submit(function(e) {
 	e.preventDefault();
-
+	
+	let imgSplit = null
 
 	function convertToBase64(file, callback) {
 		var reader = new FileReader();
@@ -115,72 +116,68 @@ $("#formNovoCadastro").submit(function(e) {
 
 	if (logoEscolaFile) {
 		convertToBase64(logoEscolaFile, function(base64String) {
-			let imgSplit = base64String.split(',')
-
-			if ($("#cnpj").val() == '') {
-				cnpj = null
-			} else {
-				cnpj = $('#cnpj').val().replace(/[^\d]+/g, '');
-			}
-
-			var dadosFormulario = {
-				nomeEscola: $('#nome').val(),
-				logoEscola: imgSplit[1],
-				tipoEscola: "PU",
-				cnpj: cnpj,
-				codigoInep: $('#codigoInep').val(),
-				cep: $('#cep').val().replace(/[^\d]+/g, ''),
-				endereco: $('#endereco').val(),
-				numero: $('#numero').val(),
-				bairro: $('#bairro').val(),
-				municipio: $('#municipio').val(),
-				uf: $('#uf').val(),
-				numCME: $('#numCME').val(),
-				numParecerCME: $('#numParecerCME').val(),
-				latitude: $('#latitude').val(),
-				longitude: $('#longitude').val(),
-				email: $('#email').val(),
-				educacaoIndigena: "N",
-				exameSelecao: "N",
-				compartilhaEspaco: "N",
-				usaEspacoEntornoEscolar: "N",
-				pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
-				localizacaoId: Number($('#localizacaoId').val()),
-				dependenciaAdmId: null/*Number($('#dependenciaAdmId').val())*/,
-				situacaoFuncionamentoId: null/*Number($('#situacaoFuncionamentoId').val())*/,
-				formaOcupacaoPredioId: null /*Number($('#formaOcupacaoPredioId').val())*/,
-				"zoneamentoId": null/*Number($('#zoneamentoId').val())*/,
-				"categoriaEscolaPrivadaId": null/* Number($('#categoriaEscolaPrivadaId').val())*/,
-				"entidadeSuperiorId": null /*Number($('#entidadeSuperiorId').val())*/,
-				"orgaoPublicoId": null/*Number($('#orgaoPublicoId').val())*/,
-				contaId: Number(contaId)
-			};
-
-
-			console.log(dadosFormulario)
-
-			$.ajax({
-				url: url_base + '/escolas',
-				type: "POST",
-				data: JSON.stringify(dadosFormulario),
-				contentType: "application/json; charset=utf-8",
-				error: function(e) {
-					console.log(e)
-					Swal.fire({
-						icon: "error",
-						title: "Oops...",
-						text: "Não foi possível cadastrar a escola!",
-					});
-				}
-			}).done(function(data) {
-				Swal.fire({
-					title: "Cadastrado com sucesso",
-					icon: "success",
-				})
-				window.location.href = "acessar-escolas";
-			});
+			 imgSplit = base64String.split(',')
+			
 		});
 	}
+
+
+	var dadosFormulario = {
+		nomeEscola: $('#nome').val(),
+		logoEscola: imgSplit[1],
+		tipoEscola: $('#tipoEscola').val(),
+		cnpj: $("#cnpj").val() == '' ? null : $('#cnpj').val().replace(/[^\d]+/g, ''),
+		codigoInep: $('#codigoInep').val(),
+		cep: $('#cep').val().replace(/[^\d]+/g, ''),
+		endereco: $('#endereco').val(),
+		numero: $('#numero').val(),
+		bairro: $('#bairro').val(),
+		municipio: $('#municipio').val(),
+		uf: $('#uf').val(),
+		numCME: $('#numCME').val(),
+		numParecerCME: $('#numParecerCME').val(),
+		latitude: $('#latitude').val(),
+		longitude: $('#longitude').val(),
+		email: $('#email').val(),
+		educacaoIndigena: "N",
+		exameSelecao: "N",
+		compartilhaEspaco: "N",
+		usaEspacoEntornoEscolar: "N",
+		pppAtualizado12Meses: getAswer("#pppAtualizado12Meses"),
+		localizacaoId: Number($('#localizacaoId').val()),
+		dependenciaAdmId: null/*Number($('#dependenciaAdmId').val())*/,
+		situacaoFuncionamentoId: null/*Number($('#situacaoFuncionamentoId').val())*/,
+		formaOcupacaoPredioId: null /*Number($('#formaOcupacaoPredioId').val())*/,
+		"zoneamentoId": null/*Number($('#zoneamentoId').val())*/,
+		"categoriaEscolaPrivadaId": null/* Number($('#categoriaEscolaPrivadaId').val())*/,
+		"entidadeSuperiorId": null /*Number($('#entidadeSuperiorId').val())*/,
+		"orgaoPublicoId": null/*Number($('#orgaoPublicoId').val())*/,
+		contaId: Number(contaId)
+	};
+
+
+	console.log(dadosFormulario)
+
+	$.ajax({
+		url: url_base + '/escolas',
+		type: "POST",
+		data: JSON.stringify(dadosFormulario),
+		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			console.log(e)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível cadastrar a escola!",
+			});
+		}
+	}).done(function(data) {
+		Swal.fire({
+			title: "Cadastrado com sucesso",
+			icon: "success",
+		})
+		window.location.href = "acessar-escolas";
+	});
 
 });
 

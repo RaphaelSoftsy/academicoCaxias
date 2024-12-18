@@ -59,11 +59,12 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="
+<script charset="UTF-8"
+	src="
 https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 
 </head>
 
@@ -103,8 +104,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="logoEscola" class="form-label">Logo:</label> <input class="form-control " required
-							type="file" id="logoEscola" name="logoEscola"> </input>
+						<label for="logoEscola" class="form-label">Logo:</label> <input
+							class="form-control "  type="file" id="logoEscola"
+							name="logoEscola">
 					</div>
 				</div>
 
@@ -119,9 +121,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 
 					<div class="col-md-6" id="cardCNPJ">
-						<label for="cnpj" class="form-label">CNPJ:</label> <input type="tel" id="cnpj"
-							autocomplete="off" name="cnpj" class="form-control "
-							data-mask="00.000.000/0000-00" />
+						<label for="cnpj" class="form-label">CNPJ:</label> <input
+							type="tel" id="cnpj" autocomplete="off" name="cnpj"
+							class="form-control " data-mask="00.000.000/0000-00" />
 					</div>
 
 				</div>
@@ -277,7 +279,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
  -->
-				<!-- <div class="row mb-3">
+				<div class="row mb-3">
 
 
 					<div class="col-md-6">
@@ -290,8 +292,9 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							<option value="PV">Privada</option>
 						</select>
 					</div>
+				</div>
 
-
+				<!--
 					<div class="col-md-6" hidden>
 						<label for="categoriaEscolaPrivadaId" class="form-label">Categoria
 							Escola Privada:<span class="red">*</span>
@@ -322,7 +325,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
  -->
- 				<hr>
+				<hr>
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label for="localizacaoId" class="form-label">Tipo de
@@ -372,14 +375,15 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<label for="numero" class="form-label">Número:</label> <input type='text' class="form-control"
-							id="numero" name="numero" />
+						<label for="numero" class="form-label">Número:</label> <input
+							type='text' class="form-control" id="numero" name="numero" />
 					</div>
 					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento:</label> <input type='text' class="form-control"
-							id="complemento"  name="complemento" />
+						<label for="complemento" class="form-label">Complemento:</label> <input
+							type='text' class="form-control" id="complemento"
+							name="complemento" />
 					</div>
-					
+
 
 				</div>
 				<div class="row mb-3">
