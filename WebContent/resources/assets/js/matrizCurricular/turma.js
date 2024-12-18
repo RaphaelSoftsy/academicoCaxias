@@ -162,6 +162,8 @@ function listarDados(dados) {
           '<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
           item.idTurma +
           '" onclick="showModal(this)"><i class="fa-solid fa-pen fa-lg"></i></span> ' +
+          '<a href="avaliacoes?turma=' + item.idTurma + '" style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen fa-lg"></i></a>'
+          +
           '<span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
           item.idTurma +
           '" onclick="goToAvisos(this)"><i class="fa-solid fa-bell fa-lg"></i></span></td>' +
