@@ -117,7 +117,8 @@ function getDados() {
   })
     .done(function (data) {
       dados = data;
-      dadosOriginais = data;
+      dadosOriginais = data
+      console.log(data)
       showPage(1);
       $('input[data-toggle="toggle"]').bootstrapToggle();
     })
@@ -181,6 +182,43 @@ function sortData(column, order) {
   listarDados(dadosOrdenados);
   $('input[data-toggle="toggle"]').bootstrapToggle();
 }
+
+
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	$.ajax({
+		url: url_base + `/escolas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	})
+}
+
+// Redireciona para a página de edição
+function editar(ref) {
+    var id = ref.getAttribute("data-id");
+    window.location.href = "editar-escola?id=" + id;
+}
+
 
 function acessar(element) {
   var id = $(element).data("id");
