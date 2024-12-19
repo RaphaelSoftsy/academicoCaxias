@@ -97,13 +97,13 @@ function getDados() {
 // limpar filtros
 
 $("#limpa-filtros").click(function () {
-  currentPage = 1; 
-  dados = [...dadosOriginais]; 
+  currentPage = 1;
+  dados = [...dadosOriginais];
 
-  updatePagination(); 
-  showPage(currentPage); 
+  updatePagination();
+  showPage(currentPage);
 
-  $(".searchInput").val(""); 
+  $(".searchInput").val("");
   $('input[data-toggle="toggle"]').bootstrapToggle();
 });
 
@@ -162,11 +162,13 @@ function listarDados(dados) {
           '<td class="d-flex justify-content-center"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
           item.idTurma +
           '" onclick="showModal(this)"><i class="fa-solid fa-pen fa-lg"></i></span> ' +
-          '<a href="avaliacoes?turma=' + item.idTurma + '" style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen fa-lg"></i></a>'
-          +
           '<span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-id="' +
           item.idTurma +
-          '" onclick="goToAvisos(this)"><i class="fa-solid fa-bell fa-lg"></i></span></td>' +
+          '" onclick="goToAvisos(this)"><i class="fa-solid fa-bell fa-lg"></i></span>' +
+          '<a href="avaliacoes?turma=' +
+          item.idTurma +
+          '" style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-lines fa-lg"></i></a>' +
+          "</td>" +
           "</tr>"
         );
       })
