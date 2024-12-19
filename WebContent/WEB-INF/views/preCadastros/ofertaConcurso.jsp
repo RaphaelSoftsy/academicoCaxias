@@ -95,7 +95,8 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="col-md-6">
 					<label for="concursoSearch" class="form-label">Concurso:<span
 						class="red">*</span></label> <select class="form-select"
-						aria-label="concursoSearch" id="concursoSearch" required name="concursoSearch">
+						aria-label="concursoSearch" id="concursoSearch" required
+						name="concursoSearch">
 						<option value="" selected disabled>Selecione o Concurso</option>
 					</select>
 				</div>
@@ -111,20 +112,23 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<h3>Informe o concurso acima para realizar a busca.</h3>
 			</div>
 
-			<div id="grid">
-				<div class="mt-3 mb-1"
-					style="display: flex; align-items: center; justify-content: end">
-					<div class="d-flex align-items-center gap-2">
-						<button id="limpa-filtros" class="btn btn-sm btn-danger">
-							Limpar Filtros</button>
-						<button id="exportar-excel"
-							class="btn btn-sm btn-success d-flex align-items-center gap-2">
-							<i class="fa-solid fa-file-export"></i>Exportar
-						</button>
-						<a class="btn btn-primary btn-sm px-3 py-1 ms-auto"
-							href="nova-oferta-concurso">Novo Cadastro </a>
-					</div>
+
+			<div class="mt-3 mb-1" id="containerCadastros"
+				style="display: flex; align-items: center; justify-content: end">
+				<div class="d-flex align-items-center gap-2">
+					<button id="limpa-filtros" class="btn btn-sm btn-danger">
+						Limpar Filtros</button>
+					<button id="exportar-excel"
+						class="btn btn-sm btn-success d-flex align-items-center gap-2">
+						<i class="fa-solid fa-file-export"></i>Exportar
+					</button>
+					<a class="btn btn-primary btn-sm px-3 py-1 ms-auto"
+						href="nova-oferta-concurso">Novo Cadastro </a>
 				</div>
+			</div>
+
+			<div id="grid">
+
 
 				<table
 					class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">

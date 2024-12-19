@@ -30,7 +30,7 @@ $('#curso').change(() => {
 		$("#serie").append("<option selected disabled>Selecione uma opção</option>")
 		$('#escola').empty()
 		$("#escola").append("<option selected disabled>Selecione uma opção</option>")
-		
+
 		$.each(data, function(index, item) {
 			$('#turno').append($('<option>', {
 				value: item.idTurno,
@@ -56,12 +56,13 @@ $('#turno').change(() => {
 		$('#escola').empty()
 		$("#escola").append("<option selected disabled>Selecione uma opção</option>")
 		$.each(data, function(index, item) {
-			$('#serie').append($('<option>', {
-				value: item.serie,
-				text: `${item.serie} - ${item.descricao}`,
-				name: item.serie
-			}));
-
+			$("#serie").append(
+				$("<option>", {
+					value: item.serie.idSerie,
+					text: `${item.serie.serie} - ${item.serie.descricao}`,
+					name: item.serie.serie,
+				})
+			);
 		});
 	})
 })

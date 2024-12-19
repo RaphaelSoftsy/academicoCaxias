@@ -103,7 +103,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					<tr>
 						<th scope="col">Cargo Professor</th>
 						<th scope="col">Ativo</th>
-						<th class='text-center' scope="col" width="10%"></th>
+						<th class='text-center' scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="cola-tabela" class="table-group-divider">

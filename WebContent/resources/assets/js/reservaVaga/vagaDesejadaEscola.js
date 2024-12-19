@@ -82,9 +82,9 @@ $("#escola").change(() => {
     $.each(data, function (index, item) {
       $("#serie").append(
         $("<option>", {
-          value: item.serie,
-          text: `${item.serie} - ${item.descricao}`,
-          name: item.serie,
+          value: item.serie.idSerie,
+          text: `${item.serie.serie} - ${item.serie.descricao}`,
+          name: item.serie.serie,
         })
       );
     });

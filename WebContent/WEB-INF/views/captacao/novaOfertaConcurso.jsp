@@ -141,8 +141,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label for="curriculoId" class="form-label">Currículo:<span
-							class="red">*</span>
+						<label for="curriculoId" class="form-label">Currículo:
 						</label> <select class="form-select" aria-label="curriculoId"
 							id="curriculoId" required name="curriculoId">
 							<option value="" selected disabled>Selecione o Currículo</option>
