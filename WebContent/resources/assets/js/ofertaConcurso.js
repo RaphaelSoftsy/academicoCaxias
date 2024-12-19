@@ -18,6 +18,7 @@ var series = [];
 
 $(document).ready(function() {
 	$('#grid').hide()
+	$("#containerCadastros").hide();
 
 	$(".dropdown-toggle-form").click(function() { });
 
@@ -316,16 +317,23 @@ const buscar = () => {
 	})
 		.done(function(data) {
 			if (data.length <= 0) {
-					listarDados([]);
+				listarDados([]);
 				Swal.fire({
 					text: "Nenhuma informação encontrada para os filtros informados.",
 					icon: "info",
 				}).then((result) => {
+					$("#messageInfo").addClass("none");
+					$("#containerCadastros").show();
+					$("#limpa-filtros").hide()
+					$("#exportar-excel").hide().removeClass('d-flex')
 					$("#nomeProfessor").val("concursoSearch");
 				});
 			} else {
 				$("#grid").show();
+				$("#containerCadastros").show();
 				$("#messageInfo").addClass("none");
+				$("#limpa-filtros").show()
+				$("#exportar-excel").hide().addClass('d-flex')
 				dadosOriginais = data;
 				dados = data
 				listarDados(data);
