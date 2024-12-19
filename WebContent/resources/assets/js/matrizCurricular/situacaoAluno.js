@@ -144,8 +144,10 @@ function getDados() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
+		dados = data
 		dadosOriginais = data
-		listarDados(data);  $('input[data-toggle="toggle"]').bootstrapToggle();$('input[data-toggle="toggle"]').bootstrapToggle();
+		listarDados(data);  
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 		$('.searchInput').val('');
 		$('.checkbox-toggle').each(function() {
 			var status = $(this).data('status');
