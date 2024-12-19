@@ -64,7 +64,8 @@ $(document).ready(function () {
     }
 
     listarDados(filteredData);
-    $('input[data-toggle="toggle"]').bootstrapToggle();
+    dados = filteredData
+    updatePagination()
     $('input[data-toggle="toggle"]').bootstrapToggle();
 
     $(this).siblings(".searchInput").val("");
@@ -160,6 +161,8 @@ $(document).ready(function () {
 
 $("#limpa-filtros").click(function () {
   listarDados(dadosOriginais);
+  showPage(1)
+  updatePagination()
   $('input[data-toggle="toggle"]').bootstrapToggle();
   $(".searchInput").val("");
 });
