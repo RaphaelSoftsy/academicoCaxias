@@ -1,27 +1,25 @@
 <html>
-  <head> </head>
+<head>
+</head>
 
-  <body>
-    <section id="menu-mobile" class="menu-mobile">
-      <div class="container-header">
-        <div class="img-mobile-menu">
-          <img
-            class="logo-mobile"
-            src="resources/assets/img/logo-sumare.png"
-            alt="Logo Prefeitura Caxias do Sul"
-          />
-        </div>
-        <i class="fa-solid fa-bars" id="barsIcon"></i>
-      </div>
-    </section>
-    <section id="modalMenu" class="abracaMenu modalMenu overflow-y">
-      <div class="close-btn-menu botao-desativa-menu" id="closeBtn">
-        <i class="fas fa-times"></i>
-      </div>
+<body>
+	<section id="menu-mobile" class="menu-mobile">
+		<div class="container-header">
+			<div class="img-mobile-menu">
+				<img class="logo-mobile" src="resources/assets/img/logo-sumare.png"
+					alt="Logo Prefeitura Caxias do Sul" />
+			</div>
+			<i class="fa-solid fa-bars" id="barsIcon"></i>
+		</div>
+	</section>
+	<section id="modalMenu" class="abracaMenu modalMenu overflow-y">
+		<div class="close-btn-menu botao-desativa-menu" id="closeBtn">
+			<i class="fas fa-times"></i>
+		</div>
 
-      <div class="container-icon">
-        <i class="fa-solid fa-chevron-left arrow"></i>
-      </div>
+		<div class="container-icon">
+			<i class="fa-solid fa-chevron-left arrow"></i>
+		</div>
 
       <div class="img-menu">
         <img
@@ -32,30 +30,33 @@
         />
       </div>
 
-      <hr />
+		<hr />
 
-      <p>
-        <i class="fa-solid fa-user me-2" style="width: 28px"></i>
-        <span id="nome-user"></span>
-      </p>
+		<p>
+			<i class="fa-solid fa-user me-2" style="width: 28px"></i> <span
+				id="nome-user"></span>
+		</p>
 
-      <hr />
-      
-      <div class="search-container"><i class="fa-solid fa-magnifying-glass me-2" style="width: 28px"></i> <input type="text" id="searchInput" placeholder="Buscar..."></div>
-      
-      <hr>
+		<hr />
 
-      <nav class="menu" id="navMenu">
-        <div class="item" id="sairEscola">
-          <a class="sub-btn">
-            <i class="fa-solid fa-person-walking-arrow-right"></i
-            ><span id="itemName1"> Trocar Escola</span>
-          </a>
-        </div>
-      </nav>
-    </section>
-  </body>
-  <script charset="UTF-8" type="text/javascript">
+		<div class="search-container">
+			<i class="fa-solid fa-magnifying-glass me-2" style="width: 28px"></i>
+			<input type="text" id="searchInput" placeholder="Buscar...">
+		</div>
+
+		<hr class="divider">
+
+		<nav class="menu" id="navMenu">
+			<div class="item" id="sairEscola">
+				<a class="sub-btn"> <i
+					class="fa-solid fa-person-walking-arrow-right"></i><span
+					id="itemName1"> Trocar Escola</span>
+				</a>
+			</div>
+		</nav>
+	</section>
+</body>
+<script charset="UTF-8" type="text/javascript">
     var perfilArmazenado = JSON.parse(sessionStorage.getItem("perfil"));
     var idContaAcesso = localStorage.getItem("idContaAcesso");
    /*  var logoConta = localStorage.getItem("imagemLogo");
@@ -495,6 +496,8 @@
           $(".sub-menu").hide();
           $(".showMenu").hide();
           $(".hidden").show();
+          $(".search-container").hide();
+          $(".divider").hide();
           $("#itemName1").text("");
           $("#itemNameSair").text("");
 
@@ -513,6 +516,9 @@
             "padding-right": "0",
           });
         } else {
+        	$(".divider").show();
+        	$(".search-container").show();
+        	
           $(".abracaMenu").removeClass("menu-fechado");
 
           if (tamanhoMenu == 280) {
@@ -584,20 +590,25 @@
 
       // Inicia um atraso para esconder o submenu ao sair do botão principal
       $(document).on("mouseleave", ".sub-btn", function () {
-        submenuTimeout = setTimeout(() => {
-          const submenu = $(this).siblings(".sub-menu");
-          if (!submenu.is(":hover")) {
-            submenu.removeClass("submenu-aberto").hide();
-          }
-        }, 200); // Tempo para permitir a navegação (em ms)
+    	if ($(".abracaMenu").width() <= 60) {
+        	submenuTimeout = setTimeout(() => {
+          	const submenu = $(this).siblings(".sub-menu");
+          	if (!submenu.is(":hover")) {
+            	submenu.removeClass("submenu-aberto").hide();
+          	}
+        	}, 200);
+       	} // Tempo para permitir a navegação (em ms)
+      })
+
+       // Esconde o submenu ao sair dele, mas com o mesmo atraso
+      $(document).on("mouseleave", ".sub-menu", function () {
+    	  if ($(".abracaMenu").width() <= 60) {
+	        submenuTimeout = setTimeout(() => {
+	          $(this).removeClass("submenu-aberto").hide();
+	        }, 200);
+        }
       });
 
-      // Esconde o submenu ao sair dele, mas com o mesmo atraso
-      $(document).on("mouseleave", ".sub-menu", function () {
-        submenuTimeout = setTimeout(() => {
-          $(this).removeClass("submenu-aberto").hide();
-        }, 200);
-      });
 
       // Evento para fechar todos os submenus ao fechar o menu principal
       $(document).on("click", ".menu-toggle-btn", function () {
@@ -612,7 +623,7 @@
       if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
         $("#sairEscola").show();
         $("#nome-user").text(perfilArmazenado.nome);
-        $("#itemName1").text("");
+        $("#itemName1").text("Trocar Escola");
 
         $(".menu .sub-btn").each(function () {
           if ($(this).text().trim() === "Configurações") {

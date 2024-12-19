@@ -205,7 +205,7 @@ $(document).ready(function() {
 				text: item.motivoReprovacaoCandidato,
 				name: item.motivoReprovacaoCandidato
 			}));
-			
+
 			$('#motivoReprovadoDocumentoId').append($('<option>', {
 				value: item.idMotivoReprovacaoCandidato,
 				text: item.motivoReprovacaoCandidato,
@@ -627,8 +627,27 @@ const getDadosCandidato = () => {
 
 			// Aqui você pode adicionar os demais campos conforme necessário
 			// Exemplo para preenchimento de campo select com município de nascimento
-			$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio);
+
 			$('#ufNascimentoId').val(data.municipioNascimento.ufId);
+			$.ajax({
+				url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
+				type: "get",
+				async: false,
+			}).done(function(data) {
+				$.each(data, function(index, item) {
+					$('#municipioNascimentoId').append($('<option>', {
+						value: item.idMunicipio,
+						text: item.nomeMunicipio,
+						name: item.nomeMunicipio
+					}));
+				});
+
+
+			})
+			
+			$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio);
+
+
 			$('#rgUfEmissorId').val(data.rgUfEmissor != null ? data.rgUfEmissor : 0);
 
 			if (data.certidaoNascimentoNumero !== null &&
@@ -708,22 +727,6 @@ const getDadosCandidato = () => {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		console.error("Erro na solicitação candidato AJAX:", textStatus, errorThrown);
 	});
-
-	$.ajax({
-		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$('#municipioNascimentoId').append($('<option>', {
-				value: item.idMunicipio,
-				text: item.nomeMunicipio,
-				name: item.nomeMunicipio
-			}));
-		});
-
-
-	})
 
 	$('#municipioNascimentoId').attr('disabled', true)
 	$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', true)

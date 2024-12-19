@@ -12,6 +12,12 @@ import br.com.softsy.utils.LoginUtils;
 
 @Controller
 public class Turmas {
+
+		@RequestMapping(value = { "avaliacoes" }, method = RequestMethod.GET)
+	public String avaliacoesTurma(HttpSession session, Model model) throws Exception {
+
+		return "turmas/avaliacoesTurma";
+	}
 	
 	@RequestMapping(value = { "turmas-editar-turma" }, method = RequestMethod.GET)
 	public String turmasEditarTurma(HttpSession session, Model model) throws Exception {
