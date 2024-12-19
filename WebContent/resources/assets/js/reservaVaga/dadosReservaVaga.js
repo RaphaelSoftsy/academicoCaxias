@@ -275,7 +275,7 @@ $('#gerarAluno').click((event) => {
 		"aluno": $('#aluno').val(),
 		"emailInterno": $('#emailInterno').val(),
 		"senha": $('#senha').val(),
-		"geraPreMatricula": $('#geraMatricula:checked').val() != 'on' ? "N" : "S",
+		"geraPrematricula": $('#geraMatricula:checked').val() != 'on' ? "N" : "S",
 		"tipoMatriculaId": $('#geraMatricula:checked').val() != 'on' ? Number($("#tipoMatriculaId").val()) : null
 	}
 
