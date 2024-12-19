@@ -204,12 +204,19 @@ $("#periodo").change(() => {
 });
 
 $("#turno").change(() => {
-  $("#turmaId").prop("disabled", false).val(null).trigger("change");
-  $("#disciplinaId").prop("disabled", true).val(null).trigger("change");
+  $("#disciplinaId").prop("disabled", false).val(null).trigger("change");
+  
+  $("#turmaId, #disciplinaId")
+      .prop("disabled", true)
+      .val(null)
+      .trigger("change");
+
+    $("#turmaId").prop("disabled", true);
+    $("#disciplinaId").prop("disabled", false);
 });
 
-$("#turmaId").change(() => {
-  $("#disciplinaId").prop("disabled", false).val(null).trigger("change");
+$("#disciplinaId").change(() => {
+  $("#turmaId").prop("disabled", false).val(null).trigger("change");
 });
 
 const buscar = () => {
@@ -219,7 +226,7 @@ const buscar = () => {
 
   if (idTurma != undefined) {
     $.ajax({
-      url: url_base + "/prova/turma" + idTurma,
+      url: url_base + "/prova/turma/" + idTurma,
       type: "GET",
     }).done(function (data) {
       listaAvaliacao = data;
@@ -261,9 +268,12 @@ const listarDados = (dados) => {
         simulado =
           "<i style='color:#2eaa3a; font-size: 28px' class='fa-regular fa-circle-check'></i>";
       }
+	  
+	  console.log(item)
 
       return (
         "<tr>" +
+		"<td>" +
         item.nomeAbreviado +
         "</td>" +
         "<td>" +
@@ -378,7 +388,7 @@ $("#submitForm").on("click", function (e) {
   e.preventDefault();
 
   const data = {
-    turmaId: Number(idTurma),
+    turmaId:  $("#turmaId").val(),
     nomeAbreviado: $("#nomeAbreviado").val(),
     descricao: $("#descricao").val(),
     dataDivulgacao: $("#dataDivulgacao").val(),

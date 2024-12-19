@@ -167,20 +167,6 @@ https://kit.fontawesome.com/3ce21ff22c.js"
               </select>
             </div>
             <div class="col-md-4 mb-3">
-              <label for="turmaId" class="form-label"
-                >Turma:<span class="red">*</span></label
-              >
-              <select
-                class="form-select"
-                aria-label="Turma"
-                id="turmaId"
-                required
-                name="turmaId"
-              >
-                <option selected disabled value="">Selecione uma turma</option>
-              </select>
-            </div>
-            <div class="col-md-4 mb-3">
               <label for="disciplinaId" class="form-label"
                 >Disciplina:<span class="red">*</span></label
               >
@@ -194,6 +180,21 @@ https://kit.fontawesome.com/3ce21ff22c.js"
                 <option selected disabled value="">Selecione uma opção</option>
               </select>
             </div>
+            <div class="col-md-4 mb-3">
+              <label for="turmaId" class="form-label"
+                >Turma:<span class="red">*</span></label
+              >
+              <select
+                class="form-select"
+                aria-label="Turma"
+                id="turmaId"
+                required
+                name="turmaId"
+              >
+                <option selected disabled value="">Selecione uma turma</option>
+              </select>
+            </div>
+            
           </div>
           <div class="row">
             <div class="col-md-12 text-end">
