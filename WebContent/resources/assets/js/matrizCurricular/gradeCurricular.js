@@ -70,8 +70,10 @@ $(document).ready(function() {
 		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 	});
 
-	$('#areaConhecimentoId').change(() => {
+	$('#areaConhecimentoOption').click(() => {
+		console.log('Click area')
 		$('#disciplinaId').empty()
+		$('#disciplinaOption').empty()
 		$('#disciplinaId').removeAttr('disabled');
 		$('#disciplinaId').append(`<option value='0' selected disabled>Selecione a disciplina</option>`)
 
@@ -347,7 +349,7 @@ function preencherOpcoes(items, optionsListId, selectId, searchId) {
 		);
 		$selectElement.append(
 			$("<option>", {
-				value: item.idCurriculo ?? item.idSerie ?? item.idreaConhecimento ?? item.idDisciplina ?? '',
+				value: item.idCurriculo ?? item.idSerie ?? item.idAreaConhecimento ?? item.idDisciplina ?? '',
 				text: optionText || 'Valor Inválido',
 			})
 		);
