@@ -199,7 +199,7 @@ function alteraStatus(element) {
 function showModal(ref) {
 	id = ref.getAttribute("data-id");
 
-	window.location.href = "dados-aluno-candidato?id=" + id
+	window.location.href = "consulta-aluno?id=" + id
 }
 
 function verAvisosAluno(ref) {

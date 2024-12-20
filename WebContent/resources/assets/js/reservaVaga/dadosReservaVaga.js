@@ -10,6 +10,7 @@ let nomeCandidato = ""
 let ofertaConcurso = {}
 let candidato = {}
 let idOfertaConcurso
+	
 
 const getDadosOfertaConcurso = () => {
 	$.ajax({
@@ -408,7 +409,7 @@ const loadSelects = () => {
 		$.each(data, function(index, item) {
 
 			$('#tipoMatriculaId').append($('<option>', {
-				value: item.tipoMatricula,
+				value: item.idTipoMatricula,
 				text: item.tipoMatricula,
 				name: item.tipoMatricula
 			}));
@@ -529,6 +530,7 @@ const getDadosCandidato = () => {
 		getOfertaConcurso(response.ofertaConcursoId)
 
 		if (response.aprovado == 'S') {
+			$("#containerAprovacao").removeAttr("hidden")
 			$('#aprovarCandidato').hide()
 			$("#containerReprovacao").hide()
 			$('#reprovarCandidato').css('display', 'flex')
@@ -664,6 +666,8 @@ const getDadosCandidato = () => {
 
 				$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
 				$('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
+				
+				$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "")
 				$.ajax({
 					url: url_base + '/municipio/uf/' + $('#certidaoNascimentoUfCartorioId').val(),
 					type: "get",
@@ -678,7 +682,6 @@ const getDadosCandidato = () => {
 					});
 
 				})
-				$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "")
 				$('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.idMunicipio : "");
 				$('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
 				$('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
@@ -815,6 +818,12 @@ $(".reveal").on("click", function() {
 		$icon.removeClass("fa-eye-slash").addClass("fa-eye");
 	}
 });
+
+
+$("#verDadosAluno").on("click", function() {
+	window.location.href = "alunos";
+})
+
 
 
 $('#prevFicha').click(function() {

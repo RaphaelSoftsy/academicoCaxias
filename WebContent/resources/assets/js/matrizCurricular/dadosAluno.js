@@ -56,7 +56,6 @@ const getDadosAcademicos = () => {
 	$('#aluno').val(aluno.aluno)
 	$('#emailInterno').val(aluno.emailInterno)
 	$('#turnoId').val(aluno.turno.idTurno)
-	console.log(aluno)
 }
 
 const getDadosAluno = () => {
@@ -77,7 +76,6 @@ const getDadosAluno = () => {
 		let response = res
 		idPessoa = response.pessoa
 		aluno = response
-
 		let data = response.pessoa
 
 		nomeCandidato = data.nomeCompleto
@@ -134,8 +132,26 @@ const getDadosAluno = () => {
 		$('#certidaoNascimentoNumero').val(data.certidaoNascimentoNumero);
 		$('#certidaoCasamentoNumero').val(data.certidaoCasamentoNumero);
 
-		$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio);
+
 		$('#ufNascimentoId').val(data.municipioNascimento.ufId);
+
+		$.ajax({
+			url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
+			type: "get",
+			async: false,
+		}).done(function(data) {
+			$.each(data, function(index, item) {
+				$('#municipioNascimentoId').append($('<option>', {
+					value: item.idMunicipio,
+					text: item.nomeMunicipio,
+					name: item.nomeMunicipio
+				}));
+			});
+
+
+		})
+
+		$('#municipioNascimentoId').val(data.municipioNascimento.idMunicipio);
 		$('#rgUfEmissorId').val(data.rgUfEmissor != null ? data.rgUfEmissor.idUf : 0);
 
 		if (data.certidaoNascimentoNumero !== null &&
@@ -154,7 +170,7 @@ const getDadosAluno = () => {
 			$('#certidaoNascimentoCartorio').val(data.certidaoNascimentoCartorio);
 
 			$('#certidaoNascimentoUfCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.ufId : "")
-			$('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.idMunicipio : "");
+			
 			$('#certidaoNascimentoDataEmissao').val(data.certidaoNascimentoDataEmissao);
 			$('#certidaoNascimentoFolha').val(data.certidaoNascimentoFolha);
 			$('#certidaoNascimentoLivro').val(data.certidaoNascimentoLivro);
@@ -173,6 +189,7 @@ const getDadosAluno = () => {
 				});
 
 			})
+			$('#certidaoNascimentoMunicipioCartorioId').val(data.certidaoNascimentoMunicipioCartorio != null ? data.certidaoNascimentoMunicipioCartorio.idMunicipio : "");
 		} else if (data.certidaoCasamentoCartorio !== null &&
 			data.certidaoCasamentoMunicipioCartorio !== null &&
 			data.certidaoCasamentoDataEmissao !== null &&
@@ -215,21 +232,7 @@ const getDadosAluno = () => {
 		console.error("Erro na solicitação candidato AJAX:", textStatus, errorThrown);
 	});
 
-	$.ajax({
-		url: url_base + '/municipio/uf/' + $('#ufNascimentoId').val(),
-		type: "get",
-		async: false,
-	}).done(function(data) {
-		$.each(data, function(index, item) {
-			$('#municipioNascimentoId').append($('<option>', {
-				value: item.idMunicipio,
-				text: item.nomeMunicipio,
-				name: item.nomeMunicipio
-			}));
-		});
 
-
-	})
 
 	$('#municipioNascimentoId').attr('disabled', true)
 	$('#certidaoNascimentoMunicipioCartorioId').attr('disabled', true)
