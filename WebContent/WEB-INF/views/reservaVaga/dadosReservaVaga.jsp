@@ -119,6 +119,22 @@ String contextPath = request.getContextPath();
 			</div>
 
 		</section>
+		
+		<section id="containerAprovacao" class="mb-5" hidden>
+			<div class="card p-3 d-flex flex-row justify-content-between">
+				
+				<div class="title text-success">
+					<i class="fa-solid fa-check" style="font-size: 24px"></i> <span>Candidato Aprovado</span>
+				</div>
+				
+				
+				<button class="btn btn-primary btn-sm" id="verDadosAluno">
+					<i class="fa-regular fa-file"></i> <span>Ver Dados do Aluno</span>
+				</button>
+
+			</div>
+
+		</section>
 
 		<section
 			class="p-5 card col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
