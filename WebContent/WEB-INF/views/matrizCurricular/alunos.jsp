@@ -93,8 +93,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 					</div>
 				</div>
 				<div class="d-flex align-items-center gap-2 ">
-					<button id="limpa-filtros"
-						class="btn btn-danger btn-lg btn-new-alter px-3 py-1 ms-auto">
+					<button id="limpa-filtros" class="btn btn-sm btn-danger">
 						Limpar Filtros</button>
 
 					<!-- <a class="btn btn-primary btn-lg btn-new-alter px-3 py-1 ms-auto"
