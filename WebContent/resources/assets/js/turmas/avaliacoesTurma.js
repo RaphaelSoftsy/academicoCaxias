@@ -68,20 +68,6 @@ $(document).ready(function () {
   });
 
   $.ajax({
-    url: url_base + "/anos",
-    type: "GET",
-  }).done(function (data) {
-    $.each(data, function (index, item) {
-      $("#ano").append(
-        $("<option>", {
-          value: item.idAno,
-          text: item.anoEscolar,
-        })
-      );
-    });
-  });
-
-  $.ajax({
     url: url_base + "/periodoletivo/conta/" + contaId,
     type: "GET",
   }).done(function (data) {
@@ -205,14 +191,14 @@ $("#periodo").change(() => {
 
 $("#turno").change(() => {
   $("#disciplinaId").prop("disabled", false).val(null).trigger("change");
-  
-  $("#turmaId, #disciplinaId")
-      .prop("disabled", true)
-      .val(null)
-      .trigger("change");
 
-    $("#turmaId").prop("disabled", true);
-    $("#disciplinaId").prop("disabled", false);
+  $("#turmaId, #disciplinaId")
+    .prop("disabled", true)
+    .val(null)
+    .trigger("change");
+
+  $("#turmaId").prop("disabled", true);
+  $("#disciplinaId").prop("disabled", false);
 });
 
 $("#disciplinaId").change(() => {
@@ -268,12 +254,12 @@ const listarDados = (dados) => {
         simulado =
           "<i style='color:#2eaa3a; font-size: 28px' class='fa-regular fa-circle-check'></i>";
       }
-	  
-	  console.log(item)
+
+      console.log(item);
 
       return (
         "<tr>" +
-		"<td>" +
+        "<td>" +
         item.nomeAbreviado +
         "</td>" +
         "<td>" +
@@ -322,19 +308,29 @@ function showModal(ref) {
     type: "GET",
   })
     .done(function (data) {
+      const formatDate = (isoDate) => {
+        if (!isoDate) return "";
+        return isoDate.split("T")[0];
+      };
+
+      const ativoValue = data.ativo === "S";
+      $("#provaAtivaEdit").prop("checked", ativoValue).change();
+
+      const simuladoValue = data.ehSimuladoEdit === "S";
+      $("#ehSimuladoEdit").prop("checked", simuladoValue).change();
+
+      $("#dataDivulgacaoEdit").val(formatDate(data.dataDivulgacao));
+
       $("#ordemEdit").val(data.ordem);
       $("#nomeAbreviadoEdit").val(data.nomeAbreviado);
       $("#descricaoEdit").val(data.descricao);
-      $("#dataDivulgacaoEdit").val(data.dataDivulgacao);
       $("#dataAgendaProvaEdit").val(data.dataAgendaProva);
       $("#tipoConceitoEdit").val(data.tipoConceito);
       $("#conceitoMaxEdit").val(data.conceitoMax);
       $("#dataLimiteRevisaoEdit").val(data.dataLimiteRevisao);
       $("#formulaEdit").val(data.formula);
-      $("#ehSimuladoEdit").prop("checked", data.ehSimulado === "S");
-      $("#provaAtivaEdit").prop("checked", data.ativo === "S");
 
-      $("#provaModal").modal("show");
+      $("#staticBackdropEdit").modal("show");
     })
     .fail(function () {
       alert("Erro ao carregar os dados da prova.");
@@ -388,7 +384,7 @@ $("#submitForm").on("click", function (e) {
   e.preventDefault();
 
   const data = {
-    turmaId:  $("#turmaId").val(),
+    turmaId: $("#turmaId").val(),
     nomeAbreviado: $("#nomeAbreviado").val(),
     descricao: $("#descricao").val(),
     dataDivulgacao: $("#dataDivulgacao").val(),
@@ -402,21 +398,28 @@ $("#submitForm").on("click", function (e) {
     formula: $("#formula").val(),
   };
 
-  console.log(data);
-
   $.ajax({
     url: url_base + "/prova",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify(data),
     success: function (response) {
-      console.log(response);
       buscar();
-      alert("Cadastro realizado com sucesso!");
-      $("#staticBackdrop").modal("hide");
+      Swal.fire({
+        title: "Cadastrado com sucesso",
+        icon: "success",
+      });
+      $("#btnClose").click();
+      limpaCampo();
     },
     error: function (erro) {
       console.log(erro);
+      Swal.fire({
+        icon: "error",
+        title: e.responseJSON.message,
+      });
+      $("#btnClose").click();
+      limpaCampo();
     },
   });
 });
@@ -439,8 +442,6 @@ $("#submitFormEdit").on("click", function (e) {
     formula: $("#formulaEdit").val(),
   };
 
-  console.log(data);
-
   $.ajax({
     url: url_base + "/prova",
     type: "PUT",
@@ -449,11 +450,21 @@ $("#submitFormEdit").on("click", function (e) {
     success: function (response) {
       console.log(response);
       buscar();
-      alert("Cadastro realizado com sucesso!");
-      $("#staticBackdrop").modal("hide");
+      Swal.fire({
+        title: "Editado com sucesso",
+        icon: "success",
+      });
+      $("#btnCloseEdit").click();
+      limpaCampo();
     },
     error: function (erro) {
       console.log(erro);
+      Swal.fire({
+        icon: "error",
+        title: e.responseJSON.message,
+      });
+      $("#btnCloseEdit").click();
+      limpaCampo();
     },
   });
 });

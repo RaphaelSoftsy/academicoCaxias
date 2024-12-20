@@ -394,6 +394,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
           <div class="modal-footer">
             <button
               type="button"
+              id="btnClose"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >
@@ -552,6 +553,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
           <div class="modal-footer">
             <button
               type="button"
+              id="btnCloseEdit"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >

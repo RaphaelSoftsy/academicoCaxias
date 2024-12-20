@@ -103,7 +103,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<caption>Itens Cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col" class="sortable border-end" data-column="escolaId">
+						<th scope="col" class="sortable border-end" data-column="candidato">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -126,7 +126,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="codCurso">
+						<th scope="col" class="sortable border-end" data-column="nomeCompleto">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -149,7 +149,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="nome">
+						<th scope="col" class="sortable border-end" data-column="nomeEscola">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -172,7 +172,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="nome">
+						<th scope="col" class="sortable border-end" data-column="nomeCurso">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -196,7 +196,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</th>
 
-						<th scope="col" class="sortable border-end" data-column="nome">
+						<th scope="col" class="sortable border-end" data-column="turno">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -220,7 +220,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 							</div>
 						</th>
 
-						<th scope="col" class="sortable border-end" data-column="nome">
+						<th scope="col" class="sortable border-end" data-column="serie">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -243,7 +243,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 								</div>
 							</div>
 						</th>
-						<th scope="col" class="sortable border-end" data-column="nome">
+						<th scope="col" class="sortable border-end" data-column="tipoIngresso">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
@@ -268,7 +268,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						</th>
 
 
-						<th scope="col" class="sortable border-end" data-column="nome">
+						<th scope="col" class="sortable border-end">
 							<div
 								class="d-flex align-items-center justify-content-between pe-2">
 								<div
