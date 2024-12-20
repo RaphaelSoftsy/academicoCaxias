@@ -103,4 +103,10 @@ public class Turmas {
 		return "avisos/listarDestinatarios";
 	}
 	
+	@RequestMapping(value = { "novo-aviso-aluno" }, method = RequestMethod.GET)
+	public String novoAvisoAluno(HttpSession session, Model model) throws Exception {
+		
+		return "avisos/novoAvisoAluno";
+	}
+	
 }

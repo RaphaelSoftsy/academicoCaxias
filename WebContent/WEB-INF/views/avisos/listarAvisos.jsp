@@ -92,9 +92,10 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 						class="btn btn-sm btn-success d-flex align-items-center gap-2">
 						<i class="fa-solid fa-file-export"></i> Exportar
 					</button>
-					<a href="aviso"
-						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">Novo
-						Cadastro</a>
+					<a id="novoCadastroLink"
+						class="btn btn-primary btn-sm btn-new-alter px-3 py-1 ms-auto">
+						Novo Cadastro </a>
+
 				</div>
 
 			</div>
@@ -211,13 +212,12 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="title-edit">Lista de Destinatários</h1>
+						<h1 class="modal-title fs-5" id="title-edit">Lista de
+							Destinatários</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
-					<div class="modal-body">
-						
-					</div>
+					<div class="modal-body"></div>
 				</div>
 			</div>
 		</div>
@@ -245,7 +245,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/avisos/listarAvisos.js"></script>
-	
+
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
