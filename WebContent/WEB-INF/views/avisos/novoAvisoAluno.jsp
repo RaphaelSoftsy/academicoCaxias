@@ -27,7 +27,9 @@ String contextPath = request.getContextPath();
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
 <!-- TinyMCE Script -->
-<script src="https://cdn.tiny.cloud/1/ybbnp45uwmaxy2afou9tc84m31aga7qy1w24rc7lno1h4ekl/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script
+	src="https://cdn.tiny.cloud/1/ybbnp45uwmaxy2afou9tc84m31aga7qy1w24rc7lno1h4ekl/tinymce/6/tinymce.min.js"
+	referrerpolicy="origin"></script>
 
 
 <!-- Select 2 -->
@@ -92,43 +94,58 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				</div>
 			</div>
 		</section>
-		<section class="pt-4">
-		
-		
-			<form id="formNovoCadastro"
-				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
-				<h3 id="tituloForm" class="text-start mb-5">Selecione os alunos</h3>
 
-				<table
-					class="table tabela-atos table-striped table-bordered mb-0 caption-top mx-auto">
-					<thead>
-						<tr>
-							<th scope="col" width="25px"><input class="form-check-input"
-								type="checkbox" value="" id="checkAll"></th>
-							<th scope="col">Matrícula</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Email</th>
-						</tr>
-					</thead>
-					<tbody id="cola-tabela" class="table-group-divider">
+		<section id="containerInfoAluno" class="mb-5">
+			<div class="card p-3 ">
 
-					</tbody>
-				</table>
-				<div id="pagination" class="mx-auto mt-auto">
-					<!-- <button id="prev" class="btn btn-sm">
-						<i class="fa-solid fa-angle-left fa-xl"></i>
-					</button>1
-					<div id="page-numbers" class="btn-group mt-2"></div>
-					<button id="next" class="btn btn-sm">
-						<i class="fa-solid fa-angle-right fa-xl"></i>
-					</button> -->
+				<div class="title mb-3">
+					<i class="fa-solid fa-user-graduate" style="font-size: 24px"></i> <span>Informações
+						do Aluno</span>
+				</div>
+
+				<div class="row mb-3">
+
+					<div class=" col-md-6">
+						<label for="obsAprovacao" class="form-label">Matricula: </label> <input
+							type="text" id="matricula" autocomplete="off" name="obsAprovacao"
+							class="form-control" disabled />
+					</div>
+
+					<div class="col-md-6">
+						<label for="obsAprovacao" class="form-label">Nome: </label> <input
+							type="text" id="nomeAluno" autocomplete="off" name="obsAprovacao"
+							class="form-control" disabled />
+					</div>
+
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="obsAprovacao" class="form-label">Email: </label> <input
+							type="text" id="emailAluno" autocomplete="off"
+							name="obsAprovacao" class="form-control" disabled />
+					</div>
+
+					<div class=" col-md-6">
+						<label for="obsAprovacao" class="form-label">Curso: </label> <input
+							type="text" id="cursoAluno" autocomplete="off"
+							name="obsAprovacao" class="form-control" disabled />
+					</div>
 				</div>
 
 
-				<hr>
 
-				<h5 id="tituloForm" class="text-start mb-5">Selecione o tipo de
-					envio da mensagem</h5>
+			</div>
+
+		</section>
+		<section class="pt-4">
+
+
+			<form id="formNovoCadastro"
+				class="card form p-5 col-12 animate__animated animate__bounceInUp d-flex flex-column justify-content-center">
+
+
+				<h3 id="tituloForm" class="text-start mb-5">Digite sua mensagem</h3>
 
 				<div class="col-md-12">
 					<label for="assunto" class="form-label">Assunto:<span
@@ -139,7 +156,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 				<div class="col-md-12 mt-3">
 					<label for="mensagem" class="form-label">Mensagem:<span
 						class="red">*</span></label>
-					<textarea  autocomplete="off" id="mensagem" name="mensagem"
+					<textarea autocomplete="off" id="mensagem" name="mensagem"
 						class="form-control"></textarea>
 				</div>
 
@@ -156,17 +173,17 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 					<div class="col-md-6">
 
-						<label for="tipoAvisoId" class="form-label">Tipo Aviso:<span class="red">*</span></label> <select
-							class="form-select" aria-label="tipoAvisoId" id="tipoAvisoId"
-							name="tipoAvisoId">
+						<label for="tipoAvisoId" class="form-label">Tipo Aviso:<span
+							class="red">*</span></label> <select class="form-select"
+							aria-label="tipoAvisoId" id="tipoAvisoId" name="tipoAvisoId">
 							<option selected disabled>Selecione uma opção</option>
 						</select>
 
 					</div>
 					<div class="col-md-6">
 						<label for=anexoAviso class="form-label">Anexo: </label> <input
-							autocomplete="off" type="file" id="anexoAviso"
-							name="anexoAviso" class="form-control" />
+							autocomplete="off" type="file" id="anexoAviso" name="anexoAviso"
+							class="form-control" />
 
 					</div>
 				</div>
@@ -178,13 +195,13 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 
 					<div class="col-md-6">
 						<label for="mensagem" class="form-label">Início :<span
-							class="red">*</span></label> <input  autocomplete="off"
-							type="date" id="inicio" name="inicio" class="form-control " />
+							class="red">*</span></label> <input autocomplete="off" type="date"
+							id="inicio" name="inicio" class="form-control " />
 					</div>
 					<div class="col-md-6">
 						<label for="mensagem" class="form-label">Término:<span
-							class="red">*</span></label> <input  autocomplete="off"
-							type="date" id="termino" name="termino" class="form-control " disabled/>
+							class="red">*</span></label> <input autocomplete="off" type="date"
+							id="termino" name="termino" class="form-control " disabled />
 					</div>
 				</div>
 
@@ -269,7 +286,7 @@ https://kit.fontawesome.com/3ce21ff22c.js"
 	<script
 		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/turmas/avisos.js"></script>
+		src="<%=contextPath%>/resources/assets/js/avisos/novoAvisoAluno.js"></script>
 
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

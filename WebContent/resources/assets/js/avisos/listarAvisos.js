@@ -32,6 +32,8 @@ $(document).ready(function() {
 	else
 		getDados()
 
+	const link = alunoId != null ? `novo-aviso-aluno?id=${alunoId}` : 'aviso';
+	$('#novoCadastroLink').attr('href', link);
 
 	// Dropdown de Pesquisa
 	$(".dropdown-toggle-form").click(function() { });
@@ -245,7 +247,7 @@ function getDadosAluno() {
 		type: "GET",
 	})
 		.done(function(data) {
-
+			console.log(data)
 			dados = data;
 			dadosOriginais = data;
 			listarDados(data);
